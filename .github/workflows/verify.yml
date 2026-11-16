@@ -15,5 +15,8 @@ jobs:
       - name: Validate Poker3 companion dashboard
         run: |
           python3 tests/smoke.py
+          python3 -m unittest discover -s tests -p 'test_*.py'
           node --check site/poker3/assets/app.js
           python3 -m json.tool site/poker3/data/research.json > /dev/null
+          python3 -m json.tool site/poker3/data/source-monitor.json > /dev/null
+          python3 -m py_compile scripts/check_sources.py

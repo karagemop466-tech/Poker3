@@ -14,7 +14,18 @@
   const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (ch) => ({
     '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
   }[ch]));
-  const sourceMap = (data) => Object.fromEntries(data.sources.map((source) => [source.id, source]));
+  const sourceMap = (data) => Object.fromEntries(data.sources.map((source) => [source.id, { ...source, check: data.sourceChecks?.sources?.[source.id] || null }]));
+  const changedSourceBadge = (ids, sources) => {
+    const names = [...new Set((ids || []).filter((id) => sources[id]?.check?.changed).map((id) => sources[id].name))];
+    return names.length ? `<span class="source-change" title="${esc(names.join('; '))}">Source changed · ${names.length}</span>` : '';
+  };
+  const monitorNote = (data) => {
+    const monitor = data.sourceChecks || {};
+    const checkedAt = monitor.checkedAt;
+    return checkedAt
+      ? `Official pages checked · ${esc(checkedAt)} UTC · ${Number(monitor.changedCount || 0)} changed · ${Number(monitor.unavailableCount || 0)} unavailable. A content change is a review signal, not proof a specific value changed.`
+      : 'Official source monitoring has not completed its first scheduled check yet.';
+  };
   const strictCount = (data) => data.events.filter((event) => event.strictStatus === 'verified').length;
   const money = (value) => value == null ? 'Buy-in not listed' : `$${Number(value).toLocaleString('en-US')}`;
   const monthDay = (iso) => {
@@ -26,7 +37,7 @@
     return new Intl.DateTimeFormat('en-US', { weekday: 'short', timeZone: 'UTC' }).format(new Date(Date.UTC(year, month - 1, day)));
   };
   const sourceLink = (source, label) => source
-    ? `<a class="source-link" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(label || 'Official source')} ↗</a>`
+    ? `<a class="source-link" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(label || 'Official source')} ↗</a>${source.check?.changed ? '<span class="source-change" role="status">Changed</span>' : source.check?.result === 'unavailable' ? '<span class="source-unavailable" role="status">Check unavailable</span>' : ''}`
     : '';
   const sourceLinks = (ids, sources, max = 3) => (ids || []).slice(0, max).map((id) => {
     const source = sources[id];
@@ -110,6 +121,7 @@
         </div>
         <div class="event-side">
           ${badge(event.strictStatus, status.label)}
+          ${changedSourceBadge(event.sourceIds, sources)}
           <strong>${esc(money(event.buyIn))}</strong>
           <div class="source-links event-sources">${eventEvidenceLinks(event, sources)}</div>
         </div>
@@ -189,6 +201,7 @@
       <div class="container page-shell">
         ${pageHead('Tournament calendar', 'Upcoming starts, with the fine print attached.', 'A curated snapshot from official series schedules. “Rules not established” means the event has not passed the strict-entry screen.', data.meta.asOfLabel)}
         <div class="notice critical"><span class="notice-icon" aria-hidden="true">!</span><div><strong>${strictCount(data)} events currently pass the strict-entry screen.</strong><p>Known re-entry/add-on events are marked rejected; unclear events remain unverified. Use the source link to check the exact event sheet before you travel.</p></div></div>
+        <div class="monitor-note" role="status">${monitorNote(data)}</div>
         <section class="section mt-0" aria-label="Filter tournament schedule">
           <div class="filters">
             <div class="field search-field"><label for="event-search">Search events</label><input id="event-search" type="search" placeholder="Try Venetian, $600, WPT Prime…"></div>
@@ -246,6 +259,21 @@
         ${pageHead('Day-start planner', 'Build a day around real start times.', 'This is a start-window map, not a promise that one player can complete or enter every event shown.', data.meta.asOfLabel)}
         <div class="notice critical"><span class="notice-icon" aria-hidden="true">!</span><div><strong>No reliable maximum-entry itinerary can be verified yet.</strong><p>Current sources establish start times for some rooms, but not enough current event durations, registration cutoffs, and rules to guarantee a sequential day. Concurrent starts are alternatives, not a route to play all of them.</p></div></div>
         <section class="section" style="margin-top:20px">
+          <div class="trip-cost-calculator">
+            <span class="kicker">Trip budget · scenario only</span><h2>Estimate tournament entries + hotel</h2>
+            <p>Entries × buy-in + nights × ((room rate + resort fee) × (1 + tax rate)). Blank inputs stay blank. This is a planning estimate, not a hotel quote; the 13.38% tax is the requested assumption and is not independently verified here.</p>
+            <div class="cost-fields">
+              <div class="field"><label for="cost-event">Event / buy-in reference</label><select id="cost-event"><option value="">Choose an event with a listed buy-in</option>${data.events.filter((event) => event.buyIn != null && Number.isFinite(Number(event.buyIn))).map((event) => `<option value="${Number(event.buyIn)}">${esc(event.date)} · ${esc(event.venue)} · ${esc(event.name)} · ${money(event.buyIn)} · ${esc(event.strictStatus)}</option>`).join('')}</select></div>
+              <div class="field"><label for="cost-entries">Entries</label><input id="cost-entries" type="number" min="0" step="1" inputmode="numeric" placeholder="e.g. 1"></div>
+              <div class="field"><label for="cost-buyin">Buy-in per entry (USD)</label><input id="cost-buyin" type="number" min="0" step="1" inputmode="decimal" placeholder="Select event or enter amount"></div>
+              <div class="field"><label for="cost-nights">Hotel nights</label><input id="cost-nights" type="number" min="0" step="1" inputmode="numeric" placeholder="e.g. 4"></div>
+              <div class="field"><label for="cost-rate">Room rate per night (USD)</label><input id="cost-rate" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Official checkout rate"></div>
+              <div class="field"><label for="cost-fee">Mandatory resort fee per night (USD)</label><input id="cost-fee" type="number" min="0" step="0.01" inputmode="decimal" placeholder="Enter confirmed fee"></div>
+              <div class="field"><label for="cost-tax">Tax rate (%)</label><input id="cost-tax" type="number" min="0" step="0.01" value="13.38" inputmode="decimal"></div>
+            </div>
+            <div class="cost-result" id="trip-cost-result" aria-live="polite"><strong>Complete the entry and hotel fields to calculate.</strong></div>
+            <p class="small muted">Event terms in this catalog may be unverified for re-entry, rebuys, add-ons, or paid advantages. The entry count is a scenario, not a claim that repeated entries are allowed. Use the official checkout total when available.</p>
+          </div>
           <div class="filters planner-controls">
             <div class="field"><label for="planner-date">Choose a date</label><input id="planner-date" type="date" min="2026-11-16" max="2026-12-23" value="${sampleDate}"></div>
             <div class="field"><label for="planner-duration">Assumed time at each event</label><input id="planner-duration" type="number" min="0.5" max="24" step="0.5" placeholder="Hours (e.g. 4)"></div>
@@ -267,6 +295,27 @@
     const duration = document.getElementById('planner-duration');
     const strictOnly = document.getElementById('planner-strict-only');
     const itinerary = document.getElementById('planner-itinerary');
+    const eventChoice = document.getElementById('cost-event');
+    const costInputs = ['cost-entries', 'cost-buyin', 'cost-nights', 'cost-rate', 'cost-fee', 'cost-tax'].map((id) => document.getElementById(id));
+    const costResult = document.getElementById('trip-cost-result');
+    const calculateTripCost = () => {
+      const [entriesEl, buyInEl, nightsEl, rateEl, feeEl, taxEl] = costInputs;
+      const values = [entriesEl, buyInEl, nightsEl, rateEl, feeEl, taxEl].map((el) => el.value.trim() === '' ? null : Number(el.value));
+      if (values.some((value) => value === null) || values.some((value) => !Number.isFinite(value) || value < 0)
+        || !Number.isInteger(values[0]) || !Number.isInteger(values[2])) {
+        costResult.innerHTML = '<strong>Complete the entry and hotel fields to calculate.</strong> Missing or invalid values are not assumed to be zero.';
+        return;
+      }
+      const [entries, buyIn, nights, rate, fee, taxPercent] = values;
+      const entrySpend = entries * buyIn;
+      const trueNightly = (rate + fee) * (1 + taxPercent / 100);
+      const hotelSpend = nights * trueNightly;
+      const total = entrySpend + hotelSpend;
+      const usd = (amount) => amount.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+      costResult.innerHTML = `<strong>Estimated total: ${usd(total)}</strong><span>Entries: ${usd(entrySpend)} · True-cost estimate/night: ${usd(trueNightly)} · Hotel: ${usd(hotelSpend)}</span>`;
+    };
+    eventChoice.addEventListener('change', () => { if (eventChoice.value) { document.getElementById('cost-buyin').value = eventChoice.value; calculateTripCost(); } });
+    costInputs.forEach((el) => el.addEventListener('input', calculateTripCost));
     let dailyGroups = [];
     const render = () => {
       const selected = input.value;
@@ -368,6 +417,7 @@
               <div class="room-detail"><strong>Entry-rule note</strong>${esc(room.terms)}<div class="source-links">${sourceLinks(room.sourceIds, sources, 3)}</div></div>
             </article>`).join('')}
         </div></section>
+        <section class="section"><div class="text-panel"><h3>Official source monitoring</h3><p>${monitorNote(data)} A page-content change is a review signal, not proof that an event value or hotel term changed; compare the official page before revising data.</p></div></section>
         <section class="section"><div class="text-panel"><h3>Strict-entry rule</h3><p>The room status is intentionally conservative. A page that lists a tournament time but omits re-entry or add-on rules is <strong>unverified</strong>, not a pass. A confirmed re-entry, rebuy, add-on, or paid chip bonus is marked as extra spend/entry.</p></div></section>
       </div>`;
   }
@@ -379,10 +429,16 @@
       <div class="container page-shell">
         ${pageHead('Hotel comparison', 'See the fee before the room price.', 'No actual stay dates were supplied. The dated search window below is a working sample, not a confirmed booking or recommendation.', data.meta.asOfLabel)}
         <div class="notice critical"><span class="notice-icon" aria-hidden="true">!</span><div><strong>Sample window only · ${esc(sample.label)}</strong><p>Rates are dynamic. Only one property returned a usable nightly rate card, and its fee/tax presentation conflicts. No four-night all-in total is stated.</p></div></div>
+        <div class="monitor-note" role="status">${monitorNote(data)}</div>
+        <section class="section"><div class="section-heading"><div><span class="kicker">Dated rate log</span><h2>Hotel quotes & observed rate cards</h2><p>Each observation is preserved with its own retrieval date. Empty/unknown fields are intentionally blank.</p></div></div>
+          <div class="rate-log-scroll"><table class="rate-log"><thead><tr><th>Property / stay</th><th>Checkout total</th><th>Nightly average</th><th>Resort fee</th><th>Tax</th><th>Parking</th><th>Cancellation deadline</th><th>Rate timestamp</th><th>Checked</th><th>Evidence</th></tr></thead><tbody>
+          ${data.hotels.flatMap((hotel) => (hotel.rateHistory || []).map((rate) => `<tr><th scope="row">${esc(hotel.name)}<br><small>${esc(rate.arrival)} – ${esc(rate.departure)} · ${esc(rate.guests)} guests</small><br><small>${esc(rate.status || '')}</small></th><td>${rate.checkoutTotal == null ? '' : esc(rate.checkoutTotal)}</td><td>${rate.nightlyAverage == null ? '' : `$${Number(rate.nightlyAverage).toFixed(2)}`}<br><small>${esc(rate.nightlyRateBasis || '')}</small></td><td>${esc(rate.resortFee || '')}</td><td>${rate.tax == null ? '' : esc(rate.tax)}</td><td>${rate.parking == null ? '' : esc(rate.parking)}</td><td>${rate.cancellationDeadline == null ? '' : esc(rate.cancellationDeadline)}</td><td>${rate.rateTimestamp == null ? '' : esc(rate.rateTimestamp)}</td><td>${esc(rate.checkedDate || '')}</td><td>${sourceLink(sources[rate.sourceId], 'Official booking page ↗')}${changedSourceBadge([rate.sourceId], sources)}</td></tr>`)).join('') || '<tr><td colspan="10" class="muted">No dated official quote observations recorded yet. No rate is inferred from a “from” price.</td></tr>'}
+          </tbody></table></div>
+        </section>
         <section class="section"><div class="card-grid">${data.hotels.map((hotel) => `
           <article class="card hotel-card">
             <div class="card-top"><div><span class="kicker">${esc(hotel.area)}</span><h3>${esc(hotel.name)}</h3></div>${badge(hotel.id === 'horseshoe' ? 'unverified' : 'mixed', hotel.id === 'horseshoe' ? 'Quote not final' : 'Rate not comparable')}</div>
-            <div class="rate">${esc(hotel.sampleRate)}</div>
+            <div class="rate">${(hotel.rateHistory || []).length} dated rate observation${(hotel.rateHistory || []).length === 1 ? '' : 's'}</div>
             <div class="fee-line">Resort fee: ${esc(hotel.fee)}</div>
             <p class="hotel-detail">${esc(hotel.details)}</p>
             <div class="card-bottom"><small>${esc(hotel.rateStatus)}</small><span class="source-links">${sourceLinks(hotel.sourceIds, sources, 2)}</span></div>
@@ -469,7 +525,10 @@
       if (!response.ok) throw new Error(`Research data request failed (${response.status})`);
       return response.json();
     })
-    .then(run)
+    .then((data) => fetch(new URL('../data/source-monitor.json', appScript?.src || window.location.href), { cache: 'no-store' })
+      .then((response) => response.ok ? response.json() : {})
+      .catch(() => ({}))
+      .then((monitor) => { data.sourceChecks = monitor; run(data); }))
     .catch((error) => {
       console.error(error);
       const root = document.querySelector('[data-content]');
