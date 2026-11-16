@@ -238,3 +238,47 @@ Branch: `arena/e125b4a2-poker3`. This session's files are kept in their own fold
 - The Dec. 10–14, 2026, two-adult hotel search is a research sample, not user-provided travel dates. Hotel all-in totals remain unconfirmed; route times remain third-party estimates.
 - Planner scenarios use a user-entered time-at-event assumption and are explicitly not verified or guaranteed itineraries. Unknown terms are labeled “Flagged for Review.”
 - Checks: `node --check site/poker3/assets/app.js`; `python3 tests/smoke.py`; JSON validation; headless DOM rendering/interaction checks on all eight pages, event filters, the mobile navigation, planner date/scenario controls, and internal links.
+
+---
+
+## Current session `arena/ed88c788-poker3` — final integration and republication
+
+Branch: `arena/ed88c788-poker3` (base `main` at `e9af34c`). This session is the only active editor, so it
+takes the integration-owner role for every shared output: the canonical `site/` artifact, the combined data
+set, navigation, the schedule plan, the flag register and the source log. No other session holds a live claim
+on this branch, so the scope below is non-overlapping.
+
+| Task | Status | Owner session | Scope | Files | Notes |
+|---|---|---|---|---|---|
+| Source-data modules for the canonical set | in progress | arena/ed88c788-poker3 | new source modules | `scripts/data_venetian.py`, `scripts/data_venues.py`, `scripts/data_hotels.py`, `scripts/data_source.py` | Builds `site/data.json` from official-source rows only. Every row keeps its official URL and the 2026-11-16 retrieval date. |
+| Canonical rebuild of `site/` | in progress | arena/ed88c788-poker3 | canonical Pages artifact | `site/index.html`, `site/tournaments.html`, `site/hotels.html`, `site/schedule.html`, `site/questions.html`, `site/suggestions.html`, `site/flagged.html`, `site/sources.html`, `site/browse.html`, `site/assets/app.js`, `site/assets/site.css`, `site/data.json` | Replaces the superseded 40-row snapshot with the verified set. |
+| Automated re-check + morning daily feed | in progress | arena/ed88c788-poker3 | automation | `scripts/check_sources.py`, `scripts/daily_feed.py`, `.github/workflows/checks.yml`, `site/checks.json`, `site/feed/**` | Scheduled URL re-check with content hashes and changed-value flags; daily per-room schedule feed. |
+| Verification, PR, merge, deployment | pending | arena/ed88c788-poker3 | whole repo | `scripts/verify_site.py`, `tests/`, this section | Line-by-line re-verification, no broken links, PR to `main`, explicit merge, deployment confirmation recorded here. |
+
+### Claim record (this session)
+
+- **Claimed:** `site/**` (canonical artifact), `scripts/data_*.py`, `scripts/data_source.py`,
+  `scripts/verify_site.py`, `scripts/check_sources.py`, `scripts/daily_feed.py`, `tests/**`,
+  `.github/workflows/**`, `research/structure_notes.md`, `README.md`, `COORDINATION.md`.
+- **Not claimed, not edited:** `docs/`, `verified/`, `planner/`, `single-entry/`, `pages/`, root-level HTML
+  pages from earlier sessions, `raw/`, `data/`. They stay in the repository as prior research artefacts.
+- **Cross-file requests:** none. No other session is active, so no edit is made to another session's files.
+- **Commit discipline:** small, frequent commits; `git pull --rebase origin arena/ed88c788-poker3` before every push.
+
+### Source position at claim time
+
+- All 37 official DSE IV structure PDFs read directly on 2026-11-16 (`research/structure_notes.md`, commit `8ba5967`).
+- Official DSE IV schedule (64 rows), DSE NYE schedule, Wynn daily poster and structures, Wynn WPT schedule,
+  Wynn Signature Series schedule, Bellagio Friday/Saturday/Sunday PDFs, MGM Grand $120 structure and weekly
+  sheet, Caesars/Horseshoe tournament page, ARIA guide, and the Venetian/Wynn/Bellagio hotel terms pages.
+- Google Maps walking estimates captured 2026-11-16 for the hotel-to-Venetian routes; they are labelled as
+  estimates because no venue publishes a walking time.
+
+### Standing constraints honoured
+
+- No value is inferred. Anything not confirmed from an official source stays blank and is listed on
+  `site/flagged.html` with a link for manual review.
+- The guaranteed-pool ÷ entry-fee figure is shown as a descriptive ratio only, never as a forecast.
+- Bounty, multi-flight and satellite formats are labelled separately from the single-entry list.
+- Trip dates, nightly budget and quality floor are fixed by this session rather than asked for, and the
+  reasoning is published.
