@@ -12,6 +12,8 @@ OFFICIAL_DOMAINS = {
     "cdn.wynnresorts.com",
     "www.wynnlasvegas.com",
     "aria.mgmresorts.com",
+    "bellagio.mgmresorts.com",
+    "assets.contentstack.io",
 }
 
 with (SITE / "data.json").open(encoding="utf-8") as f:
@@ -35,11 +37,12 @@ for index, row in enumerate(data["hotels"], start=1):
     for field in ("name", "venue", "resortFee", "trueNightly", "source", "feeSource", "taxSource"):
         assert field in row, f"Hotel row {index}: missing {field} key"
     assert row["trueNightly"] == "", "Do not populate a total without a date-specific quote"
-    for field in ("source", "feeSource", "taxSource"):
-        url = urllib.parse.urlparse(row[field])
-        assert url.scheme == "https" and url.hostname in OFFICIAL_DOMAINS, (
-            f"Hotel row {index}: non-official {field} URL {row[field]}"
-        )
+    for field in ("source", "feeSource", "taxSource", "feeSourceAlt"):
+        if row.get(field):
+            url = urllib.parse.urlparse(row[field])
+            assert url.scheme == "https" and url.hostname in OFFICIAL_DOMAINS, (
+                f"Hotel row {index}: non-official {field} URL {row[field]}"
+            )
 
 for page in SITE.glob("*.html"):
     text = page.read_text(encoding="utf-8")

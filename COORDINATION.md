@@ -108,7 +108,7 @@ Branch: `arena/ada1dd4d-poker3`. The session began from the Arena-provided initi
 
 | Task | Status | Owner | Scope | Notes |
 |---|---|---|---|---|
-| Expanded official-source schedule/hotel research, clean dashboard, questions, suggestions, day plan | in progress | arena-ada1dd4d-poker3 | `site/**`, `scripts/**`, `.github/workflows/**`, `README.md`, this section | Current primary evidence only; scope and gaps are explicit. |
+| Expanded official-source schedule/hotel research, clean dashboard, questions, suggestions, day plan | implemented; unknown terms remain flagged | arena-ada1dd4d-poker3 | `site/**`, `scripts/**`, `.github/workflows/**`, `README.md`, this section | Current primary evidence only; site verification passes, but no tournament is confirmed strictly single-entry. |
 | Verify one-entry / no-re-entry / no-add-on rules | needs review | arena-ada1dd4d-poker3 | `site/data.json`, `site/tournaments.html`, `site/flagged.html` | Candidates with missing terms are not marked eligible. |
 | Obtain date-specific hotel totals and verify walking/time feasibility | needs review | arena-ada1dd4d-poker3 | `site/data.json`, `site/hotels.html`, `site/flagged.html` | Dates/occupancy absent; totals and route times blank. |
 
@@ -125,12 +125,12 @@ Checked 2026-11-16. Canonical tournament rows link to venue-controlled schedules
 
 - Venetian: https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html and https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html. Dated table rows checked; linked official structure PDFs were inspected for the listed one-day, RaceDay, bounty and multi-flight samples. “1Day” is not treated as one-entry proof.
 - Wynn: https://www.wynnlasvegas.com/casino/poker, daily poster https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf, and WPT schedule https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf. Rebuy is isolated as extra-spend.
-- Bellagio: https://bellagio.mgmresorts.com/en/casino/poker.html and its linked Friday $600 NLH, Saturday NLH, and Sunday $400 H.O.R.S.E. structure PDFs. Friday and Sunday PDFs explicitly allow re-entry and an optional paid staff gratuity that adds chips; these are in the spend-more section. Saturday source conflicts are flagged.
+- Bellagio: https://bellagio.mgmresorts.com/en/casino/poker.html and its linked Friday $600 NLH, Saturday NLH, and Sunday $400 H.O.R.S.E. structure PDFs. Friday and Sunday PDFs explicitly allow re-entry and an optional paid staff gratuity that adds chips; these are in the spend-more section. Saturday source conflicts are flagged. Hotel room page https://bellagio.mgmresorts.com/en/hotel.html gives room classes but no date-specific quote; hotel terms https://bellagio.mgmresorts.com/en/terms-and-conditions.html publish a $55 daily resort fee plus applicable tax and state lodging tax applies to both rate and resort fee.
 - Venetian hotel: https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html, https://www.venetianlasvegas.com/resort/resort-fee.html, https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html. The $119/$209 starting-rate wording is not mapped to individual towers in the reviewed text, so base and all-in totals remain blank. Terms state 13.38% room tax on daily rate and $55 + applicable tax resort fee.
 - Wynn hotel: https://www.wynnlasvegas.com/rooms-and-suites, general terms https://www.wynnlasvegas.com/terms-and-conditions/850070, and an expired 2024 offer page https://www.wynnlasvegas.com/terms-and-conditions/849723. General/current terms reviewed state $55 + tax; expired offer states $50 + tax. The historical discrepancy is flagged; actual booked terms control. Exact room price remains blank.
 - ARIA: current poker page and undated official guide URLs above.
 
-Automated checks: `python3 scripts/verify_site.py`, `node --check site/assets/app.js`, `python -m json.tool site/data.json`, `git diff --check`; all pass. The local verifier checks official domains, explicit blanks for unknown values, and local links. Local HTTP smoke tests returned 200 for overview, tournaments and JSON data. Entry rules, walking routes, live room confirmation, finish-time scheduling and complete Strip-wide coverage remain flagged.
+Automated checks (rerun after Bellagio hotel/fee integration on 2026-11-16): `python3 scripts/verify_site.py`, `node --check site/assets/app.js`, `python -m json.tool site/data.json`, `git diff --check`; all pass. The verifier reports 40 official-linked tournament rows, 4 hotel rows with blank unquoted totals, and 7 pages with valid local links. It checks official domains, explicit blanks for unknown values, and local links. Earlier local HTTP smoke tests returned 200 for overview, tournaments and JSON data. Bellagio terms confirm a $55 + tax resort fee; nightly room rates/totals remain blank. Entry rules, walking routes, live room confirmation, finish-time scheduling and complete Strip-wide coverage remain flagged.
 
 ### Open current-session flags
 
@@ -139,7 +139,7 @@ Automated checks: `python3 scripts/verify_site.py`, `node --check site/assets/ap
 - Wynn official fee terms include $55 + tax in current/general terms and $50 + tax in an expired 2024 offer; confirm fee on the actual booking.
 - Bellagio Saturday NLH source conflict: page/title says $1,000, PDF header says $1,100, and its rule breakdown says $600; no rank assigned.
 - ARIA official guide is undated; current page says to confirm daily events.
-- Exact hotel totals, walking minutes, 8 AM start, tournament finish times and full Strip inventory are not established.
+- Exact hotel totals (including Bellagio), walking minutes, 8 AM start, tournament finish times and full Strip inventory are not established. Hotel quality is not ranked because no common official quality metric was verified.
 
 ### Current PR / deployment
 
