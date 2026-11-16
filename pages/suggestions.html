@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Site Improvement Suggestions — Review Before Implementing</title>
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="inner">
+    <h1>Site Improvement Suggestions</h1>
+    <p class="sub">Proposed changes to help decision-making &bull; Review and choose before implementing anything</p>
+    <nav class="nav">
+      <a href="../index.html">Home</a>
+      <a href="tournaments.html">Tournaments</a>
+      <a href="hotels.html">Hotels</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="questions.html">Questions</a>
+      <a href="flagged.html">Flagged for review</a>
+    </nav>
+  </div>
+</header>
+
+<div class="container">
+
+  <section class="section">
+    <h2>Review process</h2>
+    <div class="info">
+      <strong>No suggestion on this page is implemented automatically.</strong> Each suggestion below lists the expected benefit, effort, and what must be verified first. Review them, pick the best path, record the decision, then implement. Nothing here changes the verified data.
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>Suggestions — decision-making improvements</h2>
+    <table>
+      <thead><tr><th style="width:6%">#</th><th style="width:30%">Suggestion</th><th style="width:34%">Expected benefit</th><th style="width:16%">Effort</th><th>Review needed before implementing</th></tr></thead>
+      <tbody>
+        <tr>
+          <td class="center">S1</td>
+          <td>Add a date filter to the tournament table (show events for selected dates only)</td>
+          <td>Faster itinerary building for specific vacation dates</td><td class="center">Low–Medium</td>
+<td>Needs JavaScript maintenance; verify filtered results match the full table exactly</td></tr>
+        <tr>
+          <td class="center">S2</td>
+          <td>Add a "best value" badge (GTD ÷ buy-in ratio) computed automatically on tournament rows</td>
+          <td>Makes cost-vs-prize-pool comparison instant</td><td class="center">Low</td>
+<td>Ratio uses official figures only; no new data introduced</td></tr>
+        <tr>
+          <td class="center">S3</td>
+          <td>Add a hotel true-cost calculator: user enters room rate, tool computes (rate + fee) × 1.1338 + parking</td>
+          <td>Lets travelers see true cost per night with real quotes</td><td class="center">Low</td>
+<td>Tax 13.38% and fees must come from official sources; label results as estimates until rates confirmed</td></tr>
+        <tr>
+          <td class="center">S4</td>
+          <td>Add walking directions / distance check from hotel addresses to Venetian (3355 S Las Vegas Blvd) and Wynn (3131 S Las Vegas Blvd)</td>
+          <td>Confirms the 30-minute walking rule per trip</td><td class="center">Medium</td>
+<td>Use an external mapping service; distances are not official resort data — flag as approximate</td></tr>
+        <tr>
+          <td class="center">S5</td>
+          <td>Add bankroll/trip-cost estimator: tournament buy-ins + hotel nights + food + transport</td>
+          <td>Go/no-go affordability check before booking</td><td class="center">Medium</td>
+<td>Only verified numbers (buy-ins, fees); hotel rates must be user-entered, not inferred</td></tr>
+        <tr>
+          <td class="center">S6</td>
+          <td>Export schedule to calendar (ICS) for selected tournaments</td>
+          <td>Helps players keep event times while traveling</td><td class="center">Low</td>
+<td>Event times from official schedule; re-verify before each trip (management may change times)</td></tr>
+        <tr>
+          <td class="center">S7</td>
+          <td>Add more Strip venues once officially verified: Aria Poker Open (Nov 29 – Dec 20, 2026), Horseshoe, Caesars, Bellagio, Mirage poker rooms</td>
+          <td>More single-entry options to enter more tournaments</td><td class="center">High</td>
+<td>Every new row needs an official source link; third-party listings (e.g., "Re-entry" tags) are not acceptable until verified</td></tr>
+        <tr>
+          <td class="center">S8</td>
+          <td>Add live rate monitoring links: direct "book" buttons to Venetian and Wynn booking pages</td>
+          <td>Faster booking when rates publish</td><td class="center">Low</td>
+<td>Link only to official booking pages; no affiliate or third-rate claims</td></tr>
+        <tr>
+          <td class="center">S9</td>
+          <td>Add a "what changed" log: dates when data was re-verified against official sources</td>
+          <td>Users can trust data freshness</td><td class="center">Low</td>
+<td>Log must record source URL and what was checked</td></tr>
+        <tr>
+          <td class="center">S10</td>
+          <td>Mobile-friendly printable one-page itinerary summary</td>
+          <td>Easy to use on the casino floor</td><td class="center">Low</td>
+<td>Printed itinerary must reflect the verified table, not estimates</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="section">
+    <h2>Prioritization (suggested order — for review, not a directive)</h2>
+    <ol>
+      <li><strong>S3 (true-cost calculator)</strong> and <strong>S9 (verification log)</strong> — low effort, directly support the "true cost" and "verified" goals.</li>
+      <li><strong>S2 (value badge)</strong> — highlights best tournaments without adding data.</li>
+      <li><strong>S4 (walking distance)</strong> and <strong>S7 (more venues)</strong> — higher effort; only after official sources are in hand.</li>
+      <li><strong>S1, S5, S6, S8, S10</strong> — convenience features, implement last.</li>
+    </ol>
+  </section>
+
+  <section class="section">
+    <h2>Decision record</h2>
+    <table>
+      <thead><tr><th>Suggestion</th><th>Decision</th><th>Date</th><th>Implemented by</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>—</td><td class="blank">No decisions recorded yet</td><td class="blank">—</td><td class="blank">—</td><td class="blank">—</td></tr>
+      </tbody>
+    </table>
+    <p class="warn">Record each decision above before implementing any suggestion. Unimplemented suggestions remain on this page for future review.</p>
+  </section>
+
+</div>
+<footer class="site-footer">
+  Poker3 — suggestions are proposals only. Verified data is unchanged by this page.
+</footer>
+</body>
+</html>
