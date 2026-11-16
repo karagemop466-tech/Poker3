@@ -1,0 +1,308 @@
+{
+ "checked": "2026-11-16",
+ "note": "Everything on this register is published on the 'Flagged for review' page of the site. None of these items blocks the merge or the deployment; they are the open items a reviewer should work through before money is committed.",
+ "flags": [
+  {
+   "id": "F01",
+   "category": "Hotel cost",
+   "severity": "medium",
+   "title": "Horseshoe resort fee is printed two ways on the same official page",
+   "finding": "The price breakdown on the official booking page uses a $50 daily resort fee, while the fee policy section of the same page prints 'Resort fees: $56.63 ($49.95 plus $6.68 tax)'. The two figures cannot both be the charge for the same stay.",
+   "evidence": "'$223 Room Rate + $50 Daily Resort Fee = $273 / Night' against 'Resort fees: $56.63 ($49.95 plus $6.68 tax)'.",
+   "impact": "The true nightly cost on this site uses the price-breakdown figure ($273 x 1.1338 = $309.53) because that is the figure the booking engine itself uses. If the policy line is the charge, the true nightly is $309.53 rather than $309.53 + $7.53.",
+   "nextStep": "Confirm the resort fee on the checkout summary for the exact stay before paying.",
+   "sourceIds": ["horseshoe-booking"]
+  },
+  {
+   "id": "F02",
+   "category": "Hotel cost",
+   "severity": "medium",
+   "title": "Caesars Palace and Paris resort fee is printed two ways on the same official page",
+   "finding": "Both pages use $55 in the price breakdown and print 'Resort fees: $62.30 ($54.95 plus $7.35 tax)' in the fee policy section.",
+   "evidence": "'$620 Room Rate + $55 Daily Resort Fee = $675 / Night' against 'Resort fees: $62.30 ($54.95 plus $7.35 tax)'.",
+   "impact": "Small (about $0.45 per night) but it means the printed nightly total on the property's own page is not self-consistent.",
+   "nextStep": "Confirm the fee on the checkout summary.",
+   "sourceIds": ["caesars-palace-booking", "paris-booking"]
+  },
+  {
+   "id": "F03",
+   "category": "Tournament terms",
+   "severity": "high",
+   "title": "Bellagio Saturday buy-in is stated three different ways",
+   "finding": "The official poker page links the Saturday sheet as 'SATURDAYS | $1,000 NLH' and the file name says $1000; the PDF header says 'NLH $1100 BUY-IN'; rule 07 inside the same PDF says 'Of the $600 Buy-in, $510 goes to the Prize Pool, $50 is Admin Fees and $40 is optional staff gratuity'. The three figures cannot all be correct.",
+   "evidence": "Page link text '$1,000 NLH'; PDF header 'NLH $1100 BUY-IN'; PDF rule 07 '$600 Buy-in'.",
+   "impact": "The buy-in for this event is left blank on the site. No ranking or cost figure is derived from it.",
+   "nextStep": "Call the Bellagio poker room (702.693.7291) and get the current Saturday buy-in and structure sheet in writing.",
+   "sourceIds": ["bellagio-poker", "bellagio-saturday"]
+  },
+  {
+   "id": "F04",
+   "category": "Official notice",
+   "severity": "low",
+   "title": "Bellagio's 'resume' notice is undated and its weekday does not match the date",
+   "finding": "The official page states: 'Tournament play will resume on Saturday, July 26, beginning with the $300 PLO Double Board Bomb Pot Tournament at 2 PM PT.' July 26, 2026 is a Sunday, and no year is given.",
+   "evidence": "'Tournament play will resume on Saturday, July 26'",
+   "impact": "The notice cannot be tied to the current series and is not used for any schedule row.",
+   "nextStep": "Ask the room what the notice refers to and whether it is still in force.",
+   "sourceIds": ["bellagio-poker"]
+  },
+  {
+   "id": "F05",
+   "category": "Hotel rate",
+   "severity": "high",
+   "title": "No date-specific rate could be read for The Venetian",
+   "finding": "The official booking calendar for December 10-14, 2026 loads and shows the stay, but every nightly price renders as the placeholder '$XXX' in the page text, and the footer states '*Pricing shown is best available suite and rate, includes daily resort fee, excludes taxes.'",
+   "evidence": "Calendar cells read '$XXX' for December 10, 11, 12 and 13, 2026.",
+   "impact": "The property with a zero-minute walk to the tournament room has no comparable true nightly cost in the hotel table. The true-cost ranking therefore excludes the most convenient option.",
+   "nextStep": "Open the booking engine in a browser for the target dates, or call 702.414.1000, and record the nightly price including the resort fee.",
+   "sourceIds": ["venetian-booking"]
+  },
+  {
+   "id": "F06",
+   "category": "Hotel rate",
+   "severity": "high",
+   "title": "The Wynn booking session did not return the requested dates",
+   "finding": "The official booking URL was opened with arrival 2026-12-10 and departure 2026-12-14. The returned page describes '1 Night Stay: Nov. 16 - Nov. 17, 2026' and shows a rate string ('$1254Avg/Night') that cannot be tied to the requested window.",
+   "evidence": "Page heading '1 Night Stay: Nov. 16 - Nov. 17, 2026' while the URL requested Dec 10 - Dec 14, 2026.",
+   "impact": "No Wynn rate is published in the hotel table. Nothing was inferred from the stray price string.",
+   "nextStep": "Re-run the search for the target dates in a browser, or call the Wynn reservations line and record the nightly rate.",
+   "sourceIds": ["wynn-booking"]
+  },
+  {
+   "id": "F07",
+   "category": "Hotel rate",
+   "severity": "medium",
+   "title": "Paris Las Vegas refused the sample arrival date",
+   "finding": "The official Paris booking engine answers 'Your arrival date is restricted. Please choose a new arrival date below.' for December 10, 2026, so no nightly rate exists for that night in the official system.",
+   "evidence": "'Your arrival date is restricted'",
+   "impact": "Paris has fee and policy data but no rate in the dated log.",
+   "nextStep": "Try adjacent dates or ask the property why December 10 is blocked.",
+   "sourceIds": ["paris-booking"]
+  },
+  {
+   "id": "F08",
+   "category": "Hotel rate",
+   "severity": "medium",
+   "title": "No Bellagio rate captured in this pass",
+   "finding": "The Bellagio hotel terms were read (resort fee $55.00 plus tax, $50 plus tax extra occupant, 72-hour cancellation) but no date-specific rate was captured, so Bellagio has no entry in the dated rate log.",
+   "evidence": "",
+   "impact": "Bellagio cannot be compared on true cost, only on policy.",
+   "nextStep": "Run the same booking query used for Horseshoe and Caesars Palace against the Bellagio booking engine.",
+   "sourceIds": ["bellagio-terms"]
+  },
+  {
+   "id": "F09",
+   "category": "Walking route",
+   "severity": "high",
+   "title": "No venue publishes a walking time to another venue",
+   "finding": "Walking times between poker rooms cannot come from an official source, because no property publishes them. The values in the route table are third-party estimates (rome2rio.com) and are labelled as estimates; each row also carries a Google Maps and an Apple Maps walking link.",
+   "evidence": "'14 min', 'about 1.2 mi' for The Venetian to Wynn, sourced from rome2rio.com.",
+   "impact": "The 30-minute walk filter runs on estimates, so a borderline pair could fail in real conditions (crowds, crossings, heat, casino detours).",
+   "nextStep": "Open the Google Maps walking link for every shortlisted pair once and confirm the time under real conditions.",
+   "sourceIds": ["route-rome2rio-venetian-wynn", "route-rome2rio-horseshoe-venetian"]
+  },
+  {
+   "id": "F10",
+   "category": "Official source",
+   "severity": "medium",
+   "title": "South Point publishes its rules only as images",
+   "finding": "The official Daily Tournament Schedule page links a schedule graphic and nine rule-sheet images (files dated Oct 2026) for $120 No Limit Hold'em, $120 Omaha 8 or Better, $120 Crazy Pineapple Turbo, $120 No Limit Hold'em Turbo Mega Stack, $200 No Limit Hold'em Bounty, $200 Deep Stack and $120 No Limit Hold'em Turbo Bounty. Only the file names are machine-verifiable, so the entry rules were not read.",
+   "evidence": "Rule-sheet links end in .jpg.",
+   "impact": "South Point events are shown as 'needs review' and are not counted as single-entry candidates.",
+   "nextStep": "Read the image rule sheets (or ask the room) for the entry, re-entry, rebuy and add-on terms.",
+   "sourceIds": ["southpoint-daily"]
+  },
+  {
+   "id": "F11",
+   "category": "Official source",
+   "severity": "medium",
+   "title": "ARIA publishes no tournament times, buy-ins or entry rules",
+   "finding": "The official ARIA poker page lists 24 tables and a room location, then asks guests to call the room or check @ARIAPoker for whether daily tournaments are running as scheduled. No start time, buy-in, guarantee or entry rule is published.",
+   "evidence": "'Be sure to call the Poker Room or check out our Twitter account, @ARIAPoker, for the most recent information on whether our Daily Tournaments are running as scheduled!'",
+   "impact": "ARIA cannot be planned around from published data. ARIA does publish exclusive room rates for qualifying poker players, which is worth a phone call.",
+   "nextStep": "Call 702.590.7232 and ask for today's tournament list and the room-rate terms.",
+   "sourceIds": ["aria-poker"]
+  },
+  {
+   "id": "F12",
+   "category": "Official source",
+   "severity": "medium",
+   "title": "Horseshoe publishes six daily start times but no buy-ins or guarantees",
+   "finding": "The official casino page confirms six daily tournament times (9 AM, 11 AM, 2 PM, 5 PM, 8 PM, 11 PM) and the official Caesars article says only that 'A mixture of buy-ins, levels and guarantees caters to all participants'.",
+   "evidence": "'Test your luck with 6 exciting tournament times daily.'",
+   "impact": "Horseshoe is the closest hotel to the Venetian with a captured rate, but its own tournament cannot be costed or ranked.",
+   "nextStep": "Ask the room for the current daily structure sheet.",
+   "sourceIds": ["horseshoe-casino", "caesars-strip-article"]
+  },
+  {
+   "id": "F13",
+   "category": "Scheduling",
+   "severity": "high",
+   "title": "No venue publishes tournament finish times",
+   "finding": "Official structure sheets give start time, blind levels, level length and the time registration closes, but no finish time. A tournament can run past its registration cut-off by hours.",
+   "impact": "The overlap check on this site uses the published registration-close time as a hard lower bound on event length. A pair is flagged 'cannot be sequenced' only when the second event starts before the first event's registration closed, which is provable; pairs that start inside the first event's possible playing window are flagged 'uncertain' instead.",
+   "nextStep": "Ask each room for the expected duration of the events on your shortlist, then re-run the check.",
+   "sourceIds": ["venetian-dse4-structures"]
+  },
+  {
+   "id": "F14",
+   "category": "Scheduling",
+   "severity": "high",
+   "title": "There is no verified 8 AM start anywhere in this dataset",
+   "finding": "The earliest published start in the whole dataset is 9:10 AM (turbo milestone satellite, Event #46, Saturday December 12). The earliest single-entry-confirmed start is 10:10 AM (RaceDay Stack, Events #3-#5, and several other DeepStack events).",
+   "evidence": "Venetian schedule rows: 9:10 AM on Dec 12 (satellite), 10:10 AM on Nov 19, 10:10 AM on Dec 2, 10:10 AM on Dec 8, 10:10 AM on Dec 9.",
+   "impact": "An '8 AM to late' all-day schedule cannot be promised. The day plan on this site starts at the earliest published start for each day.",
+   "nextStep": "If an early start matters, ask the rooms whether a morning tournament can be added before the published slate.",
+   "sourceIds": ["venetian-dse4-pdf"]
+  },
+  {
+   "id": "F15",
+   "category": "Schedule coverage",
+   "severity": "medium",
+   "title": "Wynn's daily tournaments are suspended during its own WPT festival",
+   "finding": "The official Wynn poker page states: 'Please note that the Daily Tournament schedule will be suspended during each Wynn Signature, Wynn Millions, and Classic tournament series.' The WPT World Championship runs November 27 - December 21, 2026, which covers most of the sample stay.",
+   "evidence": "'Our popular slate of daily tournaments runs twice a day during non-event timeframes' and 'the Daily Tournament schedule will be suspended during each Wynn Signature, Wynn Millions, and Classic tournament series.'",
+   "impact": "The Wynn daily rows cannot be assumed to run on the sample dates; they are shown as a recurring slate and are marked as suspended during the WPT window.",
+   "nextStep": "Check the WPT festival schedule for the days you want the Wynn daily instead.",
+   "sourceIds": ["wynn-poker"]
+  },
+  {
+   "id": "F16",
+   "category": "Hotel cost",
+   "severity": "medium",
+   "title": "The Venetian poker-suite starting rates are not mapped to a named tower",
+   "finding": "The official poker-suite page publishes starting rates of $119 and $209 but the text read does not say which property or tower each starting rate belongs to.",
+   "evidence": "'starting rates of $119 and $209' with no tower mapping in the visible text.",
+   "impact": "These rates are shown as a qualifying-player offer, not as a nightly rate, so they are not used in the cost calculator.",
+   "nextStep": "Ask the poker room rates desk which tower and room type each starting rate applies to, for the dates you want.",
+   "sourceIds": ["venetian-poker-suites"]
+  },
+  {
+   "id": "F17",
+   "category": "Tournament terms",
+   "severity": "medium",
+   "title": "A $600 buy-in that covers two players (LIPS tag team)",
+   "finding": "Event #35 is a $600 tag-team event where 'Teams will rotate their players at the start of every level', and the schedule says 'Tag Teams Consist of Female/Female or Female/Male'.",
+   "evidence": "'$80 of the $600 Buy-In is withheld for house fees ... $10 of the $600 Buy In will be withheld as a flat fee for ... Ladies International Poker Series (LIPS).'",
+   "impact": "The per-player cost is $300, not $600. The row is labelled 'team format - needs review' and is not ranked against single-player events.",
+   "nextStep": "Decide whether a two-player team is acceptable before comparing this event with $300 and $600 single-player events.",
+   "sourceIds": ["venetian-dse4-structures"]
+  },
+  {
+   "id": "F18",
+   "category": "Tournament terms",
+   "severity": "low",
+   "title": "Some events have entry restrictions (50+, female-only)",
+   "finding": "Events #24 and #32 are $600 Seniors events ('Must be 50+ years of age to participate'), Event #39 and the LIPS satellites are female-only, and the LIPS Ladies main event is a two-day event that requires returning for Day 2.",
+   "evidence": "'Any player who buys into this event that is not 50+ years of age will not be entitled to any prize money or a refund of their buy in.'",
+   "impact": "Those rows are not usable for a general travelling player and are labelled in the event column.",
+   "nextStep": "Filter them out of your shortlist if the restriction does not apply to you.",
+   "sourceIds": ["venetian-dse4-structures"]
+  },
+  {
+   "id": "F19",
+   "category": "Analysis",
+   "severity": "medium",
+   "title": "Guaranteed pool divided by entry fee is a description, not a forecast",
+   "finding": "A guarantee is the venue's promise about the prize pool, not the expected payout. Bounty guarantees are larger because they include bounty money that is paid only for eliminations, so a bounty event's ratio is not comparable with a plain freezeout's.",
+   "impact": "This site prints both the guarantee-to-buy-in ratio and the cash-pool-to-buy-in ratio (the latter from the sheet's own fee split) and labels bounty, satellite, multi-flight and team events separately.",
+   "nextStep": "Use the cash-pool ratio when comparing a bounty event with a freezeout.",
+   "sourceIds": ["venetian-dse4-structures"]
+  },
+  {
+   "id": "F20",
+   "category": "Tournament terms",
+   "severity": "medium",
+   "title": "PokerAtlas PRO discounts and early-registration rake discounts change the price of some events",
+   "finding": "Events #17, #18, #24, #25, #46, #48 and #58 are tagged '@PokerAtlas PRO' on the official schedule, and the Event #18 sheet says 'All subsequent buy in's after the initial buy in will be $200'. Event #56 gives a $40 rake discount for Day 1A entries before 10:10 a.m. and Day 1B entries before 6:10 p.m.; Event #59 gives a $20 discount for Day 1A entries before 11:10 a.m.",
+   "evidence": "'PokerAtlas PRO players will receive a twenty ($20) rake discount on their initial $200 buy in only ... All subsequent buy in's after the initial buy in will be $200.'",
+   "impact": "Event #18 and #58 are excluded from the single-entry list because the sheet itself contemplates further buy-ins. The rake discounts are a cost advantage for early or member registration, not extra spend, so those events stay eligible but carry a note.",
+   "nextStep": "Decide whether you will be at the registration desk before the cut-off time.",
+   "sourceIds": ["venetian-dse4-structures", "venetian-dse4"]
+  },
+  {
+   "id": "F21",
+   "category": "Tournament terms",
+   "severity": "medium",
+   "title": "Milestone satellites pay a seat, so extra spend buys extra chances",
+   "finding": "Events #33, #37, #41, #44, #45, #46 and #48 are satellites whose prizes are direct entry into Event #39 or Event #47. The sheets say 'All tournament prizes are direct entry into our ... Event #47'.",
+   "evidence": "'A Player who accumulates 200,000 in tournament chips (\"The Milestone\") or more will instantly receive direct entry into the $2,200 No Limit Hold'em PokerAtlas Championship Title Event #47.'",
+   "impact": "Satellites are listed in the extra-spend section, not the single-entry list, because buying more entries buys more chances at the same seat prize.",
+   "nextStep": "If you want a seat rather than cash, compare the satellite cost with the direct buy-in.",
+   "sourceIds": ["venetian-dse4-structures"]
+  },
+  {
+   "id": "F22",
+   "category": "Coverage",
+   "severity": "medium",
+   "title": "Strip rooms that are not covered in this pass",
+   "finding": "This dataset covers The Venetian, Wynn, Bellagio, MGM Grand, Caesars Palace, Horseshoe, Golden Nugget, South Point and ARIA. Not covered: Resorts World, Circa, Westgate, Sahara, The Orleans, Tropicana, Red Rock, Palms and the downtown rooms other than the Golden Nugget.",
+   "impact": "A 'best tournament near the Strip' list built only from this dataset may miss a cheaper single-entry option.",
+   "nextStep": "Prioritise the rooms with the most walkable distance from the sample hotels, then repeat the structure-sheet check for each.",
+   "sourceIds": []
+  },
+  {
+   "id": "F23",
+   "category": "Hotel rate",
+   "severity": "low",
+   "title": "The Caesars booking engine showed a technical-difficulties banner during the check",
+   "finding": "Both Caesars booking pages printed 'Sorry! Our website is currently experiencing technical difficulties. Please try your search again' above the rate list. The rate list itself still loaded with room counts and price breakdowns.",
+   "evidence": "'22 Rooms Found' (Horseshoe) and '41 Rooms Found' (Caesars Palace) were returned on the same pages.",
+   "impact": "Room counts are a snapshot at 2026-11-16 and may already have changed.",
+   "nextStep": "Re-check availability before paying.",
+   "sourceIds": ["horseshoe-booking", "caesars-palace-booking"]
+  },
+  {
+   "id": "F24",
+   "category": "Hotel rate",
+   "severity": "high",
+   "title": "Rates are a dated log, not a single price",
+   "finding": "Hotel rates in this dashboard are stored as dated observations (property, check date, arrival, departure, occupancy, room type, rate, whether the resort fee is included, whether tax is included, rooms found). The same property can print several prices on the same day, and the price moves with demand.",
+   "impact": "Any total that quotes a single rate is a snapshot of 2026-11-16, not a quote for the traveller's dates.",
+   "nextStep": "Add a new dated observation each time you re-check, and compare like-for-like: same dates, same occupancy, same room type, same tax treatment.",
+   "sourceIds": []
+  },
+  {
+   "id": "F25",
+   "category": "Hotel quality",
+   "severity": "medium",
+   "title": "No official quality rating exists for rooms, so room size is used as the proxy",
+   "finding": "No property publishes a star rating for a room. The quality column on this site uses the published size of the cheapest listed room as a like-for-like proxy, and it is labelled as a proxy wherever it appears.",
+   "evidence": "Horseshoe 'Resort Room, 1 King - 450 Sq Ft'; Caesars Palace 'Julius Deluxe Room, 2 Queens - 513 Sq Ft'; Wynn 'Wynn Resort King - 640 Square Feet'.",
+   "impact": "Quality ranking is weaker than cost ranking and should be reviewed by the traveller.",
+   "nextStep": "Read the room descriptions on the booking pages and judge on your own criteria.",
+   "sourceIds": ["horseshoe-booking", "caesars-palace-booking", "wynn-booking"]
+  },
+  {
+   "id": "F26",
+   "category": "Tournament data",
+   "severity": "low",
+   "title": "Event #6 has no published guarantee",
+   "finding": "The structure sheet for Event #06 ($200 No Limit Hold'em, Sunday November 22) prints the fee split and the 12.5% payout but no guarantee line, and the official schedule row for it has a blank guarantee column.",
+   "evidence": "'This event pays 12.5% of the field' with no 'Guarantee:' line on the sheet.",
+   "impact": "The guarantee column for that row is blank and the event is excluded from any guarantee ranking.",
+   "nextStep": "Ask the room whether the event is guaranteed.",
+   "sourceIds": ["venetian-dse4-structures", "venetian-dse4-pdf"]
+  },
+  {
+   "id": "F27",
+   "category": "Tournament data",
+   "severity": "medium",
+   "title": "WPT festival events are not classified one by one",
+   "finding": "The WPT World Championship at Wynn runs November 27 - December 21, 2026 with more than 85 events. The official festival schedule PDF was transcribed into raw/wynn_wpt_world_championship_schedule.md on 2026-11-16, but each event's entry rules sit in a separate structure PDF that was not re-read in this pass.",
+   "impact": "The WPT events are shown as one series row and are not counted as single-entry candidates or ranked.",
+   "nextStep": "Read the WPT structure PDF event by event, the same way the 37 Venetian sheets were read.",
+   "sourceIds": ["wynn-poker", "wynn-wpt-schedule"]
+  },
+  {
+   "id": "F28",
+   "category": "Repo hygiene",
+   "severity": "low",
+   "title": "Five earlier dashboards remain in the repository",
+   "finding": "The repository contains the canonical dashboard in site/ plus earlier research artifacts at the repository root, in docs/, planner/, verified/ and single-entry/. Only site/ is published by the Pages workflow.",
+   "impact": "Duplicate tables exist in the history. Only the site/ data set is used by the published site.",
+   "nextStep": "Decide which artifact to keep and archive the rest, or leave them as an audit trail.",
+   "sourceIds": []
+  }
+ ]
+}

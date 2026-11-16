@@ -1,0 +1,351 @@
+{
+ "checked": "2026-11-16",
+ "taxModel": {
+  "roomTaxRate": 0.1338,
+  "roomTaxBasis": "Clark County Room Tax of 13.38%, published in The Venetian's official hotel terms and conditions: 'Daily rates do not include the applicable Clark County Room Tax of 13.38%.'",
+  "appliesTo": "the nightly room rate and the resort fee (the resort fee line '$55 plus applicable tax' and the Caesars fee line '$62.30 ($54.95 plus $7.35 tax)' both show the fee taxed at the same 13.38%)",
+  "sourceId": "venetian-terms",
+  "note": "True nightly cost in this dashboard is computed as (published nightly rate including the resort fee) x 1.1338. It is an arithmetic restatement of the published rate and the published tax rate, not a quote. The published booking pages state 'Excludes Taxes', so the final folio can differ."
+ },
+ "sampleStay": {
+  "arrival": "2026-12-10",
+  "departure": "2026-12-14",
+  "nights": 4,
+  "guests": 2,
+  "label": "December 10-14, 2026 - 4 nights - 2 adults",
+  "note": "No travel dates were supplied by the requester. This is a research sample window chosen because it sits inside the published Venetian DeepStack Extravaganza IV series (Nov 16 - Dec 23, 2026). Every calculator on this site can be pointed at other dates."
+ },
+ "hotels": [
+  {
+   "id": "horseshoe",
+   "name": "Horseshoe Las Vegas",
+   "venue": "Horseshoe Las Vegas - Hall of Fame Poker Room (on property)",
+   "address": "",
+   "addressSourceId": "",
+   "officialUrl": "https://www.caesars.com/horseshoe-las-vegas/casino",
+   "resortFee": {
+    "nightly": 50,
+    "text": "$50 daily resort fee is used in the published price breakdown; the property's fee policy line prints 'Resort fees: $56.63 ($49.95 plus $6.68 tax)'",
+    "sourceId": "horseshoe-booking"
+   },
+   "tax": {
+    "text": "Lodging tax applies to the room rate and to the resort fee (fee line shows $6.68 tax on $49.95, which is 13.38%).",
+    "sourceId": "horseshoe-booking"
+   },
+   "parking": {
+    "text": "Self parking: surcharge applies (Caesars Rewards Platinum tier and higher get it free; Nevada residents get the first 3 hours free with a valid NV licence). Valet parking: surcharge applies.",
+    "sourceId": "horseshoe-booking"
+   },
+   "cancellation": {
+    "deadline": "",
+    "text": "Book-direct benefit printed on the official casino page: 'FREE 48-Hour Cancellation'. The booking engine shows a $50 per day deposit and a '$50 plus tax no-show fee'.",
+    "sourceId": "horseshoe-casino"
+   },
+   "checkInOut": "Check-in from 4 PM; check-out 11 AM",
+   "quality": {
+    "proxy": "published room size of the cheapest listed room",
+    "value": "450 sq ft (Resort Room, 1 King)",
+    "sourceId": "horseshoe-booking",
+    "note": "Room size is used as the like-for-like quality proxy because no official quality rating is published for rooms."
+   },
+   "rates": [
+    {
+     "checked": "2026-11-16",
+     "arrival": "2026-12-10",
+     "departure": "2026-12-14",
+     "nights": 4,
+     "occupancy": "2 adults, 1 room",
+     "roomType": "Room Type Assigned on Arrival",
+     "nightlyRate": 223,
+     "resortFeeIncluded": 50,
+     "nightlyWithFee": 273,
+     "roomsFound": 22,
+     "excludesTax": true,
+     "sourceId": "horseshoe-booking",
+     "note": "Published price breakdown: '$223 Room Rate + $50 Daily Resort Fee = $273 / Night, Includes resort fee, Excludes Taxes'. A standard-rate comparison of $320 is also printed. The same page showed a 'technical difficulties' banner during the check."
+    },
+    {
+     "checked": "2026-11-16",
+     "arrival": "2026-12-10",
+     "departure": "2026-12-14",
+     "nights": 4,
+     "occupancy": "2 adults, 1 room",
+     "roomType": "Resort Room, 1 King",
+     "nightlyRate": 235,
+     "resortFeeIncluded": 50,
+     "nightlyWithFee": 285,
+     "roomsFound": 22,
+     "excludesTax": true,
+     "sourceId": "horseshoe-booking",
+     "note": "Published price breakdown: '$235 Room Rate + $50 Daily Resort Fee = $285 / Night, Includes resort fee, Excludes Taxes'. A standard-rate comparison of $337 is also printed."
+    }
+   ],
+   "walkToVenetian": {
+    "minutes": 12,
+    "distance": "about 3,300 ft",
+    "sourceId": "route-rome2rio-horseshoe-venetian",
+    "type": "third-party estimate"
+   },
+   "status": "Dated official rate captured for the sample stay. Lowest true nightly cost in this table.",
+   "flags": ["horseshoe-fee-conflict"]
+  },
+  {
+   "id": "caesars-palace",
+   "name": "Caesars Palace",
+   "venue": "Caesars Palace - Poker Room, 16 tables, on the Appian Way promenade (on property)",
+   "address": "",
+   "addressSourceId": "",
+   "officialUrl": "https://www.caesars.com/caesars-palace/casino",
+   "resortFee": {
+    "nightly": 55,
+    "text": "$55 daily resort fee is used in the published price breakdown; the property's fee policy line prints 'Resort fees: $62.30 ($54.95 plus $7.35 tax)'",
+    "sourceId": "caesars-palace-booking"
+   },
+   "tax": {
+    "text": "Lodging tax applies to the room rate and to the resort fee (fee line shows $7.35 tax on $54.95, which is 13.38%).",
+    "sourceId": "caesars-palace-booking"
+   },
+   "parking": {
+    "text": "Self parking: surcharge applies (Platinum tier and higher free; Nevada residents get the first 3 hours free). Valet parking: surcharge applies.",
+    "sourceId": "caesars-palace-booking"
+   },
+   "cancellation": {
+    "deadline": "",
+    "text": "The booking engine shows a $100 per day deposit and a '$50 plus tax no-show fee'. No general free-cancellation window was printed on the page that was read.",
+    "sourceId": "caesars-palace-booking"
+   },
+   "checkInOut": "Check-in from 4 PM; check-out 11 AM",
+   "quality": {
+    "proxy": "published room size of the cheapest listed room",
+    "value": "513 sq ft (Julius Deluxe Room, 2 Queens); 550+ sq ft (Octavius Premium, 1 King)",
+    "sourceId": "caesars-palace-booking"
+   },
+   "rates": [
+    {
+     "checked": "2026-11-16",
+     "arrival": "2026-12-10",
+     "departure": "2026-12-14",
+     "nights": 4,
+     "occupancy": "2 adults, 1 room",
+     "roomType": "Room Type Assigned on Arrival",
+     "nightlyRate": 620,
+     "resortFeeIncluded": 55,
+     "nightlyWithFee": 675,
+     "roomsFound": 41,
+     "excludesTax": true,
+     "sourceId": "caesars-palace-booking",
+     "note": "Published price breakdown: '$620 Room Rate + $55 Daily Resort Fee = $675 / Night, Includes resort fee, Excludes Taxes'. A standard-rate comparison of $781 is also printed."
+    },
+    {
+     "checked": "2026-11-16",
+     "arrival": "2026-12-10",
+     "departure": "2026-12-14",
+     "nights": 4,
+     "occupancy": "2 adults, 1 room",
+     "roomType": "Julius Deluxe Room, 2 Queens",
+     "nightlyRate": 632,
+     "resortFeeIncluded": 55,
+     "nightlyWithFee": 686,
+     "roomsFound": 41,
+     "excludesTax": true,
+     "sourceId": "caesars-palace-booking",
+     "note": "Published price breakdown: '$632 Room Rate + $55 Daily Resort Fee = $686 / Night, Includes resort fee, Excludes Taxes'. A standard-rate comparison of $796 is also printed."
+    },
+    {
+     "checked": "2026-11-16",
+     "arrival": "2026-12-10",
+     "departure": "2026-12-14",
+     "nights": 4,
+     "occupancy": "2 adults, 1 room",
+     "roomType": "Octavius Premium, 1 King",
+     "nightlyRate": 653,
+     "resortFeeIncluded": 55,
+     "nightlyWithFee": 708,
+     "roomsFound": 41,
+     "excludesTax": true,
+     "sourceId": "caesars-palace-booking",
+     "note": "Published price breakdown: '$653 Room Rate + $55 Daily Resort Fee = $708 / Night, Includes resort fee, Excludes Taxes'."
+    }
+   ],
+   "walkToVenetian": {
+    "minutes": "",
+    "distance": "",
+    "sourceId": "",
+    "type": "not measured",
+    "note": "No published or estimated walking time to The Venetian poker room. Verify with the Google Maps walking link on this row."
+   },
+   "status": "Dated official rate captured for the sample stay. Highest true nightly cost in this table; closest large property to Horseshoe.",
+   "flags": ["caesars-fee-conflict", "walk-times-not-official"]
+  },
+  {
+   "id": "paris",
+   "name": "Paris Las Vegas",
+   "venue": "Paris Las Vegas - poker room on property",
+   "address": "",
+   "addressSourceId": "",
+   "officialUrl": "https://www.caesars.com/paris-las-vegas",
+   "resortFee": {
+    "nightly": 55,
+    "text": "Fee policy line prints 'Resort fees: $62.30 ($54.95 plus $7.35 tax)'",
+    "sourceId": "paris-booking"
+   },
+   "tax": {
+    "text": "Lodging tax applies to the room rate and to the resort fee (fee line shows $7.35 tax on $54.95, which is 13.38%).",
+    "sourceId": "paris-booking"
+   },
+   "parking": {
+    "text": "Self parking: surcharge applies (Platinum tier and higher free; Nevada residents get the first 3 hours free). Valet parking: surcharge applies.",
+    "sourceId": "paris-booking"
+   },
+   "cancellation": {
+    "deadline": "",
+    "text": "The booking engine shows a $50 per day deposit, a '$50 plus tax no-show fee' and an 'Early check-in fee: $50 + tax'.",
+    "sourceId": "paris-booking"
+   },
+   "checkInOut": "Check-in from 4 PM; check-out 11 AM",
+   "quality": {
+    "proxy": "published room size of the cheapest listed room",
+    "value": "",
+    "sourceId": "",
+    "note": "No room list was returned for the sample dates, so no room size was captured."
+   },
+   "rates": [],
+   "walkToVenetian": {
+    "minutes": "",
+    "distance": "",
+    "sourceId": "",
+    "type": "not measured",
+    "note": "No published or estimated walking time to The Venetian poker room."
+   },
+   "status": "No rate available: the official booking engine refused Dec 10, 2026 as an arrival date ('Your arrival date is restricted'), so no dated rate could be logged.",
+   "flags": ["paris-no-rate"]
+  },
+  {
+   "id": "venetian",
+   "name": "The Venetian Resort Las Vegas",
+   "venue": "The Venetian - poker room (on property)",
+   "address": "",
+   "addressSourceId": "",
+   "officialUrl": "https://www.venetianlasvegas.com/",
+   "resortFee": {
+    "nightly": 55,
+    "text": "$55 plus tax per night, payable upon check-in",
+    "sourceId": "venetian-resort-fee"
+   },
+   "tax": {
+    "text": "Clark County Room Tax of 13.38% on the daily rate; the resort fee is taxed as well.",
+    "sourceId": "venetian-terms"
+   },
+   "parking": {
+    "text": "Registered hotel guests pay $20/day, seven days a week. Non-hotel guests pay $20 Monday-Thursday and $25/day Friday-Sunday. Valet parking is $40/day. Event parking rates may be in effect.",
+    "sourceId": "venetian-terms"
+   },
+   "cancellation": {
+    "deadline": "",
+    "text": "Terms state: 'A deposit for your stay, including suite, fee, and tax, will be billed upon reservation confirmation. Depending on the offer and reservation, the deposit may be either payment of your first night's stay or prepayment of your entire stay.' 'Check-out prior to your scheduled departure date will result in an additional charge of $100 plus tax.' A $150 per night credit-card incidental deposit is required for suite charging privileges.",
+    "sourceId": "venetian-terms"
+   },
+   "checkInOut": "Check-in 3:00 PM to 11:59 PM; check-out 11:00 AM",
+   "quality": {
+    "proxy": "published poker-suite rates for qualifying players",
+    "value": "Official poker-suite page publishes starting rates of $119 and $209, conditional on six hours of active cash play or a $300+ tournament buy-in per night",
+    "sourceId": "venetian-poker-suites",
+    "note": "The starting rates are not mapped to a named tower in the page text, so they are not used as a nightly rate."
+   },
+   "rates": [],
+   "walkToVenetian": {
+    "minutes": 0,
+    "distance": "same property",
+    "sourceId": "venetian-dse4",
+    "type": "on property",
+    "note": "The DeepStack Extravaganza IV is run in the Venetian poker room, so no walk is needed."
+   },
+   "status": "Zero walking time to the tournament room. No date-specific rate could be read: the official booking calendar renders every nightly price as '$XXX' in the page text.",
+   "flags": ["venetian-no-rate", "walk-times-not-official"]
+  },
+  {
+   "id": "wynn",
+   "name": "Wynn Las Vegas",
+   "venue": "Wynn Las Vegas - Poker Room, located in Encore at Wynn Las Vegas",
+   "address": "",
+   "addressSourceId": "",
+   "officialUrl": "https://www.wynnlasvegas.com/casino/poker",
+   "resortFee": {
+    "nightly": 55,
+    "text": "A daily resort fee of $55 plus tax will be added to your room account for each complimentary (if applicable) and purchased room night",
+    "sourceId": "wynn-booking"
+   },
+   "tax": {
+    "text": "The published fee line says '$55 plus tax' without printing a rate on this page; the 13.38% Clark County Room Tax published by The Venetian applies to Clark County room taxes and is the rate used in this dashboard. Confirm on the Wynn folio.",
+    "sourceId": "wynn-booking"
+   },
+   "parking": {
+    "text": "Self-parking is complimentary to registered guests; valet parking is complimentary to Wynn and Encore Tower Suites registered guests.",
+    "sourceId": "wynn-booking"
+   },
+   "cancellation": {
+    "deadline": "",
+    "text": "No cancellation window was printed on the pages read. The booking engine states a '$50 per night per additional person' fee for rooms with more than two guests.",
+    "sourceId": "wynn-booking"
+   },
+   "checkInOut": "",
+   "quality": {
+    "proxy": "published room size of the room offered",
+    "value": "640 sq ft (Wynn Resort King)",
+    "sourceId": "wynn-booking"
+   },
+   "rates": [],
+   "walkToVenetian": {
+    "minutes": 14,
+    "distance": "about 1.2 mi",
+    "sourceId": "route-rome2rio-venetian-wynn",
+    "type": "third-party estimate"
+   },
+   "status": "No usable dated rate: the official booking session returned a 1-night stay of Nov 16-17, 2026 instead of the requested dates, so the printed price was not for the sample stay.",
+   "flags": ["wynn-no-rate", "walk-times-not-official"]
+  },
+  {
+   "id": "bellagio",
+   "name": "Bellagio",
+   "venue": "Bellagio - Poker Room, northside of the casino next to the Sportsbook (on property)",
+   "address": "3600 S Las Vegas Blvd, Las Vegas, NV 89109",
+   "addressSourceId": "mgm-contact",
+   "officialUrl": "https://bellagio.mgmresorts.com/en/hotel.html",
+   "resortFee": {
+    "nightly": 55,
+    "text": "A daily resort fee of $55.00 plus applicable tax will be applied to all reservations.",
+    "sourceId": "bellagio-terms"
+   },
+   "tax": {
+    "text": "'Lodging taxes apply to the basic room rate, any resort fee, additional per occupant charges, upgrades, as well as any other charges as required by applicable law.' The page does not print the rate, so the published 13.38% Clark County Room Tax is used and must be confirmed on the folio.",
+    "sourceId": "bellagio-terms"
+   },
+   "parking": {
+    "text": "",
+    "sourceId": ""
+   },
+   "cancellation": {
+    "deadline": "72 hours before arrival",
+    "text": "'The first night's deposit is fully refundable provided a timely notice of cancellation is received by Room Reservations at 888.987.6667 at least 72 hours prior to the arrival date, unless specifically excluded by booked offer. Cancellations less than 72 hours before your scheduled arrival (and no shows) will result in a forfeiture of the first night's deposit.' Complimentary stays: $165 mid-week or $200 weekend cancellation fee.",
+    "sourceId": "bellagio-terms"
+   },
+   "checkInOut": "",
+   "quality": {
+    "proxy": "published room size of the cheapest listed room",
+    "value": "",
+    "sourceId": "",
+    "note": "No room-class detail was captured from an official Bellagio page in this pass."
+   },
+   "rates": [],
+   "walkToVenetian": {
+    "minutes": "",
+    "distance": "",
+    "sourceId": "",
+    "type": "not measured",
+    "note": "No published or estimated walking time to The Venetian poker room."
+   },
+   "status": "Cleanest published cancellation policy in this table (72 hours). No rate captured in this pass.",
+   "flags": ["bellagio-no-rate", "walk-times-not-official"]
+  }
+ ]
+}

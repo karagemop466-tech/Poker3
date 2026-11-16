@@ -1,0 +1,273 @@
+{
+ "checked": "2026-11-16",
+ "note": "Official source register. 'kind' is official unless stated otherwise. Every value published on the site points back to one of these URLs. Third-party entries are used only for walking-time estimates and are labelled as such wherever they appear.",
+ "sources": [
+  {
+   "id": "venetian-dse4",
+   "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+   "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+   "kind": "official",
+   "checked": "2026-11-16",
+   "note": "Master schedule page. Links the official schedule PDF and the per-event structure sheets."
+  },
+  {
+   "id": "venetian-dse4-pdf",
+   "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+   "kind": "official",
+   "checked": "2026-11-16",
+   "note": "Transcribed into raw/venetian_dse_nov_2026_schedule.md. Supplies the official registration-close times used by the overlap check."
+  },
+  {
+   "id": "venetian-dse4-structures",
+   "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+   "kind": "official",
+   "checked": "2026-11-16",
+   "note": "All 37 sheets were read in full on 2026-11-16. Sheet N is dse_nov_2026-structure_N.pdf; every row links its own sheet."
+  },
+  {
+   "id": "venetian-resort-fee",
+   "name": "The Venetian - Resort Fee page ($55 plus tax per night)",
+   "url": "https://www.venetianlasvegas.com/resort/resort-fee.html",
+   "kind": "official",
+   "checked": "2026-11-16"
+  },
+  {
+   "id": "venetian-terms",
+   "name": "The Venetian - Hotel Terms and Conditions (13.38% Clark County Room Tax, $55 plus tax resort fee, parking $20/day, early checkout $100 plus tax, $150 incidental deposit)",
+   "url": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
+   "kind": "official",
+   "checked": "2026-11-16"
+  },
+  {
+   "id": "venetian-booking",
+   "name": "The Venetian - official booking engine (Dec 10-14, 2026 sample stay)",
+   "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-12-10&children[]=0&departure_date=2026-12-14&view=calendar",
+   "kind": "official",
+   "checked": "2026-11-16",
+   "note": "Fetched calendar renders every nightly price as '$XXX' in the page text, so no date-specific rate could be read. Rate left blank and flagged."
+  },
+  {
+   "id": "venetian-poker-suites",
+   "name": "The Venetian - 2026 poker suite rates page (starting rates $119 and $209)",
+   "url": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
+   "kind": "official",
+   "checked": "2026-11-16",
+   "note": "Starting rates are published but not mapped to a named tower in the text read; requires six hours of cash play or a $300+ tournament buy-in per night."
+  },
+  {
+   "id": "wynn-poker",
+   "name": "Wynn Las Vegas - Poker room page (WPT World Championship Nov 27 - Dec 21, daily tournaments, Wynn Signature Series Jan 11-24, 2027)",
+   "url": "https://www.wynnlasvegas.com/casino/poker",
+   "kind": "official",
+   "checked": "2026-11-16"
+  },
+  {
+   "id": "wynn-daily-poster",
+   "name": "Wynn Las Vegas - official Daily Poker Tournaments poster",
+   "url": "https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf",
+   "kind": "official",
+   "checked": "2026-11-16"
+  },
+  {
+   "id": "wynn-daily-structures",
+   "name": "Wynn Las Vegas - official Daily Poker Tournaments general terms and structures",
+   "url": "https://cdn.wynnresorts.com/image/upload/v1752011191/visitwynn_pdfs_files/Poker/Daily%20Tournaments/Poker-All_Daily_Structures.pdf",
+   "kind": "official",
+   "checked": "2026-11-16",
+   "note": "Read in full (3 chunks). Contains the Mon-Thu, Friday rebuy, Saturday/Sunday and nightly event terms."
+  },
+  {
+   "id": "wynn-wpt-schedule",
+   "name": "Wynn Las Vegas - WPT World Championship official schedule",
+   "url": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
+   "kind": "official",
+   "checked": "2026-11-16",
+   "note": "Transcribed into raw/wynn_wpt_world_championship_schedule.md by an earlier session on 2026-11-16."
+  },
+  {
+   "id": "wynn-booking",
+   "name": "Wynn Las Vegas - official booking engine (room detail page)",
+   "url": "https://reservations.wynnlasvegas.com/ibe/details.aspx?hotelID=13763&langID=1&rmID=68658&arrivalDate=2026-12-10&departureDate=2026-12-14&adults=2",
+   "kind": "official",
+   "checked": "2026-11-16",
+   "note": "Publishes '$55 plus tax' daily resort fee and complimentary self-parking for registered guests. The returned session showed a 1-night stay of Nov 16-17, 2026 rather than the requested dates, so no rate for the sample stay was read."
+  },
+  {
+   "id": "bellagio-poker",
+   "name": "Bellagio - Poker room page (Friday $600 NLH, Saturday $1,000 NLH, Sunday $400 H.O.R.S.E.)",
+   "url": "https://bellagio.mgmresorts.com/en/casino/poker.html",
+   "kind": "official",
+   "checked": "2026-11-16"
+  },
+  {
+   "id": "bellagio-friday",
+   "name": "Bellagio - Friday $600 NLH structure sheet",
+   "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf",
+   "kind": "official",
+   "checked": "2026-11-16"
+  },
+  {
+   "id": "bellagio-saturday",
+   "name": "Bellagio - Saturday NLH structure sheet (linked from the official page)",
+   "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf",
+   "kind": "official",
+   "checked": "2026-11-16",
+   "note": "Header reads 'NLH $1100 BUY-IN', body rule 07 reads '$600 Buy-in', and the official page link text reads '$1,000 NLH'. Conflict logged as a flag."
+  },
+  {
+   "id": "bellagio-sunday",
+   "name": "Bellagio - Sunday $400 H.O.R.S.E. structure sheet",
+   "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt07fcf1244a6da661/6af491a339e2b4f6b76a86ad/mgm-bellagio-poker-sundays-$400-horse.pdf",
+   "kind": "official",
+   "checked": "2026-11-16"
+  },
+  {
+   "id": "bellagio-terms",
+   "name": "Bellagio - Hotel Reservation Terms ($55.00 plus tax daily resort fee, $50 plus tax extra occupant, 72-hour cancellation, $150 incidental deposit per day)",
+   "url": "https://bellagio.mgmresorts.com/en/terms-and-conditions.html",
+   "kind": "official",
+   "checked": "2026-11-16"
+  },
+  {
+   "id": "mgm-poker",
+   "name": "MGM Grand - Poker room page (daily tournaments 11:00am, 7:00pm, 11:00pm)",
+   "url": "https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
+   "kind": "official",
+   "checked": "2026-11-16"
+  },
+  {
+   "id": "mgm-structure-120",
+   "name": "MGM Grand - $120 No Limit Hold'em structure sheet (full structure list)",
+   "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/bltb2a45da7e8ee5621/mgm-grand-casino-poker-120_nlh.pdf",
+   "kind": "official",
+   "checked": "2026-11-16"
+  },
+  {
+   "id": "mgm-weekly-schedule",
+   "name": "MGM Grand - weekly tournament schedule PDF",
+   "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
+   "kind": "official",
+   "checked": "2026-11-16",
+   "note": "Linked from the official poker page. Not re-read in this pass; MGM daily times come from the poker page itself."
+  },
+  {
+   "id": "caesars-strip-article",
+   "name": "Caesars Palace / Horseshoe - official article 'Poker Tournaments in Las Vegas' (Caesars Palace daily slate, $50 add-on, Horseshoe six daily tournaments)",
+   "url": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
+   "kind": "official",
+   "checked": "2026-11-16"
+  },
+  {
+   "id": "horseshoe-casino",
+   "name": "Horseshoe Las Vegas - casino page (Hall of Fame Poker Room, 20 tables, six daily tournament times)",
+   "url": "https://www.caesars.com/horseshoe-las-vegas/casino",
+   "kind": "official",
+   "checked": "2026-11-16"
+  },
+  {
+   "id": "horseshoe-booking",
+   "name": "Horseshoe Las Vegas - official booking engine (Dec 10-14, 2026, 2 adults)",
+   "url": "https://www.caesars.com/book/room-list?arrivalDate=12/10/2026&departureDate=12/14/2026&dateSearchFormat=exact-dates&propCode=blv&numAdults=2",
+   "kind": "official",
+   "checked": "2026-11-16",
+   "note": "Returned '22 Rooms Found', $273/night including a $50 daily resort fee (taxes excluded), and the fee policy line 'Resort fees: $56.63 ($49.95 plus $6.68 tax)'."
+  },
+  {
+   "id": "caesars-palace-booking",
+   "name": "Caesars Palace - official booking engine (Dec 10-14, 2026, 2 adults)",
+   "url": "https://www.caesars.com/book/room-list?arrivalDate=12/10/2026&departureDate=12/14/2026&dateSearchFormat=exact-dates&propCode=clv&numAdults=2",
+   "kind": "official",
+   "checked": "2026-11-16",
+   "note": "Returned '41 Rooms Found', $675/night including a $55 daily resort fee (taxes excluded), and the fee policy line 'Resort fees: $62.30 ($54.95 plus $7.35 tax)'."
+  },
+  {
+   "id": "paris-booking",
+   "name": "Paris Las Vegas - official booking engine (Dec 2026 calendar; Dec 10 arrival restricted)",
+   "url": "https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=December&propCode=plv&numAdults=2",
+   "kind": "official",
+   "checked": "2026-11-16",
+   "note": "'Your arrival date is restricted' for Dec 10, 2026, so no rate was published. Fee policy line still readable."
+  },
+  {
+   "id": "golden-nugget-daily",
+   "name": "Golden Nugget - Daily Poker Tournaments (10am, 5pm, 2am; unlimited re-entries; two $20 add-ons)",
+   "url": "https://www.goldennugget.com/las-vegas/casino/poker-room/daily-tournaments/",
+   "kind": "official",
+   "checked": "2026-11-16"
+  },
+  {
+   "id": "southpoint-daily",
+   "name": "South Point - Daily Tournament Schedule (schedule and rule sheets published as images)",
+   "url": "https://southpointcasino.com/casino/poker-room/daily-tournament-schedule",
+   "kind": "official",
+   "checked": "2026-11-16",
+   "note": "The published rule sheets are image files, so their text cannot be read as text; only the file names are machine-verifiable."
+  },
+  {
+   "id": "aria-poker",
+   "name": "ARIA - Poker room page (24 tables; daily tournaments confirmed with the room only)",
+   "url": "https://aria.mgmresorts.com/en/casino/poker.html",
+   "kind": "official",
+   "checked": "2026-11-16"
+  },
+  {
+   "id": "mgm-contact",
+   "name": "MGM Resorts International - Contact Us (official street addresses for ARIA, Bellagio, MGM Grand and other MGM properties)",
+   "url": "https://www.mgmresorts.com/en/company/contact-us.html",
+   "kind": "official",
+   "checked": "2026-11-16"
+  },
+  {
+   "id": "route-rome2rio-venetian-wynn",
+   "name": "Walking time estimate: The Venetian to Wynn Las Vegas",
+   "url": "https://www.rome2rio.com/s/The-Venetian-Las-Vegas/Wynn-Las-Vegas",
+   "kind": "third-party",
+   "checked": "2026-11-16",
+   "note": "Estimate only. No venue publishes a walking time to another venue. Verify on Google Maps."
+  },
+  {
+   "id": "route-rome2rio-ti-wynn",
+   "name": "Walking time estimate: Treasure Island to Wynn Las Vegas",
+   "url": "https://www.rome2rio.com/s/Treasure-Island-Hotel-and-Casino/Wynn-Las-Vegas",
+   "kind": "third-party",
+   "checked": "2026-11-16"
+  },
+  {
+   "id": "route-rome2rio-horseshoe-wynn",
+   "name": "Walking time estimate: Horseshoe Las Vegas to Wynn Las Vegas",
+   "url": "https://www.rome2rio.com/s/Horseshoe-Las-Vegas/Wynn-Las-Vegas",
+   "kind": "third-party",
+   "checked": "2026-11-16"
+  },
+  {
+   "id": "route-rome2rio-horseshoe-venetian",
+   "name": "Walking time estimate: Horseshoe Las Vegas to The Venetian",
+   "url": "https://www.rome2rio.com/s/Horseshoe-Las-Vegas/The-Venetian-Las-Vegas",
+   "kind": "third-party",
+   "checked": "2026-11-16"
+  },
+  {
+   "id": "route-rome2rio-mgm-horseshoe",
+   "name": "Walking time estimate: MGM Grand to Horseshoe Las Vegas",
+   "url": "https://www.rome2rio.com/s/MGM-Grand-Las-Vegas/Horseshoe-Las-Vegas",
+   "kind": "third-party",
+   "checked": "2026-11-16"
+  },
+  {
+   "id": "route-rome2rio-wynn-caesars",
+   "name": "Walking time estimate: Wynn Las Vegas to Caesars Palace",
+   "url": "https://www.rome2rio.com/s/Wynn-Las-Vegas/Caesars-Palace",
+   "kind": "third-party",
+   "checked": "2026-11-16"
+  },
+  {
+   "id": "route-rome2rio-wynn-resorts-world",
+   "name": "Walking time estimate: Wynn Las Vegas to Resorts World Las Vegas",
+   "url": "https://www.rome2rio.com/s/Wynn-Las-Vegas/Resorts-World-Las-Vegas",
+   "kind": "third-party",
+   "checked": "2026-11-16"
+  }
+ ]
+}

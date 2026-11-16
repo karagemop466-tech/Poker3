@@ -1,0 +1,95 @@
+{
+ "checked": "2026-11-16",
+ "note": "Hotel to tournament-venue walking pairs. 'minutes' is only filled where a source publishes a walking time; no venue publishes a walking time to another venue, so the values that exist are third-party estimates and are labelled as such. Every row carries a Google Maps and an Apple Maps walking-directions link so the number can be checked before booking. The 30-minute limit used by the filter comes from the trip rule set in this project, not from any venue.",
+ "walkLimitMinutes": 30,
+ "routes": [
+  {
+   "fromId": "horseshoe",
+   "fromName": "Horseshoe Las Vegas hotel",
+   "toVenueId": "venetian",
+   "toName": "The Venetian poker room",
+   "minutes": 12,
+   "distance": "about 3,300 ft",
+   "sourceId": "route-rome2rio-horseshoe-venetian",
+   "type": "third-party estimate",
+   "note": ""
+  },
+  {
+   "fromId": "wynn",
+   "fromName": "Wynn Las Vegas (Encore poker room)",
+   "toVenueId": "venetian",
+   "toName": "The Venetian poker room",
+   "minutes": 14,
+   "distance": "about 1.2 mi",
+   "sourceId": "route-rome2rio-venetian-wynn",
+   "type": "third-party estimate",
+   "note": ""
+  },
+  {
+   "fromId": "horseshoe",
+   "fromName": "Horseshoe Las Vegas Hall of Fame Poker Room",
+   "toVenueId": "wynn",
+   "toName": "Wynn Poker Room (Encore)",
+   "minutes": 23,
+   "distance": "about 1.2 mi",
+   "sourceId": "route-rome2rio-horseshoe-wynn",
+   "type": "third-party estimate",
+   "note": ""
+  },
+  {
+   "fromId": "wynn",
+   "fromName": "Wynn Las Vegas",
+   "toVenueId": "caesars-palace",
+   "toName": "Caesars Palace Poker Room",
+   "minutes": 18,
+   "distance": "about 5,010 ft",
+   "sourceId": "route-rome2rio-wynn-caesars",
+   "type": "third-party estimate",
+   "note": ""
+  },
+  {
+   "fromId": "caesars-palace",
+   "fromName": "Caesars Palace hotel",
+   "toVenueId": "venetian",
+   "toName": "The Venetian poker room",
+   "minutes": "",
+   "distance": "",
+   "sourceId": "",
+   "type": "not measured",
+   "note": "No published or estimated walking time was captured for this pair."
+  },
+  {
+   "fromId": "paris",
+   "fromName": "Paris Las Vegas hotel",
+   "toVenueId": "venetian",
+   "toName": "The Venetian poker room",
+   "minutes": "",
+   "distance": "",
+   "sourceId": "",
+   "type": "not measured",
+   "note": "No published or estimated walking time was captured for this pair."
+  },
+  {
+   "fromId": "bellagio",
+   "fromName": "Bellagio hotel",
+   "toVenueId": "venetian",
+   "toName": "The Venetian poker room",
+   "minutes": "",
+   "distance": "",
+   "sourceId": "",
+   "type": "not measured",
+   "note": "No published or estimated walking time was captured for this pair."
+  },
+  {
+   "fromId": "bellagio",
+   "fromName": "Bellagio poker room",
+   "toVenueId": "horseshoe",
+   "toName": "Horseshoe Hall of Fame Poker Room",
+   "minutes": "",
+   "distance": "",
+   "sourceId": "",
+   "type": "not measured",
+   "note": "No published or estimated walking time was captured for this pair."
+  }
+ ]
+}
