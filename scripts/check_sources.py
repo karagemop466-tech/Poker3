@@ -20,6 +20,9 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CATALOG = ROOT / "site/poker3/data/research.json"
 DEFAULT_OUTPUT = ROOT / "site/poker3/data/source-monitor.json"
+# The canonical dashboard keeps its own source register and its own monitor log.
+CANONICAL_CATALOG = ROOT / "data/sources.json"
+CANONICAL_OUTPUT = ROOT / "site/data/source-monitor.json"
 USER_AGENT = "Poker3OfficialSourceMonitor/1.0 (+https://github.com/karagemop466-tech/Poker3)"
 
 
@@ -107,8 +110,15 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--catalog", type=Path, default=DEFAULT_CATALOG)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+    parser.add_argument(
+        "--canonical",
+        action="store_true",
+        help="also check the canonical dashboard source register in data/sources.json",
+    )
     args = parser.parse_args()
     run(args.catalog, args.output)
+    if args.canonical:
+        run(CANONICAL_CATALOG, CANONICAL_OUTPUT)
 
 
 if __name__ == "__main__":

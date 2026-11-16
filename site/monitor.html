@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Change monitor - official-source Las Vegas poker trip planner">
+<title>Change monitor · Vegas Poker Planner</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark">♠</span><span>Vegas Poker Planner</span></a>
+  <form class="global-search" data-global-search role="search" onsubmit="return false">
+    <input type="search" placeholder="Search every table on this page…" aria-label="Search all tables on this page" data-search-input>
+  </form>
+  <span class="top-tag">Official-source snapshot · checked <span data-asof>2026-11-16</span></span>
+</header>
+<nav class="mobile-nav" data-mobile-nav><a href="index.html" class="">Overview</a><a href="tournaments.html" class="">Tournaments</a><a href="schedule.html" class="">Day plan</a><a href="hotels.html" class="">Hotels</a><a href="cost.html" class="">Trip cost</a><a href="venues/index.html" class="">Venues</a><a href="sources.html" class="">Sources</a><a href="questions.html" class="">Open questions</a><a href="suggestions.html" class="">Suggestions</a><a href="flagged.html" class="">Flagged for review</a><a href="monitor.html" class="active">Change monitor</a></nav>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="side-label">Plan your trip</div>
+    <nav class="nav"><a href="index.html" class=""><span class="ico">▦</span>Overview</a><a href="tournaments.html" class=""><span class="ico">♠</span>Tournaments</a><a href="schedule.html" class=""><span class="ico">◷</span>Day plan</a><a href="hotels.html" class=""><span class="ico">⌂</span>Hotels</a><a href="cost.html" class=""><span class="ico">∑</span>Trip cost</a><a href="venues/index.html" class=""><span class="ico">⌸</span>Venues</a><a href="sources.html" class=""><span class="ico">❑</span>Sources</a><a href="questions.html" class=""><span class="ico">?</span>Open questions</a><a href="suggestions.html" class=""><span class="ico">✦</span>Suggestions</a><a href="flagged.html" class=""><span class="ico">⚑</span>Flagged for review</a><a href="monitor.html" class="active"><span class="ico">⟳</span>Change monitor</a></nav>
+    <div class="side-note"><strong>Evidence first.</strong> Every row links the official page it came from. A blank means the value could not be read from an official source and is listed on the Flagged for review page.</div>
+  </aside>
+  <main class="main">
+
+<h1>Change monitor</h1>
+<p class="lede">Official URLs are re-checked on a schedule by
+<code>scripts/check_sources.py</code>. For each URL it records the retrieval time, the HTTP
+status, a content hash and whether the page changed since the last check. A changed hash is a
+review signal, not proof that a tournament value changed: dynamic or rotating content produces
+false signals. Open the page and check the value by hand before changing anything.</p>
+
+<p class='notice'>No monitor log has been committed yet. The first scheduled run writes one.</p>
+<div data-monitor-log>
+<p class="muted">No monitor log yet. The first scheduled run writes one.</p>
+</div>
+<section class="panel">
+  <h2>How the monitor works</h2>
+  <ul class="bullets">
+    <li>Only URLs tagged as official in the source register are checked. Third-party route
+      estimates are excluded on purpose.</li>
+    <li>A first run records a baseline hash. Later runs compare against it.</li>
+    <li>An unreachable URL is recorded as unavailable. It is never counted as unchanged and
+      never as verified.</li>
+    <li>The log is committed to the repository and the site is redeployed after each run.</li>
+  </ul>
+</section>
+
+    <div class="footer">Built from official venue pages on <span data-asof>2026-11-16</span>. A guarantee is what a venue publishes, not a forecast of a payout. Verify prices, terms and schedules with the room before you pay. <a href="flagged.html">Limitations and flagged items</a>.</div>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+
+</body>
+</html>

@@ -11,7 +11,14 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Validate official-source data and local links
-        run: python3 scripts/verify_site.py
+        run: |
+          python3 scripts/verify_site.py
+          python3 scripts/reconcile_dse_iv.py
+          python3 scripts/curate_dse_iv.py
+          python3 scripts/build_site.py
+          python3 scripts/verify_site.py
+          node --check site/assets/app.js
+          python3 -m json.tool site/data.json > /dev/null
       - name: Validate Poker3 companion dashboard
         run: |
           python3 tests/smoke.py
