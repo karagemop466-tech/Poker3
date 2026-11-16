@@ -282,3 +282,85 @@ on this branch, so the scope below is non-overlapping.
 - Bounty, multi-flight and satellite formats are labelled separately from the single-entry list.
 - Trip dates, nightly budget and quality floor are fixed by this session rather than asked for, and the
   reasoning is published.
+
+### Work log (session arena/ed88c788-poker3)
+
+**Canonical rebuild.** `site/` was rebuilt from the source modules instead of being patched row by row. The data now
+carries 341 tournament rows, 8 hotel rows, 14 walking-route rows, 27 official sources, 27 flags, 12 questions, 12
+suggestions, a fixed trip profile, an eight-day plan and the flagged impossible sequences.
+
+| Page | Content |
+|---|---|
+| `site/index.html` | Executive summary, the fixed trip, the primary event per day, what is confirmed and what is not. |
+| `site/tournaments.html` | Every row with date from/to, venue, category, format and single-entry filters, a search box and a per-row rule panel carrying the excerpt, the source link and the retrieval date. |
+| `site/venues.html` | Seven Strip poker rooms; each opens `browse.html?view=venue&key=…` with its events and its hotels. |
+| `site/browse.html` | Venue and category subpages so bounty, flight, satellite and extra-spend rows are never mixed in with plain freezeouts. |
+| `site/schedule.html` | One primary event per day, a conditional fallback with its reason, the recurring room events for that weekday, and the flagged impossible sequences. |
+| `site/hotels.html` | Published rate components, mandatory resort fee, tax, true cost per night, parking, cancellation deadline, walking times, the cost calculator and the dated rate log. |
+| `site/questions.html` | Twelve decision questions, each with the official source behind the answer. |
+| `site/suggestions.html` | Twelve improvements with impact, effort and the decision each one needs. |
+| `site/flagged.html` | 27 irregularities and unverified items, each with a link for manual review. |
+| `site/sources.html` | The official source log, the 52 structure sheets with read status, the morning feed sources and the automated re-check output. |
+
+**Decisions fixed by this session, as instructed, without asking.**
+
+- Trip: 2026-11-25 to 2026-12-02, seven nights, on the Venetian / Palazzo resort. It is the eight-day window with the
+  most single-entry events verified on an official structure sheet (14) and at least one on every day.
+- Nightly budget: $197.28, the floor computed from the published components ($119 published starting rate + $55
+  mandatory resort fee, then 13.38% Clark County room tax). It is labelled a floor, not a quote.
+- Quality floor: no comparable official quality score exists, so the quality column stays blank and the floor is an
+  evidence test instead: the property must publish its own poker-room rate, keep the poker room on site and publish
+  its fee, tax and cancellation terms.
+- Bankroll: the eight recommended entries total $2,800 in buy-ins; with a 25% buffer, $3,500.
+
+**Line-by-line verification (this session).**
+
+- `scripts/audit_data.py` parses `research/structure_notes.md`, the read log for all 37 DSE IV structure PDFs, and
+  compares every buy-in, rake, prize-pool share, chip count, level length, late-registration line and guarantee with
+  the canonical data. It also checks that every scheduled DSE row points at a sheet that was read, that the event name
+  starts with that sheet's buy-in and that the flight categorisation matches the sheet. The audit caught one real
+  error, now fixed: sheet 4 (event 59) was carrying a $400 buy-in instead of the $600 printed on the sheet.
+- The DSE IV schedule was re-read and all 64 rows match the official page on date, time, event number, name and
+  structure-sheet link.
+- The DSE NYE schedule was re-read and all 49 rows match the official page.
+- The Wynn WPT schedule PDF was re-read: 136 rows, and the per-date row counts match the PDF exactly for all 24 dates.
+- The Wynn Signature Series PDF was re-read: 38 rows, all matched, and the guarantee column now carries the printed
+  seat counts for the milestone satellites.
+- The Wynn daily structures PDF was re-read: the $200 Monday-Thursday ($10,000 guarantee), $240 Friday rebuy
+  ($40,000), $200 Saturday-Sunday ($25,000) and $160 nightly ($10,000) terms, fee splits, chip counts, add-on chip
+  amounts, level lengths and registration cut-offs all match the canonical rows.
+- `scripts/verify_site.py` checks the canonical data and every published page: official-domain source links on every
+  row and every rule excerpt, a retrieval date on every excerpt, an explanation for every blank fee or guarantee, the
+  arithmetic behind each true nightly cost, a source on every flag, the single-entry rule behind every recommended
+  primary event, and every local link in every page.
+- `tests/canonical_smoke.py` plus `tests/canonical_render.js` render all ten pages headlessly and confirm each one
+  produces content, including 143 tournament rows on the default filter.
+
+**New findings from the second verification pass, added to the flag register.**
+
+- F23 the Ladies Championship entry fee is printed twice, differently ($1,100 in the column, $11,100 in the footnote).
+- F24 the "$1,000,000 Added" on the WPT World Championship comes from ClubWPT Gold, which is not available in Nevada.
+- F25 the discounted-entry footnote markers do not resolve cleanly against the footnote list.
+- F26 three Wynn Signature Series rows carry an extra empty cell that shifts the guarantee column.
+- F27 the DSE schedule page misspells "Limit" on four rows.
+
+**Automation added.**
+
+- `scripts/check_sources.py` fetches every official URL behind the dashboard, stores a SHA-256 of the response and
+  flags any source whose body changed. It never changes a tournament value on its own: a changed page is re-read by a
+  human first. Output: `site/checks.json`, shown on the sources page.
+- `scripts/daily_feed.py` pulls the schedule page of each Strip poker room every morning and writes a dated snapshot
+  under `site/feed/`, so a morning run can be compared with the previous morning instead of replacing it.
+- `.github/workflows/checks.yml` runs both at 05:00 Pacific daily and commits the results when they change.
+- `.github/workflows/verify.yml` now runs the canonical verifier, the canonical smoke test, the JSON checks, the
+  JavaScript syntax checks and a rebuild of `site/data.json` to prove the published data is reproducible.
+
+**Environment note.** The sandbox cannot open HTTPS connections to the venue hosts, so `scripts/check_sources.py`
+and `scripts/daily_feed.py` report "unreachable" here and are designed to run on the GitHub Actions runner. The
+scripts handle a failed fetch without aborting and record the status instead.
+
+**Cross-session note.** `site/poker3/` is a companion dashboard from a merged prior session. It still publishes at
+`/poker3/` because it lives inside the Pages artifact, and its conclusions predate this build: it records no verified
+strict-entry event, while this build verifies 45 dated rows whose sheets print one buy-in, one start flight and no
+re-entry, rebuy or add-on clause. It is an archive, not the current data. The other prior dashboards (`docs/`,
+`verified/`, `planner/`, `single-entry/`, the root pages) are untouched.
