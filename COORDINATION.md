@@ -646,3 +646,25 @@ reproducible, no diff.
 - Pages: workflow "Publish integrated Vegas Poker Planner to GitHub Pages", run [43944299631](https://github.com/karagemop466-tech/Poker3/actions/runs/43944299631): **success**. Pages API reports `status: built`, source `main` `/`, url https://karagemop466-tech.github.io/Poker3/ .
 - Overlap with session `arena/ef37b79e-poker3`: that session also read all 37 official structure sheets and shipped its own verification layer (`data/sheet_extracts.jsonl`, `scripts/build_data.py`, `scripts/build_addendum.py`, `site/sheets.html`). My sheet reads were done independently and are preserved as `raw/dse_nov_2026_structures_page.md` (verbatim official HTML table) and under `handoff/e1a99371/`. **Neither session's work was overwritten** — the two are complementary: theirs publishes a per-sheet page, mine cross-checks the published row data.
 - Status: **done**. Nothing further is blocked. Outstanding items are the three user decisions recorded above (R4 single-entry confirmation, R5 duplicate-tree retirement, R6 RaceDay level detail).
+
+## Session arena-4fa30832 (canonical `site/` feature completion + automated re-check + final integration)
+
+Branch: `arena/4fa30832-poker3` (platform-bound; the `session-<id>/<task>` naming cannot be applied). This session acts as the **final integration session** for this round: it merges `origin/main`, completes the remaining brief items on the canonical published dashboard (`site/`), re-verifies the combined data line by line, confirms the site builds with no broken links, publishes via PR to `main`, and records the result here. It does not edit `docs/`, `verified/`, `planner/`, `single-entry/`, root-level legacy pages, or `site/poker3/**` (owned by earlier sessions; left untouched).
+
+| Task | Status | Owner | Scope (files) | Notes |
+|---|---|---|---|---|
+| A1 Trip-cost calculator (entries × buy-ins + nights × true hotel cost) | in progress | arena-4fa30832 | `site/cost-calculator.html`, `site/assets/app.js` | Uses only verified data; blanks shown as blanks. |
+| A2 Scheduled automatic re-check of every official URL + mark changed rows | in progress | arena-4fa30832 | `scripts/recheck_urls.py`, `.github/workflows/recheck.yml`, `site/url_hashes.json`, `site/recheck.json` | Daily cron; content-hash diff vs baseline; changed rows flagged on the site. |
+| A3 Structure-sheet confirmation → remove "unverified" label where confirmed | in progress | arena-4fa30832 | `site/data.json`, `site/tournaments.html` | Only labels supported by an official sheet excerpt are changed; excerpt + retrieval date stored per row. |
+| A4 Last-checked date on every row | in progress | arena-4fa30832 | `site/data.json`, `site/assets/app.js` | `lastChecked` per tournament/hotel/source row. |
+| A5 Rates as a dated log (not a single value) | in progress | arena-4fa30832 | `site/data.json`, `site/hotels.html` | `rateLog[]` per hotel; each entry dated with official source. |
+| A6 One page per venue (Venetian, Wynn, others) with events + hotels | in progress | arena-4fa30832 | `site/venues/venetian.html`, `site/venues/wynn.html`, `site/venues/others.html` | Generated from `data.json`. |
+| A7 Global search box across all tables | in progress | arena-4fa30832 | `site/assets/app.js`, `site/index.html` | Site-wide search over tournaments + hotels. |
+| A8 Date selector filter on the tournaments table | in progress | arena-4fa30832 | `site/assets/app.js`, `site/tournaments.html` | Shows only events on chosen day(s). |
+| A9 Single-entry / freezeout toggle filter | in progress | arena-4fa30832 | `site/assets/app.js`, `site/tournaments.html` | Toggle + bucket filter; no event is asserted eligible without official wording. |
+| A10 Walking-route check links + ≤30 min filter | in progress | arena-4fa30832 | `site/hotels.html`, `site/assets/app.js` | Official-address directions links (Google/Apple Maps) for manual verification; measured times stay blank until verified. |
+| A11 Schedule overlap flags (start time + late-reg cutoff + plausible duration) | in progress | arena-4fa30832 | `site/schedule.html`, `site/assets/app.js` | Primary event + conditional fallback per day; estimates labelled as estimates. |
+| A12 Structured rule fields (single-entry / re-entry / add-on / fee) with source excerpt + retrieval date | in progress | arena-4fa30832 | `site/data.json`, `site/tournaments.html` | Blank when not published. |
+| A13 Final integration: PR → main, merge, confirm Pages, record here | pending | arena-4fa30832 | `COORDINATION.md`, `.github/workflows/*` | Re-verify combined data; do not merge a broken site. |
+
+Claim recorded 2026-11-16 UTC before any file edits in this session.
