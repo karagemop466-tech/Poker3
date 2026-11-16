@@ -99,7 +99,6 @@ Integration record:
 - Merge result: recorded in the follow-up section after the merge.
 
 ## Current session arena/ada1dd4d-poker3 — final integration
-## Current session arena/ada1dd4d-poker3 — final integration
 
 Branch: `arena/ada1dd4d-poker3`. The session began from the Arena-provided initial snapshot before the parallel PRs had reached its local `main`; it claimed the task on its managed branch and later rebased onto the updated `origin/main`. This integration preserves all earlier merged session histories above. `site/` is selected as the canonical published dashboard; the earlier root and `docs/` dashboards remain in the repository as prior research artifacts, not the current Pages artifact.
 
