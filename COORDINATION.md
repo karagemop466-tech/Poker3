@@ -34,3 +34,29 @@ Date: 2026-11-16
 - Small, frequent commits; `git pull --rebase` before every push.
 - No inferred values: blank + "unverified" flag when not confirmed from an official source.
 - Flagged irregularities do not block merge; they go on the Flagged for Review page.
+## Merged work log — prior session (branch arena/66708bda-poker3, PR #1, merged to main 2026-11-16)
+
+No other session/task claims were present when checked (2026-11-16 UTC).
+Their board summary:
+| Task | Status | Owner session | Scope |
+|---|---|---|---|
+| Research and build poker-trip dashboard + verification/flag pages | done (data gaps remain flagged) | Arena session | all repository files |
+
+Their work log:
+- Repository was a minimal README-only checkout; no existing site or other coordination entries.
+- Scope consolidated into that session because no other task owners existed. Work stayed on branch `arena/66708bda-poker3`.
+- Official-source check: ARIA poker information (https://aria.com/en/nightlife.html) describes tournaments daily at 1 p.m. and nightly at 7 p.m.; it does not substantiate date-specific events, buy-ins, guarantees, entry rules, or duration — listed as incomplete, not a qualified single-entry event.
+- Third-party calendar listings were not accepted as verification; labeled non-authoritative in their `flagged.html`. No unsupported tournament rows, guarantees, hotel rates, resort fees or distances were added by that session.
+- Manual line-by-line review; automated local HTML relative-link check passed. GitHub Pages build/deploy succeeded in run 43930736171 (2026-11-16).
+- Open data gaps noted by that session: user travel dates/occupancy and budget/preferences absent; full official date-specific room schedules/structures and hotel quotes not established. See their `questions.html` and `flagged.html`.
+- PR #1: https://github.com/karagemop466-tech/Poker3/pull/1 — merged with `gh pr merge 1 --merge`. Pages deployment run 43930736171 completed successfully; site published at https://karagemop466-tech.github.io/Poker3/ .
+
+This session (arena/92941c56-poker3) builds on that foundation with the full requested scope: single-entry tournament table, separate rebuy/add-on section, hotel true-cost table, all-day schedule, executive summary, open questions, improvement suggestions, and the Flagged for Review page. Where the two dashboards overlap, both versions are retained in the repository (root-level files from the prior session; `pages/` structure from this session).
+
+## Rules
+- One session per task; never edit a file claimed by another session.
+- Claim a task by writing session ID + files touched, commit, push immediately.
+- If a claim is >60 min old with no commits, another session may take over (log handoff).
+- Small, frequent commits; `git pull --rebase` before every push.
+- No inferred values: blank + "unverified" flag when not confirmed from an official source.
+- Flagged irregularities do not block merge; they go on the Flagged for Review page.
