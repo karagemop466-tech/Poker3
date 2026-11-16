@@ -7,7 +7,7 @@ Snapshot: 2026-11-16 UTC.
 | Task | Status | Owner session | Scope | Branch | PR |
 |---|---|---|---|---|---|
 | Research and build poker-trip dashboard + verification/flag pages (prior session) | done (data gaps remain flagged) | arena session 66708bda | all repository files | `arena/66708bda-poker3` | #1, #2 (merged to `main`) |
-| Venetian DeepStack Extravaganza IV main list, schedule, excluded-by-reason tables, hotel template, flagged register, questions (this session) | done. Flagged items published; they do not block merge. | arena session 93641c21 (integration owner) | all repository HTML/CSS/README/COORDINATION (shared outputs) | `arena/93641c21-poker3` | PR_PLACEHOLDER |
+| Venetian DeepStack Extravaganza IV main list, schedule, excluded-by-reason tables, hotel template, flagged register, questions (this session) | done. Flagged items published; they do not block merge. | arena session 93641c21 (integration owner) | all repository HTML/CSS/README/COORDINATION (shared outputs) | `arena/93641c21-poker3` | [#6](https://github.com/karagemop466-tech/Poker3/pull/6) |
 
 ## Work log
 
@@ -36,6 +36,6 @@ Snapshot: 2026-11-16 UTC.
 
 ## Result
 
-- PR: PR_PLACEHOLDER
+- PR: [#6](https://github.com/karagemop466-tech/Poker3/pull/6)
 - Merge: pending
 - Pages deployment: pending
