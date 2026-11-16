@@ -71,7 +71,6 @@ Branch: `arena/8fc8e9f1-poker3`. Only `docs/**` and this section were changed by
 
 ---
 
-<<<<<<< HEAD
 ## Session f332570d (verified-only site in `verified/`)
 
 Branch: `arena/f332570d-poker3` (single branch for this session; the `session-<id>/<task>` naming could not be used, as other sessions recorded above).
@@ -99,10 +98,8 @@ Integration record:
 - PR: https://github.com/karagemop466-tech/Poker3/pull/12 (`arena/f332570d-poker3` into `main`; updated to the `verified/` layout).
 - Merge result: recorded in the follow-up section after the merge.
 
-## Current session arena/ada1dd4d-poker3 (integration)
-=======
 ## Current session arena/ada1dd4d-poker3 — final integration
->>>>>>> 0ac6f4b (Build official-source Vegas poker planning dashboard)
+## Current session arena/ada1dd4d-poker3 — final integration
 
 Branch: `arena/ada1dd4d-poker3`. The session began from the Arena-provided initial snapshot before the parallel PRs had reached its local `main`; it claimed the task on its managed branch and later rebased onto the updated `origin/main`. This integration preserves all earlier merged session histories above. `site/` is selected as the canonical published dashboard; the earlier root and `docs/` dashboards remain in the repository as prior research artifacts, not the current Pages artifact.
 
