@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suggestions — Poker3 Las Vegas Strip Planner</title>
+<link rel="stylesheet" href="css/style.css">
+<meta name="description" content="Proposed site and data-gathering improvements for review before implementing.">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="brand"><span class="dot"></span> Poker3</a>
+    <nav>
+      <a href="tournaments.html">Tournaments</a>
+      <a href="hotels.html">Hotels</a>
+      <a href="schedule.html">Schedule</a>
+      <a href="executive-summary.html">Executive Summary</a>
+      <a href="suggestions.html" class="active">Suggestions</a>
+      <a href="q-and-a.html">Q&amp;A</a>
+      <a href="flagged-for-review.html">Flagged for Review</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <h1>Suggestions</h1>
+    <p>Proposed improvements to the site and to decision-making. <strong>None are implemented yet</strong> — this page exists so someone can review and choose the best path before implementing any changes.</p>
+    <div class="meta">Research date: 2026-11-16 &nbsp;|&nbsp; Status: proposed (not implemented)</div>
+  </div>
+</section>
+
+<section>
+  <div class="container">
+    <h2>A. Suggestions for the website</h2>
+    <table>
+      <thead>
+        <tr><th>#</th><th>Suggestion</th><th>Expected benefit</th><th>Effort</th><th>Dependencies</th><th>Decision needed?</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>S1</td><td>Buy-in filter toggle (≤$200, $201–$500, $501–$1,000, $1,000+) on the tournaments page</td><td>Faster identification of best-value events</td><td>Low</td><td>Tournament table data</td><td>No</td></tr>
+        <tr><td>S2</td><td>Date filter / calendar view showing which single-entry tournaments run on travel dates</td><td>Easier schedule building</td><td>Medium</td><td>Full event date data</td><td>No</td></tr>
+        <tr><td>S3</td><td>"True cost" hotel calculator: user enters room rate, site auto-computes resort fee + tax + parking</td><td>Transparent hotel comparison</td><td>Low</td><td>Hotel fee data</td><td>No</td></tr>
+        <tr><td>S4</td><td>Schedule conflict-checker: warns if two selected events overlap</td><td>Prevents double-booking</td><td>Medium</td><td>Event start times + durations</td><td>No</td></tr>
+        <tr><td>S5</td><td>Source-link icons on every table row</td><td>Trust and verifiability</td><td>Low</td><td>Source URLs</td><td>No</td></tr>
+        <tr><td>S6</td><td>"Flagged for review" badge on unverified table cells</td><td>Clear data-quality signal</td><td>Low</td><td>Flagged-items list</td><td>No</td></tr>
+        <tr><td>S7</td><td>Calendar export (.ics) of the selected tournament schedule</td><td>Helps users plan travel</td><td>Medium</td><td>Schedule data</td><td>No</td></tr>
+        <tr><td>S8</td><td>"My shortlist" feature (save favorite tournaments/hotels to local storage)</td><td>Personal planning</td><td>Medium</td><td>Front-end storage</td><td>No</td></tr>
+      </tbody>
+    </table>
+
+    <h2>B. Suggestions for gathering missing information</h2>
+    <table>
+      <thead>
+        <tr><th>#</th><th>Missing information</th><th>How to discover it</th><th>Suggested action</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>M1</td><td>ARIA Poker Open individual event buy-ins, guarantees, entry rules</td><td>Call/visit ARIA poker room or monitor arialasvegas.com/casino/poker (returned HTTP 500 on 2026-11-16)</td><td>Retry official ARIA page; call ARIA Poker Room (702) 590-7111</td></tr>
+        <tr><td>M2</td><td>WPT World Championship per-event re-entry rules (non-marquee events)</td><td>Request Wynn/WPT event structure sheets</td><td>Check wynnpoker.com or WPT.com structure sheets</td></tr>
+        <tr><td>M3</td><td>Official hotel room rates + resort fees for specific Nov–Dec 2026 dates</td><td>Direct booking on each hotel's official site</td><td>Book direct; confirm mandatory fees in writing before paying</td></tr>
+        <tr><td>M4</td><td>Exact walking times/routes between hotels and venues</td><td>Google Maps / Clark County pedestrian bridge info</td><td>Walk the route or check a map before relying on it</td></tr>
+        <tr><td>M5</td><td>Whether Venetian 1Day events explicitly prohibit re-entry (sheets list no re-entry clause but don't state "no re-entry")</td><td>Ask Venetian poker room floor staff / tournament director</td><td>Confirm in writing before assuming freezeout</td></tr>
+        <tr><td>M6</td><td>MGM Grand daily $120 NLH tournament details (entry rules, guarantees)</td><td>MGM Grand poker room official page</td><td>Not currently confirmed from an official source</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <p><strong>Review process before implementing any suggestion:</strong> (1) review benefit vs effort, (2) confirm data sources, (3) update COORDINATION.md, (4) implement on a feature branch, (5) verify the site builds with no broken links, (6) merge via pull request.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <div>
+      <h4>Poker3</h4>
+      <p style="margin:0; font-size:0.9rem;">Improvement proposals — review before implementing.</p>
+    </div>
+    <div style="flex:1; min-width:200px;">
+      <h4>Pages</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="tournaments.html">Tournaments</a></li>
+        <li><a href="hotels.html">Hotels</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="executive-summary.html">Executive Summary</a></li>
+        <li><a href="q-and-a.html">Q&amp;A</a></li>
+        <li><a href="flagged-for-review.html">Flagged for Review</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container">
+    <div class="small">Suggestions are proposals only. Nothing on this page is implemented.</div>
+  </div>
+</footer>
+
+</body>
+</html>

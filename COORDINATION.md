@@ -140,3 +140,19 @@ Automated checks (rerun after Bellagio hotel/fee integration on 2026-11-16): `py
 ### Current PR / deployment
 
 Current integration PR and final Pages deployment: pending.
+
+---
+
+## Session e125b4a2 (Strip planner pages, per-row verified data)
+
+Branch: `arena/e125b4a2-poker3`. This session's files are kept in their own folder so no shared root or `verified/` file is overwritten.
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| Venetian DSE IV single-entry research (per-row sources) | done | e125b4a2 | `data/tournaments.md` | 44 single-entry events with official structure-sheet links; 9 re-entry rows listed separately. |
+| Hotel research and true per-night cost template | done (rates and fees unverified) | e125b4a2 | `data/hotels.md` | Room rates blank and flagged. Resort fees from third-party listings only, flagged. |
+| All-day schedule (single entry) | done | e125b4a2 | `data/schedule.md` | 8 AM start not available; earliest verified start 10:10 AM. |
+| Executive summary, suggestions, Q&A, flagged-for-review pages | done | e125b4a2 | `planner/*.html`, `pages/*.md` | Suggestions are for review, not implemented. |
+| Integration, PR and merge | in progress | e125b4a2 | this section | PR #9 (`arena/e125b4a2-poker3` into `main`). Merge conflict on this file was resolved by keeping main's full content and appending this section. |
+
+**Placement decision.** Earlier, this branch's HTML pages overwrote shared root pages during a merge. They are now in `planner/`, and root and `verified/` and `docs/` are unchanged by this session.
