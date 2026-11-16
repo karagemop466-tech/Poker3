@@ -2,12 +2,13 @@
 
 Snapshot: 2026-11-16 UTC.
 
-**Protocol note.** The platform binds each session to one branch. This session works only on `arena/93641c21-poker3`; the `session-<id>/<task>` naming in the brief cannot be applied here. This session is the only active editor, so it acts as the integration owner for every shared output (tournament data, index, navigation, schedule, flags).
+**Protocol note (current session).** The platform binds this session to `arena/db5ab1d1-poker3`; the `session-<id>/<task>` naming in the brief cannot be applied here. The previous session records below are historical. This session is the only active editor recorded at start and is integrating the published `site/` dashboard plus its daily source monitor. It will not edit other historical dashboards or change branches.
 
 | Task | Status | Owner session | Scope | Branch | PR |
 |---|---|---|---|---|---|
 | Research and build poker-trip dashboard + verification/flag pages (prior session) | done (data gaps remain flagged) | arena session 66708bda | all repository files | `arena/66708bda-poker3` | #1, #2 (merged to `main`) |
-| Venetian DeepStack Extravaganza IV main list, schedule, excluded-by-reason tables, hotel template, flagged register, questions (this session) | done. Flagged items published; they do not block merge. | arena session 93641c21 (integration owner) | root site files, README, COORDINATION (shared outputs) | `arena/93641c21-poker3` | [#6](https://github.com/karagemop466-tech/Poker3/pull/6), merged |
+| Venetian DeepStack Extravaganza IV main list, schedule, excluded-by-reason tables, hotel template, flagged register, questions (historical session) | done. Flagged items published; they do not block merge. | arena session 93641c21 (integration owner) | root site files, README, COORDINATION (shared outputs) | `arena/93641c21-poker3` | [#6](https://github.com/karagemop466-tech/Poker3/pull/6), merged |
+| Dashboard decision tools, venue pages, per-row evidence metadata, and scheduled official-source change monitoring (current session) | in progress | arena/db5ab1d1-poker3 | `site/**`, `scripts/source_monitor.py`, `.github/workflows/**`, `tests/**`, `README.md`, `COORDINATION.md` | `arena/db5ab1d1-poker3` | — |
 
 ## Work log
 
@@ -238,3 +239,8 @@ Branch: `arena/e125b4a2-poker3`. This session's files are kept in their own fold
 - The Dec. 10–14, 2026, two-adult hotel search is a research sample, not user-provided travel dates. Hotel all-in totals remain unconfirmed; route times remain third-party estimates.
 - Planner scenarios use a user-entered time-at-event assumption and are explicitly not verified or guaranteed itineraries. Unknown terms are labeled “Flagged for Review.”
 - Checks: `node --check site/poker3/assets/app.js`; `python3 tests/smoke.py`; JSON validation; headless DOM rendering/interaction checks on all eight pages, event filters, the mobile navigation, planner date/scenario controls, and internal links.
+
+## Current session arena/db5ab1d1-poker3 — claim log
+
+- **Claim · 2026-11-16 UTC.** Claimed the integration task above before implementation. Scope is limited to the current published `site/` dashboard, its verification/monitoring code, tests, README, and this board. Historical `docs/`, `planner/`, `verified/`, `single-entry/`, and root-level dashboards are out of scope.
+- The board was already present on the current base commit (`e9af34c`); this claim is recorded on the assigned active branch. No parallel task owner was listed as active.
