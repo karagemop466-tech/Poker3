@@ -39,4 +39,4 @@ Snapshot: 2026-11-16 UTC.
 - PR: [#6](https://github.com/karagemop466-tech/Poker3/pull/6), merged 2026-11-16 18:47:13 UTC with `gh pr merge 6 --merge` (merge commit `4af9596`).
 - Pages: deploy run [43932491105](https://github.com/karagemop466-tech/Poker3/actions/runs/43932491105) completed `success`; Pages API reports `status: built`, source `main` `/`.
 - Live site: https://karagemop466-tech.github.io/Poker3/ (the sandbox cannot reach github.io directly; deployment confirmed via GitHub API and run status).
-- Follow-up that records this result: PR_RECORD_PLACEHOLDER.
+- Follow-up that records this result: [#10](https://github.com/karagemop466-tech/Poker3/pull/10).
