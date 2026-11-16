@@ -22,9 +22,9 @@ Date: 2026-11-16
 | 5 | Build all-day tournament schedule (8 AM start) | done | arena-agent-01 | pages/schedule.html | Derived from tasks 2-3 |
 | 6 | Write executive summary | done | arena-agent-01 | pages/executive-summary.html | Derived from tasks 2-5 |
 | 7 | Compile open questions / missing info / suggestions sections | done | arena-agent-01 | pages/questions.html, pages/suggestions.html | — |
-| 8 | Create GitHub Pages site: landing page + category subpages, tables, sources | in progress | arena-agent-01 | index.html, pages/*.html, assets/css/style.css | — |
-| 9 | Verify every table row line by line; flag unverified items | unclaimed | arena-agent-01 | pages/flagged-review.html | Official source links |
-| 10 | Integration: merge branches, rebuild, check broken links, publish GitHub Pages | unclaimed | arena-agent-01 | All | — |
+| 8 | Create GitHub Pages site: landing page + category subpages, tables, sources | done | arena-agent-01 | index.html, pages/*.html, assets/css/style.css | All 9 pages; internal links verified OK |
+| 9 | Verify every table row line by line; flag unverified items | done | arena-agent-01 | pages/flagged-review.html | Sources linked per row; unverified/conflict items flagged, never inferred |
+| 10 | Integration: rebuild, check broken links, publish GitHub Pages | in progress | arena-agent-01 | All | Enable Pages on this branch, verify deploy, then PR -> main |
 | 11 | Create PR integration -> main, merge, record PR link + deploy result | unclaimed | arena-agent-01 | COORDINATION.md | — |
 
 ## Rules
