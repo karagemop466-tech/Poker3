@@ -22,6 +22,12 @@ Then open `http://localhost:8000`.
 
 Run `python3 scripts/verify_site.py`, `node --check site/assets/app.js`, and `python -m json.tool site/data.json`. Every canonical tournament and hotel row links to an official source. See [`COORDINATION.md`](COORDINATION.md) for ownership, official source register, integration history, verification and open review flags.
 
+## Expanded Poker3 research companion
+
+`site/poker3/` adds a separate, source-linked Las Vegas field guide with tournament filters, a cautious date planner, room schedules, a sample hotel/fee comparison, route estimates, and a flagged-review register. It is included automatically in the existing Pages artifact at `/poker3/`; the canonical dashboard at `/` is preserved. The Dec. 10–14, 2026 two-adult hotel window is a research sample, not user-provided travel dates, and no strict-entry event is verified.
+
+Run `python3 tests/smoke.py` to validate this companion. When serving the repository's `site/` directory locally, open `http://localhost:8000/poker3/`.
+
 ## Strip planner pages (session e125b4a2)
 
 `planner/` holds this session's pages: landing page, Venetian DeepStack Extravaganza IV single-entry table with per-row official source links, re-entry table, hotels, schedule, executive summary, suggestions, Q&A, and flagged-for-review. Research tables behind them are in `data/tournaments.md`, `data/hotels.md`, `data/schedule.md`, and `pages/*.md`. These files are **not** published by `.github/workflows/pages.yml`, which deploys only `site/`. Publishing `planner/` would need a user decision.

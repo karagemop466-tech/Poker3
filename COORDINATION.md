@@ -230,3 +230,11 @@ Branch: `arena/e125b4a2-poker3`. This session's files are kept in their own fold
 - **R3.** Confirm the single-entry status of each main-list row. No structure sheet prints it, so the rows say "no re-entry or add-on wording on sheet" (flag F1).
 
 **Irregularities** (do not block merge): `single-entry/flagged.html` S1–S8 and the 19-item register from session 93641c21.
+
+## Session `arena/779af4ba-poker3` — source-linked companion dashboard
+
+- Added the Poker3 field guide at `site/poker3/`, keeping the existing canonical `site/` dashboard and its research intact. The current Pages workflow uploads the entire `site/` tree, so the companion is published under `/poker3/` without changing the Pages workflow.
+- Includes 25 selected upcoming event starts, 9 room records, 7 hotel records, 7 third-party walk estimates, 60 source records, and 9 review flags. All listed source IDs resolve. No event is verified for one-entry-total/no-re-entry/no-rebuy/no-add-on/no-paid-chip-boost eligibility.
+- The Dec. 10–14, 2026, two-adult hotel search is a research sample, not user-provided travel dates. Hotel all-in totals remain unconfirmed; route times remain third-party estimates.
+- Planner scenarios use a user-entered time-at-event assumption and are explicitly not verified or guaranteed itineraries. Unknown terms are labeled “Flagged for Review.”
+- Checks: `node --check site/poker3/assets/app.js`; `python3 tests/smoke.py`; JSON validation; headless DOM rendering/interaction checks on all eight pages, event filters, the mobile navigation, planner date/scenario controls, and internal links.
