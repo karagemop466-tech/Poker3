@@ -9,6 +9,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 ROOT = Path(__file__).resolve().parents[1]
+SITE = ROOT / "site/poker3"
 
 
 class LocalAssetParser(HTMLParser):
@@ -28,7 +29,7 @@ class LocalAssetParser(HTMLParser):
 
 
 def main() -> None:
-    data_path = ROOT / "data/research.json"
+    data_path = SITE / "data/research.json"
     data = json.loads(data_path.read_text(encoding="utf-8"))
     assert data["meta"]["asOf"] == "2026-11-16"
     assert data["meta"]["sampleStay"]["arrival"] == "2026-12-10"
@@ -54,19 +55,19 @@ def main() -> None:
         "routes.html", "review.html", "methodology.html",
     ]
     for page in pages:
-        path = ROOT / page
+        path = SITE / page
         assert path.is_file(), f"missing page: {page}"
         parser = LocalAssetParser()
         parser.feed(path.read_text(encoding="utf-8"))
         for local in parser.paths:
             if local:
-                assert (ROOT / local).is_file(), f"{page} points to missing local path: {local}"
+                assert (path.parent / local).is_file(), f"{page} points to missing local path: {local}"
         assert 'id="main-content"' in path.read_text(encoding="utf-8")
 
-    js = (ROOT / "assets/app.js").read_text(encoding="utf-8")
+    js = (SITE / "assets/app.js").read_text(encoding="utf-8")
     assert "fetch(dataUrl" in js
     assert not re.search(r"https?://(?:localhost|127\.0\.0\.1)", js), "browser code must not call localhost"
-    assert (ROOT / "assets/app.css").is_file()
+    assert (SITE / "assets/app.css").is_file()
     print(
         f"OK · {len(pages)} pages · {len(data['events'])} selected event starts · "
         f"{len(data['rooms'])} rooms · {len(data['hotels'])} hotels · "
