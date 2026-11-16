@@ -153,6 +153,6 @@ Branch: `arena/e125b4a2-poker3`. This session's files are kept in their own fold
 | Hotel research and true per-night cost template | done (rates and fees unverified) | e125b4a2 | `data/hotels.md` | Room rates blank and flagged. Resort fees from third-party listings only, flagged. |
 | All-day schedule (single entry) | done | e125b4a2 | `data/schedule.md` | 8 AM start not available; earliest verified start 10:10 AM. |
 | Executive summary, suggestions, Q&A, flagged-for-review pages | done | e125b4a2 | `planner/*.html`, `pages/*.md` | Suggestions are for review, not implemented. |
-| Integration, PR and merge | in progress | e125b4a2 | this section | PR #9 (`arena/e125b4a2-poker3` into `main`). Merge conflict on this file was resolved by keeping main's full content and appending this section. |
+| Integration, PR and merge | done | e125b4a2 | this section | PR [#9](https://github.com/karagemop466-tech/Poker3/pull/9) merged to `main` as 91b04ef (`--merge`, 2026-11-16). Pages workflow run 43934665531 success; verify run 43934665612 success; Pages API status `built`. Live URL not checked from the sandbox (github.io unreachable). `planner/` is not deployed: the Pages workflow publishes only `site/`. |
 
 **Placement decision.** Earlier, this branch's HTML pages overwrote shared root pages during a merge. They are now in `planner/`, and root and `verified/` and `docs/` are unchanged by this session.
