@@ -53,7 +53,7 @@
     "venetian",
     "palazzo"
    ],
-   "note": "Poker room is on the resort property; the poker-suite rate applies to The Venetian and The Palazzo."
+   "note": "Poker room is on the resort property; the poker-suite rate applies to The Venetian and The Palazzo. The official series page states 'More than $3.6 Million in guaranteed tournament prize pools' for DeepStack Extravaganza IV."
   },
   {
    "id": "wynn",
@@ -1336,7 +1336,7 @@
    "buyIn": 600,
    "guarantee": 30000,
    "ratio": 50.0,
-   "guaranteeNote": "",
+   "guaranteeNote": "includes bounties",
    "rules": {
     "singleEntry": {
      "status": "single-entry-on-sheet",
@@ -2647,7 +2647,7 @@
    "buyIn": 600,
    "guarantee": 40000,
    "ratio": 66.7,
-   "guaranteeNote": "",
+   "guaranteeNote": "includes bounties",
    "rules": {
     "singleEntry": {
      "status": "single-entry-on-sheet",
@@ -2816,9 +2816,9 @@
    "time": "4:10 PM",
    "name": "$100 NLH LIPS Ladies Milestone Satellite (1Day) - Awards Direct Entry to Event #39",
    "buyIn": 100,
-   "guarantee": "",
+   "guarantee": "2 seats to Event #39",
    "ratio": "",
-   "guaranteeNote": "",
+   "guaranteeNote": "seat prizes, not cash",
    "rules": {
     "singleEntry": {
      "status": "not-cash-tournament",
@@ -3044,9 +3044,9 @@
    "time": "4:10 PM",
    "name": "$100 NLH LIPS Ladies Milestone Satellite (1Day) - Awards Direct Entry to Event #39",
    "buyIn": 100,
-   "guarantee": "",
+   "guarantee": "2 seats to Event #39",
    "ratio": "",
-   "guaranteeNote": "",
+   "guaranteeNote": "seat prizes, not cash",
    "rules": {
     "singleEntry": {
      "status": "not-cash-tournament",
@@ -3272,9 +3272,9 @@
    "time": "4:10 PM",
    "name": "$260 NLH Milestone Satellite (1Day) - Awards Direct Entry to Event #47",
    "buyIn": 260,
-   "guarantee": "",
+   "guarantee": "2 seats to Event #47",
    "ratio": "",
-   "guaranteeNote": "",
+   "guaranteeNote": "seat prizes, not cash",
    "rules": {
     "singleEntry": {
      "status": "not-cash-tournament",
@@ -3500,9 +3500,9 @@
    "time": "4:10 PM",
    "name": "$260 NLH Milestone Satellite (1Day) - Awards Direct Entry to Event #47",
    "buyIn": 260,
-   "guarantee": "",
+   "guarantee": "2 seats to Event #47",
    "ratio": "",
-   "guaranteeNote": "",
+   "guaranteeNote": "seat prizes, not cash",
    "rules": {
     "singleEntry": {
      "status": "not-cash-tournament",
@@ -3614,9 +3614,9 @@
    "time": "8:10 PM",
    "name": "$260 NLH Turbo Milestone Satellite (1Day) - Awards Direct Entry to Event #47",
    "buyIn": 260,
-   "guarantee": "",
+   "guarantee": "2 seats to Event #47",
    "ratio": "",
-   "guaranteeNote": "",
+   "guaranteeNote": "seat prizes, not cash",
    "rules": {
     "singleEntry": {
      "status": "not-cash-tournament",
@@ -3671,9 +3671,9 @@
    "time": "9:10 AM",
    "name": "$260 NLH Turbo Milestone Satellite (1Day) - Awards Direct Entry to Event #47",
    "buyIn": 260,
-   "guarantee": "",
+   "guarantee": "2 seats to Event #47",
    "ratio": "",
-   "guaranteeNote": "",
+   "guaranteeNote": "seat prizes, not cash",
    "rules": {
     "singleEntry": {
      "status": "not-cash-tournament",
@@ -3785,9 +3785,9 @@
    "time": "12:10 PM",
    "name": "$260 NLH Turbo Milestone Satellite (1Day) - Awards Direct Entry to Event #47",
    "buyIn": 260,
-   "guarantee": "",
+   "guarantee": "2 seats to Event #47",
    "ratio": "",
-   "guaranteeNote": "",
+   "guaranteeNote": "seat prizes, not cash",
    "rules": {
     "singleEntry": {
      "status": "not-cash-tournament",
@@ -4414,7 +4414,7 @@
    "buyIn": 600,
    "guarantee": 50000,
    "ratio": 83.3,
-   "guaranteeNote": "",
+   "guaranteeNote": "includes bounties",
    "rules": {
     "singleEntry": {
      "status": "single-entry-on-sheet",
@@ -4981,9 +4981,9 @@
    "date": "2026-12-20",
    "time": "11:10 AM",
    "name": "$600 No Limit Hold'em 1A $150K GTD - $20 rake discount for entries before 11:10 a.m.",
-   "buyIn": 400,
+   "buyIn": 600,
    "guarantee": 150000,
-   "ratio": 375.0,
+   "ratio": 250.0,
    "guaranteeNote": "multi-flight",
    "rules": {
     "singleEntry": {
@@ -5006,7 +5006,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "$95 of the $400 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $505 of every $400 Buy In.",
+     "excerpt": "$95 of the $600 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $505 of every $600 Buy In.",
      "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
      "retrieved": "2026-11-16"
     }
@@ -5095,9 +5095,9 @@
    "date": "2026-12-21",
    "time": "11:10 AM",
    "name": "$600 No Limit Hold'em 1B $150K GTD",
-   "buyIn": 400,
+   "buyIn": 600,
    "guarantee": 150000,
-   "ratio": 375.0,
+   "ratio": 250.0,
    "guaranteeNote": "multi-flight",
    "rules": {
     "singleEntry": {
@@ -5120,7 +5120,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "$95 of the $400 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $505 of every $400 Buy In.",
+     "excerpt": "$95 of the $600 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $505 of every $600 Buy In.",
      "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
      "retrieved": "2026-11-16"
     }
@@ -5209,9 +5209,9 @@
    "date": "2026-12-22",
    "time": "11:10 AM",
    "name": "$600 No Limit Hold'em 1C $150K GTD",
-   "buyIn": 400,
+   "buyIn": 600,
    "guarantee": 150000,
-   "ratio": 375.0,
+   "ratio": 250.0,
    "guaranteeNote": "multi-flight",
    "rules": {
     "singleEntry": {
@@ -5234,7 +5234,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "$95 of the $400 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $505 of every $400 Buy In.",
+     "excerpt": "$95 of the $600 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $505 of every $600 Buy In.",
      "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
      "retrieved": "2026-11-16"
     }
@@ -5323,9 +5323,9 @@
    "date": "2026-12-23",
    "time": "11:00 AM",
    "name": "$600 No Limit Hold'em Day 2 Restart",
-   "buyIn": 400,
+   "buyIn": 600,
    "guarantee": 150000,
-   "ratio": 375.0,
+   "ratio": 250.0,
    "guaranteeNote": "multi-flight",
    "rules": {
     "singleEntry": {
@@ -5348,7 +5348,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "$95 of the $400 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $505 of every $400 Buy In.",
+     "excerpt": "$95 of the $600 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $505 of every $600 Buy In.",
      "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
      "retrieved": "2026-11-16"
     }
@@ -9737,7 +9737,7 @@
    "time": "7:00 PM",
    "name": "Double Play Milestone Satellite (2 X $1,100 ticket)",
    "buyIn": 400,
-   "guarantee": "",
+   "guarantee": "25 Prizes",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -9761,7 +9761,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $400 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $400 and guarantee $25 Prizes are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -9784,7 +9784,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive two (2) prizes valued at $1,100 each. Prizes may be used separately or combined for a tournament entry.\"",
    "eligibility": ""
   },
   {
@@ -9965,7 +9965,7 @@
    "time": "7:00 PM",
    "name": "Double Play Milestone Satellite (2 X $1,100 ticket)",
    "buyIn": 400,
-   "guarantee": "",
+   "guarantee": "25 Prizes",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -9989,7 +9989,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $400 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $400 and guarantee $25 Prizes are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -10012,7 +10012,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive two (2) prizes valued at $1,100 each. Prizes may be used separately or combined for a tournament entry.\"",
    "eligibility": ""
   },
   {
@@ -10307,7 +10307,7 @@
    "time": "12:00 PM",
    "name": "Milestone Satellite to $1,100 Prime Championship",
    "buyIn": 200,
-   "guarantee": "",
+   "guarantee": "50 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -10331,7 +10331,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $200 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $200 and guarantee $50 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -10354,7 +10354,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -10421,7 +10421,7 @@
    "time": "7:00 PM",
    "name": "Double Play Milestone Satellite (2 X $1,100 ticket)",
    "buyIn": 400,
-   "guarantee": "",
+   "guarantee": "25 Prizes",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -10445,7 +10445,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $400 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $400 and guarantee $25 Prizes are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -10468,7 +10468,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive two (2) prizes valued at $1,100 each. Prizes may be used separately or combined for a tournament entry.\"",
    "eligibility": ""
   },
   {
@@ -10763,7 +10763,7 @@
    "time": "7:00 PM",
    "name": "Milestone Satellite Package to Prime and World Championship",
    "buyIn": 1600,
-   "guarantee": "",
+   "guarantee": "25 Prizes",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -10787,7 +10787,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $1600 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $1600 and guarantee $25 Prizes are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -10810,7 +10810,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -10934,7 +10934,7 @@
    "time": "7:00 PM",
    "name": "Milestone Satellite to $10,400 World Championship",
    "buyIn": 1100,
-   "guarantee": "",
+   "guarantee": "25 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -10958,7 +10958,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $1100 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $1100 and guarantee $25 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -10981,7 +10981,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -11276,7 +11276,7 @@
    "time": "2:00 PM",
    "name": "Milestone Satellite to $10,400 World Championship",
    "buyIn": 1100,
-   "guarantee": "",
+   "guarantee": "25 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -11300,7 +11300,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $1100 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $1100 and guarantee $25 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -11323,7 +11323,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -11333,7 +11333,7 @@
    "time": "7:00 PM",
    "name": "Milestone Satellite to $10,400 World Championship",
    "buyIn": 1100,
-   "guarantee": "",
+   "guarantee": "25 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -11357,7 +11357,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $1100 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $1100 and guarantee $25 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -11380,7 +11380,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -11903,7 +11903,7 @@
    "time": "2:00 PM",
    "name": "WPT Prime Championship Final Table",
    "buyIn": "",
-   "guarantee": "",
+   "guarantee": "75 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -11927,7 +11927,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $- and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $- and guarantee $75 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -11950,7 +11950,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -11960,7 +11960,7 @@
    "time": "2:00 PM",
    "name": "Super Gold Million Mystery Bounty Day 2",
    "buyIn": "",
-   "guarantee": "",
+   "guarantee": "75 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -11984,7 +11984,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $- and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $- and guarantee $75 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -12007,7 +12007,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -12017,7 +12017,7 @@
    "time": "2:00 PM",
    "name": "Milestone Satellite to $10,400 World Championship 1A/8",
    "buyIn": 1100,
-   "guarantee": "",
+   "guarantee": "75 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -12041,7 +12041,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $1100 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $1100 and guarantee $75 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -12064,7 +12064,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -12074,7 +12074,7 @@
    "time": "4:00 PM",
    "name": "Milestone Satellite to $10,400 Ladies NLH Championship",
    "buyIn": 200,
-   "guarantee": "",
+   "guarantee": "10 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -12098,7 +12098,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $200 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $200 and guarantee $10 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -12121,7 +12121,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -12131,7 +12131,7 @@
    "time": "7:00 PM",
    "name": "Milestone Satellite to $10,400 World Championship 1A/8",
    "buyIn": 1100,
-   "guarantee": "",
+   "guarantee": "25 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -12155,7 +12155,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $1100 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $1100 and guarantee $25 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -12178,7 +12178,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -12292,7 +12292,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Multiple start flights are published for this event, so more than one entry is possible.",
+   "note": "Multiple start flights are published for this event, so more than one entry is possible. The schedule prints \"$1,000,000 Added\" with the footnote \"$1,000,000 will be added in cash prizes by ClubWPT Gold. ClubWPT Gold is not available in Nevada.\"",
    "eligibility": ""
   },
   {
@@ -12300,7 +12300,7 @@
    "venue": "wynn",
    "date": "2026-12-13",
    "time": "11:00 AM",
-   "name": "Ladies NLH Championship (2 Day)",
+   "name": "Ladies NIH Championship (2 Day)",
    "buyIn": 1100,
    "guarantee": 250000,
    "ratio": 227.3,
@@ -12349,7 +12349,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. The schedule prints a discounted-entry marker on this row: \"The Tournament Entry for the Ladies Championship is $11,100. Ladies will receive a discounted entry.\" and \"Players registered prior to the start of the event will receive a discounted entry.\" The marker on this row does not resolve cleanly against the footnote list, so the printed entry is shown and nothing is adjusted.",
    "eligibility": ""
   },
   {
@@ -12406,7 +12406,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. The schedule prints \"$1,000,000 Added\" with the footnote \"$1,000,000 will be added in cash prizes by ClubWPT Gold. ClubWPT Gold is not available in Nevada.\"",
    "eligibility": ""
   },
   {
@@ -12463,7 +12463,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Multiple start flights are published for this event, so more than one entry is possible.",
+   "note": "Multiple start flights are published for this event, so more than one entry is possible. The schedule prints \"$1,000,000 Added\" with the footnote \"$1,000,000 will be added in cash prizes by ClubWPT Gold. ClubWPT Gold is not available in Nevada.\"",
    "eligibility": ""
   },
   {
@@ -12520,7 +12520,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Multiple start flights are published for this event, so more than one entry is possible.",
+   "note": "Multiple start flights are published for this event, so more than one entry is possible. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -12530,7 +12530,7 @@
    "time": "12:00 PM",
    "name": "Milestone Satellite to $10,400 World Championship 1B",
    "buyIn": 1100,
-   "guarantee": "",
+   "guarantee": "25 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -12554,7 +12554,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $1100 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $1100 and guarantee $25 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -12577,7 +12577,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -12644,7 +12644,7 @@
    "time": "6:00 PM",
    "name": "Milestone Satellite to $10,400 World Championship 1B/C",
    "buyIn": 1100,
-   "guarantee": "",
+   "guarantee": "25 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -12668,7 +12668,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $1100 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $1100 and guarantee $25 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -12691,7 +12691,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -12748,7 +12748,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Multiple start flights are published for this event, so more than one entry is possible.",
+   "note": "Multiple start flights are published for this event, so more than one entry is possible. The schedule prints \"$1,000,000 Added\" with the footnote \"$1,000,000 will be added in cash prizes by ClubWPT Gold. ClubWPT Gold is not available in Nevada.\"",
    "eligibility": ""
   },
   {
@@ -12805,7 +12805,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Multiple start flights are published for this event, so more than one entry is possible.",
+   "note": "Multiple start flights are published for this event, so more than one entry is possible. The schedule prints \"$1,000,000 Added\" with the footnote \"$1,000,000 will be added in cash prizes by ClubWPT Gold. ClubWPT Gold is not available in Nevada.\"",
    "eligibility": ""
   },
   {
@@ -12862,7 +12862,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Multiple start flights are published for this event, so more than one entry is possible.",
+   "note": "Multiple start flights are published for this event, so more than one entry is possible. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -12872,7 +12872,7 @@
    "time": "12:00 PM",
    "name": "Mixed Triple Draw (A-5, 2-7, Badugi) (2 Day)",
    "buyIn": 1100,
-   "guarantee": "",
+   "guarantee": "25 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -12896,7 +12896,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $1100 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $1100 and guarantee $25 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -12919,7 +12919,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -12929,7 +12929,7 @@
    "time": "12:00 PM",
    "name": "Milestone Satellite to $10,400 World Championship 1C",
    "buyIn": 1100,
-   "guarantee": "",
+   "guarantee": "25 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -12953,7 +12953,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $1100 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $1100 and guarantee $25 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -12976,7 +12976,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -13043,7 +13043,7 @@
    "time": "6:00 PM",
    "name": "Milestone Satellite to $10,400 World Championship 1C",
    "buyIn": 1100,
-   "guarantee": "",
+   "guarantee": "25 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -13067,7 +13067,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $1100 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $1100 and guarantee $25 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -13090,7 +13090,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -13261,7 +13261,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Multiple start flights are published for this event, so more than one entry is possible.",
+   "note": "Multiple start flights are published for this event, so more than one entry is possible. The schedule prints \"$1,000,000 Added\" with the footnote \"$1,000,000 will be added in cash prizes by ClubWPT Gold. ClubWPT Gold is not available in Nevada.\"",
    "eligibility": ""
   },
   {
@@ -13318,7 +13318,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. The schedule prints \"$1,000,000 Added\" with the footnote \"$1,000,000 will be added in cash prizes by ClubWPT Gold. ClubWPT Gold is not available in Nevada.\"",
    "eligibility": ""
   },
   {
@@ -13375,7 +13375,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. The schedule prints \"$1,000,000 Added\" with the footnote \"$1,000,000 will be added in cash prizes by ClubWPT Gold. ClubWPT Gold is not available in Nevada.\"",
    "eligibility": ""
   },
   {
@@ -13556,7 +13556,7 @@
    "time": "6:00 PM",
    "name": "Milestone Satellite to $10,400 World Championship Day 2",
    "buyIn": 1100,
-   "guarantee": "",
+   "guarantee": "10 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -13580,7 +13580,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $1100 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $1100 and guarantee $10 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -13603,7 +13603,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -14458,7 +14458,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. The schedule prints a discounted-entry marker on this row: \"The Tournament Entry for the Ladies Championship is $11,100. Ladies will receive a discounted entry.\" and \"Players registered prior to the start of the event will receive a discounted entry.\" The marker on this row does not resolve cleanly against the footnote list, so the printed entry is shown and nothing is adjusted.",
    "eligibility": ""
   },
   {
@@ -14468,7 +14468,7 @@
    "time": "2:00 PM",
    "name": "Milestone Satellite to $3,000 NLH",
    "buyIn": 400,
-   "guarantee": "",
+   "guarantee": "25 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -14492,7 +14492,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $400 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $400 and guarantee $25 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -14515,7 +14515,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -14525,7 +14525,7 @@
    "time": "7:00 PM",
    "name": "Milestone Satellite to $3,000 NLH",
    "buyIn": 400,
-   "guarantee": "",
+   "guarantee": "25 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -14549,7 +14549,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $400 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $400 and guarantee $25 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -14572,7 +14572,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -14582,7 +14582,7 @@
    "time": "10:00 AM",
    "name": "Milestone Satellite to $3,000 NLH",
    "buyIn": 400,
-   "guarantee": "",
+   "guarantee": "10 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -14606,7 +14606,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $400 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $400 and guarantee $10 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -14629,7 +14629,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -14924,7 +14924,7 @@
    "time": "2:00 PM",
    "name": "Milestone Satellite to $5,000 Seniors High Roller",
    "buyIn": 600,
-   "guarantee": "",
+   "guarantee": "10 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -14948,7 +14948,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $600 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $600 and guarantee $10 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -14971,7 +14971,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -15152,7 +15152,7 @@
    "time": "12:00 PM",
    "name": "WPT World Championship Day 5",
    "buyIn": "",
-   "guarantee": "",
+   "guarantee": "10 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -15176,7 +15176,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $- and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $- and guarantee $10 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -15199,7 +15199,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -15209,7 +15209,7 @@
    "time": "12:00 PM",
    "name": "No Limit Hold'em Day 2",
    "buyIn": "",
-   "guarantee": "",
+   "guarantee": "10 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -15233,7 +15233,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $- and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $- and guarantee $10 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -15256,7 +15256,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -15266,7 +15266,7 @@
    "time": "12:00 PM",
    "name": "Milestone Satellite to $1,600 Mystery Bounty",
    "buyIn": 300,
-   "guarantee": "",
+   "guarantee": "10 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -15290,7 +15290,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $300 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $300 and guarantee $10 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -15313,7 +15313,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -15494,7 +15494,7 @@
    "time": "5:00 PM",
    "name": "Milestone Satellite to $1,600 Mystery Bounty",
    "buyIn": 300,
-   "guarantee": "",
+   "guarantee": "10 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -15518,7 +15518,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $300 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $300 and guarantee $10 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -15541,7 +15541,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
    "eligibility": ""
   },
   {
@@ -15883,7 +15883,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. The schedule prints a discounted-entry marker on this row: \"The Tournament Entry for the Ladies Championship is $11,100. Ladies will receive a discounted entry.\" and \"Players registered prior to the start of the event will receive a discounted entry.\" The marker on this row does not resolve cleanly against the footnote list, so the printed entry is shown and nothing is adjusted.",
    "eligibility": ""
   },
   {
@@ -15940,7 +15940,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. The schedule prints a discounted-entry marker on this row: \"The Tournament Entry for the Ladies Championship is $11,100. Ladies will receive a discounted entry.\" and \"Players registered prior to the start of the event will receive a discounted entry.\" The marker on this row does not resolve cleanly against the footnote list, so the printed entry is shown and nothing is adjusted.",
    "eligibility": ""
   },
   {
@@ -16748,7 +16748,7 @@
    "time": "6:00 PM",
    "name": "Milestone Satellite to $600 NLH",
    "buyIn": 125,
-   "guarantee": "",
+   "guarantee": "10 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -16772,7 +16772,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $125 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $125 and guarantee $10 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1753296112/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -17888,7 +17888,7 @@
    "time": "6:00 PM",
    "name": "Milestone Satellite to $800 NLH",
    "buyIn": 160,
-   "guarantee": "",
+   "guarantee": "10 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -17912,7 +17912,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $160 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $160 and guarantee $10 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1753296112/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -18059,7 +18059,7 @@
    "time": "6:00 PM",
    "name": "Milestone Satellite to $800 NLH",
    "buyIn": 160,
-   "guarantee": "",
+   "guarantee": "10 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -18083,7 +18083,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $160 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $160 and guarantee $10 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1753296112/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Schedule.pdf",
      "retrieved": "2026-11-16"
     }
@@ -20655,6 +20655,46 @@
    "title": "Google Maps resolved 'Horseshoe Las Vegas' to Bally's on the first query",
    "detail": "The first walking query using the property name alone was routed from Bally's Las Vegas. The figure shown for Horseshoe was re-taken using the full street address and the result is labelled as such. Walking times are Google Maps estimates captured on 2026-11-16, not venue-published figures.",
    "source": "https://www.google.com/maps/dir/?api=1&travelmode=walking"
+  },
+  {
+   "id": "F26",
+   "area": "Wynn Signature Series",
+   "severity": "Medium",
+   "title": "Three schedule rows on the Wynn Signature Series PDF carry an extra empty cell",
+   "detail": "The rows for '1/17 NLH TURBO', '1/18 NO LIMIT HOLD'EM DAY 1A' and '1/18 NLH TURBO' have one more cell than the table header, which shifts the guarantee column: the printed guarantee appears in the entry column and the entry price appears in the chip column. The values are read in the order the surrounding rows use, so the $10,000 and $100,000 figures are treated as the guarantee and $200 or $400 as the entry. The guarantee for the milestone satellites is printed as '10 Seats'.",
+   "source": "https://cdn.wynnresorts.com/image/upload/v1753296112/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Schedule.pdf"
+  },
+  {
+   "id": "F27",
+   "area": "Venetian DSE IV",
+   "severity": "Low",
+   "title": "The official DSE schedule page misspells 'Limit' on four rows",
+   "detail": "The schedule page prints 'No LImit Hold'em' with a capital letter i on the rows for event 2 (November 18), event 6 (November 22), event 10 (November 25) and event 12 (November 26). The event names on this site use the corrected spelling and every row links the page and the structure sheet, so the printed label can be checked in one click.",
+   "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
+  },
+  {
+   "id": "F23",
+   "area": "Wynn WPT",
+   "severity": "Medium",
+   "title": "The Ladies Championship entry fee is printed twice, differently",
+   "detail": "The WPT schedule prints the buy-in column as '$1,100' for 'Ladies NIH Championship (2 Day)' while the footnote under the table reads 'The Tournament Entry for the Ladies Championship is $11,100. Ladies will receive a discounted entry.' The event name is printed as 'NIH', which is a typo for No Limit Hold'em. The row keeps the printed column value and the footnote is recorded with it; nothing is adjusted.",
+   "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"
+  },
+  {
+   "id": "F24",
+   "area": "Wynn WPT",
+   "severity": "High",
+   "title": "The '$1,000,000 Added' on the WPT World Championship is not available in Nevada",
+   "detail": "The schedule prints 'WPT World Championship Day 1A $1,000,000 Added' for $10,400, and the footnote under the table states: '$1,000,000 will be added in cash prizes by ClubWPT Gold. ClubWPT Gold is not available in Nevada.' The guarantee column for those rows is blank on the schedule. A Nevada player therefore cannot count the added million, which is why no guarantee is shown for those rows.",
+   "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"
+  },
+  {
+   "id": "F25",
+   "area": "Wynn WPT",
+   "severity": "Low",
+   "title": "Discounted-entry footnote markers do not resolve cleanly against the footnote list",
+   "detail": "The schedule prints '*', '**', '***', '****' and '*****' markers. Several rows, including the $10,500 PLO 6-Max and the $25,800 NLH High Roller, carry a four-marker footnote, while the footnote list describes the Ladies Championship entry under four markers and the general discounted entry under five. The marker is reproduced with its row and the footnote text is quoted, but the published entry is not adjusted.",
+   "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"
   },
   {
    "id": "F22",

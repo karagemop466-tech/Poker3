@@ -68,7 +68,10 @@ VENUES = [
          page="https://www.venetianlasvegas.com/resort/casino/poker.html",
          series="DeepStack Extravaganza IV (Nov 16 - Dec 23, 2026) and DeepStack Extravaganza NYE (Dec 24, 2026 - Jan 10, 2027)",
          schedule="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-         hotels=["venetian", "palazzo"], note="Poker room is on the resort property; the poker-suite rate applies to The Venetian and The Palazzo."),
+         hotels=["venetian", "palazzo"],
+         note=("Poker room is on the resort property; the poker-suite rate applies to The Venetian and The Palazzo. "
+               "The official series page states 'More than $3.6 Million in guaranteed tournament prize pools' for "
+               "DeepStack Extravaganza IV.")),
     dict(id="wynn", name="Wynn Las Vegas", pokerRoom="Wynn poker room, located in Encore at Wynn Las Vegas",
          page="https://www.wynnlasvegas.com/casino/poker",
          series="WPT World Championship (Nov 27 - Dec 21, 2026), Wynn Signature Series (Jan 11-24, 2027), daily tournaments",
@@ -297,6 +300,43 @@ FLAGS = [
                  "Horseshoe was re-taken using the full street address and the result is labelled as such. Walking times are "
                  "Google Maps estimates captured on 2026-11-16, not venue-published figures."),
          source="https://www.google.com/maps/dir/?api=1&travelmode=walking"),
+    dict(id="F26", area="Wynn Signature Series", severity="Medium",
+         title="Three schedule rows on the Wynn Signature Series PDF carry an extra empty cell",
+         detail=("The rows for '1/17 NLH TURBO', '1/18 NO LIMIT HOLD\'EM DAY 1A' and '1/18 NLH TURBO' have one more "
+                 "cell than the table header, which shifts the guarantee column: the printed guarantee appears in the "
+                 "entry column and the entry price appears in the chip column. The values are read in the order the "
+                 "surrounding rows use, so the $10,000 and $100,000 figures are treated as the guarantee and $200 or "
+                 "$400 as the entry. The guarantee for the milestone satellites is printed as '10 Seats'."),
+         source="https://cdn.wynnresorts.com/image/upload/v1753296112/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Schedule.pdf"),
+    dict(id="F27", area="Venetian DSE IV", severity="Low",
+         title="The official DSE schedule page misspells 'Limit' on four rows",
+         detail=("The schedule page prints 'No LImit Hold\'em' with a capital letter i on the rows for event 2 "
+                 "(November 18), event 6 (November 22), event 10 (November 25) and event 12 (November 26). The event "
+                 "names on this site use the corrected spelling and every row links the page and the structure sheet, "
+                 "so the printed label can be checked in one click."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
+    dict(id="F23", area="Wynn WPT", severity="Medium",
+         title="The Ladies Championship entry fee is printed twice, differently",
+         detail=("The WPT schedule prints the buy-in column as '$1,100' for 'Ladies NIH Championship (2 Day)' while the "
+                 "footnote under the table reads 'The Tournament Entry for the Ladies Championship is $11,100. Ladies will "
+                 "receive a discounted entry.' The event name is printed as 'NIH', which is a typo for No Limit Hold'em. "
+                 "The row keeps the printed column value and the footnote is recorded with it; nothing is adjusted."),
+         source="https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"),
+    dict(id="F24", area="Wynn WPT", severity="High",
+         title="The '$1,000,000 Added' on the WPT World Championship is not available in Nevada",
+         detail=("The schedule prints 'WPT World Championship Day 1A $1,000,000 Added' for $10,400, and the footnote "
+                 "under the table states: '$1,000,000 will be added in cash prizes by ClubWPT Gold. ClubWPT Gold is not "
+                 "available in Nevada.' The guarantee column for those rows is blank on the schedule. A Nevada player "
+                 "therefore cannot count the added million, which is why no guarantee is shown for those rows."),
+         source="https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"),
+    dict(id="F25", area="Wynn WPT", severity="Low",
+         title="Discounted-entry footnote markers do not resolve cleanly against the footnote list",
+         detail=("The schedule prints '*', '**', '***', '****' and '*****' markers. Several rows, including the $10,500 "
+                 "PLO 6-Max and the $25,800 NLH High Roller, carry a four-marker footnote, while the footnote list "
+                 "describes the Ladies Championship entry under four markers and the general discounted entry under "
+                 "five. The marker is reproduced with its row and the footnote text is quoted, but the published entry "
+                 "is not adjusted."),
+         source="https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"),
     dict(id="F22", area="Venetian DSE IV", severity="Low",
          title="The RaceDay Stack sheets print no guarantee",
          detail=("Sheets 18 and 29 print the buy-in, rake and blind structure but no guarantee line, so events 3, 4, 5 and 6 carry "
@@ -424,6 +464,27 @@ SUGGESTIONS = [
                  "archiving them would stop them diverging from the live data."),
          impact="Low", effort="Low", decision="Keep as archive or delete"),
 ]
+
+
+SIG_MARK_NOTES = {
+    "*": ("Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which "
+          "it was held.\" These are seat prizes, not cash."),
+}
+
+WPT_MARK_NOTES = {
+    "*": ("Prize footnote on the schedule: \"Winners will receive two (2) prizes valued at $1,100 each. Prizes may be "
+          "used separately or combined for a tournament entry.\""),
+    "**": ("Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which "
+           "it was held.\" These are seat prizes, not cash."),
+    "***": ("The schedule prints \"$1,000,000 Added\" with the footnote \"$1,000,000 will be added in cash prizes by "
+            "ClubWPT Gold. ClubWPT Gold is not available in Nevada.\""),
+    "****": ("The schedule prints a discounted-entry marker on this row: \"The Tournament Entry for the Ladies "
+             "Championship is $11,100. Ladies will receive a discounted entry.\" and \"Players registered prior to the "
+             "start of the event will receive a discounted entry.\" The marker on this row does not resolve cleanly "
+             "against the footnote list, so the printed entry is shown and nothing is adjusted."),
+    "*****": ("The schedule prints a discounted-entry marker on this row: \"Players registered prior to the start of "
+              "the event will receive a discounted entry.\""),
+}
 
 
 def _rules_for_sheet(sheet_no):
@@ -751,13 +812,21 @@ def build():
         s = V.SHEETS[sheet]
         url = f"{V.BASE}/dse_nov_2026-structure_{sheet}.pdf"
         cont = bool(re.search(r"day [23]\b", name.lower()))
+        guarantee_value = guarantee
+        guarantee_note = ""
+        if not guarantee_value and s.get("kind") == "satellite" and s.get("guarantee"):
+            guarantee_value = s["guarantee"]
+            guarantee_note = "seat prizes, not cash"
         events.append(_event(
             f"vl-dse-{date}-{no}-{time.replace(':', '').replace(' ', '').lower()}",
-            "venetian", date, time, name, s["buyIn"], guarantee, _rules_for_sheet(sheet),
+            "venetian", date, time, name, s["buyIn"], guarantee_value, _rules_for_sheet(sheet),
             category, s["kind"], url, V.DSE, url,
             note=s.get("note", "") + (s.get("entryExcerpt", "") if s.get("entryExcerpt") else ""),
             eligibility=s.get("eligibility", ""),
-            guarantee_note="multi-flight" if s["kind"] == "flight" else ("includes bounties" if "bounties" in s["guarantee"] else ""),
+            guarantee_note=(guarantee_note or "multi-flight" if s["kind"] == "flight"
+                            else guarantee_note
+                            or ("includes bounties" if ("bounties" in s["guarantee"] or "Bounty" in name
+                                                       or "PKO" in name or "Knock-Out" in name) else "")),
             chips=s.get("chips", ""), level_min=s.get("levelMin", ""), late_reg=s.get("late", ""),
             entry_type=s["entry"], continuation=cont,
         ))
@@ -793,9 +862,16 @@ def build():
 
     # --- Wynn WPT --------------------------------------------------------
     for idx, line in enumerate(N.WYNN_WPT_ROWS.splitlines()):
-        date, time, name, buy_in, guarantee, chips, levels = line.split("|")
+        cells = line.split("|")
+        date, time, name, buy_in, guarantee, chips, levels = cells[:7]
+        marks = cells[7] if len(cells) > 7 else ""
         buy = "" if buy_in == "-" else int(buy_in)
-        gua = "" if guarantee == "-" else int(guarantee)
+        if guarantee == "-":
+            gua = ""
+        elif guarantee.replace(",", "").isdigit():
+            gua = int(guarantee.replace(",", ""))
+        else:
+            gua = guarantee
         flight = bool(re.search(r"Day 1[A-F]\b", name))
         cat = "flight" if flight else ("satellite" if "Satellite" in name else "wpt")
         rules = {
@@ -813,17 +889,26 @@ def build():
             f"wynn-wpt-{date}-{idx:03d}-{time.replace(':', '').replace(' ', '').lower()}",
             "wynn", date, time, name, buy, gua, rules, cat, "wpt",
             N.WYNN_WPT_SCHED, N.WYNN_WPT_SCHED, N.WYNN_WPT_STRUCT,
-            note=("Multiple start flights are published for this event, so more than one entry is possible." if flight else
-                  "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read."),
+            note=" ".join(x for x in [
+                ("Multiple start flights are published for this event, so more than one entry is possible." if flight else
+                 "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read."),
+                WPT_MARK_NOTES.get(marks, "")] if x).strip(),
             chips=int(chips) if chips not in ("-", "") else "", entry_type=("multi-flight" if flight else "not-verified"),
             continuation=bool(re.search(r"day [2345]\b|final table", name.lower())),
         ))
 
     # --- Wynn Signature Series ------------------------------------------
     for idx, line in enumerate(N.WYNN_SIGNATURE_ROWS.splitlines()):
-        date, time, name, buy_in, guarantee, chips, levels = line.split("|")
+        cells = line.split("|")
+        date, time, name, buy_in, guarantee, chips, levels = cells[:7]
+        marks = cells[7] if len(cells) > 7 else ""
         buy = "" if buy_in == "-" else int(buy_in)
-        gua = "" if guarantee == "-" else int(guarantee)
+        if guarantee == "-":
+            gua = ""
+        elif guarantee.replace(",", "").isdigit():
+            gua = int(guarantee.replace(",", ""))
+        else:
+            gua = guarantee
         flight = bool(re.search(r"Day 1[A-F]\b", name))
         cat = "flight" if flight else ("satellite" if "Satellite" in name else "wpt")
         rules = {
@@ -841,8 +926,10 @@ def build():
             f"wynn-sig-{date}-{idx:03d}-{time.replace(':', '').replace(' ', '').lower()}",
             "wynn", date, time, name, buy, gua, rules, cat, "wpt",
             N.WYNN_SIG_SCHED, N.WYNN_SIG_SCHED, N.WYNN_SIG_STRUCT,
-            note=("Multiple start flights are published for this event." if flight else
-                  "Wynn Signature Series row from the official schedule PDF; entry rules not yet read."),
+            note=" ".join(x for x in [
+                ("Multiple start flights are published for this event." if flight else
+                 "Wynn Signature Series row from the official schedule PDF; entry rules not yet read."),
+                SIG_MARK_NOTES.get(marks, "")] if x).strip(),
             chips=int(chips) if chips not in ("-", "") else "", entry_type=("multi-flight" if flight else "not-verified"),
             continuation=bool(re.search(r"day [2345]\b|final table", name.lower())),
         ))
