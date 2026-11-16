@@ -219,12 +219,14 @@ Branch: `arena/e125b4a2-poker3`. This session's files are kept in their own fold
 
 ### Result (this session)
 
-- PR: [#5](https://github.com/karagemop466-tech/Poker3/pull/5) (`arena/d205f8ec-poker3` → `main`)
-- Merge: pending at the time of this entry. Updated after the merge.
-- Pages deployment: pending at the time of this entry. Updated after the merge.
+- PR: [#5](https://github.com/karagemop466-tech/Poker3/pull/5) (`arena/d205f8ec-poker3` → `main`). **Merged** with a merge commit, `35f8e03`, 2026-11-16 19:02 UTC. Not auto-merged; merged explicitly after a clean mergeability check.
+- Pages: workflow "Publish site to GitHub Pages" for `35f8e03`, run [43935075713](https://github.com/karagemop466-tech/Poker3/actions/runs/43935075713): **build and deploy succeeded**. Pages API reports `status: built`, source `main` `/`. Published content is `site/` only (per `.github/workflows/pages.yml`). `single-entry/` is in the repository but is **not** published.
+- Follow-up: this record is committed on the branch and merged to `main` as a separate PR. That is the same pattern used by PRs #10 and #12.
 
-### Placement decision (this session, final)
+**Requests for a user decision (not blocking):**
 
-- An earlier version of this branch overwrote the root pages from sessions 93641c21 and 66708bda. That was corrected before the final PR: this session's pages are in `single-entry/` (`index.html`, `tournaments.html`, `hotels.html`, `schedule.html`, `questions.html`, `suggestions.html`, `flagged.html`, `style.css`, `data/*.md`).
-- Root pages, `data/tournaments.md`, `data/hotels.md`, `site/`, `docs/`, `verified/`, `planner/`, `.github/workflows/pages.yml` are **unchanged** by this session relative to `main`.
-- `.github/workflows/pages.yml` publishes only `site/`. `single-entry/` is therefore **not** published by Pages. Publishing it needs a user decision, the same as `planner/` and `verified/`. Flagged as request R1 below.
+- **R1.** Publish `single-entry/` on Pages. It needs a change to `.github/workflows/pages.yml` that copies it into the artifact (for example, `cp -r single-entry site/single-entry` before upload). That changes a file owned by the `site/` integration, so it was not made here.
+- **R2.** Choose which of the five sites to publish (`site/`, `planner/`, `verified/`, `docs/`, `single-entry/`) and whether to retire the duplicates.
+- **R3.** Confirm the single-entry status of each main-list row. No structure sheet prints it, so the rows say "no re-entry or add-on wording on sheet" (flag F1).
+
+**Irregularities** (do not block merge): `single-entry/flagged.html` S1–S8 and the 19-item register from session 93641c21.
