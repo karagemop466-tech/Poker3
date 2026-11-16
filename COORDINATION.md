@@ -458,6 +458,32 @@ and #24), session `arena/e58b73b1-poker3` added a trip-cost calculator and a sou
 - **Not merged.** PR #7 (session `arena/92941c56-poker3`, a separate `pages/` site) is left open and untouched; it
   overlaps the root pages and is another session's work to decide on.
 
+### Result (session arena/ed88c788-poker3)
+
+- **PR [#25](https://github.com/karagemop466-tech/Poker3/pull/25)**, `arena/ed88c788-poker3` → `main`, merged
+  2026-11-16 19:43:01 UTC with `gh pr merge 25 --merge` (merge commit `84e0c16`). It replaced the earlier 40-row
+  canonical snapshot with the verified 341-row build, merged the other sessions' venue pages, calculator and monitors,
+  and imported the dated Venetian booking-engine quote.
+- **Verification before the merge:** `python3 scripts/verify_site.py` (341 events, 8 hotels, 14 routes, 27 sources,
+  28 flags, 8 plan days, 15 pages, all links resolved), `python3 scripts/audit_data.py` (all 37 DSE IV structure
+  sheets match the read log), `python3 tests/canonical_smoke.py` (10 main pages and 5 detail pages render),
+  `python3 tests/smoke.py` (the Poker3 companion), `python3 -m unittest discover -s tests` (the source-monitor
+  tests), `node --check` on both client scripts and a local HTTP check of all 19 published files.
+- **CI on the branch:** the `verify` workflow run [43942078713](https://github.com/karagemop466-tech/Poker3/actions/runs/43942078713)
+  completed successfully for the merged head.
+- **Pages:** the Pages workflow run [43942226904](https://github.com/karagemop466-tech/Poker3/actions/runs/43942226904)
+  and the legacy deployment run [43942226549](https://github.com/karagemop466-tech/Poker3/actions/runs/43942226549)
+  both completed successfully; the Pages API reports `status: built`.
+- **Live:** the canonical dashboard is published at https://karagemop466-tech.github.io/Poker3/site/ and was fetched
+  and read back after the deployment: 341 published rows, 45 single-entry rows verified on the official sheets, the
+  fixed 2026-11-25 → 2026-12-02 trip and the eight-day plan are all present. The repository root is still published
+  by the legacy branch deployment, so a follow-up workflow change re-runs the Actions deployment after the legacy job
+  and puts the canonical artifact at the site root as well.
+- **Open cross-session item (not blocking):** PR [#7](https://github.com/karagemop466-tech/Poker3/pull/7) from
+  `arena/92941c56-poker3` is still open and touches the root `index.html` and `pages/`. It was left untouched. If it
+  is merged later it will need a rebase, and the root `index.html` will then hold that session's earlier snapshot
+  rather than the canonical dashboard.
+
 ---
 
 ## Session `arena/ef37b79e-poker3` — full structure-sheet verification + canonical `site/` rebuild
