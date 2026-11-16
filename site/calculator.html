@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Trip calculator · Vegas Poker Planner</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="top">
+  <div class="brand"><a href="index.html">♠ Vegas Poker Planner</a>
+    <span class="tag">official-sources only · snapshot 2026-11-16</span></div>
+  <input id="nav-toggle" type="checkbox" aria-label="Menu"><label for="nav-toggle" class="burger">☰</label>
+  <nav><a href="index.html" class="">Overview</a>
+<a href="tournaments.html" class="">Tournaments</a>
+<a href="schedule.html" class="">Day plan</a>
+<a href="hotels.html" class="">Hotels</a>
+<a href="routes.html" class="">Walking routes</a>
+<a href="calculator.html" class="active">Trip calculator</a>
+<a href="venues.html" class="">Venues</a>
+<a href="workflow.html" class="">Workflow</a>
+<a href="monitoring.html" class="">Monitoring</a>
+<a href="sources.html" class="">Sources</a>
+<a href="questions.html" class="">Questions</a>
+<a href="suggestions.html" class="">Suggestions</a>
+<a href="flagged.html" class="">Flagged for review</a></nav>
+</header>
+<main>
+
+<h1>Estimated trip cost calculator</h1>
+<p class="lede">Trip cost = entries × buy-ins + nights × true hotel cost; true nightly = rate + resort fee + 13.38% tax (tax applies to rate and resort fee per Bellagio terms; Venetian terms state 13.38% Clark County room tax and &#x27;plus applicable tax&#x27; on the fee).</p>
+<div class="calc">
+  <section>
+    <h2>1 · Entries</h2>
+    <label>Event <input list="eventList" id="cEvent" placeholder="Type to search events…"></label>
+    <datalist id="eventList"><option value="dse-1-1A-2026-11-16" data-buyin="300" data-name="2026-11-16 · $300 No Limit Hold&#x27;Em 1A · $300 · The Venetian Poker Room"></option>
+<option value="dse-1-1B-2026-11-16" data-buyin="300" data-name="2026-11-16 · $300 No Limit Hold&#x27;Em 1B · $300 · The Venetian Poker Room"></option>
+<option value="dse-1-1C-2026-11-17" data-buyin="300" data-name="2026-11-17 · $300 No Limit Hold&#x27;Em 1C · $300 · The Venetian Poker Room"></option>
+<option value="dse-1-1D-2026-11-17" data-buyin="300" data-name="2026-11-17 · $300 No Limit Hold&#x27;Em 1D · $300 · The Venetian Poker Room"></option>
+<option value="dse-2-main-2026-11-18" data-buyin="300" data-name="2026-11-18 · $300 No Limit Hold&#x27;Em (1Day) · $300 · The Venetian Poker Room"></option>
+<option value="dse-3-main-2026-11-19" data-buyin="200" data-name="2026-11-19 · $200 NLH Raceday Stack (1Day) Race To Finish Before The Race · $200 · The Venetian Poker Room"></option>
+<option value="dse-4-main-2026-11-20" data-buyin="200" data-name="2026-11-20 · $200 NLH Raceday Stack (1Day) Race To Finish Before The Race · $200 · The Venetian Poker Room"></option>
+<option value="dse-5-main-2026-11-21" data-buyin="200" data-name="2026-11-21 · $200 NLH Raceday Stack (1Day) Race To Finish Before The Race · $200 · The Venetian Poker Room"></option>
+<option value="dse-6-main-2026-11-22" data-buyin="200" data-name="2026-11-22 · $200 No Limit Hold&#x27;Em (1Day) · $200 · The Venetian Poker Room"></option>
+<option value="dse-8-main-2026-11-23" data-buyin="200" data-name="2026-11-23 · $200 No Limit Hold&#x27;Em (1Day) Progressive Knock-Out Bounty (Pko) · $200 · The Venetian Poker Room"></option>
+<option value="dse-7-1A-2026-11-23" data-buyin="400" data-name="2026-11-23 · $400 No Limit Hold&#x27;Em 1A · $400 · The Venetian Poker Room"></option>
+<option value="dse-9-main-2026-11-24" data-buyin="200" data-name="2026-11-24 · $200 No Limit Hold&#x27;Em Bounty (1Day) · $200 · The Venetian Poker Room"></option>
+<option value="dse-7-1B-2026-11-24" data-buyin="400" data-name="2026-11-24 · $400 No Limit Hold&#x27;Em 1B · $400 · The Venetian Poker Room"></option>
+<option value="dse-11-main-2026-11-25" data-buyin="200" data-name="2026-11-25 · $200 No Limit Hold&#x27;Em Bounty (1Day) · $200 · The Venetian Poker Room"></option>
+<option value="dse-10-main-2026-11-25" data-buyin="400" data-name="2026-11-25 · $400 No Limit Hold&#x27;Em (1Day) · $400 · The Venetian Poker Room"></option>
+<option value="dse-13-main-2026-11-26" data-buyin="200" data-name="2026-11-26 · $200 No Limit Hold&#x27;Em Bounty (1Day) · $200 · The Venetian Poker Room"></option>
+<option value="dse-12-main-2026-11-26" data-buyin="300" data-name="2026-11-26 · $300 No Limit Hold&#x27;Em (1Day) · $300 · The Venetian Poker Room"></option>
+<option value="dse-15-main-2026-11-27" data-buyin="200" data-name="2026-11-27 · $200 No Limit Hold&#x27;Em Bounty (1Day) · $200 · The Venetian Poker Room"></option>
+<option value="dse-14-main-2026-11-27" data-buyin="600" data-name="2026-11-27 · $600 No Limit Hold&#x27;Em (1Day) · $600 · The Venetian Poker Room"></option>
+<option value="dse-17-main-2026-11-28" data-buyin="400" data-name="2026-11-28 · $400 Pot Limit Omaha Bounty (1Day) · $400 · The Venetian Poker Room"></option>
+<option value="dse-16-main-2026-11-28" data-buyin="600" data-name="2026-11-28 · $600 No Limit Hold&#x27;Em Bounty (1Day) $200 Bounties From The Start &amp; $500 Bounties Once We Reach The Posted Payouts · $600 · The Venetian Poker Room"></option>
+<option value="dse-21-main-2026-11-29" data-buyin="200" data-name="2026-11-29 · $200 No Limit Hold&#x27;Em Bounty (1Day) · $200 · The Venetian Poker Room"></option>
+<option value="dse-20-main-2026-11-29" data-buyin="300" data-name="2026-11-29 · $300 Pot Limit Omaha Double Board Bomb Pot (1Day) · $300 · The Venetian Poker Room"></option>
+<option value="dse-19-1A-2026-11-29" data-buyin="400" data-name="2026-11-29 · $400 No Limit Hold&#x27;Em 1A · $400 · The Venetian Poker Room"></option>
+<option value="dse-22-main-2026-11-30" data-buyin="200" data-name="2026-11-30 · $200 No Limit Hold&#x27;Em Bounty (1Day) · $200 · The Venetian Poker Room"></option>
+<option value="dse-19-1B-2026-11-30" data-buyin="400" data-name="2026-11-30 · $400 No Limit Hold&#x27;Em 1B · $400 · The Venetian Poker Room"></option>
+<option value="dse-23-main-2026-12-01" data-buyin="200" data-name="2026-12-01 · $200 No Limit Hold&#x27;Em Bounty (1Day) · $200 · The Venetian Poker Room"></option>
+<option value="dse-19-1C-2026-12-01" data-buyin="400" data-name="2026-12-01 · $400 No Limit Hold&#x27;Em 1C · $400 · The Venetian Poker Room"></option>
+<option value="dse-25-main-2026-12-02" data-buyin="200" data-name="2026-12-02 · $200 No Limit Hold&#x27;Em Bounty (1Day) · $200 · The Venetian Poker Room"></option>
+<option value="dse-24-main-2026-12-02" data-buyin="600" data-name="2026-12-02 · $600 No Limit Hold&#x27;Em Seniors (1Day) Must Be 50+ Years Of Age To Participate · $600 · The Venetian Poker Room"></option>
+<option value="dse-27-main-2026-12-03" data-buyin="600" data-name="2026-12-03 · $600 Big O (1Day) · $600 · The Venetian Poker Room"></option>
+<option value="dse-26-1A-2026-12-03" data-buyin="800" data-name="2026-12-03 · $800 No Limit Hold&#x27;Em 1A · $800 · The Venetian Poker Room"></option>
+<option value="dse-26-1B-2026-12-03" data-buyin="800" data-name="2026-12-03 · $800 No Limit Hold&#x27;Em 1B · $800 · The Venetian Poker Room"></option>
+<option value="dse-26-1C-2026-12-04" data-buyin="800" data-name="2026-12-04 · $800 No Limit Hold&#x27;Em 1C · $800 · The Venetian Poker Room"></option>
+<option value="dse-26-1D-2026-12-04" data-buyin="800" data-name="2026-12-04 · $800 No Limit Hold&#x27;Em 1D · $800 · The Venetian Poker Room"></option>
+<option value="dse-26-1E-2026-12-05" data-buyin="800" data-name="2026-12-05 · $800 No Limit Hold&#x27;Em 1E · $800 · The Venetian Poker Room"></option>
+<option value="dse-26-1F-2026-12-05" data-buyin="800" data-name="2026-12-05 · $800 No Limit Hold&#x27;Em 1F (Turbo) · $800 · The Venetian Poker Room"></option>
+<option value="dse-29-main-2026-12-06" data-buyin="300" data-name="2026-12-06 · $300 No Limit Hold&#x27;Em Bounty (1Day) · $300 · The Venetian Poker Room"></option>
+<option value="dse-28-main-2026-12-06" data-buyin="600" data-name="2026-12-06 · $600 No Limit Hold&#x27;Em (1Day) · $600 · The Venetian Poker Room"></option>
+<option value="dse-31-main-2026-12-07" data-buyin="300" data-name="2026-12-07 · $300 No Limit Hold&#x27;Em Bounty (1Day) · $300 · The Venetian Poker Room"></option>
+<option value="dse-30-main-2026-12-07" data-buyin="600" data-name="2026-12-07 · $600 No Limit Hold&#x27;Em Bounty (1Day) $200 Bounties To Start $500 Bounties In The Money · $600 · The Venetian Poker Room"></option>
+<option value="dse-34-main-2026-12-08" data-buyin="300" data-name="2026-12-08 · $300 No Limit Hold&#x27;Em Bounty (1Day) · $300 · The Venetian Poker Room"></option>
+<option value="dse-32-main-2026-12-08" data-buyin="600" data-name="2026-12-08 · $600 No Limit Hold&#x27;Em Seniors (1Day) Must Be 50+ Years Of Age To Participate · $600 · The Venetian Poker Room"></option>
+<option value="dse-38-main-2026-12-09" data-buyin="300" data-name="2026-12-09 · $300 No Limit Hold&#x27;Em Bounty (1Day) · $300 · The Venetian Poker Room"></option>
+<option value="dse-36-main-2026-12-09" data-buyin="800" data-name="2026-12-09 · $800 No Limit Hold&#x27;Em Bounty (1Day) $200 Bounties To Start $500 Bounties In The Money · $800 · The Venetian Poker Room"></option>
+<option value="dse-42-main-2026-12-10" data-buyin="300" data-name="2026-12-10 · $300 No Limit Hold&#x27;Em Bounty (1Day) · $300 · The Venetian Poker Room"></option>
+<option value="dse-40-main-2026-12-10" data-buyin="600" data-name="2026-12-10 · $600 Pot Limit Omaha Bounty (1Day) · $600 · The Venetian Poker Room"></option>
+<option value="dse-39-main-2026-12-10" data-buyin="800" data-name="2026-12-10 · $800 No Limit Hold&#x27;Em Lips Ladies (2Day) Women In Poker - Main Event · $800 · The Venetian Poker Room"></option>
+<option value="dse-43-main-2026-12-11" data-buyin="600" data-name="2026-12-11 · $600 No Limit Hold&#x27;Em Lips (1Day) Kings And Queens Bounty-Open To All Players · $600 · The Venetian Poker Room"></option>
+<option value="dse-47-1A-2026-12-12" data-buyin="2200" data-name="2026-12-12 · $2,200 No Limit Hold&#x27;Em 1A Pokeratlas Championship Title Event · $2,200 · The Venetian Poker Room"></option>
+<option value="dse-47-1B-2026-12-12" data-buyin="2200" data-name="2026-12-12 · $2,200 No Limit Hold&#x27;Em 1B Pokeratlas Championship Title Event · $2,200 · The Venetian Poker Room"></option>
+<option value="dse-49-1A-2026-12-13" data-buyin="1100" data-name="2026-12-13 · $1,100 No Limit Hold&#x27;Em Seniors 1A Must Be 50+ Years Of Age To Participate · $1,100 · The Venetian Poker Room"></option>
+<option value="dse-50-main-2026-12-13" data-buyin="300" data-name="2026-12-13 · $300 No Limit Hold&#x27;Em Bounty (1Day) · $300 · The Venetian Poker Room"></option>
+<option value="dse-49-1B-2026-12-14" data-buyin="1100" data-name="2026-12-14 · $1,100 No Limit Hold&#x27;Em Seniors 1B Must Be 50+ Years Of Age To Participate · $1,100 · The Venetian Poker Room"></option>
+<option value="dse-51-main-2026-12-14" data-buyin="300" data-name="2026-12-14 · $300 No Limit Hold&#x27;Em Bounty (1Day) · $300 · The Venetian Poker Room"></option>
+<option value="dse-52-main-2026-12-15" data-buyin="1100" data-name="2026-12-15 · $1,100 No Limit Hold&#x27;Em (1Day) Progressive Knock-Out Bounty (Pko) · $1,100 · The Venetian Poker Room"></option>
+<option value="dse-53-main-2026-12-15" data-buyin="300" data-name="2026-12-15 · $300 No Limit Hold&#x27;Em Bounty (1Day) · $300 · The Venetian Poker Room"></option>
+<option value="dse-55-main-2026-12-16" data-buyin="300" data-name="2026-12-16 · $300 No Limit Hold&#x27;Em Bounty (1Day) · $300 · The Venetian Poker Room"></option>
+<option value="dse-54-main-2026-12-16" data-buyin="600" data-name="2026-12-16 · $600 No Limit Hold&#x27;Em Bounty (1Day) $200 Bounties To Start $500 Bounties In The Money · $600 · The Venetian Poker Room"></option>
+<option value="dse-56-1A-2026-12-17" data-buyin="1100" data-name="2026-12-17 · $1,100 No Limit Hold&#x27;Em 1A $40 Rake Discount For Entries Before 10:10 Am · $1,100 · The Venetian Poker Room"></option>
+<option value="dse-56-1B-2026-12-17" data-buyin="1100" data-name="2026-12-17 · $1,100 No Limit Hold&#x27;Em 1B $40 Rake Discount For Entries Before 6:10 Pm · $1,100 · The Venetian Poker Room"></option>
+<option value="dse-57-main-2026-12-17" data-buyin="600" data-name="2026-12-17 · $600 Pot Limit Omaha Double Board Bomb Pot (1Day) · $600 · The Venetian Poker Room"></option>
+<option value="dse-56-1C-2026-12-18" data-buyin="1100" data-name="2026-12-18 · $1,100 No Limit Hold&#x27;Em 1C · $1,100 · The Venetian Poker Room"></option>
+<option value="dse-56-1D-2026-12-18" data-buyin="1100" data-name="2026-12-18 · $1,100 No Limit Hold&#x27;Em 1D · $1,100 · The Venetian Poker Room"></option>
+<option value="dse-56-1E-2026-12-19" data-buyin="1100" data-name="2026-12-19 · $1,100 No Limit Hold&#x27;Em 1E · $1,100 · The Venetian Poker Room"></option>
+<option value="dse-60-main-2026-12-20" data-buyin="200" data-name="2026-12-20 · $200 No Limit Hold&#x27;Em Bounty (1Day) · $200 · The Venetian Poker Room"></option>
+<option value="dse-59-1A-2026-12-20" data-buyin="600" data-name="2026-12-20 · $600 No Limit Hold&#x27;Em 1A $20 Rake Discount For Entries Before 11:10 Am · $600 · The Venetian Poker Room"></option>
+<option value="dse-61-main-2026-12-21" data-buyin="200" data-name="2026-12-21 · $200 No Limit Hold&#x27;Em Bounty (1Day) · $200 · The Venetian Poker Room"></option>
+<option value="dse-59-1B-2026-12-21" data-buyin="600" data-name="2026-12-21 · $600 No Limit Hold&#x27;Em 1B · $600 · The Venetian Poker Room"></option>
+<option value="dse-62-main-2026-12-22" data-buyin="200" data-name="2026-12-22 · $200 No Limit Hold&#x27;Em Bounty (1Day) · $200 · The Venetian Poker Room"></option>
+<option value="dse-59-1C-2026-12-22" data-buyin="600" data-name="2026-12-22 · $600 No Limit Hold&#x27;Em 1C · $600 · The Venetian Poker Room"></option>
+<option value="dse-64-main-2026-12-23" data-buyin="200" data-name="2026-12-23 · $200 No Limit Hold&#x27;Em Bounty (1Day) · $200 · The Venetian Poker Room"></option>
+<option value="dse-63-main-2026-12-23" data-buyin="600" data-name="2026-12-23 · $600 No Limit Hold&#x27;Em (1Day) · $600 · The Venetian Poker Room"></option>
+<option value="wpt-1100-plo" data-buyin="1100" data-name="Dec 1, 2026 · $1,100 PLO · $1,100 · Wynn Poker Room (Encore)"></option>
+<option value="wpt-600-o8s8" data-buyin="600" data-name="Dec 1, 2026 · $600 Limit Omaha 8 / Stud 8 · $600 · Wynn Poker Room (Encore)"></option>
+<option value="wpt-1600-nlh" data-buyin="1600" data-name="Dec 3–5, 2026 · $1,600 NLH $1M GTD (2 flights) · $1,600 · Wynn Poker Room (Encore)"></option>
+<option value="wpt-600-horse" data-buyin="600" data-name="Dec 4, 2026 · $600 HORSE · $600 · Wynn Poker Room (Encore)"></option>
+<option value="wpt-prime" data-buyin="1100" data-name="Dec 5–12, 2026 · $1,100 WPT Prime Championship $5M GTD (4 flights) · $1,100 · Wynn Poker Room (Encore)"></option>
+<option value="wpt-600-turbo" data-buyin="600" data-name="Dec 5–9, 12, 14 &amp; 21, 2026 · $600 NLH Turbo $50K GTD · $600 · Wynn Poker Room (Encore)"></option>
+<option value="wpt-1600-plo-mb" data-buyin="1600" data-name="Dec 6–7, 2026 · $1,600 PLO Mystery Bounty $500K GTD (2 flights) · $1,600 · Wynn Poker Room (Encore)"></option>
+<option value="wynn-daily-fri" data-buyin="240" data-name="Friday (recurring) · Daily $240 NLH Rebuy &amp; Add-on $40K GTD · $240 · Wynn Poker Room (Encore)"></option>
+<option value="bellagio-fri" data-buyin="600" data-name="Fridays (recurring) · $600 NLH (weekly) · $600 · Bellagio Poker Room"></option>
+<option value="wynn-daily-mon-thu" data-buyin="200" data-name="Monday–Thursday (recurring) · Daily $200 NLH $10K GTD · $200 · Wynn Poker Room (Encore)"></option>
+<option value="wynn-nightly" data-buyin="160" data-name="Nightly Monday–Sunday (recurring) · Nightly $160 NLH $10K GTD · $160 · Wynn Poker Room (Encore)"></option>
+<option value="wpt-400-plo" data-buyin="400" data-name="Nov 27, 2026 · $400 PLO · $400 · Wynn Poker Room (Encore)"></option>
+<option value="wpt-600-torse" data-buyin="600" data-name="Nov 27, 2026 · $600 TORSE (mixed) · $600 · Wynn Poker Room (Encore)"></option>
+<option value="wpt-600-nlh" data-buyin="600" data-name="Nov 27–30, 2026 · $600 NLH $400K GTD (6 flights) · $600 · Wynn Poker Room (Encore)"></option>
+<option value="wpt-600-mtd" data-buyin="600" data-name="Nov 28 &amp; Dec 20, 2026 · $600 Mixed Triple Draw (A-5, 2-7, Badugi) · $600 · Wynn Poker Room (Encore)"></option>
+<option value="wpt-600-o8" data-buyin="600" data-name="Nov 30, 2026 · $600 Limit Omaha 8 · $600 · Wynn Poker Room (Encore)"></option>
+<option value="wpt-800-nlh" data-buyin="800" data-name="Nov 30–Dec 4, 2026 · $800 NLH $1M GTD (6 flights) · $800 · Wynn Poker Room (Encore)"></option>
+<option value="wynn-daily-sat" data-buyin="200" data-name="Saturday (recurring) · Daily $200 NLH $25K GTD · $200 · Wynn Poker Room (Encore)"></option>
+<option value="wynn-daily-sun" data-buyin="200" data-name="Sunday (recurring) · Daily $200 NLH $25K GTD · $200 · Wynn Poker Room (Encore)"></option>
+<option value="bellagio-sun" data-buyin="400" data-name="Sundays (recurring) · $400 H.O.R.S.E. (weekly) · $400 · Bellagio Poker Room"></option></datalist>
+    <label>Entries (times to play) <input type="number" id="cEntries" value="1" min="0" step="1"></label>
+    <button id="cAdd" type="button">Add entry</button>
+    <ul id="cEntryList"></ul>
+    <p>Entry subtotal: <b id="cEntryTotal">$0</b></p>
+  </section>
+  <section>
+    <h2>2 · Stay</h2>
+    <label>Hotel <select id="cHotel"><option value="venetian" data-fee="55.0">The Venetian Resort</option>
+<option value="palazzo" data-fee="55.0">The Palazzo at The Venetian Resort</option>
+<option value="wynn" data-fee="55.0">Wynn Las Vegas / Encore</option>
+<option value="bellagio" data-fee="55.0">Bellagio</option>
+<option value="aria" data-fee="">ARIA Resort &amp; Casino</option></select></label>
+    <label>Nights <input type="number" id="cNights" value="3" min="1" step="1"></label>
+    <label>Dated nightly rate (USD, before fees/tax) <input type="number" id="cRate" min="0" step="1" placeholder="blank until quoted"></label>
+    <label>Resort fee / night <input type="number" id="cFee" min="0" step="1" value="55"></label>
+    <label class="chk"><input type="checkbox" id="cTaxFee" checked> apply 13.38% tax to resort fee too
+      <small>(Bellagio terms: lodging taxes apply to the basic room rate and any resort fee)</small></label>
+    <label class="chk"><input type="checkbox" id="cParking"> add parking $20/day (Venetian registered-guest rate)</label>
+    <p>True nightly (rate + fee + tax): <b id="cTrueNightly">—</b><br>
+       Stay subtotal: <b id="cStayTotal">—</b></p>
+  </section>
+  <section>
+    <h2>3 · Estimated trip cost</h2>
+    <p class="bignum" id="cGrand">—</p>
+    <p class="note" id="cBreakdown">Add entries and a dated rate to see the total. Totals with blank rate are partial and say so.</p>
+  </section>
+</div>
+<h2>Notes</h2>
+<ul class="summary">
+  <li>Buy-ins use the printed total entry fee from each structure sheet (house fee + staff charge + prize share).</li>
+  <li>True nightly uses the official fee ($55 + tax at Venetian, Palazzo, Wynn, Bellagio) and the official Clark County room tax of 13.38%.</li>
+  <li>Blank rate = no dated quote captured yet (<a href="flagged.html#FL09">FL09</a>). Venetian poker-suite rates start at $119/$209 but are play-qualified and not date-mapped.</li>
+</ul>
+
+</main>
+<footer class="foot">
+  <p>Every table row links its official venue source. Values that cannot be confirmed from an official source are blank and flagged on
+  <a href="flagged.html">Flagged for review</a>. Guarantees are not forecasts. Ratio = guaranteed pool ÷ buy-in, descriptive only.</p>
+  <p>Built 2026-11-16 from official Venetian, Wynn, Bellagio, ARIA and Caesars pages/PDFs · <a href="monitoring.html">scheduled re-check</a> runs daily.</p>
+</footer>
+<script src="assets/app.js"></script>
+
+</body>
+</html>

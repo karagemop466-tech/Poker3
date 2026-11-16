@@ -1,0 +1,74 @@
+{
+ "meta": {
+  "asOf": "2026-11-16",
+  "builtAt": "2026-11-16T19:42:52Z",
+  "policy": "Only venue-controlled pages and official PDFs substantiate values. Unknown values are blank and flagged. A guarantee is not a forecast of actual payouts. Ratio = guaranteed pool \u00f7 buy-in, descriptive only.",
+  "formula": "Trip cost = entries \u00d7 buy-ins + nights \u00d7 true hotel cost; true nightly = rate + resort fee + 13.38% tax (tax applies to rate and resort fee per Bellagio terms; Venetian terms state 13.38% Clark County room tax and 'plus applicable tax' on the fee)."
+ },
+ "questions": [
+  {
+   "id": "Q01",
+   "answer": "",
+   "q": "What are the exact trip dates and nightly budget/quality floor?",
+   "why": "Workflow step 1. Rates are date-specific; without dates no checkout total can be confirmed (FL09).",
+   "how": "Provide arrival/departure dates and a max true nightly cost. The calculator and rate log then compare like-for-like.",
+   "status": "open"
+  },
+  {
+   "id": "Q02",
+   "answer": "Verified across all 37 Venetian structure sheets (2026-11-16): no sheet prints \"single entry\", a maximum-entry limit, or any re-entry/rebuy/add-on clause. Wynn and Bellagio sheets DO print re-entry clauses, so the distinction is real and documented. A strict freezeout rule still needs written room confirmation before relying on it.",
+   "q": "Is a one-entry-total freezeout policy required, or is 'no clause printed' acceptable?",
+   "why": "No official sheet prints a single-entry rule (FL13). Strict policy would remove every event from the list until rooms confirm in writing.",
+   "how": "Decide the policy; the single-entry toggle filter can enforce either stance.",
+   "status": "open"
+  },
+  {
+   "id": "Q03",
+   "answer": "No official venue publishes door-to-door walking times. Google Maps walking-direction links per hotel\u2013venue pair are provided on the Routes page for verification; recorded values will populate the 30-minute filter.",
+   "q": "What walking time is acceptable as 'verified' \u2014 and from which map service?",
+   "why": "WalkingMinutes are blank (FL08). The 30-minute limit cannot be applied until values with provenance exist.",
+   "how": "Verify each route via the provided Google Maps walking links (or Apple Maps) and record minutes + date checked.",
+   "status": "open"
+  },
+  {
+   "id": "Q04",
+   "answer": "",
+   "q": "Which hotel quality ranking should be used?",
+   "why": "No common official quality metric (star rating) is published by the resorts; quality is currently descriptive only.",
+   "how": "Pick a criterion (e.g., published room class, user preference, third-party rating with source) and it will be added as a sortable column.",
+   "status": "open"
+  },
+  {
+   "id": "Q05",
+   "answer": "Open \u2014 requires a phone call to 702.693.7291. The official page's resume notice is undated (FL05).",
+   "q": "Are the Bellagio weekly tournaments actually running on the trip dates?",
+   "why": "The official page carries an undated resume notice (FL05).",
+   "how": "Call 702.693.7291; record the answer with date and staff name in the questions log.",
+   "status": "open"
+  },
+  {
+   "id": "Q06",
+   "answer": "Answered from the official suite-rate page: a $300+ tournament buy-in per night qualifies (6 hours live cash is the alternative). Most DeepStack buy-ins are \u2265$300; on $200-event days (bounty family, RaceDay, Valuetown) the cash-play requirement applies instead. Unplayed nights are repriced to the prevailing rate at checkout.",
+   "q": "Does the player qualify for the Venetian poker suite rate play requirement?",
+   "why": "$119/$209 rates require 6 hours cash play or a $300+ tournament buy-in per night; otherwise the rate adjusts to prevailing.",
+   "how": "Confirm the planned schedule meets the requirement per night (the DeepStack buy-ins mostly satisfy the $300+ rule on those days).",
+   "status": "open"
+  },
+  {
+   "id": "Q07",
+   "answer": "Open \u2014 three conflicting official values ($1,000 page link / $1,100 PDF header / $600 PDF breakdown). Room call required (FL01).",
+   "q": "What is the real buy-in for the Bellagio Saturday NLH?",
+   "why": "Three conflicting official values ($1,000 / $1,100 / $600) (FL01).",
+   "how": "Phone the room; log the answer.",
+   "status": "open"
+  },
+  {
+   "id": "Q08",
+   "answer": "",
+   "q": "Is parking needed (rental car) and which hotel's parking policy applies?",
+   "why": "Parking fees are verified per hotel but blank for ARIA; costs affect true nightly cost.",
+   "how": "Decide transport; add parking to the trip calculator if needed.",
+   "status": "open"
+  }
+ ]
+}
