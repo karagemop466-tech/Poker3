@@ -1,0 +1,45 @@
+name: Monitor official poker sources
+
+on:
+  schedule:
+    - cron: "23 14 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: official-source-monitor
+  cancel-in-progress: false
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Poll curated official URLs
+        run: python3 scripts/monitor_official_sources.py
+      - name: Verify snapshot and tests
+        run: |
+          python3 scripts/verify_site.py
+          python3 -m unittest discover -s tests -p 'test_*.py' -v
+          node tests/test_site_logic.js
+      - name: Persist monitor state on main
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add site/data/source-monitor.json
+          if git diff --cached --quiet; then
+            echo "No monitor-state change to commit."
+          else
+            git commit -m "chore: record official source monitor run"
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - name: Explain manual-run behavior
+        if: github.ref != 'refs/heads/main'
+        run: echo "Monitor state was checked on this ref but is not committed; run the workflow on main to update the published dashboard."

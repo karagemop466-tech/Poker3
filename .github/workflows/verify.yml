@@ -12,6 +12,16 @@ jobs:
       - uses: actions/checkout@v4
       - name: Validate official-source data and local links
         run: python3 scripts/verify_site.py
+      - name: Validate monitor, calculator, schedule logic and schema
+        run: |
+          python3 -m py_compile scripts/monitor_official_sources.py scripts/enrich_site_data.py
+          python3 -m unittest discover -s tests -p 'test_*.py' -v
+          node --check site/assets/logic.js
+          node --check site/assets/app.js
+          node tests/test_site_logic.js
+          python3 -m json.tool site/data.json > /dev/null
+          python3 -m json.tool site/data/hotel-rate-logs.json > /dev/null
+          python3 -m json.tool site/data/source-monitor.json > /dev/null
       - name: Validate Poker3 companion dashboard
         run: |
           python3 tests/smoke.py
