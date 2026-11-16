@@ -1,0 +1,3352 @@
+[
+ {
+  "id": "DSE-01",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian (poker room: The Palazzo)",
+  "event_no": "1",
+  "event": "$300 No-Limit Hold'em — flights 1A–1D",
+  "buy_in": 300,
+  "gtd": 75000,
+  "chips": 30000,
+  "levels": "40 min (1A, 1C); 30 min (1B, 1D)",
+  "dates": "Nov 16–17, 2026",
+  "starts": [
+   [
+    "2026-11-16",
+    "11:10"
+   ],
+   [
+    "2026-11-16",
+    "17:10"
+   ],
+   [
+    "2026-11-17",
+    "11:10"
+   ],
+   [
+    "2026-11-17",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [
+   "F10"
+  ],
+  "notes": "Registration closes 3:40 PM (1A, 1C) and 8:40 PM (1B, 1D) per schedule. Day 2 restart Nov 18 12:00 PM."
+ },
+ {
+  "id": "DSE-02",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "2",
+  "event": "$300 No-Limit Hold'em (1-Day)",
+  "buy_in": 300,
+  "gtd": 10000,
+  "chips": 40000,
+  "levels": "30 min",
+  "dates": "Nov 18, 2026",
+  "starts": [
+   [
+    "2026-11-18",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": "Registration closes 4:55 PM."
+ },
+ {
+  "id": "DSE-03",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "3–5",
+  "event": "$200 NLH RaceDay Stack (1-Day) — race to finish before the race",
+  "buy_in": 200,
+  "gtd": null,
+  "chips": 30000,
+  "levels": "20/15 min",
+  "dates": "Nov 19–21, 2026",
+  "starts": [
+   [
+    "2026-11-19",
+    "10:10"
+   ],
+   [
+    "2026-11-20",
+    "10:10"
+   ],
+   [
+    "2026-11-21",
+    "10:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": "No guarantee listed. One row covers events 3, 4 and 5."
+ },
+ {
+  "id": "DSE-04",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "6",
+  "event": "$200 No-Limit Hold'em (1-Day)",
+  "buy_in": 200,
+  "gtd": null,
+  "chips": 30000,
+  "levels": "30 min",
+  "dates": "Nov 22, 2026",
+  "starts": [
+   [
+    "2026-11-22",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": "No guarantee listed."
+ },
+ {
+  "id": "DSE-05",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "7",
+  "event": "$400 No-Limit Hold'em — flights 1A–1B (Day 2 Nov 25, 11:00 AM)",
+  "buy_in": 400,
+  "gtd": 75000,
+  "chips": 40000,
+  "levels": "40 min",
+  "dates": "Nov 23–24, 2026",
+  "starts": [
+   [
+    "2026-11-23",
+    "11:10"
+   ],
+   [
+    "2026-11-24",
+    "11:10"
+   ]
+  ],
+  "entry_status": "structure",
+  "source": "V_STRUCT_400",
+  "flags": [
+   "F10"
+  ],
+  "notes": "Structure sheet (checked): no re-entry or add-on listed. Players who bag chips for Day 2 may not play a later flight. Registration closes 5:55 PM."
+ },
+ {
+  "id": "DSE-06",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "8",
+  "event": "$200 No-Limit Hold'em Progressive Knock-Out Bounty (PKO) (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": 25000,
+  "levels": "30 min",
+  "dates": "Nov 23, 2026",
+  "starts": [
+   [
+    "2026-11-23",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-07",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "9",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": 25000,
+  "levels": "30 min",
+  "dates": "Nov 24, 2026",
+  "starts": [
+   [
+    "2026-11-24",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-08",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "10",
+  "event": "$400 No-Limit Hold'em (1-Day)",
+  "buy_in": 400,
+  "gtd": 15000,
+  "chips": 40000,
+  "levels": "30 min",
+  "dates": "Nov 25, 2026",
+  "starts": [
+   [
+    "2026-11-25",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-09",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "11",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": 25000,
+  "levels": "30 min",
+  "dates": "Nov 25, 2026",
+  "starts": [
+   [
+    "2026-11-25",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-10",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "12",
+  "event": "$300 No-Limit Hold'em (1-Day)",
+  "buy_in": 300,
+  "gtd": 10000,
+  "chips": 40000,
+  "levels": "30 min",
+  "dates": "Nov 26, 2026",
+  "starts": [
+   [
+    "2026-11-26",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-11",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "13",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": 25000,
+  "levels": "30 min",
+  "dates": "Nov 26, 2026",
+  "starts": [
+   [
+    "2026-11-26",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-12",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "14",
+  "event": "$600 No-Limit Hold'em (1-Day)",
+  "buy_in": 600,
+  "gtd": 30000,
+  "chips": 40000,
+  "levels": "30 min",
+  "dates": "Nov 27, 2026",
+  "starts": [
+   [
+    "2026-11-27",
+    "11:10"
+   ]
+  ],
+  "entry_status": "structure",
+  "source": "V_STRUCT_600",
+  "flags": [],
+  "notes": "Structure sheet (checked): no re-entry or add-on listed. Guarantee $30,000 confirmed. Late registration: 10 levels plus break (about 4:55 PM)."
+ },
+ {
+  "id": "DSE-13",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "15",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": 25000,
+  "levels": "30 min",
+  "dates": "Nov 27, 2026",
+  "starts": [
+   [
+    "2026-11-27",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-14",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "16",
+  "event": "$600 No-Limit Hold'em Bounty (1-Day) — $200 bounties to start, $500 in the money",
+  "buy_in": 600,
+  "gtd": 30000,
+  "chips": 40000,
+  "levels": "30 min",
+  "dates": "Nov 28, 2026",
+  "starts": [
+   [
+    "2026-11-28",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-15",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "17",
+  "event": "$400 Pot-Limit Omaha Bounty (1-Day)",
+  "buy_in": 400,
+  "gtd": 15000,
+  "chips": 30000,
+  "levels": "30 min",
+  "dates": "Nov 28, 2026",
+  "starts": [
+   [
+    "2026-11-28",
+    "12:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-16",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "18",
+  "event": "$200 No-Limit Hold'em PokerAtlas Valuetown Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 20000,
+  "chips": 25000,
+  "levels": "30 min",
+  "dates": "Nov 28, 2026",
+  "starts": [
+   [
+    "2026-11-28",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": "PokerAtlas PRO members get a $20 rake discount (per schedule)."
+ },
+ {
+  "id": "DSE-17",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "19",
+  "event": "$400 No-Limit Hold'em — flights 1A–1C",
+  "buy_in": 400,
+  "gtd": 75000,
+  "chips": 40000,
+  "levels": "40 min",
+  "dates": "Nov 29 – Dec 1, 2026",
+  "starts": [
+   [
+    "2026-11-29",
+    "11:10"
+   ],
+   [
+    "2026-11-30",
+    "11:10"
+   ],
+   [
+    "2026-12-01",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [
+   "F10"
+  ],
+  "notes": "One flight per registration assumed; not yet confirmed on the structure sheet."
+ },
+ {
+  "id": "DSE-18",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "20",
+  "event": "$300 Pot-Limit Omaha Double Board Bomb Pot (1-Day)",
+  "buy_in": 300,
+  "gtd": 10000,
+  "chips": 30000,
+  "levels": "30 min",
+  "dates": "Nov 29, 2026",
+  "starts": [
+   [
+    "2026-11-29",
+    "12:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-19",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "21–23",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day), 5:10 PM — one row per night",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": 25000,
+  "levels": "30 min",
+  "dates": "Nov 29, Nov 30, Dec 1, 2026",
+  "starts": [
+   [
+    "2026-11-29",
+    "17:10"
+   ],
+   [
+    "2026-11-30",
+    "17:10"
+   ],
+   [
+    "2026-12-01",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": "Events 21, 22, 23 from the schedule."
+ },
+ {
+  "id": "DSE-20",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "24",
+  "event": "$600 No-Limit Hold'em Seniors (1-Day) — must be 50+",
+  "buy_in": 600,
+  "gtd": 40000,
+  "chips": 40000,
+  "levels": "30 min",
+  "dates": "Dec 2, 2026",
+  "starts": [
+   [
+    "2026-12-02",
+    "10:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": "Age-restricted (50+)."
+ },
+ {
+  "id": "DSE-21",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "25",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": 25000,
+  "levels": "30 min",
+  "dates": "Dec 2, 2026",
+  "starts": [
+   [
+    "2026-12-02",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-22",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "26",
+  "event": "$800 No-Limit Hold'em — flights 1A–1F (Day 2 Dec 6, 12:00 PM)",
+  "buy_in": 800,
+  "gtd": 500000,
+  "chips": 40000,
+  "levels": "40 min (1A, 1C, 1E); 30 min (1B, 1D); 20 min turbo (1F)",
+  "dates": "Dec 3–6, 2026",
+  "starts": [
+   [
+    "2026-12-03",
+    "11:10"
+   ],
+   [
+    "2026-12-03",
+    "17:10"
+   ],
+   [
+    "2026-12-04",
+    "11:10"
+   ],
+   [
+    "2026-12-04",
+    "17:10"
+   ],
+   [
+    "2026-12-05",
+    "11:10"
+   ],
+   [
+    "2026-12-05",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_PAGE",
+  "flags": [
+   "F10"
+  ],
+  "notes": "Guarantee $500,000 and dates from series page. Entry rule not yet checked against structure sheet."
+ },
+ {
+  "id": "DSE-23",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "27",
+  "event": "$600 Big O (1-Day)",
+  "buy_in": 600,
+  "gtd": 25000,
+  "chips": 30000,
+  "levels": "30 min",
+  "dates": "Dec 3, 2026",
+  "starts": [
+   [
+    "2026-12-03",
+    "12:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-24",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "28",
+  "event": "$600 No-Limit Hold'em (1-Day)",
+  "buy_in": 600,
+  "gtd": 40000,
+  "chips": 40000,
+  "levels": "30 min",
+  "dates": "Dec 6, 2026",
+  "starts": [
+   [
+    "2026-12-06",
+    "11:10"
+   ]
+  ],
+  "entry_status": "structure",
+  "source": "V_STRUCT_600",
+  "flags": [],
+  "notes": "Structure sheet (checked): $40,000 guarantee confirmed; no re-entry or add-on listed."
+ },
+ {
+  "id": "DSE-25",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "29",
+  "event": "$300 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 300,
+  "gtd": 15000,
+  "chips": 25000,
+  "levels": "30 min",
+  "dates": "Dec 6, 2026",
+  "starts": [
+   [
+    "2026-12-06",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-26",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "30",
+  "event": "$600 No-Limit Hold'em Bounty (1-Day) — $200 bounties to start, $500 in the money",
+  "buy_in": 600,
+  "gtd": 40000,
+  "chips": 40000,
+  "levels": "30 min",
+  "dates": "Dec 7, 2026",
+  "starts": [
+   [
+    "2026-12-07",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-27",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "31",
+  "event": "$300 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 300,
+  "gtd": 15000,
+  "chips": 25000,
+  "levels": "30 min",
+  "dates": "Dec 7, 2026",
+  "starts": [
+   [
+    "2026-12-07",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-28",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "32",
+  "event": "$600 No-Limit Hold'em Seniors (1-Day) — must be 50+ (LIPS Championship label)",
+  "buy_in": 600,
+  "gtd": 40000,
+  "chips": 40000,
+  "levels": "30 min",
+  "dates": "Not readable in schedule PDF",
+  "starts": [],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [
+   "F10"
+  ],
+  "notes": "Start time 10:10 AM and registration close 3:55 PM are on the schedule. The date cell is blank, so the date is not confirmed."
+ },
+ {
+  "id": "DSE-29",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "34",
+  "event": "$300 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 300,
+  "gtd": 15000,
+  "chips": 25000,
+  "levels": "30 min",
+  "dates": "Dec 8, 2026",
+  "starts": [
+   [
+    "2026-12-08",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-30",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "36",
+  "event": "$800 No-Limit Hold'em Bounty (1-Day) — $200 bounties to start, $500 in the money",
+  "buy_in": 800,
+  "gtd": 75000,
+  "chips": 40000,
+  "levels": "30 min",
+  "dates": "Dec 8, 2026",
+  "starts": [
+   [
+    "2026-12-08",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-31",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "38",
+  "event": "$300 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 300,
+  "gtd": 15000,
+  "chips": 25000,
+  "levels": "30 min",
+  "dates": "Dec 9, 2026",
+  "starts": [
+   [
+    "2026-12-09",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-32",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "39",
+  "event": "$800 No-Limit Hold'em LIPS Ladies (2-Day) — Women in Poker main event",
+  "buy_in": 800,
+  "gtd": 40000,
+  "chips": 40000,
+  "levels": "40 min",
+  "dates": "Dec 9, 2026 (Day 2 restart Dec 11, 10:00 AM)",
+  "starts": [
+   [
+    "2026-12-09",
+    "10:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": "Final table streamed on PokerGO at 7:00 PM Dec 11 (per schedule)."
+ },
+ {
+  "id": "DSE-33",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "40",
+  "event": "$600 Pot-Limit Omaha Bounty (1-Day)",
+  "buy_in": 600,
+  "gtd": 25000,
+  "chips": 30000,
+  "levels": "30 min",
+  "dates": "Dec 9, 2026",
+  "starts": [
+   [
+    "2026-12-09",
+    "12:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-34",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "42",
+  "event": "$300 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 300,
+  "gtd": 15000,
+  "chips": 25000,
+  "levels": "30 min",
+  "dates": "Dec 10, 2026",
+  "starts": [
+   [
+    "2026-12-10",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-35",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "43",
+  "event": "$600 No-Limit Hold'em LIPS (1-Day) — Kings and Queens Bounty, open to all",
+  "buy_in": 600,
+  "gtd": 30000,
+  "chips": 40000,
+  "levels": "30 min",
+  "dates": "Dec 11, 2026",
+  "starts": [
+   [
+    "2026-12-11",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-36",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "47",
+  "event": "$2,200 No-Limit Hold'em PokerAtlas Championship Title Event — flights 1A–1B (Day 2–3 restarts)",
+  "buy_in": 2200,
+  "gtd": 1000000,
+  "chips": 40000,
+  "levels": "40 min (1A); 30 min (1B)",
+  "dates": "Dec 12–14, 2026 (per series page)",
+  "starts": [],
+  "entry_status": "pending",
+  "source": "V_DSE_PAGE",
+  "flags": [
+   "F10",
+   "F11"
+  ],
+  "notes": "Schedule PDF rows show 1A at 10:10 AM and 1B at 6:10 PM, but the date cells are replaced by sponsor text, so dates come from the series page. Streamed final table Dec 14 (series page)."
+ },
+ {
+  "id": "DSE-37",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "49",
+  "event": "$1,100 No-Limit Hold'em Seniors — flights 1A–1B (50+ only)",
+  "buy_in": 1100,
+  "gtd": 300000,
+  "chips": 40000,
+  "levels": "40 min",
+  "dates": "Dec 13–15, 2026 (per series page)",
+  "starts": [],
+  "entry_status": "pending",
+  "source": "V_DSE_PAGE",
+  "flags": [
+   "F10"
+  ],
+  "notes": "Schedule PDF rows show 10:10 AM starts; date cells replaced by sponsor text."
+ },
+ {
+  "id": "DSE-38",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "50",
+  "event": "$300 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 300,
+  "gtd": 15000,
+  "chips": 25000,
+  "levels": "30 min",
+  "dates": "Dec 13, 2026",
+  "starts": [
+   [
+    "2026-12-13",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-39",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "51",
+  "event": "$300 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 300,
+  "gtd": 15000,
+  "chips": 25000,
+  "levels": "30 min",
+  "dates": "Dec 14, 2026",
+  "starts": [
+   [
+    "2026-12-14",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-40",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "52",
+  "event": "$1,100 No-Limit Hold'em Progressive Knock-Out Bounty (PKO) (1-Day)",
+  "buy_in": 1100,
+  "gtd": 75000,
+  "chips": 40000,
+  "levels": "30 min",
+  "dates": "Dec 15, 2026",
+  "starts": [
+   [
+    "2026-12-15",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-41",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "53",
+  "event": "$300 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 300,
+  "gtd": 15000,
+  "chips": 25000,
+  "levels": "30 min",
+  "dates": "Dec 15, 2026",
+  "starts": [
+   [
+    "2026-12-15",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-42",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "54",
+  "event": "$600 No-Limit Hold'em Bounty (1-Day) — $200 bounties to start, $500 in the money",
+  "buy_in": 600,
+  "gtd": 50000,
+  "chips": 40000,
+  "levels": "30 min",
+  "dates": "Dec 16, 2026",
+  "starts": [
+   [
+    "2026-12-16",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-43",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "55",
+  "event": "$300 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 300,
+  "gtd": 15000,
+  "chips": 25000,
+  "levels": "30 min",
+  "dates": "Dec 16, 2026",
+  "starts": [
+   [
+    "2026-12-16",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-44",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "56",
+  "event": "$1,100 No-Limit Hold'em — flights 1A–1E (Day 2 Dec 20, 11:00 AM)",
+  "buy_in": 1100,
+  "gtd": 500000,
+  "chips": 40000,
+  "levels": "40 min (1A, 1C, 1E); 30 min (1B, 1D)",
+  "dates": "Dec 17–19, 2026 (series page: Dec 17–20)",
+  "starts": [
+   [
+    "2026-12-17",
+    "10:10"
+   ],
+   [
+    "2026-12-17",
+    "18:10"
+   ],
+   [
+    "2026-12-18",
+    "10:10"
+   ],
+   [
+    "2026-12-18",
+    "18:10"
+   ],
+   [
+    "2026-12-19",
+    "10:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": "Rake discount: $40 for 1A entries before 10:10 AM; $40 for 1B before 6:10 PM (per schedule)."
+ },
+ {
+  "id": "DSE-45",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "57",
+  "event": "$600 Pot-Limit Omaha Double Board Bomb Pot (1-Day)",
+  "buy_in": 600,
+  "gtd": 25000,
+  "chips": 30000,
+  "levels": "30 min",
+  "dates": "Dec 17, 2026",
+  "starts": [
+   [
+    "2026-12-17",
+    "12:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-46",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "58",
+  "event": "$200 No-Limit Hold'em PokerAtlas Valuetown Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 20000,
+  "chips": 25000,
+  "levels": "30 min",
+  "dates": "Not readable in schedule PDF (appears to be Dec 19)",
+  "starts": [],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [
+   "F10"
+  ],
+  "notes": "Start time 5:10 PM. Date cell replaced by sponsor text, so the date is not confirmed."
+ },
+ {
+  "id": "DSE-47",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "59",
+  "event": "$600 No-Limit Hold'em — flights 1A–1C (Day 2 Dec 23, 11:00 AM)",
+  "buy_in": 600,
+  "gtd": 150000,
+  "chips": 40000,
+  "levels": "40 min",
+  "dates": "Dec 20–23, 2026",
+  "starts": [
+   [
+    "2026-12-20",
+    "11:10"
+   ],
+   [
+    "2026-12-21",
+    "11:10"
+   ],
+   [
+    "2026-12-22",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_PAGE",
+  "flags": [],
+  "notes": "Rake discount: $20 for 1A entries before 11:10 AM (per schedule)."
+ },
+ {
+  "id": "DSE-48",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "60",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": 25000,
+  "levels": "30 min",
+  "dates": "Dec 20, 2026",
+  "starts": [
+   [
+    "2026-12-20",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-49",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "61",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": 25000,
+  "levels": "30 min",
+  "dates": "Dec 21, 2026",
+  "starts": [
+   [
+    "2026-12-21",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-50",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "62",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": 25000,
+  "levels": "30 min",
+  "dates": "Dec 22, 2026",
+  "starts": [
+   [
+    "2026-12-22",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-51",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "63",
+  "event": "$600 No-Limit Hold'em (1-Day)",
+  "buy_in": 600,
+  "gtd": 30000,
+  "chips": 40000,
+  "levels": "30 min",
+  "dates": "Dec 23, 2026",
+  "starts": [
+   [
+    "2026-12-23",
+    "11:10"
+   ]
+  ],
+  "entry_status": "structure",
+  "source": "V_STRUCT_600",
+  "flags": [],
+  "notes": "Structure sheet (checked): $30,000 guarantee confirmed; no re-entry or add-on listed."
+ },
+ {
+  "id": "DSE-52",
+  "series": "DeepStack Extravaganza IV",
+  "venue": "The Venetian",
+  "event_no": "64",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": 25000,
+  "levels": "30 min",
+  "dates": "Dec 23, 2026",
+  "starts": [
+   [
+    "2026-12-23",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSE_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "DSE-NYE-1",
+  "series": "DeepStack Extravaganza NYE",
+  "venue": "The Venetian",
+  "event_no": "—",
+  "event": "$2,200 No-Limit Hold'em (headline, per series overview)",
+  "buy_in": 2200,
+  "gtd": 300000,
+  "chips": null,
+  "levels": "",
+  "dates": "Dec 27–31, 2026",
+  "starts": [],
+  "entry_status": "pending",
+  "source": "V_DSE_OVERVIEW",
+  "flags": [
+   "F14"
+  ],
+  "notes": "Only the headline is captured. Full schedule PDF not yet captured."
+ },
+ {
+  "id": "DSE-NYE-2",
+  "series": "DeepStack Extravaganza NYE",
+  "venue": "The Venetian",
+  "event_no": "—",
+  "event": "$1,600 No-Limit Hold'em MSPT (headline, per series overview)",
+  "buy_in": 1600,
+  "gtd": 400000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 1–4, 2027",
+  "starts": [],
+  "entry_status": "pending",
+  "source": "V_DSE_OVERVIEW",
+  "flags": [
+   "F14"
+  ],
+  "notes": "Only the headline is captured. Full schedule PDF not yet captured."
+ },
+ {
+  "id": "DSS-01",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "1",
+  "event": "$300 No-Limit Hold'em (1-Day)",
+  "buy_in": 300,
+  "gtd": 12000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 11, 2027",
+  "starts": [
+   [
+    "2027-01-11",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": "Page does not list chips or levels."
+ },
+ {
+  "id": "DSS-02",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "2",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 11, 2027",
+  "starts": [
+   [
+    "2027-01-11",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-03",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "3",
+  "event": "$300 No-Limit Hold'em Bounty (1-Day) — $50 bounties to start, $100 in the money",
+  "buy_in": 300,
+  "gtd": 12000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 12, 2027",
+  "starts": [
+   [
+    "2027-01-12",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-04",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "4",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 12, 2027",
+  "starts": [
+   [
+    "2027-01-12",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-05",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "5",
+  "event": "$300 No-Limit Hold'em (1-Day)",
+  "buy_in": 300,
+  "gtd": 12000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 13, 2027",
+  "starts": [
+   [
+    "2027-01-13",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-06",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "6",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 13, 2027",
+  "starts": [
+   [
+    "2027-01-13",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-07",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "7",
+  "event": "$300 No-Limit Hold'em Bounty (1-Day) — $50 bounties to start, $100 in the money",
+  "buy_in": 300,
+  "gtd": 12000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 14, 2027",
+  "starts": [
+   [
+    "2027-01-14",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-08",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "8",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 14, 2027",
+  "starts": [
+   [
+    "2027-01-14",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-09",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "9",
+  "event": "$250 No-Limit Hold'em — flights 1A–1F (Day 2 Jan 25)",
+  "buy_in": 250,
+  "gtd": 100000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 15–17, 2027",
+  "starts": [
+   [
+    "2027-01-15",
+    "11:10"
+   ],
+   [
+    "2027-01-15",
+    "17:10"
+   ],
+   [
+    "2027-01-16",
+    "11:10"
+   ],
+   [
+    "2027-01-16",
+    "17:10"
+   ],
+   [
+    "2027-01-17",
+    "11:10"
+   ],
+   [
+    "2027-01-17",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": "Day 1 payouts with 5% advancing to Day 2. 1F is turbo. $10 reduced rake for entries before 11:10 AM (1A) and 5:10 PM (1B)."
+ },
+ {
+  "id": "DSS-10",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "10",
+  "event": "$300 No-Limit Hold'em (1-Day)",
+  "buy_in": 300,
+  "gtd": 12000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 18, 2027",
+  "starts": [
+   [
+    "2027-01-18",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-11",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "11",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 18, 2027",
+  "starts": [
+   [
+    "2027-01-18",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-12",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "12",
+  "event": "$300 No-Limit Hold'em Seniors (1-Day) — must be 50+",
+  "buy_in": 300,
+  "gtd": 15000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 19, 2027",
+  "starts": [
+   [
+    "2027-01-19",
+    "10:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": "Age-restricted (50+)."
+ },
+ {
+  "id": "DSS-13",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "13",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day) — Show Your Shot badge, $10 rake discount",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 19, 2027",
+  "starts": [
+   [
+    "2027-01-19",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-14",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "14",
+  "event": "$300 No-Limit Hold'em Bounty (1-Day) — $50 bounties to start, $100 in the money",
+  "buy_in": 300,
+  "gtd": 12000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 20, 2027",
+  "starts": [
+   [
+    "2027-01-20",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-15",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "15",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day) — Show Your Shot badge, $10 rake discount",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 20, 2027",
+  "starts": [
+   [
+    "2027-01-20",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-16",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "16",
+  "event": "$300 No-Limit Hold'em — flights 1A–1F (Day 2 Jan 25, 11:00 AM)",
+  "buy_in": 300,
+  "gtd": 100000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 21–24, 2027",
+  "starts": [
+   [
+    "2027-01-21",
+    "11:10"
+   ],
+   [
+    "2027-01-22",
+    "11:10"
+   ],
+   [
+    "2027-01-22",
+    "17:10"
+   ],
+   [
+    "2027-01-23",
+    "11:10"
+   ],
+   [
+    "2027-01-23",
+    "17:10"
+   ],
+   [
+    "2027-01-24",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": "$10 reduced rake for 1A entries before the start of level 4 (per page)."
+ },
+ {
+  "id": "DSS-17",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "17",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 21, 2027",
+  "starts": [
+   [
+    "2027-01-21",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-18",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "18",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 24, 2027",
+  "starts": [
+   [
+    "2027-01-24",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-19",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "19",
+  "event": "$400 No-Limit Hold'em — flights 1A–1B (Day 2 Jan 27)",
+  "buy_in": 400,
+  "gtd": 75000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 25–26, 2027",
+  "starts": [
+   [
+    "2027-01-25",
+    "11:10"
+   ],
+   [
+    "2027-01-26",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-20",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "20",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 25, 2027",
+  "starts": [
+   [
+    "2027-01-25",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-21",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "21",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 26, 2027",
+  "starts": [
+   [
+    "2027-01-26",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-22",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "22",
+  "event": "$400 No-Limit Hold'em (1-Day)",
+  "buy_in": 400,
+  "gtd": 15000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 27, 2027",
+  "starts": [
+   [
+    "2027-01-27",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-23",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "23",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 27, 2027",
+  "starts": [
+   [
+    "2027-01-27",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-24",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "24",
+  "event": "$600 No-Limit Hold'em — flights 1A–1C (Day 2 Jan 31, 11:00 AM)",
+  "buy_in": 600,
+  "gtd": 125000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 28–30, 2027",
+  "starts": [
+   [
+    "2027-01-28",
+    "11:10"
+   ],
+   [
+    "2027-01-29",
+    "11:10"
+   ],
+   [
+    "2027-01-30",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-25",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "25",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 28, 2027",
+  "starts": [
+   [
+    "2027-01-28",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-26",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "26",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 29, 2027",
+  "starts": [
+   [
+    "2027-01-29",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-27",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "27",
+  "event": "$300 Pot-Limit Omaha Double Board Bomb Pot (1-Day)",
+  "buy_in": 300,
+  "gtd": 7500,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 30, 2027",
+  "starts": [
+   [
+    "2027-01-30",
+    "12:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-28",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "28",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 30, 2027",
+  "starts": [
+   [
+    "2027-01-30",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-29",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "29",
+  "event": "$400 No-Limit Hold'em Seniors (1-Day) — must be 50+",
+  "buy_in": 400,
+  "gtd": 20000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 31, 2027",
+  "starts": [
+   [
+    "2027-01-31",
+    "10:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": "Age-restricted (50+)."
+ },
+ {
+  "id": "DSS-30",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "30",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": null,
+  "levels": "",
+  "dates": "Jan 31, 2027",
+  "starts": [
+   [
+    "2027-01-31",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-31",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "31",
+  "event": "$400 No-Limit Hold'em — flights 1A–1B",
+  "buy_in": 400,
+  "gtd": 75000,
+  "chips": null,
+  "levels": "",
+  "dates": "Feb 1–2, 2027",
+  "starts": [
+   [
+    "2027-02-01",
+    "11:10"
+   ],
+   [
+    "2027-02-02",
+    "11:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": "Day 2 time not captured (page ends Feb 2)."
+ },
+ {
+  "id": "DSS-32",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "32",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": null,
+  "levels": "",
+  "dates": "Feb 1, 2027",
+  "starts": [
+   [
+    "2027-02-01",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": ""
+ },
+ {
+  "id": "DSS-33",
+  "series": "DeepStack Showdown",
+  "venue": "The Venetian",
+  "event_no": "33",
+  "event": "$200 No-Limit Hold'em Bounty (1-Day)",
+  "buy_in": 200,
+  "gtd": 8000,
+  "chips": null,
+  "levels": "",
+  "dates": "Feb 2, 2027",
+  "starts": [
+   [
+    "2027-02-02",
+    "17:10"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "V_DSS_PAGE",
+  "flags": [
+   "F14"
+  ],
+  "notes": "Page continues to Feb 14, 2027; the rest was not captured."
+ },
+ {
+  "id": "WPT-01",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas (registration: Encore at Wynn)",
+  "event_no": "—",
+  "event": "$600 No-Limit Hold'em — flights 1A–1F",
+  "buy_in": 600,
+  "gtd": 400000,
+  "chips": 40000,
+  "levels": "30/40 min (1A–1E); 20/40 (1F)",
+  "dates": "Nov 27–29, 2026",
+  "starts": [
+   [
+    "2026-11-27",
+    "11:00"
+   ],
+   [
+    "2026-11-27",
+    "17:00"
+   ],
+   [
+    "2026-11-28",
+    "11:00"
+   ],
+   [
+    "2026-11-28",
+    "17:00"
+   ],
+   [
+    "2026-11-29",
+    "11:00"
+   ],
+   [
+    "2026-11-29",
+    "18:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": "Entry must be paid in cash or Wynn chips (terms). Re-entry rule not found in the first page of the terms."
+ },
+ {
+  "id": "WPT-02",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$600 Limit Omaha 8 (no guarantee)",
+  "buy_in": 600,
+  "gtd": null,
+  "chips": 35000,
+  "levels": "30 min",
+  "dates": "Nov 30, 2026",
+  "starts": [
+   [
+    "2026-11-30",
+    "12:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [
+   "F06"
+  ],
+  "notes": "Listed on the WPT schedule as 'Limit Omaha 8' (Nov 30, 12 PM). No guarantee."
+ },
+ {
+  "id": "WPT-03",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$800 No-Limit Hold'em — flights 1A–1F",
+  "buy_in": 800,
+  "gtd": 1000000,
+  "chips": 40000,
+  "levels": "30/40 min (1A–1E); 20/40 (1F)",
+  "dates": "Nov 30 – Dec 2, 2026",
+  "starts": [
+   [
+    "2026-11-30",
+    "11:00"
+   ],
+   [
+    "2026-11-30",
+    "17:00"
+   ],
+   [
+    "2026-12-01",
+    "11:00"
+   ],
+   [
+    "2026-12-01",
+    "17:00"
+   ],
+   [
+    "2026-12-02",
+    "11:00"
+   ],
+   [
+    "2026-12-02",
+    "18:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-04",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$1,600 No-Limit Hold'em — flights 1A–1B",
+  "buy_in": 1600,
+  "gtd": 1000000,
+  "chips": 40000,
+  "levels": "40 min",
+  "dates": "Dec 3–4, 2026",
+  "starts": [
+   [
+    "2026-12-03",
+    "11:00"
+   ],
+   [
+    "2026-12-04",
+    "11:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-05",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$1,100 WPT Prime Championship — flights 1A–1D (Days 2–4 follow; final table Dec 12, 2:00 PM)",
+  "buy_in": 1100,
+  "gtd": 5000000,
+  "chips": 40000,
+  "levels": "40/60 min",
+  "dates": "Dec 5–8, 2026",
+  "starts": [
+   [
+    "2026-12-05",
+    "11:00"
+   ],
+   [
+    "2026-12-06",
+    "11:00"
+   ],
+   [
+    "2026-12-07",
+    "11:00"
+   ],
+   [
+    "2026-12-08",
+    "11:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": "Day 2 Dec 9, Day 3 Dec 10, Day 4 Dec 11 per schedule."
+ },
+ {
+  "id": "WPT-06",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$1,600 Pot-Limit Omaha Mystery Bounty — flights 1A–1B",
+  "buy_in": 1600,
+  "gtd": 500000,
+  "chips": 40000,
+  "levels": "40 min (1A); 20/40 (1B)",
+  "dates": "Dec 6, 2026",
+  "starts": [
+   [
+    "2026-12-06",
+    "11:00"
+   ],
+   [
+    "2026-12-06",
+    "18:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": "Day 2 Dec 7 per schedule."
+ },
+ {
+  "id": "WPT-07",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$1,600 Pot-Limit Omaha $500 Bounty",
+  "buy_in": 1600,
+  "gtd": 100000,
+  "chips": 30000,
+  "levels": "30 min",
+  "dates": "Dec 7, 2026",
+  "starts": [
+   [
+    "2026-12-07",
+    "13:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-08",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$600 No-Limit Hold'em Turbo (nightly 9 PM)",
+  "buy_in": 600,
+  "gtd": 50000,
+  "chips": 30000,
+  "levels": "20 min",
+  "dates": "Dec 5, 6, 7, 8, 9 and 14, 2026",
+  "starts": [
+   [
+    "2026-12-05",
+    "21:00"
+   ],
+   [
+    "2026-12-06",
+    "21:00"
+   ],
+   [
+    "2026-12-07",
+    "21:00"
+   ],
+   [
+    "2026-12-08",
+    "21:00"
+   ],
+   [
+    "2026-12-09",
+    "21:00"
+   ],
+   [
+    "2026-12-14",
+    "21:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [
+   "F08"
+  ],
+  "notes": "Dec 14 row labeled 'NIH Turbo' in the PDF (typo; read as NLH)."
+ },
+ {
+  "id": "WPT-09",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$1,600 No-Limit Hold'em (2-Day)",
+  "buy_in": 1600,
+  "gtd": 1000000,
+  "chips": 40000,
+  "levels": "40 min",
+  "dates": "Dec 9, 2026",
+  "starts": [
+   [
+    "2026-12-09",
+    "11:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-10",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$3,000 Pot-Limit Omaha $1,000 Bounty",
+  "buy_in": 3000,
+  "gtd": 250000,
+  "chips": 30000,
+  "levels": "30 min",
+  "dates": "Dec 9, 2026",
+  "starts": [
+   [
+    "2026-12-09",
+    "13:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-11",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$400 Super Gold Million Mystery Bounty — flights 1A–1D",
+  "buy_in": 400,
+  "gtd": 3000000,
+  "chips": 30000,
+  "levels": "30/40 (1A, 1C); 20/40 (1B, 1D)",
+  "dates": "Dec 10–11, 2026 (Day 2 Dec 12)",
+  "starts": [
+   [
+    "2026-12-10",
+    "10:00"
+   ],
+   [
+    "2026-12-10",
+    "18:00"
+   ],
+   [
+    "2026-12-11",
+    "10:00"
+   ],
+   [
+    "2026-12-11",
+    "18:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [
+   "F06"
+  ],
+  "notes": "$3,000,000 guarantee shown on schedule and on the Wynn poker page (page: 'Super Gold Million' $400 buy-in, $3,000,000 guarantee)."
+ },
+ {
+  "id": "WPT-12",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$800 No-Limit Hold'em",
+  "buy_in": 800,
+  "gtd": 100000,
+  "chips": 30000,
+  "levels": "30 min",
+  "dates": "Dec 12, 2026",
+  "starts": [
+   [
+    "2026-12-12",
+    "10:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-13",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$3,000 Pot-Limit Omaha",
+  "buy_in": 3000,
+  "gtd": 250000,
+  "chips": 30000,
+  "levels": "30 min",
+  "dates": "Dec 12, 2026",
+  "starts": [
+   [
+    "2026-12-12",
+    "13:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-14",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$800 No-Limit Hold'em — flights 1A–1B",
+  "buy_in": 800,
+  "gtd": 500000,
+  "chips": 40000,
+  "levels": "40 min",
+  "dates": "Dec 13–14, 2026",
+  "starts": [
+   [
+    "2026-12-13",
+    "11:00"
+   ],
+   [
+    "2026-12-14",
+    "11:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-15",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$1,600 Pot-Limit Omaha — flights 1A–1B",
+  "buy_in": 1600,
+  "gtd": 1000000,
+  "chips": 40000,
+  "levels": "40 min",
+  "dates": "Dec 13–14, 2026",
+  "starts": [
+   [
+    "2026-12-13",
+    "12:00"
+   ],
+   [
+    "2026-12-14",
+    "12:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-16",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$1,100 Ladies No-Limit Hold'em Championship (2-Day)",
+  "buy_in": 1100,
+  "gtd": 250000,
+  "chips": 40000,
+  "levels": "40 min",
+  "dates": "Dec 13, 2026",
+  "starts": [
+   [
+    "2026-12-13",
+    "11:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [
+   "F07"
+  ],
+  "notes": "Schedule lists $1,100, but the footnote says the Ladies entry is $11,100 with a discounted entry. Not resolved."
+ },
+ {
+  "id": "WPT-17",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$10,400 WPT World Championship — flights 1A–1C (Days 2–5; final table Dec 20)",
+  "buy_in": 10400,
+  "gtd": null,
+  "chips": 100000,
+  "levels": "60/90 min",
+  "dates": "Dec 13–15, 2026 (Day 2 Dec 18)",
+  "starts": [
+   [
+    "2026-12-13",
+    "11:00"
+   ],
+   [
+    "2026-12-14",
+    "11:00"
+   ],
+   [
+    "2026-12-15",
+    "11:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [
+   "F06"
+  ],
+  "notes": "Schedule shows '$1,000,000 Added' by ClubWPT Gold; footnote says ClubWPT Gold is not available in Nevada. Guarantee left blank because the added amount is unverified for Nevada."
+ },
+ {
+  "id": "WPT-18",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$3,000 No-Limit Hold'em — flights 1A–1B (Day 2 Dec 19)",
+  "buy_in": 3000,
+  "gtd": 2000000,
+  "chips": 40000,
+  "levels": "40 min",
+  "dates": "Dec 17–18, 2026",
+  "starts": [
+   [
+    "2026-12-17",
+    "12:00"
+   ],
+   [
+    "2026-12-18",
+    "12:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-19",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$1,100 No-Limit Hold'em — flights 1A–1B",
+  "buy_in": 1100,
+  "gtd": 1000000,
+  "chips": 40000,
+  "levels": "40 min (1A); 20/40 (1B)",
+  "dates": "Dec 18, 2026",
+  "starts": [
+   [
+    "2026-12-18",
+    "11:00"
+   ],
+   [
+    "2026-12-18",
+    "19:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-20",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$1,100 No-Limit Hold'em Turbo (6 PM)",
+  "buy_in": 1100,
+  "gtd": 100000,
+  "chips": 30000,
+  "levels": "20 min",
+  "dates": "Dec 18, 2026",
+  "starts": [
+   [
+    "2026-12-18",
+    "18:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-21",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$600 No-Limit Hold'em",
+  "buy_in": 600,
+  "gtd": 100000,
+  "chips": 30000,
+  "levels": "30 min",
+  "dates": "Dec 18, 2026",
+  "starts": [
+   [
+    "2026-12-18",
+    "12:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-22",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$1,600 No-Limit Hold'em Mystery Bounty — flights 1A–1D (Days 2 Dec 19–20)",
+  "buy_in": 1600,
+  "gtd": 1000000,
+  "chips": 40000,
+  "levels": "40 min (1A, 1C); 20/40 (1B, 1D)",
+  "dates": "Dec 19–20, 2026",
+  "starts": [
+   [
+    "2026-12-19",
+    "11:00"
+   ],
+   [
+    "2026-12-19",
+    "19:00"
+   ],
+   [
+    "2026-12-20",
+    "11:00"
+   ],
+   [
+    "2026-12-20",
+    "19:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-23",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$1,100 Seniors No-Limit Hold'em Championship (3-Day)",
+  "buy_in": 1100,
+  "gtd": 500000,
+  "chips": 40000,
+  "levels": "40 min",
+  "dates": "Dec 17, 2026",
+  "starts": [
+   [
+    "2026-12-17",
+    "11:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": "Eligibility (age) not stated on the schedule."
+ },
+ {
+  "id": "WPT-24",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$5,000 Seniors High Roller (3-Day)",
+  "buy_in": 5000,
+  "gtd": 250000,
+  "chips": 50000,
+  "levels": "60 min",
+  "dates": "Dec 19, 2026",
+  "starts": [
+   [
+    "2026-12-19",
+    "11:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-25",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$3,000 No-Limit Hold'em 6-Max",
+  "buy_in": 3000,
+  "gtd": 500000,
+  "chips": 30000,
+  "levels": "30 min",
+  "dates": "Dec 19, 2026",
+  "starts": [
+   [
+    "2026-12-19",
+    "13:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-26",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$600 No-Limit Hold'em 6-Max Turbo",
+  "buy_in": 600,
+  "gtd": 50000,
+  "chips": 30000,
+  "levels": "20 min",
+  "dates": "Dec 19, 2026",
+  "starts": [
+   [
+    "2026-12-19",
+    "18:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-27",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$600 No-Limit Hold'em",
+  "buy_in": 600,
+  "gtd": 50000,
+  "chips": 30000,
+  "levels": "30 min",
+  "dates": "Dec 20, 2026",
+  "starts": [
+   [
+    "2026-12-20",
+    "12:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-28",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$600 5-Card Pot-Limit Omaha Turbo",
+  "buy_in": 600,
+  "gtd": 50000,
+  "chips": 30000,
+  "levels": "20 min",
+  "dates": "Dec 20, 2026",
+  "starts": [
+   [
+    "2026-12-20",
+    "18:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-29",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$1,100 No-Limit Hold'em",
+  "buy_in": 1100,
+  "gtd": 100000,
+  "chips": 30000,
+  "levels": "30 min",
+  "dates": "Dec 21, 2026",
+  "starts": [
+   [
+    "2026-12-21",
+    "12:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-30",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$600 No-Limit Hold'em Turbo (8 PM)",
+  "buy_in": 600,
+  "gtd": 50000,
+  "chips": 30000,
+  "levels": "20 min",
+  "dates": "Dec 21, 2026",
+  "starts": [
+   [
+    "2026-12-21",
+    "20:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-31",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$1,100 Pot-Limit Omaha Turbo",
+  "buy_in": 1100,
+  "gtd": 100000,
+  "chips": 30000,
+  "levels": "20 min",
+  "dates": "Dec 14, 2026",
+  "starts": [
+   [
+    "2026-12-14",
+    "19:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-32",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$1,600 No-Limit Hold'em $500 Bounty Turbo",
+  "buy_in": 1600,
+  "gtd": 100000,
+  "chips": 30000,
+  "levels": "20 min",
+  "dates": "Dec 15, 2026",
+  "starts": [
+   [
+    "2026-12-15",
+    "19:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [
+   "F08"
+  ],
+  "notes": "Labeled 'NIH' in the PDF (typo; read as NLH)."
+ },
+ {
+  "id": "WPT-33",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$3,000 Pot-Limit Omaha Progressive Bounty (PKO)",
+  "buy_in": 3000,
+  "gtd": 250000,
+  "chips": 30000,
+  "levels": "30 min",
+  "dates": "Dec 15, 2026",
+  "starts": [
+   [
+    "2026-12-15",
+    "13:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "WPT-35",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$800 Pot-Limit Omaha Double Board Bomb Pot (no guarantee)",
+  "buy_in": 800,
+  "gtd": null,
+  "chips": 30000,
+  "levels": "30 min",
+  "dates": "Dec 18, 2026",
+  "starts": [
+   [
+    "2026-12-18",
+    "12:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": "Schedule: Dec 18, 12:00 PM, $800, 30,000 chips, 30 min. No guarantee."
+ },
+ {
+  "id": "WPT-36",
+  "series": "WPT World Championship",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$800 Limit Omaha 8 (no guarantee)",
+  "buy_in": 800,
+  "gtd": null,
+  "chips": 35000,
+  "levels": "30 min",
+  "dates": "Dec 9, 2026",
+  "starts": [
+   [
+    "2026-12-09",
+    "13:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_WPT_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "SIG-01",
+  "series": "Wynn Signature Series",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$400 No-Limit Hold'em — flights 1A–1F",
+  "buy_in": 400,
+  "gtd": 150000,
+  "chips": 40000,
+  "levels": "30/40 min",
+  "dates": "Jan 11–13, 2027",
+  "starts": [
+   [
+    "2027-01-11",
+    "12:00"
+   ],
+   [
+    "2027-01-11",
+    "17:00"
+   ],
+   [
+    "2027-01-12",
+    "12:00"
+   ],
+   [
+    "2027-01-12",
+    "17:00"
+   ],
+   [
+    "2027-01-13",
+    "12:00"
+   ],
+   [
+    "2027-01-13",
+    "17:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_SIG_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "SIG-02",
+  "series": "Wynn Signature Series",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$600 No-Limit Hold'em — flights 1A–1D",
+  "buy_in": 600,
+  "gtd": 250000,
+  "chips": 40000,
+  "levels": "40 min (1A–1C); 20/40 (1D)",
+  "dates": "Jan 14–16, 2027",
+  "starts": [
+   [
+    "2027-01-14",
+    "11:00"
+   ],
+   [
+    "2027-01-15",
+    "11:00"
+   ],
+   [
+    "2027-01-16",
+    "11:00"
+   ],
+   [
+    "2027-01-16",
+    "18:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_SIG_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "SIG-03",
+  "series": "Wynn Signature Series",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$200 NLH Turbo",
+  "buy_in": 200,
+  "gtd": 10000,
+  "chips": 25000,
+  "levels": "20 min",
+  "dates": "Jan 15, 17, 18, 19, 20 and 24, 2027",
+  "starts": [
+   [
+    "2027-01-15",
+    "18:00"
+   ],
+   [
+    "2027-01-17",
+    "18:00"
+   ],
+   [
+    "2027-01-18",
+    "18:00"
+   ],
+   [
+    "2027-01-19",
+    "18:00"
+   ],
+   [
+    "2027-01-20",
+    "18:00"
+   ],
+   [
+    "2027-01-24",
+    "18:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_SIG_SCHED",
+  "flags": [],
+  "notes": "Turbo at 6 PM on listed nights (no Jan 16, 21, 22, 23 turbo on schedule)."
+ },
+ {
+  "id": "SIG-04",
+  "series": "Wynn Signature Series",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$400 No-Limit Hold'em (Day 1 Jan 17, 12 PM; Day 2 listed at 1 PM same day)",
+  "buy_in": 400,
+  "gtd": 30000,
+  "chips": 30000,
+  "levels": "30 min",
+  "dates": "Jan 17, 2027",
+  "starts": [
+   [
+    "2027-01-17",
+    "12:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_SIG_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "SIG-05",
+  "series": "Wynn Signature Series",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$400 No-Limit Hold'em — flights 1A–1C",
+  "buy_in": 400,
+  "gtd": 100000,
+  "chips": 40000,
+  "levels": "40 min",
+  "dates": "Jan 18–20, 2027",
+  "starts": [
+   [
+    "2027-01-18",
+    "11:00"
+   ],
+   [
+    "2027-01-19",
+    "11:00"
+   ],
+   [
+    "2027-01-20",
+    "11:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_SIG_SCHED",
+  "flags": [
+   "F09"
+  ],
+  "notes": "Guarantee and entry on the 1/18 row are shifted in the PDF (flag F09). Read as $100,000 guarantee and $400 entry."
+ },
+ {
+  "id": "SIG-06",
+  "series": "Wynn Signature Series",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$800 No-Limit Hold'em — flights 1A–1D",
+  "buy_in": 800,
+  "gtd": 300000,
+  "chips": 40000,
+  "levels": "40 min (1A–1C); 20/40 (1D)",
+  "dates": "Jan 21–23, 2027",
+  "starts": [
+   [
+    "2027-01-21",
+    "11:00"
+   ],
+   [
+    "2027-01-22",
+    "11:00"
+   ],
+   [
+    "2027-01-23",
+    "11:00"
+   ],
+   [
+    "2027-01-23",
+    "18:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_SIG_SCHED",
+  "flags": [],
+  "notes": ""
+ },
+ {
+  "id": "SIG-07",
+  "series": "Wynn Signature Series",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$400 Seniors No-Limit Hold'em (50+)",
+  "buy_in": 400,
+  "gtd": 30000,
+  "chips": 30000,
+  "levels": "30 min",
+  "dates": "Jan 24, 2027",
+  "starts": [
+   [
+    "2027-01-24",
+    "12:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_SIG_SCHED",
+  "flags": [],
+  "notes": "Age-restricted (50+)."
+ },
+ {
+  "id": "SIG-08",
+  "series": "Wynn Signature Series",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$400 Pot-Limit Omaha (no guarantee)",
+  "buy_in": 400,
+  "gtd": null,
+  "chips": 30000,
+  "levels": "30 min",
+  "dates": "Jan 18, 2027",
+  "starts": [
+   [
+    "2027-01-18",
+    "13:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_SIG_SCHED",
+  "flags": [],
+  "notes": "No guarantee on schedule."
+ },
+ {
+  "id": "SIG-09",
+  "series": "Wynn Signature Series",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$400 Pot-Limit Omaha Double Board Bomb Pot (no guarantee)",
+  "buy_in": 400,
+  "gtd": null,
+  "chips": 30000,
+  "levels": "30 min",
+  "dates": "Jan 24, 2027",
+  "starts": [
+   [
+    "2027-01-24",
+    "13:00"
+   ]
+  ],
+  "entry_status": "pending",
+  "source": "W_SIG_SCHED",
+  "flags": [],
+  "notes": "No guarantee on schedule."
+ },
+ {
+  "id": "DAILY-01",
+  "series": "Wynn daily tournaments (recurring)",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$200 No-Limit Hold'em, $10,000 guarantee — Monday–Thursday, 12 PM",
+  "buy_in": 200,
+  "gtd": 10000,
+  "chips": null,
+  "levels": "",
+  "dates": "Recurring (poster undated)",
+  "starts": [],
+  "entry_status": "recurring",
+  "source": "W_DAILY",
+  "flags": [
+   "F13"
+  ],
+  "notes": "Recurring schedule. Dated calendar not available. Wynn's page says daily tournaments are suspended during Signature, Millions and Classic series."
+ },
+ {
+  "id": "DAILY-02",
+  "series": "Wynn daily tournaments (recurring)",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$200 No-Limit Hold'em, $25,000 guarantee — Saturday and Sunday, 12 PM",
+  "buy_in": 200,
+  "gtd": 25000,
+  "chips": null,
+  "levels": "",
+  "dates": "Recurring (poster undated)",
+  "starts": [],
+  "entry_status": "recurring",
+  "source": "W_DAILY",
+  "flags": [
+   "F13"
+  ],
+  "notes": "Saturday and Sunday, 12 PM."
+ },
+ {
+  "id": "DAILY-03",
+  "series": "Wynn daily tournaments (recurring)",
+  "venue": "Wynn Las Vegas",
+  "event_no": "—",
+  "event": "$160 No-Limit Hold'em, $10,000 guarantee — nightly, 6 PM",
+  "buy_in": 160,
+  "gtd": 10000,
+  "chips": null,
+  "levels": "",
+  "dates": "Recurring (poster undated)",
+  "starts": [],
+  "entry_status": "recurring",
+  "source": "W_DAILY",
+  "flags": [
+   "F13"
+  ],
+  "notes": "Nightly 6 PM."
+ }
+]

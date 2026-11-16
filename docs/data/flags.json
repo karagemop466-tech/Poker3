@@ -1,0 +1,287 @@
+[
+ {
+  "id": "F01",
+  "severity": "High",
+  "type": "Irregularity",
+  "title": "Bellagio poker page says tournaments 'resume Saturday, July 26'",
+  "detail": "July 26, 2026 is a Sunday, not a Saturday. The page is stale or inconsistent. Current Bellagio tournament dates were not confirmed for Nov 2026–Jan 2027.",
+  "sources": [
+   "B_POKER"
+  ]
+ },
+ {
+  "id": "F02",
+  "severity": "High",
+  "type": "Irregularity",
+  "title": "Bellagio Saturday event: three different buy-ins",
+  "detail": "The page says $1,000 NLH. The PDF file name says $1000 and the PDF header says $1100. The PDF rules say '$600 Buy-in' ($510 pool, $50 admin, $40 optional gratuity). Buy-in left blank in the data until resolved.",
+  "sources": [
+   "B_POKER",
+   "B_SAT"
+  ]
+ },
+ {
+  "id": "F03",
+  "severity": "Low",
+  "type": "Irregularity",
+  "title": "Bellagio Saturday structure typos and stale dates",
+  "detail": "Level 3 blind shows '200-4300' (typo). 'Final Day 2 (9/13/26)' refers to a past date (Sept 13, 2026).",
+  "sources": [
+   "B_SAT"
+  ]
+ },
+ {
+  "id": "F04",
+  "severity": "High",
+  "type": "Classification",
+  "title": "Bellagio optional staff gratuity buys extra chips",
+  "detail": "Bellagio's optional gratuity ($40 Fri, $40 Sat, $25 Sun) grants 15,000–20,000 extra starting chips. That is an advantage through extra spending, so Bellagio events are placed in the excluded section. Bellagio events also allow re-entry through Level 8.",
+  "sources": [
+   "B_FRI",
+   "B_SAT",
+   "B_SUN"
+  ]
+ },
+ {
+  "id": "F05",
+  "severity": "High",
+  "type": "Irregularity",
+  "title": "Wynn resort fee conflict: $50 vs $55 plus tax",
+  "detail": "Wynn terms pages 850257 and 849277 say $55 plus tax per room night. Page 849723 says $50 plus tax. The pages carry no dates, so the current fee cannot be confirmed. Hotel sheet shows $55 with the conflict noted.",
+  "sources": [
+   "W_TC_850257",
+   "W_TC_849277",
+   "W_TC_849723"
+  ]
+ },
+ {
+  "id": "F06",
+  "severity": "High",
+  "type": "Irregularity",
+  "title": "WPT $1,000,000 'added' by ClubWPT Gold is not available in Nevada",
+  "detail": "WPT schedule shows '$1,000,000 Added' on the $10,400 WPT World Championship and the $1,000,000 added to other events, but the footnote says ClubWPT Gold is 'not available in Nevada.' This Las Vegas event's guarantee is therefore left blank. Super Gold Million $3,000,000 guarantee is shown as printed, with a flag.",
+  "sources": [
+   "W_WPT_SCHED"
+  ]
+ },
+ {
+  "id": "F07",
+  "severity": "High",
+  "type": "Irregularity",
+  "title": "Wynn Ladies NLH: $1,100 on schedule vs $11,100 in footnote",
+  "detail": "The schedule lists the Ladies NLH Championship at $1,100 with a guarantee of $250,000. Footnote 4 says the Ladies entry is $11,100 with a discounted entry. The two cannot both be right, so the buy-in is flagged as unresolved.",
+  "sources": [
+   "W_WPT_SCHED"
+  ]
+ },
+ {
+  "id": "F08",
+  "severity": "Low",
+  "type": "Irregularity",
+  "title": "Typos on the WPT schedule: 'NIH' for NLH",
+  "detail": "Two turbo events (Dec 14 and Dec 15) read 'NIH'. Read as NLH. A duplicate $1,100 Dec 18 turbo row was removed during data entry.",
+  "sources": [
+   "W_WPT_SCHED"
+  ]
+ },
+ {
+  "id": "F09",
+  "severity": "Medium",
+  "type": "Irregularity",
+  "title": "Wynn Signature 1/18 row columns shifted",
+  "detail": "The 1/18 row shows the guarantee cell blank and '$100,000' in the entry column. The 1/19 and 1/20 rows show $100,000 as the guarantee and $400 as entry. Read the same way: $100,000 guarantee, $400 entry. Confirm against the structure sheet.",
+  "sources": [
+   "W_SIG_SCHED"
+  ]
+ },
+ {
+  "id": "F10",
+  "severity": "High",
+  "type": "Irregularity",
+  "title": "Venetian schedule PDF: date cells missing or replaced by sponsor text",
+  "detail": "Events 32 (blank date), 47 and 49 (PokerAtlas text in date cell) and 58 (PokerAtlas text in date cell) cannot be dated from the PDF. Event 47 uses the series page (Dec 12–14). Events 32 and 58 are left undated.",
+  "sources": [
+   "V_DSE_SCHED",
+   "V_DSE_PAGE"
+  ]
+ },
+ {
+  "id": "F11",
+  "severity": "Medium",
+  "type": "Conflict",
+  "title": "Event 47 ($2,200 PokerAtlas Title Event) date conflict",
+  "detail": "Series page says Dec 12–14, final table Dec 14 at 12 PM. Schedule PDF rows show a 10:10 AM 1A start and a 6:10 PM 1B start with unreadable dates. Series page used for dates; PDF times recorded.",
+  "sources": [
+   "V_DSE_PAGE",
+   "V_DSE_SCHED"
+  ]
+ },
+ {
+  "id": "F12",
+  "severity": "Medium",
+  "type": "Classification",
+  "title": "Venetian Event 35 is a two-player team event",
+  "detail": "The $600 'Jingle Tag Team' requires a female/female or female/male team. It is not an individual single entry and is excluded.",
+  "sources": [
+   "V_DSE_SCHED"
+  ]
+ },
+ {
+  "id": "F13",
+  "severity": "Medium",
+  "type": "Unverified",
+  "title": "Wynn daily tournament poster is undated",
+  "detail": "The poster file version is dated 2025 in its URL (v1752011166), and the poster title shows another code (260619). Wynn's page says daily tournaments are suspended during Signature, Millions and Classic series, but does not name the WPT series. Daily events are listed as recurring only. Friday Rebuy excluded as multi-entry.",
+  "sources": [
+   "W_DAILY",
+   "W_POKER"
+  ]
+ },
+ {
+  "id": "F14",
+  "severity": "Medium",
+  "type": "Unverified",
+  "title": "Venetian DeepStack NYE and DeepStack Showdown schedules only partly captured",
+  "detail": "NYE has only the two headline events from the series overview. DeepStack Showdown rows are captured through Feb 2, 2027 of the Feb 14 series. The full schedule PDFs were not captured. Missing events are not included.",
+  "sources": [
+   "V_DSE_OVERVIEW",
+   "V_DSS_PAGE"
+  ]
+ },
+ {
+  "id": "F15",
+  "severity": "High",
+  "type": "Unverified",
+  "title": "Resort fees: third-party guides conflict and are not official",
+  "detail": "Third-party guides report $45–$55 (Strip), $50 or $55 for Bellagio, Venetian and ARIA, and a 13.38% room tax. None of these came from an official hotel page in this session, so no hotel resort fee was filled in except Wynn (F05). Official resort-fee pages for Venetian, Bellagio, ARIA and Caesars were not found.",
+  "sources": [
+   "C_HOME",
+   "A_POKER",
+   "B_POKER",
+   "V_POKER"
+  ]
+ },
+ {
+  "id": "F16",
+  "severity": "Low",
+  "type": "Unverified",
+  "title": "Caesars Palace promotional rate is dynamic",
+  "detail": "The official homepage shows a live 'Rooms from $139' promotion for the dates shown on the page. Not recorded as a rate.",
+  "sources": [
+   "C_HOME"
+  ]
+ },
+ {
+  "id": "F17",
+  "severity": "High",
+  "type": "Finding",
+  "title": "An 8 AM start is not possible with verified events",
+  "detail": "The earliest start time on any verified official schedule in this dataset is 10:10 AM (Venetian RaceDay and Event 56 flights). Most events start at 11:00–11:10 AM. Recommendation: plan the day around 10:00–11:10 AM starts, or confirm cash-game options at the rooms for 8 AM.",
+  "sources": [
+   "V_DSE_SCHED",
+   "W_WPT_SCHED",
+   "W_SIG_SCHED"
+  ]
+ },
+ {
+  "id": "F18",
+  "severity": "High",
+  "type": "Unverified",
+  "title": "Walking times are not verified for any hotel–room pair",
+  "detail": "No walking-time or map source was used. Walking minutes are blank for every hotel. The 30-minute walking rule cannot be checked from this dataset.",
+  "sources": []
+ },
+ {
+  "id": "F19",
+  "severity": "Medium",
+  "type": "Finding",
+  "title": "WSOP 2026 is already over",
+  "detail": "Per WSOP.com, the 2026 WSOP ran May 26–July 15, 2026 at Horseshoe and Paris. As of 2026-11-16 those events are past and are not in the upcoming list.",
+  "sources": [
+   "WSOP_SCHED"
+  ]
+ },
+ {
+  "id": "F20",
+  "severity": "Low",
+  "type": "Finding",
+  "title": "WPT Fall Festival at the Venetian ended Nov 15, 2026",
+  "detail": "The series ended Nov 15, 2026 per the Venetian series overview. It is excluded from the upcoming list.",
+  "sources": [
+   "V_DSE_OVERVIEW"
+  ]
+ },
+ {
+  "id": "F21",
+  "severity": "Medium",
+  "type": "Unverified",
+  "title": "Coverage gap: other Strip rooms not captured",
+  "detail": "ARIA page gives no schedule (phone only). MGM Grand poker page returned 404. Golden Nugget poker page returned empty. Resorts World poker page returned an email template. Caesars poker room not captured. Orleans, South Point and Planet Hollywood not checked. Tournaments at these rooms are not in this dataset.",
+  "sources": [
+   "A_POKER"
+  ]
+ },
+ {
+  "id": "F22",
+  "severity": "Medium",
+  "type": "Unverified",
+  "title": "No re-entry or add-on information for most events",
+  "detail": "Only the Venetian $400 (Event 7), $600 (Events 14, 28, 63) structure sheets were checked. They list no re-entry or add-on. All other single-entry rows are marked 'pending' until their structure sheets are checked. Wynn's WPT terms page (8 pages) was checked for the first page only.",
+  "sources": [
+   "V_STRUCT_400",
+   "V_STRUCT_600",
+   "W_WPT_TERMS"
+  ]
+ },
+ {
+  "id": "F23",
+  "severity": "Low",
+  "type": "Unverified",
+  "title": "Partial no-guarantee events on the Wynn schedules",
+  "detail": "The WPT and Signature schedules include many events with no guarantee (for example TORSE, Mixed Triple Draw, HORSE, Big O). Only some are transcribed (those with a guarantee plus a few others). The remainder are in the source PDFs.",
+  "sources": [
+   "W_WPT_SCHED",
+   "W_SIG_SCHED"
+  ]
+ },
+ {
+  "id": "F24",
+  "severity": "Medium",
+  "type": "Unverified",
+  "title": "Ages and eligibility are not repeated in all rows",
+  "detail": "Seniors (50+) events are marked. Wynn WPT events require 21+ and Wynn Rewards membership (WPT terms). Other age and card requirements are not captured.",
+  "sources": [
+   "V_STRUCT_600",
+   "W_WPT_TERMS"
+  ]
+ },
+ {
+  "id": "F25",
+  "severity": "Low",
+  "type": "Repo review",
+  "title": "Repository irregularities",
+  "detail": "(1) README.md is one line ('# Poker3') with no description or setup. (2) No LICENSE file. (3) No .gitignore. (4) COORDINATION.md did not exist and was created for this task. (5) The brief asked for per-session branches; the platform rule allowed one branch per session, so the per-session branch scheme was not used.",
+  "sources": []
+ },
+ {
+  "id": "F26",
+  "severity": "Medium",
+  "type": "Irregularity",
+  "title": "Sources contradict each other on Bellagio tournaments",
+  "detail": "Third-party pages say Bellagio runs no daily tournaments, or runs one daily at 2 PM, or runs $150 events. The official MGM page lists weekly events (Fri $600, Sat, Sun $400). The official page is used. Third-party claims are not used.",
+  "sources": [
+   "B_POKER"
+  ]
+ },
+ {
+  "id": "F27",
+  "severity": "Low",
+  "type": "Finding",
+  "title": "Official hotel pages list poker-player perks, not nightly rates",
+  "detail": "Venetian and ARIA official pages mention special room rates for poker players. Terms were not captured, so they are not used in the cost calculation.",
+  "sources": [
+   "V_POKER",
+   "A_POKER"
+  ]
+ }
+]

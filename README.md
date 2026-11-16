@@ -1,35 +1,53 @@
-# Poker3
+# Poker3 — Las Vegas Strip poker trip planner
 
-Las Vegas Strip poker tournament vacation planner — single-entry tournaments only.
+Source-first static site for Las Vegas Strip poker tournaments and lodging. Start at [Overview](index.html).
 
-## What this is
-A source-first static dashboard for evaluating Las Vegas tournament schedules and lodging. It collects upcoming Strip poker tournaments (single entry only — no re-entry, no double buy-in, no add-ons), walking-distance hotels with true cost per night (room rate + resort fee + taxes + parking), an all-day playing schedule, an executive summary, questions that must be resolved before booking, site-improvement suggestions (review before implementing), and a Flagged for Review register.
+## Pages (root site, GitHub Pages)
 
-## Research snapshot
-2026-11-16 UTC. Two Arena sessions contributed:
+- [Overview](index.html): executive summary and entry points
+- [Tournaments](tournaments.html): 1-day main list (Venetian DeepStack Extravaganza IV, Nov 18 – Dec 23, 2026), plus excluded events grouped by reason, including the Wynn WPT festival
+- [Schedule](schedule.html): verified start times and a sample day plan. No all-day 8 AM plan is possible because no 8 AM start is verified
+- [Hotels](hotels.html): true cost per night formula with official resort-fee and tax inputs. Room rates are not published for the dates, so they are blank and flagged
+- [Questions](questions.html): information needed before decisions, plus ways to find it
+- [Suggestions](suggestions.html): site improvements, for review before any change
+- [Flagged for review](flagged.html): irregularities, conflicts and unverified items. These do not block merges
 
-- Session `arena/66708bda-poker3` (earlier): conservative root-level dashboard, deployed to GitHub Pages. Found that aria.com publishes ARIA tournament times (1 p.m. / 7 p.m.) but no date-specific events, buy-ins, guarantees, entry rules, or duration — treated as incomplete, not a qualified single-entry event. Third-party listings not accepted as verification.
-- Session `arena/d205f8ec-poker3` (current): 53 single-entry (1Day) events from the Venetian DeepStack Extravaganza IV (Nov 18 – Dec 23, 2026), each linked to the official Venetian schedule and structure-sheet PDFs; multi-entry/re-entry events kept in a separate section; Wynn WPT World Championship Festival reviewed. Hotel true-cost formula with official fees/taxes.
+## Parallel site (`docs/`)
+
+Session `arena/8fc8e9f1-poker3` built a second, data-first site in `docs/` (JSON data files plus 10 pages). It is kept unchanged and is published at `/docs/` by the same Pages workflow. The two sites use the same source policy but different layouts. Which one to keep is a user decision (see COORDINATION.md).
+
+## Data files
+
+- `data/tournaments.md`: main list and excluded lists with sources
+- `data/hotels.md`: hotel fee components and blank room-rate rows
+- `docs/data/*.json`: the parallel site's data (sources, tournaments, hotels, questions, suggestions, flags)
 
 ## Verification policy
-Every table row carries a link to an official venue/hotel source. Values that cannot be confirmed from an official source are left blank and flagged as unverified — nothing is inferred or filled in. See flagged.html.
 
-## Site (GitHub Pages, root of main)
-- index.html — landing page + executive summary
-- tournaments.html — single-entry table (main list) + separate multi-entry/re-entry section
-- hotels.html — hotel candidates and true-cost-per-night formula
-- schedule.html — suggested all-day playing schedule
-- questions.html — questions that must be answered before any decision
-- suggestions.html — site improvement suggestions (review before implementing)
-- flagged.html — irregularities and unverified items
-- style.css — stylesheet
-- data/tournaments.md, data/hotels.md — source-of-record files
-- COORDINATION.md — shared task board with both sessions' claims and work logs
-- .github/workflows/pages.yml — Pages deploy workflow (root site on pushes to main; repository Pages settings must permit GitHub Actions)
+- Every table row carries a link to an official venue, hotel or structure-sheet source.
+- A value that cannot be confirmed from an official source is left blank and flagged. Nothing is inferred.
+- Third-party listings (Hendon Mob, PokerAtlas, PokerNews, reddit and similar) are not used for any value. Their conflicts are listed on the flagged page.
+- "Single entry" is not printed on the Venetian structure sheets. The main list therefore says "no re-entry or add-on wording on the sheet". It does not claim that single entry is confirmed. See flag F1.
+
+## Research snapshot
+
+2026-11-16 UTC. Sessions that contributed to this branch:
+
+- `arena/66708bda-poker3`: first root dashboard, conservative verification stance, GitHub Pages deploy (PRs #1 and #2).
+- `arena/93641c21-poker3`: Venetian main list, excluded-by-reason tables and a 19-item flagged register (PR #6).
+- `arena/8fc8e9f1-poker3`: `docs/` site and data (PR #8).
+- `arena/d205f8ec-poker3`: this branch. 1-day main list checked row by row against all 22 structure sheets, hotel true-cost formula, questions, suggestions, and integration of the work above (PR #5).
+
+Full logs and PR records are in [COORDINATION.md](COORDINATION.md).
 
 ## Key sources
-- Venetian DeepStack Extravaganza IV: https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html
-- WPT World Championship: https://www.worldpokertour.com/article/wpt-world-championship-at-wynn-las-vegas-set-for-season-24-finale-with-over-85-events-and-20m-in-gte
-- Venetian hotel terms (resort fee, tax, parking): https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html
+
+- Venetian DeepStack Extravaganza IV schedule: https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html
+- Venetian resort fee: https://www.venetianlasvegas.com/resort/resort-fee.html
+- Venetian hotel terms (tax, parking): https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html
+- WPT World Championship festival: https://www.worldpokertour.com/article/wpt-world-championship-at-wynn-las-vegas-set-for-season-24-finale-with-over-85-events-and-20m-in-gte
 - Wynn stay terms: https://www.wynnlasvegas.com/terms-and-conditions/848654
-- ARIA poker times (incomplete source): https://aria.com/en/nightlife.html
+
+## Deployment
+
+`.github/workflows/pages.yml` publishes the repository root to GitHub Pages on pushes to `main`. Repository Pages settings must allow GitHub Actions.
