@@ -15,6 +15,7 @@ const NAV = [
   ['suggestions.html', 'Suggestions', '✦'],
   ['flagged.html', 'Flagged for review', '⚑'],
   ['sources.html', 'Sources', '⛓'],
+  ['sheets.html', 'Sheet verification', '☰'],
 ];
 
 const PAGE = document.body.dataset.page || 'home';

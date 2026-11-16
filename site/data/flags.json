@@ -1,0 +1,122 @@
+{
+ "meta": {
+  "asOf": "2026-11-16",
+  "builtAt": "2026-11-16T19:50:18Z",
+  "policy": "Only venue-controlled pages and official PDFs substantiate values. Unknown values are blank and flagged. A guarantee is not a forecast of actual payouts. Ratio = guaranteed pool \u00f7 buy-in, descriptive only.",
+  "formula": "Trip cost = entries \u00d7 buy-ins + nights \u00d7 true hotel cost; true nightly = rate + resort fee + 13.38% tax (tax applies to rate and resort fee per Bellagio terms; Venetian terms state 13.38% Clark County room tax and 'plus applicable tax' on the fee)."
+ },
+ "flags": [
+  {
+   "id": "FL01",
+   "title": "Bellagio Saturday NLH buy-in conflict (three values)",
+   "level": "high",
+   "finding": "The poker page link says '$1,000 NLH' (filename saturdays-$1000-nlh.pdf), the PDF header says 'NLH $1100 BUY-IN', and PDF rule 07 says 'Of the $600 Buy-in, $510 goes to the Prize Pool...'.",
+   "next": "Call the Bellagio poker room (702.693.7291) before planning around this event. Buy-in is left blank.",
+   "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf"
+  },
+  {
+   "id": "FL02",
+   "title": "WPT $1,100 PLO fee breakdown sums to $1,105",
+   "level": "high",
+   "finding": "Official structures doc: '$1,100 Buy-in = $975 (Tournament Prize Pool) + $85 (Tournament Fee) + $45 (Poker Staff Service Charge)' \u2014 components total $1,105, not $1,100.",
+   "next": "Confirm the actual charged amount with the Wynn poker room before entering.",
+   "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"
+  },
+  {
+   "id": "FL03",
+   "title": "Venetian sheet 8 (Events #18/#58) references 'subsequent buy-ins'",
+   "level": "medium",
+   "finding": "The PokerAtlas PRO discount clause reads 'All subsequent buy in's after the initial buy in will be $200', implying more than one buy-in may be possible, although no explicit re-entry clause is printed on the sheet.",
+   "next": "Ask the Venetian poker room whether #18/#58 are one-entry freezeouts. Held in Review until confirmed.",
+   "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf"
+  },
+  {
+   "id": "FL04",
+   "title": "Wynn terms page carries an expired offer window",
+   "level": "low",
+   "finding": "Terms page 850070 includes a stay-completed-by September 30, 2025 offer alongside the $55 + tax resort fee, parking and cancellation terms used here.",
+   "next": "Confirm fee, parking and cancellation terms on the live booking before nonrefundable payment.",
+   "source": "https://www.wynnlasvegas.com/terms-and-conditions/850070"
+  },
+  {
+   "id": "FL05",
+   "title": "Bellagio 'tournament play will resume Saturday, July 26' notice is undated",
+   "level": "medium",
+   "finding": "The official poker page carries a resume notice naming July 26 with no year; July 26, 2026 is a Sunday. Current operation of the weekly schedule must be confirmed by phone.",
+   "next": "Call 702.693.7291 to confirm the weekly tournaments are running on your dates.",
+   "source": "https://bellagio.mgmresorts.com/en/casino/poker.html"
+  },
+  {
+   "id": "FL06",
+   "title": "ARIA daily/nightly tournament cadence is undated",
+   "level": "medium",
+   "finding": "The official guide (1 PM / 7 PM) is undated; the current official page says to call the room or check @ARIAPoker to confirm whether daily tournaments are running.",
+   "next": "Call 702.590.7232 (or check @ARIAPoker) before counting ARIA events in a plan.",
+   "source": "https://aria.mgmresorts.com/en/casino/poker.html"
+  },
+  {
+   "id": "FL07",
+   "title": "WPT Super Gold Million and $10,400 World Championship entry terms not captured",
+   "level": "medium",
+   "finding": "The official structures PDF is longer than the 30-page fetch limit used in this research pass; those events' registration clauses were not returned. Their entry fields are blank on purpose.",
+   "next": "Open the official structures PDF manually and read the two events' Registration sections; then update tournaments.json.",
+   "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"
+  },
+  {
+   "id": "FL08",
+   "title": "Walking times not verified",
+   "level": "high",
+   "finding": "No official venue publishes door-to-door walking times, and no map service result could be captured in this pass. Every hotel\u2013venue pair carries a Google Maps walking link for manual verification; walkingMinutes is blank on all rows.",
+   "next": "Open each map link (walking mode) and record the time; the 30-minute filter will then apply to verified values.",
+   "source": "https://www.google.com/maps"
+  },
+  {
+   "id": "FL09",
+   "title": "Date-specific hotel rates not published; checkout totals blank",
+   "level": "high",
+   "finding": "Venetian/Palazzo publish poker-suite starting rates ($119/$209) not mapped to dates; Wynn, Bellagio and ARIA publish no static rate. All checkoutTotal / nightlyAvg fields are blank; the trip calculator computes them once a dated rate is entered.",
+   "next": "Fix trip dates (Workflow step 1), then pull each hotel's official booking link for those dates and log the dated quote in the rate log.",
+   "source": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"
+  },
+  {
+   "id": "FL10",
+   "title": "Bellagio Saturday PDF references a stale Day 2 date",
+   "level": "low",
+   "finding": "PDF rule 04 says 'Combined Final Day 2 (9/13/26) will begin at 12pm' inside a weekly tournament sheet; the date appears stale and the sheet also references Flights 1A\u20131D.",
+   "next": "Ask the room for the current Saturday structure.",
+   "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf"
+  },
+  {
+   "id": "FL11",
+   "title": "Golden Nugget / Resorts World / Circa / MGM Grand poker pages not retrievable",
+   "level": "medium",
+   "finding": "Golden Nugget returned empty content, Resorts World redirected to an email template, Circa failed to load, and the MGM Grand poker URL 404s. No rows were added for these rooms.",
+   "next": "Retry these official pages (or call the rooms) and add dated schedule rows when retrieved; the daily-check workflow will also retry them.",
+   "source": "https://www.goldennugget.com/las-vegas/casino/poker/"
+  },
+  {
+   "id": "FL12",
+   "title": "No verified 8:00 AM tournament start",
+   "level": "medium",
+   "finding": "The earliest verified start across all checked official schedules is 9:10 AM (Venetian satellite #46, Dec 12) and 10:10 AM for regular events; no official schedule shows an 8:00 AM start in this window.",
+   "next": "If an 8 AM start is required, ask Horseshoe (6 daily tournaments, times unpublished) or Golden Nugget whether an early daily runs.",
+   "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
+  },
+  {
+   "id": "FL13",
+   "title": "Single-entry is never printed as a policy",
+   "level": "high",
+   "finding": "No Venetian structure sheet prints 'single entry', 'freezeout', or a maximum-entries rule. Main-list rows are confirmed for date/time/buy-in/fee-split/guarantee and carry no re-entry/rebuy/add-on clause, but a one-entry limit is not stated in writing.",
+   "next": "Get written confirmation of one-entry-total / no-rebuy / no-add-on from tournament staff before treating any event as a strict freezeout.",
+   "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf"
+  },
+  {
+   "id": "FL14",
+   "title": "Est. finish times are structure-derived estimates",
+   "level": "low",
+   "finding": "Duration estimates multiply printed level counts by level lengths plus printed breaks. Real events can end earlier (players bust) or later (final-table dynamics, TD discretion). Overlap flags use these estimates and are advisory only.",
+   "next": "Treat overlap flags as planning guidance; the poker room controls actual timing.",
+   "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf"
+  }
+ ]
+}

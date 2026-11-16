@@ -1,0 +1,74 @@
+{
+ "meta": {
+  "asOf": "2026-11-16",
+  "builtAt": "2026-11-16T19:50:18Z",
+  "policy": "Only venue-controlled pages and official PDFs substantiate values. Unknown values are blank and flagged. A guarantee is not a forecast of actual payouts. Ratio = guaranteed pool \u00f7 buy-in, descriptive only.",
+  "formula": "Trip cost = entries \u00d7 buy-ins + nights \u00d7 true hotel cost; true nightly = rate + resort fee + 13.38% tax (tax applies to rate and resort fee per Bellagio terms; Venetian terms state 13.38% Clark County room tax and 'plus applicable tax' on the fee)."
+ },
+ "suggestions": [
+  {
+   "id": "S01",
+   "title": "Wire the daily-check workflow output into row badges",
+   "detail": "The daily-check job already stores URL hashes and change dates. Next: surface 'source changed since verification' badges per row by joining changes.json to row source IDs.",
+   "impact": "high",
+   "effort": "low",
+   "status": "proposed"
+  },
+  {
+   "id": "S02",
+   "title": "Add phone-confirmation log fields",
+   "detail": "Questions Q02/Q05/Q07 need answers that only the poker rooms can give. Add a small dated call-log table (date, room, staff, question, answer) linked from each flagged row.",
+   "impact": "high",
+   "effort": "low",
+   "status": "proposed"
+  },
+  {
+   "id": "S03",
+   "title": "Capture Super Gold Million and WPT World Championship terms manually",
+   "detail": "Read the tail of the official structures PDF (beyond the 30-page fetch limit) and fill the two review rows (FL07).",
+   "impact": "medium",
+   "effort": "low",
+   "status": "proposed"
+  },
+  {
+   "id": "S04",
+   "title": "Add per-night rate snapshots from official booking engines",
+   "detail": "The booking deep links exist per hotel. A weekly job (or manual pass) can record dated quotes per stay window in rates.json so 'like-for-like' totals build up over time.",
+   "impact": "high",
+   "effort": "medium",
+   "status": "proposed"
+  },
+  {
+   "id": "S05",
+   "title": "Verified walking-time table",
+   "detail": "Walk each route (or use Google/Apple Maps walking directions) and fill walkingMinutes with the date and service used; the \u226430-minute filter becomes fully functional.",
+   "impact": "high",
+   "effort": "medium",
+   "status": "proposed"
+  },
+  {
+   "id": "S06",
+   "title": "Evening-event feasibility planner",
+   "detail": "Once finish-time estimates are trusted, auto-generate primary + fallback pairs per day and mark days where an evening event is realistically reachable after the earlier bust-out.",
+   "impact": "medium",
+   "effort": "medium",
+   "status": "proposed"
+  },
+  {
+   "id": "S07",
+   "title": "Consolidate the archived research sites",
+   "detail": "docs/, planner/, single-entry/, verified/ and the root HTML files are prior research artifacts. Keep one canonical site (site/) and move archives under archive/ after the user confirms (R2 from earlier sessions).",
+   "impact": "medium",
+   "effort": "low",
+   "status": "needs decision"
+  },
+  {
+   "id": "S08",
+   "title": "Add ICS export of the day plan",
+   "detail": "Let the user export the primary/fallback schedule to a calendar file for the chosen trip window.",
+   "impact": "low",
+   "effort": "low",
+   "status": "proposed"
+  }
+ ]
+}

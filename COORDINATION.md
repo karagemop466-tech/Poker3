@@ -483,3 +483,43 @@ and #24), session `arena/e58b73b1-poker3` added a trip-cost calculator and a sou
   `arena/92941c56-poker3` is still open and touches the root `index.html` and `pages/`. It was left untouched. If it
   is merged later it will need a rebase, and the root `index.html` will then hold that session's earlier snapshot
   rather than the canonical dashboard.
+
+---
+
+## Session `arena/ef37b79e-poker3` — full structure-sheet verification + canonical `site/` rebuild
+
+Branch: `arena/ef37b79e-poker3` (branched from `main` @ `e9af34c`, PR #16). **Platform deviation:** the brief's `session-<id>/<task>` branch naming is unavailable in this environment; the Arena session branch name is used instead. This session edited only `data/`, `scripts/`, `site/` (canonical dashboard + new data pages), `.github/workflows/daily-check.yml`, `scripts/verify_site.py`, and this section of `COORDINATION.md`. Prior artifacts (`docs/`, `planner/`, `verified/`, `single-entry/`, root `*.html`, `raw/`, `pages/`) were read but not modified.
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| Read every Venetian DSE IV structure sheet line-by-line | done | ef37b79e | `data/sheet_extracts.jsonl`, `scripts/build_data.py` | All 37 sheets (dse_nov_2026-structure_1..37.pdf) read 2026-11-16: fee splits, stacks, level lengths, late-reg cut-offs, guarantees, payout %, bounty amounts, entry clauses. |
+| Remove unverified labels where confirmed; keep blanks+flags elsewhere | done | ef37b79e | `site/data/tournaments.json` | 46 single-start events now carry "verified" with printed fee split; entry status wording is "no re-entry/rebuy/add-on wording on sheet" (never "single entry confirmed" — FL13). |
+| Spend-more quarantine (re-entry / rebuys / add-ons / paid chip boosts / multi-flight) | done | ef37b79e | same | 48 rows in a separate bucket with the exact clause quoted (Wynn dailies + WPT festival + Bellagio weeklies + Venetian multi-flight). |
+| Hotel true-cost + dated rate log + booking links | done (rates blank+flagged) | ef37b79e | `site/data/hotels.json`, `rates.json` | Formula: rate + resort fee + 13.38% tax (tax on rate and fee per Bellagio terms; Venetian terms state 13.38% Clark County room tax). Venetian/Palazzo poker-suite starting rates $119/$209 logged as dated observations, not date-mapped. |
+| Walking-route check (official addresses + 30-min filter + map links) | done (times blank+flagged FL08) | ef37b79e | `site/data/routes.json`, `site/routes.html` | Official addresses for all pairs; Google Maps walking links per pair for verification; minutes never guessed. |
+| Day plan (primary + conditional fallback, overlap flags) | done | ef37b79e | `site/schedule.html` | Overlap flags from start time + late-reg + structure-derived duration (estimates labelled, FL14). No verified 8 AM start exists (FL12); earliest regular start 10:10 AM. |
+| Trip-cost calculator, per-venue pages, workflow, monitoring, questions/answers, suggestions, flagged page | done | ef37b79e | `site/*.html`, `site/assets/` | 18 pages; search box across all tables; date filter; single-entry toggle; descriptive ratio column (never a forecast). |
+| Scheduled automatic re-check marking changed sources | done | ef37b79e | `scripts/daily_check.py`, `.github/workflows/daily-check.yml` | 12:05 UTC daily; dated snapshots in `snapshots/<date>/` (30-day retention); `site/data/changes.json` feeds "source changed" badges on the Monitoring page. |
+| CI gates | done | ef37b79e | `scripts/verify_site.py`, `.github/workflows/verify.yml` | Official-domain check, fee-split presence for verified rows, ratio consistency, blank-not-fabricated rule, local-link + flag-coverage checks. All green locally. |
+
+### Sources checked this session (2026-11-16, official only)
+
+- Venetian DSE IV web schedule (all 4 chunks) + all 37 linked structure PDFs; schedule PDF parses (`data/venetian_flights.json`, `venetian_restarts.json`) cross-checked against the web schedule.
+- Venetian suite-rates, resort-fee and hotel-terms pages (13.38% Clark County room tax; $55 + tax fee; $20/$25/$40 parking; $100 early-departure; poker rate code EPOKR25 with 6h cash or $300+ tournament buy-in per night).
+- Wynn poker hub, daily tournament poster PDF, daily structures/terms PDF (all 4 dailies' fee splits + entry clauses), WPT schedule PDF, WPT structures/terms PDF (chunks 0–7: general terms, action clock, and event terms for $600 NLH $400K, TORSE, $400 PLO, Mixed Triple Draw, $800 NLH $1M, Limit O8, O8/Stud8, $1,100 PLO, $1,600 NLH $1M, HORSE, WPT Prime $1,100, $600 Turbo, $1,600 PLO Mystery Bounty), Wynn terms 850070 (fee/parking/cancellation).
+- Bellagio poker page + Friday $600 / Saturday NLH / Sunday $400 H.O.R.S.E. PDFs + Bellagio reservation terms (fee/tax/cancellation).
+- ARIA poker page (undated cadence; call to confirm) + Horseshoe casino page (6 daily tournament times confirmed, details unpublished). Golden Nugget / Resorts World / Circa / MGM Grand pages not retrievable (FL11).
+
+### Irregularities found (all on `site/flagged.html` with source links; none block merge)
+
+FL01 Bellagio Saturday buy-in three-way conflict ($1,000 link / $1,100 header / $600 breakdown); FL02 WPT $1,100 PLO fee breakdown sums to $1,105 (confirmed current); FL03 sheet 8 "subsequent buy-ins" clause (#18/#58); FL04 Wynn terms page carries an expired offer window; FL05 Bellagio undated "July 26" resume notice; FL06 ARIA undated cadence; FL07 WPT Super Gold Million / $10,400 World Championship entry terms beyond the 30-page PDF fetch limit; FL08 walking times not verified anywhere official; FL09 dated hotel rates/checkout totals blank; FL10 stale "Day 2 (9/13/26)" date in Bellagio Saturday sheet; FL11 four rooms' pages not retrievable; FL12 no verified 8 AM start; FL13 "single entry" is never printed by any venue; FL14 finish-time estimates are structure-derived.
+
+Note: earlier sessions logged a README.md/COORDINATION.md "contents swapped" irregularity; in the current tree the files match their names (README = project overview, COORDINATION.md = this board). No rename needed.
+
+### Merge plan
+
+1. Commit on `arena/ef37b79e-poker3`; `git pull --rebase origin main` before each push.
+2. Open PR to `main` with summary, sources and flagged irregularities (file-by-file review in the PR body).
+3. Verify the PR check run is green (`verify.yml`: verify_site.py + smoke.py + JSON/JS checks); fix and retry if red.
+4. Merge with `gh pr merge <n> --merge` (explicit number, no auto-merge).
+5. Confirm GitHub Pages deploy (`pages.yml` uploads `site/`); record the PR link and merge result here in a follow-up commit merged as a second PR (same pattern as PRs #10/#12).
