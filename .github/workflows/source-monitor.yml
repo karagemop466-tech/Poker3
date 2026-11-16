@@ -5,6 +5,12 @@ on:
     # Morning in Las Vegas; UTC follows seasonal clock changes.
     - cron: '0 13 * * *'
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - 'site/poker3/data/research.json'
+      - 'scripts/check_sources.py'
+      - '.github/workflows/source-monitor.yml'
 
 permissions:
   contents: write
