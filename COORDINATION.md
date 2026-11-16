@@ -233,7 +233,8 @@ Branch: `arena/e125b4a2-poker3`. This session's files are kept in their own fold
 
 ## Session `arena/779af4ba-poker3` — source-linked companion dashboard
 
-- Added the Poker3 field guide at `site/poker3/`, keeping the existing canonical `site/` dashboard and its research intact. The current Pages workflow uploads the entire `site/` tree, so the companion is published under `/poker3/` without changing the Pages workflow.
+- Added the Poker3 field guide at `site/poker3/`, keeping the existing canonical `site/` dashboard and its research intact. The Pages API currently reports legacy publishing from `main` `/`, so the live path is `/site/poker3/`; the existing Actions artifact would publish the same directory at `/poker3/` if that source is enabled. No Pages setting was changed.
+- PR [#16](https://github.com/karagemop466-tech/Poker3/pull/16) merged as `e9af34c`. The site workflow and legacy Pages deployment both completed successfully (runs `43937059855` and `43937059073`); the live content at `/site/poker3/` was fetched and verified.
 - Includes 25 selected upcoming event starts, 9 room records, 7 hotel records, 7 third-party walk estimates, 60 source records, and 9 review flags. All listed source IDs resolve. No event is verified for one-entry-total/no-re-entry/no-rebuy/no-add-on/no-paid-chip-boost eligibility.
 - The Dec. 10–14, 2026, two-adult hotel search is a research sample, not user-provided travel dates. Hotel all-in totals remain unconfirmed; route times remain third-party estimates.
 - Planner scenarios use a user-entered time-at-event assumption and are explicitly not verified or guaranteed itineraries. Unknown terms are labeled “Flagged for Review.”

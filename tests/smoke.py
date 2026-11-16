@@ -82,6 +82,9 @@ def main() -> None:
     assert "fetch(dataUrl" in js
     assert not re.search(r"https?://(?:localhost|127\.0\.0\.1)", js), "browser code must not call localhost"
     assert (SITE / "assets/app.css").is_file()
+    assert (SITE / "index.html").is_file()
+    assert 'href="site/poker3/"' in (ROOT / "index.html").read_text(encoding="utf-8"), "legacy root homepage must link to the companion"
+    assert 'href="poker3/"' in (ROOT / "site/index.html").read_text(encoding="utf-8"), "Actions-published homepage must link to the companion"
     print(
         f"OK · {len(pages)} pages · {len(data['events'])} selected event starts · "
         f"{len(data['rooms'])} rooms · {len(data['hotels'])} hotels · "
