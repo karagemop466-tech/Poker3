@@ -1771,8 +1771,44 @@ def build_monitor(dataset):
             monitor = json.loads(monitor_path.read_text(encoding="utf-8"))
         except json.JSONDecodeError:
             monitor = {}
+    scrape_path = SITE / "data" / "schedule-scrape.json"
+    scrape = {}
+    if scrape_path.exists():
+        try:
+            scrape = json.loads(scrape_path.read_text(encoding="utf-8"))
+        except json.JSONDecodeError:
+            scrape = {}
     checks = monitor.get("checks", {})
     summary = ""
+    differences = scrape.get("differences", [])
+    if scrape:
+        if differences:
+            scrape_block = (
+                f"<div class='notice'><strong>{len(differences)} difference(s) found.</strong> "
+                "The official page no longer matches the curated rows. Check each one by hand "
+                "before changing any published value.</div>"
+                + '<div class="table-wrap"><table class="data-table"><thead><tr>'
+                "<th>Kind</th><th>Date</th><th>Event</th><th>Detail</th></tr></thead><tbody>"
+                + "".join(
+                    f"<tr><td>{esc(d.get('kind',''))}</td>"
+                    f"<td>{esc(d.get('date',''))}</td>"
+                    f"<td>{esc(d.get('event',''))} {esc(d.get('flight',''))}</td>"
+                    f"<td>{esc(d.get('detail') or (str(d.get('was')) + ' now ' + str(d.get('now'))))}</td></tr>"
+                    for d in differences
+                )
+                + "</tbody></table></div>"
+            )
+        else:
+            scrape_block = (
+                f"<p class='muted'>Last scrape {esc(scrape.get('checkedAt',''))} &middot; "
+                f"{esc(scrape.get('scrapedRowCount',0))} rows on the official page &middot; "
+                "no differences against the curated data.</p>"
+            )
+    else:
+        scrape_block = (
+            "<p class='notice'>No schedule scrape has been recorded yet. The first scheduled "
+            "run writes one.</p>"
+        )
     if monitor:
         summary = (
             f"<p class='muted'>Last run {esc(monitor.get('checkedAt',''))} &middot; "
@@ -1792,6 +1828,14 @@ false signals. Open the page and check the value by hand before changing anythin
 <div data-monitor-log>
 {monitor_log_table(checks)}
 </div>
+<section class="panel">
+  <h2>Live schedule scrape</h2>
+  <p>The official Venetian event page is scraped on the same schedule and compared with the
+  curated rows, so a changed start time, a changed structure sheet or an added event shows
+  up here instead of silently going stale.</p>
+  {scrape_block}
+</section>
+
 <section class="panel">
   <h2>How the monitor works</h2>
   <ul class="bullets">

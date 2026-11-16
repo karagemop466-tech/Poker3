@@ -36,6 +36,14 @@ false signals. Open the page and check the value by hand before changing anythin
 <p class="muted">No monitor log yet. The first scheduled run writes one.</p>
 </div>
 <section class="panel">
+  <h2>Live schedule scrape</h2>
+  <p>The official Venetian event page is scraped on the same schedule and compared with the
+  curated rows, so a changed start time, a changed structure sheet or an added event shows
+  up here instead of silently going stale.</p>
+  <p class='notice'>No schedule scrape has been recorded yet. The first scheduled run writes one.</p>
+</section>
+
+<section class="panel">
   <h2>How the monitor works</h2>
   <ul class="bullets">
     <li>Only URLs tagged as official in the source register are checked. Third-party route
