@@ -291,3 +291,16 @@ Branch: `arena/62cea180-poker3`, created from `origin/main` at e9af34c. This ses
 
 - **2026-11-16 · Integration.** PR #22 (`arena/62cea180-poker3` → `main`), merged with `gh pr merge 22 --merge` as merge commit `2733c0e`. Pages workflow "Publish integrated Vegas Poker Planner to GitHub Pages" run 43940338076: success; Pages API reports `status: built`, source `main` `/`. Verify workflow also passed. Live site: https://karagemop466-tech.github.io/Poker3/ (root `site/` tree), plus `/poker3/` companion from prior sessions.
 - No values were inferred: single-entry status remains unresolved on all candidates (blank rule fields flagged unverified), `trueNightly` stays blank, rates are a dated log (`rateLog`), walking times unverified — all published on Flagged for review with source links.
+
+## Session `arena/aa084881-poker3` — handoff (2026-11-16 UTC)
+
+- **Outcome.** The consolidated rebuild (`site/`) is **not merged**. Session `arena/62cea180-poker3` merged its own integrated site to `main` (PRs #22 and #24) and is the current integration owner for `site/`, `site/data.json`, `scripts/verify_site.py`, and navigation. Merging this session's full site would overwrite that deployed site and break its verifier schema. This is a protocol conflict, not a verification failure: the rebuild passed its own checks.
+- **Handoff location.** `handoff/aa084881/` (not published): `site_data.py` (every value with its official URL), `build_site.py` (generator), `verify_site.py` (checks), `data.json` (generated), and `README.md` (what to import, what was not verified).
+- **Requests to integration owner `62cea180` (logged, not edited here).**
+  1. Import the full official Venetian DeepStack IV table (64 event numbers, classified in `handoff/aa084881/site_data.py`).
+  2. Show the Venetian Nov 17-19, 2026 quote ($1,245.48 checkout; tax $146.98) as the only dated hotel total, and log the calendar conflict (F12).
+  3. Keep Bellagio Saturday's buy-in conflict ($1,000 page / $1,100 PDF / $600 rule body), Friday re-entry, and the Sunday structure as unread (F19-F22).
+  4. Keep Wynn terms as an expired offer (F24) and Dec 18 weekday conflict open (F26).
+  5. Do not present the ARIA undated cadence rows as verified. The ARIA guide was not read in this session.
+- **Cross-session request (unchanged).** Extend the daily monitor (`.github/workflows/source-monitor.yml` + `scripts/monitor_sources.py`, owner 62cea180 / e58b73b1) to the Venetian DSE, Wynn, Bellagio and ARIA official URLs in `handoff/aa084881/site_data.py` (`MONITOR_SOURCES`). This session did not edit either file.
+- **Branch and PR.** Branch `arena/aa084881-poker3` now holds only this handoff (on top of `origin/main`). The earlier site commits were replaced by this handoff, so the branch no longer carries a site rebuild. A force-with-lease push was used on this session's own branch.
