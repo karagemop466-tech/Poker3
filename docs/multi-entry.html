@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Excluded events · Poker Strip Dashboard</title>
+<meta name="description" content="Upcoming single-entry poker tournaments near the Las Vegas Strip, hotel cost checks and flagged items. Sources linked on every row.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html">Poker Strip Dashboard</a>
+  <nav id="nav"></nav>
+</div></header>
+<main>
+
+<h1>Excluded: multi-entry, team, and satellite events</h1>
+<p class="lede">These formats are kept out of the single-entry list. They include re-entry, rebuys, optional gratuities that add chips, team events, and satellites (which award seats, not prize money).</p>
+<div class="warn">Bellagio events allow re-entry and an optional gratuity for extra chips. Their buy-in on the Saturday event is conflicting across sources and is left blank.</div>
+<div id="tbl"></div>
+
+</main>
+<footer>Data as of 2026-11-16 (Las Vegas time). Every row links to an official source. Blank or “UNVERIFIED” = not confirmed from an official source; not filled in. Calculations are labeled. <a href="flagged.html">Flagged for Review</a></footer>
+
+<script src="assets/app.js"></script>
+<script>
+PK.renderNav("multi-entry.html");
+
+var PAGE_READY = PK.loadSources();
+function L(p){ return PK.load(p); }
+
+Promise.all([PAGE_READY, L("data/multi_entry.json")]).then(function(d){
+  PK.table(document.getElementById("tbl"),[
+    {label:"ID",val:function(x){return x.id;}},
+    {label:"Category",val:function(x){return x.category;},html:function(x){return '<span class="badge">'+PK.esc(x.category)+'</span>';}},
+    {label:"Venue",val:function(x){return x.venue;}},
+    {label:"Event",val:function(x){return x.event;},html:function(x){return PK.esc(x.event)+'<div class="small">'+PK.esc(x.reason||"")+'</div>';}},
+    {label:"Buy-in",num:true,val:function(x){return x.buy_in===null?"":x.buy_in;},html:function(x){return x.buy_in===null?PK.unv("buy-in"):PK.money(x.buy_in);}},
+    {label:"Guarantee",num:true,val:function(x){return x.gtd===null?"":x.gtd;},html:function(x){return x.gtd===null?PK.unv("guarantee"):PK.money(x.gtd);}},
+    {label:"Chips",val:function(x){return x.chips||"";},html:function(x){return x.chips?PK.esc(x.chips):PK.unv("chips");}},
+    {label:"Dates",val:function(x){return x.dates||"";},html:function(x){return PK.esc(x.dates||"")||PK.unv("dates");}},
+    {label:"Source",val:function(x){return x.source;},html:function(x){return PK.srcLinks([x.source]);}},
+    {label:"Flags",val:function(x){return (x.flags||[]).join(" ");},html:function(x){return PK.flagTags(x.flags);}}
+  ],d[1],{
+    searchPlaceholder:"Search excluded events…",
+    filters:[{label:"Category",get:function(x){return x.category;}}]
+  });
+});
+
+</script>
+</body>
+</html>

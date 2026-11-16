@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Flagged for Review · Poker Strip Dashboard</title>
+<meta name="description" content="Upcoming single-entry poker tournaments near the Las Vegas Strip, hotel cost checks and flagged items. Sources linked on every row.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html">Poker Strip Dashboard</a>
+  <nav id="nav"></nav>
+</div></header>
+<main>
+
+<h1>Flagged for Review</h1>
+<p class="lede">Irregularities, conflicts, unverified items and findings. These do not block publication. Each flag links to its official sources.</p>
+<div id="tbl"></div>
+
+</main>
+<footer>Data as of 2026-11-16 (Las Vegas time). Every row links to an official source. Blank or “UNVERIFIED” = not confirmed from an official source; not filled in. Calculations are labeled. <a href="flagged.html">Flagged for Review</a></footer>
+
+<script src="assets/app.js"></script>
+<script>
+PK.renderNav("flagged.html");
+
+var PAGE_READY = PK.loadSources();
+function L(p){ return PK.load(p); }
+
+Promise.all([PAGE_READY, L("data/flags.json")]).then(function(d){
+  var rows=d[1];
+  PK.table(document.getElementById("tbl"),[
+    {label:"ID",val:function(x){return x.id;},html:function(x){return '<span id="'+x.id+'">'+x.id+'</span>';}},
+    {label:"Severity",val:function(x){return x.severity;},html:function(x){var c=x.severity==="High"?"bad":(x.severity==="Medium"?"warn":"gray");return '<span class="badge '+c+'">'+x.severity+'</span>';}},
+    {label:"Type",val:function(x){return x.type;}},
+    {label:"Issue",val:function(x){return x.title;},html:function(x){return "<b>"+PK.esc(x.title)+"</b><div class=\"small\">"+PK.esc(x.detail)+"</div>";}},
+    {label:"Sources",val:function(x){return (x.sources||[]).join(" ");},html:function(x){return x.sources&&x.sources.length?PK.srcLinks(x.sources):PK.unv("no source");}}
+  ],rows,{
+    searchPlaceholder:"Search flags…",
+    filters:[{label:"Severity",get:function(x){return x.severity;}},{label:"Type",get:function(x){return x.type;}}]
+  });
+});
+
+</script>
+</body>
+</html>

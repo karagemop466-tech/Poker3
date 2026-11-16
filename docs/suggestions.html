@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Suggestions · Poker Strip Dashboard</title>
+<meta name="description" content="Upcoming single-entry poker tournaments near the Las Vegas Strip, hotel cost checks and flagged items. Sources linked on every row.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html">Poker Strip Dashboard</a>
+  <nav id="nav"></nav>
+</div></header>
+<main>
+
+<h1>Site and data suggestions</h1>
+<p class="lede">Each suggestion lists options. Nothing here is implemented until you choose. Shown for review only.</p>
+<div id="list"></div>
+
+</main>
+<footer>Data as of 2026-11-16 (Las Vegas time). Every row links to an official source. Blank or “UNVERIFIED” = not confirmed from an official source; not filled in. Calculations are labeled. <a href="flagged.html">Flagged for Review</a></footer>
+
+<script src="assets/app.js"></script>
+<script>
+PK.renderNav("suggestions.html");
+
+var PAGE_READY = PK.loadSources();
+function L(p){ return PK.load(p); }
+
+L("data/suggestions.json").then(function(s){
+  document.getElementById("list").innerHTML=s.map(function(x){
+    return '<div class="panel"><div class="small">'+PK.esc(x.area)+' · '+PK.esc(x.id)+'</div><h3>'+PK.esc(x.title)+'</h3><p><b>Why:</b> '+PK.esc(x.why)+'</p><b>Options</b><ul class="opts">'+x.options.map(function(o){return '<li>'+PK.esc(o)+'</li>';}).join("")+'</ul><p><b>Suggested:</b> '+PK.esc(x.recommend)+'</p><span class="badge gray">'+PK.esc(x.status)+'</span></div>';
+  }).join("");
+});
+
+</script>
+</body>
+</html>
