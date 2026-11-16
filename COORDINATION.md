@@ -16,14 +16,14 @@ Date: 2026-11-16
 | # | Task | Status | Owner | Files touched | Sources / notes |
 |---|------|--------|-------|---------------|-----------------|
 | 1 | Create COORDINATION.md task board | done | arena-agent-01 | COORDINATION.md | — |
-| 2 | Research upcoming single-entry poker tournaments near Las Vegas Strip | in progress | arena-agent-01 | data/tournaments.md (planned) | Official casino/poker-room sites |
-| 3 | Research rebuy/add-on tournaments (separate section) | unclaimed | arena-agent-01 | data/rebuy-tournaments.md (planned) | Official casino/poker-room sites |
-| 4 | Research hotels within 30-min walking distance of tournaments | unclaimed | arena-agent-01 | data/hotels.md (planned) | Official hotel sites |
-| 5 | Build all-day tournament schedule (8 AM start) | unclaimed | arena-agent-01 | pages/schedule.md (planned) | Derived from tasks 2-3 |
-| 6 | Write executive summary | unclaimed | arena-agent-01 | pages/executive-summary.md (planned) | Derived from tasks 2-5 |
-| 7 | Compile open questions / missing info / suggestions sections | unclaimed | arena-agent-01 | pages/questions.md, pages/suggestions.md (planned) | — |
-| 8 | Create GitHub Pages site: landing page + category subpages, tables, sources | unclaimed | arena-agent-01 | index.html, pages/*.html, assets/, _config.yml (planned) | — |
-| 9 | Verify every table row line by line; flag unverified items | unclaimed | arena-agent-01 | pages/flagged-review.md (planned) | Official source links |
+| 2 | Research upcoming single-entry poker tournaments near Las Vegas Strip | done | arena-agent-01 | pages/tournaments.html | venetianlasvegas.com, worldpokertour.com, pokernews.com, vegaspokercalendar.com, pokeratlas.com |
+| 3 | Research rebuy/add-on tournaments (separate section) | done | arena-agent-01 | pages/rebuy-addon.html | pokerdiscover.com, worldpokertour.com, venetianlasvegas.com |
+| 4 | Research hotels within 30-min walking distance of tournaments | done | arena-agent-01 | pages/hotels.html | venetianlasvegas.com, wynnlasvegas.com, mgmresorts official pages, lasvegasjaunt.com resort-fee guide (Nov 2 2026) |
+| 5 | Build all-day tournament schedule (8 AM start) | done | arena-agent-01 | pages/schedule.html | Derived from tasks 2-3 |
+| 6 | Write executive summary | done | arena-agent-01 | pages/executive-summary.html | Derived from tasks 2-5 |
+| 7 | Compile open questions / missing info / suggestions sections | done | arena-agent-01 | pages/questions.html, pages/suggestions.html | — |
+| 8 | Create GitHub Pages site: landing page + category subpages, tables, sources | in progress | arena-agent-01 | index.html, pages/*.html, assets/css/style.css | — |
+| 9 | Verify every table row line by line; flag unverified items | unclaimed | arena-agent-01 | pages/flagged-review.html | Official source links |
 | 10 | Integration: merge branches, rebuild, check broken links, publish GitHub Pages | unclaimed | arena-agent-01 | All | — |
 | 11 | Create PR integration -> main, merge, record PR link + deploy result | unclaimed | arena-agent-01 | COORDINATION.md | — |
 

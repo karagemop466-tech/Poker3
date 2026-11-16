@@ -1,0 +1,153 @@
+/* Poker3 — Las Vegas Strip Poker Tournament Planner
+   Clean, simple dashboard-style UI. All colors are neutral slate/green felt accents. */
+:root {
+  --felt: #0f6b3c;
+  --felt-dark: #0a4d2b;
+  --slate: #1f2937;
+  --slate-light: #f3f4f6;
+  --border: #d1d5db;
+  --text: #111827;
+  --muted: #6b7280;
+  --accent: #c9a227;
+  --accent-dark: #a8861f;
+  --danger: #b91c1c;
+  --warning: #b45309;
+  --white: #ffffff;
+  --max-width: 1200px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  color: var(--text);
+  background: var(--slate-light);
+  line-height: 1.5;
+}
+
+a { color: var(--felt-dark); text-decoration: underline; }
+a:visited { color: var(--felt-dark); }
+a.source-link { color: var(--felt-dark); font-size: 0.85rem; text-decoration: none; border-bottom: 1px dotted var(--felt-dark); }
+a.source-link:hover { text-decoration: underline; }
+
+/* ---------- Header ---------- */
+.site-header {
+  background: var(--felt);
+  color: var(--white);
+  padding: 1.25rem 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+.site-header .container { max-width: var(--max-width); margin: 0 auto; display: flex; flex-direction: column; gap: 0.5rem; }
+.site-header .brand { font-size: 1.5rem; font-weight: 700; letter-spacing: 0.5px; display: flex; align-items: center; gap: 0.5rem; }
+.site-header .brand .chip { font-size: 0.75rem; padding: 0.15rem 0.45rem; background: var(--accent); color: #3e2703; border-radius: 4px; font-weight: 700; }
+.site-header nav { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.site-header nav a {
+  color: #e5e7eb; text-decoration: none; padding: 0.4rem 0.8rem; border-radius: 4px;
+  font-size: 0.9rem; border: 1px solid transparent;
+}
+.site-header nav a:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.35); }
+.site-header nav a.active { background: var(--accent-dark); color: #fff3d6; border-color: var(--accent); }
+.site-header .meta { font-size: 0.8rem; color: #d1d5db; margin-top: 0.25rem; }
+
+/* ---------- Container ---------- */
+.container { max-width: var(--max-width); margin: 0 auto; padding: 1.5rem 1rem; }
+
+.page-title { font-size: 1.75rem; margin-bottom: 0.5rem; }
+.page-subtitle { color: var(--muted); margin-bottom: 1.5rem; font-size: 1rem; }
+
+/* ---------- Cards / sections ---------- */
+.card {
+  background: var(--white); border: 1px solid var(--border); border-radius: 8px;
+  padding: 1.25rem; margin-bottom: 1.25rem; box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.card h2 { font-size: 1.1rem; margin-bottom: 0.75rem; color: var(--slate); }
+.card p { margin-bottom: 0.75rem; }
+.card ul { margin: 0 0 0.75rem 1.25rem; color: var(--muted); }
+.card ul li { margin-bottom: 0.3rem; }
+
+.section-label { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); margin: 1rem 0 0.5rem; }
+
+/* ---------- Tables ---------- */
+table.data {
+  width: 100%; border-collapse: collapse; margin: 0 0 1rem; font-size: 0.88rem;
+  background: var(--white);
+}
+table.data th {
+  background: var(--slate); color: var(--white); text-align: left; font-size: 0.8rem;
+  text-transform: uppercase; letter-spacing: 0.04em; padding: 0.6rem 0.5rem; border: 1px solid var(--border);
+  position: sticky; top: 0; z-index: 5;
+}
+table.data td { padding: 0.55rem 0.5rem; border: 1px solid var(--border); vertical-align: top; }
+table.data tr:nth-child(even) td { background: #fafafa; }
+table.data tr:hover td { background: #f0fdf4; }
+table.data td .buy-in { font-weight: 700; }
+table.data td .gtd { color: var(--felt-dark); font-weight: 700; }
+
+/* Status badges */
+.badge { display: inline-block; font-size: 0.7rem; font-weight: 700; padding: 0.12rem 0.45rem; border-radius: 3px; text-transform: uppercase; letter-spacing: 0.04em; }
+.badge-verified { background: #dcfce7; color: #166534; }
+.badge-unverified { background: #fef3c7; color: #92400e; }
+.badge-conflict { background: #fecaca; color: #991b1b; }
+
+.tag { display: inline-block; font-size: 0.7rem; padding: 0.1rem 0.4rem; border-radius: 3px; color: #fff; }
+.tag-vegas { background: var(--felt-dark); }
+.tag-wynn { background: #3b3b3b; }
+.tag-aria { background: #2563eb; }
+.tag-bellagio { background: #b91c1c; }
+.tag-horseshoe { background: #7c2d12; }
+.tag-mgm { background: #43341f; }
+
+.flag { color: var(--warning); font-weight: 700; font-size: 0.8rem; }
+
+/* ---------- Grid ---------- */
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1rem; }
+.grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+
+.stat-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; padding: 1rem; text-align: center; }
+.stat-card .value { font-size: 1.6rem; font-weight: 800; color: var(--felt-dark); }
+.stat-card .label { font-size: 0.8rem; color: var(--muted); margin-top: 0.25rem; }
+
+/* ---------- Footer ---------- */
+.site-footer { border-top: 1px solid var(--border); margin-top: 2rem; padding: 1.5rem 1rem; font-size: 0.8rem; color: var(--muted); background: var(--white); }
+.site-footer .container { max-width: var(--max-width); margin: 0 auto; }
+.site-footer p { margin-bottom: 0.3rem; }
+
+/* ---------- Homepage dashboard ---------- */
+.hero { background: var(--slate); color: var(--white); border-radius: 10px; padding: 2.5rem 2rem; margin-bottom: 1.5rem; }
+.hero h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+.hero p { color: #d1d5db; font-size: 1.05rem; margin-bottom: 1.25rem; max-width: 700px; }
+.hero .btn {
+  display: inline-block; background: var(--accent); color: #3e2703; padding: 0.6rem 1.2rem; border-radius: 5px;
+  font-weight: 700; text-decoration: none; margin-right: 0.5rem;
+}
+.hero .btn:hover { background: var(--accent-dark); }
+
+.quick-links { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 0.8rem; margin-bottom: 1.5rem; }
+.quick-links a {
+  display: block; background: var(--white); border: 1px solid var(--border); border-radius: 8px;
+  padding: 0.9rem 1rem; text-decoration: none; color: var(--text); font-weight: 600;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+.quick-links a:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-color: var(--felt-dark); }
+
+/* Callout boxes */
+.callout { border-radius: 6px; padding: 0.9rem 1rem; margin: 1rem 0; font-size: 0.9rem; }
+.callout-info { background: #eef2ff; border-left: 4px solid var(--slate); }
+.callout-warn { background: #fef3c7; border-left: 4px solid var(--warning); }
+.callout-danger { background: #fef2f2; border-left: 4px solid var(--danger); }
+
+.small { font-size: 0.8rem; color: var(--muted); }
+.sources { border-top: 1px solid var(--border); margin-top: 1rem; padding-top: 0.75rem; font-size: 0.8rem; }
+.sources p { margin-bottom: 0.35rem; }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .container { padding: 1rem 0.75rem; }
+  table.data { font-size: 0.8rem; }
+  table.data td, table.data th { padding: 0.4rem 0.3rem; }
+}

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Site Improvement Suggestions — Poker3</title>
+<link rel="stylesheet" href="../assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <div class="brand">
+      <span class="chip">POKER3</span>
+      Poker3 — Las Vegas Strip Poker Planner
+    </div>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="tournaments.html">Single-Entry Tournaments</a>
+      <a href="rebuy-addon.html">Rebuy / Add-On (Separate)</a>
+      <a href="hotels.html">Hotels &amp; True Cost</a>
+      <a href="schedule.html">All-Day Schedule</a>
+      <a href="executive-summary.html">Executive Summary</a>
+      <a href="questions.html">Open Questions</a>
+      <a href="suggestions.html" class="active">Site Suggestions</a>
+      <a href="flagged-review.html">Flagged for Review</a>
+    </nav>
+    <div class="meta">Suggestions for improving the site and decision-making — review before implementing any changes</div>
+  </div>
+</header>
+
+<div class="container">
+  <h1 class="page-title">Suggestions to Improve Decision-Making</h1>
+  <p class="page-subtitle">This section is for reviewing suggested changes. No suggestion here is implemented until someone reviews it, verifies the underlying data, and approves it.</p>
+
+  <div class="callout callout-info">
+    <strong>Process:</strong> read each suggestion, check the linked source data, decide yes/no, then implement or close. Do not implement anything directly from this list without review.
+  </div>
+
+  <h2>High priority (decision-making)</h2>
+  <table class="data">
+    <thead>
+      <tr><th>#</th><th>Suggestion</th><th>Why it helps</th><th>Effort</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>S1</td><td>Add a live data feed from PokerAtlas / Bravo Poker / casino tournament pages so tables refresh daily instead of being static HTML compiled Nov 16, 2026.</td><td>Schedules change daily; static data goes stale immediately.</td><td>High</td><td>Proposed</td></tr>
+      <tr><td>S2</td><td>Add a per-tournament "single-entry confirmed?" checkbox with date confirmed and who confirmed it.</td><td>The core filter of this site; currently unverified on every row.</td><td>Low</td><td>Proposed</td></tr>
+      <tr><td>S3</td><td>Add a hotel rate scraper / direct booking links that pull live base rates for Nov–Dec 2026 and auto-compute true cost/night (base + resort fee + 13.38% tax).</td><td>True cost is blank today because future rates aren't published; automation solves it once rates exist.</td><td>High</td><td>Proposed</td></tr>
+      <tr><td>S4</td><td>Add a date picker to filter tournaments by the dates of your trip.</td><td>Tables currently cover Nov 16 – Dec 23, 2026 only; a visitor's trip may differ.</td><td>Medium</td><td>Proposed</td></tr>
+      <tr><td>S5</td><td>Add walking-distance verification (Google Maps/Walking API) per hotel–venue pair, flagged ≤ 30 min.</td><td>Walking times here are rough estimates.</td><td>Medium</td><td>Proposed</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Medium priority (usability)</h2>
+  <table class="data">
+    <thead>
+      <tr><th>#</th><th>Suggestion</th><th>Why it helps</th><th>Effort</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>S6</td><td>Add filters by buy-in range, guarantee size, game type, and start time.</td><td>Find "best tournaments by cost to enter and prize pool" faster.</td><td>Low</td><td>Proposed</td></tr>
+      <tr><td>S7</td><td>Add iCal/Google Calendar export for each tournament and for a custom-built schedule.</td><td>Plan your vacation days concretely.</td><td>Low</td><td>Proposed</td></tr>
+      <tr><td>S8</td><td>Add a budget calculator: hotel nights × true cost/night + planned buy-ins + estimated food/parking.</td><td>Total trip cost before you book.</td><td>Low</td><td>Proposed</td></tr>
+      <tr><td>S9</td><td>Add email/push alerts when a single-entry tournament is confirmed or a room rate is published for your dates.</td><td>Act before events fill or rates rise.</td><td>Medium</td><td>Proposed</td></tr>
+      <tr><td>S10</td><td>Add printable one-page trip sheet (schedule + hotel + costs).</td><td>Use on the ground in Vegas.</td><td>Low</td><td>Proposed</td></tr>
+    </tbody>
+  </table>
+
+  <h2>Low priority (polish)</h2>
+  <table class="data">
+    <thead>
+      <tr><th>#</th><th>Suggestion</th><th>Why it helps</th><th>Effort</th><th>Status</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>S11</td><td>Add a map of the Strip showing tournament venues and hotels with walking routes.</td><td>Visualize the walkability constraint.</td><td>Medium</td><td>Proposed</td></tr>
+      <tr><td>S12</td><td>Add user accounts to save a personal shortlist of tournaments and hotels.</td><td>Compare options across sessions.</td><td>High</td><td>Proposed</td></tr>
+      <tr><td>S13</td><td>Add a "what changed" changelog so returning visitors see updated rows.</td><td>Trust in the data.</td><td>Low</td><td>Proposed</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout callout-warn">
+    <strong>Before implementing:</strong> cross-check each suggestion against the <a href="questions.html">open questions</a> and <a href="flagged-review.html">flagged items</a>. For example, don't build live feeds (S1) until you've confirmed which data sources allow automated access, and don't compute true cost (S3) until base rates exist (question 2).
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <p><strong>Poker3</strong> — Las Vegas Strip poker tournament planner. Data compiled November 16, 2026.</p>
+    <p>Blank + flagged values are not confirmed from an official source — nothing is inferred. See <a href="flagged-review.html">Flagged for Review</a>.</p>
+  </div>
+</footer>
+
+</body>
+</html>
