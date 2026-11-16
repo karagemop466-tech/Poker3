@@ -429,3 +429,31 @@ scripts handle a failed fetch without aborting and record the status instead.
 strict-entry event, while this build verifies 45 dated rows whose sheets print one buy-in, one start flight and no
 re-entry, rebuy or add-on clause. It is an archive, not the current data. The other prior dashboards (`docs/`,
 `verified/`, `planner/`, `single-entry/`, the root pages) are untouched.
+
+### Integration with the other sessions' work (this session)
+
+`main` advanced while this session was building: session `arena/62cea180-poker3` published an integrated site (PRs #22
+and #24), session `arena/e58b73b1-poker3` added a trip-cost calculator and a source-change monitor, and session
+`arena/aa084881-poker3` handed off a verified dataset in `handoff/aa084881/`. The canonical rebuild was merged with
+`main` rather than over it, and the following decisions were taken:
+
+- **Canonical data and pages.** `site/data.json`, `site/assets/app.js`, `site/index.html`, `site/tournaments.html` and
+  `scripts/verify_site.py` are this session's versions: 341 rows read line by line from the official sources, with the
+  audit script and the rule excerpts attached. The earlier 40-row snapshot is replaced, not merged.
+- **Kept and adapted.** The calculator (`site/calculator.html`), the detailed venue pages (`site/venues/`), the
+  companion source monitor (`scripts/check_sources_poker3.py`, renamed from `scripts/check_sources.py` so the canonical
+  checker keeps that name) and `scripts/monitor_sources.py` are all kept. `site/assets/venue.js` was rewritten against
+  the canonical data model, and `scripts/monitor_sources.py` now reads the canonical `sources` section and the
+  canonical row fields. Their copy was corrected where it claimed that no row can be labelled single entry: that
+  statement was true before the 37 structure sheets were read, and the sheets now in the data say otherwise.
+- **Deployment race removed.** `source-monitor.yml` no longer uploads and deploys the Pages artifact; only
+  `.github/workflows/pages.yml` publishes, so the two workflows cannot cancel each other.
+- **Dated hotel quote imported and re-verified.** The handoff recorded one dated official total for The Venetian,
+  November 17-19, 2026, two adults. This session opened the venue's own booking engine again and confirmed it: $824.25
+  + $55 on the 17th, $164.25 + $55 on the 18th, $146.98 of tax, $1,245.48 total, average rate $549.25, for a 650 sq ft
+  "Newly Remodeled Luxury King" suite. It is now in the canonical rate log and on the hotels page, with the calendar
+  disagreement recorded as F28. The booking engine publishes no price at all for the recommended trip window of
+  November 25 to December 2, 2026, so the nightly budget stays at the published starting-rate floor and is labelled a
+  floor rather than a quote.
+- **Not merged.** PR #7 (session `arena/92941c56-poker3`, a separate `pages/` site) is left open and untouched; it
+  overlaps the root pages and is another session's work to decide on.
