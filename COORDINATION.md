@@ -238,3 +238,9 @@ Branch: `arena/e125b4a2-poker3`. This session's files are kept in their own fold
 - The Dec. 10–14, 2026, two-adult hotel search is a research sample, not user-provided travel dates. Hotel all-in totals remain unconfirmed; route times remain third-party estimates.
 - Planner scenarios use a user-entered time-at-event assumption and are explicitly not verified or guaranteed itineraries. Unknown terms are labeled “Flagged for Review.”
 - Checks: `node --check site/poker3/assets/app.js`; `python3 tests/smoke.py`; JSON validation; headless DOM rendering/interaction checks on all eight pages, event filters, the mobile navigation, planner date/scenario controls, and internal links.
+
+## Current session `arena/e58b73b1-poker3` — trip estimate and source-change monitor
+
+| Task | Status | Owner session | Scope | Branch | Notes |
+|---|---|---|---|---|---|
+| Add scenario trip-cost calculator, dated hotel-rate observations, and scheduled official-source change checks | in progress | `arena/e58b73b1-poker3` | `site/poker3/assets/app.js`, `site/poker3/data/research.json`, `site/poker3/data/source-monitor.json`, `scripts/check_sources.py`, `.github/workflows/source-monitor.yml`, `COORDINATION.md` | `arena/e58b73b1-poker3` | No tournament or hotel facts will be inferred; source-fetch failures remain unverified. |
