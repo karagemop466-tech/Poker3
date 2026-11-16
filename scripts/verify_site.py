@@ -11,6 +11,7 @@ OFFICIAL_DOMAINS = {
     "www.venetianlasvegas.com",
     "cdn.wynnresorts.com",
     "www.wynnlasvegas.com",
+    "aria.mgmresorts.com",
 }
 
 with (SITE / "data.json").open(encoding="utf-8") as f:
@@ -20,9 +21,10 @@ assert data["tournaments"], "Expected official tournament records"
 assert data["hotels"], "Expected lodging records"
 
 for index, row in enumerate(data["tournaments"], start=1):
-    for field in ("date", "time", "venue", "event", "buyIn", "entryStatus", "schedule"):
+    for field in ("date", "time", "venue", "event", "entryStatus", "schedule"):
         assert row.get(field), f"Tournament row {index}: missing {field}"
-    for field in ("schedule", "structure"):
+    assert "buyIn" in row and "guarantee" in row, f"Tournament row {index}: unknown values must be explicit blanks"
+    for field in ("schedule", "structure", "confirmSource"):
         if row.get(field):
             url = urllib.parse.urlparse(row[field])
             assert url.scheme == "https" and url.hostname in OFFICIAL_DOMAINS, (

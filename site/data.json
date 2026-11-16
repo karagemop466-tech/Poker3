@@ -1,7 +1,37 @@
 {
   "asOf": "2026-11-16",
-  "scope": "Officially published tournament schedule details verified for The Venetian DeepStack Extravaganza IV through November 30, 2026, plus Wynn's official WPT World Championship schedule beginning November 27. This is a source-verified sample, not a complete inventory of every Las Vegas poker room.",
+  "scope": "Official-source schedule snapshot checked 2026-11-16: Venetian DeepStack schedule through Nov. 30, selected Wynn WPT opening days and recurring daily poster, plus ARIA official but undated tournament-time cadence (current date-specific operation requires confirmation). This is not a complete inventory of every Las Vegas poker room.",
   "tournaments": [
+    {
+      "date": "Undated cadence; confirm with poker room",
+      "time": "1:00 PM",
+      "venue": "ARIA Resort & Casino",
+      "event": "ARIA daily / nightly poker tournament cadence (official guide)",
+      "buyIn": "",
+      "guarantee": "",
+      "format": "Official poker guide states daily 1 PM / nightly 7 PM; guide is undated, current page says call or check @ARIAPoker to confirm operation",
+      "entryStatus": "Not confirmed as a current date-specific event or single-entry; buy-in, guarantee and spend rules not published in reviewed sources",
+      "bucket": "review",
+      "schedule": "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
+      "scheduleLabel": "Official poker guide (undated)",
+      "confirmSource": "https://aria.mgmresorts.com/en/casino/poker.html",
+      "structure": ""
+    },
+    {
+      "date": "Undated cadence; confirm with poker room",
+      "time": "7:00 PM",
+      "venue": "ARIA Resort & Casino",
+      "event": "ARIA daily / nightly poker tournament cadence (official guide)",
+      "buyIn": "",
+      "guarantee": "",
+      "format": "Official poker guide states daily 1 PM / nightly 7 PM; guide is undated, current page says call or check @ARIAPoker to confirm operation",
+      "entryStatus": "Not confirmed as a current date-specific event or single-entry; buy-in, guarantee and spend rules not published in reviewed sources",
+      "bucket": "review",
+      "schedule": "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
+      "scheduleLabel": "Official poker guide (undated)",
+      "confirmSource": "https://aria.mgmresorts.com/en/casino/poker.html",
+      "structure": ""
+    },
     {
       "date": "Monday–Thursday (non-event timeframe)",
       "time": "12:00 PM",
@@ -536,6 +566,16 @@
     {
       "name": "Wynn terms: resort fee",
       "url": "https://www.wynnlasvegas.com/terms-and-conditions/850070",
+      "checked": "2026-11-16"
+    },
+    {
+      "name": "ARIA official poker information and current-schedule warning",
+      "url": "https://aria.mgmresorts.com/en/casino/poker.html",
+      "checked": "2026-11-16"
+    },
+    {
+      "name": "ARIA official poker guide; undated daily/nightly tournament times",
+      "url": "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
       "checked": "2026-11-16"
     }
   ]
