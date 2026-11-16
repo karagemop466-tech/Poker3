@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Estimated cost of a poker trip calculator">
+<title>Trip cost calculator · Vegas Poker Planner</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<header class="topbar"><a class="brand" href="index.html"><span class="brand-mark">&#9826;</span><span>Vegas Poker Planner</span></a><span class="top-tag">Trip cost &middot; estimator only, no stored data</span></header>
+<nav class="mobile-nav" data-mobile-nav></nav>
+<div class="layout">
+<aside class="sidebar"><div class="side-label">Plan your trip</div><nav class="nav" data-nav></nav><div class="side-note"><strong>Estimated cost of a trip = entries &times; buy-ins + nights &times; true hotel cost.</strong>You supply the numbers; nothing is stored or inferred from this page. Hotel inputs below are defaults from the reviewed official terms, not a quote for your stay.</div></aside>
+<main class="main">
+<section class="hero">
+<div class="eyebrow">Tool &middot; estimated cost of a trip</div>
+<h1>Trip cost calculator</h1><p>Fill in your planned entries and stay. True cost per night = room rate + resort fee + tax. Trip total = entries &times; buy-in + nights &times; true cost per night (plus optional parking).</p>
+</section>
+<section class="section"><div class="section-head"><div><h2>Your inputs</h2><p>All fields are optional; leave a field blank to treat it as zero.</p></div></div>
+<form id="tripForm" class="two-col">
+<div class="card">
+<h3>Tournament entries</h3>
+<label style="display:block;font-size:12px;margin:8px 0 2px">Number of entries (all events combined)</label><input type="number" id="entries" min="0" value="0" style="width:140px">
+<label style="display:block;font-size:12px;margin:16px 0 2px">Average buy-in per entry ($)</label><input type="number" id="buyIn" min="0" step="10" value="0" style="width:140px">
+<p class="smallprint" style="margin-top:10px">Single-entry events count once; multi-flight/rebuy events can require more entries than you plan &mdash; confirm entry rules first.</p>
+</div>
+<div class="card">
+<h3>Hotel stay</h3>
+<label style="display:block;font-size:12px;margin:8px 0 2px">Number of nights</label><input type="number" id="nights" min="0" value="0" style="width:140px">
+<label style="display:block;font-size:12px;margin:16px 0 2px">Room rate per night ($)</label><input type="number" id="rate" min="0" step="1" value="" style="width:140px">
+<label style="display:block;font-size:12px;margin:16px 0 2px">Resort fee per night ($)</label><input type="number" id="resortFee" min="0" step="1" value="55" style="width:140px">
+<label style="display:block;font-size:12px;margin:16px 0 2px">Room tax rate (%)</label><input type="number" id="taxRate" min="0" step="0.1" value="13.38" style="width:140px">
+<label style="display:block;font-size:12px;margin:16px 0 2px">Parking per night ($)</label><input type="number" id="parking" min="0" step="1" value="" style="width:140px">
+<p class="smallprint" style="margin-top:10px">Venetian terms: $55 resort fee plus applicable tax, 13.38% Clark County room tax on the daily rate. Defaults here match the reviewed official terms; confirm for your dates.</p>
+</div>
+</form>
+<div class="card" style="margin-top:14px">
+<h3>Result</h3>
+<div id="result" style="font-size:15px;margin-top:8px"></div>
+<div id="breakdown" style="font-size:12px;color:var(--muted);margin-top:6px"></div>
+</div>
+</section>
+<section class="section"><div class="section-head"><div><h2>How to use it</h2></div></div>
+<ol class="list">
+<li>Get a date-specific checkout total for the same stay and occupancy from the hotel&rsquo;s official booking page (rates are date- and availability-dependent).</li><li>Split it into room rate, mandatory resort fee, and tax. Compare like-for-like across hotels.</li><li>Add entries &times; buy-ins for every event you plan to enter. Re-entry/rebuy events may cost more than one buy-in per day.</li><li>Only book after confirming entry rules, finish times, walking routes, and cancellation deadlines from official sources.</li>
+</ol>
+</section>
+<div class="footer">This estimator does not fetch live rates and stores nothing. Official hotel links are on the Hotels and Venues pages. <a href="../flagged.html">Flagged for review &#8594;</a></div>
+</main>
+</div>
+<script src="assets/app.js"></script>
+<script>
+(function(){
+  const form=document.getElementById('tripForm');
+  const out=document.getElementById('result');
+  const brk=document.getElementById('breakdown');
+  function money(n){return n.toLocaleString(undefined,{style:'currency',currency:'USD'});}
+  function calc(){
+    const entries=Number(form.entries.value)||0;
+    const buyIn=Number(form.buyIn.value)||0;
+    const nights=Number(form.nights.value)||0;
+    const rate=Number(form.rate.value)||0;
+    const resortFee=Number(form.resortFee.value)||0;
+    const taxRate=Number(form.taxRate.value)||0;
+    const parking=Number(form.parking.value)||0;
+    const taxPerNight=(rate+resortFee)*(taxRate/100);
+    const trueNightly=rate+resortFee+taxPerNight;
+    const tourneyTotal=entries*buyIn;
+    const hotelTotal=nights*trueNightly;
+    const parkingTotal=nights*parking;
+    const grand=tourneyTotal+hotelTotal+parkingTotal;
+    out.innerHTML='Estimated trip total: <strong>'+money(grand)+'</strong>';
+    brk.innerHTML='Tournament entries: '+money(tourneyTotal)+' &middot; Hotel: '+nights+' nights &times; '+money(trueNightly)+' true cost/night (rate '+money(rate)+' + resort fee '+money(resortFee)+' + tax '+money(taxPerNight)+') = '+money(hotelTotal)+' &middot; Parking '+money(parkingTotal);
+  }
+  form.addEventListener('input',calc);
+  calc();
+})();
+</script>
+</body>
+</html>

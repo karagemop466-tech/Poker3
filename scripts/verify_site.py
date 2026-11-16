@@ -26,6 +26,17 @@ for index, row in enumerate(data["tournaments"], start=1):
     for field in ("date", "time", "venue", "event", "entryStatus", "schedule"):
         assert row.get(field), f"Tournament row {index}: missing {field}"
     assert "buyIn" in row and "guarantee" in row, f"Tournament row {index}: unknown values must be explicit blanks"
+    assert re.match(r"^\d{4}-\d{2}-\d{2}$", row.get("lastChecked", "")), (
+        f"Tournament row {index}: lastChecked must be a date"
+    )
+    rules = row.get("rules", {})
+    assert isinstance(rules, dict), f"Tournament row {index}: rules must be an object"
+    for key in ("singleEntry", "reEntry", "addOn", "fee"):
+        assert key in rules, f"Tournament row {index}: rules missing {key}"
+        assert "retrievalDate" in rules[key], f"Tournament row {index}: rules.{key} missing retrievalDate"
+    fr = row.get("feeRatio", {})
+    assert "value" in fr and "note" in fr, f"Tournament row {index}: feeRatio missing value/note"
+    assert isinstance(row.get("overlapNote", ""), str), f"Tournament row {index}: overlapNote must be a string"
     for field in ("schedule", "structure", "confirmSource"):
         if row.get(field):
             url = urllib.parse.urlparse(row[field])
@@ -34,15 +45,37 @@ for index, row in enumerate(data["tournaments"], start=1):
             )
 
 for index, row in enumerate(data["hotels"], start=1):
-    for field in ("name", "venue", "resortFee", "trueNightly", "source", "feeSource", "taxSource"):
+    for field in ("name", "venue", "resortFee", "trueNightly", "source", "feeSource", "taxSource", "lastChecked"):
         assert field in row, f"Hotel row {index}: missing {field} key"
     assert row["trueNightly"] == "", "Do not populate a total without a date-specific quote"
+    assert re.match(r"^\d{4}-\d{2}-\d{2}$", row.get("lastChecked", "")), (
+        f"Hotel row {index}: lastChecked must be a date"
+    )
+    rate_log = row.get("rateLog", [])
+    assert isinstance(rate_log, list) and rate_log, f"Hotel row {index}: rateLog must be a non-empty dated log"
+    for entry in rate_log:
+        for field in ("date", "rate", "source"):
+            assert field in entry, f"Hotel row {index}: rateLog entry missing {field}"
+        assert re.match(r"^\d{4}-\d{2}-\d{2}$", entry.get("date", "")), (
+            f"Hotel row {index}: rateLog date must be a date"
+        )
     for field in ("source", "feeSource", "taxSource", "feeSourceAlt"):
         if row.get(field):
             url = urllib.parse.urlparse(row[field])
             assert url.scheme == "https" and url.hostname in OFFICIAL_DOMAINS, (
                 f"Hotel row {index}: non-official {field} URL {row[field]}"
             )
+
+# Dated check logs produced by the scheduled monitor
+for path, shape in (
+    (ROOT / "data" / "source-checks.json", ("checks",)),
+    (ROOT / "data" / "source-changes.json", ("changes",)),
+):
+    assert path.exists(), f"Missing {path.name} (run scripts/monitor_sources.py)"
+    log = json.loads(path.read_text(encoding="utf-8"))
+    assert "generatedAt" in log, f"{path.name}: missing generatedAt"
+    for key in shape:
+        assert key in log and isinstance(log[key], list), f"{path.name}: missing {key} list"
 
 for page in SITE.glob("*.html"):
     text = page.read_text(encoding="utf-8")
