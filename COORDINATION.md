@@ -260,3 +260,31 @@ Branch: `arena/e125b4a2-poker3`. This session's files are kept in their own fold
 - Initial live check/deploy: workflow run [43938523153](https://github.com/karagemop466-tech/Poker3/actions/runs/43938523153) succeeded, including Pages deploy. It checked 52 official URLs at `2026-11-16T19:22:25Z`: 45 first-baseline fetches, 7 unavailable, 0 content changes. Unavailable: `aria-fee`, `aria-poker`, `bellagio-fee`, `bellagio-poker`, `mgm-fee`, `mgm-poker` (read timeouts), and `golden-nugget` (HTTP 403). See `site/poker3/data/source-monitor.json` for all per-source results and exact errors. Pages API reports `built`, source `main` `/`.
 - Row-level official source links now show the last-check UTC timestamp and distinguish changed pages from unavailable checks. The timestamp is a retrieval time, not a claim that every event's terms were re-reviewed by a human.
 - PR [#20](https://github.com/karagemop466-tech/Poker3/pull/20) merged 2026-11-16 19:25 UTC as `5e72fb2`. Pages build/deploy run [43939158118](https://github.com/karagemop466-tech/Poker3/actions/runs/43939158118) completed successfully. The current Pages API reports `built` from `main` `/` at https://karagemop466-tech.github.io/Poker3/.
+## Session `arena/62cea180-poker3` — current integration owner (2026-11-16 UTC)
+
+Branch: `arena/62cea180-poker3`, created from `origin/main` at e9af34c. This session is the only active editor and acts as the integration owner for the shared `site/` dashboard and its data files.
+
+| Task | Status | Owner session | Scope | Branch | PR |
+|---|---|---|---|---|---|
+| Trip cost calculator (entries × buy-ins + nights × true hotel cost) | in progress | 62cea180 | site/calculator.html, site/assets/app.js | arena/62cea180-poker3 | — |
+| Search box across all tables | in progress | 62cea180 | site/assets/app.js table filters | arena/62cea180-poker3 | — |
+| Date filter on tournaments table | in progress | 62cea180 | site/tournaments.html, site/assets/app.js | arena/62cea180-poker3 | — |
+| Single-entry / freezeout toggle filter | in progress | 62cea180 | site/tournaments.html, site/assets/app.js | arena/62cea180-poker3 | — |
+| Venue pages: Venetian, Wynn, others (events + hotels per venue) | in progress | 62cea180 | site/venues/*.html | arena/62cea180-poker3 | — |
+| "Last checked" date on every row | in progress | 62cea180 | site/data.json rows + table render | arena/62cea180-poker3 | — |
+| Structured rule fields per event (single-entry / re-entry / add-on / fee, each with source excerpt + retrieval date) | in progress | 62cea180 | site/data.json tournament `rules` blocks | arena/62cea180-poker3 | — |
+| Hotel rates kept as a dated log (not a single value) | in progress | 62cea180 | site/data.json hotels `rateLog` | arena/62cea180-poker3 | — |
+| Schedule overlap flags (start time + plausible duration; primary + fallback per day) | in progress | 62cea180 | site/data.json `overlapNote`, site/schedule.html | arena/62cea180-poker3 | — |
+| Guarantee ÷ entry fee descriptive ratio (not a forecast); bounty/flight rows labelled separately | in progress | 62cea180 | site/data.json, tournaments table render | arena/62cea180-poker3 | — |
+| Change monitoring: scheduled re-check of each official URL; flag rows whose source changed | in progress | 62cea180 | scripts/monitor_sources.py, .github/workflows/monitor.yml, data/source-checks.json | arena/62cea180-poker3 | — |
+| Verification, tests, PR, merge, GitHub Pages deploy confirmation | in progress | 62cea180 | scripts/verify_site.py, tests/smoke.py, repo-wide links | arena/62cea180-poker3 | — |
+
+**Scope protocol.** Each session edits only its claimed scope. Shared outputs (`site/index.html`, navigation, `site/data.json`, `site/assets/*`, pages, `COORDINATION.md`) are changed only on this integration branch. If a task needs a file claimed by another session, the request is logged here instead of editing it directly.
+
+**Source-currency policy (this session).** No tournament row is labelled "single entry" or "freezeout confirmed": the reviewed official structure sheets do not print an entry cap, so the structured rule fields carry blank values flagged unverified with retrieval date 2026-11-16. No hotel all-in total is asserted: `trueNightly` stays blank and rates are kept as a dated log (`rateLog`), not a single value. External re-verification of venue pages is handled by the scheduled monitor workflow; this session's local content relies on the 2026-11-16 official-source snapshot recorded in earlier sessions' work logs.
+
+**Irregularities carried forward (do not block merge; published on Flagged for review):** single-entry status unresolved on all candidates; hotel true cost blank; 8 AM start unverified; walking times unverified; Wynn WPT and Bellagio source conflicts logged.
+
+### Work log (session 62cea180)
+
+- **2026-11-16 · Claim.** Recorded this claim on `arena/62cea180-poker3` before feature work. Branch is even with `origin/main` (e9af34c).

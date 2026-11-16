@@ -1,0 +1,472 @@
+{
+  "generatedAt": "2026-11-16",
+  "changes": [
+    {
+      "date": "2026-11-16",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "name": "Venetian DeepStack Extravaganza IV official schedule and structures/results",
+      "previousChecked": null,
+      "changed": false,
+      "note": "first check",
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "rowsAffected": [
+        {
+          "kind": "tournament",
+          "row": 8,
+          "event": "$300 No Limit Hold'em 1A \u2014 Event 1",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 9,
+          "event": "$300 No Limit Hold'em 1B \u2014 Event 1",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 10,
+          "event": "$300 No Limit Hold'em 1C \u2014 Event 1",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 11,
+          "event": "$300 No Limit Hold'em 1D \u2014 Event 1",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 12,
+          "event": "$300 No Limit Hold'em (1Day) \u2014 Event 2",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 13,
+          "event": "$200 NLH RaceDay Stack (1Day) \u2014 Event 3",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 14,
+          "event": "$200 NLH RaceDay Stack (1Day) \u2014 Event 4",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 15,
+          "event": "$200 NLH RaceDay Stack (1Day) \u2014 Event 5",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 16,
+          "event": "$200 No Limit Hold'em (1Day) \u2014 Event 6",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 17,
+          "event": "$400 No Limit Hold'em 1A \u2014 Event 7",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 18,
+          "event": "$200 No Limit Hold'em PKO Bounty (1Day) \u2014 Event 8",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 19,
+          "event": "$400 No Limit Hold'em 1B \u2014 Event 7",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 20,
+          "event": "$200 No Limit Hold'em Bounty (1Day) \u2014 Event 9",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 21,
+          "event": "$400 No Limit Hold'em (1Day) \u2014 Event 10",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 22,
+          "event": "$200 No Limit Hold'em Bounty (1Day) \u2014 Event 11",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 23,
+          "event": "$300 No Limit Hold'em (1Day) \u2014 Event 12",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 24,
+          "event": "$200 No Limit Hold'em Bounty (1Day) \u2014 Event 13",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 25,
+          "event": "$600 No Limit Hold'em (1Day) \u2014 Event 14",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 26,
+          "event": "$200 No Limit Hold'em Bounty (1Day) \u2014 Event 15",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 27,
+          "event": "$600 No Limit Hold'em Bounty (1Day) \u2014 Event 16",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 28,
+          "event": "$400 Pot Limit Omaha Bounty (1Day) \u2014 Event 17",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 29,
+          "event": "$200 PokerAtlas Valuetown Bounty (1Day) \u2014 Event 18",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 30,
+          "event": "$400 No Limit Hold'em 1A \u2014 Event 19",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 31,
+          "event": "$300 Pot Limit Omaha Double Board Bomb Pot (1Day) \u2014 Event 20",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 32,
+          "event": "$200 No Limit Hold'em Bounty (1Day) \u2014 Event 21",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 33,
+          "event": "$400 No Limit Hold'em 1B \u2014 Event 19",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 34,
+          "event": "$200 No Limit Hold'em Bounty (1Day) \u2014 Event 22",
+          "field": "schedule"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-16",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
+      "name": "Venetian poker-suite rates and qualifying terms, 2026",
+      "previousChecked": null,
+      "changed": false,
+      "note": "first check",
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "rowsAffected": [
+        {
+          "kind": "hotel",
+          "row": 1,
+          "name": "The Venetian Resort",
+          "field": "source"
+        },
+        {
+          "kind": "hotel",
+          "row": 2,
+          "name": "The Palazzo at The Venetian Resort",
+          "field": "source"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-16",
+      "url": "https://www.venetianlasvegas.com/resort/resort-fee.html",
+      "name": "Venetian resort fee",
+      "previousChecked": null,
+      "changed": false,
+      "note": "first check",
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "rowsAffected": [
+        {
+          "kind": "hotel",
+          "row": 1,
+          "name": "The Venetian Resort",
+          "field": "feeSource"
+        },
+        {
+          "kind": "hotel",
+          "row": 2,
+          "name": "The Palazzo at The Venetian Resort",
+          "field": "feeSource"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-16",
+      "url": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
+      "name": "Venetian hotel terms and taxes",
+      "previousChecked": null,
+      "changed": false,
+      "note": "first check",
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "rowsAffected": [
+        {
+          "kind": "hotel",
+          "row": 1,
+          "name": "The Venetian Resort",
+          "field": "taxSource"
+        },
+        {
+          "kind": "hotel",
+          "row": 2,
+          "name": "The Palazzo at The Venetian Resort",
+          "field": "taxSource"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-16",
+      "url": "https://www.wynnlasvegas.com/casino/poker",
+      "name": "Wynn poker room and tournament schedules",
+      "previousChecked": null,
+      "changed": false,
+      "note": "first check",
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "rowsAffected": [
+        {
+          "kind": "tournament",
+          "row": 35,
+          "event": "WPT World Championship $600 NLH \u2014 Day 1A",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 36,
+          "event": "WPT World Championship $400 PLO",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 37,
+          "event": "WPT World Championship $600 NLH \u2014 Day 1B",
+          "field": "schedule"
+        },
+        {
+          "kind": "hotel",
+          "row": 3,
+          "name": "Wynn Las Vegas / Encore",
+          "field": "source"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-16",
+      "url": "https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf",
+      "name": "Wynn daily tournament poster (official PDF)",
+      "previousChecked": null,
+      "changed": false,
+      "note": "first check",
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "rowsAffected": [
+        {
+          "kind": "tournament",
+          "row": 3,
+          "event": "Daily $200 NLH",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 4,
+          "event": "Daily $240 NLH Rebuy",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 5,
+          "event": "Daily $200 NLH",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 6,
+          "event": "Daily $200 NLH",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 7,
+          "event": "Nightly $160 NLH",
+          "field": "schedule"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-16",
+      "url": "https://www.wynnlasvegas.com/terms-and-conditions/850070",
+      "name": "Wynn terms: resort fee",
+      "previousChecked": null,
+      "changed": false,
+      "note": "first check",
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "rowsAffected": [
+        {
+          "kind": "hotel",
+          "row": 3,
+          "name": "Wynn Las Vegas / Encore",
+          "field": "feeSource"
+        },
+        {
+          "kind": "hotel",
+          "row": 3,
+          "name": "Wynn Las Vegas / Encore",
+          "field": "taxSource"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-16",
+      "url": "https://aria.mgmresorts.com/en/casino/poker.html",
+      "name": "ARIA official poker information and current-schedule warning",
+      "previousChecked": null,
+      "changed": false,
+      "note": "first check",
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "rowsAffected": [
+        {
+          "kind": "tournament",
+          "row": 1,
+          "event": "ARIA daily / nightly poker tournament cadence (official guide)",
+          "field": "confirmSource"
+        },
+        {
+          "kind": "tournament",
+          "row": 2,
+          "event": "ARIA daily / nightly poker tournament cadence (official guide)",
+          "field": "confirmSource"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-16",
+      "url": "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
+      "name": "ARIA official poker guide; undated daily/nightly tournament times",
+      "previousChecked": null,
+      "changed": false,
+      "note": "first check",
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "rowsAffected": [
+        {
+          "kind": "tournament",
+          "row": 1,
+          "event": "ARIA daily / nightly poker tournament cadence (official guide)",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 2,
+          "event": "ARIA daily / nightly poker tournament cadence (official guide)",
+          "field": "schedule"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-16",
+      "url": "https://bellagio.mgmresorts.com/en/casino/poker.html",
+      "name": "Bellagio official poker page (weekly schedule links; current operation must be confirmed)",
+      "previousChecked": null,
+      "changed": false,
+      "note": "first check",
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "rowsAffected": [
+        {
+          "kind": "tournament",
+          "row": 38,
+          "event": "$600 NLH \u2014 Friday tournament",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 39,
+          "event": "Saturday NLH \u2014 buy-in conflict; excluded from ranking",
+          "field": "schedule"
+        },
+        {
+          "kind": "tournament",
+          "row": 40,
+          "event": "$400 H.O.R.S.E. \u2014 Sunday tournament",
+          "field": "schedule"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-16",
+      "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf",
+      "name": "Bellagio official Friday $600 NLH structure",
+      "previousChecked": null,
+      "changed": false,
+      "note": "first check",
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "rowsAffected": [
+        {
+          "kind": "tournament",
+          "row": 38,
+          "event": "$600 NLH \u2014 Friday tournament",
+          "field": "structure"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-16",
+      "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf",
+      "name": "Bellagio official Saturday NLH structure; conflicting buy-in labels",
+      "previousChecked": null,
+      "changed": false,
+      "note": "first check",
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "rowsAffected": [
+        {
+          "kind": "tournament",
+          "row": 39,
+          "event": "Saturday NLH \u2014 buy-in conflict; excluded from ranking",
+          "field": "structure"
+        }
+      ]
+    },
+    {
+      "date": "2026-11-16",
+      "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt07fcf1244a6da661/6af491a339e2b4f6b76a86ad/mgm-bellagio-poker-sundays-$400-horse.pdf",
+      "name": "Bellagio official Sunday $400 H.O.R.S.E. structure",
+      "previousChecked": null,
+      "changed": false,
+      "note": "first check",
+      "error": "URLError(SSLZeroReturnError(6, 'TLS/SSL connection has been closed (EOF) (_ssl.c:992)'))",
+      "rowsAffected": [
+        {
+          "kind": "tournament",
+          "row": 40,
+          "event": "$400 H.O.R.S.E. \u2014 Sunday tournament",
+          "field": "structure"
+        }
+      ]
+    }
+  ]
+}
