@@ -11,12 +11,16 @@ Status legend: `unclaimed` · `in progress` · `done` · `needs review` (publish
 
 | Task | Status | Owner (session) | Files / scope | Notes |
 |---|---|---|---|---|
-| T1 Repo review (line-by-line) | done | arena-8fc8e9f1 | `README.md`, repo metadata | See "Repo review" below. Flags published. |
-| T2 Tournament data (single-entry, Strip) | done | arena-8fc8e9f1 | `docs/data/tournaments.json`, `docs/data/multi_entry.json` | Official Wynn, Venetian, Bellagio sources only. |
-| T3 Hotel data (cost, resort fees, walking) | done (partial) | arena-8fc8e9f1 | `docs/data/hotels.json` | Only fees confirmed on official pages are filled. Rates and walking times left blank, flagged. |
-| T4 Analysis, executive summary, Q&A, suggestions | done | arena-8fc8e9f1 | `docs/summary.html`, `docs/questions.html`, `docs/suggestions.html`, `docs/data/*.json` | Suggestions are awaiting user choice. Nothing implemented beyond the site itself. |
-| T5 Static site (GitHub Pages) | done | arena-8fc8e9f1 | `docs/**` | Pages source: `main` branch, `/docs` folder. |
-| T6 Integration: merge, re-verify, build check, PR, merge, Pages deploy | in progress | arena-8fc8e9f1 | whole repo | See Integration log. |
+| T1 Repo review (line-by-line) | done | arena-8fc8e9f1 | `README.md`, repo metadata | See "Repo review" below. Flags F25 published. |
+| T2 Tournament data (single-entry, Strip) | done (partial) | arena-8fc8e9f1 | `docs/data/tournaments.json`, `docs/data/multi_entry.json` | Official Wynn, Venetian, Bellagio sources. Partial: many rows still `pending` (structure not checked); Bellagio Saturday buy-in conflict (F02); DSE NYE and DSS only partly captured (F14). |
+| T3 Hotel data (cost, resort fees, walking) | not started (data stub only) | arena-8fc8e9f1 | `docs/data/hotels.json` | Only Wynn resort fee confirmed on official terms ($55 with conflict $50, F05). Venetian, Bellagio, ARIA and Caesars fees unverified. Rates and walking times blank (F18). Not a complete ranking. |
+| T4 Analysis, executive summary, Q&A, suggestions | not started (drafts published) | arena-8fc8e9f1 | `docs/summary.html`, `docs/questions.html`, `docs/suggestions.html`, `docs/data/questions.json`, `docs/data/suggestions.json` | Drafts are published. Suggestions await user choice. Hotel ranking and true-cost comparison are not done. |
+| T5 Static site (GitHub Pages) | in progress | arena-8fc8e9f1 | `docs/**` | Ten pages built (dashboard, tables, flags, sources). Rendering verified in a DOM test (no script errors); no real-browser check. Pages settings not yet confirmed. |
+| T6 Integration: merge, re-verify, build check, PR, merge, Pages deploy | not started | arena-8fc8e9f1 | whole repo | See Integration log. |
+
+Status correction: an earlier version of this board marked T1, T2, T4 and T5 as done and T3 as done (partial). That was overstated. Corrected above.
+
+Branch deviation: the brief specified per-task branches `session-<id>/<task>`. This session is bound to one branch, `arena/8fc8e9f1-poker3`, so all tasks are on that branch in separate commits.
 
 ## Repo review (T1)
 
@@ -31,6 +35,7 @@ Reviewed: `README.md` (1 line: `# Poker3`), git history (1 commit `895478b Initi
 ## Integration log (T6)
 
 - Pending: PR link and merge result will be written here before the merge is requested.
+- Known gaps at this point: hotel rates and walking times, most structure checks, DSE NYE and DSS schedules, and Caesars/MGM Grand/Golden Nugget/Resorts World/Circa/South Point/Orleans poker pages (F21).
 
 ## Sources and verification log
 
