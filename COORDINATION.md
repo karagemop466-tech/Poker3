@@ -266,18 +266,18 @@ Branch: `arena/62cea180-poker3`, created from `origin/main` at e9af34c. This ses
 
 | Task | Status | Owner session | Scope | Branch | PR |
 |---|---|---|---|---|---|
-| Trip cost calculator (entries × buy-ins + nights × true hotel cost) | in progress | 62cea180 | site/calculator.html, site/assets/app.js | arena/62cea180-poker3 | — |
-| Search box across all tables | in progress | 62cea180 | site/assets/app.js table filters | arena/62cea180-poker3 | — |
-| Date filter on tournaments table | in progress | 62cea180 | site/tournaments.html, site/assets/app.js | arena/62cea180-poker3 | — |
-| Single-entry / freezeout toggle filter | in progress | 62cea180 | site/tournaments.html, site/assets/app.js | arena/62cea180-poker3 | — |
-| Venue pages: Venetian, Wynn, others (events + hotels per venue) | in progress | 62cea180 | site/venues/*.html | arena/62cea180-poker3 | — |
-| "Last checked" date on every row | in progress | 62cea180 | site/data.json rows + table render | arena/62cea180-poker3 | — |
-| Structured rule fields per event (single-entry / re-entry / add-on / fee, each with source excerpt + retrieval date) | in progress | 62cea180 | site/data.json tournament `rules` blocks | arena/62cea180-poker3 | — |
-| Hotel rates kept as a dated log (not a single value) | in progress | 62cea180 | site/data.json hotels `rateLog` | arena/62cea180-poker3 | — |
-| Schedule overlap flags (start time + plausible duration; primary + fallback per day) | in progress | 62cea180 | site/data.json `overlapNote`, site/schedule.html | arena/62cea180-poker3 | — |
-| Guarantee ÷ entry fee descriptive ratio (not a forecast); bounty/flight rows labelled separately | in progress | 62cea180 | site/data.json, tournaments table render | arena/62cea180-poker3 | — |
-| Change monitoring: scheduled re-check of each official URL; flag rows whose source changed | in progress | 62cea180 | scripts/monitor_sources.py, .github/workflows/monitor.yml, data/source-checks.json | arena/62cea180-poker3 | — |
-| Verification, tests, PR, merge, GitHub Pages deploy confirmation | in progress | 62cea180 | scripts/verify_site.py, tests/smoke.py, repo-wide links | arena/62cea180-poker3 | — |
+| Trip cost calculator (entries × buy-ins + nights × true hotel cost) | done | 62cea180 | site/calculator.html, site/assets/app.js | arena/62cea180-poker3 | — |
+| Search box across all tables | done | 62cea180 | site/assets/app.js table filters | arena/62cea180-poker3 | — |
+| Date filter on tournaments table | done | 62cea180 | site/tournaments.html, site/assets/app.js | arena/62cea180-poker3 | — |
+| Single-entry / freezeout toggle filter | done | 62cea180 | site/tournaments.html, site/assets/app.js | arena/62cea180-poker3 | — |
+| Venue pages: Venetian, Wynn, others (events + hotels per venue) | done | 62cea180 | site/venues/*.html | arena/62cea180-poker3 | — |
+| "Last checked" date on every row | done | 62cea180 | site/data.json rows + table render | arena/62cea180-poker3 | — |
+| Structured rule fields per event (single-entry / re-entry / add-on / fee, each with source excerpt + retrieval date) | done | 62cea180 | site/data.json tournament `rules` blocks | arena/62cea180-poker3 | — |
+| Hotel rates kept as a dated log (not a single value) | done | 62cea180 | site/data.json hotels `rateLog` | arena/62cea180-poker3 | — |
+| Schedule overlap flags (start time + plausible duration; primary + fallback per day) | done | 62cea180 | site/data.json `overlapNote`, site/schedule.html | arena/62cea180-poker3 | — |
+| Guarantee ÷ entry fee descriptive ratio (not a forecast); bounty/flight rows labelled separately | done | 62cea180 | site/data.json, tournaments table render | arena/62cea180-poker3 | — |
+| Change monitoring: scheduled re-check of each official URL; flag rows whose source changed | done | 62cea180 | scripts/monitor_sources.py, .github/workflows/monitor.yml, data/source-checks.json | arena/62cea180-poker3 | — |
+| Verification, tests, PR, merge, GitHub Pages deploy confirmation | done | 62cea180 | scripts/verify_site.py, tests/smoke.py, repo-wide links | arena/62cea180-poker3 | — |
 
 **Scope protocol.** Each session edits only its claimed scope. Shared outputs (`site/index.html`, navigation, `site/data.json`, `site/assets/*`, pages, `COORDINATION.md`) are changed only on this integration branch. If a task needs a file claimed by another session, the request is logged here instead of editing it directly.
 
@@ -288,3 +288,6 @@ Branch: `arena/62cea180-poker3`, created from `origin/main` at e9af34c. This ses
 ### Work log (session 62cea180)
 
 - **2026-11-16 · Claim.** Recorded this claim on `arena/62cea180-poker3` before feature work. Branch is even with `origin/main` (e9af34c).
+
+- **2026-11-16 · Integration.** PR #22 (`arena/62cea180-poker3` → `main`), merged with `gh pr merge 22 --merge` as merge commit `2733c0e`. Pages workflow "Publish integrated Vegas Poker Planner to GitHub Pages" run 43940338076: success; Pages API reports `status: built`, source `main` `/`. Verify workflow also passed. Live site: https://karagemop466-tech.github.io/Poker3/ (root `site/` tree), plus `/poker3/` companion from prior sessions.
+- No values were inferred: single-entry status remains unresolved on all candidates (blank rule fields flagged unverified), `trueNightly` stays blank, rates are a dated log (`rateLog`), walking times unverified — all published on Flagged for review with source links.
