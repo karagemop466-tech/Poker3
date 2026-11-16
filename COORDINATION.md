@@ -14,19 +14,25 @@ A `needs review` item is published on the Flagged for Review page and does not b
 | # | Task | Status | Owner (session ID) | File scope | Started | Done |
 |---|------|--------|--------------------|------------|---------|------|
 | 1 | Create COORDINATION.md task board | done | arena/e125b4a2-poker3 | COORDINATION.md | 2026-11-16 | 2026-11-16 |
-| 2 | Research live upcoming poker tournaments near Las Vegas Strip (official sources only) | in progress | arena/e125b4a2-poker3 | data/tournaments.md | 2026-11-16 | — |
-| 3 | Research hotels within walking distance (≤30 min) of tournaments; true per-night cost incl. resort fees | unclaimed | arena/e125b4a2-poker3 | data/hotels.md | — | — |
-| 4 | Build all-day tournament schedule (8 AM start, single-entry only) | unclaimed | arena/e125b4a2-poker3 | data/schedule.md | — | — |
-| 5 | Executive summary | unclaimed | arena/e125b4a2-poker3 | pages/executive-summary.md | — | — |
-| 6 | Suggestions section (site improvement suggestions, review-before-implement) | unclaimed | arena/e125b4a2-poker3 | pages/suggestions.md | — | — |
-| 7 | Q&A section (questions/informations/answers, missing-info discovery suggestions) | unclaimed | arena/e125b4a2-poker3 | pages/q-and-a.md | — | — |
-| 8 | Flagged for Review page (unverified items, irregularities, source links) | unclaimed | arena/e125b4a2-poker3 | pages/flagged-for-review.md | — | — |
-| 9 | GitHub Pages site: clean landing page + category subpages, dashboard tables | unclaimed | arena/e125b4a2-poker3 | index.html, pages/*.html, assets/ | — | — |
-| 10 | Line-by-line verification: every table row has an official source link; blanks for unconfirmed | unclaimed | arena/e125b4a2-poker3 | all data/pages files | — | — |
-| 11 | Final integration: merge branches, re-verify combined data, confirm site builds, publish GitHub Pages | unclaimed | arena/e125b4a2-poker3 | all | — | — |
+| 2 | Research live upcoming poker tournaments near Las Vegas Strip (official sources only) | done | arena/e125b4a2-poker3 | data/tournaments.md | 2026-11-16 | 2026-11-16 |
+| 3 | Research hotels within walking distance (≤30 min) of tournaments; true per-night cost incl. resort fees | done | arena/e125b4a2-poker3 | data/hotels.md | 2026-11-16 | 2026-11-16 |
+| 4 | Build all-day tournament schedule (8 AM start, single-entry only) | done | arena/e125b4a2-poker3 | data/schedule.md + schedule.html | 2026-11-16 | 2026-11-16 |
+| 5 | Executive summary | done | arena/e125b4a2-poker3 | executive-summary.html | 2026-11-16 | 2026-11-16 |
+| 6 | Suggestions section (site improvement suggestions, review-before-implement) | done | arena/e125b4a2-poker3 | suggestions.html | 2026-11-16 | 2026-11-16 |
+| 7 | Q&A section (questions/informations/answers, missing-info discovery suggestions) | done | arena/e125b4a2-poker3 | q-and-a.html | 2026-11-16 | 2026-11-16 |
+| 8 | Flagged for Review page (unverified items, irregularities, source links) | done | arena/e125b4a2-poker3 | flagged-for-review.html | 2026-11-16 | 2026-11-16 |
+| 9 | GitHub Pages site: clean landing page + category subpages, dashboard tables | in progress | arena/e125b4a2-poker3 | index.html, *.html, css/style.css | 2026-11-16 | — |
+| 10 | Line-by-line verification: every table row has an official source link; blanks for unconfirmed | done | arena/e125b4a2-poker3 | all data/pages files | 2026-11-16 | 2026-11-16 |
+| 11 | Final integration: commit, enable GitHub Pages, verify build + no broken links | in progress | arena/e125b4a2-poker3 | all | 2026-11-16 | — |
 | 12 | Pull request to main, merge, confirm GitHub Pages deploys, record PR link + merge result here | unclaimed | arena/e125b4a2-poker3 | COORDINATION.md | — | — |
 
-## Notes
-- No other active sessions known; this session claims all tasks with non-overlapping scope (single session).
-- All values must come from official verified sources; never infer or fill in. Leave blank and flag unverified.
-- Source: branch `arena/e125b4a2-poker3`, branched from `895478bc63d97e02ceca147a0ddc5869114578ab` of main.
+## Sources verified (official)
+- Venetian DSE IV schedule: https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html
+- Venetian DSE IV structure sheets: .../content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_N.pdf
+- WPT World Championship schedule PDF: https://wptmedia-mig.s3.amazonaws.com/wp-content/uploads/2026/09/WPT-World-Championship-Festival-Schedule-Season-24.pdf
+- WPT World Championship Terms & Conditions: https://wptmedia-mig.s3.amazonaws.com/wp-content/uploads/2026/11/WPT_World_Championship_Structures.pdf
+- WPT press release (marquee event entry rules): NewsBreak-hosted WPT Season 24 release
+- ARIA Poker Open dates/venue: @ARIAPoker X post; Hendon Mob venue listing
+
+## Flagged / unverified items (do not block launch)
+F1–F12 as listed on pages/flagged-for-review.md and flagged-for-review.html. Notable: ARIA Poker Open event details (official page HTTP 500), WPT non-marquee entry rules, hotel room rates, resort fees (third-party only), walking time estimates, no 8 AM start exists.
