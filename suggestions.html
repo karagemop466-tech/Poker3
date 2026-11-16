@@ -3,118 +3,98 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Site Improvement Suggestions — Review Before Implementing</title>
-<link rel="stylesheet" href="style.css">
+<title>Suggestions — Poker3 Las Vegas Strip Planner</title>
+<link rel="stylesheet" href="css/style.css">
+<meta name="description" content="Proposed site and data-gathering improvements for review before implementing.">
 </head>
 <body>
 
 <header class="site-header">
-  <div class="inner">
-    <h1>Site Improvement Suggestions</h1>
-    <p class="sub">Proposed changes to help decision-making &bull; Review and choose before implementing anything</p>
-    <nav class="nav">
-      <a href="index.html">Home</a>
+  <div class="container">
+    <a href="index.html" class="brand"><span class="dot"></span> Poker3</a>
+    <nav>
       <a href="tournaments.html">Tournaments</a>
       <a href="hotels.html">Hotels</a>
       <a href="schedule.html">Schedule</a>
-      <a href="questions.html">Questions</a>
-      <a href="flagged.html">Flagged for review</a>
+      <a href="executive-summary.html">Executive Summary</a>
+      <a href="suggestions.html" class="active">Suggestions</a>
+      <a href="q-and-a.html">Q&amp;A</a>
+      <a href="flagged-for-review.html">Flagged for Review</a>
     </nav>
   </div>
 </header>
 
-<div class="container">
+<section class="hero">
+  <div class="container">
+    <h1>Suggestions</h1>
+    <p>Proposed improvements to the site and to decision-making. <strong>None are implemented yet</strong> — this page exists so someone can review and choose the best path before implementing any changes.</p>
+    <div class="meta">Research date: 2026-11-16 &nbsp;|&nbsp; Status: proposed (not implemented)</div>
+  </div>
+</section>
 
-  <section class="section">
-    <h2>Review process</h2>
-    <div class="info">
-      <strong>No suggestion on this page is implemented automatically.</strong> Each suggestion below lists the expected benefit, effort, and what must be verified first. Review them, pick the best path, record the decision, then implement. Nothing here changes the verified data.
+<section>
+  <div class="container">
+    <h2>A. Suggestions for the website</h2>
+    <table>
+      <thead>
+        <tr><th>#</th><th>Suggestion</th><th>Expected benefit</th><th>Effort</th><th>Dependencies</th><th>Decision needed?</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>S1</td><td>Buy-in filter toggle (≤$200, $201–$500, $501–$1,000, $1,000+) on the tournaments page</td><td>Faster identification of best-value events</td><td>Low</td><td>Tournament table data</td><td>No</td></tr>
+        <tr><td>S2</td><td>Date filter / calendar view showing which single-entry tournaments run on travel dates</td><td>Easier schedule building</td><td>Medium</td><td>Full event date data</td><td>No</td></tr>
+        <tr><td>S3</td><td>"True cost" hotel calculator: user enters room rate, site auto-computes resort fee + tax + parking</td><td>Transparent hotel comparison</td><td>Low</td><td>Hotel fee data</td><td>No</td></tr>
+        <tr><td>S4</td><td>Schedule conflict-checker: warns if two selected events overlap</td><td>Prevents double-booking</td><td>Medium</td><td>Event start times + durations</td><td>No</td></tr>
+        <tr><td>S5</td><td>Source-link icons on every table row</td><td>Trust and verifiability</td><td>Low</td><td>Source URLs</td><td>No</td></tr>
+        <tr><td>S6</td><td>"Flagged for review" badge on unverified table cells</td><td>Clear data-quality signal</td><td>Low</td><td>Flagged-items list</td><td>No</td></tr>
+        <tr><td>S7</td><td>Calendar export (.ics) of the selected tournament schedule</td><td>Helps users plan travel</td><td>Medium</td><td>Schedule data</td><td>No</td></tr>
+        <tr><td>S8</td><td>"My shortlist" feature (save favorite tournaments/hotels to local storage)</td><td>Personal planning</td><td>Medium</td><td>Front-end storage</td><td>No</td></tr>
+      </tbody>
+    </table>
+
+    <h2>B. Suggestions for gathering missing information</h2>
+    <table>
+      <thead>
+        <tr><th>#</th><th>Missing information</th><th>How to discover it</th><th>Suggested action</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>M1</td><td>ARIA Poker Open individual event buy-ins, guarantees, entry rules</td><td>Call/visit ARIA poker room or monitor arialasvegas.com/casino/poker (returned HTTP 500 on 2026-11-16)</td><td>Retry official ARIA page; call ARIA Poker Room (702) 590-7111</td></tr>
+        <tr><td>M2</td><td>WPT World Championship per-event re-entry rules (non-marquee events)</td><td>Request Wynn/WPT event structure sheets</td><td>Check wynnpoker.com or WPT.com structure sheets</td></tr>
+        <tr><td>M3</td><td>Official hotel room rates + resort fees for specific Nov–Dec 2026 dates</td><td>Direct booking on each hotel's official site</td><td>Book direct; confirm mandatory fees in writing before paying</td></tr>
+        <tr><td>M4</td><td>Exact walking times/routes between hotels and venues</td><td>Google Maps / Clark County pedestrian bridge info</td><td>Walk the route or check a map before relying on it</td></tr>
+        <tr><td>M5</td><td>Whether Venetian 1Day events explicitly prohibit re-entry (sheets list no re-entry clause but don't state "no re-entry")</td><td>Ask Venetian poker room floor staff / tournament director</td><td>Confirm in writing before assuming freezeout</td></tr>
+        <tr><td>M6</td><td>MGM Grand daily $120 NLH tournament details (entry rules, guarantees)</td><td>MGM Grand poker room official page</td><td>Not currently confirmed from an official source</td></tr>
+      </tbody>
+    </table>
+
+    <div class="callout">
+      <p><strong>Review process before implementing any suggestion:</strong> (1) review benefit vs effort, (2) confirm data sources, (3) update COORDINATION.md, (4) implement on a feature branch, (5) verify the site builds with no broken links, (6) merge via pull request.</p>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="section">
-    <h2>Suggestions — decision-making improvements</h2>
-    <table>
-      <thead><tr><th style="width:6%">#</th><th style="width:30%">Suggestion</th><th style="width:34%">Expected benefit</th><th style="width:16%">Effort</th><th>Review needed before implementing</th></tr></thead>
-      <tbody>
-        <tr>
-          <td class="center">S1</td>
-          <td>Add a date filter to the tournament table (show events for selected dates only)</td>
-          <td>Faster itinerary building for specific vacation dates</td><td class="center">Low–Medium</td>
-<td>Needs JavaScript maintenance; verify filtered results match the full table exactly</td></tr>
-        <tr>
-          <td class="center">S2</td>
-          <td>Add a "best value" badge (GTD ÷ buy-in ratio) computed automatically on tournament rows</td>
-          <td>Makes cost-vs-prize-pool comparison instant</td><td class="center">Low</td>
-<td>Ratio uses official figures only; no new data introduced</td></tr>
-        <tr>
-          <td class="center">S3</td>
-          <td>Add a hotel true-cost calculator: user enters room rate, tool computes (rate + fee) × 1.1338 + parking</td>
-          <td>Lets travelers see true cost per night with real quotes</td><td class="center">Low</td>
-<td>Tax 13.38% and fees must come from official sources; label results as estimates until rates confirmed</td></tr>
-        <tr>
-          <td class="center">S4</td>
-          <td>Add walking directions / distance check from hotel addresses to Venetian (3355 S Las Vegas Blvd) and Wynn (3131 S Las Vegas Blvd)</td>
-          <td>Confirms the 30-minute walking rule per trip</td><td class="center">Medium</td>
-<td>Use an external mapping service; distances are not official resort data — flag as approximate</td></tr>
-        <tr>
-          <td class="center">S5</td>
-          <td>Add bankroll/trip-cost estimator: tournament buy-ins + hotel nights + food + transport</td>
-          <td>Go/no-go affordability check before booking</td><td class="center">Medium</td>
-<td>Only verified numbers (buy-ins, fees); hotel rates must be user-entered, not inferred</td></tr>
-        <tr>
-          <td class="center">S6</td>
-          <td>Export schedule to calendar (ICS) for selected tournaments</td>
-          <td>Helps players keep event times while traveling</td><td class="center">Low</td>
-<td>Event times from official schedule; re-verify before each trip (management may change times)</td></tr>
-        <tr>
-          <td class="center">S7</td>
-          <td>Add more Strip venues once officially verified: Aria Poker Open (Nov 29 – Dec 20, 2026), Horseshoe, Caesars, Bellagio, Mirage poker rooms</td>
-          <td>More single-entry options to enter more tournaments</td><td class="center">High</td>
-<td>Every new row needs an official source link; third-party listings (e.g., "Re-entry" tags) are not acceptable until verified</td></tr>
-        <tr>
-          <td class="center">S8</td>
-          <td>Add live rate monitoring links: direct "book" buttons to Venetian and Wynn booking pages</td>
-          <td>Faster booking when rates publish</td><td class="center">Low</td>
-<td>Link only to official booking pages; no affiliate or third-rate claims</td></tr>
-        <tr>
-          <td class="center">S9</td>
-          <td>Add a "what changed" log: dates when data was re-verified against official sources</td>
-          <td>Users can trust data freshness</td><td class="center">Low</td>
-<td>Log must record source URL and what was checked</td></tr>
-        <tr>
-          <td class="center">S10</td>
-          <td>Mobile-friendly printable one-page itinerary summary</td>
-          <td>Easy to use on the casino floor</td><td class="center">Low</td>
-<td>Printed itinerary must reflect the verified table, not estimates</td></tr>
-      </tbody>
-    </table>
-  </section>
-
-  <section class="section">
-    <h2>Prioritization (suggested order — for review, not a directive)</h2>
-    <ol>
-      <li><strong>S3 (true-cost calculator)</strong> and <strong>S9 (verification log)</strong> — low effort, directly support the "true cost" and "verified" goals.</li>
-      <li><strong>S2 (value badge)</strong> — highlights best tournaments without adding data.</li>
-      <li><strong>S4 (walking distance)</strong> and <strong>S7 (more venues)</strong> — higher effort; only after official sources are in hand.</li>
-      <li><strong>S1, S5, S6, S8, S10</strong> — convenience features, implement last.</li>
-    </ol>
-  </section>
-
-  <section class="section">
-    <h2>Decision record</h2>
-    <table>
-      <thead><tr><th>Suggestion</th><th>Decision</th><th>Date</th><th>Implemented by</th><th>Notes</th></tr></thead>
-      <tbody>
-        <tr><td>—</td><td class="blank">No decisions recorded yet</td><td class="blank">—</td><td class="blank">—</td><td class="blank">—</td></tr>
-      </tbody>
-    </table>
-    <p class="warn">Record each decision above before implementing any suggestion. Unimplemented suggestions remain on this page for future review.</p>
-  </section>
-
-</div>
 <footer class="site-footer">
-  Poker3 — suggestions are proposals only. Verified data is unchanged by this page.
+  <div class="container">
+    <div>
+      <h4>Poker3</h4>
+      <p style="margin:0; font-size:0.9rem;">Improvement proposals — review before implementing.</p>
+    </div>
+    <div style="flex:1; min-width:200px;">
+      <h4>Pages</h4>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="tournaments.html">Tournaments</a></li>
+        <li><a href="hotels.html">Hotels</a></li>
+        <li><a href="schedule.html">Schedule</a></li>
+        <li><a href="executive-summary.html">Executive Summary</a></li>
+        <li><a href="q-and-a.html">Q&amp;A</a></li>
+        <li><a href="flagged-for-review.html">Flagged for Review</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="container">
+    <div class="small">Suggestions are proposals only. Nothing on this page is implemented.</div>
+  </div>
 </footer>
+
 </body>
 </html>

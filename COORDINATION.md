@@ -7,7 +7,7 @@ Snapshot: 2026-11-16 UTC.
 | Task | Status | Owner session | Scope | Branch | PR |
 |---|---|---|---|---|---|
 | Research and build poker-trip dashboard + verification/flag pages (prior session) | done (data gaps remain flagged) | arena session 66708bda | all repository files | `arena/66708bda-poker3` | #1, #2 (merged to `main`) |
-| Venetian DeepStack Extravaganza IV main list, schedule, excluded-by-reason tables, hotel template, flagged register, questions (this session) | done. Flagged items published; they do not block merge. | arena session 93641c21 (integration owner) | all repository HTML/CSS/README/COORDINATION (shared outputs) | `arena/93641c21-poker3` | [#6](https://github.com/karagemop466-tech/Poker3/pull/6) |
+| Venetian DeepStack Extravaganza IV main list, schedule, excluded-by-reason tables, hotel template, flagged register, questions (this session) | done. Flagged items published; they do not block merge. | arena session 93641c21 (integration owner) | root site files, README, COORDINATION (shared outputs) | `arena/93641c21-poker3` | [#6](https://github.com/karagemop466-tech/Poker3/pull/6), merged |
 
 ## Work log
 
@@ -36,9 +36,11 @@ Snapshot: 2026-11-16 UTC.
 
 ## Result
 
-- PR: [#6](https://github.com/karagemop466-tech/Poker3/pull/6)
-- Merge: pending
-- Pages deployment: pending
+- PR: [#6](https://github.com/karagemop466-tech/Poker3/pull/6), merged 2026-11-16 18:47:13 UTC with `gh pr merge 6 --merge` (merge commit `4af9596`).
+- Pages: deploy run [43932491105](https://github.com/karagemop466-tech/Poker3/actions/runs/43932491105) completed `success`; Pages API reports `status: built`, source `main` `/`.
+- Live site: https://karagemop466-tech.github.io/Poker3/ (the sandbox cannot reach github.io directly; deployment confirmed via GitHub API and run status).
+- Follow-up that records this result: [#10](https://github.com/karagemop466-tech/Poker3/pull/10). Its merge needed a clean rebase onto `main` after another session's merge (PR #8). The conflict was in this file only; both sections were kept.
+- Cross-session note: arena-8fc8e9f1 publishes a separate site in `docs/`, which overlaps this root site. Both are served by the same Pages workflow; the user should choose which to keep. This session did not edit `docs/`.
 
 ---
 
@@ -62,13 +64,102 @@ Branch: `arena/8fc8e9f1-poker3`. Only `docs/**` and this section were changed by
 ### Integration log (session arena-8fc8e9f1)
 
 - Branch `arena/8fc8e9f1-poker3`: `docs/**` site and data added; COORDINATION.md statuses corrected (f300daf → 231c2fd, then merge of `origin/main`).
-- PR: _pending_
-- Merge: _pending_
-- Pages deployment: _pending_
+- PR: [#8](https://github.com/karagemop466-tech/Poker3/pull/8) (arena/8fc8e9f1-poker3 → main), merge commit `83e85d0`, merged with `--merge` on 2026-11-16.
+- Merge check: no broken internal links across `docs/*.html` and root `*.html`; all `docs/` inline scripts parse; ten pages render in a DOM test (nav present, tables populated, no script errors). Real-browser check not possible in the sandbox.
+- Pages deployment: "Publish site to GitHub Pages" succeeded and Pages status `built` at `83e85d0`. Site root https://karagemop466-tech.github.io/Poker3/ ; this session's pages at `/docs/`.
+- Remaining work (not done): hotel rates and walking times, most structure checks, DeepStack NYE/Showdown full schedules, other Strip rooms, 8 AM plan (no verified early start).
 
 ---
 
-## Session arena/d205f8ec-poker3 (root site: task board, earlier work log, integration)
+## Session f332570d (verified-only site in `verified/`)
+
+Branch: `arena/f332570d-poker3` (single branch for this session; the `session-<id>/<task>` naming could not be used, as other sessions recorded above).
+
+Placement decision: this session's pages live in `verified/`. Root and `docs/` are not edited, so the root dashboard (session 93641c21) and the docs site (session 8fc8e9f1) are unchanged. The Pages workflow deploys the whole repository on pushes to `main`, so all three sites are published together. Choosing which to keep is a user decision.
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| T1 Venetian DSE IV official schedule (verbatim text + parser) | done | f332570d | `raw/venetian_dse_nov_2026_schedule.md`, `data/venetian_*.json`, `scripts/parse_official.py` | 83 flights, 11 restart or final-table rows; 13 dates inferred from row order (marked). |
+| T2 Wynn WPT official schedule (verbatim text + parser) | done | f332570d | `raw/wynn_wpt_world_championship_schedule.md`, `data/wynn_wpt.json` | 136 rows, 116 with buy-in; 8 Dec 18 weekday conflicts (flag F03). |
+| T3 Venetian structure sheets | partial | f332570d | `scripts/parse_official.py` (sheet mapping) | 7 sheets read; 24 of 83 flights linked to a read sheet; 59 not yet checked (F07). |
+| T4 Wynn WPT structures | partial | f332570d | notes only | First 3 of 8 chunks read; re-entry verified for 4 Nov 27 rows (F11). |
+| T5 Official hotel fees: Venetian, Wynn, Resorts World | done | f332570d | `scripts/data.py` | Fees and parking only. Room rates, tax and walking times are not verified (F15, F16). |
+| T6 Other Strip rooms (MGM, Caesars, Horseshoe, Aria, Bellagio, etc.) | not started | — | — | No official pages collected (F13). |
+| T7 Build `verified/` site (12 pages) | done | f332570d | `verified/*.html`, `scripts/build.py` | Generated only from the data files; every table row links its source. |
+| T8 Integration, PR and merge | in progress | f332570d | `verified/`, this section | See integration record below. |
+
+Differences from the root site, for the user to compare: the root site lists single-start events only and excludes multi-flight events; the `verified/` site lists all 83 flights with a status column, and lists Wynn WPT re-entry rows separately.
+
+Conflict log:
+- 2026-11-16: an earlier version of this branch put its pages at the repository root. That would have overwritten root pages from sessions 93641c21 and 66708bda (index, flagged, hotels, questions, schedule). The pages were moved to `verified/` before merging `origin/main`, so no shared file was changed.
+- 2026-11-16: `COORDINATION.md` add/add conflict on merge of `origin/main`. Resolved by keeping `main`'s content in full and appending this section.
+
+Integration record:
+- PR: https://github.com/karagemop466-tech/Poker3/pull/12 (`arena/f332570d-poker3` into `main`; updated to the `verified/` layout).
+- Merge result: recorded in the follow-up section after the merge.
+
+## Current session arena/ada1dd4d-poker3 — final integration
+
+Branch: `arena/ada1dd4d-poker3`. The session began from the Arena-provided initial snapshot before the parallel PRs had reached its local `main`; it claimed the task on its managed branch and later rebased onto the updated `origin/main`. This integration preserves all earlier merged session histories above. `site/` is selected as the canonical published dashboard; the earlier root and `docs/` dashboards remain in the repository as prior research artifacts, not the current Pages artifact.
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| Expanded official-source schedule/hotel research, clean dashboard, questions, suggestions, day plan | implemented; unknown terms remain flagged | arena-ada1dd4d-poker3 | `site/**`, `scripts/**`, `.github/workflows/**`, `README.md`, this section | Current primary evidence only; site verification passes, but no tournament is confirmed strictly single-entry. |
+| Verify one-entry / no-re-entry / no-add-on rules | needs review | arena-ada1dd4d-poker3 | `site/data.json`, `site/tournaments.html`, `site/flagged.html` | Candidates with missing terms are not marked eligible. |
+| Obtain date-specific hotel totals and verify walking/time feasibility | needs review | arena-ada1dd4d-poker3 | `site/data.json`, `site/hotels.html`, `site/flagged.html` | Dates/occupancy absent; totals and route times blank. |
+
+### Integration log
+
+- Initial claim commit `3ba73ae` was pushed to the current Arena branch. At that initial point, this clone had only the README and no task board or competing claim. Other sessions then merged PRs #1, #2, #6, #8, #10 and subsequent changes into `main`; this session fetched and preserved those changes.
+- Rebasing onto updated `main` exposed shared-file conflicts in `COORDINATION.md`, `README.md` and `.github/workflows/pages.yml`. Conflicts were resolved by retaining the full current-main coordination history, combining README purpose/verification information, and selecting `site/` as the canonical Pages artifact. Earlier root and `docs/` files were not deleted. The current integration is the decision point requested by the shared-task-board protocol.
+- The prior `docs/` data includes useful research but also rows marked pending, partial hotel data, and source conflicts. It is not copied into the canonical table without primary-source verification. It remains in the repository for audit and is linked as a prior-research archive, with clear noncanonical status.
+- ARIA source recheck: `https://aria.com/en/nightlife.html` currently serves nightlife content, not tournament terms. Current official poker page https://aria.mgmresorts.com/en/casino/poker.html asks guests to call/check @ARIAPoker for whether daily events are running. A separate official guide https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf says daily 1 p.m. / nightly 7 p.m. but is undated. The canonical site retains this only as an undated, unconfirmed cadence.
+
+### Current official sources and verification
+
+Checked 2026-11-16. Canonical tournament rows link to venue-controlled schedules or official documents; hotel facts link to official room-rate, fee and tax terms. No third-party calendars substantiate data in `site/data.json`.
+
+- Venetian: https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html and https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html. Dated table rows checked; linked official structure PDFs were inspected for the listed one-day, RaceDay, bounty and multi-flight samples. “1Day” is not treated as one-entry proof.
+- Wynn: https://www.wynnlasvegas.com/casino/poker, daily poster https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf, and WPT schedule https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf. Rebuy is isolated as extra-spend.
+- Bellagio: https://bellagio.mgmresorts.com/en/casino/poker.html and its linked Friday $600 NLH, Saturday NLH, and Sunday $400 H.O.R.S.E. structure PDFs. Friday and Sunday PDFs explicitly allow re-entry and an optional paid staff gratuity that adds chips; these are in the spend-more section. Saturday source conflicts are flagged. Hotel room page https://bellagio.mgmresorts.com/en/hotel.html gives room classes but no date-specific quote; hotel terms https://bellagio.mgmresorts.com/en/terms-and-conditions.html publish a $55 daily resort fee plus applicable tax and state lodging tax applies to both rate and resort fee.
+- Venetian hotel: https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html, https://www.venetianlasvegas.com/resort/resort-fee.html, https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html. The $119/$209 starting-rate wording is not mapped to individual towers in the reviewed text, so base and all-in totals remain blank. Terms state 13.38% room tax on daily rate and $55 + applicable tax resort fee.
+- Wynn hotel: https://www.wynnlasvegas.com/rooms-and-suites, general terms https://www.wynnlasvegas.com/terms-and-conditions/850070, and an expired 2024 offer page https://www.wynnlasvegas.com/terms-and-conditions/849723. General/current terms reviewed state $55 + tax; expired offer states $50 + tax. The historical discrepancy is flagged; actual booked terms control. Exact room price remains blank.
+- ARIA: current poker page and undated official guide URLs above.
+
+Automated checks (rerun after Bellagio hotel/fee integration on 2026-11-16): `python3 scripts/verify_site.py`, `node --check site/assets/app.js`, `python -m json.tool site/data.json`, `git diff --check`; all pass. The verifier reports 40 official-linked tournament rows, 4 hotel rows with blank unquoted totals, and 7 pages with valid local links. It checks official domains, explicit blanks for unknown values, and local links. Earlier local HTTP smoke tests returned 200 for overview, tournaments and JSON data. Bellagio terms confirm a $55 + tax resort fee; nightly room rates/totals remain blank. Entry rules, walking routes, live room confirmation, finish-time scheduling and complete Strip-wide coverage remain flagged.
+
+### Open current-session flags
+
+- Official materials reviewed do not explicitly establish one total entry per player for most candidate rows; no unsupported event is promoted as eligible.
+- Wynn Friday rebuy and Bellagio re-entry/optional-gratuity formats stay separate from the strict-entry path.
+- Wynn official fee terms include $55 + tax in current/general terms and $50 + tax in an expired 2024 offer; confirm fee on the actual booking.
+- Bellagio Saturday NLH source conflict: page/title says $1,000, PDF header says $1,100, and its rule breakdown says $600; no rank assigned.
+- ARIA official guide is undated; current page says to confirm daily events.
+- Exact hotel totals (including Bellagio), walking minutes, 8 AM start, tournament finish times and full Strip inventory are not established. Hotel quality is not ranked because no common official quality metric was verified.
+
+### Current PR / deployment
+
+Current integration PR and final Pages deployment: pending.
+
+---
+
+## Session e125b4a2 (Strip planner pages, per-row verified data)
+
+Branch: `arena/e125b4a2-poker3`. This session's files are kept in their own folder so no shared root or `verified/` file is overwritten.
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| Venetian DSE IV single-entry research (per-row sources) | done | e125b4a2 | `data/tournaments.md` | 44 single-entry events with official structure-sheet links; 9 re-entry rows listed separately. |
+| Hotel research and true per-night cost template | done (rates and fees unverified) | e125b4a2 | `data/hotels.md` | Room rates blank and flagged. Resort fees from third-party listings only, flagged. |
+| All-day schedule (single entry) | done | e125b4a2 | `data/schedule.md` | 8 AM start not available; earliest verified start 10:10 AM. |
+| Executive summary, suggestions, Q&A, flagged-for-review pages | done | e125b4a2 | `planner/*.html`, `pages/*.md` | Suggestions are for review, not implemented. |
+| Integration, PR and merge | in progress | e125b4a2 | this section | PR #9 (`arena/e125b4a2-poker3` into `main`). Merge conflict on this file was resolved by keeping main's full content and appending this section. |
+
+**Placement decision.** Earlier, this branch's HTML pages overwrote shared root pages during a merge. They are now in `planner/`, and root and `verified/` and `docs/` are unchanged by this session.
+
+---
+
+## Session arena/d205f8ec-poker3 (single-entry site in `single-entry/`)
 
 ## Session claim log
 - Session `arena/66708bda-poker3` (earlier): claimed all repository files; built conservative root-level dashboard; deployed to GitHub Pages (run 43930736171, 2026-11-16) at https://karagemop466-tech.github.io/Poker3/ ; PRs #1 and #2 merged into main. Work log preserved below.
@@ -128,3 +219,9 @@ Branch: `arena/8fc8e9f1-poker3`. Only `docs/**` and this section were changed by
 - PR: [#5](https://github.com/karagemop466-tech/Poker3/pull/5) (`arena/d205f8ec-poker3` → `main`)
 - Merge: pending at the time of this entry. Updated after the merge.
 - Pages deployment: pending at the time of this entry. Updated after the merge.
+
+### Placement decision (this session, final)
+
+- An earlier version of this branch overwrote the root pages from sessions 93641c21 and 66708bda. That was corrected before the final PR: this session's pages are in `single-entry/` (`index.html`, `tournaments.html`, `hotels.html`, `schedule.html`, `questions.html`, `suggestions.html`, `flagged.html`, `style.css`, `data/*.md`).
+- Root pages, `data/tournaments.md`, `data/hotels.md`, `site/`, `docs/`, `verified/`, `planner/`, `.github/workflows/pages.yml` are **unchanged** by this session relative to `main`.
+- `.github/workflows/pages.yml` publishes only `site/`. `single-entry/` is therefore **not** published by Pages. Publishing it needs a user decision, the same as `planner/` and `verified/`. Flagged as request R1 below.

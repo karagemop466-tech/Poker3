@@ -1,53 +1,31 @@
-# Poker3 — Las Vegas Strip poker trip planner
+# Vegas Poker Planner
 
-Source-first static site for Las Vegas Strip poker tournaments and lodging. Start at [Overview](index.html).
+Source-first research dashboard for official Las Vegas poker tournament schedules and Strip-area lodging. The canonical GitHub Pages dashboard is in [`site/`](site/) and includes Overview, Tournaments, Hotels, Day plan, Open questions, Suggestions, and Flagged for review.
 
-## Pages (root site, GitHub Pages)
+The repository also retains earlier root-level and `docs/` dashboards from merged parallel sessions. They are prior research artifacts with their own unresolved rows/flags; they are not the canonical site artifact and are not used as evidence for `site/data.json` unless rechecked against the venue source.
 
-- [Overview](index.html): executive summary and entry points
-- [Tournaments](tournaments.html): 1-day main list (Venetian DeepStack Extravaganza IV, Nov 18 – Dec 23, 2026), plus excluded events grouped by reason, including the Wynn WPT festival
-- [Schedule](schedule.html): verified start times and a sample day plan. No all-day 8 AM plan is possible because no 8 AM start is verified
-- [Hotels](hotels.html): true cost per night formula with official resort-fee and tax inputs. Room rates are not published for the dates, so they are blank and flagged
-- [Questions](questions.html): information needed before decisions, plus ways to find it
-- [Suggestions](suggestions.html): site improvements, for review before any change
-- [Flagged for review](flagged.html): irregularities, conflicts and unverified items. These do not block merges
+**Evidence policy:** only official venue/hotel pages and official PDFs substantiate canonical findings. “1Day” is not proof of single entry. Unknown entry rules, unpriced hotel totals, and unverified walking times remain flagged or blank. Guarantees are not forecasts of actual payouts. Snapshot: 2026-11-16 UTC.
 
-## Parallel site (`docs/`)
+## Run locally
 
-Session `arena/8fc8e9f1-poker3` built a second, data-first site in `docs/` (JSON data files plus 10 pages). It is kept unchanged and is published at `/docs/` by the same Pages workflow. The two sites use the same source policy but different layouts. Which one to keep is a user decision (see COORDINATION.md).
+```sh
+python3 -m http.server 8000 --directory site
+```
 
-## Data files
+Then open `http://localhost:8000`.
 
-- `data/tournaments.md`: main list and excluded lists with sources
-- `data/hotels.md`: hotel fee components and blank room-rate rows
-- `docs/data/*.json`: the parallel site's data (sources, tournaments, hotels, questions, suggestions, flags)
+## GitHub Pages
 
-## Verification policy
+`.github/workflows/pages.yml` publishes the static `site/` directory on pushes to `main`; GitHub Pages must be enabled with GitHub Actions as its source. The workflow does not scrape or synthesize schedule data.
 
-- Every table row carries a link to an official venue, hotel or structure-sheet source.
-- A value that cannot be confirmed from an official source is left blank and flagged. Nothing is inferred.
-- Third-party listings (Hendon Mob, PokerAtlas, PokerNews, reddit and similar) are not used for any value. Their conflicts are listed on the flagged page.
-- "Single entry" is not printed on the Venetian structure sheets. The main list therefore says "no re-entry or add-on wording on the sheet". It does not claim that single entry is confirmed. See flag F1.
+## Verification and sources
 
-## Research snapshot
+Run `python3 scripts/verify_site.py`, `node --check site/assets/app.js`, and `python -m json.tool site/data.json`. Every canonical tournament and hotel row links to an official source. See [`COORDINATION.md`](COORDINATION.md) for ownership, official source register, integration history, verification and open review flags.
 
-2026-11-16 UTC. Sessions that contributed to this branch:
+## Strip planner pages (session e125b4a2)
 
-- `arena/66708bda-poker3`: first root dashboard, conservative verification stance, GitHub Pages deploy (PRs #1 and #2).
-- `arena/93641c21-poker3`: Venetian main list, excluded-by-reason tables and a 19-item flagged register (PR #6).
-- `arena/8fc8e9f1-poker3`: `docs/` site and data (PR #8).
-- `arena/d205f8ec-poker3`: this branch. 1-day main list checked row by row against all 22 structure sheets, hotel true-cost formula, questions, suggestions, and integration of the work above (PR #5).
+`planner/` holds this session's pages: landing page, Venetian DeepStack Extravaganza IV single-entry table with per-row official source links, re-entry table, hotels, schedule, executive summary, suggestions, Q&A, and flagged-for-review. Research tables behind them are in `data/tournaments.md`, `data/hotels.md`, `data/schedule.md`, and `pages/*.md`. These files are **not** published by `.github/workflows/pages.yml`, which deploys only `site/`. Publishing `planner/` would need a user decision.
 
-Full logs and PR records are in [COORDINATION.md](COORDINATION.md).
+## Single-entry site (session arena/d205f8ec-poker3)
 
-## Key sources
-
-- Venetian DeepStack Extravaganza IV schedule: https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html
-- Venetian resort fee: https://www.venetianlasvegas.com/resort/resort-fee.html
-- Venetian hotel terms (tax, parking): https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html
-- WPT World Championship festival: https://www.worldpokertour.com/article/wpt-world-championship-at-wynn-las-vegas-set-for-season-24-finale-with-over-85-events-and-20m-in-gte
-- Wynn stay terms: https://www.wynnlasvegas.com/terms-and-conditions/848654
-
-## Deployment
-
-`.github/workflows/pages.yml` publishes the repository root to GitHub Pages on pushes to `main`. Repository Pages settings must allow GitHub Actions.
+`single-entry/` holds the single-entry Strip tournament planner: 1-day main list (53 rows; 47 cash events plus 5 satellites and 1 two-day event, each labelled), excluded events, hotel true-cost formula, schedule, questions, suggestions and flagged-for-review. Start at `single-entry/index.html`. Every row links an official Venetian source; all 22 main-list structure sheets were read in full. Single entry is not printed on those sheets, so the page says "no re-entry or add-on wording", not "single entry confirmed". This folder is **not** published by `.github/workflows/pages.yml` (which deploys only `site/`). Publishing it needs a user decision.

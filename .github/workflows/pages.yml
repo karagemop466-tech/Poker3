@@ -1,24 +1,31 @@
-name: Publish site to GitHub Pages
+name: Publish integrated Vegas Poker Planner to GitHub Pages
+
 on:
   push:
     branches: [main]
   workflow_dispatch:
+
 permissions:
   contents: read
   pages: write
   id-token: write
+
 concurrency:
   group: pages
   cancel-in-progress: true
+
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Configure Pages
+        uses: actions/configure-pages@v5
+      - name: Upload published dashboard
+        uses: actions/upload-pages-artifact@v3
         with:
-          path: .
+          path: site
   deploy:
     environment:
       name: github-pages
@@ -26,5 +33,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     steps:
-      - id: deployment
+      - name: Deploy site
+        id: deployment
         uses: actions/deploy-pages@v4
