@@ -139,7 +139,10 @@ Automated checks (rerun after Bellagio hotel/fee integration on 2026-11-16): `py
 
 ### Current PR / deployment
 
-Current integration PR and final Pages deployment: pending.
+- PR #3: [Add official-source Las Vegas poker planning dashboard](https://github.com/karagemop466-tech/Poker3/pull/3), merged 2026-11-16 18:58:24 UTC with merge commit `9238a312132be3c160be1ff58239ff3d20880c61`.
+- PR verification workflow [43934330871](https://github.com/karagemop466-tech/Poker3/actions/runs/43934330871) completed successfully before merge.
+- Post-merge verification [43934421009](https://github.com/karagemop466-tech/Poker3/actions/runs/43934421009), custom Pages build/deploy [43934421019](https://github.com/karagemop466-tech/Poker3/actions/runs/43934421019), and GitHub Pages deployment run [43934420545](https://github.com/karagemop466-tech/Poker3/actions/runs/43934420545) all completed successfully at commit `9238a31`.
+- GitHub Pages API reports `status: built`; published site: https://karagemop466-tech.github.io/Poker3/ (the sandbox cannot fetch `github.io` directly). The configured custom artifact is `site/`.
 
 ---
 
