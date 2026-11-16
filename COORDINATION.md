@@ -30,6 +30,6 @@ Created 2026-11-16 by session `f332570d` (branch `arena/f332570d-poker3`, based 
 
 ## Integration record
 
-- PR: _to be filled after creation_
+- PR: https://github.com/karagemop466-tech/Poker3/pull/12 (arena/f332570d-poker3 into main)
 - Merge result: _to be filled after merge_
 - Pages status: _to be filled after deploy check_
