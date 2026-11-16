@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Questions &amp; answers · Poker Strip Dashboard</title>
+<meta name="description" content="Upcoming single-entry poker tournaments near the Las Vegas Strip, hotel cost checks and flagged items. Sources linked on every row.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html">Poker Strip Dashboard</a>
+  <nav id="nav"></nav>
+</div></header>
+<main>
+
+<h1>Questions and answers</h1>
+<p class="lede">What the official sources answer, and what is still missing. Each open question lists how to find the answer.</p>
+<h2>Answered</h2><div id="ans"></div>
+<h2>Open</h2><div id="open"></div>
+
+</main>
+<footer>Data as of 2026-11-16 (Las Vegas time). Every row links to an official source. Blank or “UNVERIFIED” = not confirmed from an official source; not filled in. Calculations are labeled. <a href="flagged.html">Flagged for Review</a></footer>
+
+<script src="assets/app.js"></script>
+<script>
+PK.renderNav("questions.html");
+
+var PAGE_READY = PK.loadSources();
+function L(p){ return PK.load(p); }
+
+Promise.all([PAGE_READY, L("data/questions.json")]).then(function(d){
+  var q=d[1];
+  document.getElementById("ans").innerHTML=q.answered.map(function(x){
+    return '<div class="panel"><b>'+PK.esc(x.id)+': '+PK.esc(x.question)+'</b><p>'+PK.esc(x.answer)+'</p><p class="small">Confidence: '+PK.esc(x.confidence)+'</p><p class="small">Sources: '+x.evidence.map(PK.srcLink).join(", ")+'</p></div>';
+  }).join("");
+  document.getElementById("open").innerHTML=q.open.map(function(x){
+    return '<div class="panel"><b>'+PK.esc(x.id)+': '+PK.esc(x.question)+'</b> <span class="badge '+(x.priority==="High"?"bad":"warn")+'">'+PK.esc(x.priority)+'</span><p><b>Missing:</b> '+PK.esc(x.missing)+'</p><p><b>How to find it:</b> '+PK.esc(x.how)+'</p></div>';
+  }).join("");
+});
+
+</script>
+</body>
+</html>
