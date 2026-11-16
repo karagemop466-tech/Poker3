@@ -525,6 +525,13 @@ Note: earlier sessions logged a README.md/COORDINATION.md "contents swapped" irr
 4. Merge with `gh pr merge <n> --merge` (explicit number, no auto-merge).
 5. Confirm GitHub Pages deploy (`pages.yml` uploads `site/`); record the PR link and merge result here in a follow-up commit merged as a second PR (same pattern as PRs #10/#12).
 
+### Result (session `arena/ef37b79e-poker3`)
+
+- PR: [#28](https://github.com/karagemop466-tech/Poker3/pull/28) (`arena/ef37b79e-poker3` → `main`), **merged** with `gh pr merge 28 --merge` on 2026-11-16, merge commit `568e007`. Verify workflow run [43943933823](https://github.com/karagemop466-tech/Poker3/actions/runs/43943933823) passed before merge.
+- Pages: "Publish integrated Vegas Poker Planner to GitHub Pages" run [43944032455](https://github.com/karagemop466-tech/Poker3/actions/runs/43944032455) **success**; pages build/deployment run [43944031008](https://github.com/karagemop466-tech/Poker3/actions/runs/43944031008) **success**; Pages API reports `status: built`, source `main` `/`. Live site: https://karagemop466-tech.github.io/Poker3/ (the sandbox cannot reach github.io; deployment confirmed via GitHub API and run status). The verification addendum is published at `/sheets.html`, linked from the nav as "Sheet verification".
+- Conflict resolutions logged: merges of `origin/main` into the branch (after PR #25, after PR #26, and after PR #29); each time the integration-owner versions of shared files were kept in full and `COORDINATION.md` was unioned. No other session's content was discarded.
+- This record itself is delivered as a follow-up PR merged to `main` (same pattern as PRs #10/#12/#25).
+
 ## Session `arena/e1a99371-poker3` — independent structure-sheet verification (handoff)
 
 ### Scope collision, and how it was resolved
