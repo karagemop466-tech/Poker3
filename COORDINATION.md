@@ -238,3 +238,17 @@ Branch: `arena/e125b4a2-poker3`. This session's files are kept in their own fold
 - The Dec. 10–14, 2026, two-adult hotel search is a research sample, not user-provided travel dates. Hotel all-in totals remain unconfirmed; route times remain third-party estimates.
 - Planner scenarios use a user-entered time-at-event assumption and are explicitly not verified or guaranteed itineraries. Unknown terms are labeled “Flagged for Review.”
 - Checks: `node --check site/poker3/assets/app.js`; `python3 tests/smoke.py`; JSON validation; headless DOM rendering/interaction checks on all eight pages, event filters, the mobile navigation, planner date/scenario controls, and internal links.
+
+---
+
+## Session `arena/eb71225f-poker3` — decision-support features and scheduled source monitoring
+
+**Status: in progress.** The Arena platform assigns this session a single branch, `arena/eb71225f-poker3`; per the higher-priority branch constraint, work stays on that branch rather than creating per-task branches. No active concurrent claim was present in this board when this session began.
+
+| Task | Status | Owner | Scope | Sources / verification |
+|---|---|---|---|---|
+| Add shared search, date/venue/single-entry filters, trip-cost calculator, venue pages, and rate history UI | in progress | `arena/eb71225f-poker3` | `site/**` | Existing official source records in `site/data.json`; preserve unknown values as blank |
+| Add structured rule evidence, last-checked metadata, schedule-overlap logic, and walking verification placeholders | in progress | `arena/eb71225f-poker3` | `site/data.json`, `site/**`, tests | Official sources must be linked per field; unverified rules/routes remain explicitly unverified |
+| Add daily official-URL recheck and change reporting | in progress | `arena/eb71225f-poker3` | `scripts/source_monitor.py`, `.github/workflows/source-monitor.yml`, `site/source-monitor.json`, tests | Automated GitHub Actions schedule; first successful pass establishes the baseline; later passes report material URL changes |
+
+Claim logged before implementation. Existing duplicate sites and their prior research remain untouched; the canonical published dashboard is `site/` per the current Pages workflow.
