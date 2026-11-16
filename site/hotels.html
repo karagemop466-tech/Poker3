@@ -46,6 +46,22 @@ the calculation could not be read from an official page.</p>
 </section>
 
 <section class="panel">
+  <h2>Check the current rate for your own dates</h2>
+  <p class="lede">The rate table above is a dated log, not a live quote. To price the same
+  stay for different dates, run the lookup tool against the property's own booking engine and
+  append the result to the log:</p>
+  <pre class="code-block"><code>python3 scripts/check_hotel_rates.py --hotel horseshoe \
+    --arrival 2026-12-10 --departure 2026-12-14 --write</code></pre>
+  <p class="muted">Known property ids: <code>horseshoe</code>, <code>caesars-palace</code>,
+  <code>paris</code>, <code>venetian</code>, <code>wynn</code>, <code>bellagio</code>.
+  Run it with <code>--list</code> for the full list and without <code>--write</code> to see
+  the result without changing the log.</p>
+  <p class="muted">The tool never invents a rate. If the booking engine will not return a price
+  for the requested dates, it records nothing and says why. Each observation it writes keeps
+  the URL, the retrieval timestamp, the room type and the occupancy it was read for.</p>
+</section>
+
+<section class="panel">
   <h2>Walking routes from these hotels to the tournament rooms</h2>
   <p class="muted">No venue publishes a walking time to another venue, so every time below is a
   third-party estimate and is labelled as one. A Google Maps walking link is included so each

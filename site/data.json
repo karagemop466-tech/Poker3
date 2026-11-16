@@ -10278,8 +10278,164 @@
      ]
     }
    ],
-   "primary": null,
-   "fallback": null,
+   "primary": {
+    "id": "dse4-2026-11-16-1a",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-11-16",
+    "dateLabel": "Monday, November 16, 2026",
+    "time": "11:10 AM",
+    "eventLabel": "1A",
+    "name": "$300 No Limit Hold'em 1A",
+    "buyIn": 300,
+    "guarantee": 75000,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "prize pool",
+    "cashPoolPerEntry": 240,
+    "rakeAndStaff": 60,
+    "startingChips": 30000,
+    "levelMinutes": 40,
+    "levels": 30,
+    "lateRegistration": "6 levels + Break (~ 3:40 PM)",
+    "lateRegistrationCloses": "3:40 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Day 2 will resume at 12:00 PM combining all remaining players from 1A, 1B, 1C, and 1D'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.'",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$60 of the $300 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $240 of every $300 Buy In.",
+    "ruleExcerpt": "Day 2 will resume at 12:00 PM combining all remaining players from 1A, 1B, 1C, and 1D ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_10.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_10.pdf",
+    "dateISO": "2026-11-16",
+    "weekday": "Monday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 670,
+    "regCloseMinutes": 940,
+    "minLengthMinutes": 270,
+    "gtdRatio": 250.0,
+    "cashRatio": 0.8,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "primaryNeedsExtraSpend": true,
+   "fallback": {
+    "id": "dse4-2026-11-16-1b",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-11-16",
+    "dateLabel": "Monday, November 16, 2026",
+    "time": "5:10 PM",
+    "eventLabel": "1B",
+    "name": "$300 No Limit Hold'em 1B",
+    "buyIn": 300,
+    "guarantee": 75000,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "prize pool",
+    "cashPoolPerEntry": 240,
+    "rakeAndStaff": 60,
+    "startingChips": 30000,
+    "levelMinutes": 30,
+    "levels": 30,
+    "lateRegistration": "6 levels + Break (~ 8:40 PM)",
+    "lateRegistrationCloses": "8:40 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Day 2 will resume at 12:00 PM combining all remaining players from 1A, 1B, 1C, and 1D'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.'",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$60 of the $300 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $240 of every $300 Buy In.",
+    "ruleExcerpt": "Day 2 will resume at 12:00 PM combining all remaining players from 1A, 1B, 1C, and 1D ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_9.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_9.pdf",
+    "dateISO": "2026-11-16",
+    "weekday": "Monday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 1030,
+    "regCloseMinutes": 1240,
+    "minLengthMinutes": 210,
+    "gtdRatio": 250.0,
+    "cashRatio": 0.8,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "fallbackMayConflict": false,
    "spendEvents": [],
    "overlaps": [
     {
@@ -10535,8 +10691,164 @@
      ]
     }
    ],
-   "primary": null,
-   "fallback": null,
+   "primary": {
+    "id": "dse4-2026-11-17-1c",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-11-17",
+    "dateLabel": "Tuesday, November 17, 2026",
+    "time": "11:10 AM",
+    "eventLabel": "1C",
+    "name": "$300 No Limit Hold'em 1C",
+    "buyIn": 300,
+    "guarantee": 75000,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "prize pool",
+    "cashPoolPerEntry": 240,
+    "rakeAndStaff": 60,
+    "startingChips": 30000,
+    "levelMinutes": 40,
+    "levels": 30,
+    "lateRegistration": "6 levels + Break (~ 3:40 PM)",
+    "lateRegistrationCloses": "3:40 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Day 2 will resume at 12:00 PM combining all remaining players from 1A, 1B, 1C, and 1D'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.'",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$60 of the $300 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $240 of every $300 Buy In.",
+    "ruleExcerpt": "Day 2 will resume at 12:00 PM combining all remaining players from 1A, 1B, 1C, and 1D ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_10.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_10.pdf",
+    "dateISO": "2026-11-17",
+    "weekday": "Tuesday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 670,
+    "regCloseMinutes": 940,
+    "minLengthMinutes": 270,
+    "gtdRatio": 250.0,
+    "cashRatio": 0.8,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "primaryNeedsExtraSpend": true,
+   "fallback": {
+    "id": "dse4-2026-11-17-1d",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-11-17",
+    "dateLabel": "Tuesday, November 17, 2026",
+    "time": "5:10 PM",
+    "eventLabel": "1D",
+    "name": "$300 No Limit Hold'em 1D",
+    "buyIn": 300,
+    "guarantee": 75000,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "prize pool",
+    "cashPoolPerEntry": 240,
+    "rakeAndStaff": 60,
+    "startingChips": 30000,
+    "levelMinutes": 30,
+    "levels": 30,
+    "lateRegistration": "6 levels + Break (~ 8:40 PM)",
+    "lateRegistrationCloses": "8:40 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Day 2 will resume at 12:00 PM combining all remaining players from 1A, 1B, 1C, and 1D'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.'",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$60 of the $300 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $240 of every $300 Buy In.",
+    "ruleExcerpt": "Day 2 will resume at 12:00 PM combining all remaining players from 1A, 1B, 1C, and 1D ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_9.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_9.pdf",
+    "dateISO": "2026-11-17",
+    "weekday": "Tuesday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 1030,
+    "regCloseMinutes": 1240,
+    "minLengthMinutes": 210,
+    "gtdRatio": 250.0,
+    "cashRatio": 0.8,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "fallbackMayConflict": false,
    "spendEvents": [],
    "overlaps": [
     {
@@ -10870,7 +11182,86 @@
      }
     ]
    },
-   "fallback": null,
+   "primaryNeedsExtraSpend": false,
+   "fallback": {
+    "id": "dse4-2026-11-18-1-day-2-restart",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-11-18",
+    "dateLabel": "Wednesday, November 18, 2026",
+    "time": "12:00 PM",
+    "eventLabel": "1 Day 2 Restart",
+    "name": "$300 No Limit Hold'em Day 2 Restart",
+    "buyIn": 300,
+    "guarantee": 0,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "No guarantee published on the official schedule or the structure sheet.",
+    "cashPoolPerEntry": 240,
+    "rakeAndStaff": 60,
+    "startingChips": 30000,
+    "levelMinutes": 40,
+    "levels": 30,
+    "lateRegistration": "6 levels + Break (~ 3:40 PM)",
+    "lateRegistrationCloses": "",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Day 2 will resume at 12:00 PM combining all remaining players from 1A, 1B, 1C, and 1D'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.'",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$60 of the $300 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $240 of every $300 Buy In.",
+    "ruleExcerpt": "Day 2 will resume at 12:00 PM combining all remaining players from 1A, 1B, 1C, and 1D ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_10.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "$75K guaranteed event with four flights (1A-1D).",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_10.pdf",
+    "dateISO": "2026-11-18",
+    "weekday": "Wednesday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 720,
+    "regCloseMinutes": null,
+    "minLengthMinutes": null,
+    "gtdRatio": "",
+    "cashRatio": 0.8,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "fallbackMayConflict": true,
    "spendEvents": [],
    "overlaps": [
     {
@@ -11126,7 +11517,9 @@
      }
     ]
    },
+   "primaryNeedsExtraSpend": false,
    "fallback": null,
+   "fallbackMayConflict": false,
    "spendEvents": [],
    "overlaps": [],
    "earliestStart": "10:10 AM",
@@ -11372,7 +11765,9 @@
      }
     ]
    },
+   "primaryNeedsExtraSpend": false,
    "fallback": null,
+   "fallbackMayConflict": false,
    "spendEvents": [],
    "overlaps": [],
    "earliestStart": "10:10 AM",
@@ -11618,7 +12013,9 @@
      }
     ]
    },
+   "primaryNeedsExtraSpend": false,
    "fallback": null,
+   "fallbackMayConflict": false,
    "spendEvents": [],
    "overlaps": [],
    "earliestStart": "10:10 AM",
@@ -11864,7 +12261,9 @@
      }
     ]
    },
+   "primaryNeedsExtraSpend": false,
    "fallback": null,
+   "fallbackMayConflict": false,
    "spendEvents": [],
    "overlaps": [],
    "earliestStart": "11:10 AM",
@@ -12188,7 +12587,86 @@
      }
     ]
    },
-   "fallback": null,
+   "primaryNeedsExtraSpend": false,
+   "fallback": {
+    "id": "dse4-2026-11-23-7-1a",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-11-23",
+    "dateLabel": "Monday, November 23, 2026",
+    "time": "11:10 AM",
+    "eventLabel": "7 1A",
+    "name": "$400 No Limit Hold'em 1A $75K GTD",
+    "buyIn": 400,
+    "guarantee": 75000,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "prize pool",
+    "cashPoolPerEntry": 330,
+    "rakeAndStaff": 70,
+    "startingChips": 40000,
+    "levelMinutes": 40,
+    "levels": 30,
+    "lateRegistration": "9 levels + Break (5:55 PM)",
+    "lateRegistrationCloses": "5:55 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Each starting flight will play until we are down to approximately 12.5% of the field remaining. Day 2 will resume at 11:00 AM combining all remaining players from 1A and 1B'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.' The rule restricts only players who bag chips, so a player eliminated in one flight may buy into another.",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$70 of the $400 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $330 of every $400 Buy In.",
+    "ruleExcerpt": "Each starting flight will play until we are down to approximately 12.5% of the field remaining. Day 2 will resume at 11:00 AM combining all remaining players from 1A and 1B ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_2.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "$75K guaranteed event with two flights (1A, 1B).",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_2.pdf",
+    "dateISO": "2026-11-23",
+    "weekday": "Monday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 670,
+    "regCloseMinutes": 1075,
+    "minLengthMinutes": 405,
+    "gtdRatio": 187.5,
+    "cashRatio": 0.82,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "fallbackMayConflict": true,
    "spendEvents": [],
    "overlaps": [
     {
@@ -12522,7 +13000,86 @@
      }
     ]
    },
-   "fallback": null,
+   "primaryNeedsExtraSpend": false,
+   "fallback": {
+    "id": "dse4-2026-11-24-7-1b",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-11-24",
+    "dateLabel": "Tuesday, November 24, 2026",
+    "time": "11:10 AM",
+    "eventLabel": "7 1B",
+    "name": "$400 No Limit Hold'em 1B $75K GTD",
+    "buyIn": 400,
+    "guarantee": 75000,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "prize pool",
+    "cashPoolPerEntry": 330,
+    "rakeAndStaff": 70,
+    "startingChips": 40000,
+    "levelMinutes": 40,
+    "levels": 30,
+    "lateRegistration": "9 levels + Break (5:55 PM)",
+    "lateRegistrationCloses": "5:55 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Each starting flight will play until we are down to approximately 12.5% of the field remaining. Day 2 will resume at 11:00 AM combining all remaining players from 1A and 1B'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.' The rule restricts only players who bag chips, so a player eliminated in one flight may buy into another.",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$70 of the $400 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $330 of every $400 Buy In.",
+    "ruleExcerpt": "Each starting flight will play until we are down to approximately 12.5% of the field remaining. Day 2 will resume at 11:00 AM combining all remaining players from 1A and 1B ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_2.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "$75K guaranteed event with two flights (1A, 1B).",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_2.pdf",
+    "dateISO": "2026-11-24",
+    "weekday": "Tuesday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 670,
+    "regCloseMinutes": 1075,
+    "minLengthMinutes": 405,
+    "gtdRatio": 187.5,
+    "cashRatio": 0.82,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "fallbackMayConflict": true,
    "spendEvents": [],
    "overlaps": [
     {
@@ -12934,6 +13491,7 @@
      }
     ]
    },
+   "primaryNeedsExtraSpend": false,
    "fallback": {
     "id": "dse4-2026-11-25-11",
     "venue": "The Venetian",
@@ -13012,6 +13570,7 @@
      }
     ]
    },
+   "fallbackMayConflict": false,
    "spendEvents": [],
    "overlaps": [
     {
@@ -13345,6 +13904,7 @@
      }
     ]
    },
+   "primaryNeedsExtraSpend": false,
    "fallback": {
     "id": "dse4-2026-11-26-13",
     "venue": "The Venetian",
@@ -13423,6 +13983,7 @@
      }
     ]
    },
+   "fallbackMayConflict": false,
    "spendEvents": [],
    "overlaps": [
     {
@@ -13756,6 +14317,7 @@
      }
     ]
    },
+   "primaryNeedsExtraSpend": false,
    "fallback": {
     "id": "dse4-2026-11-27-15",
     "venue": "The Venetian",
@@ -13834,6 +14396,7 @@
      }
     ]
    },
+   "fallbackMayConflict": false,
    "spendEvents": [],
    "overlaps": [
     {
@@ -14245,41 +14808,42 @@
      }
     ]
    },
+   "primaryNeedsExtraSpend": false,
    "fallback": {
-    "id": "dse4-2026-11-28-17",
+    "id": "dse4-2026-11-28-18",
     "venue": "The Venetian",
     "series": "DeepStack Extravaganza IV",
     "date": "2026-11-28",
     "dateLabel": "Saturday, November 28, 2026",
-    "time": "12:10 PM",
-    "eventLabel": "17",
-    "name": "$400 Pot Limit Omaha Bounty $15K GTD (1Day)",
-    "buyIn": 400,
-    "guarantee": 15000,
+    "time": "5:10 PM",
+    "eventLabel": "18",
+    "name": "$200 No Limit Hold'em PokerAtlas Valuetown Bounty $20K GTD (1Day)",
+    "buyIn": 200,
+    "guarantee": 20000,
     "guaranteeIncludesBounties": true,
     "guaranteeNote": "prize pool + total bounties",
-    "cashPoolPerEntry": 340,
-    "rakeAndStaff": 60,
-    "startingChips": 30000,
+    "cashPoolPerEntry": 160,
+    "rakeAndStaff": 40,
+    "startingChips": 25000,
     "levelMinutes": 30,
     "levels": 28,
-    "lateRegistration": "8 levels + break (~ 4:40 PM)",
-    "lateRegistrationCloses": "4:40 PM",
+    "lateRegistration": "8 levels + Break (9:40 PM)",
+    "lateRegistrationCloses": "9:40 PM",
     "regCloseSource": "Official schedule PDF REG CLOSES column",
     "paysField": "12.5% of the field",
-    "handed": "8 handed",
+    "handed": "",
     "format": "bounty",
-    "singleEntry": "not stated on the sheet",
-    "reEntry": "not stated on the sheet",
+    "singleEntry": "one initial buy-in, then further buy-ins are sold",
+    "reEntry": "subsequent buy-ins are sold at $200",
     "addOn": "not stated on the sheet",
-    "rebuy": "not stated on the sheet",
+    "rebuy": "subsequent buy-ins are sold at $200",
     "paidChipBoost": "not stated on the sheet",
-    "entryRule": "unverified - single entry not stated",
-    "entryRuleBasis": "Rules 1-12 read in full; none of them mentions re-entry, add-on, rebuy or a paid chip boost.",
-    "eligibility": "unverified - single entry not stated",
-    "feeExcerpt": "$60 of the $400 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $340 of every $400 Buy In.",
-    "ruleExcerpt": "Players receive a $100 Bounty for each player they eliminate from the tournament.",
-    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_26.pdf",
+    "entryRule": "extra spend confirmed - the sheet sells further buy-ins",
+    "entryRuleBasis": "Rule 07: 'PokerAtlas PRO players will receive a twenty ($20) rake discount on their initial $200 buy in only, for a total buy in of $180 instead of $200. ... All subsequent buy in's after the initial buy in will be $200.' The sheet itself contemplates further buy-ins.",
+    "eligibility": "extra spend confirmed - the sheet sells further buy-ins",
+    "feeExcerpt": "$40 of the $200 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $160 of every $200 Buy In.",
+    "ruleExcerpt": "PokerAtlas PRO players will receive a twenty ($20) rake discount on their initial $200 buy in only ... All subsequent buy in's after the initial buy in will be $200.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf",
     "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
     "lastChecked": "2026-11-16",
@@ -14291,17 +14855,17 @@
      "venetian-dse4-pdf",
      "venetian-dse4-structures"
     ],
-    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_26.pdf",
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf",
     "dateISO": "2026-11-28",
     "weekday": "Saturday",
     "isDated": true,
-    "bucket": "unverified",
-    "bucketLabel": "Single entry not stated on the sheet",
-    "startMinutes": 730,
-    "regCloseMinutes": 1000,
+    "bucket": "spend",
+    "bucketLabel": "Extra-spend format: the sheet sells more entries, or the prize is a seat",
+    "startMinutes": 1030,
+    "regCloseMinutes": 1300,
     "minLengthMinutes": 270,
-    "gtdRatio": 37.5,
-    "cashRatio": 0.85,
+    "gtdRatio": 100.0,
+    "cashRatio": 0.8,
     "sourceLinks": [
      {
       "id": "venetian-dse4",
@@ -14323,6 +14887,7 @@
      }
     ]
    },
+   "fallbackMayConflict": false,
    "spendEvents": [
     {
      "id": "dse4-2026-11-28-18",
@@ -14831,6 +15396,7 @@
      }
     ]
    },
+   "primaryNeedsExtraSpend": false,
    "fallback": {
     "id": "dse4-2026-11-29-21",
     "venue": "The Venetian",
@@ -14909,6 +15475,7 @@
      }
     ]
    },
+   "fallbackMayConflict": false,
    "spendEvents": [],
    "overlaps": [
     {
@@ -15260,7 +15827,86 @@
      }
     ]
    },
-   "fallback": null,
+   "primaryNeedsExtraSpend": false,
+   "fallback": {
+    "id": "dse4-2026-11-30-19-1b",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-11-30",
+    "dateLabel": "Monday, November 30, 2026",
+    "time": "11:10 AM",
+    "eventLabel": "19 1B",
+    "name": "$400 No Limit Hold'em 1B $75K GTD",
+    "buyIn": 400,
+    "guarantee": 75000,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "prize pool",
+    "cashPoolPerEntry": 330,
+    "rakeAndStaff": 70,
+    "startingChips": 40000,
+    "levelMinutes": 40,
+    "levels": 30,
+    "lateRegistration": "9 levels + Break (5:55 PM)",
+    "lateRegistrationCloses": "5:55 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Day 2 will resume at 11:00 AM combining all remaining players from 1A, 1B, and 1C'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.'",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$70 of the $400 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $330 of every $400 Buy In.",
+    "ruleExcerpt": "Day 2 will resume at 11:00 AM combining all remaining players from 1A, 1B, and 1C ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "$75K guaranteed event with three flights (1A, 1B, 1C).",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
+    "dateISO": "2026-11-30",
+    "weekday": "Monday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 670,
+    "regCloseMinutes": 1075,
+    "minLengthMinutes": 405,
+    "gtdRatio": 187.5,
+    "cashRatio": 0.82,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "fallbackMayConflict": true,
    "spendEvents": [],
    "overlaps": [
     {
@@ -15594,7 +16240,86 @@
      }
     ]
    },
-   "fallback": null,
+   "primaryNeedsExtraSpend": false,
+   "fallback": {
+    "id": "dse4-2026-12-01-19-1c",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-12-01",
+    "dateLabel": "Tuesday, December 1, 2026",
+    "time": "11:10 AM",
+    "eventLabel": "19 1C",
+    "name": "$400 No Limit Hold'em 1C $75K GTD",
+    "buyIn": 400,
+    "guarantee": 75000,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "prize pool",
+    "cashPoolPerEntry": 330,
+    "rakeAndStaff": 70,
+    "startingChips": 40000,
+    "levelMinutes": 40,
+    "levels": 30,
+    "lateRegistration": "9 levels + Break (5:55 PM)",
+    "lateRegistrationCloses": "5:55 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Day 2 will resume at 11:00 AM combining all remaining players from 1A, 1B, and 1C'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.'",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$70 of the $400 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $330 of every $400 Buy In.",
+    "ruleExcerpt": "Day 2 will resume at 11:00 AM combining all remaining players from 1A, 1B, and 1C ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "$75K guaranteed event with three flights (1A, 1B, 1C).",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
+    "dateISO": "2026-12-01",
+    "weekday": "Tuesday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 670,
+    "regCloseMinutes": 1075,
+    "minLengthMinutes": 405,
+    "gtdRatio": 187.5,
+    "cashRatio": 0.82,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "fallbackMayConflict": true,
    "spendEvents": [],
    "overlaps": [
     {
@@ -16006,6 +16731,7 @@
      }
     ]
    },
+   "primaryNeedsExtraSpend": false,
    "fallback": {
     "id": "dse4-2026-12-02-25",
     "venue": "The Venetian",
@@ -16084,6 +16810,7 @@
      }
     ]
    },
+   "fallbackMayConflict": false,
    "spendEvents": [],
    "overlaps": [
     {
@@ -16504,7 +17231,86 @@
      }
     ]
    },
-   "fallback": null,
+   "primaryNeedsExtraSpend": false,
+   "fallback": {
+    "id": "dse4-2026-12-03-26-1b",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-12-03",
+    "dateLabel": "Thursday, December 3, 2026",
+    "time": "5:10 PM",
+    "eventLabel": "26 1B",
+    "name": "$800 No Limit Hold'em 1B $500K GTD",
+    "buyIn": 800,
+    "guarantee": 500000,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "prize pool",
+    "cashPoolPerEntry": 690,
+    "rakeAndStaff": 110,
+    "startingChips": 40000,
+    "levelMinutes": 30,
+    "levels": 30,
+    "lateRegistration": "6 levels + Break (~ 8:40 PM)",
+    "lateRegistrationCloses": "8:40 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Day 2 will resume at 12:00 PM combining all remaining players from 1A, 1B, 1C, 1D, 1E, and 1F'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.'",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$110 of the $800 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $690 of every $800 Buy In.",
+    "ruleExcerpt": "Day 2 will resume at 12:00 PM combining all remaining players from 1A, 1B, 1C, 1D, 1E, and 1F ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_13.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "$500K guaranteed event with six flights (1A-1F).",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_13.pdf",
+    "dateISO": "2026-12-03",
+    "weekday": "Thursday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 1030,
+    "regCloseMinutes": 1240,
+    "minLengthMinutes": 210,
+    "gtdRatio": 625.0,
+    "cashRatio": 0.86,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "fallbackMayConflict": false,
    "spendEvents": [],
    "overlaps": [
     {
@@ -16778,8 +17584,164 @@
      ]
     }
    ],
-   "primary": null,
-   "fallback": null,
+   "primary": {
+    "id": "dse4-2026-12-04-26-1c",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-12-04",
+    "dateLabel": "Friday, December 4, 2026",
+    "time": "11:10 AM",
+    "eventLabel": "26 1C",
+    "name": "$800 No Limit Hold'em 1C $500K GTD",
+    "buyIn": 800,
+    "guarantee": 500000,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "prize pool",
+    "cashPoolPerEntry": 690,
+    "rakeAndStaff": 110,
+    "startingChips": 40000,
+    "levelMinutes": 40,
+    "levels": 30,
+    "lateRegistration": "6 levels + Break (~ 3:40 PM)",
+    "lateRegistrationCloses": "3:40 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Day 2 will resume at 12:00 PM combining all remaining players from 1A, 1B, 1C, 1D, 1E, and 1F'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.'",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$110 of the $800 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $690 of every $800 Buy In.",
+    "ruleExcerpt": "Day 2 will resume at 12:00 PM combining all remaining players from 1A, 1B, 1C, 1D, 1E, and 1F ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "$500K guaranteed event with six flights (1A-1F).",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
+    "dateISO": "2026-12-04",
+    "weekday": "Friday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 670,
+    "regCloseMinutes": 940,
+    "minLengthMinutes": 270,
+    "gtdRatio": 625.0,
+    "cashRatio": 0.86,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "primaryNeedsExtraSpend": true,
+   "fallback": {
+    "id": "dse4-2026-12-04-26-1d",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-12-04",
+    "dateLabel": "Friday, December 4, 2026",
+    "time": "5:10 PM",
+    "eventLabel": "26 1D",
+    "name": "$800 No Limit Hold'em 1D $500K GTD",
+    "buyIn": 800,
+    "guarantee": 500000,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "prize pool",
+    "cashPoolPerEntry": 690,
+    "rakeAndStaff": 110,
+    "startingChips": 40000,
+    "levelMinutes": 30,
+    "levels": 30,
+    "lateRegistration": "6 levels + Break (~ 8:40 PM)",
+    "lateRegistrationCloses": "8:40 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Day 2 will resume at 12:00 PM combining all remaining players from 1A, 1B, 1C, 1D, 1E, and 1F'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.'",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$110 of the $800 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $690 of every $800 Buy In.",
+    "ruleExcerpt": "Day 2 will resume at 12:00 PM combining all remaining players from 1A, 1B, 1C, 1D, 1E, and 1F ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_13.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "$500K guaranteed event with six flights (1A-1F).",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_13.pdf",
+    "dateISO": "2026-12-04",
+    "weekday": "Friday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 1030,
+    "regCloseMinutes": 1240,
+    "minLengthMinutes": 210,
+    "gtdRatio": 625.0,
+    "cashRatio": 0.86,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "fallbackMayConflict": false,
    "spendEvents": [],
    "overlaps": [
     {
@@ -17035,8 +17997,164 @@
      ]
     }
    ],
-   "primary": null,
-   "fallback": null,
+   "primary": {
+    "id": "dse4-2026-12-05-26-1e",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-12-05",
+    "dateLabel": "Saturday, December 5, 2026",
+    "time": "11:10 AM",
+    "eventLabel": "26 1E",
+    "name": "$800 No Limit Hold'em 1E $500K GTD",
+    "buyIn": 800,
+    "guarantee": 500000,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "prize pool",
+    "cashPoolPerEntry": 690,
+    "rakeAndStaff": 110,
+    "startingChips": 40000,
+    "levelMinutes": 40,
+    "levels": 30,
+    "lateRegistration": "6 levels + Break (~ 3:40 PM)",
+    "lateRegistrationCloses": "3:40 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Day 2 will resume at 12:00 PM combining all remaining players from 1A, 1B, 1C, 1D, 1E, and 1F'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.'",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$110 of the $800 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $690 of every $800 Buy In.",
+    "ruleExcerpt": "Day 2 will resume at 12:00 PM combining all remaining players from 1A, 1B, 1C, 1D, 1E, and 1F ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "$500K guaranteed event with six flights (1A-1F).",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
+    "dateISO": "2026-12-05",
+    "weekday": "Saturday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 670,
+    "regCloseMinutes": 940,
+    "minLengthMinutes": 270,
+    "gtdRatio": 625.0,
+    "cashRatio": 0.86,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "primaryNeedsExtraSpend": true,
+   "fallback": {
+    "id": "dse4-2026-12-05-26-1f",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-12-05",
+    "dateLabel": "Saturday, December 5, 2026",
+    "time": "5:10 PM",
+    "eventLabel": "26 1F",
+    "name": "$800 No Limit Hold'em 1F (Turbo) $500K GTD",
+    "buyIn": 800,
+    "guarantee": 500000,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "prize pool",
+    "cashPoolPerEntry": 690,
+    "rakeAndStaff": 110,
+    "startingChips": 40000,
+    "levelMinutes": 20,
+    "levels": 30,
+    "lateRegistration": "6 levels + Break (~ 7:25 PM)",
+    "lateRegistrationCloses": "7:25 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Day 2 will resume at 12:00 PM combining all remaining players from 1A, 1B, 1C, 1D, 1E, and 1F'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.'",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$110 of the $800 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $690 of every $800 Buy In.",
+    "ruleExcerpt": "Day 2 will resume at 12:00 PM combining all remaining players from 1A, 1B, 1C, 1D, 1E, and 1F ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_14.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "$500K guaranteed event with six flights (1A-1F).",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_14.pdf",
+    "dateISO": "2026-12-05",
+    "weekday": "Saturday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 1030,
+    "regCloseMinutes": 1165,
+    "minLengthMinutes": 135,
+    "gtdRatio": 625.0,
+    "cashRatio": 0.86,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "fallbackMayConflict": false,
    "spendEvents": [],
    "overlaps": [
     {
@@ -17448,6 +18566,7 @@
      }
     ]
    },
+   "primaryNeedsExtraSpend": false,
    "fallback": {
     "id": "dse4-2026-12-06-29",
     "venue": "The Venetian",
@@ -17526,6 +18645,7 @@
      }
     ]
    },
+   "fallbackMayConflict": false,
    "spendEvents": [],
    "overlaps": [
     {
@@ -17868,6 +18988,7 @@
      }
     ]
    },
+   "primaryNeedsExtraSpend": false,
    "fallback": {
     "id": "dse4-2026-12-07-31",
     "venue": "The Venetian",
@@ -17946,6 +19067,7 @@
      }
     ]
    },
+   "fallbackMayConflict": false,
    "spendEvents": [],
    "overlaps": [
     {
@@ -18357,45 +19479,46 @@
      }
     ]
    },
+   "primaryNeedsExtraSpend": false,
    "fallback": {
-    "id": "dse4-2026-12-08-34",
+    "id": "dse4-2026-12-08-33",
     "venue": "The Venetian",
     "series": "DeepStack Extravaganza IV",
     "date": "2026-12-08",
     "dateLabel": "Tuesday, December 8, 2026",
-    "time": "5:10 PM",
-    "eventLabel": "34",
-    "name": "$300 No Limit Hold'em Bounty $15K GTD (1Day)",
-    "buyIn": 300,
-    "guarantee": 15000,
-    "guaranteeIncludesBounties": true,
-    "guaranteeNote": "prize pool + total bounties",
-    "cashPoolPerEntry": 250,
-    "rakeAndStaff": 50,
-    "startingChips": 25000,
-    "levelMinutes": 30,
+    "time": "4:10 PM",
+    "eventLabel": "33",
+    "name": "$100 NLH LIPS Ladies Milestone Satellite (1Day)",
+    "buyIn": 100,
+    "guarantee": 0,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "No guarantee published on the official schedule or the structure sheet.",
+    "cashPoolPerEntry": 80,
+    "rakeAndStaff": 20,
+    "startingChips": 20000,
+    "levelMinutes": 20,
     "levels": 28,
-    "lateRegistration": "8 levels + Break (9:40 PM)",
-    "lateRegistrationCloses": "9:40 PM",
+    "lateRegistration": "6 levels + Break (~ 6:25 PM)",
+    "lateRegistrationCloses": "6:25 PM",
     "regCloseSource": "Official schedule PDF REG CLOSES column",
-    "paysField": "12.5% of the field",
+    "paysField": "",
     "handed": "",
-    "format": "bounty",
+    "format": "satellite",
     "singleEntry": "not stated on the sheet",
     "reEntry": "not stated on the sheet",
     "addOn": "not stated on the sheet",
     "rebuy": "not stated on the sheet",
     "paidChipBoost": "not stated on the sheet",
-    "entryRule": "unverified - single entry not stated",
-    "entryRuleBasis": "Rules 1-12 read in full; none of them mentions re-entry, add-on, rebuy or a paid chip boost.",
-    "eligibility": "unverified - single entry not stated",
-    "feeExcerpt": "$50 of the $300 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $250 of every $300 Buy In.",
-    "ruleExcerpt": "Players receive $100 bounty for each player they eliminate from the tournament.",
-    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
+    "entryRule": "extra spend possible - seat prize",
+    "entryRuleBasis": "Rules 1-13 read in full. The prize is a direct-entry seat into Event #39, so each extra buy-in is another chance at the same seat prize. Rule 09: a player reaching 200,000 chips 'will instantly receive direct entry'.",
+    "eligibility": "extra spend possible - seat prize",
+    "feeExcerpt": "$20 of the $100 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $80 of every $100 Buy In.",
+    "ruleExcerpt": "All tournament prizes are direct entry into our $800 No Limit Hold'em LIPS Ladies Event #39, with any odd monies awarded as one additional payout.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_19.pdf",
     "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
     "lastChecked": "2026-11-16",
-    "notes": "",
+    "notes": "Ladies International Poker Series (LIPS) event.",
     "venueId": "venetian",
     "venueName": "The Venetian",
     "sourceIds": [
@@ -18403,17 +19526,17 @@
      "venetian-dse4-pdf",
      "venetian-dse4-structures"
     ],
-    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_19.pdf",
     "dateISO": "2026-12-08",
     "weekday": "Tuesday",
     "isDated": true,
-    "bucket": "unverified",
-    "bucketLabel": "Single entry not stated on the sheet",
-    "startMinutes": 1030,
-    "regCloseMinutes": 1300,
-    "minLengthMinutes": 270,
-    "gtdRatio": 50.0,
-    "cashRatio": 0.83,
+    "bucket": "spend",
+    "bucketLabel": "Extra-spend format: the sheet sells more entries, or the prize is a seat",
+    "startMinutes": 970,
+    "regCloseMinutes": 1105,
+    "minLengthMinutes": 135,
+    "gtdRatio": "",
+    "cashRatio": 0.8,
     "sourceLinks": [
      {
       "id": "venetian-dse4",
@@ -18435,6 +19558,7 @@
      }
     ]
    },
+   "fallbackMayConflict": false,
    "spendEvents": [
     {
      "id": "dse4-2026-12-08-33",
@@ -19021,6 +20145,7 @@
      }
     ]
    },
+   "primaryNeedsExtraSpend": false,
    "fallback": {
     "id": "dse4-2026-12-09-38",
     "venue": "The Venetian",
@@ -19099,6 +20224,7 @@
      }
     ]
    },
+   "fallbackMayConflict": false,
    "spendEvents": [
     {
      "id": "dse4-2026-12-09-37",
@@ -19703,6 +20829,7 @@
      }
     ]
    },
+   "primaryNeedsExtraSpend": false,
    "fallback": {
     "id": "dse4-2026-12-10-42",
     "venue": "The Venetian",
@@ -19781,6 +20908,7 @@
      }
     ]
    },
+   "fallbackMayConflict": false,
    "spendEvents": [
     {
      "id": "dse4-2026-12-10-41",
@@ -20472,6 +21600,7 @@
      }
     ]
    },
+   "primaryNeedsExtraSpend": false,
    "fallback": {
     "id": "dse4-2026-12-11-43",
     "venue": "The Venetian",
@@ -20550,6 +21679,7 @@
      }
     ]
    },
+   "fallbackMayConflict": true,
    "spendEvents": [
     {
      "id": "dse4-2026-12-11-44",
@@ -21136,8 +22266,164 @@
      ]
     }
    ],
-   "primary": null,
-   "fallback": null,
+   "primary": {
+    "id": "dse4-2026-12-12-46",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-12-12",
+    "dateLabel": "Saturday, December 12, 2026",
+    "time": "9:10 AM",
+    "eventLabel": "46",
+    "name": "$260 NLH Turbo Milestone Satellite (1Day)",
+    "buyIn": 260,
+    "guarantee": 0,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "No guarantee published on the official schedule or the structure sheet.",
+    "cashPoolPerEntry": 225,
+    "rakeAndStaff": 35,
+    "startingChips": 20000,
+    "levelMinutes": 15,
+    "levels": 28,
+    "lateRegistration": "6 levels",
+    "lateRegistrationCloses": "10:55 AM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "satellite",
+    "singleEntry": "not stated on the sheet",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - seat prize",
+    "entryRuleBasis": "Rules 1-13 read in full. The prize is a direct-entry seat into Event #47, so each extra buy-in is another chance at the same seat prize.",
+    "eligibility": "extra spend possible - seat prize",
+    "feeExcerpt": "$35 of the $260 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $225 of every $260 Buy In.",
+    "ruleExcerpt": "All tournament prizes are direct entry into our $2,200 No Limit Hold'em PokerAtlas Championship Title Event #47 & any odd monies awarded as one additional payout.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "@PokerAtlas* TOUR (schedule row is tagged @PokerAtlas* TOUR).",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
+    "dateISO": "2026-12-12",
+    "weekday": "Saturday",
+    "isDated": true,
+    "bucket": "spend",
+    "bucketLabel": "Extra-spend format: the sheet sells more entries, or the prize is a seat",
+    "startMinutes": 550,
+    "regCloseMinutes": 655,
+    "minLengthMinutes": 105,
+    "gtdRatio": "",
+    "cashRatio": 0.87,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "primaryNeedsExtraSpend": true,
+   "fallback": {
+    "id": "dse4-2026-12-12-48",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-12-12",
+    "dateLabel": "Saturday, December 12, 2026",
+    "time": "12:10 PM",
+    "eventLabel": "48",
+    "name": "$260 NLH Turbo Milestone Satellite (1Day)",
+    "buyIn": 260,
+    "guarantee": 0,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "No guarantee published on the official schedule or the structure sheet.",
+    "cashPoolPerEntry": 225,
+    "rakeAndStaff": 35,
+    "startingChips": 20000,
+    "levelMinutes": 15,
+    "levels": 28,
+    "lateRegistration": "6 levels",
+    "lateRegistrationCloses": "1:55 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "satellite",
+    "singleEntry": "not stated on the sheet",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - seat prize",
+    "entryRuleBasis": "Rules 1-13 read in full. The prize is a direct-entry seat into Event #47, so each extra buy-in is another chance at the same seat prize.",
+    "eligibility": "extra spend possible - seat prize",
+    "feeExcerpt": "$35 of the $260 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $225 of every $260 Buy In.",
+    "ruleExcerpt": "All tournament prizes are direct entry into our $2,200 No Limit Hold'em PokerAtlas Championship Title Event #47 & any odd monies awarded as one additional payout.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "@PokerAtlas* TOUR (schedule row is tagged @PokerAtlas* TOUR).",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
+    "dateISO": "2026-12-12",
+    "weekday": "Saturday",
+    "isDated": true,
+    "bucket": "spend",
+    "bucketLabel": "Extra-spend format: the sheet sells more entries, or the prize is a seat",
+    "startMinutes": 730,
+    "regCloseMinutes": 835,
+    "minLengthMinutes": 105,
+    "gtdRatio": "",
+    "cashRatio": 0.87,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "fallbackMayConflict": false,
    "spendEvents": [
     {
      "id": "dse4-2026-12-12-46",
@@ -21733,7 +23019,86 @@
      }
     ]
    },
-   "fallback": null,
+   "primaryNeedsExtraSpend": false,
+   "fallback": {
+    "id": "dse4-2026-12-13-49-1a",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-12-13",
+    "dateLabel": "Sunday, December 13, 2026",
+    "time": "10:10 AM",
+    "eventLabel": "49 1A",
+    "name": "$1,100 No Limit Hold'em Seniors 1A $300K GTD",
+    "buyIn": 1100,
+    "guarantee": 300000,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "prize pool",
+    "cashPoolPerEntry": 960,
+    "rakeAndStaff": 140,
+    "startingChips": 40000,
+    "levelMinutes": 40,
+    "levels": 29,
+    "lateRegistration": "9 levels + Break (~ 4:55 PM)",
+    "lateRegistrationCloses": "4:55 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Day 2 will resume at 10:00 AM combining all remaining players from 1A and 1B'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.'",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$140 of the $1,100 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $960 of every $1,100 Buy In.",
+    "ruleExcerpt": "Day 2 will resume at 10:00 AM combining all remaining players from 1A and 1B ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_20.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "@PokerAtlas* TOUR (schedule row is tagged @PokerAtlas* TOUR).",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_20.pdf",
+    "dateISO": "2026-12-13",
+    "weekday": "Sunday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 610,
+    "regCloseMinutes": 1015,
+    "minLengthMinutes": 405,
+    "gtdRatio": 272.73,
+    "cashRatio": 0.87,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "fallbackMayConflict": true,
    "spendEvents": [],
    "overlaps": [
     {
@@ -22154,7 +23519,86 @@
      }
     ]
    },
-   "fallback": null,
+   "primaryNeedsExtraSpend": false,
+   "fallback": {
+    "id": "dse4-2026-12-14-49-1b",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-12-14",
+    "dateLabel": "Monday, December 14, 2026",
+    "time": "10:10 AM",
+    "eventLabel": "49 1B",
+    "name": "$1,100 No Limit Hold'em Seniors 1B $300K GTD",
+    "buyIn": 1100,
+    "guarantee": 300000,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "prize pool",
+    "cashPoolPerEntry": 960,
+    "rakeAndStaff": 140,
+    "startingChips": 40000,
+    "levelMinutes": 40,
+    "levels": 29,
+    "lateRegistration": "9 levels + Break (~ 4:55 PM)",
+    "lateRegistrationCloses": "4:55 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Day 2 will resume at 10:00 AM combining all remaining players from 1A and 1B'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.'",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$140 of the $1,100 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $960 of every $1,100 Buy In.",
+    "ruleExcerpt": "Day 2 will resume at 10:00 AM combining all remaining players from 1A and 1B ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_20.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "@PokerAtlas* TOUR (schedule row is tagged @PokerAtlas* TOUR).",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_20.pdf",
+    "dateISO": "2026-12-14",
+    "weekday": "Monday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 610,
+    "regCloseMinutes": 1015,
+    "minLengthMinutes": 405,
+    "gtdRatio": 272.73,
+    "cashRatio": 0.87,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "fallbackMayConflict": true,
    "spendEvents": [],
    "overlaps": [
     {
@@ -22575,6 +24019,7 @@
      }
     ]
    },
+   "primaryNeedsExtraSpend": false,
    "fallback": {
     "id": "dse4-2026-12-15-53",
     "venue": "The Venetian",
@@ -22653,6 +24098,7 @@
      }
     ]
    },
+   "fallbackMayConflict": false,
    "spendEvents": [],
    "overlaps": [
     {
@@ -22986,6 +24432,7 @@
      }
     ]
    },
+   "primaryNeedsExtraSpend": false,
    "fallback": {
     "id": "dse4-2026-12-16-55",
     "venue": "The Venetian",
@@ -23064,6 +24511,7 @@
      }
     ]
    },
+   "fallbackMayConflict": false,
    "spendEvents": [],
    "overlaps": [
     {
@@ -23475,7 +24923,86 @@
      }
     ]
    },
-   "fallback": null,
+   "primaryNeedsExtraSpend": false,
+   "fallback": {
+    "id": "dse4-2026-12-17-56-1b",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-12-17",
+    "dateLabel": "Thursday, December 17, 2026",
+    "time": "6:10 PM",
+    "eventLabel": "56 1B",
+    "name": "$1,100 No Limit Hold'em 1B $500K GTD",
+    "buyIn": 1100,
+    "guarantee": 500000,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "prize pool",
+    "cashPoolPerEntry": 960,
+    "rakeAndStaff": 140,
+    "startingChips": 40000,
+    "levelMinutes": 30,
+    "levels": 30,
+    "lateRegistration": "9 levels + Break (~ 11:10 PM)",
+    "lateRegistrationCloses": "11:10 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Day 2 will resume at 11:00 AM combining all remaining players from 1A, 1B, 1C, 1D, and 1E'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.' Rule 07 offers a $40 house-fee discount for Day 1B entries before 6:10 p.m.",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$140 of the $1,100 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $960 of every $1,100 Buy In. On Day 1B, players who register before the start of the event (6:10 PM.) will receive a forty ($40) discount on house fees for a total buy in of $1,060 instead of $1,100.",
+    "ruleExcerpt": "Day 2 will resume at 11:00 AM combining all remaining players from 1A, 1B, 1C, 1D, and 1E ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_36.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "$40 rake discount for Day 1A entries before 10:10 a.m. and Day 1B entries before 6:10 p.m. (structure sheet 35 and 36).",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_36.pdf",
+    "dateISO": "2026-12-17",
+    "weekday": "Thursday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 1090,
+    "regCloseMinutes": 1390,
+    "minLengthMinutes": 300,
+    "gtdRatio": 454.55,
+    "cashRatio": 0.87,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "fallbackMayConflict": false,
    "spendEvents": [],
    "overlaps": [
     {
@@ -23749,8 +25276,164 @@
      ]
     }
    ],
-   "primary": null,
-   "fallback": null,
+   "primary": {
+    "id": "dse4-2026-12-18-56-1c",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-12-18",
+    "dateLabel": "Friday, December 18, 2026",
+    "time": "10:10 AM",
+    "eventLabel": "56 1C",
+    "name": "$1,100 No Limit Hold'em 1C $500K GTD",
+    "buyIn": 1100,
+    "guarantee": 500000,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "prize pool",
+    "cashPoolPerEntry": 960,
+    "rakeAndStaff": 140,
+    "startingChips": 40000,
+    "levelMinutes": 40,
+    "levels": 30,
+    "lateRegistration": "9 levels + Break (~ 4:55 PM)",
+    "lateRegistrationCloses": "4:55 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Day 2 will resume at 11:00 AM combining all remaining players from 1A, 1B, 1C, 1D, and 1E'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.' Rule 07 offers a $40 house-fee discount for Day 1A entries before 10:10 a.m.",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$140 of the $1,100 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $960 of every $1,100 Buy In. On Day 1A, players who register before the start of the event (10:10 a.m.) will receive a forty ($40) discount on house fees for a total buy in of $1,060 instead of $1,100.",
+    "ruleExcerpt": "Day 2 will resume at 11:00 AM combining all remaining players from 1A, 1B, 1C, 1D, and 1E ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "$40 rake discount for Day 1A entries before 10:10 a.m. and Day 1B entries before 6:10 p.m. (structure sheet 35 and 36).",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
+    "dateISO": "2026-12-18",
+    "weekday": "Friday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 610,
+    "regCloseMinutes": 1015,
+    "minLengthMinutes": 405,
+    "gtdRatio": 454.55,
+    "cashRatio": 0.87,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "primaryNeedsExtraSpend": true,
+   "fallback": {
+    "id": "dse4-2026-12-18-56-1d",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-12-18",
+    "dateLabel": "Friday, December 18, 2026",
+    "time": "6:10 PM",
+    "eventLabel": "56 1D",
+    "name": "$1,100 No Limit Hold'em 1D $500K GTD",
+    "buyIn": 1100,
+    "guarantee": 500000,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "prize pool",
+    "cashPoolPerEntry": 960,
+    "rakeAndStaff": 140,
+    "startingChips": 40000,
+    "levelMinutes": 30,
+    "levels": 30,
+    "lateRegistration": "9 levels + Break (~ 11:10 PM)",
+    "lateRegistrationCloses": "11:10 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Day 2 will resume at 11:00 AM combining all remaining players from 1A, 1B, 1C, 1D, and 1E'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.' Rule 07 offers a $40 house-fee discount for Day 1B entries before 6:10 p.m.",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$140 of the $1,100 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $960 of every $1,100 Buy In. On Day 1B, players who register before the start of the event (6:10 PM.) will receive a forty ($40) discount on house fees for a total buy in of $1,060 instead of $1,100.",
+    "ruleExcerpt": "Day 2 will resume at 11:00 AM combining all remaining players from 1A, 1B, 1C, 1D, and 1E ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_36.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "$40 rake discount for Day 1A entries before 10:10 a.m. and Day 1B entries before 6:10 p.m. (structure sheet 35 and 36).",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_36.pdf",
+    "dateISO": "2026-12-18",
+    "weekday": "Friday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 1090,
+    "regCloseMinutes": 1390,
+    "minLengthMinutes": 300,
+    "gtdRatio": 454.55,
+    "cashRatio": 0.87,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "fallbackMayConflict": false,
    "spendEvents": [],
    "overlaps": [
     {
@@ -24006,8 +25689,164 @@
      ]
     }
    ],
-   "primary": null,
-   "fallback": null,
+   "primary": {
+    "id": "dse4-2026-12-19-56-1e",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-12-19",
+    "dateLabel": "Saturday, December 19, 2026",
+    "time": "10:10 AM",
+    "eventLabel": "56 1E",
+    "name": "$1,100 No Limit Hold'em 1E $500K GTD",
+    "buyIn": 1100,
+    "guarantee": 500000,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "prize pool",
+    "cashPoolPerEntry": 960,
+    "rakeAndStaff": 140,
+    "startingChips": 40000,
+    "levelMinutes": 40,
+    "levels": 30,
+    "lateRegistration": "9 levels + Break (~ 4:55 PM)",
+    "lateRegistrationCloses": "4:55 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Day 2 will resume at 11:00 AM combining all remaining players from 1A, 1B, 1C, 1D, and 1E'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.' Rule 07 offers a $40 house-fee discount for Day 1A entries before 10:10 a.m.",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$140 of the $1,100 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $960 of every $1,100 Buy In. On Day 1A, players who register before the start of the event (10:10 a.m.) will receive a forty ($40) discount on house fees for a total buy in of $1,060 instead of $1,100.",
+    "ruleExcerpt": "Day 2 will resume at 11:00 AM combining all remaining players from 1A, 1B, 1C, 1D, and 1E ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "$40 rake discount for Day 1A entries before 10:10 a.m. and Day 1B entries before 6:10 p.m. (structure sheet 35 and 36).",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
+    "dateISO": "2026-12-19",
+    "weekday": "Saturday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 610,
+    "regCloseMinutes": 1015,
+    "minLengthMinutes": 405,
+    "gtdRatio": 454.55,
+    "cashRatio": 0.87,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "primaryNeedsExtraSpend": true,
+   "fallback": {
+    "id": "dse4-2026-12-19-58",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-12-19",
+    "dateLabel": "Saturday, December 19, 2026",
+    "time": "5:10 PM",
+    "eventLabel": "58",
+    "name": "$200 No Limit Hold'em PokerAtlas Valuetown Bounty $20K GTD (1Day)",
+    "buyIn": 200,
+    "guarantee": 20000,
+    "guaranteeIncludesBounties": true,
+    "guaranteeNote": "prize pool + total bounties",
+    "cashPoolPerEntry": 160,
+    "rakeAndStaff": 40,
+    "startingChips": 25000,
+    "levelMinutes": 30,
+    "levels": 28,
+    "lateRegistration": "8 levels + Break (9:40 PM)",
+    "lateRegistrationCloses": "9:40 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "12.5% of the field",
+    "handed": "",
+    "format": "bounty",
+    "singleEntry": "one initial buy-in, then further buy-ins are sold",
+    "reEntry": "subsequent buy-ins are sold at $200",
+    "addOn": "not stated on the sheet",
+    "rebuy": "subsequent buy-ins are sold at $200",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend confirmed - the sheet sells further buy-ins",
+    "entryRuleBasis": "Rule 07: 'PokerAtlas PRO players will receive a twenty ($20) rake discount on their initial $200 buy in only, for a total buy in of $180 instead of $200. ... All subsequent buy in's after the initial buy in will be $200.' The sheet itself contemplates further buy-ins.",
+    "eligibility": "extra spend confirmed - the sheet sells further buy-ins",
+    "feeExcerpt": "$40 of the $200 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $160 of every $200 Buy In.",
+    "ruleExcerpt": "PokerAtlas PRO players will receive a twenty ($20) rake discount on their initial $200 buy in only ... All subsequent buy in's after the initial buy in will be $200.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "@PokerAtlas PRO discount event (schedule row is tagged @PokerAtlas PRO).",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf",
+    "dateISO": "2026-12-19",
+    "weekday": "Saturday",
+    "isDated": true,
+    "bucket": "spend",
+    "bucketLabel": "Extra-spend format: the sheet sells more entries, or the prize is a seat",
+    "startMinutes": 1030,
+    "regCloseMinutes": 1300,
+    "minLengthMinutes": 270,
+    "gtdRatio": 100.0,
+    "cashRatio": 0.8,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "fallbackMayConflict": false,
    "spendEvents": [
     {
      "id": "dse4-2026-12-19-58",
@@ -24498,7 +26337,86 @@
      }
     ]
    },
-   "fallback": null,
+   "primaryNeedsExtraSpend": false,
+   "fallback": {
+    "id": "dse4-2026-12-20-56-day-2-restart",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-12-20",
+    "dateLabel": "Sunday, December 20, 2026",
+    "time": "11:00 AM",
+    "eventLabel": "56 Day 2 Restart",
+    "name": "$1,100 No Limit Hold'em Day 2 Restart",
+    "buyIn": 1100,
+    "guarantee": 0,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "No guarantee published on the official schedule or the structure sheet.",
+    "cashPoolPerEntry": 960,
+    "rakeAndStaff": 140,
+    "startingChips": 40000,
+    "levelMinutes": 40,
+    "levels": 30,
+    "lateRegistration": "9 levels + Break (~ 4:55 PM)",
+    "lateRegistrationCloses": "",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Day 2 will resume at 11:00 AM combining all remaining players from 1A, 1B, 1C, 1D, and 1E'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.' Rule 07 offers a $40 house-fee discount for Day 1A entries before 10:10 a.m.",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$140 of the $1,100 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $960 of every $1,100 Buy In. On Day 1A, players who register before the start of the event (10:10 a.m.) will receive a forty ($40) discount on house fees for a total buy in of $1,060 instead of $1,100.",
+    "ruleExcerpt": "Day 2 will resume at 11:00 AM combining all remaining players from 1A, 1B, 1C, 1D, and 1E ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "$40 rake discount for Day 1A entries before 10:10 a.m. and Day 1B entries before 6:10 p.m. (structure sheet 35 and 36).",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
+    "dateISO": "2026-12-20",
+    "weekday": "Sunday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 660,
+    "regCloseMinutes": null,
+    "minLengthMinutes": null,
+    "gtdRatio": "",
+    "cashRatio": 0.87,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "fallbackMayConflict": true,
    "spendEvents": [],
    "overlaps": [
     {
@@ -24832,7 +26750,86 @@
      }
     ]
    },
-   "fallback": null,
+   "primaryNeedsExtraSpend": false,
+   "fallback": {
+    "id": "dse4-2026-12-21-59-1b",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-12-21",
+    "dateLabel": "Monday, December 21, 2026",
+    "time": "11:10 AM",
+    "eventLabel": "59 1B",
+    "name": "$600 No Limit Hold'em 1B $150K GTD",
+    "buyIn": 600,
+    "guarantee": 150000,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "prize pool",
+    "cashPoolPerEntry": 505,
+    "rakeAndStaff": 95,
+    "startingChips": 40000,
+    "levelMinutes": 40,
+    "levels": 30,
+    "lateRegistration": "9 levels + Break (5:55 PM)",
+    "lateRegistrationCloses": "5:55 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Day 2 will resume at 11:00 AM combining all remaining players from 1A, 1B, and 1C'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.' Rule 07 also offers a $20 house-fee discount for Day 1A entries before 11:10 a.m.",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$95 of the $600 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $505 of every $600 Buy In. On Day 1A only, players who register before the start of the event (11:10 a.m.), will receive a $20 discount on house fees for a total buy in of $580 instead of $600.",
+    "ruleExcerpt": "Day 2 will resume at 11:00 AM combining all remaining players from 1A, 1B, and 1C ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "$20 rake discount for Day 1A entries before 11:10 a.m. (structure sheet 4).",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
+    "dateISO": "2026-12-21",
+    "weekday": "Monday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 670,
+    "regCloseMinutes": 1075,
+    "minLengthMinutes": 405,
+    "gtdRatio": 250.0,
+    "cashRatio": 0.84,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "fallbackMayConflict": true,
    "spendEvents": [],
    "overlaps": [
     {
@@ -25166,7 +27163,86 @@
      }
     ]
    },
-   "fallback": null,
+   "primaryNeedsExtraSpend": false,
+   "fallback": {
+    "id": "dse4-2026-12-22-59-1c",
+    "venue": "The Venetian",
+    "series": "DeepStack Extravaganza IV",
+    "date": "2026-12-22",
+    "dateLabel": "Tuesday, December 22, 2026",
+    "time": "11:10 AM",
+    "eventLabel": "59 1C",
+    "name": "$600 No Limit Hold'em 1C $150K GTD",
+    "buyIn": 600,
+    "guarantee": 150000,
+    "guaranteeIncludesBounties": false,
+    "guaranteeNote": "prize pool",
+    "cashPoolPerEntry": 505,
+    "rakeAndStaff": 95,
+    "startingChips": 40000,
+    "levelMinutes": 40,
+    "levels": 30,
+    "lateRegistration": "9 levels + Break (5:55 PM)",
+    "lateRegistrationCloses": "5:55 PM",
+    "regCloseSource": "Official schedule PDF REG CLOSES column",
+    "paysField": "",
+    "handed": "",
+    "format": "multi-flight",
+    "singleEntry": "multi-flight: one entry per flight",
+    "reEntry": "not stated on the sheet",
+    "addOn": "not stated on the sheet",
+    "rebuy": "not stated on the sheet",
+    "paidChipBoost": "not stated on the sheet",
+    "entryRule": "extra spend possible - one entry per flight",
+    "entryRuleBasis": "Rule 03: 'Day 2 will resume at 11:00 AM combining all remaining players from 1A, 1B, and 1C'. Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.' Rule 07 also offers a $20 house-fee discount for Day 1A entries before 11:10 a.m.",
+    "eligibility": "extra spend possible - one entry per flight",
+    "feeExcerpt": "$95 of the $600 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $505 of every $600 Buy In. On Day 1A only, players who register before the start of the event (11:10 a.m.), will receive a $20 discount on house fees for a total buy in of $580 instead of $600.",
+    "ruleExcerpt": "Day 2 will resume at 11:00 AM combining all remaining players from 1A, 1B, and 1C ... Any player who bags chips for Day 2 may not play a subsequent flight.",
+    "structureSheet": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
+    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "schedulePdf": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+    "lastChecked": "2026-11-16",
+    "notes": "$20 rake discount for Day 1A entries before 11:10 a.m. (structure sheet 4).",
+    "venueId": "venetian",
+    "venueName": "The Venetian",
+    "sourceIds": [
+     "venetian-dse4",
+     "venetian-dse4-pdf",
+     "venetian-dse4-structures"
+    ],
+    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
+    "dateISO": "2026-12-22",
+    "weekday": "Tuesday",
+    "isDated": true,
+    "bucket": "multi",
+    "bucketLabel": "Multi-flight: one entry per flight, so extra spend is possible",
+    "startMinutes": 670,
+    "regCloseMinutes": 1075,
+    "minLengthMinutes": 405,
+    "gtdRatio": 250.0,
+    "cashRatio": 0.84,
+    "sourceLinks": [
+     {
+      "id": "venetian-dse4",
+      "name": "The Venetian - DeepStack Extravaganza IV official event schedule (Nov 16 - Dec 23, 2026)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-pdf",
+      "name": "The Venetian - DeepStack Extravaganza IV official schedule PDF (includes REG CLOSES column)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "kind": "official"
+     },
+     {
+      "id": "venetian-dse4-structures",
+      "name": "The Venetian - DeepStack Extravaganza IV structure sheets 1-37 (one PDF per sheet)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+     }
+    ]
+   },
+   "fallbackMayConflict": true,
    "spendEvents": [],
    "overlaps": [
     {
@@ -25578,6 +27654,7 @@
      }
     ]
    },
+   "primaryNeedsExtraSpend": false,
    "fallback": {
     "id": "dse4-2026-12-23-64",
     "venue": "The Venetian",
@@ -25656,6 +27733,7 @@
      }
     ]
    },
+   "fallbackMayConflict": false,
    "spendEvents": [],
    "overlaps": [
     {

@@ -299,20 +299,32 @@ def build_dataset():
             [e for e in events if e["venueId"] == "venetian" and e["date"] == day],
             key=lambda e: (e["startMinutes"] if e["startMinutes"] is not None else 10**6),
         )
+        # A primary event is the earliest one a traveller could enter without buying a
+        # second entry. If every event that day needs extra spend, the primary is the
+        # earliest of those and says so.
         eligible = [e for e in rows if e["bucket"] in {"strict", "unverified"}]
-        primary = eligible[0] if eligible else None
+        extra = [e for e in rows if e["bucket"] in {"multi", "spend"}]
+        primary = eligible[0] if eligible else (extra[0] if extra else None)
+        primary_needs_extra_spend = primary is not None and primary["bucket"] in {"multi", "spend"}
+        # The fallback is the next event that starts after the primary's registration
+        # closes, so the two can be played in sequence. If nothing starts that late, the
+        # next event of the day is offered and the overlap check says it may clash.
         fallback = None
+        fallback_conflict = False
         if primary is not None:
-            for candidate in eligible[1:]:
-                if (
-                    primary["regCloseMinutes"] is not None
-                    and candidate["startMinutes"] is not None
-                    and candidate["startMinutes"] >= primary["regCloseMinutes"]
-                ):
-                    fallback = candidate
-                    break
-            if fallback is None and len(eligible) > 1:
-                fallback = eligible[1]
+            later = [
+                e
+                for e in rows
+                if e is not primary
+                and e["startMinutes"] is not None
+                and primary["regCloseMinutes"] is not None
+                and e["startMinutes"] >= primary["regCloseMinutes"]
+            ]
+            fallback = later[0] if later else None
+            if fallback is None:
+                others = [e for e in rows if e is not primary]
+                fallback = others[0] if others else None
+                fallback_conflict = fallback is not None
         pairs = []
         for i, first in enumerate(rows):
             for second in rows[i + 1 :]:
@@ -352,7 +364,9 @@ def build_dataset():
                 "weekday": weekday(day),
                 "events": rows,
                 "primary": primary,
+                "primaryNeedsExtraSpend": primary_needs_extra_spend,
                 "fallback": fallback,
+                "fallbackMayConflict": fallback_conflict,
                 "spendEvents": [e for e in rows if e["bucket"] == "spend"],
                 "overlaps": pairs,
                 "earliestStart": rows[0]["time"] if rows else "",
@@ -820,12 +834,22 @@ def build_schedule(dataset):
             if primary
             else '<span class="muted">no eligible event</span>'
         )
+        if day.get("primaryNeedsExtraSpend"):
+            primary_text += (
+                ' <span class="muted">This event needs a second entry to be worth playing, '
+                "so the day has no single-entry option.</span>"
+            )
         fallback_text = (
             f'<strong>{esc(fallback["eventLabel"])}</strong> at {esc(fallback["time"])} '
             f'({esc(fallback["name"])})'
             if fallback
-            else '<span class="muted">no fallback</span>'
+            else '<span class="muted">no second event that day</span>'
         )
+        if day.get("fallbackMayConflict"):
+            fallback_text += (
+                ' <span class="muted">This one may clash with the primary: it starts before '
+                "the primary's registration closes.</span>"
+            )
         if day["overlaps"]:
             overlap_rows = "".join(
                 f'<tr><td>{esc(o["first"])} <span class="muted">{esc(o["firstTime"])}</span></td>'
@@ -958,6 +982,22 @@ the calculation could not be read from an official page.</p>
     <li><strong>Method.</strong> {esc(tax["note"])}</li>
     <li><strong>Sample dates.</strong> {esc(stay["note"])}</li>
   </ul>
+</section>
+
+<section class="panel">
+  <h2>Check the current rate for your own dates</h2>
+  <p class="lede">The rate table above is a dated log, not a live quote. To price the same
+  stay for different dates, run the lookup tool against the property's own booking engine and
+  append the result to the log:</p>
+  <pre class="code-block"><code>python3 scripts/check_hotel_rates.py --hotel horseshoe \\
+    --arrival 2026-12-10 --departure 2026-12-14 --write</code></pre>
+  <p class="muted">Known property ids: <code>horseshoe</code>, <code>caesars-palace</code>,
+  <code>paris</code>, <code>venetian</code>, <code>wynn</code>, <code>bellagio</code>.
+  Run it with <code>--list</code> for the full list and without <code>--write</code> to see
+  the result without changing the log.</p>
+  <p class="muted">The tool never invents a rate. If the booking engine will not return a price
+  for the requested dates, it records nothing and says why. Each observation it writes keeps
+  the URL, the retrieval timestamp, the room type and the occupancy it was read for.</p>
 </section>
 
 <section class="panel">

@@ -19,6 +19,8 @@ jobs:
           python3 scripts/verify_site.py
           node --check site/assets/app.js
           python3 -m json.tool site/data.json > /dev/null
+          python3 -m py_compile scripts/check_hotel_rates.py scripts/build_site.py scripts/curate_dse_iv.py scripts/reconcile_dse_iv.py
+          python3 tests/test_canonical_site.py
       - name: Validate Poker3 companion dashboard
         run: |
           python3 tests/smoke.py

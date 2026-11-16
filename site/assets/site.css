@@ -29,6 +29,16 @@ p { margin: 0 0 12px; }
 .muted { color: var(--muted); }
 .small { font-size: 12px; }
 code { background: #e8efe9; padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+.code-block {
+  background: #16302a;
+  color: #d9ebe2;
+  border-radius: 10px;
+  padding: 13px 15px;
+  overflow-x: auto;
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+.code-block code { background: none; color: inherit; padding: 0; }
 
 /* ----------------------------------------------------------- top bar --- */
 .topbar {
