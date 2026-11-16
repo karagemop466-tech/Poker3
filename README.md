@@ -79,3 +79,25 @@ its conclusions predate this build and are more conservative, so treat it as an 
 
 See [`COORDINATION.md`](COORDINATION.md) for ownership, the official source register, the integration history, the
 verification record and the open review flags.
+
+### Prior-session artefacts kept in the repository
+
+`site/poker3/` adds a separate, source-linked Las Vegas field guide with tournament filters, a cautious date planner, room schedules, a sample hotel/fee comparison, route estimates, and a flagged-review register. The current live Pages setting still reports legacy `main`-root publishing, so the verified public path is [`/site/poker3/`](https://karagemop466-tech.github.io/Poker3/site/poker3/); the canonical dashboard at `/` is preserved. The existing Actions workflow uploads `site/`, where the same companion is available at `/poker3/` if Pages is switched to that source. The Dec. 10–14, 2026 two-adult hotel window is a research sample, not user-provided travel dates, and no strict-entry event is verified.
+
+Run `python3 tests/smoke.py` to validate this companion. When serving the repository's `site/` directory locally, open `http://localhost:8000/poker3/`.
+
+## Strip planner pages (session e125b4a2)
+
+`planner/` holds this session's pages: landing page, Venetian DeepStack Extravaganza IV single-entry table with per-row official source links, re-entry table, hotels, schedule, executive summary, suggestions, Q&A, and flagged-for-review. Research tables behind them are in `data/tournaments.md`, `data/hotels.md`, `data/schedule.md`, and `pages/*.md`. These files are **not** published by `.github/workflows/pages.yml`, which deploys only `site/`. Publishing `planner/` would need a user decision.
+
+## Single-entry site (session arena/d205f8ec-poker3)
+
+`single-entry/` holds the single-entry Strip tournament planner: 1-day main list (53 rows; 47 cash events plus 5 satellites and 1 two-day event, each labelled), excluded events, hotel true-cost formula, schedule, questions, suggestions and flagged-for-review. Start at `single-entry/index.html`. Every row links an official Venetian source; all 22 main-list structure sheets were read in full. Single entry is not printed on those sheets, so the page says "no re-entry or add-on wording", not "single entry confirmed". This folder is **not** published by `.github/workflows/pages.yml` (which deploys only `site/`). Publishing it needs a user decision.
+
+## Handoff folder from session aa084881
+
+`handoff/aa084881/` holds a verified dataset and generator that were deliberately kept out of the published site:
+`site_data.py` (every value with its official URL), `build_site.py`, `verify_site.py`, a generated `data.json` and a
+README describing what can be imported. The dated Venetian booking-engine quote it recorded (November 17-19, 2026,
+two adults, $1,245.48 including $146.98 of tax) was re-read and imported into the canonical rate log by the
+integration session; the rest of the handoff is kept for audit.

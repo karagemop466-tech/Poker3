@@ -19751,8 +19751,40 @@
    "source": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
    "feeSource": "https://www.venetianlasvegas.com/resort/resort-fee.html",
    "taxSource": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
+   "quote": {
+    "property": "The Venetian Resort - venetian Newly Remodeled Luxury King suite",
+    "checkIn": "2026-11-17",
+    "checkOut": "2026-11-19",
+    "guests": 2,
+    "nights": 2,
+    "offer": "Book Direct: Up to 25% Off",
+    "suiteDetail": "Approximately 650 square feet, king bed, living room, Roman tub",
+    "nightOne": {
+     "date": "2026-11-17",
+     "rate": 824.25,
+     "resortFee": 55.0
+    },
+    "nightTwo": {
+     "date": "2026-11-18",
+     "rate": 164.25,
+     "resortFee": 55.0
+    },
+    "taxes": 146.98,
+    "total": 1245.48,
+    "averageRate": 549.25,
+    "derivedNightly": [
+     996.91,
+     248.61
+    ],
+    "derivedTotal": 1245.52,
+    "note": "The two derived nightly figures, (rate + $55 resort fee) x 1.1338, add to $1,245.52 against the printed total of $1,245.48; the 4 cents are the venue's own rounding of the tax line.",
+    "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar",
+    "observedOn": "2026-11-16"
+   },
+   "bookingUrl": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar",
+   "calendarUrl": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-03&view=calendar",
    "qualityNote": "Not scored. No official quality metric was published for the suites in the reviewed material, so the quality ranking is left blank rather than inferred.",
-   "status": "Best-value candidate for a Venetian-based trip: poker room on property, published starting rate, published fee and tax.",
+   "status": "Best-value candidate for a Venetian-based trip: poker room on property, published starting rate, published fee and tax, and the only property with a dated official checkout total.",
    "walkNote": "The poker room is inside the resort that owns this hotel; the Google Maps walking route from The Palazzo to The Venetian measures 4 minutes.",
    "trueNightlyLow": 197.28,
    "trueNightlyHigh": 299.32,
@@ -19977,6 +20009,36 @@
   }
  ],
  "rateLog": [
+  {
+   "hotel": "venetian",
+   "observedOn": "2026-11-16",
+   "baseRate": "",
+   "publishedStartingRates": "824.25 and 164.25 per night for Nov. 17-19, 2026",
+   "resortFee": "55.00 per night",
+   "tax": "146.98 printed",
+   "trueNightlyLow": "996.91",
+   "trueNightlyHigh": "248.61",
+   "quoteType": "Dated official checkout total (2 adults, 2 nights)",
+   "note": "The official booking engine printed $824.25 + $55 and $164.25 + $55, taxes $146.98 and a total of $1,245.48 for a 650 sq ft Newly Remodeled Luxury King suite. Derived nightly figures are (rate + $55) x 1.1338 and reconcile to $1,245.52 against the printed $1,245.48.",
+   "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar",
+   "feeSource": "https://www.venetianlasvegas.com/resort/resort-fee.html",
+   "taxSource": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html"
+  },
+  {
+   "hotel": "venetian",
+   "observedOn": "2026-11-16",
+   "baseRate": "",
+   "publishedStartingRates": "calendar cells for Nov. 17-30: 11-17 $855, 11-18 no price, 11-19 no price, 11-20 $488, 11-21 $1055, 11-22 $1055, 11-23 $165, 11-24 $165, 11-25 $185, 11-26 $190, 11-27 $210, 11-28 $905, 11-29 $340, 11-30 $165",
+   "resortFee": "included in the calendar cell",
+   "tax": "excluded from the calendar cell",
+   "trueNightlyLow": "",
+   "trueNightlyHigh": "",
+   "quoteType": "Booking calendar cells (not quotes)",
+   "note": "The calendar states: 'Pricing shown is best available suite and rate, includes daily resort fee, excludes taxes.' An earlier observation of the same calendar on the same day recorded $605 for Nov. 17, so these cells move within a day. The recommended trip window, Nov. 25 to Dec. 2, published no price at all.",
+   "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar",
+   "feeSource": "https://www.venetianlasvegas.com/resort/resort-fee.html",
+   "taxSource": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html"
+  },
   {
    "hotel": "venetian",
    "observedOn": "2026-11-16",
@@ -20604,9 +20666,17 @@
    "id": "F15",
    "area": "Hotels",
    "severity": "High",
-   "title": "No property publishes a date-specific checkout total, so no true nightly total is confirmed",
-   "detail": "Only per-night components are published: room rate, resort fee and tax. The Venetian publishes starting poker suite rates of $119 and $209 that are not date-specific and are not mapped to a property. The calculator therefore shows a floor computed from published components and labels it as a floor, not a quote.",
-   "source": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"
+   "title": "Only one dated checkout total exists, and it is not for the recommended trip window",
+   "detail": "The Venetian booking engine prints a dated total for November 17-19, 2026 with two adults: $824.25 + $55, $164.25 + $55, $146.98 tax, $1,245.48 total for a 650 sq ft Newly Remodeled Luxury King suite. For the recommended trip window of November 25 to December 2, 2026 the same engine publishes no price, so the nightly budget on this site stays at the floor computed from the published starting rates of $119 and $209 and is labelled a floor, not a quote.",
+   "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"
+  },
+  {
+   "id": "F28",
+   "area": "Hotels",
+   "severity": "Medium",
+   "title": "The Venetian booking calendar disagrees with the quote, and the cells move within a day",
+   "detail": "The calendar cell for November 17 read $855 in the observation recorded on 2026-11-16, while the same page's quote for the same night printed a $824.25 room rate, and an earlier observation of the same calendar on the same day recorded $605. The calendar states that its prices are the best available suite and rate, include the daily resort fee and exclude taxes. Calendar cells are logged as observations and are never used in a total.",
+   "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"
   },
   {
    "id": "F16",
@@ -20709,11 +20779,11 @@
   {
    "id": "Q01",
    "question": "What are the actual travel dates, and how many nights?",
-   "answer": "Not supplied and not inferable from official sources. Every rate is date-, occupancy- and availability-dependent, so no date-specific quote can be requested or compared until dates exist.",
+   "answer": "This session fixed the dates at November 25 to December 2, 2026 because that window holds the most single-entry events verified on an official structure sheet. The official booking engine publishes no price for those dates. The one dated checkout total it does publish is November 17-19, 2026 for two adults: $1,245.48 including the $55 nightly resort fee and $146.98 of tax.",
    "why": "Needed",
    "blocking": "Yes - no hotel total can be confirmed without it",
-   "how": "Pick the arrival and departure dates, then request a quote from each property's own booking channel.",
-   "source": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"
+   "how": "Open the booking link on the hotels page with the arrival and departure dates you want; the price is printed by the venue itself.",
+   "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"
   },
   {
    "id": "Q02",
@@ -20745,10 +20815,10 @@
   {
    "id": "Q05",
    "question": "Which hotels actually publish a room price for the dates you want?",
-   "answer": "None of the reviewed properties publishes a price on the page itself. The Venetian publishes starting poker-suite rates of $119 and $209 that are explicitly not date-specific, and it states that future rates are only provided up to 150 days out.",
+   "answer": "Only The Venetian, and only through its own booking engine rather than on the rate page. For November 17-19, 2026 the engine printed $824.25 + $55, $164.25 + $55, $146.98 tax and a $1,245.48 total for a 650 sq ft Luxury King suite. Its calendar cells for November are best-available rates that include the resort fee and exclude tax, and they moved within a single day. The rate page itself still publishes only starting rates of $119 and $209, which are explicitly not date-specific, and states that rates are provided up to 150 days out.",
    "why": "Needed",
    "blocking": "Yes for a confirmed total",
-   "how": "Request a written quote per property for the exact dates, and log it in the rate log on this site with the quote timestamp.",
+   "how": "Open the booking link with the exact dates, then log the printed total in the rate log with its timestamp.",
    "source": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"
   },
   {
@@ -20932,6 +21002,7 @@
    "The Wynn WPT schedule runs from November 27 inside the window, so three days carry additional published rows, all clearly marked as series rows with unverified entry rules (F12)."
   ],
   "bankrollNote": "The eight recommended primary entries total $2,800 in buy-ins. With a 25% buffer for one rebuy or add-on where a room allows it, plan on $3,500.",
+  "lodgingEvidence": "The official Venetian booking engine publishes one dated checkout total, for November 17-19, 2026 with two adults: $824.25 + $55 on the 17th, $164.25 + $55 on the 18th, $146.98 tax, $1,245.48 total. For the recommended trip window of November 25 to December 2, 2026 the same booking engine publishes no price at all, so the trip budget stays at the published starting-rate floor and is labelled a floor, not a quote.",
   "primaryBuyIns": 2800,
   "bankrollWithBuffer": 3500
  },

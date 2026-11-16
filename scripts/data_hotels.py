@@ -23,6 +23,39 @@ ARIA_HOTEL = "https://aria.mgmresorts.com/en/hotel.html"
 
 TAX_RATE = 13.38  # Clark County room tax, printed in the Venetian hotel terms
 
+# The official booking engine, opened with the dates and party size in the URL.
+VENETIAN_QUOTE_URL = ("https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17"
+                      "&children[]=0&departure_date=2026-11-19&view=calendar")
+VENETIAN_CALENDAR_NOV_URL = ("https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17"
+                             "&children[]=0&departure_date=2026-11-19&view=calendar")
+VENETIAN_CALENDAR_TRIP_URL = ("https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25"
+                              "&children[]=0&departure_date=2026-12-03&view=calendar")
+
+# The one dated official checkout total found on 2026-11-16, read straight off the
+# official booking engine.  Every line is printed on the page.
+VENETIAN_QUOTE = dict(
+    property="The Venetian Resort - venetian Newly Remodeled Luxury King suite",
+    checkIn="2026-11-17", checkOut="2026-11-19", guests=2, nights=2,
+    offer="Book Direct: Up to 25% Off",
+    suiteDetail="Approximately 650 square feet, king bed, living room, Roman tub",
+    nightOne=dict(date="2026-11-17", rate=824.25, resortFee=55.00),
+    nightTwo=dict(date="2026-11-18", rate=164.25, resortFee=55.00),
+    taxes=146.98, total=1245.48, averageRate=549.25,
+    derivedNightly=[996.91, 248.61], derivedTotal=1245.52,
+    note=("The two derived nightly figures, (rate + $55 resort fee) x 1.1338, add to $1,245.52 against the printed "
+          "total of $1,245.48; the 4 cents are the venue's own rounding of the tax line."),
+    source=VENETIAN_QUOTE_URL, observedOn="2026-11-16")
+
+# Calendar cells published by the same booking engine for November 2026.  The page
+# states: "Pricing shown is best available suite and rate, includes daily resort fee,
+# excludes taxes."  They are observations, not quotes.
+VENETIAN_CALENDAR_NOV = [
+    ("2026-11-17", 855), ("2026-11-18", ""), ("2026-11-19", ""), ("2026-11-20", 488),
+    ("2026-11-21", 1055), ("2026-11-22", 1055), ("2026-11-23", 165), ("2026-11-24", 165),
+    ("2026-11-25", 185), ("2026-11-26", 190), ("2026-11-27", 210), ("2026-11-28", 905),
+    ("2026-11-29", 340), ("2026-11-30", 165),
+]
+
 HOTELS = [
     dict(
         id="venetian", name="The Venetian Resort (poker suite rate)", venue="Venetian poker room",
@@ -46,9 +79,13 @@ HOTELS = [
                         "tournament, for each night stayed, completed before 2 a.m. on the last night. Book with code "
                         "EPOKR25 on 866.255.8936. Failure to qualify means the prevailing rate is charged."),
         source=VENETIAN_SUITE_RATES, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS,
+        quote=VENETIAN_QUOTE,
+        bookingUrl=VENETIAN_QUOTE_URL,
+        calendarUrl=VENETIAN_CALENDAR_TRIP_URL,
         qualityNote=("Not scored. No official quality metric was published for the suites in the reviewed material, so the "
                      "quality ranking is left blank rather than inferred."),
-        status="Best-value candidate for a Venetian-based trip: poker room on property, published starting rate, published fee and tax.",
+        status=("Best-value candidate for a Venetian-based trip: poker room on property, published starting rate, published "
+                "fee and tax, and the only property with a dated official checkout total."),
         walkNote="The poker room is inside the resort that owns this hotel; the Google Maps walking route from The Palazzo to The Venetian measures 4 minutes.",
     ),
     dict(
@@ -185,6 +222,25 @@ HOTELS = [
 
 # Dated rate log. New observations are appended, never overwritten.
 RATE_LOG = [
+    dict(hotel="venetian", observedOn="2026-11-16", baseRate="",
+         publishedStartingRates="824.25 and 164.25 per night for Nov. 17-19, 2026",
+         resortFee="55.00 per night", tax="146.98 printed",
+         trueNightlyLow="996.91", trueNightlyHigh="248.61",
+         quoteType="Dated official checkout total (2 adults, 2 nights)",
+         note=("The official booking engine printed $824.25 + $55 and $164.25 + $55, taxes $146.98 and a total of "
+               "$1,245.48 for a 650 sq ft Newly Remodeled Luxury King suite. Derived nightly figures are "
+               "(rate + $55) x 1.1338 and reconcile to $1,245.52 against the printed $1,245.48."),
+         source=VENETIAN_QUOTE_URL, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
+    dict(hotel="venetian", observedOn="2026-11-16", baseRate="",
+         publishedStartingRates="calendar cells for Nov. 17-30: " + ", ".join(
+             f"{d[5:]} ${v}" if v else f"{d[5:]} no price" for d, v in VENETIAN_CALENDAR_NOV),
+         resortFee="included in the calendar cell", tax="excluded from the calendar cell",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType="Booking calendar cells (not quotes)",
+         note=("The calendar states: 'Pricing shown is best available suite and rate, includes daily resort fee, excludes "
+               "taxes.' An earlier observation of the same calendar on the same day recorded $605 for Nov. 17, so these "
+               "cells move within a day. The recommended trip window, Nov. 25 to Dec. 2, published no price at all."),
+         source=VENETIAN_CALENDAR_NOV_URL, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
     dict(hotel="venetian", observedOn="2026-11-16", baseRate="", publishedStartingRates="119 and 209",
          resortFee="55 plus tax", tax="13.38%", trueNightlyLow="197.28", trueNightlyHigh="299.32",
          quoteType="Published starting rate (not date-specific, not mapped to a property)",

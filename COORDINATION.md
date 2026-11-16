@@ -233,12 +233,77 @@ Branch: `arena/e125b4a2-poker3`. This session's files are kept in their own fold
 
 ## Session `arena/779af4ba-poker3` — source-linked companion dashboard
 
-- Added the Poker3 field guide at `site/poker3/`, keeping the existing canonical `site/` dashboard and its research intact. The current Pages workflow uploads the entire `site/` tree, so the companion is published under `/poker3/` without changing the Pages workflow.
+- Added the Poker3 field guide at `site/poker3/`, keeping the existing canonical `site/` dashboard and its research intact. The Pages API currently reports legacy publishing from `main` `/`, so the live path is `/site/poker3/`; the existing Actions artifact would publish the same directory at `/poker3/` if that source is enabled. No Pages setting was changed.
+- PR [#16](https://github.com/karagemop466-tech/Poker3/pull/16) merged as `e9af34c`. The site workflow and legacy Pages deployment both completed successfully (runs `43937059855` and `43937059073`); the live content at `/site/poker3/` was fetched and verified.
 - Includes 25 selected upcoming event starts, 9 room records, 7 hotel records, 7 third-party walk estimates, 60 source records, and 9 review flags. All listed source IDs resolve. No event is verified for one-entry-total/no-re-entry/no-rebuy/no-add-on/no-paid-chip-boost eligibility.
 - The Dec. 10–14, 2026, two-adult hotel search is a research sample, not user-provided travel dates. Hotel all-in totals remain unconfirmed; route times remain third-party estimates.
 - Planner scenarios use a user-entered time-at-event assumption and are explicitly not verified or guaranteed itineraries. Unknown terms are labeled “Flagged for Review.”
 - Checks: `node --check site/poker3/assets/app.js`; `python3 tests/smoke.py`; JSON validation; headless DOM rendering/interaction checks on all eight pages, event filters, the mobile navigation, planner date/scenario controls, and internal links.
 
+## Current session `arena/e58b73b1-poker3` — trip estimate and source-change monitor
+
+| Task | Status | Owner session | Scope | Branch | Notes |
+|---|---|---|---|---|---|
+| Add scenario trip-cost calculator, dated hotel-rate observations, and scheduled official-source change checks | done; first live baseline completed (7 official URLs unavailable) | `arena/e58b73b1-poker3` | `site/poker3/assets/app.js`, `site/poker3/assets/app.css`, `site/poker3/data/research.json`, `site/poker3/data/source-monitor.json`, `scripts/check_sources.py`, `.github/workflows/source-monitor.yml`, `.github/workflows/verify.yml`, `tests/**`, `COORDINATION.md` | `arena/e58b73b1-poker3` | 52 official URLs checked; 0 changed; 7 unavailable (timeouts or HTTP 403) remain flagged. No new tournament/hotel values inferred. |
+
+### Implementation and verification — session `arena/e58b73b1-poker3`
+
+- Added an interactive trip-cost scenario to `site/poker3/plan.html` (rendered from the shared app): `entries × buy-in + nights × ((nightly room rate + nightly mandatory resort fee) × (1 + tax rate))`. The 13.38% tax is a clearly labeled user-requested assumption, not re-verified tax advice. Missing values stay blank; event buy-ins may be prefilled from the existing source-backed catalog, but eligibility remains unverified unless the event row says otherwise.
+- Replaced hotel `sampleRate` single-value fields with `rateHistory` arrays. Existing Horseshoe dated sample observation is recorded with its official booking source and conflicting fee presentation; checkout total, tax, parking, cancellation deadline, and exact rate timestamp remain blank because the existing official-page evidence does not establish them. Other hotels have empty rate logs rather than invented quotes.
+- Added `scripts/check_sources.py` and `.github/workflows/source-monitor.yml`: daily 13:00 UTC checks of every HTTPS source tagged `official` in `site/poker3/data/research.json`, storing retrieval time, HTTP status, hash, and changed/unchanged/baseline/unavailable result in `site/poker3/data/source-monitor.json`. The scheduled workflow commits the monitor log to `main` and deploys a refreshed Pages artifact. Third-party route sources are deliberately excluded.
+- Official-source URLs being monitored are the URLs in the catalog's `sources` records (`kind: official`); no additional event, price, rule, route, or hotel claim was introduced in this session. Existing official references include the Venetian, Wynn/WPT, Caesars/Horseshoe, MGM/Bellagio/ARIA, South Point, Westgate, and Treasure Island sites and PDFs.
+- Page-content hash changes are review signals, not proof that a tournament value changed; changed and unavailable sources are visibly marked on rows linked to them. Dynamic/rotating content may create false-positive change signals. Check the linked page manually before changing any event or rate data.
+- Verification performed locally: `python3 -m unittest discover -s tests -p 'test_*.py'` (baseline/change/unchanged/fetch-failure cases), `python3 tests/smoke.py` (8 published companion pages, event/source associations, and dated rate-log schema), `node --check site/poker3/assets/app.js`, `python3 -m json.tool` for both JSON files, `python3 scripts/verify_site.py`, `python3 -m py_compile scripts/check_sources.py`, and `git diff --check` all passed. The first live monitor run is recorded below.
+- **Open review item:** seven official URLs were unavailable during the initial run (six timeouts, one HTTP 403); these are marked unavailable per source, not treated as unchanged or verified. Check again on the next daily run.
+- PR [#18](https://github.com/karagemop466-tech/Poker3/pull/18) merged into `main` on 2026-11-16 19:20 UTC as `c694fe1`; the ordinary Pages build/deploy workflow was queued at that commit. A manual `gh workflow run` attempt returned HTTP 403 (`Resource not accessible by integration`), so a `push` path trigger for catalog/monitor/workflow changes is being added to guarantee an initial monitor run after this integration without waiting for the first cron; monitor-log-only commits do not match those paths, preventing recursion.
+- Follow-up PR [#19](https://github.com/karagemop466-tech/Poker3/pull/19) added the push-path trigger after workflow dispatch was denied; merged 2026-11-16 19:21 UTC as `b72bedb`.
+- Initial live check/deploy: workflow run [43938523153](https://github.com/karagemop466-tech/Poker3/actions/runs/43938523153) succeeded, including Pages deploy. It checked 52 official URLs at `2026-11-16T19:22:25Z`: 45 first-baseline fetches, 7 unavailable, 0 content changes. Unavailable: `aria-fee`, `aria-poker`, `bellagio-fee`, `bellagio-poker`, `mgm-fee`, `mgm-poker` (read timeouts), and `golden-nugget` (HTTP 403). See `site/poker3/data/source-monitor.json` for all per-source results and exact errors. Pages API reports `built`, source `main` `/`.
+- Row-level official source links now show the last-check UTC timestamp and distinguish changed pages from unavailable checks. The timestamp is a retrieval time, not a claim that every event's terms were re-reviewed by a human.
+- PR [#20](https://github.com/karagemop466-tech/Poker3/pull/20) merged 2026-11-16 19:25 UTC as `5e72fb2`. Pages build/deploy run [43939158118](https://github.com/karagemop466-tech/Poker3/actions/runs/43939158118) completed successfully. The current Pages API reports `built` from `main` `/` at https://karagemop466-tech.github.io/Poker3/.
+## Session `arena/62cea180-poker3` — current integration owner (2026-11-16 UTC)
+
+Branch: `arena/62cea180-poker3`, created from `origin/main` at e9af34c. This session is the only active editor and acts as the integration owner for the shared `site/` dashboard and its data files.
+
+| Task | Status | Owner session | Scope | Branch | PR |
+|---|---|---|---|---|---|
+| Trip cost calculator (entries × buy-ins + nights × true hotel cost) | done | 62cea180 | site/calculator.html, site/assets/app.js | arena/62cea180-poker3 | — |
+| Search box across all tables | done | 62cea180 | site/assets/app.js table filters | arena/62cea180-poker3 | — |
+| Date filter on tournaments table | done | 62cea180 | site/tournaments.html, site/assets/app.js | arena/62cea180-poker3 | — |
+| Single-entry / freezeout toggle filter | done | 62cea180 | site/tournaments.html, site/assets/app.js | arena/62cea180-poker3 | — |
+| Venue pages: Venetian, Wynn, others (events + hotels per venue) | done | 62cea180 | site/venues/*.html | arena/62cea180-poker3 | — |
+| "Last checked" date on every row | done | 62cea180 | site/data.json rows + table render | arena/62cea180-poker3 | — |
+| Structured rule fields per event (single-entry / re-entry / add-on / fee, each with source excerpt + retrieval date) | done | 62cea180 | site/data.json tournament `rules` blocks | arena/62cea180-poker3 | — |
+| Hotel rates kept as a dated log (not a single value) | done | 62cea180 | site/data.json hotels `rateLog` | arena/62cea180-poker3 | — |
+| Schedule overlap flags (start time + plausible duration; primary + fallback per day) | done | 62cea180 | site/data.json `overlapNote`, site/schedule.html | arena/62cea180-poker3 | — |
+| Guarantee ÷ entry fee descriptive ratio (not a forecast); bounty/flight rows labelled separately | done | 62cea180 | site/data.json, tournaments table render | arena/62cea180-poker3 | — |
+| Change monitoring: scheduled re-check of each official URL; flag rows whose source changed | done | 62cea180 | scripts/monitor_sources.py, .github/workflows/monitor.yml, data/source-checks.json | arena/62cea180-poker3 | — |
+| Verification, tests, PR, merge, GitHub Pages deploy confirmation | done | 62cea180 | scripts/verify_site.py, tests/smoke.py, repo-wide links | arena/62cea180-poker3 | — |
+
+**Scope protocol.** Each session edits only its claimed scope. Shared outputs (`site/index.html`, navigation, `site/data.json`, `site/assets/*`, pages, `COORDINATION.md`) are changed only on this integration branch. If a task needs a file claimed by another session, the request is logged here instead of editing it directly.
+
+**Source-currency policy (this session).** No tournament row is labelled "single entry" or "freezeout confirmed": the reviewed official structure sheets do not print an entry cap, so the structured rule fields carry blank values flagged unverified with retrieval date 2026-11-16. No hotel all-in total is asserted: `trueNightly` stays blank and rates are kept as a dated log (`rateLog`), not a single value. External re-verification of venue pages is handled by the scheduled monitor workflow; this session's local content relies on the 2026-11-16 official-source snapshot recorded in earlier sessions' work logs.
+
+**Irregularities carried forward (do not block merge; published on Flagged for review):** single-entry status unresolved on all candidates; hotel true cost blank; 8 AM start unverified; walking times unverified; Wynn WPT and Bellagio source conflicts logged.
+
+### Work log (session 62cea180)
+
+- **2026-11-16 · Claim.** Recorded this claim on `arena/62cea180-poker3` before feature work. Branch is even with `origin/main` (e9af34c).
+
+- **2026-11-16 · Integration.** PR #22 (`arena/62cea180-poker3` → `main`), merged with `gh pr merge 22 --merge` as merge commit `2733c0e`. Pages workflow "Publish integrated Vegas Poker Planner to GitHub Pages" run 43940338076: success; Pages API reports `status: built`, source `main` `/`. Verify workflow also passed. Live site: https://karagemop466-tech.github.io/Poker3/ (root `site/` tree), plus `/poker3/` companion from prior sessions.
+- No values were inferred: single-entry status remains unresolved on all candidates (blank rule fields flagged unverified), `trueNightly` stays blank, rates are a dated log (`rateLog`), walking times unverified — all published on Flagged for review with source links.
+
+## Session `arena/aa084881-poker3` — handoff (2026-11-16 UTC)
+
+- **Outcome.** The consolidated rebuild (`site/`) is **not merged**. Session `arena/62cea180-poker3` merged its own integrated site to `main` (PRs #22 and #24) and is the current integration owner for `site/`, `site/data.json`, `scripts/verify_site.py`, and navigation. Merging this session's full site would overwrite that deployed site and break its verifier schema. This is a protocol conflict, not a verification failure: the rebuild passed its own checks.
+- **Handoff location.** `handoff/aa084881/` (not published): `site_data.py` (every value with its official URL), `build_site.py` (generator), `verify_site.py` (checks), `data.json` (generated), and `README.md` (what to import, what was not verified).
+- **Requests to integration owner `62cea180` (logged, not edited here).**
+  1. Import the full official Venetian DeepStack IV table (64 event numbers, classified in `handoff/aa084881/site_data.py`).
+  2. Show the Venetian Nov 17-19, 2026 quote ($1,245.48 checkout; tax $146.98) as the only dated hotel total, and log the calendar conflict (F12).
+  3. Keep Bellagio Saturday's buy-in conflict ($1,000 page / $1,100 PDF / $600 rule body), Friday re-entry, and the Sunday structure as unread (F19-F22).
+  4. Keep Wynn terms as an expired offer (F24) and Dec 18 weekday conflict open (F26).
+  5. Do not present the ARIA undated cadence rows as verified. The ARIA guide was not read in this session.
+- **Cross-session request (unchanged).** Extend the daily monitor (`.github/workflows/source-monitor.yml` + `scripts/monitor_sources.py`, owner 62cea180 / e58b73b1) to the Venetian DSE, Wynn, Bellagio and ARIA official URLs in `handoff/aa084881/site_data.py` (`MONITOR_SOURCES`). This session did not edit either file.
+- **Branch and PR.** Branch `arena/aa084881-poker3` now holds only this handoff (on top of `origin/main`). The earlier site commits were replaced by this handoff, so the branch no longer carries a site rebuild. A force-with-lease push was used on this session's own branch.
 ---
 
 ## Current session `arena/ed88c788-poker3` — final integration and republication

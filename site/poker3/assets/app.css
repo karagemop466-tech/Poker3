@@ -374,3 +374,25 @@ main { min-height: calc(100vh - 160px); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
 }
+
+/* Trip-cost scenarios, dated rate evidence, and automatic source-change notices. */
+.trip-cost-calculator { margin: 0 0 22px; padding: 22px; border: 1px solid rgba(123, 194, 156, .32); border-radius: 16px; background: linear-gradient(145deg, rgba(37, 77, 62, .22), rgba(14, 23, 26, .96)); }
+.trip-cost-calculator h2 { margin: 5px 0 8px; font-size: 21px; }
+.trip-cost-calculator > p { max-width: 880px; color: var(--muted, #a9b5b1); font-size: 13px; line-height: 1.6; }
+.cost-fields { display: grid; grid-template-columns: repeat(auto-fit, minmax(205px, 1fr)); gap: 12px; margin: 18px 0; }
+.cost-fields .field { min-width: 0; }
+.cost-fields input, .cost-fields select { width: 100%; min-height: 42px; padding: 9px 11px; color: inherit; border: 1px solid rgba(255,255,255,.15); border-radius: 9px; background: #101a1d; }
+.cost-result { display: grid; gap: 5px; padding: 14px 16px; border-radius: 10px; background: rgba(6, 12, 14, .75); color: var(--text, #f3f6f3); }
+.cost-result strong { color: #8fe0b5; font-size: 18px; }
+.cost-result span { color: var(--muted, #a9b5b1); font-size: 13px; }
+.rate-log-scroll { overflow-x: auto; border: 1px solid rgba(255,255,255,.1); border-radius: 12px; }
+.rate-log { width: 100%; min-width: 1050px; border-collapse: collapse; font-size: 12px; }
+.rate-log th, .rate-log td { padding: 11px 12px; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; }
+.rate-log thead th { position: sticky; top: 0; background: #152124; color: #d7e4dc; }
+.rate-log tbody th { min-width: 145px; color: #eff6f1; }
+.rate-log small { color: var(--muted, #a9b5b1); font-weight: 400; }
+.monitor-note { margin: 12px 0 20px; padding: 10px 13px; border-left: 3px solid #d5a650; background: rgba(213,166,80,.08); color: var(--muted, #a9b5b1); font-size: 12px; }
+.source-change { display: inline-block; margin: 3px 4px; padding: 3px 7px; border: 1px solid rgba(231, 170, 74, .55); border-radius: 999px; background: rgba(231,170,74,.12); color: #ffd38a; font-size: 10px; font-weight: 700; white-space: nowrap; }
+@media (max-width: 620px) { .trip-cost-calculator { padding: 16px; } .rate-log { min-width: 900px; } }
+.source-unavailable { display: inline-block; margin: 3px 4px; padding: 3px 7px; border: 1px solid rgba(230, 115, 115, .55); border-radius: 999px; background: rgba(230,115,115,.1); color: #ffb2b2; font-size: 10px; font-weight: 700; white-space: nowrap; }
+.source-last-checked { display: inline-block; margin: 3px 4px; color: var(--muted, #a9b5b1); font-size: 10px; white-space: nowrap; }

@@ -16,6 +16,7 @@ jobs:
         run: |
           python3 tests/canonical_smoke.py
           node --check site/assets/app.js
+          node --check site/assets/venue.js
           node --check tests/canonical_render.js
           python3 -m json.tool site/data.json > /dev/null
       - name: Validate Poker3 companion dashboard

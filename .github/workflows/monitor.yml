@@ -1,0 +1,29 @@
+name: Official-source change monitor
+
+on:
+  schedule:
+    - cron: '0 9 * * *'  # each morning, UTC: re-check every official URL
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Re-check official sources
+        run: python3 scripts/monitor_sources.py
+      - name: Commit change log if anything changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/source-checks.json data/source-changes.json
+          git diff --cached --quiet || git commit -m "monitor: re-check official sources $(date -u +%F)"
+          git push origin main || true

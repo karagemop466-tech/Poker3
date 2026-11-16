@@ -48,6 +48,12 @@ PAGES = (
     "hotels.html", "questions.html", "suggestions.html", "flagged.html", "sources.html",
 )
 
+# Detailed pages that carry their own data attributes instead of data-page.
+DETAIL_PAGES = (
+    "venues/index.html", "venues/venetian.html", "venues/wynn.html", "venues/others.html",
+    "calculator.html",
+)
+
 UNVERIFIED_STATUSES = {"not-verified", "source-conflict", "partial", "not-allowed"}
 
 
@@ -190,17 +196,33 @@ def main() -> int:
                 if link.startswith("http://"):
                     fail(f"{page}: insecure link {link}", errors)
                 continue
-            target = (SITE / link.split("#")[0].split("?")[0]).resolve()
+            target = (path.parent / link.split("#")[0].split("?")[0]).resolve()
             if not target.exists():
                 fail(f"{page}: broken local link {link}", errors)
 
-    for asset in ("assets/app.js", "assets/site.css"):
+    for page in DETAIL_PAGES:
+        path = SITE / page
+        if not path.exists():
+            fail(f"missing detail page: {page}", errors)
+            continue
+        parser = LinkParser()
+        parser.feed(path.read_text(encoding="utf-8"))
+        for link in parser.links:
+            if link.startswith(("http://", "https://", "#", "mailto:", "tel:", "data:", "javascript:")):
+                if link.startswith("http://"):
+                    fail(f"{page}: insecure link {link}", errors)
+                continue
+            target = (path.parent / link.split("#")[0].split("?")[0]).resolve()
+            if not target.exists():
+                fail(f"{page}: broken local link {link}", errors)
+
+    for asset in ("assets/app.js", "assets/site.css", "assets/venue.js"):
         if not (SITE / asset).exists():
             fail(f"missing asset {asset}", errors)
 
     print(f"events: {len(events)}  hotels: {len(data['hotels'])}  routes: {len(data['routes'])}  "
           f"sources: {len(data['sources'])}  flags: {len(data['flags'])}  "
-          f"plan days: {len(data['dayPlan'])}  pages: {len(PAGES)}")
+          f"plan days: {len(data['dayPlan'])}  pages: {len(PAGES) + len(DETAIL_PAGES)}")
     if errors:
         print(f"\n{len(errors)} problem(s):")
         for e in errors:

@@ -260,11 +260,21 @@ FLAGS = [
                  "is flagged rather than resolved."),
          source="https://www.wynnlasvegas.com/terms-and-conditions/850070"),
     dict(id="F15", area="Hotels", severity="High",
-         title="No property publishes a date-specific checkout total, so no true nightly total is confirmed",
-         detail=("Only per-night components are published: room rate, resort fee and tax. The Venetian publishes starting poker "
-                 "suite rates of $119 and $209 that are not date-specific and are not mapped to a property. The calculator therefore "
-                 "shows a floor computed from published components and labels it as a floor, not a quote."),
-         source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
+         title="Only one dated checkout total exists, and it is not for the recommended trip window",
+         detail=("The Venetian booking engine prints a dated total for November 17-19, 2026 with two adults: $824.25 + $55, "
+                 "$164.25 + $55, $146.98 tax, $1,245.48 total for a 650 sq ft Newly Remodeled Luxury King suite. For the "
+                 "recommended trip window of November 25 to December 2, 2026 the same engine publishes no price, so the "
+                 "nightly budget on this site stays at the floor computed from the published starting rates of $119 and $209 "
+                 "and is labelled a floor, not a quote."),
+         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"),
+    dict(id="F28", area="Hotels", severity="Medium",
+         title="The Venetian booking calendar disagrees with the quote, and the cells move within a day",
+         detail=("The calendar cell for November 17 read $855 in the observation recorded on 2026-11-16, while the same "
+                 "page's quote for the same night printed a $824.25 room rate, and an earlier observation of the same "
+                 "calendar on the same day recorded $605. The calendar states that its prices are the best available suite "
+                 "and rate, include the daily resort fee and exclude taxes. Calendar cells are logged as observations and "
+                 "are never used in a total."),
+         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"),
     dict(id="F16", area="Schedule", severity="High",
          title="No official schedule publishes tournament finish times",
          detail=("Venetian sheets publish start time, level length and late-registration cut-off but no finish time. The overlap "
@@ -346,10 +356,13 @@ FLAGS = [
 
 QUESTIONS = [
     dict(id="Q01", question="What are the actual travel dates, and how many nights?",
-         answer="Not supplied and not inferable from official sources. Every rate is date-, occupancy- and availability-dependent, so no date-specific quote can be requested or compared until dates exist.",
+         answer=("This session fixed the dates at November 25 to December 2, 2026 because that window holds the most "
+                 "single-entry events verified on an official structure sheet. The official booking engine publishes no "
+                 "price for those dates. The one dated checkout total it does publish is November 17-19, 2026 for two "
+                 "adults: $1,245.48 including the $55 nightly resort fee and $146.98 of tax."),
          why="Needed", blocking="Yes - no hotel total can be confirmed without it",
-         how="Pick the arrival and departure dates, then request a quote from each property's own booking channel.",
-         source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
+         how="Open the booking link on the hotels page with the arrival and departure dates you want; the price is printed by the venue itself.",
+         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"),
     dict(id="Q02", question="How many people are travelling, and is one room enough?",
          answer="The published rates are single or double occupancy. The Venetian adds $50 plus tax per additional guest 13 and older; Bellagio adds $50 plus tax per occupant above two.",
          why="Needed", blocking="Yes - occupancy changes the nightly total",
@@ -366,9 +379,14 @@ QUESTIONS = [
          how="Ask the poker room to confirm in writing that a second buy-in is not accepted for a specific event if that matters for your decision.",
          source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf"),
     dict(id="Q05", question="Which hotels actually publish a room price for the dates you want?",
-         answer="None of the reviewed properties publishes a price on the page itself. The Venetian publishes starting poker-suite rates of $119 and $209 that are explicitly not date-specific, and it states that future rates are only provided up to 150 days out.",
+         answer=("Only The Venetian, and only through its own booking engine rather than on the rate page. For November "
+                 "17-19, 2026 the engine printed $824.25 + $55, $164.25 + $55, $146.98 tax and a $1,245.48 total for a "
+                 "650 sq ft Luxury King suite. Its calendar cells for November are best-available rates that include the "
+                 "resort fee and exclude tax, and they moved within a single day. The rate page itself still publishes "
+                 "only starting rates of $119 and $209, which are explicitly not date-specific, and states that rates are "
+                 "provided up to 150 days out."),
          why="Needed", blocking="Yes for a confirmed total",
-         how="Request a written quote per property for the exact dates, and log it in the rate log on this site with the quote timestamp.",
+         how="Open the booking link with the exact dates, then log the printed total in the rate log with its timestamp.",
          source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
     dict(id="Q06", question="Will the poker-suite rate be honoured if you play tournaments rather than cash games?",
          answer="Yes, in writing: the rate page requires 'six hours of active live cash gameplay or buy in to a $300 or higher tournament for each night stayed', met before 2 a.m. on the last night. A $100 or $200 tournament does not qualify; a $300 or higher entry does.",
@@ -626,6 +644,11 @@ TRIP = {
     ],
     "bankrollNote": ("Bankroll figure on the day-plan page is the sum of the eight recommended primary buy-ins plus a 25% "
                      "buffer for one rebuy or an add-on if a room allows it. It is a planning number, not a forecast."),
+    "lodgingEvidence": (
+        "The official Venetian booking engine publishes one dated checkout total, for November 17-19, 2026 with two "
+        "adults: $824.25 + $55 on the 17th, $164.25 + $55 on the 18th, $146.98 tax, $1,245.48 total. For the recommended "
+        "trip window of November 25 to December 2, 2026 the same booking engine publishes no price at all, so the trip "
+        "budget stays at the published starting-rate floor and is labelled a floor, not a quote."),
 }
 
 PLAN_NOTES = {

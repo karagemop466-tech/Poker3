@@ -10,6 +10,7 @@ const NAV = [
   ['venues.html', 'Venues', '◈'],
   ['schedule.html', 'Day plan', '◷'],
   ['hotels.html', 'Hotels', '⌂'],
+  ['calculator.html', 'Trip cost', '∑'],
   ['questions.html', 'Questions', '?'],
   ['suggestions.html', 'Suggestions', '✦'],
   ['flagged.html', 'Flagged for review', '⚑'],
@@ -251,6 +252,11 @@ function buildTournamentControls() {
 }
 
 /* ------------------------------------------------------------------ venues */
+const DETAIL_PAGES = { venetian: 'venues/venetian.html', wynn: 'venues/wynn.html',
+  bellagio: 'venues/others.html', mgm: 'venues/others.html', caesars: 'venues/others.html',
+  horseshoe: 'venues/others.html', aria: 'venues/others.html' };
+function detailPage(id) { return DETAIL_PAGES[id] || ''; }
+
 function renderVenueIndex() {
   const host = document.querySelector('[data-venue-list]');
   if (!host) return;
@@ -275,6 +281,7 @@ function renderVenueIndex() {
         <span>Hotels on this page: <strong>${hotels.length ? hotels.map((h) => esc(h.name)).join(', ') : 'none verified'}</strong></span>
       </p>
       <p><a class="card-link" href="browse.html?view=venue&key=${esc(v.id)}">Events and hotels for ${esc(v.name)} →</a>
+         ${detailPage(v.id) ? ` · <a class="card-link" href="${detailPage(v.id)}">Full venue page →</a>` : ''}
          · <a class="card-link" href="${esc(v.page)}" target="_blank" rel="noopener">Official poker page →</a></p>
     </article>`;
   }).join('');
@@ -391,6 +398,29 @@ function renderHotels() {
           <span class="muted"><a href="${esc(r.source)}" target="_blank" rel="noopener">Venue source</a></span></td></tr>`).join('');
     routes.innerHTML = `<div class="table-wrap"><table><thead><tr><th>From</th><th>To</th><th>Walk</th><th>Distance</th>
       <th>Via</th><th>Note</th><th>Sources</th></tr></thead><tbody>${body}</tbody></table></div>`;
+  }
+  const quote = document.querySelector('[data-quote]');
+  if (quote) {
+    const q = (db.hotels || []).map((h) => h.quote).filter(Boolean)[0];
+    if (!q) {
+      quote.innerHTML = '<div class="empty"><strong>No dated checkout total.</strong> No property publishes one for the reviewed dates.</div>';
+    } else {
+      quote.innerHTML = `
+        <div class="detail-grid">
+          <div><span class="label">Property and room</span><span class="value">${esc(q.property)}</span></div>
+          <div><span class="label">Stay</span><span class="value">${esc(q.checkIn)} → ${esc(q.checkOut)} · ${esc(q.nights)} nights · ${esc(q.guests)} adults</span></div>
+          <div><span class="label">Offer printed</span><span class="value">${esc(q.offer)}</span></div>
+          <div><span class="label">Room type</span><span class="value">${esc(q.suiteDetail)}</span></div>
+          <div><span class="label">Night 1</span><span class="value">$${q.nightOne.rate.toFixed(2)} + $${q.nightOne.resortFee.toFixed(2)} resort fee</span></div>
+          <div><span class="label">Night 2</span><span class="value">$${q.nightTwo.rate.toFixed(2)} + $${q.nightTwo.resortFee.toFixed(2)} resort fee</span></div>
+          <div><span class="label">Taxes printed</span><span class="value">$${q.taxes.toFixed(2)}</span></div>
+          <div><span class="label">Checkout total printed</span><span class="value">$${q.total.toFixed(2)}</span></div>
+          <div><span class="label">Average rate printed</span><span class="value">$${q.averageRate.toFixed(2)}</span></div>
+        </div>
+        <p class="detail-note">${esc(q.note)}</p>
+        <p class="detail-note">Derived nightly cost: $${q.derivedNightly[0].toFixed(2)} and $${q.derivedNightly[1].toFixed(2)}, from (rate + $55 resort fee) × 1.1338.</p>
+        <p class="detail-note">Observed ${esc(q.observedOn)} · <a href="${esc(q.source)}" target="_blank" rel="noopener">open the same official booking link →</a></p>`;
+    }
   }
   const calc = document.querySelector('[data-calculator]');
   if (calc) {

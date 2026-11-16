@@ -31,6 +31,15 @@ PAGES = {
     "sources.html": "sources",
 }
 
+# Detailed pages that use their own data attributes instead of data-page.
+DETAIL_PAGES = {
+    "venues/index.html": [],
+    "venues/venetian.html": ["venue-events", "venue-hotels"],
+    "venues/wynn.html": ["venue-events", "venue-hotels"],
+    "venues/others.html": ["venue-events", "venue-hotels"],
+    "calculator.html": ["tripForm"],
+}
+
 REQUIRED_HOOKS = {
     "index.html": ["data-stats", "data-trip-card", "data-top-picks", "data-policy"],
     "tournaments.html": ["data-filters", "data-tournament-table", "data-detail"],
@@ -52,6 +61,7 @@ class PageParser(HTMLParser):
         self.scripts: list[str] = []
         self.links: list[str] = []
         self.hooks: set[str] = set()
+        self.ids: set[str] = set()
         self.title: str | None = None
         self._in_title = False
 
@@ -65,6 +75,8 @@ class PageParser(HTMLParser):
             self.links.append(a["href"])
         if tag == "title":
             self._in_title = True
+        if a.get("id"):
+            self.ids.add(a["id"])
         for key in attrs:
             name = key[0]
             if name.startswith("data-"):
@@ -100,11 +112,33 @@ def main() -> int:
         for link in parser.links:
             if link.startswith(("http://", "https://", "#", "mailto:", "tel:", "data:", "javascript:")):
                 continue
-            target = (SITE / link.split("#")[0].split("?")[0]).resolve()
+            target = (path.parent / link.split("#")[0].split("?")[0]).resolve()
             if not target.exists():
                 errors.append(f"{page}: broken local link {link}")
             if urlparse(link).scheme:
                 errors.append(f"{page}: unexpected scheme on {link}")
+
+    for page, hooks in DETAIL_PAGES.items():
+        path = SITE / page
+        if not path.exists():
+            errors.append(f"{page}: missing")
+            continue
+        parser = PageParser()
+        parser.feed(path.read_text(encoding="utf-8"))
+        for hook in hooks:
+            if hook not in parser.ids:
+                errors.append(f"{page}: missing id={hook}")
+        for link in parser.links:
+            if link.startswith(("http://", "https://", "#", "mailto:", "tel:", "data:", "javascript:")):
+                continue
+            target = (path.parent / link.split("#")[0].split("?")[0]).resolve()
+            if not target.exists():
+                errors.append(f"{page}: broken local link {link}")
+
+    index_text = (SITE / "venues" / "index.html").read_text(encoding="utf-8")
+    for target in ("venetian.html", "wynn.html", "others.html"):
+        if target not in index_text:
+            errors.append(f"venues/index.html: does not link {target}")
 
     data = json.loads((SITE / "data.json").read_text(encoding="utf-8"))
     if data.get("asOf") != "2026-11-16":
@@ -129,7 +163,7 @@ def main() -> int:
         for e in errors:
             print(" -", e)
         return 1
-    print(f"canonical smoke passed: {len(PAGES)} pages")
+    print(f"canonical smoke passed: {len(PAGES)} main pages, {len(DETAIL_PAGES)} detail pages")
     return 0
 
 

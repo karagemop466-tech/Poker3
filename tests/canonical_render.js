@@ -90,8 +90,50 @@ const PAGES = [
   ['sources', ''],
 ];
 
+/* The detailed venue pages use their own script and their own data attributes. */
+function runVenuePage(venueAttr) {
+  registry.clear();
+  const body = { dataset: { venue: venueAttr } };
+  const document = {
+    body,
+    querySelector(sel) { return hook(sel); },
+    querySelectorAll(sel) { return [hook(sel)]; },
+    getElementById(id) { return hook('#' + id); },
+  };
+  const sandbox = {
+    document,
+    location: { pathname: '/venues/venetian.html', search: '' },
+    URLSearchParams,
+    console,
+    fetch: (url) => {
+      if (String(url).endsWith('data.json')) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(data) });
+      }
+      return Promise.resolve({ ok: false, json: () => Promise.resolve(null) });
+    },
+  };
+  sandbox.globalThis = sandbox;
+  vm.createContext(sandbox);
+  const code = fs.readFileSync(path.join(ROOT, 'site', 'assets', 'venue.js'), 'utf8');
+  vm.runInContext(code, sandbox, { filename: 'venue.js' });
+  return new Promise((resolve) => setTimeout(() => resolve(registry), 60));
+}
+
 (async () => {
   let failures = 0;
+  for (const venue of ['venetian', 'wynn']) {
+    const reg = await runVenuePage(venue);
+    const ev = reg.get('#venue-events');
+    const ho = reg.get('#venue-hotels');
+    const evRows = ev ? (ev.html.match(/<tr>/g) || []).length : 0;
+    const hoRows = ho ? (ho.html.match(/<tr>/g) || []).length : 0;
+    if (evRows < 5 || hoRows < 1) {
+      console.log(`FAIL  venue page ${venue}: ${evRows} event rows, ${hoRows} hotel rows`);
+      failures++;
+    } else {
+      console.log(`ok    venue page ${venue}: ${evRows} event rows, ${hoRows} hotel rows`);
+    }
+  }
   for (const [page, search] of PAGES) {
     const reg = await runPage(page, search);
     let total = 0;
