@@ -1,5 +1,112 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Tournaments · Vegas Poker Planner</title><link rel="stylesheet" href="assets/site.css"></head><body><header class="topbar"><a class="brand" href="index.html"><span class="brand-mark">♠</span><span>Vegas Poker Planner</span></a><span class="top-tag">Tournament research · snapshot <span data-asof></span></span></header><nav class="mobile-nav" data-mobile-nav></nav><div class="layout"><aside class="sidebar"><div class="side-label">Plan your trip</div><nav class="nav" data-nav></nav><div class="side-note"><strong>Single entry means proven</strong>Missing entry terms do not pass the filter. Each row links to the venue schedule and, when located, the official structure.</div></aside><main class="main"><section class="hero"><div class="eyebrow">Category · live tournament schedule</div><h1>Upcoming tournaments, with the entry-rule gate kept visible.</h1><p>Official schedule details are listed as published. Buy-in and guaranteed pool are not the same as expected payout, profitability, or the prize pool actually awarded.</p></section><div class="notice"><strong>Current result: no confirmed qualifying tournament.</strong> In the official structures reviewed, one-day entries did not explicitly establish one entry per person, and multi-flight events have unresolved entry permissions. We have not relabeled missing rules as “freezeout.” Ask the poker room before booking.</div><section class="section"><div class="section-head"><div><h2>Single-entry eligible</h2><p>Only events whose official source explicitly supports the requested no-extra-spend rule belong here.</p></div></div><div class="empty"><strong>No verified rows yet.</strong> This means the researched official source set did not confirm the constraint—not that no qualifying event exists in Las Vegas. See <a href="questions.html">what must be verified</a> and <a href="suggestions.html">how to close the gaps</a>.</div></section>
-<section class="section"><div class="section-head"><div><h2>Officially scheduled candidates — eligibility unverified</h2><p>Venetian DeepStack rows through Nov. 30, Wynn WPT / recurring poster rows, and ARIA's undated official-guide cadence. Undated recurrence is not a date-specific event confirmation; blank guarantee means none was published in the source row.</p></div></div><div data-list="events"></div><p class="smallprint" data-load-error hidden>Schedule data could not be loaded. Open the JSON source or reload the page.</p></section>
-<section class="section" id="spend-more"><div class="section-head"><div><h2>Separate section · extra spend or advantage needs review</h2><p>Do not mix these into the single-entry shortlist.</p></div></div><p class="subtle">Venetian bounty events are separated for rule-checking; a bounty is not automatically an add-on. Bellagio Friday/Sunday structures explicitly allow re-entry and optional paid staff gratuities that add chips, so those recurring formats are excluded from the strict path. All recurring listings still need date-specific confirmation.</p><div data-list="spend"></div><div class="card" style="margin-top:14px"><span class="pill danger">Explicit rebuy</span><h3>Wynn Friday $240 NLH Rebuy · $40,000 guarantee</h3><p>The Wynn daily tournament poster names a rebuy, which permits additional spend and excludes it from the strict one-entry/no-advantage path. Wynn describes the daily slate as operating during non-event timeframes and says it is suspended during specified series; verify any target date with the room.</p><a href="https://www.wynnlasvegas.com/casino/poker" target="_blank" rel="noopener">Official Wynn schedule and series caveat ↗</a> · <a href="https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf" target="_blank" rel="noopener">Official daily tournament poster ↗</a></div></section>
-<section class="section"><h2>What looks strongest on the published numbers (not a final pick)</h2><div class="cards" style="margin-top:12px"><article class="card"><h3>Lower buy-in + stated guarantee</h3><p>Among the rows with both values published, Venetian $300 NLH one-day events list a $10,000 guarantee (Nov. 18 and Nov. 26). A $400 one-day event on Nov. 25 lists $15,000 guaranteed. These are unverified for single entry and cannot be ranked by expected value from posted data alone.</p><a href="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html" target="_blank" rel="noopener">Official schedule ↗</a></article><article class="card"><h3>Largest visible guarantee in the selected upcoming rows</h3><p>The Wynn WPT $600 NLH opening event lists $400,000 guaranteed on Nov. 27. It has multiple day-one flights and the official schedule does not state a single-entry cap in the material reviewed. It is not a qualifying selection unless entry rules are confirmed.</p><a href="https://www.wynnlasvegas.com/casino/poker" target="_blank" rel="noopener">Official Wynn WPT schedule ↗</a></article></div><p class="smallprint">Comparisons are limited to published buy-ins and guarantees. Guarantees are aggregate floor amounts subject to event terms, not “prize pool per dollar” or a forecast of your return. No ranking combines prize pool with cost as expected value.</p></section>
-<div class="footer">Source links on each row go to official venue schedule/structure pages. Schedule coverage is intentionally finite and is not a complete Vegas event calendar.</div></main></div><script src="assets/app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Every published Las Vegas Strip poker tournament row with date filters, venue and category filters, a single-entry filter, the official source excerpt and the retrieval date.">
+<title>Vegas Poker Planner · Tournaments</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="tournaments">
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark">♠</span><span>Vegas Poker Planner</span></a>
+  <form class="top-search" data-search-form><input type="search" placeholder="Search every tournament, venue and rule…" aria-label="Search tournaments"><button class="btn" type="submit">Search</button></form>
+  <span class="top-tag">Official sources only · verified <span data-asof></span></span>
+</header>
+<nav class="mobile-nav" data-mobile-nav></nav>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="side-label">Plan your trip</div>
+    <nav class="nav" data-nav></nav>
+    <div class="side-note">
+      <strong>How to read a row</strong>
+      “Single entry on the sheet” means the official structure sheet prints one buy-in, one start flight and no
+      re-entry, rebuy or add-on clause. Click any row to see the exact wording, its link and the date it was retrieved.
+    </div>
+  </aside>
+  <main class="main">
+    <section class="hero">
+      <div class="eyebrow">Tournaments · <span data-filtered-count>—</span> rows shown</div>
+      <h1>Every published tournament row, with the rule text attached.</h1>
+      <p>
+        The table below holds every tournament row published by an official source in this pass: the Venetian DeepStack
+        Extravaganza IV and New Year’s Eve schedules, the Wynn daily poster, the Wynn WPT World Championship schedule,
+        the Wynn Signature Series schedule, the Bellagio weekly structures, the MGM Grand $120 structure, and the
+        Caesars Palace and Horseshoe daily tournaments. Filter by date, venue, category or format, or switch on the
+        single-entry filter to see only the rows whose official sheet prints one buy-in and no re-entry, rebuy, add-on or
+        second flight.
+      </p>
+    </section>
+
+    <div class="notice" data-load-error hidden>
+      <strong>The data file did not load.</strong> Open this page from the published site root rather than from a local
+      file path, so that <code>data.json</code> can be fetched.
+    </div>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Filters</h2><p>Everything below updates as you type.</p></div></div>
+      <div data-filters></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head">
+        <div><h2>Published rows</h2><p>Click a row for the entry-rule excerpts, the source link and the retrieval date.</p></div>
+        <div class="pill-row">
+          <a class="pill" href="browse.html?view=category&key=single">Single entry</a>
+          <a class="pill" href="browse.html?view=category&key=flight">Multi-flight</a>
+          <a class="pill" href="browse.html?view=category&key=satellite">Satellites</a>
+          <a class="pill" href="browse.html?view=category&key=extra">Extra-spend formats</a>
+          <a class="pill" href="browse.html?view=category&key=special">Restricted or team</a>
+        </div>
+      </div>
+      <div data-tournament-table></div>
+    </section>
+
+    <section class="section" id="detail">
+      <div data-detail hidden class="detail-panel"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Reading the columns</h2></div></div>
+      <div class="cards">
+        <article class="card">
+          <span class="pill">Guaranteed pool ÷ fee</span>
+          <h3>A descriptive ratio, never a forecast</h3>
+          <p>The figure divides the published guaranteed pool by the published entry fee. It is a way to compare the
+          published numbers with each other. It says nothing about expected value, because a guarantee is a floor paid
+          only if the field fills, and bounty guarantees include money paid as bounties rather than as prize pool.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Estimated finish</span>
+          <h3>Derived from published data, labelled as an estimate</h3>
+          <p>When a sheet prints its late-registration cut-off time, the session cannot end before that moment. The
+          estimate adds two more levels. With no printed cut-off time, the planner falls back to a stated six-hour
+          session. The transfer allowance between rooms is 30 minutes.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Entry check</span>
+          <h3>What the sheet actually prints</h3>
+          <p>“No re-entry, rebuy or add-on printed” is a statement about the document, not about the room’s policy.
+          Where a sheet prints re-entry, rebuy, add-on, a paid chip boost or a separate start flight, the row is
+          labelled accordingly and kept out of the single-entry filter.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Blank cells</span>
+          <h3>Left blank on purpose</h3>
+          <p>Horseshoe publishes its six daily start times but no buy-in, level or guarantee. The ARIA guide is undated.
+          The Bellagio Saturday sheet prints three different buy-ins. In each case the field stays empty and the row
+          carries a link to the page for manual review.</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="footer">
+      Rows come from official venue schedules and structure PDFs retrieved on <span data-asof></span>. Scheduled
+      tournaments can be changed or cancelled by the room. <a href="flagged.html">Flagged for review</a> ·
+      <a href="sources.html">Source log</a>.
+    </div>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

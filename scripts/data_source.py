@@ -2,6 +2,7 @@
 
 Run:  python3 scripts/data_source.py
 """
+import datetime
 import json
 import pathlib
 import re
@@ -469,7 +470,7 @@ def _rules_for_sheet(sheet_no):
 def _event(eid, venue, date, time, name, buyIn, guarantee, rules, category, kind,
            sheet_url, schedule_url, structure_url=None, last_checked=ASOF,
            note="", eligibility="", guarantee_note="", chips="", level_min="",
-           late_reg="", entry_type="not-verified", fmt="", continuation=False):
+           late_reg="", entry_type="not-verified", fmt="", continuation=False, weekdays=None):
     buy = buyIn if isinstance(buyIn, str) else ("" if buyIn in (None, "-") else buyIn)
     gua = guarantee if isinstance(guarantee, str) else ("" if guarantee in (None, "-") else guarantee)
     start = clock_minutes(time)
@@ -499,13 +500,247 @@ def _event(eid, venue, date, time, name, buyIn, guarantee, rules, category, kind
         entryType=entry_type,
         singleEntry=(entry_type == "none"),
         format=fmt,
-        chips=chips, levelMin=level_min, lateReg=late_reg,
+        chips=chips, levelMin=level_min, lateReg=late_reg, weekdays=weekdays or [],
         lateRegEnd=cutoff,
         sessionMin=length, endEstimate=fmt_clock(end), endEstimateMin=end,
         isContinuation=continuation,
         sheetUrl=sheet_url, scheduleUrl=schedule_url, structureUrl=structure_url or "",
         lastChecked=last_checked, note=note, eligibility=eligibility,
     )
+
+
+CATEGORIES = {
+    "single": {"label": "Single entry (verified on the official sheet)", "blurb":
+               "The official structure sheet prints one buy-in, one start flight and no re-entry, rebuy, add-on or "
+               "second-flight clause."},
+    "flight": {"label": "Multi-flight", "blurb":
+               "The official schedule publishes separate start flights. A player who does not bag for Day 2 may buy into "
+               "another flight, so more than one entry is possible."},
+    "satellite": {"label": "Satellite (seat prizes, not cash)", "blurb":
+                  "Prizes are entries into another event, not cash. Different maths: see the ratio note."},
+    "bounty": {"label": "Bounty / PKO", "blurb":
+               "Part of the guarantee is paid as bounties, so the printed guarantee is not a cash prize pool."},
+    "extra": {"label": "Extra-spend formats (re-entry, rebuy, add-on, paid chip boost)", "blurb":
+              "Isolated from the single-entry list. Each format gives a way to spend more than the printed buy-in."},
+    "special": {"label": "Restricted or team format", "blurb":
+                "Team, female-only or age-restricted formats. They are labelled so they are never mistaken for an open "
+                "single-entry event."},
+    "wpt": {"label": "Wynn tournament series", "blurb":
+            "Rows from the official WPT World Championship and Wynn Signature Series schedule PDFs."},
+    "recurring": {"label": "Recurring daily or weekly room tournaments", "blurb":
+                  "A published cadence rather than a dated event."},
+    "conflict": {"label": "Source conflict (not ranked)", "blurb":
+                 "The official sources disagree, so the monetary fields are left blank."},
+}
+
+TRIP = {
+    "start": "2026-11-25",
+    "end": "2026-12-02",
+    "nights": 7,
+    "days": 8,
+    "hotel": "venetian",
+    "alternativeHotel": "palazzo",
+    "nightlyBudget": 197.28,
+    "nightlyBudgetNote": (
+        "Fixed by this session at the lowest published true nightly cost of the recommended property: "
+        "($119 published poker-suite starting rate + $55 mandatory resort fee) x 1.1338 Clark County room tax = $197.28. "
+        "It is a floor computed from published components, not a quote."),
+    "nightlyBudgetCeiling": 299.32,
+    "qualityFloor": (
+        "Fixed by this session on an objective published-evidence test rather than an invented score: the property must "
+        "publish its own poker-room rate, keep the poker room on site, and publish its resort fee, tax and cancellation "
+        "terms. No comparable official quality score exists for these rooms, so the quality column stays blank (F19)."),
+    "rationale": [
+        ("2026-11-25 to 2026-12-02 (7 nights, 8 days) holds the largest number of single-entry events verified on an "
+         "official structure sheet: 14, and every one of the eight days has at least one."),
+        ("All 37 DeepStack Extravaganza IV structure sheets were read directly on 2026-11-16, so the single-entry "
+         "classification on these dates comes from a primary source rather than from the schedule title."),
+        ("The window stays inside DSE IV. The December 24 to January 10 DeepStack NYE dates are published on the "
+         "official schedule page, but the 15 NYE structure sheets were not read, so those rows cannot enter the "
+         "single-entry list yet (F11)."),
+        ("It also sits before the $10,400 WPT World Championship buy-in tier on December 13, which would break the trip "
+         "budget on a single entry."),
+        ("The Wynn WPT schedule runs from November 27 inside the window, so three days carry additional published rows, "
+         "all clearly marked as series rows with unverified entry rules (F12)."),
+    ],
+    "bankrollNote": ("Bankroll figure on the day-plan page is the sum of the eight recommended primary buy-ins plus a 25% "
+                     "buffer for one rebuy or an add-on if a room allows it. It is a planning number, not a forecast."),
+}
+
+PLAN_NOTES = {
+    "primaryRule": ("Primary event = the verified single-entry event on that date with the largest published guarantee, "
+                    "among venues within a 30-minute walk of the recommended hotel, excluding age-restricted, "
+                    "female-only and team formats."),
+    "fallbackRule": ("Fallback = the next verified single-entry event that starts after the primary's estimated finish "
+                     "plus a 30-minute transfer. When nothing fits, the fallback is the best alternative that date with "
+                     "the reason it was not chosen."),
+    "transfer": 30,
+    "walkLimit": 30,
+}
+
+# Walking minutes from the recommended hotel (The Venetian / The Palazzo resort) to each
+# poker room.  Google Maps walking estimates captured 2026-11-16; no venue publishes a time.
+WALK = {"venetian": 0, "caesars": 12, "wynn": 13, "horseshoe": 16, "bellagio": 21, "mgm": 35, "aria": 31}
+
+FEED_ROOMS = [
+    dict(id="venetian", name="The Venetian poker room",
+         schedule="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+         extra=["https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html",
+                "https://www.venetianlasvegas.com/resort/casino/poker.html"]),
+    dict(id="wynn", name="Wynn poker room",
+         schedule="https://www.wynnlasvegas.com/casino/poker",
+         extra=["https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf",
+                "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"]),
+    dict(id="bellagio", name="Bellagio poker room",
+         schedule="https://bellagio.mgmresorts.com/en/casino/poker.html",
+         extra=["https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf"]),
+    dict(id="mgm", name="MGM Grand poker room",
+         schedule="https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
+         extra=["https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/bltb2a45da7e8ee5621/mgm-grand-casino-poker-120_nlh.pdf"]),
+    dict(id="caesars", name="Caesars Palace and Horseshoe poker rooms",
+         schedule="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip", extra=[]),
+    dict(id="aria", name="ARIA poker room", schedule="https://aria.mgmresorts.com/en/casino/poker.html", extra=[]),
+]
+
+
+def _plan_eligible(e):
+    """Can this event be a recommended primary entry for a general traveller?
+
+    Ranking needs a confirmed entry fee and a confirmed guarantee, a verified
+    single-entry sheet, no age/gender/team restriction, and a venue inside the
+    30-minute walking limit from the recommended hotel.
+    """
+    if e["entryType"] != "none":
+        return False
+    if e["isContinuation"]:
+        return False
+    if e["eligibility"]:
+        return False
+    if e["format"] in ("special", "satellite"):
+        return False
+    if e["venue"] not in WALK:
+        return False
+    if WALK[e["venue"]] > PLAN_NOTES["walkLimit"]:
+        return False
+    if not isinstance(e["buyIn"], (int, float)) or not e["buyIn"]:
+        return False
+    if not isinstance(e["guarantee"], (int, float)) or not e["guarantee"]:
+        return False
+    return True
+
+
+def _plan_rank(e):
+    """Biggest published guarantee first, then shortest walk, then cheaper entry."""
+    guarantee = e["guarantee"] if isinstance(e["guarantee"], (int, float)) else 0
+    start = clock_minutes(e["time"]) or 0
+    return (-guarantee, WALK[e["venue"]], e["buyIn"], start)
+
+
+def _fallback_reason(primary, alt):
+    if alt["entryType"] != "none":
+        return ("Different format: this row is a multi-flight, satellite or series event, so it is listed as an "
+                "alternative and not as a single-entry option.")
+    if not isinstance(alt["guarantee"], (int, float)):
+        return ("No published guarantee on the official sheet, so it is not ranked; shown as the alternative for this "
+                "date.")
+    if alt["guarantee"] < primary["guarantee"]:
+        return (f"Smaller published guarantee (${alt['guarantee']:,} against ${primary['guarantee']:,}), so it is the "
+                "conditional fallback rather than the primary.")
+    if WALK.get(alt["venue"], 99) > WALK.get(primary["venue"], 0):
+        return (f"Same published guarantee but {WALK.get(alt['venue'], '?')} minutes' walk from the recommended hotel "
+                f"against {WALK.get(primary['venue'], 0)}.")
+    return "Next best published single-entry event on this date."
+
+
+def build_day_plan(events, start_date, end_date, recurring=()):
+    """Build the one-primary-per-day plan plus the impossible-sequence flags."""
+    by_date = {}
+    for e in events:
+        if e["date"] and start_date <= e["date"] <= end_date:
+            by_date.setdefault(e["date"], []).append(e)
+    plan = []
+    conflicts = []
+    for date in sorted(by_date):
+        eligible = sorted([e for e in by_date[date] if _plan_eligible(e)], key=_plan_rank)
+        primary = eligible[0] if eligible else None
+        fallback = None
+        fallback_reason = ""
+        if primary:
+            rest = [e for e in eligible[1:]]
+            if rest:
+                fallback = rest[0]
+                fallback_reason = _fallback_reason(primary, fallback)
+            else:
+                others = [e for e in by_date[date]
+                          if e["id"] != primary["id"] and not e["isContinuation"]
+                          and e["entryType"] == "none" and not e["eligibility"]]
+                if others:
+                    others.sort(key=lambda x: (not isinstance(x["guarantee"], (int, float)), x["time"]))
+                    fallback = others[0]
+                    fallback_reason = _fallback_reason(primary, fallback)
+                else:
+                    fallback_reason = ("No other verified single-entry event is published for this date. The multi-flight "
+                                       "and series rows for this date are listed in the tournaments table.")
+        else:
+            fallback_reason = "No verified single-entry event with a published fee and guarantee on this date."
+        for a in by_date[date]:
+            if a["isContinuation"]:
+                continue
+            for b in by_date[date]:
+                if b["isContinuation"] or a["id"] >= b["id"]:
+                    continue
+                if not (_plan_eligible(a) or _plan_eligible(b)):
+                    continue
+                sa, sb = clock_minutes(a["time"]) or 0, clock_minutes(b["time"]) or 0
+                if sa == sb:
+                    continue
+                first, second = (a, b) if sa < sb else (b, a)
+                end = first["endEstimateMin"]
+                if end is None:
+                    continue
+                if sb < end + PLAN_NOTES["transfer"]:
+                    conflicts.append(dict(
+                        date=date, first=first["id"], second=second["id"],
+                        firstName=first["name"], secondName=second["name"],
+                        firstVenue=first["venue"], secondVenue=second["venue"],
+                        firstStart=first["time"], secondStart=second["time"],
+                        firstEnd=first["endEstimate"], secondVenueWalk=WALK.get(second["venue"], ""),
+                        detail=(f"{first['name']} at {first['time']} is estimated to end at {first['endEstimate']}; "
+                                f"{second['name']} starts at {second['time']}, which is inside the estimated session "
+                                f"plus the 30-minute transfer.")))
+        plan.append(dict(
+            date=date,
+            weekday=datetime.date.fromisoformat(date).strftime("%A"),
+            recurring=[dict(id=e["id"], venue=e["venue"], name=e["name"], time=e["time"],
+                            buyIn=e["buyIn"], guarantee=e["guarantee"], walk=WALK.get(e["venue"], ""),
+                            category=e["category"], entryType=e["entryType"], format=e["format"])
+                       for e in recurring
+                       if datetime.date.fromisoformat(date).weekday() in (e.get("weekdays") or [])],
+            primary=primary["id"] if primary else "",
+            primaryName=primary["name"] if primary else "",
+            primaryVenue=primary["venue"] if primary else "",
+            primaryTime=primary["time"] if primary else "",
+            primaryEnd=primary["endEstimate"] if primary else "",
+            primaryBuyIn=primary["buyIn"] if primary else "",
+            primaryGuarantee=primary["guarantee"] if primary else "",
+            primaryWalk=WALK.get(primary["venue"], "") if primary else "",
+            primaryLateReg=primary["lateReg"] if primary else "",
+            primaryChips=primary["chips"] if primary else "",
+            primaryFormat=primary["format"] if primary else "",
+            primaryLateEnd=primary["lateRegEnd"] if primary else "",
+            fallback=fallback["id"] if fallback else "",
+            fallbackName=fallback["name"] if fallback else "",
+            fallbackVenue=fallback["venue"] if fallback else "",
+            fallbackTime=fallback["time"] if fallback else "",
+            fallbackBuyIn=fallback["buyIn"] if fallback else "",
+            fallbackGuarantee=fallback["guarantee"] if fallback else "",
+            fallbackWalk=WALK.get(fallback["venue"], "") if fallback else "",
+            fallbackFormat=fallback["format"] if fallback else "",
+            fallbackReason=fallback_reason,
+            candidates=len(eligible),
+        ))
+    return plan, conflicts
+
 
 
 def build():
@@ -553,11 +788,11 @@ def build():
             d["poster"], d["source"], d["source"],
             note=d.get("note", "") + f" Recurring {d['days'].lower()}.", last_checked=ASOF,
             chips=d.get("chips", ""), level_min=d.get("levelMin", ""), late_reg=d.get("lateReg", ""),
-            entry_type="multi-buyin",
+            entry_type="multi-buyin", weekdays=d.get("weekdays", []),
         ))
 
     # --- Wynn WPT --------------------------------------------------------
-    for line in N.WYNN_WPT_ROWS.splitlines():
+    for idx, line in enumerate(N.WYNN_WPT_ROWS.splitlines()):
         date, time, name, buy_in, guarantee, chips, levels = line.split("|")
         buy = "" if buy_in == "-" else int(buy_in)
         gua = "" if guarantee == "-" else int(guarantee)
@@ -575,7 +810,7 @@ def build():
                         source=N.WYNN_WPT_SCHED, retrieved=ASOF),
         }
         events.append(_event(
-            f"wynn-wpt-{date}-{time.replace(':', '').replace(' ', '').lower()}-{name[:18].replace(' ', '').lower()}",
+            f"wynn-wpt-{date}-{idx:03d}-{time.replace(':', '').replace(' ', '').lower()}",
             "wynn", date, time, name, buy, gua, rules, cat, "wpt",
             N.WYNN_WPT_SCHED, N.WYNN_WPT_SCHED, N.WYNN_WPT_STRUCT,
             note=("Multiple start flights are published for this event, so more than one entry is possible." if flight else
@@ -585,7 +820,7 @@ def build():
         ))
 
     # --- Wynn Signature Series ------------------------------------------
-    for line in N.WYNN_SIGNATURE_ROWS.splitlines():
+    for idx, line in enumerate(N.WYNN_SIGNATURE_ROWS.splitlines()):
         date, time, name, buy_in, guarantee, chips, levels = line.split("|")
         buy = "" if buy_in == "-" else int(buy_in)
         gua = "" if guarantee == "-" else int(guarantee)
@@ -603,7 +838,7 @@ def build():
                         source=N.WYNN_SIG_SCHED, retrieved=ASOF),
         }
         events.append(_event(
-            f"wynn-sig-{date}-{time.replace(':', '').replace(' ', '').lower()}-{name[:16].replace(' ', '').lower()}",
+            f"wynn-sig-{date}-{idx:03d}-{time.replace(':', '').replace(' ', '').lower()}",
             "wynn", date, time, name, buy, gua, rules, cat, "wpt",
             N.WYNN_SIG_SCHED, N.WYNN_SIG_SCHED, N.WYNN_SIG_STRUCT,
             note=("Multiple start flights are published for this event." if flight else
@@ -628,6 +863,7 @@ def build():
                 note=d.get("note", ""),
                 chips=d.get("chips", ""), level_min=d.get("levelMin", ""),
                 late_reg=d.get("lateReg", ""), entry_type=entry_type,
+                weekdays=d.get("weekdays", []),
             ))
 
     add_group(N.BELLAGIO_EVENTS, "bellagio", "bell")
@@ -656,6 +892,29 @@ def build():
         row["walkSourceType"] = "Google Maps walking estimate"
         routes.append(row)
 
+    recurring_events = [e for e in events if not e["date"] and e.get("weekdays")]
+    plan, conflicts = build_day_plan(events, TRIP["start"], TRIP["end"], recurring_events)
+    bankroll = sum(p["primaryBuyIn"] for p in plan if isinstance(p["primaryBuyIn"], (int, float)))
+    TRIP["primaryBuyIns"] = bankroll
+    TRIP["bankrollWithBuffer"] = round(bankroll * 1.25)
+    TRIP["bankrollNote"] = (f"The eight recommended primary entries total ${bankroll:,} in buy-ins. With a 25% buffer "
+                            f"for one rebuy or add-on where a room allows it, plan on ${round(bankroll * 1.25):,}.")
+
+    structure_sheets = []
+    for n in sorted(V.SHEETS):
+        structure_sheets.append(dict(
+            venue="venetian", series="DeepStack Extravaganza IV", sheet=n,
+            url=f"{V.BASE}/dse_nov_2026-structure_{n}.pdf",
+            readOn=V.RETRIEVED, read=True,
+            note="Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."))
+    for date, time, no, name, sheet_file, guarantee, category in V.NYE_ROWS:
+        url = f"{V.BASE}/{sheet_file}"
+        if not any(s["url"] == url for s in structure_sheets):
+            structure_sheets.append(dict(
+                venue="venetian", series="DeepStack Extravaganza NYE", sheet=sheet_file,
+                url=url, readOn="", read=False,
+                note="Not read in this pass; the row carries schedule-level facts only (F11)."))
+
     data = dict(
         asOf=ASOF,
         scope=("Las Vegas Strip poker tournaments and Strip lodging, built only from official venue and property pages. "
@@ -665,10 +924,16 @@ def build():
                 "labelled as such. The guaranteed-pool-to-fee ratio is descriptive only and is not a forecast."),
         sessionLengthAssumption=("No venue publishes a finish time. The schedule planner assumes a six-hour session plus a "
                                  "30-minute transfer between venues, so every conflict it reports is an estimate."),
+        categories=CATEGORIES,
         venues=VENUES, events=events, hotels=hotels, rateLog=H.RATE_LOG, routes=routes,
         sources=SOURCES, flags=FLAGS, questions=QUESTIONS, suggestions=SUGGESTIONS,
+        trip=TRIP,
+        dayPlan=plan, planConflicts=conflicts, planNotes=PLAN_NOTES,
+        structureSheets=structure_sheets,
+        feed=FEED_ROOMS,
     )
     return data
+
 
 
 def main():

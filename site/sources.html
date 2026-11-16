@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="The official source log for the Las Vegas poker planner, every structure sheet read, the morning daily room feed sources and the scheduled re-check results.">
+<title>Vegas Poker Planner · Sources</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="sources">
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark">♠</span><span>Vegas Poker Planner</span></a>
+  <form class="top-search" data-search-form><input type="search" placeholder="Search every tournament, venue and rule…" aria-label="Search tournaments"><button class="btn" type="submit">Search</button></form>
+  <span class="top-tag">Official sources only · verified <span data-asof></span></span>
+</header>
+<nav class="mobile-nav" data-mobile-nav></nav>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="side-label">Plan your trip</div>
+    <nav class="nav" data-nav></nav>
+    <div class="side-note">
+      <strong>No third-party data</strong>
+      Nothing on this site is taken from a tournament listing site, a review site or a hotel aggregator. Every value
+      links a venue-controlled or property-controlled page.
+    </div>
+  </aside>
+  <main class="main">
+    <section class="hero">
+      <div class="eyebrow">Sources · official pages only</div>
+      <h1>Every page this planner was built from.</h1>
+      <p>
+        The list below is the complete set of official sources read for this build, with the date each was checked. The
+        structure-sheet register records which of the 52 official PDFs were opened and read line by line, and which were
+        not. The automated re-check section below is written by a scheduled job that fetches each URL, stores a content
+        hash and flags any source whose content has changed since the last run.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Official source log</h2><p>Retrieved <span data-asof></span>.</p></div></div>
+      <div data-sources></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Structure sheets</h2><p>Every official tournament PDF behind the table rows.</p></div></div>
+      <div data-sheets></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Morning daily room feed</h2><p>The sources a scheduled job re-reads every morning for each Strip poker room.</p></div></div>
+      <div data-feed></div>
+      <p class="toolbar-note">The scheduled feed writes a dated snapshot of each room’s schedule page into
+      <code>site/feed/</code> so a change can be seen after the fact instead of being overwritten.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Automated re-check</h2><p>Scheduled fetch, content hash and change flag for every official URL.</p></div></div>
+      <div data-autochecks></div>
+    </section>
+
+    <div class="footer">Sources retrieved <span data-asof></span>. <a href="flagged.html">Flagged for review</a> ·
+      <a href="questions.html">Open questions</a>.</div>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

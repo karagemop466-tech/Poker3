@@ -1,4 +1,124 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hotels · Vegas Poker Planner</title><link rel="stylesheet" href="assets/site.css"></head><body><header class="topbar"><a class="brand" href="index.html"><span class="brand-mark">♠</span><span>Vegas Poker Planner</span></a><span class="top-tag">Hotel cost & access · snapshot <span data-asof></span></span></header><nav class="mobile-nav" data-mobile-nav></nav><div class="layout"><aside class="sidebar"><div class="side-label">Plan your trip</div><nav class="nav" data-nav></nav><div class="side-note"><strong>Total means total</strong>Nightly room rate, tax, resort fee, and conditional discounts all matter. No placeholder prices are filled in.</div></aside><main class="main"><section class="hero"><div class="eyebrow">Category · lodging and walking access</div><h1>Stay near the action—without pretending a quote is a total.</h1><p>Hotel rows prioritize on-property tournament access and any official fee/rate terms found. Quality is not ranked from marketing copy, and no exact nightly price is asserted without dates and a live quote.</p></section><div class="notice"><strong>True hotel cost cannot yet be calculated.</strong> Room night rates vary by dates and availability. Venetian, Wynn general terms, and Bellagio each publish a $55/night resort fee plus applicable tax in the pages reviewed; actual room quote, length of stay, guest count, rate-plan eligibility, and final total are not confirmed. Venetian terms publish 13.38% Clark County room tax on the daily rate and say the resort fee is plus applicable tax; Wynn general terms reviewed state $55 plus tax, while a separate offer page valid only through Aug. 31, 2024 states $50 plus tax; the expired-offer discrepancy is flagged and is not treated as the current rate. “True total / night” stays blank by design.</div><section class="section"><div class="section-head"><div><h2>On-property candidates</h2><p>Within the venue resort/campus; exact route distance and walking time have not been measured from an official venue map.</p></div></div><div data-list="hotels"></div></section>
-<section class="section"><div class="section-head"><div><h2>Cost inputs and conditions</h2></div></div><div class="cards"><article class="card"><span class="pill">Published rate clue</span><h3>Venetian / Palazzo poker suite offer</h3><p>The official 2026 page says poker suite rates start as low as $119 and $209 across the two properties. The text we reviewed does not explicitly pair each number with a tower, so this site does not assign a per-hotel base rate. Rates depend on availability, blackout dates, room occupancy, and qualifying poker play.</p><p>Eligibility: six hours of active live cash play <em>or</em> a buy-in to a $300-or-higher tournament for each night. If the requirement is missed, that night's rate adjusts to prevailing rate. A $200 tournament alone does not meet the stated tournament threshold.</p><a href="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html" target="_blank" rel="noopener">Official 2026 poker rate terms ↗</a></article><article class="card"><span class="pill warn">Mandatory fee</span><h3>Resort fees are additional</h3><p>Venetian publishes $55 plus applicable tax per night; Bellagio's current hotel terms state $55 plus applicable tax and that lodging tax applies to the room rate and resort fee. Wynn general terms publish $55 plus tax for relevant room types; an expired 2024 Wynn offer states $50 plus tax, and the booked room's current rate terms control. The applicable room taxes, room quote, and possible fee exceptions are not combined into an all-in figure here.</p><a href="https://www.venetianlasvegas.com/resort/resort-fee.html" target="_blank" rel="noopener">Venetian fee ↗</a> · <a href="https://bellagio.mgmresorts.com/en/terms-and-conditions.html" target="_blank" rel="noopener">Bellagio fee/tax terms ↗</a> · <a href="https://www.wynnlasvegas.com/terms-and-conditions/850070" target="_blank" rel="noopener">Wynn general fee terms ↗</a> · <a href="https://www.wynnlasvegas.com/terms-and-conditions/849723" target="_blank" rel="noopener">Expired 2024 $50 offer terms ↗</a> · <a href="https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html" target="_blank" rel="noopener">Venetian taxes/terms ↗</a></article></div></section>
-<section class="section"><div class="section-head"><div><h2>Recommendation, with the current evidence</h2></div></div><div class="empty"><strong>Do not rank a “best hotel” yet.</strong> The obvious access choices are the same-resort hotels at The Venetian/Palazzo for Venetian events and Wynn/Encore for Wynn events. But a room-price comparison by the user's priority (cost and quality ahead of distance) requires actual dates and room quotes, while a quality ranking needs a defined independent quality measure. The official site evidence only establishes where to request poker rates, applicable resort fees, and access on the resort property—not that any candidate is cheapest or highest quality.</div></section>
-<div class="footer">For the next decision, use the date-specific booking links on each official hotel site; compare the final booking checkout total for the same stay and occupancy. Unconfirmed values remain blank.</div></main></div><script src="assets/app.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Las Vegas Strip hotel comparison for a poker trip: published rate, mandatory resort fee, tax, true cost per night, parking, cancellation deadline and walking times, with a dated rate log.">
+<title>Vegas Poker Planner · Hotels</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="hotels">
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark">♠</span><span>Vegas Poker Planner</span></a>
+  <form class="top-search" data-search-form><input type="search" placeholder="Search every tournament, venue and rule…" aria-label="Search tournaments"><button class="btn" type="submit">Search</button></form>
+  <span class="top-tag">Official sources only · verified <span data-asof></span></span>
+</header>
+<nav class="mobile-nav" data-mobile-nav></nav>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="side-label">Plan your trip</div>
+    <nav class="nav" data-nav></nav>
+    <div class="side-note">
+      <strong>True cost per night</strong>
+      Room rate plus the mandatory resort fee plus tax, where the property publishes the percentage. Anything that
+      cannot be computed from published components stays blank and is flagged.
+    </div>
+  </aside>
+  <main class="main">
+    <section class="hero">
+      <div class="eyebrow">Hotels · published components only</div>
+      <h1>What a night actually costs, and what it is worth.</h1>
+      <p>
+        No reviewed property publishes a date-specific checkout total. What they do publish is the pieces: a room rate
+        or a published starting rate, a mandatory daily resort fee, a tax rule, a parking price, a cancellation deadline
+        and the terms for holding a booking. This page puts those pieces in the same columns so the properties can be
+        compared like for like, and it keeps every observation in a dated log instead of overwriting one number with a
+        newer one. Walking times come from Google Maps walking estimates captured on
+        <span data-asof></span>, because no property publishes a walking time to its own poker room.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Recommendation</h2><p>Fixed by this session; the reasoning is published rather than asked for.</p></div></div>
+      <div class="cards">
+        <article class="card">
+          <span class="pill ok">Recommended</span>
+          <h3>The Venetian or The Palazzo poker suite</h3>
+          <p>Both properties are on the same resort as the main poker room. The official poker-room rate page publishes
+          starting rates of $119 and $209 and requires six hours of live cash play or a $300 or higher tournament entry
+          for each night stayed, completed before 2 a.m. on the last night. The mandatory $55 resort fee and 13.38%
+          Clark County room tax take the floor to $197.28 a night. The Palazzo is a four-minute walk from the Venetian
+          poker room.</p>
+          <p class="muted">Both figures are published starting rates, not a quote for your dates, and the page does not
+          map each starting rate to a named tower. That is why the room-rate column shows a range.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Quality floor</span>
+          <h3>What “good enough” means here</h3>
+          <p>No reviewed property publishes a comparable quality score, so the quality column is blank rather than
+          invented. The floor applied instead is evidence-based: the property must publish its own poker-room rate,
+          keep the poker room on site, and publish its resort fee, tax and cancellation terms. On that test the
+          Venetian and the Palazzo are the only properties that qualify, and both are the same resort.</p>
+          <p class="muted">Wynn publishes the clearest fee and cancellation terms of any property reviewed, and its
+          rooms page links Forbes Travel Guide, but it publishes no room price, so no total can be computed.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Property comparison</h2><p>Same columns for every property: published components, then the computed true cost.</p></div></div>
+      <div data-hotel-table></div>
+      <p class="toolbar-note">A blank true-cost cell means the property publishes no room rate, so no total can be
+      computed from published components. Those properties are listed so the gap is visible, not hidden.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Cost calculator</h2><p>Same formula the tables use.</p></div></div>
+      <div class="card" data-calculator></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Rate log</h2><p>Every observation is dated. New readings are appended, never overwritten.</p></div></div>
+      <div data-rate-log></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Walking times</h2><p>Google Maps walking estimates captured on <span data-asof></span>.</p></div></div>
+      <div data-routes></div>
+      <p class="toolbar-note">A walking estimate depends on the entrance chosen, pedestrian access, construction and
+      crowds. It is not a venue-published figure, and the 30-minute filter is applied to these estimates.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Booking</h2><p>Live official booking links.</p></div></div>
+      <div class="cards">
+        <article class="card">
+          <h3>Official booking channels</h3>
+          <ul class="list">
+            <li><a href="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html" target="_blank" rel="noopener">Venetian poker-suite rates</a> — book on 866.255.8936 with code EPOKR25.</li>
+            <li><a href="https://www.wynnlasvegas.com/rooms-and-suites" target="_blank" rel="noopener">Wynn rooms and suites</a> — direct rate booking links on the official page.</li>
+            <li><a href="https://bellagio.mgmresorts.com/en/hotel.html" target="_blank" rel="noopener">Bellagio hotel</a> — official room inventory with a check-rates link.</li>
+          </ul>
+          <p class="muted">The booking links on official schedule pages carry sample dates and guest counts. They are
+          not evidence of a price for your stay, and nothing on this page is a quote.</p>
+        </article>
+        <article class="card">
+          <h3>What still has to be confirmed</h3>
+          <ul class="list">
+            <li>Your dates, number of nights and number of guests. Every rate is date- and occupancy-dependent.</li>
+            <li>The tax percentage for Wynn and Bellagio: both publish “plus applicable tax” without the number.</li>
+            <li>Resort fee, tax and parking for MGM Grand, Caesars Palace, Horseshoe and ARIA, which were not captured in this pass.</li>
+            <li>Whether the poker-suite rate is available on your dates; the Venetian states that rates are provided up to 150 days out.</li>
+          </ul>
+          <p class="muted">See <a href="questions.html">the open questions</a> and <a href="flagged.html">the flag register</a>.</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="footer">Hotel facts come from official property pages retrieved on <span data-asof></span>.
+      <a href="flagged.html">Flagged for review</a> · <a href="sources.html">Source log</a>.</div>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

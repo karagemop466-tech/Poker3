@@ -30,7 +30,7 @@ ARIA_GUIDE = "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria
 # ---------------------------------------------------------------- Wynn daily
 # Recurring daily tournaments. Structure PDF is the rule source.
 WYNN_DAILY = [
-    dict(name="$200 No Limit Hold'em (Monday-Thursday)", days="Monday-Thursday", time="12:00 PM",
+    dict(name="$200 No Limit Hold'em (Monday-Thursday)", days="Monday-Thursday", time="12:00 PM", weekdays=[0,1,2,3],
          buyIn=200, guarantee=10000, chips=25000, levelMin=30, lateReg="Registration and re-entries until the start of level 9 (approximately 4:30 p.m.)",
          source=WYNN_DAILY_STRUCT, poster=WYNN_DAILY_POSTER, category="extra",
          rules=dict(
@@ -39,7 +39,7 @@ WYNN_DAILY = [
              addOn=dict(status="none-printed", excerpt="No add-on provision appears on this structure sheet."),
              fee=dict(status="confirmed", excerpt="The $200 Entry Fee will be distributed as follows: $26 for the Tournament fee, $12 for the poker staff service charge, and $162 for the Tournament prize pool.")),
          note="The daily slate is suspended during each Wynn Signature, Wynn Millions and Classic tournament series (per the official poker-room page)."),
-    dict(name="$240 No Limit Hold'em Rebuy & Add-on (Friday)", days="Friday", time="12:00 PM",
+    dict(name="$240 No Limit Hold'em Rebuy & Add-on (Friday)", days="Friday", time="12:00 PM", weekdays=[4],
          buyIn=240, guarantee=40000, chips=25000, levelMin=30, lateReg="Registration, rebuys and add-ons until the start of level 9 (approximately 4:30 p.m.)",
          source=WYNN_DAILY_STRUCT, poster=WYNN_DAILY_POSTER, category="extra",
          rules=dict(
@@ -49,7 +49,7 @@ WYNN_DAILY = [
              rebuy=dict(status="allowed", excerpt="Unlimited $200 rebuys for 25,000 tournament chips are available any time a player is at 15,000 chips or less."),
              fee=dict(status="confirmed", excerpt="The Tournament entry fee is $240, of which $35 will be withheld for the Tournament fee and $15 as a service charge for poker staff. $190 of each Entry Fee and rebuy will fund the Tournament prize pool.")),
          note="A rebuy-heavy event: spending more buys a second shot at the same prize pool."),
-    dict(name="$200 No Limit Hold'em (Saturday & Sunday)", days="Saturday, Sunday", time="12:00 PM",
+    dict(name="$200 No Limit Hold'em (Saturday & Sunday)", days="Saturday, Sunday", time="12:00 PM", weekdays=[5,6],
          buyIn=200, guarantee=25000, chips=25000, levelMin=30, lateReg="Registration, re-entries, and one (1) add-on per entry until the start of level 11 (approximately 5:30 p.m.)",
          source=WYNN_DAILY_STRUCT, poster=WYNN_DAILY_POSTER, category="extra",
          rules=dict(
@@ -57,7 +57,7 @@ WYNN_DAILY = [
              reEntry=dict(status="allowed", excerpt="Registration, re-entries, and one (1) add-on per entry will be available until the start of level 11 (approximately 5:30 p.m.)."),
              addOn=dict(status="allowed", excerpt="One (1) $100 add-on for 25,000 tournament chips is available any time until the end of registration."),
              fee=dict(status="confirmed", excerpt="The $200 Entry Fee will be distributed as follows: $26 for the Tournament fee, $12 for the poker staff service charge, and $162 for the Tournament prize pool."))),
-    dict(name="$160 No Limit Hold'em Nightly", days="Nightly Monday-Sunday", time="6:00 PM",
+    dict(name="$160 No Limit Hold'em Nightly", days="Nightly Monday-Sunday", time="6:00 PM", weekdays=[0,1,2,3,4,5,6],
          buyIn=160, guarantee=10000, chips=25000, levelMin=20, lateReg="Registration, re-entries, and one (1) add-on per entry until the start of level 9 (approximately 9:00 p.m.)",
          source=WYNN_DAILY_STRUCT, poster=WYNN_DAILY_POSTER, category="extra",
          rules=dict(
@@ -253,7 +253,7 @@ WYNN_SIGNATURE_ROWS = """
 
 # ------------------------------------------------------------------ Bellagio
 BELLAGIO_EVENTS = [
-    dict(name="$600 No Limit Hold'em", days="Fridays", time="11:00 AM", buyIn=600, guarantee="",
+    dict(name="$600 No Limit Hold'em", days="Fridays", time="11:00 AM", weekdays=[4], buyIn=600, guarantee="",
          chips=30000, levelMin=30, source=BELLAGIO_FRI, page=BELLAGIO_POKER, category="extra",
          lateReg="Registration and re-entry through the end of level 8 (including break). Level length 30 minutes.",
          rules=dict(
@@ -261,8 +261,8 @@ BELLAGIO_EVENTS = [
              reEntry=dict(status="allowed", excerpt="Players may buy-in and re-enter through the end of level 8 (Including Break)."),
              addOn=dict(status="paid-chip-gratuity", excerpt="There is a voluntary Staff gratuity of $40, at registration only. The voluntary staff gratuity will grant players an extra 15,000 chips."),
              fee=dict(status="confirmed", excerpt="The $600 Buy-In is allocated as follows: $510 to Prize Pool; $50 House Fee; $40 Voluntary Staff Gratuity.")),
-         note="The optional $40 staff gratuity buys 15,000 extra chips, so paying more raises your stack."),
-    dict(name="$1,000 / $1,100 No Limit Hold'em (multi-flight)", days="Saturdays", time="11:00 AM",
+         note="The optional $40 staff gratuity buys 15,000 extra chips, so paying more raises your stack. No guarantee is printed on the sheet."),
+    dict(name="$1,000 / $1,100 No Limit Hold'em (multi-flight)", days="Saturdays", time="11:00 AM", weekdays=[5],
          buyIn="", guarantee="", chips=40000, levelMin=30, source=BELLAGIO_SAT, page=BELLAGIO_POKER,
          category="conflict", lateReg="Registration and re-entry through the end of level 8 (including break). Level length 30 minutes.",
          rules=dict(
@@ -271,7 +271,7 @@ BELLAGIO_EVENTS = [
              addOn=dict(status="paid-chip-gratuity", excerpt="There is a voluntary staff gratuity of $40, at registration only. The voluntary staff gratuity will grant players an extra 20,000 chips."),
              fee=dict(status="source-conflict", excerpt="Buy-in printed as $1,100 in the sheet header, $1,000 in the page link, and $600 in rule 07.")),
          note="Not ranked: the official sources disagree on the buy-in. The sheet also references a 'Combined Final Day 2 (9/13/26)' date."),
-    dict(name="$400 H.O.R.S.E.", days="Sundays", time="11:00 AM", buyIn=400, guarantee="",
+    dict(name="$400 H.O.R.S.E.", days="Sundays", time="11:00 AM", weekdays=[6], buyIn=400, guarantee="",
          chips=30000, levelMin=30, source=BELLAGIO_SUN, page=BELLAGIO_POKER, category="extra",
          lateReg="Registration and re-entry through the end of level 8 (including break). Level length 30 minutes.",
          rules=dict(
@@ -280,7 +280,7 @@ BELLAGIO_EVENTS = [
              addOn=dict(status="paid-chip-gratuity", excerpt="A voluntary Staff gratuity of $25, at registration only, will grant players an additional 15,000 in starting chips."),
              fee=dict(status="confirmed", excerpt="The $400 Buy-In is allocated as follows: $340 to Prize Pool; $35 House Fee; $25 Voluntary Staff Gratuity.")),
          note="Payout structure is approximately 12.5% of the field. No guarantee is printed on the sheet."),
-    dict(name="$300 Pot Limit Omaha Double Board Bomb Pot", days="Nightly (per poker-room page)", time="6:00 PM",
+    dict(name="$300 Pot Limit Omaha Double Board Bomb Pot", days="Nightly (per poker-room page)", time="6:00 PM", weekdays=[0,1,2,3,4,5,6],
          buyIn=300, guarantee="", chips="", levelMin="", source=BELLAGIO_POKER, page=BELLAGIO_POKER,
          category="recurring", lateReg="",
          rules=dict(
@@ -293,7 +293,7 @@ BELLAGIO_EVENTS = [
 
 # ---------------------------------------------------------------- MGM Grand
 MGM_EVENTS = [
-    dict(name="$120 No Limit Hold'em", days="Monday-Friday", time="11:10 AM", buyIn=120, guarantee="",
+    dict(name="$120 No Limit Hold'em", days="Monday-Friday", time="11:10 AM", weekdays=[0,1,2,3,4], buyIn=120, guarantee="",
          chips=25000, levelMin=15, source=MGM_SCHED, page=MGM_POKER, category="recurring",
          lateReg="Registration is open until Level 8. Level length 15 minutes.",
          rules=dict(
@@ -302,7 +302,7 @@ MGM_EVENTS = [
              addOn=dict(status="paid-chip-gratuity", excerpt="Each initial $120 buy-in is allocated as follows: $92 to Prize Pool, $13 House Fee and a onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips."),
              fee=dict(status="confirmed", excerpt="Each initial $120 buy-in is allocated as follows: $92 to Prize Pool, $13 House Fee and a onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips. $4 will fund Tournament Promotions.")),
          note="The published weekly schedule PDF is headed 'MGM Grand August Tournament Schedule', so the month on the sheet is not current."),
-    dict(name="$120 No Limit Hold'em", days="Monday-Sunday", time="7:10 PM", buyIn=120, guarantee="",
+    dict(name="$120 No Limit Hold'em", days="Monday-Sunday", time="7:10 PM", weekdays=[0,1,2,3,4,5,6], buyIn=120, guarantee="",
          chips=25000, levelMin=15, source=MGM_SCHED, page=MGM_POKER, category="recurring",
          lateReg="Registration is open until Level 8. Level length 15 minutes.",
          rules=dict(
@@ -311,15 +311,16 @@ MGM_EVENTS = [
              addOn=dict(status="paid-chip-gratuity", excerpt="A onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips."),
              fee=dict(status="confirmed", excerpt="Each initial $120 buy-in is allocated as follows: $92 to Prize Pool, $13 House Fee and a onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips.")),
          note="Registration is open until Level 8 per the $120 structure sheet."),
-    dict(name="$120 No Limit Hold'em", days="Monday-Sunday", time="11:10 PM", buyIn=120, guarantee="",
+    dict(name="$120 No Limit Hold'em", days="Monday-Sunday", time="11:10 PM", weekdays=[0,1,2,3,4,5,6], buyIn=120, guarantee="",
          chips=25000, levelMin=15, source=MGM_SCHED, page=MGM_POKER, category="recurring",
          lateReg="Registration is open until Level 8. Level length 15 minutes.",
          rules=dict(
              singleEntry=dict(status="multiple-entries", excerpt="Sunday through Friday - All players with 5 entries into daily tournaments will receive one (1) free entry into the Saturday $150 NLH - $2,000 Guarantee."),
              reEntry=dict(status="implied-multiple", excerpt="The promotion counts five entries into the daily tournaments."),
              addOn=dict(status="paid-chip-gratuity", excerpt="A onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips."),
-             fee=dict(status="confirmed", excerpt="Each initial $120 buy-in is allocated as follows: $92 to Prize Pool, $13 House Fee and a onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips."))),
-    dict(name="$150 No Limit Hold'em $2,000 Guarantee", days="Saturday", time="11:10 AM", buyIn=150,
+             fee=dict(status="confirmed", excerpt="Each initial $120 buy-in is allocated as follows: $92 to Prize Pool, $13 House Fee and a onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips.")),
+         note="No guarantee is printed on the $120 sheet."),
+    dict(name="$150 No Limit Hold'em $2,000 Guarantee", days="Saturday", time="11:10 AM", weekdays=[5], buyIn=150,
          guarantee=2000, chips=25000, levelMin=20, source=MGM_SCHED, page=MGM_POKER, category="recurring",
          lateReg="",
          rules=dict(
@@ -332,7 +333,7 @@ MGM_EVENTS = [
 
 # ------------------------------------------------- Caesars / Horseshoe / ARIA
 CAESARS_EVENTS = [
-    dict(name="No Limit Hold'em", days="Daily", time="10:00 AM", buyIn=100, guarantee=1000, chips=20000,
+    dict(name="No Limit Hold'em", days="Daily", weekdays=[0,1,2,3,4,5,6], time="10:00 AM", buyIn=100, guarantee=1000, chips=20000,
          levelMin=20, source=CAESARS_POKER, page=CAESARS_POKER, category="extra", venue="caesars", lateReg="",
          rules=dict(
              singleEntry=dict(status="multiple-entries", excerpt="A $50 add-on at the first break gives you an extra 15,000 chips if you want a deeper run."),
@@ -340,21 +341,21 @@ CAESARS_EVENTS = [
              addOn=dict(status="allowed", excerpt="A $50 add-on at the first break gives you an extra 15,000 chips if you want a deeper run."),
              fee=dict(status="confirmed", excerpt="Every event carries a $100 buy-in, starts you with 20,000 chips, and features a $1,000 guaranteed prize pool.")),
          note="The official page publishes buy-in, chips and guarantee but no structure sheet link."),
-    dict(name="No Limit Hold'em", days="Daily", time="2:00 PM", buyIn=100, guarantee=1000, chips=20000,
+    dict(name="No Limit Hold'em", days="Daily", weekdays=[0,1,2,3,4,5,6], time="2:00 PM", buyIn=100, guarantee=1000, chips=20000,
          levelMin=20, source=CAESARS_POKER, page=CAESARS_POKER, category="extra", venue="caesars", lateReg="",
          rules=dict(
              singleEntry=dict(status="multiple-entries", excerpt="A $50 add-on at the first break gives you an extra 15,000 chips if you want a deeper run."),
              reEntry=dict(status="not-verified", excerpt="The official Caesars page describes the daily tournament but does not publish a re-entry clause."),
              addOn=dict(status="allowed", excerpt="A $50 add-on at the first break gives you an extra 15,000 chips if you want a deeper run."),
              fee=dict(status="confirmed", excerpt="Every event carries a $100 buy-in, starts you with 20,000 chips, and features a $1,000 guaranteed prize pool."))),
-    dict(name="No Limit Hold'em", days="Daily", time="6:00 PM", buyIn=100, guarantee=1000, chips=20000,
+    dict(name="No Limit Hold'em", days="Daily", weekdays=[0,1,2,3,4,5,6], time="6:00 PM", buyIn=100, guarantee=1000, chips=20000,
          levelMin=20, source=CAESARS_POKER, page=CAESARS_POKER, category="extra", venue="caesars", lateReg="",
          rules=dict(
              singleEntry=dict(status="multiple-entries", excerpt="A $50 add-on at the first break gives you an extra 15,000 chips if you want a deeper run."),
              reEntry=dict(status="not-verified", excerpt="The official Caesars page describes the daily tournament but does not publish a re-entry clause."),
              addOn=dict(status="allowed", excerpt="A $50 add-on at the first break gives you an extra 15,000 chips if you want a deeper run."),
              fee=dict(status="confirmed", excerpt="Every event carries a $100 buy-in, starts you with 20,000 chips, and features a $1,000 guaranteed prize pool."))),
-    dict(name="No Limit Hold'em", days="Daily", time="9:00 PM", buyIn=100, guarantee=1000, chips=20000,
+    dict(name="No Limit Hold'em", days="Daily", weekdays=[0,1,2,3,4,5,6], time="9:00 PM", buyIn=100, guarantee=1000, chips=20000,
          levelMin=20, source=CAESARS_POKER, page=CAESARS_POKER, category="extra", venue="caesars", lateReg="",
          rules=dict(
              singleEntry=dict(status="multiple-entries", excerpt="A $50 add-on at the first break gives you an extra 15,000 chips if you want a deeper run."),
@@ -364,53 +365,74 @@ CAESARS_EVENTS = [
 ]
 
 HORSESHOE_EVENTS = [
-    dict(name="No Limit Hold'em daily tournament", days="Daily", time="9:00 AM", buyIn="", guarantee="",
-         chips="", levelMin="", source=CAESARS_POKER, page=CAESARS_POKER, category="recurring", venue="horseshoe",
+    dict(name="No Limit Hold'em daily tournament", days="Daily", weekdays=[0, 1, 2, 3, 4, 5, 6], time="9:00 AM",
+         buyIn="", guarantee="", chips="", levelMin="", source=CAESARS_POKER, page=CAESARS_POKER,
+         category="recurring", venue="horseshoe", lateReg="",
          rules=dict(
              singleEntry=dict(status="not-verified", excerpt="The official Caesars page states that Horseshoe runs six daily No-Limit Hold'em games at 9 a.m., 11 a.m., 2 p.m., 5 p.m., 8 p.m. and 11 p.m., but publishes no buy-in, structure or entry terms for them."),
              reEntry=dict(status="not-verified", excerpt="No entry terms are published on the official page."),
              addOn=dict(status="not-verified", excerpt="No entry terms are published on the official page."),
              fee=dict(status="not-verified", excerpt="No buy-in is published on the official page.")),
-         note="Six daily slots are published; buy-ins and guarantees are not."),
-    dict(name="No Limit Hold'em daily tournament", days="Daily", time="11:00 AM", buyIn="", guarantee="",
-         chips="", levelMin="", source=CAESARS_POKER, page=CAESARS_POKER, category="recurring", venue="horseshoe",
+         note="Buy-in, level structure and guarantee are not published for this slot."),
+
+
+    dict(name="No Limit Hold'em daily tournament", days="Daily", weekdays=[0, 1, 2, 3, 4, 5, 6], time="11:00 AM",
+         buyIn="", guarantee="", chips="", levelMin="", source=CAESARS_POKER, page=CAESARS_POKER,
+         category="recurring", venue="horseshoe", lateReg="",
          rules=dict(
-             singleEntry=dict(status="not-verified", excerpt="Buy-ins and entry terms are not published on the official page."),
+             singleEntry=dict(status="not-verified", excerpt="The official Caesars page lists this Horseshoe start time but publishes no buy-in, structure or entry terms for it."),
              reEntry=dict(status="not-verified", excerpt="No entry terms are published on the official page."),
              addOn=dict(status="not-verified", excerpt="No entry terms are published on the official page."),
-             fee=dict(status="not-verified", excerpt="No buy-in is published on the official page."))),
-    dict(name="No Limit Hold'em daily tournament", days="Daily", time="2:00 PM", buyIn="", guarantee="",
-         chips="", levelMin="", source=CAESARS_POKER, page=CAESARS_POKER, category="recurring", venue="horseshoe",
+             fee=dict(status="not-verified", excerpt="No buy-in is published on the official page.")),
+         note="Buy-in, level structure and guarantee are not published for this slot."),
+
+
+    dict(name="No Limit Hold'em daily tournament", days="Daily", weekdays=[0, 1, 2, 3, 4, 5, 6], time="2:00 PM",
+         buyIn="", guarantee="", chips="", levelMin="", source=CAESARS_POKER, page=CAESARS_POKER,
+         category="recurring", venue="horseshoe", lateReg="",
          rules=dict(
-             singleEntry=dict(status="not-verified", excerpt="Buy-ins and entry terms are not published on the official page."),
+             singleEntry=dict(status="not-verified", excerpt="The official Caesars page lists this Horseshoe start time but publishes no buy-in, structure or entry terms for it."),
              reEntry=dict(status="not-verified", excerpt="No entry terms are published on the official page."),
              addOn=dict(status="not-verified", excerpt="No entry terms are published on the official page."),
-             fee=dict(status="not-verified", excerpt="No buy-in is published on the official page."))),
-    dict(name="No Limit Hold'em daily tournament", days="Daily", time="5:00 PM", buyIn="", guarantee="",
-         chips="", levelMin="", source=CAESARS_POKER, page=CAESARS_POKER, category="recurring", venue="horseshoe",
+             fee=dict(status="not-verified", excerpt="No buy-in is published on the official page.")),
+         note="Buy-in, level structure and guarantee are not published for this slot."),
+
+
+    dict(name="No Limit Hold'em daily tournament", days="Daily", weekdays=[0, 1, 2, 3, 4, 5, 6], time="5:00 PM",
+         buyIn="", guarantee="", chips="", levelMin="", source=CAESARS_POKER, page=CAESARS_POKER,
+         category="recurring", venue="horseshoe", lateReg="",
          rules=dict(
-             singleEntry=dict(status="not-verified", excerpt="Buy-ins and entry terms are not published on the official page."),
+             singleEntry=dict(status="not-verified", excerpt="The official Caesars page lists this Horseshoe start time but publishes no buy-in, structure or entry terms for it."),
              reEntry=dict(status="not-verified", excerpt="No entry terms are published on the official page."),
              addOn=dict(status="not-verified", excerpt="No entry terms are published on the official page."),
-             fee=dict(status="not-verified", excerpt="No buy-in is published on the official page."))),
-    dict(name="No Limit Hold'em daily tournament", days="Daily", time="8:00 PM", buyIn="", guarantee="",
-         chips="", levelMin="", source=CAESARS_POKER, page=CAESARS_POKER, category="recurring", venue="horseshoe",
+             fee=dict(status="not-verified", excerpt="No buy-in is published on the official page.")),
+         note="Buy-in, level structure and guarantee are not published for this slot."),
+
+
+    dict(name="No Limit Hold'em daily tournament", days="Daily", weekdays=[0, 1, 2, 3, 4, 5, 6], time="8:00 PM",
+         buyIn="", guarantee="", chips="", levelMin="", source=CAESARS_POKER, page=CAESARS_POKER,
+         category="recurring", venue="horseshoe", lateReg="",
          rules=dict(
-             singleEntry=dict(status="not-verified", excerpt="Buy-ins and entry terms are not published on the official page."),
+             singleEntry=dict(status="not-verified", excerpt="The official Caesars page lists this Horseshoe start time but publishes no buy-in, structure or entry terms for it."),
              reEntry=dict(status="not-verified", excerpt="No entry terms are published on the official page."),
              addOn=dict(status="not-verified", excerpt="No entry terms are published on the official page."),
-             fee=dict(status="not-verified", excerpt="No buy-in is published on the official page."))),
-    dict(name="No Limit Hold'em daily tournament", days="Daily", time="11:00 PM", buyIn="", guarantee="",
-         chips="", levelMin="", source=CAESARS_POKER, page=CAESARS_POKER, category="recurring", venue="horseshoe",
+             fee=dict(status="not-verified", excerpt="No buy-in is published on the official page.")),
+         note="Buy-in, level structure and guarantee are not published for this slot."),
+
+
+    dict(name="No Limit Hold'em daily tournament", days="Daily", weekdays=[0, 1, 2, 3, 4, 5, 6], time="11:00 PM",
+         buyIn="", guarantee="", chips="", levelMin="", source=CAESARS_POKER, page=CAESARS_POKER,
+         category="recurring", venue="horseshoe", lateReg="",
          rules=dict(
-             singleEntry=dict(status="not-verified", excerpt="Buy-ins and entry terms are not published on the official page."),
+             singleEntry=dict(status="not-verified", excerpt="The official Caesars page lists this Horseshoe start time but publishes no buy-in, structure or entry terms for it."),
              reEntry=dict(status="not-verified", excerpt="No entry terms are published on the official page."),
              addOn=dict(status="not-verified", excerpt="No entry terms are published on the official page."),
-             fee=dict(status="not-verified", excerpt="No buy-in is published on the official page."))),
+             fee=dict(status="not-verified", excerpt="No buy-in is published on the official page.")),
+         note="Buy-in, level structure and guarantee are not published for this slot."),
 ]
 
 ARIA_EVENTS = [
-    dict(name="ARIA daily poker tournament", days="Daily (per undated official guide)", time="1:00 PM",
+    dict(name="ARIA daily poker tournament", days="Daily (per undated official guide)", time="1:00 PM", weekdays=[0,1,2,3,4,5,6],
          buyIn="", guarantee="", chips="", levelMin="", source=ARIA_GUIDE, page=ARIA_POKER,
          category="recurring", venue="aria", lateReg="",
          rules=dict(
@@ -419,7 +441,7 @@ ARIA_EVENTS = [
              addOn=dict(status="not-verified", excerpt="No entry terms are published in the reviewed material."),
              fee=dict(status="not-verified", excerpt="No buy-in is published in the reviewed material.")),
          note="Undated cadence only. No date-specific event, buy-in or guarantee is published."),
-    dict(name="ARIA nightly poker tournament", days="Nightly (per undated official guide)", time="7:00 PM",
+    dict(name="ARIA nightly poker tournament", days="Nightly (per undated official guide)", time="7:00 PM", weekdays=[0,1,2,3,4,5,6],
          buyIn="", guarantee="", chips="", levelMin="", source=ARIA_GUIDE, page=ARIA_POKER,
          category="recurring", venue="aria", lateReg="",
          rules=dict(
