@@ -1,44 +1,81 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Flagged for review · Vegas Poker Planner</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Everything irregular or unverified in the Las Vegas poker planner, each with a link to the official page for manual review.">
+<title>Vegas Poker Planner · Flagged for review</title>
 <link rel="stylesheet" href="assets/site.css">
 </head>
-<body>
-<header class="top">
-  <div class="brand"><a href="index.html">♠ Vegas Poker Planner</a>
-    <span class="tag">official-sources only · snapshot 2026-11-16</span></div>
-  <input id="nav-toggle" type="checkbox" aria-label="Menu"><label for="nav-toggle" class="burger">☰</label>
-  <nav><a href="index.html" class="">Overview</a>
-<a href="tournaments.html" class="">Tournaments</a>
-<a href="schedule.html" class="">Day plan</a>
-<a href="hotels.html" class="">Hotels</a>
-<a href="routes.html" class="">Walking routes</a>
-<a href="calculator.html" class="">Trip calculator</a>
-<a href="venues.html" class="">Venues</a>
-<a href="workflow.html" class="">Workflow</a>
-<a href="monitoring.html" class="">Monitoring</a>
-<a href="sources.html" class="">Sources</a>
-<a href="questions.html" class="">Questions</a>
-<a href="suggestions.html" class="">Suggestions</a>
-<a href="flagged.html" class="active">Flagged for review</a></nav>
+<body data-page="flagged">
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark">♠</span><span>Vegas Poker Planner</span></a>
+  <form class="top-search" data-search-form><input type="search" placeholder="Search every tournament, venue and rule…" aria-label="Search tournaments"><button class="btn" type="submit">Search</button></form>
+  <span class="top-tag">Official sources only · verified <span data-asof></span></span>
 </header>
-<main>
+<nav class="mobile-nav" data-mobile-nav></nav>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="side-label">Plan your trip</div>
+    <nav class="nav" data-nav></nav>
+    <div class="side-note">
+      <strong>Nothing here blocks publication</strong>
+      Each row names the problem and links the page a human needs to check. The affected values are left blank or
+      labelled in the tables rather than being filled in.
+    </div>
+  </aside>
+  <main class="main">
+    <section class="hero">
+      <div class="eyebrow">Flagged for review · the honest list</div>
+      <h1>Every irregularity and every unverified value, in one place.</h1>
+      <p>
+        These are the places where an official source contradicts another official source, where a page is stale or
+        undated, where a value could not be confirmed, or where a method had to be estimated. Each one links the exact
+        page to look at. None of them stops the site publishing, and none of them is hidden in a table cell.
+      </p>
+    </section>
 
-<h1>Flagged for review</h1>
-<p class="lede">Irregularities, conflicts and unverified values found during line-by-line verification. None of these block the site;
-they are published here so they can be reviewed after the site is live. Every item links the official source that produced it.</p>
-<div class="tablewrap"><table  class=""><thead><tr><th>ID</th><th>Item</th><th>Level</th><th>Finding</th><th>What to do</th><th>Source</th></tr></thead><tbody><tr><td><span id="FL01">FL01</span></td><td>Bellagio Saturday NLH buy-in conflict (three values)</td><td><span class="badge warn">high</span></td><td>The poker page link says &#x27;$1,000 NLH&#x27; (filename saturdays-$1000-nlh.pdf), the PDF header says &#x27;NLH $1100 BUY-IN&#x27;, and PDF rule 07 says &#x27;Of the $600 Buy-in, $510 goes to the Prize Pool...&#x27;.</td><td>Call the Bellagio poker room (702.693.7291) before planning around this event. Buy-in is left blank.</td><td><a href="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td><span id="FL02">FL02</span></td><td>WPT $1,100 PLO fee breakdown sums to $1,105</td><td><span class="badge warn">high</span></td><td>Official structures doc: &#x27;$1,100 Buy-in = $975 (Tournament Prize Pool) + $85 (Tournament Fee) + $45 (Poker Staff Service Charge)&#x27; — components total $1,105, not $1,100.</td><td>Confirm the actual charged amount with the Wynn poker room before entering.</td><td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td><span id="FL03">FL03</span></td><td>Venetian sheet 8 (Events #18/#58) references &#x27;subsequent buy-ins&#x27;</td><td><span class="badge rev">medium</span></td><td>The PokerAtlas PRO discount clause reads &#x27;All subsequent buy in&#x27;s after the initial buy in will be $200&#x27;, implying more than one buy-in may be possible, although no explicit re-entry clause is printed on the sheet.</td><td>Ask the Venetian poker room whether #18/#58 are one-entry freezeouts. Held in Review until confirmed.</td><td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td><span id="FL04">FL04</span></td><td>Wynn terms page carries an expired offer window</td><td><span class="badge rev">low</span></td><td>Terms page 850070 includes a stay-completed-by September 30, 2025 offer alongside the $55 + tax resort fee, parking and cancellation terms used here.</td><td>Confirm fee, parking and cancellation terms on the live booking before nonrefundable payment.</td><td><a href="https://www.wynnlasvegas.com/terms-and-conditions/850070" target="_blank" rel="noopener">source</a></td></tr><tr><td><span id="FL05">FL05</span></td><td>Bellagio &#x27;tournament play will resume Saturday, July 26&#x27; notice is undated</td><td><span class="badge rev">medium</span></td><td>The official poker page carries a resume notice naming July 26 with no year; July 26, 2026 is a Sunday. Current operation of the weekly schedule must be confirmed by phone.</td><td>Call 702.693.7291 to confirm the weekly tournaments are running on your dates.</td><td><a href="https://bellagio.mgmresorts.com/en/casino/poker.html" target="_blank" rel="noopener">source</a></td></tr><tr><td><span id="FL06">FL06</span></td><td>ARIA daily/nightly tournament cadence is undated</td><td><span class="badge rev">medium</span></td><td>The official guide (1 PM / 7 PM) is undated; the current official page says to call the room or check @ARIAPoker to confirm whether daily tournaments are running.</td><td>Call 702.590.7232 (or check @ARIAPoker) before counting ARIA events in a plan.</td><td><a href="https://aria.mgmresorts.com/en/casino/poker.html" target="_blank" rel="noopener">source</a></td></tr><tr><td><span id="FL07">FL07</span></td><td>WPT Super Gold Million and $10,400 World Championship entry terms not captured</td><td><span class="badge rev">medium</span></td><td>The official structures PDF is longer than the 30-page fetch limit used in this research pass; those events&#x27; registration clauses were not returned. Their entry fields are blank on purpose.</td><td>Open the official structures PDF manually and read the two events&#x27; Registration sections; then update tournaments.json.</td><td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td><span id="FL08">FL08</span></td><td>Walking times not verified</td><td><span class="badge warn">high</span></td><td>No official venue publishes door-to-door walking times, and no map service result could be captured in this pass. Every hotel–venue pair carries a Google Maps walking link for manual verification; walkingMinutes is blank on all rows.</td><td>Open each map link (walking mode) and record the time; the 30-minute filter will then apply to verified values.</td><td><a href="https://www.google.com/maps" target="_blank" rel="noopener">source</a></td></tr><tr><td><span id="FL09">FL09</span></td><td>Date-specific hotel rates not published; checkout totals blank</td><td><span class="badge warn">high</span></td><td>Venetian/Palazzo publish poker-suite starting rates ($119/$209) not mapped to dates; Wynn, Bellagio and ARIA publish no static rate. All checkoutTotal / nightlyAvg fields are blank; the trip calculator computes them once a dated rate is entered.</td><td>Fix trip dates (Workflow step 1), then pull each hotel&#x27;s official booking link for those dates and log the dated quote in the rate log.</td><td><a href="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html" target="_blank" rel="noopener">source</a></td></tr><tr><td><span id="FL10">FL10</span></td><td>Bellagio Saturday PDF references a stale Day 2 date</td><td><span class="badge rev">low</span></td><td>PDF rule 04 says &#x27;Combined Final Day 2 (9/13/26) will begin at 12pm&#x27; inside a weekly tournament sheet; the date appears stale and the sheet also references Flights 1A–1D.</td><td>Ask the room for the current Saturday structure.</td><td><a href="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td><span id="FL11">FL11</span></td><td>Golden Nugget / Resorts World / Circa / MGM Grand poker pages not retrievable</td><td><span class="badge rev">medium</span></td><td>Golden Nugget returned empty content, Resorts World redirected to an email template, Circa failed to load, and the MGM Grand poker URL 404s. No rows were added for these rooms.</td><td>Retry these official pages (or call the rooms) and add dated schedule rows when retrieved; the daily-check workflow will also retry them.</td><td><a href="https://www.goldennugget.com/las-vegas/casino/poker/" target="_blank" rel="noopener">source</a></td></tr><tr><td><span id="FL12">FL12</span></td><td>No verified 8:00 AM tournament start</td><td><span class="badge rev">medium</span></td><td>The earliest verified start across all checked official schedules is 9:10 AM (Venetian satellite #46, Dec 12) and 10:10 AM for regular events; no official schedule shows an 8:00 AM start in this window.</td><td>If an 8 AM start is required, ask Horseshoe (6 daily tournaments, times unpublished) or Golden Nugget whether an early daily runs.</td><td><a href="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html" target="_blank" rel="noopener">source</a></td></tr><tr><td><span id="FL13">FL13</span></td><td>Single-entry is never printed as a policy</td><td><span class="badge warn">high</span></td><td>No Venetian structure sheet prints &#x27;single entry&#x27;, &#x27;freezeout&#x27;, or a maximum-entries rule. Main-list rows are confirmed for date/time/buy-in/fee-split/guarantee and carry no re-entry/rebuy/add-on clause, but a one-entry limit is not stated in writing.</td><td>Get written confirmation of one-entry-total / no-rebuy / no-add-on from tournament staff before treating any event as a strict freezeout.</td><td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td><span id="FL14">FL14</span></td><td>Est. finish times are structure-derived estimates</td><td><span class="badge rev">low</span></td><td>Duration estimates multiply printed level counts by level lengths plus printed breaks. Real events can end earlier (players bust) or later (final-table dynamics, TD discretion). Overlap flags use these estimates and are advisory only.</td><td>Treat overlap flags as planning guidance; the poker room controls actual timing.</td><td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf" target="_blank" rel="noopener">source</a></td></tr></tbody></table></div>
+    <section class="section">
+      <div class="section-head"><div><h2>Flag register</h2><p>Ordered by severity, then by area.</p></div></div>
+      <div data-flags></div>
+    </section>
 
-</main>
-<footer class="foot">
-  <p>Every table row links its official venue source. Values that cannot be confirmed from an official source are blank and flagged on
-  <a href="flagged.html">Flagged for review</a>. Guarantees are not forecasts. Ratio = guaranteed pool ÷ buy-in, descriptive only.</p>
-  <p>Built 2026-11-16 from official Venetian, Wynn, Bellagio, ARIA and Caesars pages/PDFs · <a href="monitoring.html">scheduled re-check</a> runs daily.</p>
-</footer>
+    <section class="section">
+      <div class="section-head"><div><h2>How unverified values are shown</h2><p>The convention used everywhere on this site.</p></div></div>
+      <div class="cards">
+        <article class="card">
+          <span class="pill">Blank</span>
+          <h3>“Not published / unverified”</h3>
+          <p>Used where no official source published the value. Examples: Horseshoe buy-ins, guarantees and level
+          lengths; MGM Grand, Caesars Palace, Horseshoe and ARIA hotel resort fees and tax percentages; the tax
+          percentage at Wynn and Bellagio, where both publish “plus applicable tax” without the number.</p>
+        </article>
+        <article class="card">
+          <span class="pill warn">Labelled</span>
+          <h3>Estimate, floor, or ratio</h3>
+          <p>Used where a number is derived rather than printed: the estimated finish time on a tournament row, the true
+          nightly cost computed from published components, and the guaranteed-pool ÷ fee ratio. Each is labelled where it
+          appears, and the method is published on the same page.</p>
+        </article>
+        <article class="card">
+          <span class="pill danger">Isolated</span>
+          <h3>Extra-spend formats</h3>
+          <p>Used for re-entry, rebuy, add-on, unlimited-rebuy and optional paid chip-boost formats. These rows are
+          never presented as single-entry options, and they are never used to justify a ranking.</p>
+        </article>
+        <article class="card">
+          <span class="pill bad">Not ranked</span>
+          <h3>Source conflicts</h3>
+          <p>Used where two official pages give different values for the same event, such as the Bellagio Saturday
+          buy-in. The affected row keeps every field blank and is excluded from the ranking and the day plan.</p>
+        </article>
+      </div>
+    </section>
+
+    <div class="footer">Flag register compiled from official pages retrieved on <span data-asof></span>.
+      <a href="sources.html">Source log</a> · <a href="questions.html">Open questions</a>.</div>
+  </main>
+</div>
 <script src="assets/app.js"></script>
-
 </body>
 </html>

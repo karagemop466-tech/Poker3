@@ -37,6 +37,19 @@ def main() -> None:
 
     source_ids = {source["id"] for source in data["sources"]}
     assert len(source_ids) == len(data["sources"]), "source IDs must be unique"
+    monitor_path = SITE / "data/source-monitor.json"
+    monitor = json.loads(monitor_path.read_text(encoding="utf-8"))
+    assert "checks" in monitor and "checkedAt" in monitor
+    for hotel in data["hotels"]:
+        assert isinstance(hotel.get("rateHistory"), list), f"{hotel['id']} needs a dated rate log"
+        for rate in hotel["rateHistory"]:
+            assert rate.get("sourceId") in source_ids, f"missing rate source for {hotel['id']}"
+            assert rate.get("checkedDate"), f"rate log needs a retrieval date for {hotel['id']}"
+    assert "source-monitor.json" in (SITE / "stay.html").read_text(encoding="utf-8") or "source-monitor.json" in (SITE / "assets/app.js").read_text(encoding="utf-8")
+    app = (SITE / "assets/app.js").read_text(encoding="utf-8")
+    assert "trip-cost-result" in app and "entries * buyIn" in app and "trueNightly" in app
+    assert "source-last-checked" in app, "official-source recheck time should be exposed beside linked rows"
+    assert "event-date" in app, "tournament date filter should remain available"
     for source in data["sources"]:
         assert source["url"].startswith("https://"), source["id"]
     for collection in ("events", "rooms", "hotels", "flags"):
@@ -70,6 +83,9 @@ def main() -> None:
     assert "fetch(dataUrl" in js
     assert not re.search(r"https?://(?:localhost|127\.0\.0\.1)", js), "browser code must not call localhost"
     assert (SITE / "assets/app.css").is_file()
+    assert (SITE / "index.html").is_file()
+    assert 'href="site/poker3/"' in (ROOT / "index.html").read_text(encoding="utf-8"), "legacy root homepage must link to the companion"
+    assert 'href="poker3/"' in (ROOT / "site/index.html").read_text(encoding="utf-8"), "Actions-published homepage must link to the companion"
     print(
         f"OK · {len(pages)} pages · {len(data['events'])} selected event starts · "
         f"{len(data['rooms'])} rooms · {len(data['hotels'])} hotels · "

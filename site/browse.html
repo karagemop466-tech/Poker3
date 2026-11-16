@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Venue and category subpages for the Las Vegas Strip poker planner: every published event for one room or one format, with its hotels.">
+<title>Vegas Poker Planner · Browse</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="browse">
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark">♠</span><span>Vegas Poker Planner</span></a>
+  <form class="top-search" data-search-form><input type="search" placeholder="Search every tournament, venue and rule…" aria-label="Search tournaments"><button class="btn" type="submit">Search</button></form>
+  <span class="top-tag">Official sources only · verified <span data-asof></span></span>
+</header>
+<nav class="mobile-nav" data-mobile-nav></nav>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="side-label">Plan your trip</div>
+    <nav class="nav" data-nav></nav>
+    <div class="side-note">
+      <strong>Clean subpages</strong>
+      A venue page shows one room and its hotels. A category page shows one format, so a bounty event is never mixed in
+      with a plain freezeout.
+    </div>
+  </aside>
+  <main class="main">
+    <section class="section-head" data-browse-head></section>
+    <div data-browse-body></div>
+    <div class="footer">Rows come from official venue schedules and structure PDFs retrieved on <span data-asof></span>.
+      <a href="flagged.html">Flagged for review</a> · <a href="sources.html">Source log</a>.</div>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

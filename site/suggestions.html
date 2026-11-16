@@ -1,46 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Suggestions · Vegas Poker Planner</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Suggested improvements to the Las Vegas poker trip planner, each with an impact, an effort estimate and the decision it needs.">
+<title>Vegas Poker Planner · Suggestions</title>
 <link rel="stylesheet" href="assets/site.css">
 </head>
-<body>
-<header class="top">
-  <div class="brand"><a href="index.html">♠ Vegas Poker Planner</a>
-    <span class="tag">official-sources only · snapshot 2026-11-16</span></div>
-  <input id="nav-toggle" type="checkbox" aria-label="Menu"><label for="nav-toggle" class="burger">☰</label>
-  <nav><a href="index.html" class="">Overview</a>
-<a href="tournaments.html" class="">Tournaments</a>
-<a href="schedule.html" class="">Day plan</a>
-<a href="hotels.html" class="">Hotels</a>
-<a href="routes.html" class="">Walking routes</a>
-<a href="calculator.html" class="">Trip calculator</a>
-<a href="venues.html" class="">Venues</a>
-<a href="workflow.html" class="">Workflow</a>
-<a href="monitoring.html" class="">Monitoring</a>
-<a href="sources.html" class="">Sources</a>
-<a href="questions.html" class="">Questions</a>
-<a href="suggestions.html" class="active">Suggestions</a>
-<a href="flagged.html" class="">Flagged for review</a></nav>
+<body data-page="suggestions">
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark">♠</span><span>Vegas Poker Planner</span></a>
+  <form class="top-search" data-search-form><input type="search" placeholder="Search every tournament, venue and rule…" aria-label="Search tournaments"><button class="btn" type="submit">Search</button></form>
+  <span class="top-tag">Official sources only · verified <span data-asof></span></span>
 </header>
-<main>
+<nav class="mobile-nav" data-mobile-nav></nav>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="side-label">Plan your trip</div>
+    <nav class="nav" data-nav></nav>
+    <div class="side-note">
+      <strong>Suggestions, not changes</strong>
+      These are proposals with the decision each one needs. Nothing here has been implemented without a reason, and
+      nothing here silently changes what the tables show.
+    </div>
+  </aside>
+  <main class="main">
+    <section class="hero">
+      <div class="eyebrow">Suggestions · for review</div>
+      <h1>What would make this planner better, and what it costs to do.</h1>
+      <p>
+        Each item names the change, why it matters, roughly what it takes, and the decision that has to be made before
+        it happens. Three of them are research that needs no new source, two need a venue to publish something it
+        currently does not, and one is a structural clean-up of the repository.
+      </p>
+    </section>
 
-<h1>Suggestions — review before implementing</h1>
-<p class="lede">Improvements ranked by decision-making impact. Nothing here is implemented; pick the path you want and it will be
-built in a later pass. S07 needs your decision first (which archived site to keep).</p>
-<div class="tablewrap"><table  class=""><thead><tr><th>ID</th><th>Suggestion</th><th>Impact</th><th>Effort</th><th>Status</th></tr></thead><tbody><tr><td>S01</td><td><b>Wire the daily-check workflow output into row badges</b><br><small>The daily-check job already stores URL hashes and change dates. Next: surface &#x27;source changed since verification&#x27; badges per row by joining changes.json to row source IDs.</small></td><td>high</td><td>low</td><td><span class="badge rev">proposed</span></td></tr><tr><td>S02</td><td><b>Add phone-confirmation log fields</b><br><small>Questions Q02/Q05/Q07 need answers that only the poker rooms can give. Add a small dated call-log table (date, room, staff, question, answer) linked from each flagged row.</small></td><td>high</td><td>low</td><td><span class="badge rev">proposed</span></td></tr><tr><td>S03</td><td><b>Capture Super Gold Million and WPT World Championship terms manually</b><br><small>Read the tail of the official structures PDF (beyond the 30-page fetch limit) and fill the two review rows (FL07).</small></td><td>medium</td><td>low</td><td><span class="badge rev">proposed</span></td></tr><tr><td>S04</td><td><b>Add per-night rate snapshots from official booking engines</b><br><small>The booking deep links exist per hotel. A weekly job (or manual pass) can record dated quotes per stay window in rates.json so &#x27;like-for-like&#x27; totals build up over time.</small></td><td>high</td><td>medium</td><td><span class="badge rev">proposed</span></td></tr><tr><td>S05</td><td><b>Verified walking-time table</b><br><small>Walk each route (or use Google/Apple Maps walking directions) and fill walkingMinutes with the date and service used; the ≤30-minute filter becomes fully functional.</small></td><td>high</td><td>medium</td><td><span class="badge rev">proposed</span></td></tr><tr><td>S06</td><td><b>Evening-event feasibility planner</b><br><small>Once finish-time estimates are trusted, auto-generate primary + fallback pairs per day and mark days where an evening event is realistically reachable after the earlier bust-out.</small></td><td>medium</td><td>medium</td><td><span class="badge rev">proposed</span></td></tr><tr><td>S07</td><td><b>Consolidate the archived research sites</b><br><small>docs/, planner/, single-entry/, verified/ and the root HTML files are prior research artifacts. Keep one canonical site (site/) and move archives under archive/ after the user confirms (R2 from earlier sessions).</small></td><td>medium</td><td>low</td><td><span class="badge warn">needs decision</span></td></tr><tr><td>S08</td><td><b>Add ICS export of the day plan</b><br><small>Let the user export the primary/fallback schedule to a calendar file for the chosen trip window.</small></td><td>low</td><td>low</td><td><span class="badge rev">proposed</span></td></tr></tbody></table></div>
-<h2>Decision record</h2>
-<p class="note">When you choose, record it here: date, chosen suggestion, and any constraints. Until then all rows stay “proposed”.</p>
+    <section class="section">
+      <div class="section-head"><div><h2>Suggestions</h2><p>Twelve items, ordered by impact.</p></div></div>
+      <div class="q-grid" data-suggestions></div>
+    </section>
 
-</main>
-<footer class="foot">
-  <p>Every table row links its official venue source. Values that cannot be confirmed from an official source are blank and flagged on
-  <a href="flagged.html">Flagged for review</a>. Guarantees are not forecasts. Ratio = guaranteed pool ÷ buy-in, descriptive only.</p>
-  <p>Built 2026-11-16 from official Venetian, Wynn, Bellagio, ARIA and Caesars pages/PDFs · <a href="monitoring.html">scheduled re-check</a> runs daily.</p>
-</footer>
+    <div class="footer">Suggestions are proposals, not commitments. <a href="flagged.html">Flagged for review</a> ·
+      <a href="sources.html">Source log</a>.</div>
+  </main>
+</div>
 <script src="assets/app.js"></script>
-
 </body>
 </html>

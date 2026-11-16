@@ -1,7 +1,7 @@
 {
  "meta": {
   "asOf": "2026-11-16",
-  "builtAt": "2026-11-16T19:42:52Z",
+  "builtAt": "2026-11-16T19:50:18Z",
   "policy": "Only venue-controlled pages and official PDFs substantiate values. Unknown values are blank and flagged. A guarantee is not a forecast of actual payouts. Ratio = guaranteed pool \u00f7 buy-in, descriptive only.",
   "formula": "Trip cost = entries \u00d7 buy-ins + nights \u00d7 true hotel cost; true nightly = rate + resort fee + 13.38% tax (tax applies to rate and resort fee per Bellagio terms; Venetian terms state 13.38% Clark County room tax and 'plus applicable tax' on the fee)."
  },

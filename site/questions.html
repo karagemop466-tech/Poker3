@@ -1,59 +1,50 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Questions · Vegas Poker Planner</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="The information still needed before a Las Vegas poker trip can be booked: dates, occupancy, budget, entry rules, hotel totals, finish times and walking routes, each with its official source.">
+<title>Vegas Poker Planner · Open questions</title>
 <link rel="stylesheet" href="assets/site.css">
 </head>
-<body>
-<header class="top">
-  <div class="brand"><a href="index.html">♠ Vegas Poker Planner</a>
-    <span class="tag">official-sources only · snapshot 2026-11-16</span></div>
-  <input id="nav-toggle" type="checkbox" aria-label="Menu"><label for="nav-toggle" class="burger">☰</label>
-  <nav><a href="index.html" class="">Overview</a>
-<a href="tournaments.html" class="">Tournaments</a>
-<a href="schedule.html" class="">Day plan</a>
-<a href="hotels.html" class="">Hotels</a>
-<a href="routes.html" class="">Walking routes</a>
-<a href="calculator.html" class="">Trip calculator</a>
-<a href="venues.html" class="">Venues</a>
-<a href="workflow.html" class="">Workflow</a>
-<a href="monitoring.html" class="">Monitoring</a>
-<a href="sources.html" class="">Sources</a>
-<a href="questions.html" class="active">Questions</a>
-<a href="suggestions.html" class="">Suggestions</a>
-<a href="flagged.html" class="">Flagged for review</a></nav>
+<body data-page="questions">
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark">♠</span><span>Vegas Poker Planner</span></a>
+  <form class="top-search" data-search-form><input type="search" placeholder="Search every tournament, venue and rule…" aria-label="Search tournaments"><button class="btn" type="submit">Search</button></form>
+  <span class="top-tag">Official sources only · verified <span data-asof></span></span>
 </header>
-<main>
+<nav class="mobile-nav" data-mobile-nav></nav>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="side-label">Plan your trip</div>
+    <nav class="nav" data-nav></nav>
+    <div class="side-note">
+      <strong>Answers where they exist</strong>
+      Each card gives the question, what is actually known from official sources, whether it blocks a decision, and the
+      official page behind the answer.
+    </div>
+  </aside>
+  <main class="main">
+    <section class="hero">
+      <div class="eyebrow">Questions · what is still missing</div>
+      <h1>The gaps that stand between this table and a booking.</h1>
+      <p>
+        Everything below was checked against official sources. Where an answer exists, it is written down with its
+        source. Where it does not, the question says so instead of being quietly filled with a plausible number. The
+        four questions marked as blocking are the ones that change a decision rather than a detail: dates, party size,
+        nightly budget, and the entry rule for any event you are considering.
+      </p>
+    </section>
 
-<h1>Questions / information needed — and answers</h1>
-<p class="lede">Each question names what is missing, why it blocks a decision, how to discover the answer, and the answer when one
-could be established from official sources. Remaining open items need a user decision or a short phone call.</p>
-<div class="tablewrap"><table  class=""><thead><tr><th>ID</th><th>Question</th><th>Why it blocks</th><th>How to discover</th><th>Answer (verified) or status</th><th>Status</th></tr></thead><tbody><tr><td>Q01</td><td>What are the exact trip dates and nightly budget/quality floor?</td><td>Workflow step 1. Rates are date-specific; without dates no checkout total can be confirmed (FL09).</td><td>Provide arrival/departure dates and a max true nightly cost. The calculator and rate log then compare like-for-like.</td><td>— (open: needs user decision or room call)</td><td><span class="badge rev">open</span></td></tr><tr><td>Q02</td><td>Is a one-entry-total freezeout policy required, or is &#x27;no clause printed&#x27; acceptable?</td><td>No official sheet prints a single-entry rule (FL13). Strict policy would remove every event from the list until rooms confirm in writing.</td><td>Decide the policy; the single-entry toggle filter can enforce either stance.</td><td>Verified across all 37 Venetian structure sheets (2026-11-16): no sheet prints &quot;single entry&quot;, a maximum-entry limit, or any re-entry/rebuy/add-on clause. Wynn and Bellagio sheets DO print re-entry clauses, so the distinction is real and documented. A strict freezeout rule still needs written room confirmation before relying on it.</td><td><span class="badge ok">answered</span></td></tr><tr><td>Q03</td><td>What walking time is acceptable as &#x27;verified&#x27; — and from which map service?</td><td>WalkingMinutes are blank (FL08). The 30-minute limit cannot be applied until values with provenance exist.</td><td>Verify each route via the provided Google Maps walking links (or Apple Maps) and record minutes + date checked.</td><td>No official venue publishes door-to-door walking times. Google Maps walking-direction links per hotel–venue pair are provided on the Routes page for verification; recorded values will populate the 30-minute filter.</td><td><span class="badge ok">answered</span></td></tr><tr><td>Q04</td><td>Which hotel quality ranking should be used?</td><td>No common official quality metric (star rating) is published by the resorts; quality is currently descriptive only.</td><td>Pick a criterion (e.g., published room class, user preference, third-party rating with source) and it will be added as a sortable column.</td><td>— (open: needs user decision or room call)</td><td><span class="badge rev">open</span></td></tr><tr><td>Q05</td><td>Are the Bellagio weekly tournaments actually running on the trip dates?</td><td>The official page carries an undated resume notice (FL05).</td><td>Call 702.693.7291; record the answer with date and staff name in the questions log.</td><td>Open — requires a phone call to 702.693.7291. The official page&#x27;s resume notice is undated (FL05).</td><td><span class="badge ok">answered</span></td></tr><tr><td>Q06</td><td>Does the player qualify for the Venetian poker suite rate play requirement?</td><td>$119/$209 rates require 6 hours cash play or a $300+ tournament buy-in per night; otherwise the rate adjusts to prevailing.</td><td>Confirm the planned schedule meets the requirement per night (the DeepStack buy-ins mostly satisfy the $300+ rule on those days).</td><td>Answered from the official suite-rate page: a $300+ tournament buy-in per night qualifies (6 hours live cash is the alternative). Most DeepStack buy-ins are ≥$300; on $200-event days (bounty family, RaceDay, Valuetown) the cash-play requirement applies instead. Unplayed nights are repriced to the prevailing rate at checkout.</td><td><span class="badge ok">answered</span></td></tr><tr><td>Q07</td><td>What is the real buy-in for the Bellagio Saturday NLH?</td><td>Three conflicting official values ($1,000 / $1,100 / $600) (FL01).</td><td>Phone the room; log the answer.</td><td>Open — three conflicting official values ($1,000 page link / $1,100 PDF header / $600 PDF breakdown). Room call required (FL01).</td><td><span class="badge ok">answered</span></td></tr><tr><td>Q08</td><td>Is parking needed (rental car) and which hotel&#x27;s parking policy applies?</td><td>Parking fees are verified per hotel but blank for ARIA; costs affect true nightly cost.</td><td>Decide transport; add parking to the trip calculator if needed.</td><td>— (open: needs user decision or room call)</td><td><span class="badge rev">open</span></td></tr></tbody></table></div>
-<h2>Information we DO have (verified)</h2>
-<ul class="summary">
-  <li>Full Venetian DSE IV schedule and all 37 structure sheets (buy-in splits, stacks, late-reg, guarantees, payout %).</li>
-  <li>Entry clauses for all captured Wynn daily and WPT events; Bellagio weeklies; the spend-more reasons for each.</li>
-  <li>Resort fees, tax rate, parking and cancellation policies for Venetian, Palazzo, Wynn and Bellagio (ARIA partial).</li>
-  <li>Official addresses for every hotel–venue pair.</li>
-</ul>
-<h2>Information we DO NOT have (and cannot infer)</h2>
-<ul class="summary">
-  <li>Trip dates; dated room rates; checkout totals (<a href="flagged.html#FL09">FL09</a>).</li>
-  <li>Written one-entry-total confirmations (<a href="flagged.html#FL13">FL13</a>).</li>
-  <li>Verified walking times (<a href="flagged.html#FL08">FL08</a>); actual event finish times (<a href="flagged.html#FL14">FL14</a>).</li>
-  <li>Bellagio Saturday buy-in reality (<a href="flagged.html#FL01">FL01</a>); ARIA/Bellagio current operation (<a href="flagged.html#FL05">FL05</a>,
-  <a href="flagged.html#FL06">FL06</a>); WPT Super Gold / World Championship entry terms (<a href="flagged.html#FL07">FL07</a>).</li>
-</ul>
+    <section class="section">
+      <div class="section-head"><div><h2>Questions and answers</h2><p>Twelve questions, each with the official source behind the answer.</p></div></div>
+      <div class="q-grid" data-questions></div>
+    </section>
 
-</main>
-<footer class="foot">
-  <p>Every table row links its official venue source. Values that cannot be confirmed from an official source are blank and flagged on
-  <a href="flagged.html">Flagged for review</a>. Guarantees are not forecasts. Ratio = guaranteed pool ÷ buy-in, descriptive only.</p>
-  <p>Built 2026-11-16 from official Venetian, Wynn, Bellagio, ARIA and Caesars pages/PDFs · <a href="monitoring.html">scheduled re-check</a> runs daily.</p>
-</footer>
+    <div class="footer">Answers come from official venue and property pages retrieved on <span data-asof></span>.
+      <a href="flagged.html">Flagged for review</a> · <a href="sources.html">Source log</a>.</div>
+  </main>
+</div>
 <script src="assets/app.js"></script>
-
 </body>
 </html>

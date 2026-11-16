@@ -18,10 +18,14 @@ jobs:
           python-version: "3.11"
       - name: Re-check every official URL, store dated snapshots, mark changed sources
         run: python3 scripts/daily_check.py
-      - name: Rebuild site with updated change badges
-        run: python3 scripts/build_site.py
+      - name: Rebuild the verification addendum with updated change badges
+        run: |
+          python3 scripts/build_data.py
+          python3 scripts/build_addendum.py
       - name: Validate before publishing
-        run: python3 scripts/verify_site.py
+        run: |
+          python3 scripts/verify_site.py
+          for f in site/data/*.json; do python3 -m json.tool "$f" > /dev/null; done
       - name: Commit snapshots and badges
         run: |
           git config user.name "daily-check[bot]"

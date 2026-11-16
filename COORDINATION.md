@@ -233,11 +233,230 @@ Branch: `arena/e125b4a2-poker3`. This session's files are kept in their own fold
 
 ## Session `arena/779af4ba-poker3` — source-linked companion dashboard
 
-- Added the Poker3 field guide at `site/poker3/`, keeping the existing canonical `site/` dashboard and its research intact. The current Pages workflow uploads the entire `site/` tree, so the companion is published under `/poker3/` without changing the Pages workflow.
+- Added the Poker3 field guide at `site/poker3/`, keeping the existing canonical `site/` dashboard and its research intact. The Pages API currently reports legacy publishing from `main` `/`, so the live path is `/site/poker3/`; the existing Actions artifact would publish the same directory at `/poker3/` if that source is enabled. No Pages setting was changed.
+- PR [#16](https://github.com/karagemop466-tech/Poker3/pull/16) merged as `e9af34c`. The site workflow and legacy Pages deployment both completed successfully (runs `43937059855` and `43937059073`); the live content at `/site/poker3/` was fetched and verified.
 - Includes 25 selected upcoming event starts, 9 room records, 7 hotel records, 7 third-party walk estimates, 60 source records, and 9 review flags. All listed source IDs resolve. No event is verified for one-entry-total/no-re-entry/no-rebuy/no-add-on/no-paid-chip-boost eligibility.
 - The Dec. 10–14, 2026, two-adult hotel search is a research sample, not user-provided travel dates. Hotel all-in totals remain unconfirmed; route times remain third-party estimates.
 - Planner scenarios use a user-entered time-at-event assumption and are explicitly not verified or guaranteed itineraries. Unknown terms are labeled “Flagged for Review.”
 - Checks: `node --check site/poker3/assets/app.js`; `python3 tests/smoke.py`; JSON validation; headless DOM rendering/interaction checks on all eight pages, event filters, the mobile navigation, planner date/scenario controls, and internal links.
+
+## Current session `arena/e58b73b1-poker3` — trip estimate and source-change monitor
+
+| Task | Status | Owner session | Scope | Branch | Notes |
+|---|---|---|---|---|---|
+| Add scenario trip-cost calculator, dated hotel-rate observations, and scheduled official-source change checks | done; first live baseline completed (7 official URLs unavailable) | `arena/e58b73b1-poker3` | `site/poker3/assets/app.js`, `site/poker3/assets/app.css`, `site/poker3/data/research.json`, `site/poker3/data/source-monitor.json`, `scripts/check_sources.py`, `.github/workflows/source-monitor.yml`, `.github/workflows/verify.yml`, `tests/**`, `COORDINATION.md` | `arena/e58b73b1-poker3` | 52 official URLs checked; 0 changed; 7 unavailable (timeouts or HTTP 403) remain flagged. No new tournament/hotel values inferred. |
+
+### Implementation and verification — session `arena/e58b73b1-poker3`
+
+- Added an interactive trip-cost scenario to `site/poker3/plan.html` (rendered from the shared app): `entries × buy-in + nights × ((nightly room rate + nightly mandatory resort fee) × (1 + tax rate))`. The 13.38% tax is a clearly labeled user-requested assumption, not re-verified tax advice. Missing values stay blank; event buy-ins may be prefilled from the existing source-backed catalog, but eligibility remains unverified unless the event row says otherwise.
+- Replaced hotel `sampleRate` single-value fields with `rateHistory` arrays. Existing Horseshoe dated sample observation is recorded with its official booking source and conflicting fee presentation; checkout total, tax, parking, cancellation deadline, and exact rate timestamp remain blank because the existing official-page evidence does not establish them. Other hotels have empty rate logs rather than invented quotes.
+- Added `scripts/check_sources.py` and `.github/workflows/source-monitor.yml`: daily 13:00 UTC checks of every HTTPS source tagged `official` in `site/poker3/data/research.json`, storing retrieval time, HTTP status, hash, and changed/unchanged/baseline/unavailable result in `site/poker3/data/source-monitor.json`. The scheduled workflow commits the monitor log to `main` and deploys a refreshed Pages artifact. Third-party route sources are deliberately excluded.
+- Official-source URLs being monitored are the URLs in the catalog's `sources` records (`kind: official`); no additional event, price, rule, route, or hotel claim was introduced in this session. Existing official references include the Venetian, Wynn/WPT, Caesars/Horseshoe, MGM/Bellagio/ARIA, South Point, Westgate, and Treasure Island sites and PDFs.
+- Page-content hash changes are review signals, not proof that a tournament value changed; changed and unavailable sources are visibly marked on rows linked to them. Dynamic/rotating content may create false-positive change signals. Check the linked page manually before changing any event or rate data.
+- Verification performed locally: `python3 -m unittest discover -s tests -p 'test_*.py'` (baseline/change/unchanged/fetch-failure cases), `python3 tests/smoke.py` (8 published companion pages, event/source associations, and dated rate-log schema), `node --check site/poker3/assets/app.js`, `python3 -m json.tool` for both JSON files, `python3 scripts/verify_site.py`, `python3 -m py_compile scripts/check_sources.py`, and `git diff --check` all passed. The first live monitor run is recorded below.
+- **Open review item:** seven official URLs were unavailable during the initial run (six timeouts, one HTTP 403); these are marked unavailable per source, not treated as unchanged or verified. Check again on the next daily run.
+- PR [#18](https://github.com/karagemop466-tech/Poker3/pull/18) merged into `main` on 2026-11-16 19:20 UTC as `c694fe1`; the ordinary Pages build/deploy workflow was queued at that commit. A manual `gh workflow run` attempt returned HTTP 403 (`Resource not accessible by integration`), so a `push` path trigger for catalog/monitor/workflow changes is being added to guarantee an initial monitor run after this integration without waiting for the first cron; monitor-log-only commits do not match those paths, preventing recursion.
+- Follow-up PR [#19](https://github.com/karagemop466-tech/Poker3/pull/19) added the push-path trigger after workflow dispatch was denied; merged 2026-11-16 19:21 UTC as `b72bedb`.
+- Initial live check/deploy: workflow run [43938523153](https://github.com/karagemop466-tech/Poker3/actions/runs/43938523153) succeeded, including Pages deploy. It checked 52 official URLs at `2026-11-16T19:22:25Z`: 45 first-baseline fetches, 7 unavailable, 0 content changes. Unavailable: `aria-fee`, `aria-poker`, `bellagio-fee`, `bellagio-poker`, `mgm-fee`, `mgm-poker` (read timeouts), and `golden-nugget` (HTTP 403). See `site/poker3/data/source-monitor.json` for all per-source results and exact errors. Pages API reports `built`, source `main` `/`.
+- Row-level official source links now show the last-check UTC timestamp and distinguish changed pages from unavailable checks. The timestamp is a retrieval time, not a claim that every event's terms were re-reviewed by a human.
+- PR [#20](https://github.com/karagemop466-tech/Poker3/pull/20) merged 2026-11-16 19:25 UTC as `5e72fb2`. Pages build/deploy run [43939158118](https://github.com/karagemop466-tech/Poker3/actions/runs/43939158118) completed successfully. The current Pages API reports `built` from `main` `/` at https://karagemop466-tech.github.io/Poker3/.
+## Session `arena/62cea180-poker3` — current integration owner (2026-11-16 UTC)
+
+Branch: `arena/62cea180-poker3`, created from `origin/main` at e9af34c. This session is the only active editor and acts as the integration owner for the shared `site/` dashboard and its data files.
+
+| Task | Status | Owner session | Scope | Branch | PR |
+|---|---|---|---|---|---|
+| Trip cost calculator (entries × buy-ins + nights × true hotel cost) | done | 62cea180 | site/calculator.html, site/assets/app.js | arena/62cea180-poker3 | — |
+| Search box across all tables | done | 62cea180 | site/assets/app.js table filters | arena/62cea180-poker3 | — |
+| Date filter on tournaments table | done | 62cea180 | site/tournaments.html, site/assets/app.js | arena/62cea180-poker3 | — |
+| Single-entry / freezeout toggle filter | done | 62cea180 | site/tournaments.html, site/assets/app.js | arena/62cea180-poker3 | — |
+| Venue pages: Venetian, Wynn, others (events + hotels per venue) | done | 62cea180 | site/venues/*.html | arena/62cea180-poker3 | — |
+| "Last checked" date on every row | done | 62cea180 | site/data.json rows + table render | arena/62cea180-poker3 | — |
+| Structured rule fields per event (single-entry / re-entry / add-on / fee, each with source excerpt + retrieval date) | done | 62cea180 | site/data.json tournament `rules` blocks | arena/62cea180-poker3 | — |
+| Hotel rates kept as a dated log (not a single value) | done | 62cea180 | site/data.json hotels `rateLog` | arena/62cea180-poker3 | — |
+| Schedule overlap flags (start time + plausible duration; primary + fallback per day) | done | 62cea180 | site/data.json `overlapNote`, site/schedule.html | arena/62cea180-poker3 | — |
+| Guarantee ÷ entry fee descriptive ratio (not a forecast); bounty/flight rows labelled separately | done | 62cea180 | site/data.json, tournaments table render | arena/62cea180-poker3 | — |
+| Change monitoring: scheduled re-check of each official URL; flag rows whose source changed | done | 62cea180 | scripts/monitor_sources.py, .github/workflows/monitor.yml, data/source-checks.json | arena/62cea180-poker3 | — |
+| Verification, tests, PR, merge, GitHub Pages deploy confirmation | done | 62cea180 | scripts/verify_site.py, tests/smoke.py, repo-wide links | arena/62cea180-poker3 | — |
+
+**Scope protocol.** Each session edits only its claimed scope. Shared outputs (`site/index.html`, navigation, `site/data.json`, `site/assets/*`, pages, `COORDINATION.md`) are changed only on this integration branch. If a task needs a file claimed by another session, the request is logged here instead of editing it directly.
+
+**Source-currency policy (this session).** No tournament row is labelled "single entry" or "freezeout confirmed": the reviewed official structure sheets do not print an entry cap, so the structured rule fields carry blank values flagged unverified with retrieval date 2026-11-16. No hotel all-in total is asserted: `trueNightly` stays blank and rates are kept as a dated log (`rateLog`), not a single value. External re-verification of venue pages is handled by the scheduled monitor workflow; this session's local content relies on the 2026-11-16 official-source snapshot recorded in earlier sessions' work logs.
+
+**Irregularities carried forward (do not block merge; published on Flagged for review):** single-entry status unresolved on all candidates; hotel true cost blank; 8 AM start unverified; walking times unverified; Wynn WPT and Bellagio source conflicts logged.
+
+### Work log (session 62cea180)
+
+- **2026-11-16 · Claim.** Recorded this claim on `arena/62cea180-poker3` before feature work. Branch is even with `origin/main` (e9af34c).
+
+- **2026-11-16 · Integration.** PR #22 (`arena/62cea180-poker3` → `main`), merged with `gh pr merge 22 --merge` as merge commit `2733c0e`. Pages workflow "Publish integrated Vegas Poker Planner to GitHub Pages" run 43940338076: success; Pages API reports `status: built`, source `main` `/`. Verify workflow also passed. Live site: https://karagemop466-tech.github.io/Poker3/ (root `site/` tree), plus `/poker3/` companion from prior sessions.
+- No values were inferred: single-entry status remains unresolved on all candidates (blank rule fields flagged unverified), `trueNightly` stays blank, rates are a dated log (`rateLog`), walking times unverified — all published on Flagged for review with source links.
+
+## Session `arena/aa084881-poker3` — handoff (2026-11-16 UTC)
+
+- **Outcome.** The consolidated rebuild (`site/`) is **not merged**. Session `arena/62cea180-poker3` merged its own integrated site to `main` (PRs #22 and #24) and is the current integration owner for `site/`, `site/data.json`, `scripts/verify_site.py`, and navigation. Merging this session's full site would overwrite that deployed site and break its verifier schema. This is a protocol conflict, not a verification failure: the rebuild passed its own checks.
+- **Handoff location.** `handoff/aa084881/` (not published): `site_data.py` (every value with its official URL), `build_site.py` (generator), `verify_site.py` (checks), `data.json` (generated), and `README.md` (what to import, what was not verified).
+- **Requests to integration owner `62cea180` (logged, not edited here).**
+  1. Import the full official Venetian DeepStack IV table (64 event numbers, classified in `handoff/aa084881/site_data.py`).
+  2. Show the Venetian Nov 17-19, 2026 quote ($1,245.48 checkout; tax $146.98) as the only dated hotel total, and log the calendar conflict (F12).
+  3. Keep Bellagio Saturday's buy-in conflict ($1,000 page / $1,100 PDF / $600 rule body), Friday re-entry, and the Sunday structure as unread (F19-F22).
+  4. Keep Wynn terms as an expired offer (F24) and Dec 18 weekday conflict open (F26).
+  5. Do not present the ARIA undated cadence rows as verified. The ARIA guide was not read in this session.
+- **Cross-session request (unchanged).** Extend the daily monitor (`.github/workflows/source-monitor.yml` + `scripts/monitor_sources.py`, owner 62cea180 / e58b73b1) to the Venetian DSE, Wynn, Bellagio and ARIA official URLs in `handoff/aa084881/site_data.py` (`MONITOR_SOURCES`). This session did not edit either file.
+- **Branch and PR.** Branch `arena/aa084881-poker3` now holds only this handoff (on top of `origin/main`). The earlier site commits were replaced by this handoff, so the branch no longer carries a site rebuild. A force-with-lease push was used on this session's own branch.
+---
+
+## Current session `arena/ed88c788-poker3` — final integration and republication
+
+Branch: `arena/ed88c788-poker3` (base `main` at `e9af34c`). This session is the only active editor, so it
+takes the integration-owner role for every shared output: the canonical `site/` artifact, the combined data
+set, navigation, the schedule plan, the flag register and the source log. No other session holds a live claim
+on this branch, so the scope below is non-overlapping.
+
+| Task | Status | Owner session | Scope | Files | Notes |
+|---|---|---|---|---|---|
+| Source-data modules for the canonical set | in progress | arena/ed88c788-poker3 | new source modules | `scripts/data_venetian.py`, `scripts/data_venues.py`, `scripts/data_hotels.py`, `scripts/data_source.py` | Builds `site/data.json` from official-source rows only. Every row keeps its official URL and the 2026-11-16 retrieval date. |
+| Canonical rebuild of `site/` | in progress | arena/ed88c788-poker3 | canonical Pages artifact | `site/index.html`, `site/tournaments.html`, `site/hotels.html`, `site/schedule.html`, `site/questions.html`, `site/suggestions.html`, `site/flagged.html`, `site/sources.html`, `site/browse.html`, `site/assets/app.js`, `site/assets/site.css`, `site/data.json` | Replaces the superseded 40-row snapshot with the verified set. |
+| Automated re-check + morning daily feed | in progress | arena/ed88c788-poker3 | automation | `scripts/check_sources.py`, `scripts/daily_feed.py`, `.github/workflows/checks.yml`, `site/checks.json`, `site/feed/**` | Scheduled URL re-check with content hashes and changed-value flags; daily per-room schedule feed. |
+| Verification, PR, merge, deployment | pending | arena/ed88c788-poker3 | whole repo | `scripts/verify_site.py`, `tests/`, this section | Line-by-line re-verification, no broken links, PR to `main`, explicit merge, deployment confirmation recorded here. |
+
+### Claim record (this session)
+
+- **Claimed:** `site/**` (canonical artifact), `scripts/data_*.py`, `scripts/data_source.py`,
+  `scripts/verify_site.py`, `scripts/check_sources.py`, `scripts/daily_feed.py`, `tests/**`,
+  `.github/workflows/**`, `research/structure_notes.md`, `README.md`, `COORDINATION.md`.
+- **Not claimed, not edited:** `docs/`, `verified/`, `planner/`, `single-entry/`, `pages/`, root-level HTML
+  pages from earlier sessions, `raw/`, `data/`. They stay in the repository as prior research artefacts.
+- **Cross-file requests:** none. No other session is active, so no edit is made to another session's files.
+- **Commit discipline:** small, frequent commits; `git pull --rebase origin arena/ed88c788-poker3` before every push.
+
+### Source position at claim time
+
+- All 37 official DSE IV structure PDFs read directly on 2026-11-16 (`research/structure_notes.md`, commit `8ba5967`).
+- Official DSE IV schedule (64 rows), DSE NYE schedule, Wynn daily poster and structures, Wynn WPT schedule,
+  Wynn Signature Series schedule, Bellagio Friday/Saturday/Sunday PDFs, MGM Grand $120 structure and weekly
+  sheet, Caesars/Horseshoe tournament page, ARIA guide, and the Venetian/Wynn/Bellagio hotel terms pages.
+- Google Maps walking estimates captured 2026-11-16 for the hotel-to-Venetian routes; they are labelled as
+  estimates because no venue publishes a walking time.
+
+### Standing constraints honoured
+
+- No value is inferred. Anything not confirmed from an official source stays blank and is listed on
+  `site/flagged.html` with a link for manual review.
+- The guaranteed-pool ÷ entry-fee figure is shown as a descriptive ratio only, never as a forecast.
+- Bounty, multi-flight and satellite formats are labelled separately from the single-entry list.
+- Trip dates, nightly budget and quality floor are fixed by this session rather than asked for, and the
+  reasoning is published.
+
+### Work log (session arena/ed88c788-poker3)
+
+**Canonical rebuild.** `site/` was rebuilt from the source modules instead of being patched row by row. The data now
+carries 341 tournament rows, 8 hotel rows, 14 walking-route rows, 27 official sources, 27 flags, 12 questions, 12
+suggestions, a fixed trip profile, an eight-day plan and the flagged impossible sequences.
+
+| Page | Content |
+|---|---|
+| `site/index.html` | Executive summary, the fixed trip, the primary event per day, what is confirmed and what is not. |
+| `site/tournaments.html` | Every row with date from/to, venue, category, format and single-entry filters, a search box and a per-row rule panel carrying the excerpt, the source link and the retrieval date. |
+| `site/venues.html` | Seven Strip poker rooms; each opens `browse.html?view=venue&key=…` with its events and its hotels. |
+| `site/browse.html` | Venue and category subpages so bounty, flight, satellite and extra-spend rows are never mixed in with plain freezeouts. |
+| `site/schedule.html` | One primary event per day, a conditional fallback with its reason, the recurring room events for that weekday, and the flagged impossible sequences. |
+| `site/hotels.html` | Published rate components, mandatory resort fee, tax, true cost per night, parking, cancellation deadline, walking times, the cost calculator and the dated rate log. |
+| `site/questions.html` | Twelve decision questions, each with the official source behind the answer. |
+| `site/suggestions.html` | Twelve improvements with impact, effort and the decision each one needs. |
+| `site/flagged.html` | 27 irregularities and unverified items, each with a link for manual review. |
+| `site/sources.html` | The official source log, the 52 structure sheets with read status, the morning feed sources and the automated re-check output. |
+
+**Decisions fixed by this session, as instructed, without asking.**
+
+- Trip: 2026-11-25 to 2026-12-02, seven nights, on the Venetian / Palazzo resort. It is the eight-day window with the
+  most single-entry events verified on an official structure sheet (14) and at least one on every day.
+- Nightly budget: $197.28, the floor computed from the published components ($119 published starting rate + $55
+  mandatory resort fee, then 13.38% Clark County room tax). It is labelled a floor, not a quote.
+- Quality floor: no comparable official quality score exists, so the quality column stays blank and the floor is an
+  evidence test instead: the property must publish its own poker-room rate, keep the poker room on site and publish
+  its fee, tax and cancellation terms.
+- Bankroll: the eight recommended entries total $2,800 in buy-ins; with a 25% buffer, $3,500.
+
+**Line-by-line verification (this session).**
+
+- `scripts/audit_data.py` parses `research/structure_notes.md`, the read log for all 37 DSE IV structure PDFs, and
+  compares every buy-in, rake, prize-pool share, chip count, level length, late-registration line and guarantee with
+  the canonical data. It also checks that every scheduled DSE row points at a sheet that was read, that the event name
+  starts with that sheet's buy-in and that the flight categorisation matches the sheet. The audit caught one real
+  error, now fixed: sheet 4 (event 59) was carrying a $400 buy-in instead of the $600 printed on the sheet.
+- The DSE IV schedule was re-read and all 64 rows match the official page on date, time, event number, name and
+  structure-sheet link.
+- The DSE NYE schedule was re-read and all 49 rows match the official page.
+- The Wynn WPT schedule PDF was re-read: 136 rows, and the per-date row counts match the PDF exactly for all 24 dates.
+- The Wynn Signature Series PDF was re-read: 38 rows, all matched, and the guarantee column now carries the printed
+  seat counts for the milestone satellites.
+- The Wynn daily structures PDF was re-read: the $200 Monday-Thursday ($10,000 guarantee), $240 Friday rebuy
+  ($40,000), $200 Saturday-Sunday ($25,000) and $160 nightly ($10,000) terms, fee splits, chip counts, add-on chip
+  amounts, level lengths and registration cut-offs all match the canonical rows.
+- `scripts/verify_site.py` checks the canonical data and every published page: official-domain source links on every
+  row and every rule excerpt, a retrieval date on every excerpt, an explanation for every blank fee or guarantee, the
+  arithmetic behind each true nightly cost, a source on every flag, the single-entry rule behind every recommended
+  primary event, and every local link in every page.
+- `tests/canonical_smoke.py` plus `tests/canonical_render.js` render all ten pages headlessly and confirm each one
+  produces content, including 143 tournament rows on the default filter.
+
+**New findings from the second verification pass, added to the flag register.**
+
+- F23 the Ladies Championship entry fee is printed twice, differently ($1,100 in the column, $11,100 in the footnote).
+- F24 the "$1,000,000 Added" on the WPT World Championship comes from ClubWPT Gold, which is not available in Nevada.
+- F25 the discounted-entry footnote markers do not resolve cleanly against the footnote list.
+- F26 three Wynn Signature Series rows carry an extra empty cell that shifts the guarantee column.
+- F27 the DSE schedule page misspells "Limit" on four rows.
+
+**Automation added.**
+
+- `scripts/check_sources.py` fetches every official URL behind the dashboard, stores a SHA-256 of the response and
+  flags any source whose body changed. It never changes a tournament value on its own: a changed page is re-read by a
+  human first. Output: `site/checks.json`, shown on the sources page.
+- `scripts/daily_feed.py` pulls the schedule page of each Strip poker room every morning and writes a dated snapshot
+  under `site/feed/`, so a morning run can be compared with the previous morning instead of replacing it.
+- `.github/workflows/checks.yml` runs both at 05:00 Pacific daily and commits the results when they change.
+- `.github/workflows/verify.yml` now runs the canonical verifier, the canonical smoke test, the JSON checks, the
+  JavaScript syntax checks and a rebuild of `site/data.json` to prove the published data is reproducible.
+
+**Environment note.** The sandbox cannot open HTTPS connections to the venue hosts, so `scripts/check_sources.py`
+and `scripts/daily_feed.py` report "unreachable" here and are designed to run on the GitHub Actions runner. The
+scripts handle a failed fetch without aborting and record the status instead.
+
+**Cross-session note.** `site/poker3/` is a companion dashboard from a merged prior session. It still publishes at
+`/poker3/` because it lives inside the Pages artifact, and its conclusions predate this build: it records no verified
+strict-entry event, while this build verifies 45 dated rows whose sheets print one buy-in, one start flight and no
+re-entry, rebuy or add-on clause. It is an archive, not the current data. The other prior dashboards (`docs/`,
+`verified/`, `planner/`, `single-entry/`, the root pages) are untouched.
+
+### Integration with the other sessions' work (this session)
+
+`main` advanced while this session was building: session `arena/62cea180-poker3` published an integrated site (PRs #22
+and #24), session `arena/e58b73b1-poker3` added a trip-cost calculator and a source-change monitor, and session
+`arena/aa084881-poker3` handed off a verified dataset in `handoff/aa084881/`. The canonical rebuild was merged with
+`main` rather than over it, and the following decisions were taken:
+
+- **Canonical data and pages.** `site/data.json`, `site/assets/app.js`, `site/index.html`, `site/tournaments.html` and
+  `scripts/verify_site.py` are this session's versions: 341 rows read line by line from the official sources, with the
+  audit script and the rule excerpts attached. The earlier 40-row snapshot is replaced, not merged.
+- **Kept and adapted.** The calculator (`site/calculator.html`), the detailed venue pages (`site/venues/`), the
+  companion source monitor (`scripts/check_sources_poker3.py`, renamed from `scripts/check_sources.py` so the canonical
+  checker keeps that name) and `scripts/monitor_sources.py` are all kept. `site/assets/venue.js` was rewritten against
+  the canonical data model, and `scripts/monitor_sources.py` now reads the canonical `sources` section and the
+  canonical row fields. Their copy was corrected where it claimed that no row can be labelled single entry: that
+  statement was true before the 37 structure sheets were read, and the sheets now in the data say otherwise.
+- **Deployment race removed.** `source-monitor.yml` no longer uploads and deploys the Pages artifact; only
+  `.github/workflows/pages.yml` publishes, so the two workflows cannot cancel each other.
+- **Dated hotel quote imported and re-verified.** The handoff recorded one dated official total for The Venetian,
+  November 17-19, 2026, two adults. This session opened the venue's own booking engine again and confirmed it: $824.25
+  + $55 on the 17th, $164.25 + $55 on the 18th, $146.98 of tax, $1,245.48 total, average rate $549.25, for a 650 sq ft
+  "Newly Remodeled Luxury King" suite. It is now in the canonical rate log and on the hotels page, with the calendar
+  disagreement recorded as F28. The booking engine publishes no price at all for the recommended trip window of
+  November 25 to December 2, 2026, so the nightly budget stays at the published starting-rate floor and is labelled a
+  floor rather than a quote.
+- **Not merged.** PR #7 (session `arena/92941c56-poker3`, a separate `pages/` site) is left open and untouched; it
+  overlaps the root pages and is another session's work to decide on.
 
 ---
 

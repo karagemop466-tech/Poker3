@@ -1,44 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sources · Vegas Poker Planner</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="The official source log for the Las Vegas poker planner, every structure sheet read, the morning daily room feed sources and the scheduled re-check results.">
+<title>Vegas Poker Planner · Sources</title>
 <link rel="stylesheet" href="assets/site.css">
 </head>
-<body>
-<header class="top">
-  <div class="brand"><a href="index.html">♠ Vegas Poker Planner</a>
-    <span class="tag">official-sources only · snapshot 2026-11-16</span></div>
-  <input id="nav-toggle" type="checkbox" aria-label="Menu"><label for="nav-toggle" class="burger">☰</label>
-  <nav><a href="index.html" class="">Overview</a>
-<a href="tournaments.html" class="">Tournaments</a>
-<a href="schedule.html" class="">Day plan</a>
-<a href="hotels.html" class="">Hotels</a>
-<a href="routes.html" class="">Walking routes</a>
-<a href="calculator.html" class="">Trip calculator</a>
-<a href="venues.html" class="">Venues</a>
-<a href="workflow.html" class="">Workflow</a>
-<a href="monitoring.html" class="">Monitoring</a>
-<a href="sources.html" class="active">Sources</a>
-<a href="questions.html" class="">Questions</a>
-<a href="suggestions.html" class="">Suggestions</a>
-<a href="flagged.html" class="">Flagged for review</a></nav>
+<body data-page="sources">
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark">♠</span><span>Vegas Poker Planner</span></a>
+  <form class="top-search" data-search-form><input type="search" placeholder="Search every tournament, venue and rule…" aria-label="Search tournaments"><button class="btn" type="submit">Search</button></form>
+  <span class="top-tag">Official sources only · verified <span data-asof></span></span>
 </header>
-<main>
+<nav class="mobile-nav" data-mobile-nav></nav>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="side-label">Plan your trip</div>
+    <nav class="nav" data-nav></nav>
+    <div class="side-note">
+      <strong>No third-party data</strong>
+      Nothing on this site is taken from a tournament listing site, a review site or a hotel aggregator. Every value
+      links a venue-controlled or property-controlled page.
+    </div>
+  </aside>
+  <main class="main">
+    <section class="hero">
+      <div class="eyebrow">Sources · official pages only</div>
+      <h1>Every page this planner was built from.</h1>
+      <p>
+        The list below is the complete set of official sources read for this build, with the date each was checked. The
+        structure-sheet register records which of the 52 official PDFs were opened and read line by line, and which were
+        not. The automated re-check section below is written by a scheduled job that fetches each URL, stores a content
+        hash and flags any source whose content has changed since the last run.
+      </p>
+    </section>
 
-<h1>Sources</h1>
-<p class="lede">Every official page and PDF used in this research pass, with the date each was retrieved. Third-party calendars were
-not used to substantiate any value.</p>
-<div class="tablewrap"><table  class=""><thead><tr><th>Source</th><th>URL</th><th>Type</th><th>Feed</th><th>Checked</th></tr></thead><tbody><tr><td>Venetian DeepStack Extravaganza IV schedule (web)</td><td><a href="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html" target="_blank" rel="noopener">source</a></td><td>official</td><td>daily feed</td><td>2026-11-16</td></tr><tr><td>Venetian DSE IV schedule (official PDF)</td><td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf" target="_blank" rel="noopener">source</a></td><td>official</td><td>daily feed</td><td>2026-11-16</td></tr><tr><td>Venetian 2026 poker suite rates</td><td><a href="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html" target="_blank" rel="noopener">source</a></td><td>official</td><td></td><td>2026-11-16</td></tr><tr><td>Venetian resort fee</td><td><a href="https://www.venetianlasvegas.com/resort/resort-fee.html" target="_blank" rel="noopener">source</a></td><td>official</td><td></td><td>2026-11-16</td></tr><tr><td>Venetian hotel terms and taxes</td><td><a href="https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html" target="_blank" rel="noopener">source</a></td><td>official</td><td></td><td>2026-11-16</td></tr><tr><td>Wynn poker room, WPT and daily schedules</td><td><a href="https://www.wynnlasvegas.com/casino/poker" target="_blank" rel="noopener">source</a></td><td>official</td><td>daily feed</td><td>2026-11-16</td></tr><tr><td>Wynn daily tournament poster (PDF)</td><td><a href="https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf" target="_blank" rel="noopener">source</a></td><td>official</td><td>daily feed</td><td>2026-11-16</td></tr><tr><td>Wynn daily tournament structures and terms (PDF)</td><td><a href="https://cdn.wynnresorts.com/image/upload/v1752011191/visitwynn_pdfs_files/Poker/Daily%20Tournaments/Poker-All_Daily_Structures.pdf" target="_blank" rel="noopener">source</a></td><td>official</td><td></td><td>2026-11-16</td></tr><tr><td>WPT World Championship schedule (PDF)</td><td><a href="https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf" target="_blank" rel="noopener">source</a></td><td>official</td><td>daily feed</td><td>2026-11-16</td></tr><tr><td>WPT World Championship structures and terms (PDF)</td><td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">source</a></td><td>official</td><td></td><td>2026-11-16</td></tr><tr><td>Wynn reservation terms (resort fee, parking, cancellation)</td><td><a href="https://www.wynnlasvegas.com/terms-and-conditions/850070" target="_blank" rel="noopener">source</a></td><td>official</td><td></td><td>2026-11-16</td></tr><tr><td>Bellagio poker page (weekly links)</td><td><a href="https://bellagio.mgmresorts.com/en/casino/poker.html" target="_blank" rel="noopener">source</a></td><td>official</td><td>daily feed</td><td>2026-11-16</td></tr><tr><td>Bellagio Friday $600 NLH structure (PDF)</td><td><a href="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf" target="_blank" rel="noopener">source</a></td><td>official</td><td></td><td>2026-11-16</td></tr><tr><td>Bellagio Saturday NLH structure (PDF, buy-in conflict)</td><td><a href="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf" target="_blank" rel="noopener">source</a></td><td>official</td><td></td><td>2026-11-16</td></tr><tr><td>Bellagio Sunday $400 H.O.R.S.E. structure (PDF)</td><td><a href="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt07fcf1244a6da661/6af491a339e2b4f6b76a86ad/mgm-bellagio-poker-sundays-$400-horse.pdf" target="_blank" rel="noopener">source</a></td><td>official</td><td></td><td>2026-11-16</td></tr><tr><td>Bellagio reservation terms (resort fee, tax, cancellation)</td><td><a href="https://bellagio.mgmresorts.com/en/terms-and-conditions.html" target="_blank" rel="noopener">source</a></td><td>official</td><td></td><td>2026-11-16</td></tr><tr><td>ARIA poker page (call to confirm daily tournaments)</td><td><a href="https://aria.mgmresorts.com/en/casino/poker.html" target="_blank" rel="noopener">source</a></td><td>official</td><td>daily feed</td><td>2026-11-16</td></tr><tr><td>ARIA poker guide (undated daily/nightly cadence)</td><td><a href="https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf" target="_blank" rel="noopener">source</a></td><td>official</td><td></td><td>2026-11-16</td></tr><tr><td>Horseshoe Las Vegas casino page (Hall of Fame Poker Room, 6 daily tournaments)</td><td><a href="https://www.caesars.com/horseshoe-las-vegas/casino/poker" target="_blank" rel="noopener">source</a></td><td>official</td><td>daily feed</td><td>2026-11-16</td></tr><tr><td>Venetian structure sheets 1–37 (read in full 2026-11-16)</td><td><a href="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html" target="_blank" rel="noopener">index of sheets</a></td><td>official</td><td></td><td>2026-11-16</td></tr></tbody></table></div>
+    <section class="section">
+      <div class="section-head"><div><h2>Official source log</h2><p>Retrieved <span data-asof></span>.</p></div></div>
+      <div data-sources></div>
+    </section>
 
-</main>
-<footer class="foot">
-  <p>Every table row links its official venue source. Values that cannot be confirmed from an official source are blank and flagged on
-  <a href="flagged.html">Flagged for review</a>. Guarantees are not forecasts. Ratio = guaranteed pool ÷ buy-in, descriptive only.</p>
-  <p>Built 2026-11-16 from official Venetian, Wynn, Bellagio, ARIA and Caesars pages/PDFs · <a href="monitoring.html">scheduled re-check</a> runs daily.</p>
-</footer>
+    <section class="section">
+      <div class="section-head"><div><h2>Structure sheets</h2><p>Every official tournament PDF behind the table rows.</p></div></div>
+      <div data-sheets></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Morning daily room feed</h2><p>The sources a scheduled job re-reads every morning for each Strip poker room.</p></div></div>
+      <div data-feed></div>
+      <p class="toolbar-note">The scheduled feed writes a dated snapshot of each room’s schedule page into
+      <code>site/feed/</code> so a change can be seen after the fact instead of being overwritten.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Automated re-check</h2><p>Scheduled fetch, content hash and change flag for every official URL.</p></div></div>
+      <div data-autochecks></div>
+    </section>
+
+    <div class="footer">Sources retrieved <span data-asof></span>. <a href="flagged.html">Flagged for review</a> ·
+      <a href="questions.html">Open questions</a>.</div>
+  </main>
+</div>
 <script src="assets/app.js"></script>
-
 </body>
 </html>

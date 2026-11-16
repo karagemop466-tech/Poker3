@@ -1,0 +1,2687 @@
+{
+  "asOf": "2026-11-16",
+  "tournaments": [
+    {
+      "id": "2",
+      "date": "2026-11-18",
+      "weekday": "Wednesday",
+      "time": "11:10 AM",
+      "name": "$300 No Limit Hold'em $10K GTD (1Day)",
+      "category": "main",
+      "buyIn": 300,
+      "guarantee": 10000,
+      "houseFee": 58,
+      "prizePool": 242,
+      "sheet": 5,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$300 NLH, GTD $10K, fee $58, pool $242",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-11-18",
+      "ratio": 33.3,
+      "rank": 9
+    },
+    {
+      "id": "6",
+      "date": "2026-11-22",
+      "weekday": "Sunday",
+      "time": "11:10 AM",
+      "name": "$200 No Limit Hold'em (1Day)",
+      "category": "main",
+      "buyIn": 200,
+      "guarantee": null,
+      "houseFee": 40,
+      "prizePool": 160,
+      "sheet": 29,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_29.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$200 NLH (1Day), no GTD printed, fee $40, pool $160",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-11-22",
+      "ratio": null
+    },
+    {
+      "id": "10",
+      "date": "2026-11-25",
+      "weekday": "Wednesday",
+      "time": "11:10 AM",
+      "name": "$400 No Limit Hold'em $15K GTD (1Day)",
+      "category": "main",
+      "buyIn": 400,
+      "guarantee": 15000,
+      "houseFee": 65,
+      "prizePool": 335,
+      "sheet": 6,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_6.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$400 NLH, GTD $15K, fee $65, pool $335",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-11-25",
+      "ratio": 37.5,
+      "rank": 8
+    },
+    {
+      "id": "12",
+      "date": "2026-11-26",
+      "weekday": "Thursday",
+      "time": "11:10 AM",
+      "name": "$300 No Limit Hold'em $10K GTD (1Day)",
+      "category": "main",
+      "buyIn": 300,
+      "guarantee": 10000,
+      "houseFee": 58,
+      "prizePool": 242,
+      "sheet": 5,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$300 NLH, GTD $10K, fee $58, pool $242",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-11-26",
+      "ratio": 33.3,
+      "rank": 10
+    },
+    {
+      "id": "14",
+      "date": "2026-11-27",
+      "weekday": "Friday",
+      "time": "11:10 AM",
+      "name": "$600 No Limit Hold'em $30K GTD (1Day)",
+      "category": "main",
+      "buyIn": 600,
+      "guarantee": 30000,
+      "houseFee": 90,
+      "prizePool": 510,
+      "sheet": 7,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$600 NLH, GTD $30K (events 14, 63) and $40K (event 28), fee $90, pool $510",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-11-27",
+      "ratio": 50.0,
+      "rank": 4
+    },
+    {
+      "id": "20",
+      "date": "2026-11-29",
+      "weekday": "Sunday",
+      "time": "12:10 PM",
+      "name": "$300 Pot Limit Omaha $10K GTD (1Day) - Double Board Bomb Pot",
+      "category": "main",
+      "buyIn": 300,
+      "guarantee": 10000,
+      "houseFee": 58,
+      "prizePool": 242,
+      "sheet": 22,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_22.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$300 PLO Double Board Bomb Pot, GTD $10K, fee $58, pool $242, eight-handed",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-11-29",
+      "ratio": 33.3,
+      "rank": 11
+    },
+    {
+      "id": "24",
+      "date": "2026-12-02",
+      "weekday": "Wednesday",
+      "time": "10:10 AM",
+      "name": "$600 No Limit Hold'em Seniors $40K GTD (1Day) - must be 50+",
+      "category": "main",
+      "buyIn": 600,
+      "guarantee": 40000,
+      "houseFee": 90,
+      "prizePool": 510,
+      "sheet": 17,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_17.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$600 NLH Seniors 50+, GTD $40K, fee $90, pool $510",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "50+ only (per schedule)",
+      "dateTo": "2026-12-02",
+      "ratio": 66.7,
+      "rank": 1
+    },
+    {
+      "id": "27",
+      "date": "2026-12-03",
+      "weekday": "Thursday",
+      "time": "12:10 PM",
+      "name": "$600 BIG O $25K GTD (1Day)",
+      "category": "main",
+      "buyIn": 600,
+      "guarantee": 25000,
+      "houseFee": 90,
+      "prizePool": 510,
+      "sheet": 28,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_28.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$600 BIG O (1Day), GTD $25K, fee $90, pool $510, eight-handed; 21+ and Venetian Rewards card",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "21+ and Venetian Rewards card (sheet 28)",
+      "dateTo": "2026-12-03",
+      "ratio": 41.7,
+      "rank": 6
+    },
+    {
+      "id": "28",
+      "date": "2026-12-06",
+      "weekday": "Sunday",
+      "time": "11:10 AM",
+      "name": "$600 No Limit Hold'em $40K GTD (1Day)",
+      "category": "main",
+      "buyIn": 600,
+      "guarantee": 40000,
+      "houseFee": 90,
+      "prizePool": 510,
+      "sheet": 7,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$600 NLH, GTD $30K (events 14, 63) and $40K (event 28), fee $90, pool $510",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-06",
+      "ratio": 66.7,
+      "rank": 3
+    },
+    {
+      "id": "32",
+      "date": "2026-12-08",
+      "weekday": "Tuesday",
+      "time": "10:10 AM",
+      "name": "$600 No Limit Hold'em Seniors $40K GTD (1Day) - must be 50+",
+      "category": "main",
+      "buyIn": 600,
+      "guarantee": 40000,
+      "houseFee": 90,
+      "prizePool": 510,
+      "sheet": 17,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_17.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$600 NLH Seniors 50+, GTD $40K, fee $90, pool $510",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "50+ only (per schedule)",
+      "dateTo": "2026-12-08",
+      "ratio": 66.7,
+      "rank": 2
+    },
+    {
+      "id": "57",
+      "date": "2026-12-17",
+      "weekday": "Thursday",
+      "time": "12:10 PM",
+      "name": "$600 Pot Limit Omaha $25K GTD (1Day) - Double Board Bomb Pot",
+      "category": "main",
+      "buyIn": 600,
+      "guarantee": 25000,
+      "houseFee": 90,
+      "prizePool": 510,
+      "sheet": 23,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_23.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$600 PLO Double Board Bomb Pot, GTD $25K, fee $90, pool $510, eight-handed",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-17",
+      "ratio": 41.7,
+      "rank": 7
+    },
+    {
+      "id": "63",
+      "date": "2026-12-23",
+      "weekday": "Wednesday",
+      "time": "11:10 AM",
+      "name": "$600 No Limit Hold'em $30K GTD (1Day)",
+      "category": "main",
+      "buyIn": 600,
+      "guarantee": 30000,
+      "houseFee": 90,
+      "prizePool": 510,
+      "sheet": 7,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$600 NLH, GTD $30K (events 14, 63) and $40K (event 28), fee $90, pool $510",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-23",
+      "ratio": 50.0,
+      "rank": 5
+    },
+    {
+      "id": "8",
+      "date": "2026-11-23",
+      "weekday": "Monday",
+      "time": "5:10 PM",
+      "name": "$200 No Limit Hold'em $8K GTD (1Day) - Progressive Knock-Out Bounty (PKO)",
+      "category": "bounty",
+      "buyIn": 200,
+      "guarantee": 8000,
+      "houseFee": 40,
+      "prizePool": 160,
+      "sheet": 30,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_30.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "PKO, $50 starting bounty (sheet 30)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-11-23",
+      "ratio": 40.0,
+      "rank": 20
+    },
+    {
+      "id": "9",
+      "date": "2026-11-24",
+      "weekday": "Tuesday",
+      "time": "5:10 PM",
+      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 200,
+      "guarantee": 8000,
+      "houseFee": 40,
+      "prizePool": 160,
+      "sheet": 1,
+      "lateReg": "9:40 PM",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$50 bounty (sheet 1)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-11-24",
+      "ratio": 40.0,
+      "rank": 21
+    },
+    {
+      "id": "11",
+      "date": "2026-11-25",
+      "weekday": "Wednesday",
+      "time": "5:10 PM",
+      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 200,
+      "guarantee": 8000,
+      "houseFee": 40,
+      "prizePool": 160,
+      "sheet": 1,
+      "lateReg": "9:40 PM",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$50 bounty (sheet 1)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-11-25",
+      "ratio": 40.0,
+      "rank": 22
+    },
+    {
+      "id": "13",
+      "date": "2026-11-26",
+      "weekday": "Thursday",
+      "time": "5:10 PM",
+      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 200,
+      "guarantee": 8000,
+      "houseFee": 40,
+      "prizePool": 160,
+      "sheet": 1,
+      "lateReg": "9:40 PM",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$50 bounty (sheet 1)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-11-26",
+      "ratio": 40.0,
+      "rank": 23
+    },
+    {
+      "id": "15",
+      "date": "2026-11-27",
+      "weekday": "Friday",
+      "time": "5:10 PM",
+      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 200,
+      "guarantee": 8000,
+      "houseFee": 40,
+      "prizePool": 160,
+      "sheet": 1,
+      "lateReg": "9:40 PM",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$50 bounty (sheet 1)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-11-27",
+      "ratio": 40.0,
+      "rank": 24
+    },
+    {
+      "id": "16",
+      "date": "2026-11-28",
+      "weekday": "Saturday",
+      "time": "11:10 AM",
+      "name": "$600 No Limit Hold'em Bounty $30K GTD (1Day) - $200 bounties to start, $500 in the money",
+      "category": "bounty",
+      "buyIn": 600,
+      "guarantee": 30000,
+      "houseFee": 90,
+      "prizePool": 510,
+      "sheet": 11,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$200 rising to $500 (sheet 11)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-11-28",
+      "ratio": 50.0,
+      "rank": 5
+    },
+    {
+      "id": "17",
+      "date": "2026-11-28",
+      "weekday": "Saturday",
+      "time": "12:10 PM",
+      "name": "$400 Pot Limit Omaha Bounty $15K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 400,
+      "guarantee": 15000,
+      "houseFee": 60,
+      "prizePool": 340,
+      "sheet": 26,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_26.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$100 bounty (sheet 26)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-11-28",
+      "ratio": 37.5,
+      "rank": 19
+    },
+    {
+      "id": "18",
+      "date": "2026-11-28",
+      "weekday": "Saturday",
+      "time": "5:10 PM",
+      "name": "$200 No Limit Hold'em PokerAtlas Valuetown Bounty $20K GTD (1Day) - PokerAtlas PRO member $20 rake discount",
+      "category": "bounty",
+      "buyIn": 200,
+      "guarantee": 20000,
+      "houseFee": 40,
+      "prizePool": 160,
+      "sheet": 8,
+      "lateReg": "9:40 PM",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$50 bounty (sheet 8)",
+      "flags": [
+        "F13",
+        "F14"
+      ],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-11-28",
+      "ratio": 100.0,
+      "rank": 8
+    },
+    {
+      "id": "21",
+      "date": "2026-11-29",
+      "weekday": "Sunday",
+      "time": "5:10 PM",
+      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 200,
+      "guarantee": 8000,
+      "houseFee": 40,
+      "prizePool": 160,
+      "sheet": 1,
+      "lateReg": "9:40 PM",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$50 bounty (sheet 1)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-11-29",
+      "ratio": 40.0,
+      "rank": 25
+    },
+    {
+      "id": "22",
+      "date": "2026-11-30",
+      "weekday": "Monday",
+      "time": "5:10 PM",
+      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 200,
+      "guarantee": 8000,
+      "houseFee": 40,
+      "prizePool": 160,
+      "sheet": 1,
+      "lateReg": "9:40 PM",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$50 bounty (sheet 1)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-11-30",
+      "ratio": 40.0,
+      "rank": 26
+    },
+    {
+      "id": "23",
+      "date": "2026-12-01",
+      "weekday": "Tuesday",
+      "time": "5:10 PM",
+      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 200,
+      "guarantee": 8000,
+      "houseFee": 40,
+      "prizePool": 160,
+      "sheet": 1,
+      "lateReg": "9:40 PM",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$50 bounty (sheet 1)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-01",
+      "ratio": 40.0,
+      "rank": 27
+    },
+    {
+      "id": "25",
+      "date": "2026-12-02",
+      "weekday": "Wednesday",
+      "time": "5:10 PM",
+      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 200,
+      "guarantee": 8000,
+      "houseFee": 40,
+      "prizePool": 160,
+      "sheet": 1,
+      "lateReg": "9:40 PM",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$50 bounty (sheet 1)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-02",
+      "ratio": 40.0,
+      "rank": 28
+    },
+    {
+      "id": "29",
+      "date": "2026-12-06",
+      "weekday": "Sunday",
+      "time": "5:10 PM",
+      "name": "$300 No Limit Hold'em Bounty $15K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 300,
+      "guarantee": 15000,
+      "houseFee": 50,
+      "prizePool": 250,
+      "sheet": 15,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$100 bounty (sheet 15)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-06",
+      "ratio": 50.0,
+      "rank": 10
+    },
+    {
+      "id": "30",
+      "date": "2026-12-07",
+      "weekday": "Monday",
+      "time": "11:10 AM",
+      "name": "$600 No Limit Hold'em Bounty $40K GTD (1Day) - $200 bounties to start, $500 in the money",
+      "category": "bounty",
+      "buyIn": 600,
+      "guarantee": 40000,
+      "houseFee": 90,
+      "prizePool": 510,
+      "sheet": 11,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$200 rising to $500 (sheet 11)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-07",
+      "ratio": 66.7,
+      "rank": 4
+    },
+    {
+      "id": "31",
+      "date": "2026-12-07",
+      "weekday": "Monday",
+      "time": "5:10 PM",
+      "name": "$300 No Limit Hold'em Bounty $15K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 300,
+      "guarantee": 15000,
+      "houseFee": 50,
+      "prizePool": 250,
+      "sheet": 15,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$100 bounty (sheet 15)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-07",
+      "ratio": 50.0,
+      "rank": 11
+    },
+    {
+      "id": "34",
+      "date": "2026-12-08",
+      "weekday": "Tuesday",
+      "time": "5:10 PM",
+      "name": "$300 No Limit Hold'em Bounty $15K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 300,
+      "guarantee": 15000,
+      "houseFee": 50,
+      "prizePool": 250,
+      "sheet": 15,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$100 bounty (sheet 15)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-08",
+      "ratio": 50.0,
+      "rank": 12
+    },
+    {
+      "id": "36",
+      "date": "2026-12-09",
+      "weekday": "Wednesday",
+      "time": "11:10 AM",
+      "name": "$800 No Limit Hold'em Bounty $75K GTD (1Day) - $200 bounties to start, $500 in the money",
+      "category": "bounty",
+      "buyIn": 800,
+      "guarantee": 75000,
+      "houseFee": 100,
+      "prizePool": 700,
+      "sheet": 16,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_16.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$200 rising to $500 (sheet 16)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-09",
+      "ratio": 93.8,
+      "rank": 1
+    },
+    {
+      "id": "38",
+      "date": "2026-12-09",
+      "weekday": "Wednesday",
+      "time": "5:10 PM",
+      "name": "$300 No Limit Hold'em Bounty $15K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 300,
+      "guarantee": 15000,
+      "houseFee": 50,
+      "prizePool": 250,
+      "sheet": 15,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$100 bounty (sheet 15)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-09",
+      "ratio": 50.0,
+      "rank": 13
+    },
+    {
+      "id": "40",
+      "date": "2026-12-10",
+      "weekday": "Thursday",
+      "time": "12:10 PM",
+      "name": "$600 Pot Limit Omaha Bounty $25K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 600,
+      "guarantee": 25000,
+      "houseFee": 90,
+      "prizePool": 510,
+      "sheet": 27,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_27.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$200 bounty (sheet 27)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-10",
+      "ratio": 41.7,
+      "rank": 7
+    },
+    {
+      "id": "42",
+      "date": "2026-12-10",
+      "weekday": "Thursday",
+      "time": "5:10 PM",
+      "name": "$300 No Limit Hold'em Bounty $15K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 300,
+      "guarantee": 15000,
+      "houseFee": 50,
+      "prizePool": 250,
+      "sheet": 15,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$100 bounty (sheet 15)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-10",
+      "ratio": 50.0,
+      "rank": 14
+    },
+    {
+      "id": "43",
+      "date": "2026-12-11",
+      "weekday": "Friday",
+      "time": "11:10 AM",
+      "name": "$600 No Limit Hold'em LIPS Kings and Queens Bounty $30K GTD (1Day) - open to all players",
+      "category": "bounty",
+      "buyIn": 600,
+      "guarantee": 30000,
+      "houseFee": 80,
+      "prizePool": 510,
+      "sheet": 33,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_33.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$200 bounty; $80 fee + $10 LIPS inside the $600 (sheet 33)",
+      "flags": [
+        "F15"
+      ],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-11",
+      "ratio": 50.0,
+      "rank": 6
+    },
+    {
+      "id": "50",
+      "date": "2026-12-13",
+      "weekday": "Sunday",
+      "time": "5:10 PM",
+      "name": "$300 No Limit Hold'em Bounty $15K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 300,
+      "guarantee": 15000,
+      "houseFee": 50,
+      "prizePool": 250,
+      "sheet": 15,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$100 bounty (sheet 15)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-13",
+      "ratio": 50.0,
+      "rank": 15
+    },
+    {
+      "id": "51",
+      "date": "2026-12-14",
+      "weekday": "Monday",
+      "time": "5:10 PM",
+      "name": "$300 No Limit Hold'em Bounty $15K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 300,
+      "guarantee": 15000,
+      "houseFee": 50,
+      "prizePool": 250,
+      "sheet": 15,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$100 bounty (sheet 15)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-14",
+      "ratio": 50.0,
+      "rank": 16
+    },
+    {
+      "id": "52",
+      "date": "2026-12-15",
+      "weekday": "Tuesday",
+      "time": "11:10 AM",
+      "name": "$1,100 No Limit Hold'em $75K GTD (1Day) - Progressive Knock-Out Bounty (PKO)",
+      "category": "bounty",
+      "buyIn": 1100,
+      "guarantee": 75000,
+      "houseFee": 130,
+      "prizePool": 970,
+      "sheet": 34,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_34.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "PKO, $200 starting bounty (sheet 34)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-15",
+      "ratio": 68.2,
+      "rank": 2
+    },
+    {
+      "id": "53",
+      "date": "2026-12-15",
+      "weekday": "Tuesday",
+      "time": "5:10 PM",
+      "name": "$300 No Limit Hold'em Bounty $15K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 300,
+      "guarantee": 15000,
+      "houseFee": 50,
+      "prizePool": 250,
+      "sheet": 15,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$100 bounty (sheet 15)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-15",
+      "ratio": 50.0,
+      "rank": 17
+    },
+    {
+      "id": "54",
+      "date": "2026-12-16",
+      "weekday": "Wednesday",
+      "time": "11:10 AM",
+      "name": "$600 No Limit Hold'em Bounty $50K GTD (1Day) - $200 bounties to start, $500 in the money",
+      "category": "bounty",
+      "buyIn": 600,
+      "guarantee": 50000,
+      "houseFee": 90,
+      "prizePool": 510,
+      "sheet": 11,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$200 rising to $500 (sheet 11)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-16",
+      "ratio": 83.3,
+      "rank": 3
+    },
+    {
+      "id": "55",
+      "date": "2026-12-16",
+      "weekday": "Wednesday",
+      "time": "5:10 PM",
+      "name": "$300 No Limit Hold'em Bounty $15K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 300,
+      "guarantee": 15000,
+      "houseFee": 50,
+      "prizePool": 250,
+      "sheet": 15,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$100 bounty (sheet 15)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-16",
+      "ratio": 50.0,
+      "rank": 18
+    },
+    {
+      "id": "58",
+      "date": "2026-12-19",
+      "weekday": "Saturday",
+      "time": "5:10 PM",
+      "name": "$200 No Limit Hold'em PokerAtlas Valuetown Bounty $20K GTD (1Day) - PokerAtlas PRO member $20 rake discount",
+      "category": "bounty",
+      "buyIn": 200,
+      "guarantee": 20000,
+      "houseFee": 40,
+      "prizePool": 160,
+      "sheet": 8,
+      "lateReg": "9:40 PM",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$50 bounty (sheet 8)",
+      "flags": [
+        "F13",
+        "F14"
+      ],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-19",
+      "ratio": 100.0,
+      "rank": 9
+    },
+    {
+      "id": "60",
+      "date": "2026-12-20",
+      "weekday": "Sunday",
+      "time": "5:10 PM",
+      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 200,
+      "guarantee": 8000,
+      "houseFee": 40,
+      "prizePool": 160,
+      "sheet": 1,
+      "lateReg": "9:40 PM",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$50 bounty (sheet 1)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-20",
+      "ratio": 40.0,
+      "rank": 29
+    },
+    {
+      "id": "61",
+      "date": "2026-12-21",
+      "weekday": "Monday",
+      "time": "5:10 PM",
+      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 200,
+      "guarantee": 8000,
+      "houseFee": 40,
+      "prizePool": 160,
+      "sheet": 1,
+      "lateReg": "9:40 PM",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$50 bounty (sheet 1)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-21",
+      "ratio": 40.0,
+      "rank": 30
+    },
+    {
+      "id": "62",
+      "date": "2026-12-22",
+      "weekday": "Tuesday",
+      "time": "5:10 PM",
+      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 200,
+      "guarantee": 8000,
+      "houseFee": 40,
+      "prizePool": 160,
+      "sheet": 1,
+      "lateReg": "9:40 PM",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$50 bounty (sheet 1)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-22",
+      "ratio": 40.0,
+      "rank": 31
+    },
+    {
+      "id": "64",
+      "date": "2026-12-23",
+      "weekday": "Wednesday",
+      "time": "5:10 PM",
+      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "category": "bounty",
+      "buyIn": 200,
+      "guarantee": 8000,
+      "houseFee": 40,
+      "prizePool": 160,
+      "sheet": 1,
+      "lateReg": "9:40 PM",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$50 bounty (sheet 1)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-12-23",
+      "ratio": 40.0,
+      "rank": 32
+    },
+    {
+      "id": "3",
+      "date": "2026-11-19",
+      "weekday": "Thursday",
+      "time": "10:10 AM",
+      "name": "$200 No Limit Hold'em RaceDay Stack (1Day) - race to finish before the Race",
+      "category": "unclear",
+      "buyIn": 200,
+      "guarantee": null,
+      "houseFee": 35,
+      "prizePool": 165,
+      "sheet": 18,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_18.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$200 NLH RaceDay Stack, no GTD printed, fee $35, pool $165",
+      "flags": [
+        "F04"
+      ],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-11-19",
+      "ratio": null
+    },
+    {
+      "id": "4",
+      "date": "2026-11-20",
+      "weekday": "Friday",
+      "time": "10:10 AM",
+      "name": "$200 No Limit Hold'em RaceDay Stack (1Day) - race to finish before the Race",
+      "category": "unclear",
+      "buyIn": 200,
+      "guarantee": null,
+      "houseFee": 35,
+      "prizePool": 165,
+      "sheet": 18,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_18.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$200 NLH RaceDay Stack, no GTD printed, fee $35, pool $165",
+      "flags": [
+        "F04"
+      ],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-11-20",
+      "ratio": null
+    },
+    {
+      "id": "5",
+      "date": "2026-11-21",
+      "weekday": "Saturday",
+      "time": "10:10 AM",
+      "name": "$200 No Limit Hold'em RaceDay Stack (1Day) - race to finish before the Race",
+      "category": "unclear",
+      "buyIn": 200,
+      "guarantee": null,
+      "houseFee": 35,
+      "prizePool": 165,
+      "sheet": 18,
+      "lateReg": "",
+      "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_18.pdf",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "$200 NLH RaceDay Stack, no GTD printed, fee $35, pool $165",
+      "flags": [
+        "F04"
+      ],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "dateTo": "2026-11-21",
+      "ratio": null
+    },
+    {
+      "id": "1",
+      "date": "2026-11-16",
+      "dateTo": "2026-11-18",
+      "weekday": "",
+      "time": "11:10 AM, 5:10 PM (flights 1A-1D); Day 2 Restart 12:00 PM Nov 18",
+      "name": "$300 No Limit Hold'em $75K GTD (flights 1A-1D + restart)",
+      "category": "excluded",
+      "buyIn": null,
+      "guarantee": null,
+      "houseFee": null,
+      "prizePool": null,
+      "sheet": null,
+      "lateReg": "",
+      "structureUrl": "",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "Multi-flight: several entries and a restart",
+      "flags": [
+        "F02"
+      ],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "ratio": null
+    },
+    {
+      "id": "7",
+      "date": "2026-11-23",
+      "dateTo": "2026-11-25",
+      "weekday": "",
+      "time": "11:10 AM (1A, 1B); Day 2 Restart 11:00 AM Nov 25",
+      "name": "$400 No Limit Hold'em $75K GTD (flights 1A-1B + restart)",
+      "category": "excluded",
+      "buyIn": null,
+      "guarantee": null,
+      "houseFee": null,
+      "prizePool": null,
+      "sheet": null,
+      "lateReg": "",
+      "structureUrl": "",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "Multi-flight: several entries and a restart",
+      "flags": [
+        "F02"
+      ],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "ratio": null
+    },
+    {
+      "id": "19",
+      "date": "2026-11-29",
+      "dateTo": "2026-12-02",
+      "weekday": "",
+      "time": "11:10 AM (1A-1C); Day 2 Restart 11:00 AM Dec 2",
+      "name": "$400 No Limit Hold'em $75K GTD (flights 1A-1C + restart)",
+      "category": "excluded",
+      "buyIn": null,
+      "guarantee": null,
+      "houseFee": null,
+      "prizePool": null,
+      "sheet": null,
+      "lateReg": "",
+      "structureUrl": "",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "Multi-flight: several entries and a restart",
+      "flags": [
+        "F02"
+      ],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "ratio": null
+    },
+    {
+      "id": "26",
+      "date": "2026-12-03",
+      "dateTo": "2026-12-06",
+      "weekday": "",
+      "time": "11:10 AM, 5:10 PM (flights 1A-1F); Day 2 Restart 12:00 PM Dec 6",
+      "name": "$800 No Limit Hold'em $500K GTD (flights 1A-1F + restart)",
+      "category": "excluded",
+      "buyIn": null,
+      "guarantee": null,
+      "houseFee": null,
+      "prizePool": null,
+      "sheet": null,
+      "lateReg": "",
+      "structureUrl": "",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "Multi-flight: several entries and a restart",
+      "flags": [
+        "F02"
+      ],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "ratio": null
+    },
+    {
+      "id": "35",
+      "date": "2026-12-09",
+      "dateTo": "2026-12-09",
+      "weekday": "",
+      "time": "10:10 AM",
+      "name": "$600 NLH LIPS Poker Jingle Tag Team $10K GTD",
+      "category": "excluded",
+      "buyIn": null,
+      "guarantee": null,
+      "houseFee": null,
+      "prizePool": null,
+      "sheet": null,
+      "lateReg": "",
+      "structureUrl": "",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "Tag-team entry (Female/Female or Female/Male)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "ratio": null
+    },
+    {
+      "id": "39",
+      "date": "2026-12-10",
+      "dateTo": "2026-12-11",
+      "weekday": "",
+      "time": "10:10 AM (2-day); Day 2 Restart 10:00 AM Dec 11; Final Table 7:00 PM Dec 11",
+      "name": "$800 No Limit Hold'em LIPS Ladies $40K GTD (2-day)",
+      "category": "excluded",
+      "buyIn": null,
+      "guarantee": null,
+      "houseFee": null,
+      "prizePool": null,
+      "sheet": null,
+      "lateReg": "",
+      "structureUrl": "",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "Two-day event with restart; streamed final",
+      "flags": [
+        "F02"
+      ],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "ratio": null
+    },
+    {
+      "id": "47",
+      "date": "2026-12-12",
+      "dateTo": "2026-12-14",
+      "weekday": "",
+      "time": "10:10 AM (1A), 6:10 PM (1B); restarts 1:00 PM Dec 13 and 11:00 AM Dec 14",
+      "name": "$2,200 No Limit Hold'em $1 Mill GTD (flights 1A-1B + restarts)",
+      "category": "excluded",
+      "buyIn": null,
+      "guarantee": null,
+      "houseFee": null,
+      "prizePool": null,
+      "sheet": null,
+      "lateReg": "",
+      "structureUrl": "",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "Multi-flight: several entries and restarts",
+      "flags": [
+        "F02"
+      ],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "ratio": null
+    },
+    {
+      "id": "49",
+      "date": "2026-12-13",
+      "dateTo": "2026-12-15",
+      "weekday": "",
+      "time": "10:10 AM (1A, 1B); Day 2 Restart 10:00 AM Dec 15",
+      "name": "$1,100 No Limit Hold'em Seniors $300K GTD (flights 1A-1B + restart)",
+      "category": "excluded",
+      "buyIn": null,
+      "guarantee": null,
+      "houseFee": null,
+      "prizePool": null,
+      "sheet": null,
+      "lateReg": "",
+      "structureUrl": "",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "Multi-flight; 50+ only",
+      "flags": [
+        "F02",
+        "F05"
+      ],
+      "lastChecked": "2026-11-16",
+      "eligibility": "50+ only (per schedule)",
+      "ratio": null
+    },
+    {
+      "id": "56",
+      "date": "2026-12-17",
+      "dateTo": "2026-12-20",
+      "weekday": "",
+      "time": "10:10 AM, 6:10 PM (flights 1A-1E); Day 2 Restart 11:00 AM Dec 20",
+      "name": "$1,100 No Limit Hold'em $500K GTD (flights 1A-1E + restart)",
+      "category": "excluded",
+      "buyIn": null,
+      "guarantee": null,
+      "houseFee": null,
+      "prizePool": null,
+      "sheet": null,
+      "lateReg": "",
+      "structureUrl": "",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "Multi-flight: several entries and a restart; rake discount for early entries",
+      "flags": [
+        "F02",
+        "F07"
+      ],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "ratio": null
+    },
+    {
+      "id": "59",
+      "date": "2026-12-20",
+      "dateTo": "2026-12-23",
+      "weekday": "",
+      "time": "11:10 AM (1A-1C); Day 2 Restart 11:00 AM Dec 23",
+      "name": "$600 No Limit Hold'em $150K GTD (flights 1A-1C + restart)",
+      "category": "excluded",
+      "buyIn": null,
+      "guarantee": null,
+      "houseFee": null,
+      "prizePool": null,
+      "sheet": null,
+      "lateReg": "",
+      "structureUrl": "",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "Multi-flight: several entries and a restart; rake discount for early entries",
+      "flags": [
+        "F02",
+        "F07"
+      ],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "ratio": null
+    },
+    {
+      "id": "33",
+      "date": "2026-12-08",
+      "dateTo": "2026-12-08",
+      "weekday": "",
+      "time": "4:10 PM",
+      "name": "$100 NLH LIPS Ladies Milestone Satellite",
+      "category": "excluded",
+      "buyIn": null,
+      "guarantee": null,
+      "houseFee": null,
+      "prizePool": null,
+      "sheet": null,
+      "lateReg": "",
+      "structureUrl": "",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "Satellite (awards direct entry to #39)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "ratio": null
+    },
+    {
+      "id": "37",
+      "date": "2026-12-09",
+      "dateTo": "2026-12-09",
+      "weekday": "",
+      "time": "4:10 PM",
+      "name": "$100 NLH LIPS Ladies Milestone Satellite",
+      "category": "excluded",
+      "buyIn": null,
+      "guarantee": null,
+      "houseFee": null,
+      "prizePool": null,
+      "sheet": null,
+      "lateReg": "",
+      "structureUrl": "",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "Satellite (awards direct entry to #39)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "ratio": null
+    },
+    {
+      "id": "41",
+      "date": "2026-12-10",
+      "dateTo": "2026-12-10",
+      "weekday": "",
+      "time": "4:10 PM",
+      "name": "$260 NLH Milestone Satellite",
+      "category": "excluded",
+      "buyIn": null,
+      "guarantee": null,
+      "houseFee": null,
+      "prizePool": null,
+      "sheet": null,
+      "lateReg": "",
+      "structureUrl": "",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "Satellite (awards direct entry to #47)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "ratio": null
+    },
+    {
+      "id": "44",
+      "date": "2026-12-11",
+      "dateTo": "2026-12-11",
+      "weekday": "",
+      "time": "4:10 PM",
+      "name": "$260 NLH Milestone Satellite",
+      "category": "excluded",
+      "buyIn": null,
+      "guarantee": null,
+      "houseFee": null,
+      "prizePool": null,
+      "sheet": null,
+      "lateReg": "",
+      "structureUrl": "",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "Satellite (awards direct entry to #47)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "ratio": null
+    },
+    {
+      "id": "45",
+      "date": "2026-12-11",
+      "dateTo": "2026-12-11",
+      "weekday": "",
+      "time": "8:10 PM",
+      "name": "$260 NLH Turbo Milestone Satellite",
+      "category": "excluded",
+      "buyIn": null,
+      "guarantee": null,
+      "houseFee": null,
+      "prizePool": null,
+      "sheet": null,
+      "lateReg": "",
+      "structureUrl": "",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "Satellite (awards direct entry to #47)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "ratio": null
+    },
+    {
+      "id": "46",
+      "date": "2026-12-12",
+      "dateTo": "2026-12-12",
+      "weekday": "",
+      "time": "9:10 AM",
+      "name": "$260 NLH Turbo Milestone Satellite",
+      "category": "excluded",
+      "buyIn": null,
+      "guarantee": null,
+      "houseFee": null,
+      "prizePool": null,
+      "sheet": null,
+      "lateReg": "",
+      "structureUrl": "",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "Satellite (awards direct entry to #47)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "ratio": null
+    },
+    {
+      "id": "48",
+      "date": "2026-12-12",
+      "dateTo": "2026-12-12",
+      "weekday": "",
+      "time": "12:10 PM",
+      "name": "$260 NLH Turbo Milestone Satellite",
+      "category": "excluded",
+      "buyIn": null,
+      "guarantee": null,
+      "houseFee": null,
+      "prizePool": null,
+      "sheet": null,
+      "lateReg": "",
+      "structureUrl": "",
+      "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "note": "Satellite (awards direct entry to #47)",
+      "flags": [],
+      "lastChecked": "2026-11-16",
+      "eligibility": "",
+      "ratio": null
+    }
+  ],
+  "hotels": [
+    {
+      "id": "H-VEN",
+      "property": "The Venetian Resort",
+      "room": "The Venetian Resort, Newly Remodeled Luxury King suite (2 adults)",
+      "pokerRoom": "The Venetian (DeepStack IV host)",
+      "quoteDate": "2026-11-16",
+      "sample": "Nov 17-19, 2026 (2 nights, 2 adults)",
+      "nights": [
+        {
+          "date": "2026-11-17",
+          "rate": 824.25,
+          "resortFee": 55.0,
+          "tax": 117.64,
+          "trueNightly": 996.89
+        },
+        {
+          "date": "2026-11-18",
+          "rate": 164.25,
+          "resortFee": 55.0,
+          "tax": 29.34,
+          "trueNightly": 248.59
+        }
+      ],
+      "checkoutTotal": 1245.48,
+      "taxPrinted": 146.98,
+      "trueNightly": 622.74,
+      "trueNightlyBasis": "Derived: official checkout total / 2 nights. Rate + $55 resort fee, tax 13.38%.",
+      "resortFee": "$55 per night, plus tax (official terms)",
+      "parking": "$20/day for registered guests (official terms); non-hotel parking $20 Mon-Thu, $25 Fri-Sun; valet $40/day",
+      "cancelDeadline": "",
+      "rateTimestamp": "2026-11-16 (retrieved; time of day not shown)",
+      "walkingMinutes": "",
+      "sources": [
+        "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar",
+        "https://www.venetianlasvegas.com/resort/resort-fee.html",
+        "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html"
+      ],
+      "flags": [
+        "F12",
+        "F17",
+        "F18"
+      ],
+      "status": "Only dated official total in this site. Calendar cells (F12) and suite rates (F16) are not used."
+    },
+    {
+      "id": "H-PAL",
+      "property": "The Palazzo",
+      "room": "",
+      "pokerRoom": "The Venetian (DeepStack IV host)",
+      "quoteDate": "",
+      "sample": "No Palazzo quote captured",
+      "nights": [],
+      "checkoutTotal": null,
+      "taxPrinted": null,
+      "trueNightly": null,
+      "trueNightlyBasis": "",
+      "resortFee": "",
+      "parking": "",
+      "cancelDeadline": "",
+      "rateTimestamp": "",
+      "walkingMinutes": "",
+      "sources": [
+        "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"
+      ],
+      "flags": [
+        "F16",
+        "F18"
+      ],
+      "status": "Suite page lists 'as low as $119 and $209' for The Venetian or The Palazzo; not mapped to a property."
+    },
+    {
+      "id": "H-WYN",
+      "property": "Wynn Las Vegas",
+      "room": "",
+      "pokerRoom": "Wynn Poker Room (WPT in Encore, per Wynn WPT terms)",
+      "quoteDate": "",
+      "sample": "None captured",
+      "nights": [],
+      "checkoutTotal": null,
+      "taxPrinted": null,
+      "trueNightly": null,
+      "trueNightlyBasis": "",
+      "resortFee": "",
+      "parking": "",
+      "cancelDeadline": "",
+      "rateTimestamp": "",
+      "walkingMinutes": "",
+      "sources": [
+        "https://www.wynnlasvegas.com/terms-and-conditions/850070",
+        "https://www.wynnlasvegas.com/casino/poker"
+      ],
+      "flags": [
+        "F24",
+        "F18"
+      ],
+      "status": "Only an expired offer's terms are on record (F24). No current rate or fee."
+    },
+    {
+      "id": "H-BEL",
+      "property": "Bellagio",
+      "room": "",
+      "pokerRoom": "Bellagio Poker Room (on property)",
+      "quoteDate": "",
+      "sample": "None captured",
+      "nights": [],
+      "checkoutTotal": null,
+      "taxPrinted": null,
+      "trueNightly": null,
+      "trueNightlyBasis": "",
+      "resortFee": "",
+      "parking": "",
+      "cancelDeadline": "",
+      "rateTimestamp": "",
+      "walkingMinutes": "",
+      "sources": [
+        "https://bellagio.mgmresorts.com/en/casino/poker.html"
+      ],
+      "flags": [
+        "F31",
+        "F18"
+      ],
+      "status": "No official rate or resort fee retrieved."
+    },
+    {
+      "id": "H-ARIA",
+      "property": "ARIA Resort & Casino",
+      "room": "",
+      "pokerRoom": "ARIA poker room (on property)",
+      "quoteDate": "",
+      "sample": "None captured",
+      "nights": [],
+      "checkoutTotal": null,
+      "taxPrinted": null,
+      "trueNightly": null,
+      "trueNightlyBasis": "",
+      "resortFee": "",
+      "parking": "",
+      "cancelDeadline": "",
+      "rateTimestamp": "",
+      "walkingMinutes": "",
+      "sources": [
+        "https://aria.mgmresorts.com/en/casino/poker.html"
+      ],
+      "flags": [
+        "F29",
+        "F18"
+      ],
+      "status": "Page offers 'exclusive room rates' by phone or email; no value printed."
+    }
+  ],
+  "venetianNights": [
+    {
+      "date": "2026-11-17",
+      "rate": 824.25,
+      "resortFee": 55.0,
+      "tax": 117.64,
+      "trueNightly": 996.89
+    },
+    {
+      "date": "2026-11-18",
+      "rate": 164.25,
+      "resortFee": 55.0,
+      "tax": 29.34,
+      "trueNightly": 248.59
+    }
+  ],
+  "rateLog": [
+    {
+      "date": "2026-11-17",
+      "cell": 605,
+      "basis": "calendar cell, 2 adults",
+      "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar",
+      "lastChecked": "2026-11-16"
+    },
+    {
+      "date": "2026-11-18",
+      "cell": 165,
+      "basis": "calendar cell, 2 adults",
+      "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar",
+      "lastChecked": "2026-11-16"
+    },
+    {
+      "date": "2026-12-10",
+      "cell": null,
+      "basis": "no price shown",
+      "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-12-10&children[]=0&departure_date=2026-12-12&view=calendar",
+      "lastChecked": "2026-11-16"
+    },
+    {
+      "date": "2026-12-11",
+      "cell": null,
+      "basis": "no price shown",
+      "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-12-10&children[]=0&departure_date=2026-12-12&view=calendar",
+      "lastChecked": "2026-11-16"
+    },
+    {
+      "date": "2026-12-12",
+      "cell": null,
+      "basis": "no price shown",
+      "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-12-10&children[]=0&departure_date=2026-12-12&view=calendar",
+      "lastChecked": "2026-11-16"
+    },
+    {
+      "date": "2026-12-13",
+      "cell": 255,
+      "basis": "calendar cell, 2 adults",
+      "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-12-10&children[]=0&departure_date=2026-12-12&view=calendar",
+      "lastChecked": "2026-11-16"
+    },
+    {
+      "date": "2026-12-14",
+      "cell": 165,
+      "basis": "calendar cell, 2 adults",
+      "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-12-10&children[]=0&departure_date=2026-12-12&view=calendar",
+      "lastChecked": "2026-11-16"
+    },
+    {
+      "date": "2026-12-15",
+      "cell": 165,
+      "basis": "calendar cell, 2 adults",
+      "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-12-10&children[]=0&departure_date=2026-12-12&view=calendar",
+      "lastChecked": "2026-11-16"
+    },
+    {
+      "date": "2026-12-16",
+      "cell": 165,
+      "basis": "calendar cell, 2 adults",
+      "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-12-10&children[]=0&departure_date=2026-12-12&view=calendar",
+      "lastChecked": "2026-11-16"
+    },
+    {
+      "date": "2026-12-17",
+      "cell": 165,
+      "basis": "calendar cell, 2 adults",
+      "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-12-10&children[]=0&departure_date=2026-12-12&view=calendar",
+      "lastChecked": "2026-11-16"
+    },
+    {
+      "date": "2026-12-18",
+      "cell": 235,
+      "basis": "calendar cell, 2 adults",
+      "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-12-10&children[]=0&departure_date=2026-12-12&view=calendar",
+      "lastChecked": "2026-11-16"
+    },
+    {
+      "date": "2026-12-19",
+      "cell": 405,
+      "basis": "calendar cell, 2 adults",
+      "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-12-10&children[]=0&departure_date=2026-12-12&view=calendar",
+      "lastChecked": "2026-11-16"
+    }
+  ],
+  "wynnWpt": [
+    {
+      "window": "Nov 27-29, 2026",
+      "event": "$600 NLH Day 1 flights",
+      "buyIn": 600,
+      "guarantee": 400000,
+      "note": "Multi-flight (Day 1A-1F); format not reviewed",
+      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"
+    },
+    {
+      "window": "Nov 30-Dec 2, 2026",
+      "event": "$800 NLH Day 1 flights",
+      "buyIn": 800,
+      "guarantee": 1000000,
+      "note": "Multi-flight; format not reviewed",
+      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"
+    },
+    {
+      "window": "Dec 3-4, 2026",
+      "event": "$1,600 NLH Day 1 flights",
+      "buyIn": 1600,
+      "guarantee": 1000000,
+      "note": "Multi-flight; format not reviewed",
+      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"
+    },
+    {
+      "window": "Dec 5-12, 2026",
+      "event": "$1,100 NLH Day 2 / WPT Prime Championship",
+      "buyIn": 1100,
+      "guarantee": 5000000,
+      "note": "Multi-day; format not reviewed",
+      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"
+    },
+    {
+      "window": "Dec 13-15, 2026",
+      "event": "$10,400 WPT World Championship Day 1A/1B/1C",
+      "buyIn": 10400,
+      "guarantee": null,
+      "note": "$1M added by ClubWPT Gold, not available in Nevada (guarantee not confirmed on sheet)",
+      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"
+    },
+    {
+      "window": "Dec 10-12, 2026",
+      "event": "Super Gold Million $400 Mystery Bounty",
+      "buyIn": 400,
+      "guarantee": 3000000,
+      "note": "Bounty; labelled separately",
+      "source": "https://www.wynnlasvegas.com/casino/poker"
+    },
+    {
+      "window": "Dec 17-18, 2026",
+      "event": "$3,000 NLH Day 1A/1B",
+      "buyIn": 3000,
+      "guarantee": 2000000,
+      "note": "Multi-flight; format not reviewed",
+      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"
+    },
+    {
+      "window": "Dec 17, 2026",
+      "event": "$25,800 NLH High Roller (2 Day)",
+      "buyIn": 25800,
+      "guarantee": null,
+      "note": "Two-day; guarantee not confirmed",
+      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"
+    },
+    {
+      "window": "Dec 17-18, 2026",
+      "event": "$1,100 NLH Day 1A/1B",
+      "buyIn": 1100,
+      "guarantee": 1000000,
+      "note": "Multi-flight; format not reviewed",
+      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"
+    },
+    {
+      "window": "Dec 18, 2026",
+      "event": "$600 NLH",
+      "buyIn": 600,
+      "guarantee": 100000,
+      "note": "Date printed as 'Dec. 18'; see F19",
+      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"
+    },
+    {
+      "window": "Dec 18-20, 2026",
+      "event": "$10,500 six-max / PLO / 8-max",
+      "buyIn": 10500,
+      "guarantee": null,
+      "note": "Format not reviewed",
+      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"
+    },
+    {
+      "window": "Dec 20, 2026",
+      "event": "$600 NLH Turbo",
+      "buyIn": 600,
+      "guarantee": 50000,
+      "note": "Turbo; format not reviewed",
+      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"
+    }
+  ],
+  "wynnDaily": [
+    {
+      "day": "Monday-Thursday",
+      "time": "12 p.m.",
+      "event": "Daily NLH $200",
+      "buyIn": 200,
+      "guarantee": 10000,
+      "note": "Undated recurring poster; rules not reviewed",
+      "source": "https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf"
+    },
+    {
+      "day": "Friday",
+      "time": "12 p.m.",
+      "event": "Daily NLH REBUY $240",
+      "buyIn": 240,
+      "guarantee": 40000,
+      "note": "Rebuy: excluded from the single-entry list",
+      "source": "https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf"
+    },
+    {
+      "day": "Saturday",
+      "time": "12 p.m.",
+      "event": "Daily NLH $200",
+      "buyIn": 200,
+      "guarantee": 25000,
+      "note": "Undated recurring poster; rules not reviewed",
+      "source": "https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf"
+    },
+    {
+      "day": "Sunday",
+      "time": "12 p.m.",
+      "event": "Daily NLH $200",
+      "buyIn": 200,
+      "guarantee": 25000,
+      "note": "Undated recurring poster; rules not reviewed",
+      "source": "https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf"
+    },
+    {
+      "day": "Nightly",
+      "time": "6 p.m.",
+      "event": "NLH $160",
+      "buyIn": 160,
+      "guarantee": 10000,
+      "note": "Undated recurring poster; rules not reviewed",
+      "source": "https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf"
+    }
+  ],
+  "bellagio": [
+    {
+      "day": "Friday",
+      "time": "11:00 a.m.",
+      "buyInPage": 600,
+      "buyInPdf": 600,
+      "status": "Excluded: re-entry allowed through level 8; $40 gratuity buys extra chips",
+      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf",
+      "flags": [
+        "F20"
+      ]
+    },
+    {
+      "day": "Saturday",
+      "time": "11:00 a.m.",
+      "buyInPage": 1000,
+      "buyInPdf": 1100,
+      "status": "Excluded: multi-flight (1A-1D) plus combined Day 2; buy-in conflict",
+      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf",
+      "flags": [
+        "F19",
+        "F21"
+      ]
+    },
+    {
+      "day": "Sunday",
+      "time": "not confirmed",
+      "buyInPage": 400,
+      "buyInPdf": null,
+      "status": "Excluded until the structure is read; H.O.R.S.E. format",
+      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt07fcf1244a6da661/6af491a339e2b4f6b76a86ad/mgm-bellagio-poker-sundays-$400-horse.pdf",
+      "flags": [
+        "F22"
+      ]
+    }
+  ],
+  "schedule": [
+    {
+      "date": "2026-11-16",
+      "weekday": "Monday",
+      "events": [],
+      "primary": null,
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-11-17",
+      "weekday": "Tuesday",
+      "events": [],
+      "primary": null,
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-11-18",
+      "weekday": "Wednesday",
+      "events": [
+        "2"
+      ],
+      "primary": "2",
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-11-19",
+      "weekday": "Thursday",
+      "events": [],
+      "primary": null,
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-11-20",
+      "weekday": "Friday",
+      "events": [],
+      "primary": null,
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-11-21",
+      "weekday": "Saturday",
+      "events": [],
+      "primary": null,
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-11-22",
+      "weekday": "Sunday",
+      "events": [
+        "6"
+      ],
+      "primary": "6",
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-11-23",
+      "weekday": "Monday",
+      "events": [
+        "8"
+      ],
+      "primary": "8",
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-11-24",
+      "weekday": "Tuesday",
+      "events": [
+        "9"
+      ],
+      "primary": "9",
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-11-25",
+      "weekday": "Wednesday",
+      "events": [
+        "10",
+        "11"
+      ],
+      "primary": "10",
+      "fallback": "11",
+      "overlaps": []
+    },
+    {
+      "date": "2026-11-26",
+      "weekday": "Thursday",
+      "events": [
+        "12",
+        "13"
+      ],
+      "primary": "12",
+      "fallback": "13",
+      "overlaps": []
+    },
+    {
+      "date": "2026-11-27",
+      "weekday": "Friday",
+      "events": [
+        "14",
+        "15"
+      ],
+      "primary": "14",
+      "fallback": "15",
+      "overlaps": []
+    },
+    {
+      "date": "2026-11-28",
+      "weekday": "Saturday",
+      "events": [
+        "16",
+        "17",
+        "18"
+      ],
+      "primary": "16",
+      "fallback": "18",
+      "overlaps": [
+        "#16 11:10 AM and #17 12:10 PM start 60 min apart (< 6 h planning assumption)",
+        "#17 12:10 PM and #18 5:10 PM start 300 min apart (< 6 h planning assumption)"
+      ]
+    },
+    {
+      "date": "2026-11-29",
+      "weekday": "Sunday",
+      "events": [
+        "20",
+        "21"
+      ],
+      "primary": "20",
+      "fallback": "21",
+      "overlaps": [
+        "#20 12:10 PM and #21 5:10 PM start 300 min apart (< 6 h planning assumption)"
+      ]
+    },
+    {
+      "date": "2026-11-30",
+      "weekday": "Monday",
+      "events": [
+        "22"
+      ],
+      "primary": "22",
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-12-01",
+      "weekday": "Tuesday",
+      "events": [
+        "23"
+      ],
+      "primary": "23",
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-12-02",
+      "weekday": "Wednesday",
+      "events": [
+        "24",
+        "25"
+      ],
+      "primary": "24",
+      "fallback": "25",
+      "overlaps": []
+    },
+    {
+      "date": "2026-12-03",
+      "weekday": "Thursday",
+      "events": [
+        "27"
+      ],
+      "primary": "27",
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-12-04",
+      "weekday": "Friday",
+      "events": [],
+      "primary": null,
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-12-05",
+      "weekday": "Saturday",
+      "events": [],
+      "primary": null,
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-12-06",
+      "weekday": "Sunday",
+      "events": [
+        "28",
+        "29"
+      ],
+      "primary": "28",
+      "fallback": "29",
+      "overlaps": []
+    },
+    {
+      "date": "2026-12-07",
+      "weekday": "Monday",
+      "events": [
+        "30",
+        "31"
+      ],
+      "primary": "30",
+      "fallback": "31",
+      "overlaps": []
+    },
+    {
+      "date": "2026-12-08",
+      "weekday": "Tuesday",
+      "events": [
+        "32",
+        "34"
+      ],
+      "primary": "32",
+      "fallback": "34",
+      "overlaps": []
+    },
+    {
+      "date": "2026-12-09",
+      "weekday": "Wednesday",
+      "events": [
+        "36",
+        "38"
+      ],
+      "primary": "36",
+      "fallback": "38",
+      "overlaps": []
+    },
+    {
+      "date": "2026-12-10",
+      "weekday": "Thursday",
+      "events": [
+        "40",
+        "42"
+      ],
+      "primary": "40",
+      "fallback": "42",
+      "overlaps": [
+        "#40 12:10 PM and #42 5:10 PM start 300 min apart (< 6 h planning assumption)"
+      ]
+    },
+    {
+      "date": "2026-12-11",
+      "weekday": "Friday",
+      "events": [
+        "43"
+      ],
+      "primary": "43",
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-12-12",
+      "weekday": "Saturday",
+      "events": [],
+      "primary": null,
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-12-13",
+      "weekday": "Sunday",
+      "events": [
+        "50"
+      ],
+      "primary": "50",
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-12-14",
+      "weekday": "Monday",
+      "events": [
+        "51"
+      ],
+      "primary": "51",
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-12-15",
+      "weekday": "Tuesday",
+      "events": [
+        "52",
+        "53"
+      ],
+      "primary": "52",
+      "fallback": "53",
+      "overlaps": []
+    },
+    {
+      "date": "2026-12-16",
+      "weekday": "Wednesday",
+      "events": [
+        "54",
+        "55"
+      ],
+      "primary": "54",
+      "fallback": "55",
+      "overlaps": []
+    },
+    {
+      "date": "2026-12-17",
+      "weekday": "Thursday",
+      "events": [
+        "57"
+      ],
+      "primary": "57",
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-12-18",
+      "weekday": "Friday",
+      "events": [],
+      "primary": null,
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-12-19",
+      "weekday": "Saturday",
+      "events": [
+        "58"
+      ],
+      "primary": "58",
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-12-20",
+      "weekday": "Sunday",
+      "events": [
+        "60"
+      ],
+      "primary": "60",
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-12-21",
+      "weekday": "Monday",
+      "events": [
+        "61"
+      ],
+      "primary": "61",
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-12-22",
+      "weekday": "Tuesday",
+      "events": [
+        "62"
+      ],
+      "primary": "62",
+      "fallback": null,
+      "overlaps": []
+    },
+    {
+      "date": "2026-12-23",
+      "weekday": "Wednesday",
+      "events": [
+        "63",
+        "64"
+      ],
+      "primary": "63",
+      "fallback": "64",
+      "overlaps": []
+    }
+  ],
+  "flags": {
+    "F01": {
+      "severity": "High",
+      "title": "Single-entry status is not printed on any sheet read",
+      "detail": "The 19 structure sheets read contain no re-entry, rebuy, or add-on wording, but none states single entry. Main-list rows say 'no re-entry/add-on wording on sheet'. Confirm in writing with the Venetian poker room.",
+      "sources": [
+        "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+        "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf"
+      ]
+    },
+    "F02": {
+      "severity": "Medium",
+      "title": "Event numbers are reused across flights, restarts and Day 2 rows",
+      "detail": "The official table repeats event numbers (for example 1, 7, 19, 26, 47, 56, 59). Multi-row events are grouped under one number and excluded.",
+      "sources": [
+        "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
+      ]
+    },
+    "F03": {
+      "severity": "Medium",
+      "title": "Event 6 prints no guarantee",
+      "detail": "Event 6 ($200 NLH, 1Day) has no GTD on the table or sheet 29. It is listed but not ranked.",
+      "sources": [
+        "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+        "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_29.pdf"
+      ]
+    },
+    "F04": {
+      "severity": "Medium",
+      "title": "RaceDay events 3, 4, 5 have an unclear format and no guarantee",
+      "detail": "Title reads 'race to finish before the Race'. Sheet 18 prints no guarantee. Kept out of the main list and schedule.",
+      "sources": [
+        "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+        "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_18.pdf"
+      ]
+    },
+    "F05": {
+      "severity": "Low",
+      "title": "50+ eligibility on events 24, 32 and 49",
+      "detail": "The schedule states 'must be 50+ years of age to participate'. These rows are eligibility-restricted, not general.",
+      "sources": [
+        "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+        "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_17.pdf"
+      ]
+    },
+    "F06": {
+      "severity": "Medium",
+      "title": "Bounty events may carry a 'rake discount'",
+      "detail": "The schedule says PokerAtlas PRO members get a $20 rake discount. The sheet notes differ on the mechanism, so the discount is not applied to any ratio.",
+      "sources": [
+        "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+        "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf"
+      ]
+    },
+    "F07": {
+      "severity": "Low",
+      "title": "Early-entry rake discounts on events 56 and 59",
+      "detail": "Printed as '$40 rake discount for entries before 10:10 a.m.' and '$20 rake discount before 11:10 a.m.'. These are flight events and are excluded.",
+      "sources": [
+        "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
+      ]
+    },
+    "F08": {
+      "severity": "Medium",
+      "title": "Structure sheet links differ by row",
+      "detail": "The same event number links to different sheets on different dates (for example 1A and 1B). Each row's own link is used.",
+      "sources": [
+        "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
+      ]
+    },
+    "F09": {
+      "severity": "Medium",
+      "title": "Late-registration cutoffs are printed for only two sheets",
+      "detail": "Only sheets 1 and 8 print a 9:40 PM late-registration cutoff. Other rows are blank. No cutoff is computed from level lengths.",
+      "sources": [
+        "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+        "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf"
+      ]
+    },
+    "F10": {
+      "severity": "High",
+      "title": "Finish times and plausible durations are not published",
+      "detail": "Overlap flags use a planning assumption of 6 hours between starts. This is not an official duration (see schedule page).",
+      "sources": [
+        "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
+      ]
+    },
+    "F11": {
+      "severity": "High",
+      "title": "No official tournament starts before 10:10 AM",
+      "detail": "The earliest start on the Venetian table is 10:10 AM (events 32, 24, 3, 4, 5, 39, 47, 49, 56). The 8:00 AM all-day plan cannot be built from verified data.",
+      "sources": [
+        "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
+      ]
+    },
+    "F12": {
+      "severity": "High",
+      "title": "Venetian calendar and the Nov 17-19 quote disagree",
+      "detail": "Calendar cell Nov 17 = $605 and Nov 18 = $165. Quote nights are $824.25 and $164.25. The quote is used for the true-cost calculation. The calendar is logged only.",
+      "sources": [
+        "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"
+      ]
+    },
+    "F13": {
+      "severity": "Low",
+      "title": "PokerAtlas PRO wording differs between schedule and sheet",
+      "detail": "Schedule: '$20 rake discount'. Sheet 8 (earlier read): '$20 off initial buy-in ($180)'. Membership cost is not verified. Standard buy-in is used.",
+      "sources": [
+        "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+        "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf"
+      ]
+    },
+    "F14": {
+      "severity": "Low",
+      "title": "Standard buy-in used for the PokerAtlas PRO discount events",
+      "detail": "Events 18 and 58 are listed at $200. The discount is not applied.",
+      "sources": [
+        "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
+      ]
+    },
+    "F15": {
+      "severity": "Low",
+      "title": "LIPS events add a fee on top of the buy-in",
+      "detail": "Sheet 33 prints a $80 fee and a $10 LIPS fee within the $600 buy-in ($510 pool). The $600 total is used as printed.",
+      "sources": [
+        "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_33.pdf"
+      ]
+    },
+    "F16": {
+      "severity": "High",
+      "title": "Venetian poker-suite rates are conditional and not mapped to a property",
+      "detail": "'Start as low as $119 and $209' requires 6 hours of live cash play or a $300+ buy-in each night. Not used in the true-cost calculation.",
+      "sources": [
+        "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"
+      ]
+    },
+    "F17": {
+      "severity": "Medium",
+      "title": "Venetian calendar cells are not quotes",
+      "detail": "Cells show the lowest suite price per date, including the resort fee and excluding tax. Dec 10-12 show no price. Not used in any total.",
+      "sources": [
+        "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-12-10&children[]=0&departure_date=2026-12-12&view=calendar"
+      ]
+    },
+    "F18": {
+      "severity": "High",
+      "title": "Cancellation deadline and walking time not captured for Venetian quote",
+      "detail": "No cancellation deadline on the captured quote page. No official walking time for any hotel. Both left blank.",
+      "sources": [
+        "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"
+      ]
+    },
+    "F19": {
+      "severity": "High",
+      "title": "Bellagio Saturday buy-in conflict",
+      "detail": "Page button reads $1,000; PDF header reads $1,100 (from earlier read); rule body reads $600 buy-in with $510 pool, $50 house, $40 gratuity. Excluded as multi-flight.",
+      "sources": [
+        "https://bellagio.mgmresorts.com/en/casino/poker.html",
+        "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf"
+      ]
+    },
+    "F20": {
+      "severity": "High",
+      "title": "Bellagio Friday allows re-entry and sells extra chips",
+      "detail": "Re-entry through the end of level 8. A $40 voluntary gratuity buys chips. Excluded from the single-entry list.",
+      "sources": [
+        "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf"
+      ]
+    },
+    "F21": {
+      "severity": "Medium",
+      "title": "Bellagio Saturday is multi-flight",
+      "detail": "Flights 1A-1D and a combined Day 2; registration to level 10. Excluded.",
+      "sources": [
+        "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf"
+      ]
+    },
+    "F22": {
+      "severity": "Medium",
+      "title": "Bellagio Sunday H.O.R.S.E. structure not read",
+      "detail": "Excluded until the structure is read.",
+      "sources": [
+        "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt07fcf1244a6da661/6af491a339e2b4f6b76a86ad/mgm-bellagio-poker-sundays-$400-horse.pdf"
+      ]
+    },
+    "F23": {
+      "severity": "Low",
+      "title": "Bellagio page carries a stale 'resume Saturday, July 26' notice",
+      "detail": "July 26, 2026 is a Sunday, and the notice is undated. Not treated as current.",
+      "sources": [
+        "https://bellagio.mgmresorts.com/en/casino/poker.html"
+      ]
+    },
+    "F24": {
+      "severity": "High",
+      "title": "Wynn fee and cancellation terms come from an expired offer",
+      "detail": "Wynn terms page 850070 covers an offer that ended Sept 30, 2025. No current Wynn fee, rate, or cancellation rule is verified.",
+      "sources": [
+        "https://www.wynnlasvegas.com/terms-and-conditions/850070"
+      ]
+    },
+    "F25": {
+      "severity": "High",
+      "title": "Wynn WPT formats not reviewed beyond structures chunk 0",
+      "detail": "Most WPT rows are flights, satellites, or multi-day. None is listed as single-entry. Excluded from the main list.",
+      "sources": [
+        "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
+        "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"
+      ]
+    },
+    "F26": {
+      "severity": "Medium",
+      "title": "Wynn WPT schedule prints Dec 18 with two weekdays",
+      "detail": "Rows say Dec 18 is 'Wednesday' in one place and 'Friday' in another. Dec 18, 2026 is a Friday. Unresolved.",
+      "sources": [
+        "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"
+      ]
+    },
+    "F27": {
+      "severity": "Low",
+      "title": "WPT $1,100 PLO breakdown sums to $1,105",
+      "detail": "Earlier read of the structures PDF. Not used in any calculation.",
+      "sources": [
+        "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"
+      ]
+    },
+    "F28": {
+      "severity": "Medium",
+      "title": "Wynn daily Friday is a rebuy, and daily suspension does not name WPT",
+      "detail": "Poster prints 'NLH REBUY $240' on Friday. The Wynn page says daily events are suspended during Signature, Millions and Classic series. WPT is not named, so it is unclear whether daily events run during WPT.",
+      "sources": [
+        "https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf",
+        "https://www.wynnlasvegas.com/casino/poker"
+      ]
+    },
+    "F29": {
+      "severity": "High",
+      "title": "ARIA prints no tournament schedule or room rates",
+      "detail": "The page offers 'exclusive room rates' by phone (702.590.7232) and email. No value is printed.",
+      "sources": [
+        "https://aria.mgmresorts.com/en/casino/poker.html"
+      ]
+    },
+    "F30": {
+      "severity": "High",
+      "title": "Five Strip poker pages gave no verified schedule",
+      "detail": "Caesars page is general; MGM Grand page returned 'Page not found'; Golden Nugget page is blank; Resorts World page is an email template; Circa returns 404. These rooms are not listed.",
+      "sources": [
+        "https://www.caesars.com/caesars-palace/things-to-do/poker",
+        "https://mgmgrand.com/en/casino/poker.html",
+        "https://www.goldennugget.com/las-vegas/casino/poker",
+        "https://www.rwlasvegas.com/casino/poker",
+        "https://www.circalasvegas.com/casino/poker"
+      ]
+    },
+    "F31": {
+      "severity": "Medium",
+      "title": "Third-party claim of a $55 Bellagio resort fee is not verified here",
+      "detail": "Coordination entries from other sessions say Bellagio terms confirm a $55 + tax fee. No Bellagio fee source was read in this session. Left blank.",
+      "sources": [
+        "https://bellagio.mgmresorts.com/en/casino/poker.html"
+      ]
+    },
+    "F32": {
+      "severity": "High",
+      "title": "Monitor baseline not yet run",
+      "detail": "The sandbox cannot reach venue sites. The daily monitor needs its first run in CI (see monitor page).",
+      "sources": [
+        "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
+      ]
+    }
+  },
+  "sources": [
+    {
+      "id": "ven-dse-table",
+      "name": "Venetian DeepStack IV schedule",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "kind": "official"
+    },
+    {
+      "id": "ven-dse-series",
+      "name": "Venetian DeepStack series overview",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html",
+      "kind": "official"
+    },
+    {
+      "id": "ven-sheet-1",
+      "name": "DSE structure sheet 1",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "kind": "official"
+    },
+    {
+      "id": "ven-sheet-5",
+      "name": "DSE structure sheet 5",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf",
+      "kind": "official"
+    },
+    {
+      "id": "ven-sheet-7",
+      "name": "DSE structure sheet 7",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
+      "kind": "official"
+    },
+    {
+      "id": "ven-sheet-15",
+      "name": "DSE structure sheet 15",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
+      "kind": "official"
+    },
+    {
+      "id": "ven-suite",
+      "name": "Venetian poker suite rates",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
+      "kind": "official"
+    },
+    {
+      "id": "ven-fee",
+      "name": "Venetian resort fee",
+      "url": "https://www.venetianlasvegas.com/resort/resort-fee.html",
+      "kind": "official"
+    },
+    {
+      "id": "ven-terms",
+      "name": "Venetian hotel terms",
+      "url": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
+      "kind": "official"
+    },
+    {
+      "id": "wynn-poker",
+      "name": "Wynn poker room",
+      "url": "https://www.wynnlasvegas.com/casino/poker",
+      "kind": "official"
+    },
+    {
+      "id": "wynn-wpt-sched",
+      "name": "Wynn WPT schedule PDF",
+      "url": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
+      "kind": "official"
+    },
+    {
+      "id": "wynn-poster",
+      "name": "Wynn daily poster PDF",
+      "url": "https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf",
+      "kind": "official"
+    },
+    {
+      "id": "bel-poker",
+      "name": "Bellagio poker page",
+      "url": "https://bellagio.mgmresorts.com/en/casino/poker.html",
+      "kind": "official"
+    },
+    {
+      "id": "bel-fri",
+      "name": "Bellagio Friday PDF",
+      "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf",
+      "kind": "official"
+    },
+    {
+      "id": "bel-sat",
+      "name": "Bellagio Saturday PDF",
+      "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf",
+      "kind": "official"
+    },
+    {
+      "id": "bel-sun",
+      "name": "Bellagio Sunday PDF",
+      "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt07fcf1244a6da661/6af491a339e2b4f6b76a86ad/mgm-bellagio-poker-sundays-$400-horse.pdf",
+      "kind": "official"
+    },
+    {
+      "id": "aria-poker",
+      "name": "ARIA poker page",
+      "url": "https://aria.mgmresorts.com/en/casino/poker.html",
+      "kind": "official"
+    }
+  ]
+}
