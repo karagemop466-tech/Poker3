@@ -1,10 +1,54 @@
 # Vegas Poker Planner
 
-Source-first research dashboard for official Las Vegas poker tournament schedules and Strip-area lodging. The canonical GitHub Pages dashboard is in [`site/`](site/) and includes Overview, Tournaments, Hotels, Day plan, Open questions, Suggestions, and Flagged for review.
+Source-first Las Vegas Strip poker trip planner. The canonical GitHub Pages dashboard is in [`site/`](site/) and is
+the only directory published by the Pages workflow.
 
-The repository also retains earlier root-level and `docs/` dashboards from merged parallel sessions. They are prior research artifacts with their own unresolved rows/flags; they are not the canonical site artifact and are not used as evidence for `site/data.json` unless rechecked against the venue source.
+| Page | What it does |
+|---|---|
+| `site/index.html` | Executive summary: the fixed trip, the primary event per day, and what is and is not confirmed. |
+| `site/tournaments.html` | Every published tournament row, with date, venue, category and single-entry filters, a search box and a per-row rule panel. |
+| `site/venues.html` | One page per Strip poker room, each with its events and its hotels (`browse.html?view=venue&key=…`). |
+| `site/browse.html` | Venue and category subpages, so a bounty event is never mixed in with a plain freezeout. |
+| `site/schedule.html` | One realistic primary event per day, a conditional fallback, the recurring room events, and the flagged impossible sequences. |
+| `site/hotels.html` | Published rate components, the mandatory resort fee, tax, true cost per night, parking, cancellation deadlines, walking times and the dated rate log. |
+| `site/questions.html` | The information still needed before booking, each with the official source behind the answer. |
+| `site/suggestions.html` | Proposed improvements with impact, effort and the decision each one needs. |
+| `site/flagged.html` | Every irregularity and unverified value, each with a link for manual review. |
+| `site/sources.html` | The official source log, every structure sheet with its read status, the morning feed sources and the automated re-check results. |
 
-**Evidence policy:** only official venue/hotel pages and official PDFs substantiate canonical findings. “1Day” is not proof of single entry. Unknown entry rules, unpriced hotel totals, and unverified walking times remain flagged or blank. Guarantees are not forecasts of actual payouts. Snapshot: 2026-11-16 UTC.
+## Evidence policy
+
+Only official venue and property pages and official PDFs substantiate a value. A structure sheet that prints one buy-in,
+one start flight and no re-entry, rebuy, add-on or second-flight clause is recorded as **single entry on the sheet**,
+with the excerpt and the retrieval date attached; the site never claims a sheet uses the words “single entry”.
+A row with a blank fee or guarantee is always explained by a note or a flag. The guaranteed-pool ÷ entry-fee figure is
+a descriptive ratio, never a forecast. Walking minutes are Google Maps walking estimates, because no venue publishes a
+walking time. Snapshot: **2026-11-16 UTC**.
+
+## Data pipeline
+
+```sh
+python3 scripts/data_source.py        # rebuilds site/data.json from the source modules
+```
+
+| Module | Contents |
+|---|---|
+| `scripts/data_venetian.py` | The 64 official DeepStack Extravaganza IV rows, the NYE rows, and the facts read from all 37 DSE IV structure PDFs. |
+| `scripts/data_venues.py` | Wynn daily, WPT and Signature Series rows, Bellagio, MGM Grand, Caesars Palace, Horseshoe and ARIA room events. |
+| `scripts/data_hotels.py` | Hotel components, the dated rate log and the walking-route estimates. |
+| `scripts/data_source.py` | Assembles `site/data.json`, the fixed trip profile, the day plan and the conflict flags. |
+
+`research/structure_notes.md` records the read log for all 37 DSE IV structure PDFs.
+
+## Scheduled checks
+
+`.github/workflows/checks.yml` runs every morning at 05:00 Pacific:
+
+- `scripts/check_sources.py` fetches every official URL behind the dashboard, stores a SHA-256 of the response and
+  flags any source whose body changed. It never changes a tournament value on its own: a changed page is re-read by a
+  human first. Results are published as `site/checks.json` and shown on the sources page.
+- `scripts/daily_feed.py` pulls the schedule page of each Strip poker room and writes a dated snapshot under
+  `site/feed/`, so a morning run can be compared with the previous morning instead of replacing it.
 
 ## Run locally
 
@@ -14,24 +58,24 @@ python3 -m http.server 8000 --directory site
 
 Then open `http://localhost:8000`.
 
-## GitHub Pages
+## Verification
 
-`.github/workflows/pages.yml` publishes the static `site/` directory on pushes to `main`; GitHub Pages must be enabled with GitHub Actions as its source. The workflow does not scrape or synthesize schedule data.
+```sh
+python3 scripts/verify_site.py        # official-source, blank-value and link checks over site/data.json
+python3 tests/canonical_smoke.py       # page structure plus a headless render check of every page
+node --check site/assets/app.js
+python3 -m json.tool site/data.json
+```
 
-## Verification and sources
+`.github/workflows/verify.yml` runs all of these on every pull request and push to `main`.
 
-Run `python3 scripts/verify_site.py`, `node --check site/assets/app.js`, and `python -m json.tool site/data.json`. Every canonical tournament and hotel row links to an official source. See [`COORDINATION.md`](COORDINATION.md) for ownership, official source register, integration history, verification and open review flags.
+## Prior-session artefacts
 
-## Expanded Poker3 research companion
+The repository also keeps earlier dashboards from merged parallel sessions: `docs/`, `verified/`, `planner/`,
+`single-entry/`, the root-level pages, and `site/poker3/`. They are prior research artefacts with their own unresolved
+rows and flags. They are not the canonical site and are not used as evidence for `site/data.json` unless re-checked
+against the venue source. `site/poker3/` is still published at `/poker3/` because it lives inside the Pages artifact;
+its conclusions predate this build and are more conservative, so treat it as an archive rather than as current data.
 
-`site/poker3/` adds a separate, source-linked Las Vegas field guide with tournament filters, a cautious date planner, room schedules, a sample hotel/fee comparison, route estimates, and a flagged-review register. It is included automatically in the existing Pages artifact at `/poker3/`; the canonical dashboard at `/` is preserved. The Dec. 10–14, 2026 two-adult hotel window is a research sample, not user-provided travel dates, and no strict-entry event is verified.
-
-Run `python3 tests/smoke.py` to validate this companion. When serving the repository's `site/` directory locally, open `http://localhost:8000/poker3/`.
-
-## Strip planner pages (session e125b4a2)
-
-`planner/` holds this session's pages: landing page, Venetian DeepStack Extravaganza IV single-entry table with per-row official source links, re-entry table, hotels, schedule, executive summary, suggestions, Q&A, and flagged-for-review. Research tables behind them are in `data/tournaments.md`, `data/hotels.md`, `data/schedule.md`, and `pages/*.md`. These files are **not** published by `.github/workflows/pages.yml`, which deploys only `site/`. Publishing `planner/` would need a user decision.
-
-## Single-entry site (session arena/d205f8ec-poker3)
-
-`single-entry/` holds the single-entry Strip tournament planner: 1-day main list (53 rows; 47 cash events plus 5 satellites and 1 two-day event, each labelled), excluded events, hotel true-cost formula, schedule, questions, suggestions and flagged-for-review. Start at `single-entry/index.html`. Every row links an official Venetian source; all 22 main-list structure sheets were read in full. Single entry is not printed on those sheets, so the page says "no re-entry or add-on wording", not "single entry confirmed". This folder is **not** published by `.github/workflows/pages.yml` (which deploys only `site/`). Publishing it needs a user decision.
+See [`COORDINATION.md`](COORDINATION.md) for ownership, the official source register, the integration history, the
+verification record and the open review flags.

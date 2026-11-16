@@ -12,8 +12,18 @@ jobs:
       - uses: actions/checkout@v4
       - name: Validate official-source data and local links
         run: python3 scripts/verify_site.py
+      - name: Validate the canonical dashboard
+        run: |
+          python3 tests/canonical_smoke.py
+          node --check site/assets/app.js
+          node --check tests/canonical_render.js
+          python3 -m json.tool site/data.json > /dev/null
       - name: Validate Poker3 companion dashboard
         run: |
           python3 tests/smoke.py
           node --check site/poker3/assets/app.js
           python3 -m json.tool site/poker3/data/research.json > /dev/null
+      - name: Confirm the data build is reproducible
+        run: |
+          python3 scripts/data_source.py
+          git diff --exit-code -- site/data.json
