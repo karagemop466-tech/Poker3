@@ -1,0 +1,113 @@
+{
+  "asOf": "2026-11-16",
+  "questions": [
+    {
+      "id": "Q1",
+      "question": "Which DSE IV events are genuinely single entry (freezeout) - one buy-in, no re-entry, no add-on?",
+      "known": "All 37 official structure sheets print the buy-in, house fee, prize-pool share, guarantee, chips, level duration and late-registration window. None of them prints an entry-count rule. The multi-flight sheets do contain 'Any player who bags chips for Day 2 may not play a subsequent flight', which implies more than one entry is possible for those events.",
+      "unknown": "The maximum number of entries per player for every single event number.",
+      "blocks": "Everything. The single-entry filter, the ranking, and the trip budget all depend on it.",
+      "howToResolve": "Email lv_cas_poker@venetianlasvegas.com or call 702.414.7657 and ask for the written maximum-entry policy per event number. Ask specifically: 'Is event #N a single-entry freezeout, or may a player who busts buy in again?' Get it in writing (email) before booking.",
+      "priority": "Blocker"
+    },
+    {
+      "id": "Q2",
+      "question": "What are your exact travel dates and how many nights?",
+      "known": "DSE IV runs November 16 - December 23, 2026. The two densest stretches are Dec 3-6 ($800, $500K GTD, six flights) and Dec 17-20 ($1,100, $500K GTD, five flights plus the final).",
+      "unknown": "Your arrival date, departure date and therefore the number of nights and the set of events you can reach.",
+      "blocks": "Hotel quotes, the total trip cost, and which events are even candidates.",
+      "howToResolve": "Pick dates. Every hotel row links an official booking page; open it with your dates to get an itemised total.",
+      "priority": "Blocker"
+    },
+    {
+      "id": "Q3",
+      "question": "What is the true cost per night for each candidate hotel for those dates?",
+      "known": "Venetian resort fee is $55 plus tax per night (S06). Clark County Room Tax is 13.38% and is excluded from quoted daily rates (S08). Venetian self-parking is $20/day for registered guests, $40/day valet, and free for poker players who play 3+ hours (S09). The Venetian poker rate starts at $119 or $209 and requires 6 hours live cash or a $300+ tournament buy-in per night (S07).",
+      "unknown": "The date-specific nightly base rate for every hotel, and the resort fee for all hotels except the Venetian.",
+      "blocks": "Any true like-for-like hotel comparison and the total trip cost.",
+      "howToResolve": "Open each official booking link on the Hotels page for your dates, capture the itemised total (base + resort fee + tax), and log it in the rate log on this site. Use the same dates, occupancy and room category for every hotel.",
+      "priority": "Blocker"
+    },
+    {
+      "id": "Q4",
+      "question": "What is your total budget, and how do you want it split between buy-ins and the room?",
+      "known": "Entry costs range from $100 (satellites, excluded) to $2,200. Among single-day events the range is $200 to $1,100. The Venetian poker rate can be as low as $119/night but only with qualifying play.",
+      "unknown": "Your ceiling.",
+      "blocks": "Whether to optimise for one big event or many small ones.",
+      "howToResolve": "Use the Trip Cost calculator on this site: entries x buy-in + nights x true nightly cost. Set a number and the Events page can be sorted within it.",
+      "priority": "High"
+    },
+    {
+      "id": "Q5",
+      "question": "Do bounty events count as 'single entry' for you?",
+      "known": "Bounty, PKO and Kings-and-Queens events pay a cash bounty per elimination. The buy-in is a single price; no sheet offers a paid chip add-on. Their guarantee is printed as 'prize pool + total bounties' so the two are mixed in one number.",
+      "unknown": "Whether you consider a bounty a form of paying for advantage. It is not - it is a payout format - but the guarantee figure is not comparable with a freezeout guarantee.",
+      "blocks": "Which events survive the filter.",
+      "howToResolve": "Decide yes or no. This site labels every bounty row and keeps the ratio column separate so you can switch the filter on the Events page.",
+      "priority": "High"
+    },
+    {
+      "id": "Q6",
+      "question": "Do you want to start at 8:00 AM?",
+      "known": "No DSE IV event starts before 9:10 AM, and 9:10 AM is a satellite. The earliest non-satellite start is 10:10 AM. The Venetian poker room is open 24 hours daily (S05).",
+      "unknown": "Whether an 8 AM start matters to you.",
+      "blocks": "The shape of each day.",
+      "howToResolve": "Either accept a 10:10 AM first event, or plan 8:00-10:00 AM as cash game time. Do not plan around an 8 AM tournament - none exists in the official schedule.",
+      "priority": "Medium"
+    },
+    {
+      "id": "Q7",
+      "question": "How many events per day do you want, and are you willing to play two?",
+      "known": "Most days have a morning/afternoon event and an evening event. Registration windows usually do not overlap: morning events close registration around 3:40-4:55 PM and evening events start at 5:10 PM.",
+      "unknown": "Whether you will actually be finished with the first event in time. No official source publishes a finish time or a field size, so this cannot be computed.",
+      "blocks": "The daily schedule plan.",
+      "howToResolve": "Treat the evening event as a conditional fallback, not a plan. Register for it only after you are out of the first event. Ask the poker room for typical finish times.",
+      "priority": "High"
+    },
+    {
+      "id": "Q8",
+      "question": "Are you 50 or over? Are you female?",
+      "known": "Events 24 and 32 ($600 Seniors) require players to be 50+; the sheet says anyone under 50 forfeits both prize money and the buy-in. Event 39 ($800 LIPS Ladies, 2Day) requires players to be female and 21+. Events 33 and 37 ($100 LIPS satellites) are open to female players only. Events 35, 43 and the LIPS events withhold an extra $10 or $20 flat fee for Ladies International Poker Series.",
+      "unknown": "Your eligibility.",
+      "blocks": "Several events become non-candidates.",
+      "howToResolve": "Tick the eligibility boxes on the Events page; ineligible rows are greyed out.",
+      "priority": "Medium"
+    },
+    {
+      "id": "Q9",
+      "question": "Will you have a car?",
+      "known": "Venetian self-parking is $20/day for registered hotel guests and complimentary for poker players who play 3+ hours per day (supervisor must confirm). Valet is $40/day. Complimentary self-parking is also free while playing.",
+      "unknown": "Whether parking is a line item for you.",
+      "blocks": "A small but real part of the daily cost, and whether hotels beyond comfortable walking range become viable.",
+      "howToResolve": "If you are playing 3+ hours a day, budget $0 for parking at the Venetian. Otherwise budget $20/day.",
+      "priority": "Low"
+    },
+    {
+      "id": "Q10",
+      "question": "Should the plan extend past December 23 into the NYE series or the January Showdown?",
+      "known": "DeepStack Extravaganza NYE runs December 24, 2026 - January 10, 2027 (more than $1.1M guaranteed; $2,200 $300K GTD Dec 27-31; $1,600 MSPT $400K GTD Jan 1-4). DeepStack Showdown (January) runs January 11 - February 14, 2027 (more than $2.2M guaranteed). Neither series had a structure sheet read this session.",
+      "unknown": "Whether your trip extends into either series.",
+      "blocks": "Whether those events need to be researched.",
+      "howToResolve": "Say yes or no. If yes, each series' schedule and structure sheets need the same full read that DSE IV got.",
+      "priority": "Medium"
+    },
+    {
+      "id": "Q11",
+      "question": "Do you want any non-Venetian Strip poker rooms included?",
+      "known": "This session verified the Venetian in full. Prior sessions recorded that Wynn WPT events and Bellagio weekly events carry re-entry or rebuy wording, and that ARIA's poker guide is undated; those were not re-verified here. Wynn's official fee pages are currently unreachable.",
+      "unknown": "Whether a wider scan is wanted, and whether those rooms' events would survive a single-entry filter.",
+      "blocks": "Completeness of the tournament inventory.",
+      "howToResolve": "Say yes or no. A wider scan means fetching each room's official schedule and reading each event's structure sheet.",
+      "priority": "Medium"
+    },
+    {
+      "id": "Q12",
+      "question": "Do you have a Venetian Rewards card?",
+      "known": "Every structure sheet requires players to be 21+ and to hold a Venetian Rewards card to participate. The poker rate is tracked through that card, and it earns $2/hour in rewards redeemable at resort outlets and toward tournament buy-ins.",
+      "unknown": "Whether you already have one.",
+      "blocks": "Registration itself, and access to the poker room rate.",
+      "howToResolve": "Sign up at venetianlasvegas.com/venetianrewards. Bring the number when you book the poker rate (code EPOKR25, 866.255.8936).",
+      "priority": "High"
+    }
+  ]
+}

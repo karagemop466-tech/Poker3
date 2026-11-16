@@ -1,0 +1,77 @@
+name: monitor-sources
+
+# Re-fetches every official source URL the site depends on and records what
+# changed. A change never edits the site data - it opens an issue prompting a
+# human to re-read the page, because only a person can decide what a changed
+# page now means.
+
+on:
+  schedule:
+    - cron: '17 13 * * *'   # daily, 13:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  monitor:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Re-fetch every official source
+        id: monitor
+        continue-on-error: true
+        run: python3 scripts/monitor_sources.py
+
+      - name: Load monitor state
+        id: state
+        run: |
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import json, pathlib
+          p = pathlib.Path('monitor/state.json')
+          if not p.exists():
+              print("changed=0"); print("unreachable=0"); raise SystemExit
+          state = json.loads(p.read_text())
+          changed = [v for v in state.values() if v.get('changed')]
+          print(f"changed={len(changed)}")
+          ids = ", ".join(sorted(v.get('id', '?') for v in changed)) or "none"
+          print(f"ids<<EOF")
+          print(ids)
+          print("EOF")
+          PY
+
+      - name: Commit the new snapshots and report
+        run: |
+          git config user.name  "source-monitor[bot]"
+          git config user.email "source-monitor[bot]@users.noreply.github.com"
+          git add monitor/
+          if git diff --cached --quiet; then
+            echo "No snapshot changes to commit."
+          else
+            git commit -m "monitor: source snapshot update $(date -u +%Y-%m-%dT%H:%MZ)"
+            git push
+          fi
+
+      - name: Open an issue when a source changed
+        if: steps.state.outputs.changed != '0'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          changed="${{ steps.state.outputs.changed }}"
+          ids="${{ steps.state.outputs.ids }}"
+          gh issue create \
+            --title "Official source changed: $changed page(s) differ from the stored snapshot" \
+            --label "source-change" \
+            --body "The scheduled source check found $changed official page(s) whose content differs from the snapshot stored in \`monitor/snapshots/\`.
+
+          Changed source ids: $ids
+
+          Full report: \`monitor/report.md\` (committed on this run).
+
+          **This is a prompt to re-verify, not an automatic update.** Open each page, read it, and only then edit \`scripts/poker_data.py\` and rebuild with \`python3 scripts/build_site.py\`. Record what you confirmed and the new retrieval date."

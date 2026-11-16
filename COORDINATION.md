@@ -484,6 +484,7 @@ and #24), session `arena/e58b73b1-poker3` added a trip-cost calculator and a sou
   is merged later it will need a rebase, and the root `index.html` will then hold that session's earlier snapshot
   rather than the canonical dashboard.
 
+
 ---
 
 ## Session `arena/ef37b79e-poker3` — full structure-sheet verification + canonical `site/` rebuild
@@ -523,3 +524,110 @@ Note: earlier sessions logged a README.md/COORDINATION.md "contents swapped" irr
 3. Verify the PR check run is green (`verify.yml`: verify_site.py + smoke.py + JSON/JS checks); fix and retry if red.
 4. Merge with `gh pr merge <n> --merge` (explicit number, no auto-merge).
 5. Confirm GitHub Pages deploy (`pages.yml` uploads `site/`); record the PR link and merge result here in a follow-up commit merged as a second PR (same pattern as PRs #10/#12).
+
+## Session `arena/e1a99371-poker3` — independent structure-sheet verification (handoff)
+
+### Scope collision, and how it was resolved
+
+This branch was created at `e9af34c`, before session `arena/62cea180-poker3` /
+`arena/ed88c788-poker3` claimed and merged the canonical site integration
+(PRs #22–#26). Both sessions independently built a canonical dashboard covering
+the same pages, so the two lines of work overlap.
+
+**Resolution: their canonical site on `main` is kept, unmodified.** It is more
+complete (341 events across 7 venues vs my 94 Venetian-only rows), it is already
+merged, and its CI passes. My competing generator is preserved unpublished under
+`handoff/e1a99371/`, following the convention session `arena/aa084881-poker3`
+established with `handoff/aa084881/`. Nothing from the other session was
+discarded or overwritten.
+
+### What this session contributes
+
+1. **`raw/dse_nov_2026_structures_page.md`** — a verbatim copy of the official
+   Venetian structures/results HTML table, retrieved 2026-11-16, with an explicit
+   date for every row and a link to each structure sheet. This is the evidence
+   that settles the date question described below, and it is additive: nothing
+   else in the repository contains it.
+2. **An independent cross-check of the published data** — see the result below.
+3. **`handoff/e1a99371/`** — my verified data module (`scripts/poker_data.py`),
+   the site generator (`scripts/build_site.py`), its assets, a source monitor and
+   the JSON outputs. Unpublished, reproducible with
+   `python3 handoff/e1a99371/scripts/build_site.py` (it writes into `site/`, so it
+   is deliberately NOT wired into any workflow).
+
+### Verification performed
+
+- All 37 official DSE IV structure sheets read in full on 2026-11-16: every
+  buy-in, house fee, prize-pool share, guarantee, starting stack, level duration,
+  late-registration window, payout percentage and age restriction.
+- **Date authority is the official HTML table, not the schedule PDF.** The PDF's
+  DATE column contains non-date banner strings ("@PokerAtlas PRO",
+  "@PokerAtlas* TOUR", "LIPS CHAMPIONSHIP CHAMPIES CHAMPIES CHAMPIES",
+  "LIPS FRIDAY, DECEMBER 11") where a weekday/date should be. Any date taken from
+  PDF row order is therefore an inference. The HTML page gives a full explicit
+  date per row. This is recorded because earlier passes dated rows by inference.
+- Venetian fee pages verified: $55 + tax/night resort fee; 13.38% Clark County
+  Room Tax; $20/day guest self-parking and $40 valet; 3+ hours of poker play =
+  free self-parking that day; poker rate from $119/$209 on code EPOKR25 requiring
+  6 hours live cash or a $300+ tournament buy-in per night; 3:00 pm check-in,
+  11:00 am check-out, $100 + tax early departure; $150/night incidental deposit.
+- 18 hotels: Google Maps walking times and distances to the Venetian poker room,
+  each with the route URL. Walking queries only return true walking routes with
+  the `data=!4m2!4m1!3e2` suffix; the `?travelmode=walking` form silently returns
+  driving/transit mixes.
+
+### Cross-check result (the headline number)
+
+My 94 independently-read DSE IV starts were compared field-for-field against the
+published `site/data.json` rows, keyed on (date, start time, buy-in):
+
+- **91 of 94 matched on every field compared** (buy-in, guarantee, starting
+  chips, level minutes, registration close).
+- **0 rows had no counterpart** — every start I read is present.
+- **3 rows differ on one field**: events #3, #4 and #5 (sheet 18, RaceDay Stack)
+  record level minutes as `20/15` in my read and `20` in the published data. The
+  RaceDay sheet steps down from 20-minute to 15-minute levels, so the published
+  value captures only the first. Minor, cosmetic, and logged here rather than
+  edited, because `site/data.json` is owned by the integration session.
+
+**The published canonical data is therefore confirmed correct against an
+independent reading of the official structure sheets.** Dates in particular match
+the HTML table, not the inferred PDF ordering.
+
+### Flags this session would add (recorded, not published)
+
+F01 no sheet prints an entry-count rule, so nothing can be called "single entry"
+· F02 multi-flight re-entry inferred from "Any player who bags chips for Day 2 may
+not play a subsequent flight" · F03 events 18/58 are the only 1Day sheets
+referencing subsequent buy-ins and carry a PokerAtlas PRO paid-membership rake
+discount · F04 bounty guarantees mix prize pool and bounties · F05 events 3/4/5/6
+print no guarantee · F06 no finish time is published for any event · F07 earliest
+start is 9:10 AM (a satellite) / 10:10 AM (earliest candidate), never 8:00 AM ·
+F08 the schedule PDF's DATE column contains non-date strings · F-H1 no official
+page publishes a date-specific rate · F-H2 13.38% verified only on the Venetian's
+own page · F-H3 Wynn's fee and terms pages both return 404 · F-H4 Encore routes
+6 min longer than Wynn despite being adjacent · F-H5 "The Mirage" no longer
+resolves on Google Maps · F-H6 Resorts World route flagged restricted/private ·
+F-X2 the monitor had not run a second pass at the time of writing.
+
+### Requests for a user decision (not blocking)
+
+- **R4.** Confirm the single-entry status per event by phone or email —
+  `lv_cas_poker@venetianlasvegas.com`, 702.414.7657. Nothing else can be settled
+  until this is. No structure sheet prints it.
+- **R5.** Retire the duplicate trees (`docs/`, `verified/`, `planner/`,
+  `single-entry/`, root-level pages, `site/poker3/`) now that `site/` carries the
+  verified data — or say which to keep. `site/poker3/` is still referenced by
+  `verify.yml`.
+- **R6.** Decide whether to fold the RaceDay level detail (`20/15` for events
+  #3/#4/#5) into the published data.
+
+### Checks run on this branch
+
+`python3 scripts/verify_site.py` → verification passed (341 events, 8 hotels,
+14 routes, 27 sources, 28 flags, 15 pages) · `python3 tests/canonical_smoke.py` →
+passed (10 main pages, 5 detail pages) · `python3 tests/smoke.py` → OK ·
+`node --check site/assets/app.js` → OK · `node --check site/poker3/assets/app.js`
+→ OK · `python3 scripts/data_source.py` + `git diff --exit-code site/data.json` →
+reproducible, no diff.
+ (verify: independent cross-check of published DSE IV data against all 37 official structure sheets)
