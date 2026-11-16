@@ -238,3 +238,12 @@ Branch: `arena/e125b4a2-poker3`. This session's files are kept in their own fold
 - The Dec. 10–14, 2026, two-adult hotel search is a research sample, not user-provided travel dates. Hotel all-in totals remain unconfirmed; route times remain third-party estimates.
 - Planner scenarios use a user-entered time-at-event assumption and are explicitly not verified or guaranteed itineraries. Unknown terms are labeled “Flagged for Review.”
 - Checks: `node --check site/poker3/assets/app.js`; `python3 tests/smoke.py`; JSON validation; headless DOM rendering/interaction checks on all eight pages, event filters, the mobile navigation, planner date/scenario controls, and internal links.
+
+## Current session `arena/ea188b20-poker3` — dashboard enhancements and source monitoring
+
+| Task | Status | Owner session | Files touched |
+|---|---|---|---|
+| Implement trip-cost calculator, global/table search, date and strict-entry filters, venue pages, per-row provenance, hotel rate-log schema, schedule conflict checks, and source-change visibility | in progress | `ea188b20` | `site/**`, `scripts/monitor_official_sources.py`, `tests/**`, `README.md`, `COORDINATION.md` |
+| Add scheduled official-source and tournament-schedule polling workflow | in progress | `ea188b20` | `.github/workflows/monitor-official-sources.yml`, `site/data/**`, `scripts/monitor_official_sources.py` |
+
+Claimed on `arena/ea188b20-poker3`. Work will stay on this branch and in the listed scope; prior session research remains attributed to its original owner. Any official-source value not reverified from a primary page remains blank/flagged.
