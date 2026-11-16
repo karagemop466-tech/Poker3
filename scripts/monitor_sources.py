@@ -54,7 +54,7 @@ def fetch(url):
 def main():
     data = json.loads(DATA.read_text(encoding="utf-8"))
     today = datetime.now(timezone.utc).date().isoformat()
-    sources = data.get("officialSources", [])
+    sources = data.get("sources") or data.get("officialSources") or []
     previous = load_json(CHECKS, {"generatedAt": None, "checks": []})
     prev_by_url = {}
     for entry in previous.get("checks", []):
@@ -121,12 +121,17 @@ def main():
 
 
 def rows_referencing_url(data, url):
+    """Which published rows point at this URL (canonical field names)."""
     rows = []
-    for index, row in enumerate(data.get("tournaments", []), start=1):
-        for field in ("schedule", "structure", "confirmSource"):
+    for index, row in enumerate(data.get("events", []) or data.get("tournaments", []), start=1):
+        for field in ("scheduleUrl", "structureUrl", "schedule", "structure", "confirmSource"):
             if row.get(field) == url:
                 rows.append({"kind": "tournament", "row": index,
-                             "event": row.get("event", ""), "field": field})
+                             "event": row.get("name") or row.get("event", ""), "field": field})
+        for rule, body in (row.get("rules") or {}).items():
+            if isinstance(body, dict) and body.get("source") == url:
+                rows.append({"kind": "tournament", "row": index,
+                             "event": row.get("name", ""), "field": "rules." + rule})
     for index, row in enumerate(data.get("hotels", []), start=1):
         for field in ("source", "feeSource", "taxSource", "feeSourceAlt"):
             if row.get(field) == url:

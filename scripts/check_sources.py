@@ -1,115 +1,144 @@
 #!/usr/bin/env python3
-"""Check official source URLs and record page-content changes without copying page data.
+"""Scheduled re-check of every official URL behind the dashboard.
 
-The monitor is deliberately a change signal, not an extractor: humans still verify any
-changed value against the linked official source before editing tournament/hotel facts.
+Run from the repository root:
+
+    python3 scripts/check_sources.py
+
+It fetches each official URL, stores a SHA-256 of the response body and compares
+it with the hash recorded in site/checks.json.  A URL whose body changed is
+flagged, and the flags are published on the sources page.
+
+The script never changes a tournament value by itself.  A changed page means a
+human has to look at the official source again before any number moves, so the
+script only records the change and the reason.
+
+Network access is required.  It is designed to run in GitHub Actions; it is
+safe to run anywhere with outbound HTTPS.
 """
 from __future__ import annotations
 
 import argparse
-import concurrent.futures
 import datetime as dt
 import hashlib
 import json
-import time
+import pathlib
+import ssl
+import sys
 import urllib.error
 import urllib.request
-from pathlib import Path
-from typing import Any
 
-ROOT = Path(__file__).resolve().parents[1]
-DEFAULT_CATALOG = ROOT / "site/poker3/data/research.json"
-DEFAULT_OUTPUT = ROOT / "site/poker3/data/source-monitor.json"
-USER_AGENT = "Poker3OfficialSourceMonitor/1.0 (+https://github.com/karagemop466-tech/Poker3)"
+ROOT = pathlib.Path(__file__).resolve().parents[1]
+SITE = ROOT / "site"
+DATA = SITE / "data.json"
+CHECKS = SITE / "checks.json"
 
-
-def utc_now() -> dt.datetime:
-    return dt.datetime.now(dt.timezone.utc).replace(microsecond=0)
+USER_AGENT = "Poker3SourceChecker/1.0 (+https://karagemop466-tech.github.io/Poker3/)"
+TIMEOUT = 30
 
 
-def fetch(url: str, timeout: int = 25) -> tuple[int, bytes]:
-    request = urllib.request.Request(
-        url,
-        headers={"User-Agent": USER_AGENT, "Accept": "text/html,application/pdf,*/*"},
-    )
-    with urllib.request.urlopen(request, timeout=timeout) as response:
-        status = int(response.status)
-        body = response.read(12 * 1024 * 1024 + 1)
-    if len(body) > 12 * 1024 * 1024:
-        raise ValueError("response exceeded 12 MiB safety limit")
-    if status < 200 or status >= 300:
-        raise urllib.error.HTTPError(url, status, "non-success response", response.headers, None)
-    return status, body
+def official_targets(data: dict) -> list[dict]:
+    """Every official URL the dashboard depends on, with a readable label."""
+    out: dict[str, dict] = {}
+
+    def add(url: str, label: str) -> None:
+        if url and url.startswith("https://") and url not in out:
+            out[url] = {"url": url, "label": label}
+
+    for s in data.get("sources", []):
+        add(s["url"], s["name"])
+    for sheet in data.get("structureSheets", []):
+        add(sheet["url"], f"{sheet['series']} structure sheet {sheet['sheet']}")
+    for room in data.get("feed", []):
+        add(room["schedule"], f"{room['name']} schedule page")
+        for extra in room.get("extra", []):
+            add(extra, f"{room['name']} extra source")
+    for e in data.get("events", []):
+        add(e.get("scheduleUrl", ""), f"Schedule for {e['name']}")
+        add(e.get("structureUrl", ""), f"Structure sheet for {e['name']}")
+    for h in data.get("hotels", []):
+        add(h.get("source", ""), f"{h['name']} room source")
+        add(h.get("feeSource", ""), f"{h['name']} fee terms")
+        add(h.get("taxSource", ""), f"{h['name']} tax terms")
+    return list(out.values())
 
 
-def check_one(source: dict[str, Any], previous: dict[str, Any], checked_at: str,
-              fetcher=fetch) -> tuple[str, dict[str, Any]]:
-    source_id = source["id"]
-    old = previous.get(source_id, {})
-    result: dict[str, Any] = {
-        "url": source["url"],
-        "name": source.get("name", source_id),
-        "lastChecked": checked_at,
-        "changed": None,
-        "result": "unavailable",
-        "httpStatus": None,
-        "contentHash": old.get("contentHash"),
-        "error": None,
-    }
-    try:
-        status, content = fetcher(source["url"])
-        digest = hashlib.sha256(content).hexdigest()
-        result.update({"httpStatus": status, "contentHash": digest, "error": None})
-        old_hash = old.get("contentHash")
-        if not old_hash:
-            result.update({"changed": False, "result": "baseline"})
-        elif old_hash != digest:
-            result.update({"changed": True, "result": "changed"})
-        else:
-            result.update({"changed": False, "result": "unchanged"})
-    except Exception as exc:  # Network, TLS, HTTP and parsing errors are evidence gaps.
-        result["error"] = f"{type(exc).__name__}: {str(exc)[:240]}"
-        result["httpStatus"] = getattr(exc, "code", None)
-    return source_id, result
+def fetch(url: str) -> tuple[int, str, bytes]:
+    request = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
+    context = ssl.create_default_context()
+    with urllib.request.urlopen(request, timeout=TIMEOUT, context=context) as response:
+        return response.status, response.headers.get("Content-Type", ""), response.read()
 
 
-def run(catalog_path: Path = DEFAULT_CATALOG, output_path: Path = DEFAULT_OUTPUT,
-        fetcher=fetch, checked_at: str | None = None, delay: float = 0.15) -> dict[str, Any]:
-    catalog = json.loads(catalog_path.read_text(encoding="utf-8"))
-    previous_doc = json.loads(output_path.read_text(encoding="utf-8")) if output_path.exists() else {}
-    previous = previous_doc.get("checks", {})
-    official = [source for source in catalog.get("sources", [])
-                if source.get("kind") == "official" and source.get("url", "").startswith("https://")]
-    timestamp = checked_at or utc_now().isoformat().replace("+00:00", "Z")
-    checks: dict[str, dict[str, Any]] = {}
-    # Bounded concurrency keeps the daily check quick without hammering a property site.
-    with concurrent.futures.ThreadPoolExecutor(max_workers=5) as pool:
-        futures = [pool.submit(check_one, source, previous, timestamp, fetcher) for source in official]
-        for future in concurrent.futures.as_completed(futures):
-            source_id, record = future.result()
-            checks[source_id] = record
-            if delay:
-                time.sleep(delay)
-    document = {
-        "checkedAt": timestamp,
-        "officialSourceCount": len(official),
-        "changedCount": sum(record["changed"] is True for record in checks.values()),
-        "unavailableCount": sum(record["result"] == "unavailable" for record in checks.values()),
-        "checks": dict(sorted(checks.items())),
-    }
-    output_path.parent.mkdir(parents=True, exist_ok=True)
-    output_path.write_text(json.dumps(document, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
-    print(json.dumps({key: document[key] for key in ("checkedAt", "officialSourceCount", "changedCount", "unavailableCount")}, indent=2))
-    return document
-
-
-def main() -> None:
-    parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--catalog", type=Path, default=DEFAULT_CATALOG)
-    parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT)
+def main() -> int:
+    parser = argparse.ArgumentParser(description="Re-check every official URL used by the dashboard.")
+    parser.add_argument("--only", default="", help="only check URLs whose label contains this text")
+    parser.add_argument("--dry-run", action="store_true", help="do not write site/checks.json")
     args = parser.parse_args()
-    run(args.catalog, args.output)
+
+    data = json.loads(DATA.read_text(encoding="utf-8"))
+    previous = {}
+    if CHECKS.exists():
+        try:
+            previous = {u["url"]: u for u in json.loads(CHECKS.read_text(encoding="utf-8")).get("urls", [])}
+        except (ValueError, KeyError):
+            previous = {}
+
+    targets = official_targets(data)
+    if args.only:
+        needle = args.only.lower()
+        targets = [t for t in targets if needle in t["label"].lower() or needle in t["url"].lower()]
+
+    now = dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat()
+    rows = []
+    changed = []
+    for target in targets:
+        url = target["url"]
+        row = {"url": url, "label": target["label"], "checked": now}
+        old = previous.get(url)
+        try:
+            status, ctype, body = fetch(url)
+            digest = hashlib.sha256(body).hexdigest()
+            row["status"] = f"HTTP {status}"
+            row["hash"] = digest
+            row["bytes"] = len(body)
+            if old and old.get("hash") and old["hash"] != digest:
+                row["changed"] = True
+                row["previousHash"] = old["hash"]
+                row["previousChecked"] = old.get("checked", "")
+                changed.append(row)
+            else:
+                row["changed"] = False
+        except urllib.error.HTTPError as exc:
+            row["status"] = f"HTTP {exc.code}"
+            row["error"] = str(exc)
+            row["changed"] = bool(old)
+            if old and old.get("hash"):
+                row["previousHash"] = old["hash"]
+                changed.append(row)
+        except Exception as exc:  # noqa: BLE001 - the checker must survive one bad URL
+            row["status"] = "unreachable"
+            row["error"] = f"{type(exc).__name__}: {exc}"
+            row["changed"] = bool(old)
+            if old and old.get("hash"):
+                row["previousHash"] = old["hash"]
+                changed.append(row)
+        rows.append(row)
+        print(f"{row['status']:>14}  {url}")
+
+    payload = {
+        "lastRun": now,
+        "note": ("Automated re-check of every official URL behind this dashboard. A changed flag means the page body "
+                 "differs from the stored hash and a human must re-read the source before any value is changed."),
+        "urls": rows,
+        "changedCount": len(changed),
+        "changed": [r["url"] for r in changed],
+    }
+    if not args.dry_run:
+        CHECKS.write_text(json.dumps(payload, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+        print(f"\nwrote {CHECKS} with {len(rows)} URLs, {len(changed)} changed")
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

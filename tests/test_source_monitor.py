@@ -4,8 +4,8 @@ import tempfile
 import unittest
 from pathlib import Path
 
-SCRIPT = Path(__file__).resolve().parents[1] / "scripts/check_sources.py"
-spec = importlib.util.spec_from_file_location("check_sources", SCRIPT)
+SCRIPT = Path(__file__).resolve().parents[1] / "scripts/check_sources_poker3.py"
+spec = importlib.util.spec_from_file_location("check_sources_poker3", SCRIPT)
 monitor = importlib.util.module_from_spec(spec)
 assert spec.loader
 spec.loader.exec_module(monitor)

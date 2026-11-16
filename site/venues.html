@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="One page per Las Vegas Strip poker room: the Venetian, Wynn, Bellagio, MGM Grand, Caesars Palace, Horseshoe and ARIA, with published events and hotels.">
+<title>Vegas Poker Planner · Venues</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="venues">
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark">♠</span><span>Vegas Poker Planner</span></a>
+  <form class="top-search" data-search-form><input type="search" placeholder="Search every tournament, venue and rule…" aria-label="Search tournaments"><button class="btn" type="submit">Search</button></form>
+  <span class="top-tag">Official sources only · verified <span data-asof></span></span>
+</header>
+<nav class="mobile-nav" data-mobile-nav></nav>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="side-label">Plan your trip</div>
+    <nav class="nav" data-nav></nav>
+    <div class="side-note">
+      <strong>Seven rooms checked</strong>
+      Each venue page lists the events that venue publishes, the hotels attached to it, and the walking time from the
+      recommended hotel. Rooms that were not checked are listed on the Flagged for review page.
+    </div>
+  </aside>
+  <main class="main">
+    <section class="hero">
+      <div class="eyebrow">Venues · seven Strip poker rooms</div>
+      <h1>The rooms, what each one publishes, and how far it is.</h1>
+      <p>
+        Each card below opens a venue page with that room’s published events, the hotels attached to it and the walking
+        time from the recommended hotel. The walking figures are Google Maps walking estimates captured on
+        <span data-asof></span>, because no venue publishes a walking time to its own poker room. ARIA and MGM Grand
+        sit outside the 30-minute limit from the Venetian; every other room on this list is inside it.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Strip poker rooms</h2><p>Seven rooms verified from official pages in this pass.</p></div></div>
+      <div class="cards" data-venue-list></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Rooms not checked in this pass</h2><p>Recorded so the coverage gap is visible.</p></div></div>
+      <div class="card">
+        <p>South Point, Golden Nugget, Resorts World, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate,
+        Tropicana, Bally’s, Flamingo, LINQ, Planet Hollywood, Rio and M Resort were not read. For a trip that wants the
+        most playable tournaments in walking range, the smaller daily rooms are often worth more than another marquee
+        series, so this gap matters more than the missing headline events.</p>
+        <p class="muted">Each one needs its own official page and its own structure sheets before any of its values
+        can appear in a table here. See <a href="questions.html">the open questions</a> and
+        <a href="flagged.html">the flag register</a>.</p>
+      </div>
+    </section>
+
+    <div class="footer">Venue details come from official poker-room pages and structure PDFs retrieved on
+      <span data-asof></span>. <a href="sources.html">Source log</a>.</div>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

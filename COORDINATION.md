@@ -304,3 +304,156 @@ Branch: `arena/62cea180-poker3`, created from `origin/main` at e9af34c. This ses
   5. Do not present the ARIA undated cadence rows as verified. The ARIA guide was not read in this session.
 - **Cross-session request (unchanged).** Extend the daily monitor (`.github/workflows/source-monitor.yml` + `scripts/monitor_sources.py`, owner 62cea180 / e58b73b1) to the Venetian DSE, Wynn, Bellagio and ARIA official URLs in `handoff/aa084881/site_data.py` (`MONITOR_SOURCES`). This session did not edit either file.
 - **Branch and PR.** Branch `arena/aa084881-poker3` now holds only this handoff (on top of `origin/main`). The earlier site commits were replaced by this handoff, so the branch no longer carries a site rebuild. A force-with-lease push was used on this session's own branch.
+---
+
+## Current session `arena/ed88c788-poker3` — final integration and republication
+
+Branch: `arena/ed88c788-poker3` (base `main` at `e9af34c`). This session is the only active editor, so it
+takes the integration-owner role for every shared output: the canonical `site/` artifact, the combined data
+set, navigation, the schedule plan, the flag register and the source log. No other session holds a live claim
+on this branch, so the scope below is non-overlapping.
+
+| Task | Status | Owner session | Scope | Files | Notes |
+|---|---|---|---|---|---|
+| Source-data modules for the canonical set | in progress | arena/ed88c788-poker3 | new source modules | `scripts/data_venetian.py`, `scripts/data_venues.py`, `scripts/data_hotels.py`, `scripts/data_source.py` | Builds `site/data.json` from official-source rows only. Every row keeps its official URL and the 2026-11-16 retrieval date. |
+| Canonical rebuild of `site/` | in progress | arena/ed88c788-poker3 | canonical Pages artifact | `site/index.html`, `site/tournaments.html`, `site/hotels.html`, `site/schedule.html`, `site/questions.html`, `site/suggestions.html`, `site/flagged.html`, `site/sources.html`, `site/browse.html`, `site/assets/app.js`, `site/assets/site.css`, `site/data.json` | Replaces the superseded 40-row snapshot with the verified set. |
+| Automated re-check + morning daily feed | in progress | arena/ed88c788-poker3 | automation | `scripts/check_sources.py`, `scripts/daily_feed.py`, `.github/workflows/checks.yml`, `site/checks.json`, `site/feed/**` | Scheduled URL re-check with content hashes and changed-value flags; daily per-room schedule feed. |
+| Verification, PR, merge, deployment | pending | arena/ed88c788-poker3 | whole repo | `scripts/verify_site.py`, `tests/`, this section | Line-by-line re-verification, no broken links, PR to `main`, explicit merge, deployment confirmation recorded here. |
+
+### Claim record (this session)
+
+- **Claimed:** `site/**` (canonical artifact), `scripts/data_*.py`, `scripts/data_source.py`,
+  `scripts/verify_site.py`, `scripts/check_sources.py`, `scripts/daily_feed.py`, `tests/**`,
+  `.github/workflows/**`, `research/structure_notes.md`, `README.md`, `COORDINATION.md`.
+- **Not claimed, not edited:** `docs/`, `verified/`, `planner/`, `single-entry/`, `pages/`, root-level HTML
+  pages from earlier sessions, `raw/`, `data/`. They stay in the repository as prior research artefacts.
+- **Cross-file requests:** none. No other session is active, so no edit is made to another session's files.
+- **Commit discipline:** small, frequent commits; `git pull --rebase origin arena/ed88c788-poker3` before every push.
+
+### Source position at claim time
+
+- All 37 official DSE IV structure PDFs read directly on 2026-11-16 (`research/structure_notes.md`, commit `8ba5967`).
+- Official DSE IV schedule (64 rows), DSE NYE schedule, Wynn daily poster and structures, Wynn WPT schedule,
+  Wynn Signature Series schedule, Bellagio Friday/Saturday/Sunday PDFs, MGM Grand $120 structure and weekly
+  sheet, Caesars/Horseshoe tournament page, ARIA guide, and the Venetian/Wynn/Bellagio hotel terms pages.
+- Google Maps walking estimates captured 2026-11-16 for the hotel-to-Venetian routes; they are labelled as
+  estimates because no venue publishes a walking time.
+
+### Standing constraints honoured
+
+- No value is inferred. Anything not confirmed from an official source stays blank and is listed on
+  `site/flagged.html` with a link for manual review.
+- The guaranteed-pool ÷ entry-fee figure is shown as a descriptive ratio only, never as a forecast.
+- Bounty, multi-flight and satellite formats are labelled separately from the single-entry list.
+- Trip dates, nightly budget and quality floor are fixed by this session rather than asked for, and the
+  reasoning is published.
+
+### Work log (session arena/ed88c788-poker3)
+
+**Canonical rebuild.** `site/` was rebuilt from the source modules instead of being patched row by row. The data now
+carries 341 tournament rows, 8 hotel rows, 14 walking-route rows, 27 official sources, 27 flags, 12 questions, 12
+suggestions, a fixed trip profile, an eight-day plan and the flagged impossible sequences.
+
+| Page | Content |
+|---|---|
+| `site/index.html` | Executive summary, the fixed trip, the primary event per day, what is confirmed and what is not. |
+| `site/tournaments.html` | Every row with date from/to, venue, category, format and single-entry filters, a search box and a per-row rule panel carrying the excerpt, the source link and the retrieval date. |
+| `site/venues.html` | Seven Strip poker rooms; each opens `browse.html?view=venue&key=…` with its events and its hotels. |
+| `site/browse.html` | Venue and category subpages so bounty, flight, satellite and extra-spend rows are never mixed in with plain freezeouts. |
+| `site/schedule.html` | One primary event per day, a conditional fallback with its reason, the recurring room events for that weekday, and the flagged impossible sequences. |
+| `site/hotels.html` | Published rate components, mandatory resort fee, tax, true cost per night, parking, cancellation deadline, walking times, the cost calculator and the dated rate log. |
+| `site/questions.html` | Twelve decision questions, each with the official source behind the answer. |
+| `site/suggestions.html` | Twelve improvements with impact, effort and the decision each one needs. |
+| `site/flagged.html` | 27 irregularities and unverified items, each with a link for manual review. |
+| `site/sources.html` | The official source log, the 52 structure sheets with read status, the morning feed sources and the automated re-check output. |
+
+**Decisions fixed by this session, as instructed, without asking.**
+
+- Trip: 2026-11-25 to 2026-12-02, seven nights, on the Venetian / Palazzo resort. It is the eight-day window with the
+  most single-entry events verified on an official structure sheet (14) and at least one on every day.
+- Nightly budget: $197.28, the floor computed from the published components ($119 published starting rate + $55
+  mandatory resort fee, then 13.38% Clark County room tax). It is labelled a floor, not a quote.
+- Quality floor: no comparable official quality score exists, so the quality column stays blank and the floor is an
+  evidence test instead: the property must publish its own poker-room rate, keep the poker room on site and publish
+  its fee, tax and cancellation terms.
+- Bankroll: the eight recommended entries total $2,800 in buy-ins; with a 25% buffer, $3,500.
+
+**Line-by-line verification (this session).**
+
+- `scripts/audit_data.py` parses `research/structure_notes.md`, the read log for all 37 DSE IV structure PDFs, and
+  compares every buy-in, rake, prize-pool share, chip count, level length, late-registration line and guarantee with
+  the canonical data. It also checks that every scheduled DSE row points at a sheet that was read, that the event name
+  starts with that sheet's buy-in and that the flight categorisation matches the sheet. The audit caught one real
+  error, now fixed: sheet 4 (event 59) was carrying a $400 buy-in instead of the $600 printed on the sheet.
+- The DSE IV schedule was re-read and all 64 rows match the official page on date, time, event number, name and
+  structure-sheet link.
+- The DSE NYE schedule was re-read and all 49 rows match the official page.
+- The Wynn WPT schedule PDF was re-read: 136 rows, and the per-date row counts match the PDF exactly for all 24 dates.
+- The Wynn Signature Series PDF was re-read: 38 rows, all matched, and the guarantee column now carries the printed
+  seat counts for the milestone satellites.
+- The Wynn daily structures PDF was re-read: the $200 Monday-Thursday ($10,000 guarantee), $240 Friday rebuy
+  ($40,000), $200 Saturday-Sunday ($25,000) and $160 nightly ($10,000) terms, fee splits, chip counts, add-on chip
+  amounts, level lengths and registration cut-offs all match the canonical rows.
+- `scripts/verify_site.py` checks the canonical data and every published page: official-domain source links on every
+  row and every rule excerpt, a retrieval date on every excerpt, an explanation for every blank fee or guarantee, the
+  arithmetic behind each true nightly cost, a source on every flag, the single-entry rule behind every recommended
+  primary event, and every local link in every page.
+- `tests/canonical_smoke.py` plus `tests/canonical_render.js` render all ten pages headlessly and confirm each one
+  produces content, including 143 tournament rows on the default filter.
+
+**New findings from the second verification pass, added to the flag register.**
+
+- F23 the Ladies Championship entry fee is printed twice, differently ($1,100 in the column, $11,100 in the footnote).
+- F24 the "$1,000,000 Added" on the WPT World Championship comes from ClubWPT Gold, which is not available in Nevada.
+- F25 the discounted-entry footnote markers do not resolve cleanly against the footnote list.
+- F26 three Wynn Signature Series rows carry an extra empty cell that shifts the guarantee column.
+- F27 the DSE schedule page misspells "Limit" on four rows.
+
+**Automation added.**
+
+- `scripts/check_sources.py` fetches every official URL behind the dashboard, stores a SHA-256 of the response and
+  flags any source whose body changed. It never changes a tournament value on its own: a changed page is re-read by a
+  human first. Output: `site/checks.json`, shown on the sources page.
+- `scripts/daily_feed.py` pulls the schedule page of each Strip poker room every morning and writes a dated snapshot
+  under `site/feed/`, so a morning run can be compared with the previous morning instead of replacing it.
+- `.github/workflows/checks.yml` runs both at 05:00 Pacific daily and commits the results when they change.
+- `.github/workflows/verify.yml` now runs the canonical verifier, the canonical smoke test, the JSON checks, the
+  JavaScript syntax checks and a rebuild of `site/data.json` to prove the published data is reproducible.
+
+**Environment note.** The sandbox cannot open HTTPS connections to the venue hosts, so `scripts/check_sources.py`
+and `scripts/daily_feed.py` report "unreachable" here and are designed to run on the GitHub Actions runner. The
+scripts handle a failed fetch without aborting and record the status instead.
+
+**Cross-session note.** `site/poker3/` is a companion dashboard from a merged prior session. It still publishes at
+`/poker3/` because it lives inside the Pages artifact, and its conclusions predate this build: it records no verified
+strict-entry event, while this build verifies 45 dated rows whose sheets print one buy-in, one start flight and no
+re-entry, rebuy or add-on clause. It is an archive, not the current data. The other prior dashboards (`docs/`,
+`verified/`, `planner/`, `single-entry/`, the root pages) are untouched.
+
+### Integration with the other sessions' work (this session)
+
+`main` advanced while this session was building: session `arena/62cea180-poker3` published an integrated site (PRs #22
+and #24), session `arena/e58b73b1-poker3` added a trip-cost calculator and a source-change monitor, and session
+`arena/aa084881-poker3` handed off a verified dataset in `handoff/aa084881/`. The canonical rebuild was merged with
+`main` rather than over it, and the following decisions were taken:
+
+- **Canonical data and pages.** `site/data.json`, `site/assets/app.js`, `site/index.html`, `site/tournaments.html` and
+  `scripts/verify_site.py` are this session's versions: 341 rows read line by line from the official sources, with the
+  audit script and the rule excerpts attached. The earlier 40-row snapshot is replaced, not merged.
+- **Kept and adapted.** The calculator (`site/calculator.html`), the detailed venue pages (`site/venues/`), the
+  companion source monitor (`scripts/check_sources_poker3.py`, renamed from `scripts/check_sources.py` so the canonical
+  checker keeps that name) and `scripts/monitor_sources.py` are all kept. `site/assets/venue.js` was rewritten against
+  the canonical data model, and `scripts/monitor_sources.py` now reads the canonical `sources` section and the
+  canonical row fields. Their copy was corrected where it claimed that no row can be labelled single entry: that
+  statement was true before the 37 structure sheets were read, and the sheets now in the data say otherwise.
+- **Deployment race removed.** `source-monitor.yml` no longer uploads and deploys the Pages artifact; only
+  `.github/workflows/pages.yml` publishes, so the two workflows cannot cancel each other.
+- **Dated hotel quote imported and re-verified.** The handoff recorded one dated official total for The Venetian,
+  November 17-19, 2026, two adults. This session opened the venue's own booking engine again and confirmed it: $824.25
+  + $55 on the 17th, $164.25 + $55 on the 18th, $146.98 of tax, $1,245.48 total, average rate $549.25, for a 650 sq ft
+  "Newly Remodeled Luxury King" suite. It is now in the canonical rate log and on the hotels page, with the calendar
+  disagreement recorded as F28. The booking engine publishes no price at all for the recommended trip window of
+  November 25 to December 2, 2026, so the nightly budget stays at the published starting-rate floor and is labelled a
+  floor rather than a quote.
+- **Not merged.** PR #7 (session `arena/92941c56-poker3`, a separate `pages/` site) is left open and untouched; it
+  overlaps the root pages and is another session's work to decide on.
