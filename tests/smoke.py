@@ -43,6 +43,8 @@ def main() -> None:
         for item in data[collection]:
             for source_id in item.get("sourceIds", []):
                 assert source_id in source_ids, f"missing {source_id} in {collection}"
+    for route in data["routes"]:
+        assert route.get("sourceId") in source_ids, f"missing route source for {route.get('from')} → {route.get('to')}"
 
     assert data["events"], "event snapshot must not be empty"
     assert all(event["strictStatus"] in {"verified", "rejected", "unverified"} for event in data["events"])

@@ -1,0 +1,19 @@
+name: Verify static research site
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate official-source data and local links
+        run: python3 scripts/verify_site.py
+      - name: Validate Poker3 companion dashboard
+        run: |
+          python3 tests/smoke.py
+          node --check site/poker3/assets/app.js
+          python3 -m json.tool site/poker3/data/research.json > /dev/null

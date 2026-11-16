@@ -1,0 +1,110 @@
+[
+ {
+  "id": "H-WYNN",
+  "hotel": "Wynn Las Vegas",
+  "location": "Strip. Poker room location within the resort not captured.",
+  "poker_room": "Wynn Las Vegas Poker Room — series: WPT World Championship (Nov 27–Dec 21, 2026), Signature Series (Jan 11–24, 2027), daily tournaments (recurring)",
+  "resort_fee": "$55 plus tax per room night (2 of 3 official terms pages). One official terms page says $50 plus tax. Conflict flagged.",
+  "resort_fee_status": "verified-official, conflict (F05)",
+  "nightly_rate": "",
+  "nightly_rate_status": "not verified (rates are dynamic; no official rate captured)",
+  "walk_to_poker_min": "",
+  "walk_status": "not verified (no walking-time source)",
+  "true_cost_formula": "Nightly rate + resort fee + room tax (tax rate not verified on an official source)",
+  "notes": "Wynn poker page and WPT terms: Wynn Rewards membership required to enter WPT events (WPT terms).",
+  "source": "W_POKER",
+  "fee_sources": [
+   "W_TC_850257",
+   "W_TC_849277",
+   "W_TC_849723"
+  ],
+  "flags": [
+   "F05",
+   "F18"
+  ]
+ },
+ {
+  "id": "H-VEN",
+  "hotel": "The Venetian Resort (poker room is in The Palazzo)",
+  "location": "Strip. Poker room is in The Palazzo (per official Venetian poker page).",
+  "poker_room": "DeepStack Extravaganza IV (Nov 16–Dec 23, 2026); DeepStack Extravaganza NYE (Dec 24–Jan 10); DeepStack Showdown (Jan 11–Feb 14, 2027)",
+  "resort_fee": "",
+  "resort_fee_status": "not verified on an official page (third-party guides report $55 plus tax; not used, see F15)",
+  "nightly_rate": "",
+  "nightly_rate_status": "not verified (rates are dynamic)",
+  "walk_to_poker_min": "",
+  "walk_status": "not verified",
+  "true_cost_formula": "Nightly rate + resort fee + room tax (tax not verified)",
+  "notes": "Official page: poker room open 24 hours; 50 tables.",
+  "source": "V_POKER",
+  "fee_sources": [],
+  "flags": [
+   "F15",
+   "F18"
+  ]
+ },
+ {
+  "id": "H-BELL",
+  "hotel": "Bellagio",
+  "location": "Strip. Poker room location within the resort not captured.",
+  "poker_room": "Weekly events: Fri $600 NLH, Sat NLH (label conflict), Sun $400 H.O.R.S.E. — all multi-entry (re-entry through Level 8). Official page says tournament play 'will resume July 26' (stale, F01).",
+  "resort_fee": "",
+  "resort_fee_status": "not verified on an official page (third-party guides report $55 plus tax; not used, see F15)",
+  "nightly_rate": "",
+  "nightly_rate_status": "not verified (rates are dynamic)",
+  "walk_to_poker_min": "",
+  "walk_status": "not verified",
+  "true_cost_formula": "Nightly rate + resort fee + room tax (tax not verified)",
+  "notes": "Official page: poker host contact listed on page (not reproduced here).",
+  "source": "B_POKER",
+  "fee_sources": [],
+  "flags": [
+   "F01",
+   "F15",
+   "F18"
+  ]
+ },
+ {
+  "id": "H-ARIA",
+  "hotel": "ARIA Resort & Casino",
+  "location": "Strip. Poker room location within the resort not captured.",
+  "poker_room": "Daily tournaments (schedule not published on page; official page directs players to call the poker room)",
+  "resort_fee": "",
+  "resort_fee_status": "not verified on an official page (third-party guides report $55 plus tax; not used, see F15)",
+  "nightly_rate": "",
+  "nightly_rate_status": "not verified (rates are dynamic)",
+  "walk_to_poker_min": "",
+  "walk_status": "not verified",
+  "true_cost_formula": "Nightly rate + resort fee + room tax (tax not verified)",
+  "notes": "Official page: exclusive room rates for qualifying poker players; poker room phone on page (not reproduced here).",
+  "source": "A_POKER",
+  "fee_sources": [],
+  "flags": [
+   "F15",
+   "F18",
+   "F14"
+  ]
+ },
+ {
+  "id": "H-CAES",
+  "hotel": "Caesars Palace",
+  "location": "Strip. Poker room location not captured.",
+  "poker_room": "Not captured (poker room page not fetched)",
+  "resort_fee": "",
+  "resort_fee_status": "not verified on an official page (third-party guides report $55 plus tax; not used, see F15)",
+  "nightly_rate": "",
+  "nightly_rate_status": "not verified. The official homepage shows a live promotional rate, which is not recorded (F16).",
+  "walk_to_poker_min": "",
+  "walk_status": "not verified",
+  "true_cost_formula": "Nightly rate + resort fee + room tax (tax not verified)",
+  "notes": "Included as a hotel candidate only. Its poker room is not covered in this dataset.",
+  "source": "C_HOME",
+  "fee_sources": [],
+  "flags": [
+   "F15",
+   "F16",
+   "F18",
+   "F14"
+  ]
+ }
+]

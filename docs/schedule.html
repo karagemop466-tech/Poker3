@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Schedule · Poker Strip Dashboard</title>
+<meta name="description" content="Upcoming single-entry poker tournaments near the Las Vegas Strip, hotel cost checks and flagged items. Sources linked on every row.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html">Poker Strip Dashboard</a>
+  <nav id="nav"></nav>
+</div></header>
+<main>
+
+<h1>Schedule of single-entry starts</h1>
+<p class="lede">Every captured start time for the single-entry events, one row per flight. Starts only: event length, late registration and Day 2 times are not included unless listed on the official schedule.</p>
+<div class="warn"><b>8 AM:</b> no verified start before 10:10 AM. Early starts are not available in these official schedules.</div>
+<div id="tbl"></div>
+
+</main>
+<footer>Data as of 2026-11-16 (Las Vegas time). Every row links to an official source. Blank or “UNVERIFIED” = not confirmed from an official source; not filled in. Calculations are labeled. <a href="flagged.html">Flagged for Review</a></footer>
+
+<script src="assets/app.js"></script>
+<script>
+PK.renderNav("schedule.html");
+
+var PAGE_READY = PK.loadSources();
+function L(p){ return PK.load(p); }
+
+Promise.all([PAGE_READY, L("data/tournaments.json")]).then(function(d){
+  var rows=[];
+  d[1].forEach(function(r){
+    (r.starts||[]).forEach(function(s){ rows.push({r:r,date:s[0],time:s[1]}); });
+  });
+  rows.sort(function(a,b){ return (a.date+a.time).localeCompare(b.date+b.time); });
+  PK.table(document.getElementById("tbl"),[
+    {label:"Date",val:function(x){return x.date;},html:function(x){return PK.fmtDate(x.date);}},
+    {label:"Start",val:function(x){return x.time;},html:function(x){return PK.fmtTime(x.time);}},
+    {label:"Event",val:function(x){return x.r.event;},html:function(x){return PK.esc(x.r.event);}},
+    {label:"Series",val:function(x){return x.r.series;}},
+    {label:"Venue",val:function(x){return x.r.venue.split(" (")[0];}},
+    {label:"Buy-in",num:true,val:function(x){return x.r.buy_in===null?"":x.r.buy_in;},html:function(x){return x.r.buy_in===null?PK.unv("buy-in"):PK.money(x.r.buy_in);}},
+    {label:"Source",val:function(x){return x.r.source;},html:function(x){return PK.srcLinks([x.r.source]);}}
+  ],rows,{
+    searchPlaceholder:"Search events or dates…",
+    filters:[{label:"Venue",get:function(x){return x.r.venue.split(" (")[0];}},{label:"Series",get:function(x){return x.r.series;}}]
+  });
+});
+
+</script>
+</body>
+</html>

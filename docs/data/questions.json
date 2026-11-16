@@ -1,0 +1,180 @@
+{
+ "answered": [
+  {
+   "id": "QA-1",
+   "question": "What live poker tournaments are upcoming after today (Nov 16, 2026)?",
+   "answer": "Confirmed on official pages: The Venetian's DeepStack Extravaganza IV (Nov 16–Dec 23, 2026); Wynn's WPT World Championship (Nov 27–Dec 21, 2026); The Venetian's DeepStack Extravaganza NYE (Dec 24, 2026–Jan 10, 2027; headlines only); Wynn Signature Series (Jan 11–24, 2027); The Venetian's DeepStack Showdown (Jan 11–Feb 14, 2027; partly captured).",
+   "evidence": [
+    "V_DSE_PAGE",
+    "W_POKER",
+    "V_DSE_OVERVIEW",
+    "W_SIG_SCHED",
+    "V_DSS_PAGE"
+   ],
+   "confidence": "High for dates on the listed schedules; partial for NYE and DSS."
+  },
+  {
+   "id": "QA-2",
+   "question": "Is the 2026 WSOP still upcoming?",
+   "answer": "No. WSOP.com lists the 2026 WSOP at May 26–July 15, 2026, so it has ended.",
+   "evidence": [
+    "WSOP_SCHED"
+   ],
+   "confidence": "High"
+  },
+  {
+   "id": "QA-3",
+   "question": "Can someone start tournaments at 8 AM?",
+   "answer": "Not on any verified schedule. The earliest verified start is 10:10 AM (Venetian RaceDay and Event 56). Most events start at 11:00 AM or 11:10 AM.",
+   "evidence": [
+    "V_DSE_SCHED",
+    "W_WPT_SCHED"
+   ],
+   "confidence": "High for the schedules captured"
+  },
+  {
+   "id": "QA-4",
+   "question": "Which listed events are multi-entry (re-entry, rebuy) or spend-for-chips?",
+   "answer": "Bellagio weekly events (re-entry through Level 8; optional gratuity adds chips). Wynn daily Friday NLH Rebuy. The Venetian Event 35 is a two-player team event. These are in the excluded section.",
+   "evidence": [
+    "B_FRI",
+    "B_SAT",
+    "B_SUN",
+    "W_DAILY",
+    "V_DSE_SCHED"
+   ],
+   "confidence": "High for Bellagio structures; medium for the Wynn poster (undated)"
+  },
+  {
+   "id": "QA-5",
+   "question": "Which Venetian events have a confirmed single-entry structure?",
+   "answer": "Event 7 ($400, $75K guarantee), Events 14, 28 and 63 ($600, $30K, $40K and $30K guarantees). Structure sheets list no re-entry or add-on. Rows are marked 'structure' in the data.",
+   "evidence": [
+    "V_STRUCT_400",
+    "V_STRUCT_600"
+   ],
+   "confidence": "High for those sheets. Other events not yet checked."
+  },
+  {
+   "id": "QA-6",
+   "question": "What is the resort fee at Wynn?",
+   "answer": "$55 plus tax per room night on two official terms pages. A third official terms page says $50 plus tax. Conflict flagged; the current amount needs confirmation at booking.",
+   "evidence": [
+    "W_TC_850257",
+    "W_TC_849277",
+    "W_TC_849723"
+   ],
+   "confidence": "Medium (conflict)"
+  },
+  {
+   "id": "QA-7",
+   "question": "Are Venetian and Wynn walking-distance neighbors?",
+   "answer": "Both are on the Strip. Both poker rooms are inside their resorts (Venetian: The Palazzo; Wynn: WPT registration on the Wynn poker page). Walking time is not verified.",
+   "evidence": [
+    "V_POKER",
+    "W_WPT_TERMS"
+   ],
+   "confidence": "High for locations; not verified for time"
+  }
+ ],
+ "open": [
+  {
+   "id": "QO-1",
+   "question": "What are the re-entry, rebuy and add-on rules for each single-entry event?",
+   "missing": "Structure sheets for most events (about 120 rows) and the rest of the Wynn WPT terms (7 of 8 pages).",
+   "how": "Fetch each event's structure sheet from the Venetian and Wynn pages (linked on each series page). Record re-entry and add-on lines in the data.",
+   "priority": "High"
+  },
+  {
+   "id": "QO-2",
+   "question": "What are the current hotel resort fees (Venetian, Bellagio, ARIA, Caesars)?",
+   "missing": "Official resort-fee terms pages for these four properties were not found.",
+   "how": "Check each property's official terms or resort-fee page or booking-engine fee line; record date and amount.",
+   "priority": "High"
+  },
+  {
+   "id": "QO-3",
+   "question": "What is the nightly room rate for each candidate hotel on the dates in question?",
+   "missing": "Rates are dynamic and no dated rate capture exists.",
+   "how": "Pick dates, then capture rates from official booking pages (for a fixed date range) and record the date and time of each capture.",
+   "priority": "High"
+  },
+  {
+   "id": "QO-4",
+   "question": "What is the walking time from each hotel to each poker room?",
+   "missing": "No walking-time source was used.",
+   "how": "Use the official property maps and a walking-route tool; record minutes and the route date. Apply the 30-minute rule.",
+   "priority": "High"
+  },
+  {
+   "id": "QO-5",
+   "question": "What is the room tax rate applied to the resort fee and room?",
+   "missing": "Only third-party guides state a rate (13.38% Clark County). Not verified.",
+   "how": "Confirm the rate on a Clark County or Nevada tax source, or on a booking-engine tax line.",
+   "priority": "Medium"
+  },
+  {
+   "id": "QO-6",
+   "question": "Does Bellagio run tournaments during Nov 2026–Jan 2027?",
+   "missing": "The official page has a stale resume note (F01). The weekly structure PDFs have no dates.",
+   "how": "Ask the Bellagio poker host (phone on the official page) or check the room's official calendar; record the date of confirmation.",
+   "priority": "High"
+  },
+  {
+   "id": "QO-7",
+   "question": "Do the Wynn daily tournaments run during the WPT series?",
+   "missing": "Wynn's page says daily events are suspended during Signature, Millions and Classic series, not WPT.",
+   "how": "Confirm with the Wynn poker room using the contact on the official poker page.",
+   "priority": "Medium"
+  },
+  {
+   "id": "QO-8",
+   "question": "What are the full schedules of the Venetian DeepStack NYE and DeepStack Showdown (Feb 3–14)?",
+   "missing": "Only headline events and the first part of the DSS schedule were captured.",
+   "how": "Fetch the official schedule PDFs linked from the series pages.",
+   "priority": "Medium"
+  },
+  {
+   "id": "QO-9",
+   "question": "Which Strip rooms (ARIA, MGM Grand, Resorts World, Golden Nugget, Orleans, South Point, Planet Hollywood, Caesars) run tournaments in this window?",
+   "missing": "Official pages not captured or returned errors (F21).",
+   "how": "Capture each room's official tournament schedule and terms.",
+   "priority": "Medium"
+  },
+  {
+   "id": "QO-10",
+   "question": "Which date applies to the Event 32, 47, 49 and 58 rows at the Venetian?",
+   "missing": "Date cells blank or replaced by sponsor text in the PDF (F10, F11).",
+   "how": "Confirm with the Venetian poker room or in the structure sheets for Events 32, 47, 49 and 58.",
+   "priority": "High"
+  },
+  {
+   "id": "QO-11",
+   "question": "Are the $1,000,000 'added' amounts real for Nevada events (WPT World Championship)?",
+   "missing": "The footnote says ClubWPT Gold is not available in Nevada (F06).",
+   "how": "Confirm with Wynn poker room or in the WPT structure sheet.",
+   "priority": "High"
+  },
+  {
+   "id": "QO-12",
+   "question": "What is the Ladies NLH buy-in at Wynn ($1,100 or $11,100)?",
+   "missing": "Conflict between schedule and footnote (F07).",
+   "how": "Confirm with the WPT structure sheet or the poker room.",
+   "priority": "Medium"
+  },
+  {
+   "id": "QO-13",
+   "question": "What is the trip plan? (dates, party size, budget, skill level, hotel tier, cash-game interest)",
+   "missing": "The brief does not specify trip dates, party size, budget, buy-in ceiling, hotel tier target or preferred room.",
+   "how": "Answer in the Suggestions review (choose a path). Trip dates decide which series are running.",
+   "priority": "High"
+  },
+  {
+   "id": "QO-14",
+   "question": "Should downtown or off-Strip rooms be included?",
+   "missing": "The brief says 'Strip or around the Strip.' Off-Strip rooms (e.g., Golden Nugget, Orleans, South Point) not captured.",
+   "how": "Confirm scope, then add those rooms' official schedules.",
+   "priority": "Medium"
+  }
+ ]
+}
