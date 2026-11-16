@@ -71,6 +71,7 @@ Branch: `arena/8fc8e9f1-poker3`. Only `docs/**` and this section were changed by
 
 ---
 
+<<<<<<< HEAD
 ## Session f332570d (verified-only site in `verified/`)
 
 Branch: `arena/f332570d-poker3` (single branch for this session; the `session-<id>/<task>` naming could not be used, as other sessions recorded above).
@@ -99,44 +100,47 @@ Integration record:
 - Merge result: recorded in the follow-up section after the merge.
 
 ## Current session arena/ada1dd4d-poker3 (integration)
+=======
+## Current session arena/ada1dd4d-poker3 — final integration
+>>>>>>> 0ac6f4b (Build official-source Vegas poker planning dashboard)
 
-Branch: `arena/ada1dd4d-poker3`. This session started from the Arena-provided initial snapshot before the parallel PRs had reached its local `main`; it claimed the task on its managed branch and later rebased onto the updated `origin/main`. Current integration work preserves all merged session histories above and publishes a stricter canonical dashboard from `site/`.
+Branch: `arena/ada1dd4d-poker3`. The session began from the Arena-provided initial snapshot before the parallel PRs had reached its local `main`; it claimed the task on its managed branch and later rebased onto the updated `origin/main`. This integration preserves all earlier merged session histories above. `site/` is selected as the canonical published dashboard; the earlier root and `docs/` dashboards remain in the repository as prior research artifacts, not the current Pages artifact.
 
 | Task | Status | Owner | Scope | Notes |
 |---|---|---|---|---|
-| Expand official-source schedule and hotel research; clean dashboard, source-linked data, questions, suggestions, day plan | in progress | arena-ada1dd4d-poker3 | `site/**`, `scripts/**`, `.github/workflows/**`, `README.md`, this section | Canonical output is source-first and intentionally narrower than prior partial data sets. |
-| Verify single-entry/no-re-entry/no-add-on event rules | needs review | arena-ada1dd4d-poker3 | `site/data.json`, `site/tournaments.html`, `site/flagged.html` | No candidate is upgraded to eligible without explicit official entry terms. |
-| Date-specific hotel totals, resort terms and walking feasibility | needs review | arena-ada1dd4d-poker3 | `site/data.json`, `site/hotels.html`, `site/flagged.html` | Exact dates/occupancy unavailable; totals and route times remain blank. |
+| Expanded official-source schedule/hotel research, clean dashboard, questions, suggestions, day plan | in progress | arena-ada1dd4d-poker3 | `site/**`, `scripts/**`, `.github/workflows/**`, `README.md`, this section | Current primary evidence only; scope and gaps are explicit. |
+| Verify one-entry / no-re-entry / no-add-on rules | needs review | arena-ada1dd4d-poker3 | `site/data.json`, `site/tournaments.html`, `site/flagged.html` | Candidates with missing terms are not marked eligible. |
+| Obtain date-specific hotel totals and verify walking/time feasibility | needs review | arena-ada1dd4d-poker3 | `site/data.json`, `site/hotels.html`, `site/flagged.html` | Dates/occupancy absent; totals and route times blank. |
 
 ### Integration log
 
-- Initial claim commit `3ba73ae` was pushed to the current Arena branch. At that initial point, this clone had only the repository README and no task board or competing claim. Then other merged sessions advanced `main` through PRs #1, #2, #6, #8, #10 and later PRs; this session fetched and preserved those changes rather than rewriting them.
-- Rebasing onto the updated `main` exposed shared-file conflicts in `COORDINATION.md`, `README.md`, and `.github/workflows/pages.yml`. Those were resolved by keeping the full main-branch history and documenting the current session separately. No prior root or `docs/` source files were deleted. A second `git pull --rebase origin main` started after `main` advanced again to `fa7870f`; its board conflict is being resolved by retaining the complete current upstream coordination history and appending this section.
-- The previous `docs/` tournament dataset and root dashboard contain partial rows/statuses and additional source irregularities; they remain in repository history/tree. They are not blindly copied into the canonical shortlist: the current canonical data table only includes facts individually checked against venue-controlled sources in this session, and unresolved earlier-source conflicts are flagged. Integration must keep the archive distinct from the canonical evidence set.
-- ARIA source recheck: `aria.com/en/nightlife.html` currently serves nightlife content, not tournament terms. Current official poker page is https://aria.mgmresorts.com/en/casino/poker.html and asks guests to call/check @ARIAPoker for whether daily events are running. The separate official guide https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf states daily 1 p.m. / nightly 7 p.m. but is undated. The canonical site labels it undated and unconfirmed, not a date-specific live event.
+- Initial claim commit `3ba73ae` was pushed to the current Arena branch. At that initial point, this clone had only the README and no task board or competing claim. Other sessions then merged PRs #1, #2, #6, #8, #10 and subsequent changes into `main`; this session fetched and preserved those changes.
+- Rebasing onto updated `main` exposed shared-file conflicts in `COORDINATION.md`, `README.md` and `.github/workflows/pages.yml`. Conflicts were resolved by retaining the full current-main coordination history, combining README purpose/verification information, and selecting `site/` as the canonical Pages artifact. Earlier root and `docs/` files were not deleted. The current integration is the decision point requested by the shared-task-board protocol.
+- The prior `docs/` data includes useful research but also rows marked pending, partial hotel data, and source conflicts. It is not copied into the canonical table without primary-source verification. It remains in the repository for audit and is linked as a prior-research archive, with clear noncanonical status.
+- ARIA source recheck: `https://aria.com/en/nightlife.html` currently serves nightlife content, not tournament terms. Current official poker page https://aria.mgmresorts.com/en/casino/poker.html asks guests to call/check @ARIAPoker for whether daily events are running. A separate official guide https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf says daily 1 p.m. / nightly 7 p.m. but is undated. The canonical site retains this only as an undated, unconfirmed cadence.
 
-### Current official sources and checks
+### Current official sources and verification
 
-Checked 2026-11-16. Canonical tournament rows link to official venue schedules or official documents. Hotel rows link to official room-rate, fee and tax terms. No third-party calendar values are used as findings.
+Checked 2026-11-16. Canonical tournament rows link to venue-controlled schedules or official documents; hotel facts link to official room-rate, fee and tax terms. No third-party calendars substantiate data in `site/data.json`.
 
-- Venetian: https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html and https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html. Dates/times/buy-ins/guarantees checked from the official schedule table; linked structure PDFs were inspected for sample one-day, RaceDay, bounty and multi-flight formats. “1Day” is not treated as single-entry evidence.
-- Wynn: https://www.wynnlasvegas.com/casino/poker, official daily poster https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf, and WPT schedule https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf. Rebuy is separated as extra-spend.
-- Bellagio: https://bellagio.mgmresorts.com/en/casino/poker.html and three linked official structure sheets for Friday $600 NLH, Saturday NLH, and Sunday $400 H.O.R.S.E. Friday and Sunday PDFs explicitly allow re-entry and an optional paid staff gratuity that adds chips; those entries belong in the spend-more section. Saturday source conflicts remain flagged.
-- Venetian hotel: https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html, https://www.venetianlasvegas.com/resort/resort-fee.html, https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html. The starting rates $119/$209 are not mapped to an individual property in the reviewed page, so nightly base and all-in totals remain blank. Terms state 13.38% room tax and a $55 + applicable tax resort fee.
-- Wynn hotel: https://www.wynnlasvegas.com/rooms-and-suites, https://www.wynnlasvegas.com/terms-and-conditions/850070, and dated offer terms https://www.wynnlasvegas.com/terms-and-conditions/849723. The general/current terms reviewed state $55 + tax; a separate expired Aug. 31, 2024 offer page states $50 + tax. This historical offer conflict is flagged; specific booking terms control the actual reservation. Exact room price and total remain blank.
-- ARIA: current poker page and undated official poker guide URLs above.
+- Venetian: https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html and https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html. Dated table rows checked; linked official structure PDFs were inspected for the listed one-day, RaceDay, bounty and multi-flight samples. “1Day” is not treated as one-entry proof.
+- Wynn: https://www.wynnlasvegas.com/casino/poker, daily poster https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf, and WPT schedule https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf. Rebuy is isolated as extra-spend.
+- Bellagio: https://bellagio.mgmresorts.com/en/casino/poker.html and its linked Friday $600 NLH, Saturday NLH, and Sunday $400 H.O.R.S.E. structure PDFs. Friday and Sunday PDFs explicitly allow re-entry and an optional paid staff gratuity that adds chips; these are in the spend-more section. Saturday source conflicts are flagged.
+- Venetian hotel: https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html, https://www.venetianlasvegas.com/resort/resort-fee.html, https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html. The $119/$209 starting-rate wording is not mapped to individual towers in the reviewed text, so base and all-in totals remain blank. Terms state 13.38% room tax on daily rate and $55 + applicable tax resort fee.
+- Wynn hotel: https://www.wynnlasvegas.com/rooms-and-suites, general terms https://www.wynnlasvegas.com/terms-and-conditions/850070, and an expired 2024 offer page https://www.wynnlasvegas.com/terms-and-conditions/849723. General/current terms reviewed state $55 + tax; expired offer states $50 + tax. The historical discrepancy is flagged; actual booked terms control. Exact room price remains blank.
+- ARIA: current poker page and undated official guide URLs above.
 
-Local checks: `python3 scripts/verify_site.py`, `node --check site/assets/app.js`, `python -m json.tool site/data.json`, and `git diff --check`. Current verifier validates official hosts, explicit blank unknown values, and local links. Local HTTP smoke tests returned 200 for overview, tournaments and JSON data. Remaining limits (entry rules, route times, live room confirmation, full Strip-wide completeness, and future finish-time scheduling) are listed at `site/flagged.html`.
+Automated checks: `python3 scripts/verify_site.py`, `node --check site/assets/app.js`, `python -m json.tool site/data.json`, `git diff --check`; all pass. The local verifier checks official domains, explicit blanks for unknown values, and local links. Local HTTP smoke tests returned 200 for overview, tournaments and JSON data. Entry rules, walking routes, live room confirmation, finish-time scheduling and complete Strip-wide coverage remain flagged.
 
-### New review flags
+### Open current-session flags
 
-- Event-level one-entry/re-entry/add-on restrictions are not stated for most of the listed official candidates. No confirmed qualifying event is presented until verified.
-- Wynn Friday rebuy and Bellagio re-entry/optional-gratuity events are separated from the strict-entry shortlist.
-- Wynn has $55 + tax in current/general terms and $50 + tax in a specifically expired 2024 offer document; a specific stay's booked terms must be checked.
-- Bellagio Saturday NLH linked schedule/header/rule values conflict (official poker page links a Saturday $1,000 title; PDF header says $1,100; its fee breakdown says $600 and multi-flight). It is not ranked.
-- ARIA old guide is undated; current poker page tells players to confirm whether daily tournaments run.
-- Exact hotel totals, routes, 8 AM starts, finish times and full Strip inventory remain unverified.
+- Official materials reviewed do not explicitly establish one total entry per player for most candidate rows; no unsupported event is promoted as eligible.
+- Wynn Friday rebuy and Bellagio re-entry/optional-gratuity formats stay separate from the strict-entry path.
+- Wynn official fee terms include $55 + tax in current/general terms and $50 + tax in an expired 2024 offer; confirm fee on the actual booking.
+- Bellagio Saturday NLH source conflict: page/title says $1,000, PDF header says $1,100, and its rule breakdown says $600; no rank assigned.
+- ARIA official guide is undated; current page says to confirm daily events.
+- Exact hotel totals, walking minutes, 8 AM start, tournament finish times and full Strip inventory are not established.
 
 ### Current PR / deployment
 
-- Current integration PR and final Pages deployment: pending.
+Current integration PR and final Pages deployment: pending.
