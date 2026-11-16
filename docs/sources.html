@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sources · Poker Strip Dashboard</title>
+<meta name="description" content="Upcoming single-entry poker tournaments near the Las Vegas Strip, hotel cost checks and flagged items. Sources linked on every row.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html">Poker Strip Dashboard</a>
+  <nav id="nav"></nav>
+</div></header>
+<main>
+
+<h1>Sources</h1>
+<p class="lede">Every official page and document used. Accessed 2026-11-16 unless noted. Reference-only entries are labeled.</p>
+<div id="tbl"></div>
+
+</main>
+<footer>Data as of 2026-11-16 (Las Vegas time). Every row links to an official source. Blank or “UNVERIFIED” = not confirmed from an official source; not filled in. Calculations are labeled. <a href="flagged.html">Flagged for Review</a></footer>
+
+<script src="assets/app.js"></script>
+<script>
+PK.renderNav("sources.html");
+
+var PAGE_READY = PK.loadSources();
+function L(p){ return PK.load(p); }
+
+Promise.all([PAGE_READY, L("data/sources.json")]).then(function(d){
+  PK.table(document.getElementById("tbl"),[
+    {label:"ID",val:function(x){return x.id;}},
+    {label:"Organization",val:function(x){return x.org;}},
+    {label:"Title",val:function(x){return x.title;},html:function(x){return '<a href="'+PK.esc(x.url)+'" target="_blank" rel="noopener">'+PK.esc(x.title)+'</a>';}},
+    {label:"Used for",val:function(x){return x.used_for;},html:function(x){return PK.esc(x.used_for);}},
+    {label:"Accessed",val:function(x){return x.accessed;}}
+  ],d[1],{searchPlaceholder:"Search sources…"});
+});
+
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Single-entry tournaments · Poker Strip Dashboard</title>
+<meta name="description" content="Upcoming single-entry poker tournaments near the Las Vegas Strip, hotel cost checks and flagged items. Sources linked on every row.">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="top"><div class="wrap">
+  <a class="brand" href="index.html">Poker Strip Dashboard</a>
+  <nav id="nav"></nav>
+</div></header>
+<main>
+
+<h1>Single-entry tournaments</h1>
+<p class="lede">Ranked by buy-in and prize pool (guaranteed amount). Only events with a single entry are shown here. Blank cells are unverified and not filled in. Sort any column by clicking its header.</p>
+<div class="note"><b>Value ratio</b> = guarantee ÷ buy-in (a calculation, not an official figure). A guarantee is the minimum prize pool. The actual prize pool depends on entries.</div>
+<div id="tbl"></div>
+
+</main>
+<footer>Data as of 2026-11-16 (Las Vegas time). Every row links to an official source. Blank or “UNVERIFIED” = not confirmed from an official source; not filled in. Calculations are labeled. <a href="flagged.html">Flagged for Review</a></footer>
+
+<script src="assets/app.js"></script>
+<script>
+PK.renderNav("tournaments.html");
+
+var PAGE_READY = PK.loadSources();
+function L(p){ return PK.load(p); }
+
+Promise.all([PAGE_READY, L("data/tournaments.json")]).then(function(d){
+  var rows=d[1].map(function(r){
+    var first=(r.starts&&r.starts[0])?r.starts[0]:null;
+    var ratio=(r.gtd&&r.buy_in)?Math.round(r.gtd/r.buy_in):null;
+    return {r:r, ratio:ratio, first:first};
+  });
+  PK.table(document.getElementById("tbl"),[
+    {label:"ID",val:function(x){return x.r.id;}},
+    {label:"Series",val:function(x){return x.r.series;},html:function(x){return PK.esc(x.r.series);}},
+    {label:"Venue",val:function(x){return x.r.venue;}},
+    {label:"Event",val:function(x){return x.r.event;},html:function(x){return PK.esc(x.r.event)+'<div class="small">'+PK.esc(x.r.dates||"")+'</div>';}},
+    {label:"Buy-in",num:true,val:function(x){return x.r.buy_in===null?"":x.r.buy_in;},html:function(x){return x.r.buy_in===null?PK.unv("buy-in"):PK.money(x.r.buy_in);}},
+    {label:"Guarantee (prize pool)",num:true,val:function(x){return x.r.gtd===null?"":x.r.gtd;},html:function(x){return x.r.gtd===null?PK.unv("guarantee"):PK.money(x.r.gtd);}},
+    {label:"Value ratio",num:true,val:function(x){return x.ratio===null?"":x.ratio;},html:function(x){return x.ratio===null?'<span class="small">n/a</span>':x.ratio+"×";}},
+    {label:"First start",val:function(x){return x.first?x.first[0]+" "+x.first[1]:"";},html:function(x){return x.first?PK.fmtDate(x.first[0])+", "+PK.fmtTime(x.first[1]):PK.unv("start");}},
+    {label:"Status",val:function(x){return x.r.entry_status;},html:function(x){return PK.entryBadge(x.r.entry_status);}},
+    {label:"Source",val:function(x){return x.r.source;},html:function(x){return PK.srcLinks([x.r.source]);}},
+    {label:"Flags",val:function(x){return (x.r.flags||[]).join(" ");},html:function(x){return PK.flagTags(x.r.flags);}}
+  ],rows,{
+    searchPlaceholder:"Search event, venue, series…",
+    filters:[{label:"Series",get:function(x){return x.r.series;}},{label:"Venue",get:function(x){return x.r.venue.split(" (")[0];}},{label:"Status",get:function(x){return x.r.entry_status;}}]
+  });
+});
+
+</script>
+</body>
+</html>
