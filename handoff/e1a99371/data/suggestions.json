@@ -1,0 +1,125 @@
+{
+  "asOf": "2026-11-16",
+  "suggestions": [
+    {
+      "id": "G1",
+      "title": "Automated daily re-fetch of every official URL with a change log",
+      "problem": "Schedule PDFs, structure sheets and fee pages change without notice. 'Last checked' is only meaningful if it is kept current.",
+      "proposal": "A scheduled GitHub Action re-fetches every URL in the source register each morning, stores a hash and a snapshot, and opens an issue plus a Changes-page entry whenever a page differs from the stored snapshot. Rows whose source changed get a badge.",
+      "effort": "Medium",
+      "value": "High - this is the single biggest source of silent drift.",
+      "status": "Proposed - part built (workflow + Changes page scaffold); first automated run still to be observed.",
+      "decision": "Pending"
+    },
+    {
+      "id": "G2",
+      "title": "Per-event 'confirmed by the room' field",
+      "problem": "Single-entry status cannot be verified from official documents at all (flag F01). The site can only report what the sheets say.",
+      "proposal": "Add a field per event for the poker room's written answer, with the date and the name of the person who answered. Until it is filled the row stays 'unconfirmed'.",
+      "effort": "Low to build, requires the phone call to populate.",
+      "value": "Highest - it closes the main gap in the whole plan.",
+      "status": "Proposed",
+      "decision": "Pending"
+    },
+    {
+      "id": "G3",
+      "title": "Live hotel rate capture with a dated log",
+      "problem": "No official page publishes a static date-specific rate (flag F-H1).",
+      "proposal": "A form on the Hotels page lets you paste an itemised quote (base rate, resort fee, tax) for a named hotel and date range. Entries append to a dated rate log rather than overwriting, so you can see how a quote moved over time.",
+      "effort": "Low",
+      "value": "High - it is the only way to get a real like-for-like comparison.",
+      "status": "Proposed - rate log schema is in the data model and empty by design.",
+      "decision": "Pending"
+    },
+    {
+      "id": "G4",
+      "title": "Field-size and finish-time tracking from official results",
+      "problem": "Finish times are not published, so the overlap check can only compare registration windows (flag F06).",
+      "proposal": "As the series runs, the official Results column on the Venetian structures page publishes field sizes and payouts. Capture those per event, then model a plausible finish time from the field size and level structure, and re-run the overlap check on modelled rather than assumed times.",
+      "effort": "Medium",
+      "value": "High - it turns the overlap check from a warning into a real plan.",
+      "status": "Proposed",
+      "decision": "Pending"
+    },
+    {
+      "id": "G5",
+      "title": "One page per venue, each with its own events, hotels and rules",
+      "problem": "The table currently covers one venue, so venue comparisons are not possible.",
+      "proposal": "Give every room (Venetian, Wynn, Bellagio, ARIA, and so on) its own page with its schedule, structure-sheet links, entry-rule fields and attached hotels, then roll them up on the Events page.",
+      "effort": "Medium",
+      "value": "High once more than one room is covered.",
+      "status": "Built for the Venetian; other venues need their schedules verified first.",
+      "decision": "Pending"
+    },
+    {
+      "id": "G6",
+      "title": "Trip cost calculator: entries x buy-in + nights x true nightly cost",
+      "problem": "Buy-in totals and hotel totals were being considered separately.",
+      "proposal": "A single calculator that takes the selected events and the nights, applies the verified resort fee and 13.38% tax, and returns the all-in trip cost. It also shows the guaranteed pool per dollar of entry as a descriptive ratio, clearly labelled as not a forecast.",
+      "effort": "Low",
+      "value": "High - it is the number you actually budget against.",
+      "status": "Built",
+      "decision": "Accepted and implemented"
+    },
+    {
+      "id": "G7",
+      "title": "Search across every table",
+      "problem": "With 94 starts plus 17 hotels plus flags and questions, scanning is slow.",
+      "proposal": "One search box that filters tournaments, hotels, flags, questions and sources simultaneously, with a count of matches per section.",
+      "effort": "Low",
+      "value": "Medium",
+      "status": "Built",
+      "decision": "Accepted and implemented"
+    },
+    {
+      "id": "G8",
+      "title": "Date-range selector and a single-entry/freezeout toggle",
+      "problem": "You only care about your dates, and only about single-entry events.",
+      "proposal": "A date range filter plus a toggle that hides everything that is not a confirmed single-entry freezeout, with a second toggle for bounty events.",
+      "effort": "Low",
+      "value": "High",
+      "status": "Built - the freezeout toggle stays off until the room confirms the policy (F01).",
+      "decision": "Accepted and implemented"
+    },
+    {
+      "id": "G9",
+      "title": "Walking-route verification with a 30-minute limit filter",
+      "problem": "Distance claims were unverified in earlier passes.",
+      "proposal": "For each hotel-venue pair, store the Google Maps walking time and distance with the route URL, and a filter that hides anything over 30 minutes. Re-check routes on a schedule because street closures and pedestrian bridges change.",
+      "effort": "Low",
+      "value": "High",
+      "status": "Built for 17 hotels; ARIA fails the limit at 31 minutes.",
+      "decision": "Accepted and implemented"
+    },
+    {
+      "id": "G10",
+      "title": "Retire the duplicate sites from earlier parallel sessions",
+      "problem": "The repository contains several overlapping static sites (root-level pages, docs/, verified/, planner/, single-entry/, site/poker3/) with conflicting data and unresolved flags.",
+      "proposal": "Keep one canonical dashboard and move the earlier artifacts to an archive folder so nothing is lost but only one site is maintained and published.",
+      "effort": "Low",
+      "value": "High - it removes conflicting numbers from view.",
+      "status": "Proposed",
+      "decision": "Pending"
+    },
+    {
+      "id": "G11",
+      "title": "Structured rule fields per event: single-entry, re-entry, add-on, fee - each with a source excerpt and retrieval date",
+      "problem": "Entry rules were previously described in prose, which made them impossible to filter or audit.",
+      "proposal": "Store each rule as its own field, quoting the exact sentence from the official sheet and the date it was read, so a reader can check any row against the source in one click.",
+      "effort": "Low",
+      "value": "High",
+      "status": "Built",
+      "decision": "Accepted and implemented"
+    },
+    {
+      "id": "G12",
+      "title": "Guaranteed pool divided by entry fee, shown as a descriptive ratio and labelled separately for bounty events",
+      "problem": "Ranking by guarantee or by buy-in alone is misleading.",
+      "proposal": "Show guaranteed pool / total entry fee as a ratio for comparison only, state plainly that it is not a forecast of your expected return, and put bounty and multi-flight events in their own labelled sections.",
+      "effort": "Low",
+      "value": "Medium",
+      "status": "Built",
+      "decision": "Accepted and implemented"
+    }
+  ]
+}

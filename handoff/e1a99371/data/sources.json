@@ -1,0 +1,213 @@
+{
+  "asOf": "2026-11-16",
+  "sources": [
+    {
+      "id": "S01",
+      "publisher": "The Venetian Resort Las Vegas",
+      "label": "DeepStack Poker Series hub (current and next series dates, guarantees)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html",
+      "retrieved": "2026-11-16",
+      "substantiates": "DSE IV runs November 16 - December 23, 2026; 'More than $3.6 Million in guaranteed tournament prize pools'; the four headline events and their dates."
+    },
+    {
+      "id": "S02",
+      "publisher": "The Venetian Resort Las Vegas",
+      "label": "DeepStack Extravaganza IV official structures/results table (every start, with per-start structure sheet link)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "retrieved": "2026-11-16",
+      "substantiates": "Date, start time, event number, official event name and structure-sheet URL for all 94 published starts (events 1-64)."
+    },
+    {
+      "id": "S03",
+      "publisher": "The Venetian Resort Las Vegas",
+      "label": "DeepStack Extravaganza IV official schedule PDF (late-registration close times, chips, level minutes)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "retrieved": "2026-11-16",
+      "substantiates": "REG CLOSES time, CHIPS and LEVEL minutes for each start. Verbatim copy retained at raw/venetian_dse_nov_2026_schedule.md."
+    },
+    {
+      "id": "S04",
+      "publisher": "The Venetian Resort Las Vegas",
+      "label": "DSE IV structure sheets 1-37 (official PDFs)",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "retrieved": "2026-11-16",
+      "substantiates": "Buy-in, house fee (rake + staff), prize-pool share, guarantee, starting chips, level duration, late-registration, bounty rules, multi-flight rules, age restrictions and payout percentage for every event. All 37 sheets were read in full; each row links its own sheet."
+    },
+    {
+      "id": "S05",
+      "publisher": "The Venetian Resort Las Vegas",
+      "label": "Poker room page (location, hours, room size, current/next series)",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker.html",
+      "retrieved": "2026-11-16",
+      "substantiates": "Poker room is in The Palazzo, level 2, Grand Canal Shoppes; open 24 hours daily; 50 tables over 14,000 sq ft."
+    },
+    {
+      "id": "S06",
+      "publisher": "The Venetian Resort Las Vegas",
+      "label": "Resort Fee page",
+      "url": "https://www.venetianlasvegas.com/resort/resort-fee.html",
+      "retrieved": "2026-11-16",
+      "substantiates": "Daily resort fee of $55 plus tax per night, payable on check-in, and what it includes."
+    },
+    {
+      "id": "S07",
+      "publisher": "The Venetian Resort Las Vegas",
+      "label": "2026 poker suite rate information guide",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
+      "retrieved": "2026-11-16",
+      "substantiates": "Poker rates 'start as low as $119 and $209'; $55 resort fee per night; qualifying play is six hours of live cash game OR a buy-in to a $300+ tournament per night; code EPOKR25; rates only published out to 150 days."
+    },
+    {
+      "id": "S08",
+      "publisher": "The Venetian Resort Las Vegas",
+      "label": "Hotel terms and conditions (taxes, fees, parking, cancellation)",
+      "url": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
+      "retrieved": "2026-11-16",
+      "substantiates": "Clark County Room Tax of 13.38% excluded from daily rates; $55 resort fee; self-parking $20/day for registered guests, valet $40/day; check-in 3:00 pm, check-out 11:00 am; early departure fee $100 plus tax; incidental deposit $150 per night."
+    },
+    {
+      "id": "S09",
+      "publisher": "The Venetian Resort Las Vegas",
+      "label": "Poker room self-parking information",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html",
+      "retrieved": "2026-11-16",
+      "substantiates": "Poker players who play three hours or more in tournament or cash games receive complimentary self-parking for the day (supervisor must confirm the session)."
+    },
+    {
+      "id": "S10",
+      "publisher": "Google Maps (walking directions)",
+      "label": "Walking route: Treasure Island to The Venetian Resort",
+      "url": "https://www.google.com/maps/dir/Treasure+Island+Las+Vegas/The+Venetian+Resort+Las+Vegas/?travelmode=walking&hl=en",
+      "retrieved": "2026-11-16",
+      "substantiates": "6 min, 0.2 mile walking route via Las Vegas Blvd S."
+    },
+    {
+      "id": "S11",
+      "publisher": "Google Maps (walking directions)",
+      "label": "Walking route: Harrah's to The Venetian Resort",
+      "url": "https://www.google.com/maps/dir/Harrahs+Las+Vegas+Hotel+and+Casino/The+Venetian+Resort+Las+Vegas/?travelmode=walking&hl=en",
+      "retrieved": "2026-11-16",
+      "substantiates": "6 min, 0.3 mile walking route via Las Vegas Blvd S."
+    },
+    {
+      "id": "S12",
+      "publisher": "Google Maps (walking directions)",
+      "label": "Walking route: The LINQ to The Venetian Resort",
+      "url": "https://www.google.com/maps/dir/The+LINQ+Hotel+and+Experience/The+Venetian+Resort+Las+Vegas/?travelmode=walking&hl=en",
+      "retrieved": "2026-11-16",
+      "substantiates": "7 min, 0.3 mile walking route via Las Vegas Blvd S."
+    },
+    {
+      "id": "S13",
+      "publisher": "Google Maps (walking directions)",
+      "label": "Walking route: Wynn Las Vegas to The Venetian Resort",
+      "url": "https://www.google.com/maps/dir/Wynn+Las+Vegas/The+Venetian+Resort+Las+Vegas/data=!4m2!4m1!3e2?hl=en",
+      "retrieved": "2026-11-16",
+      "substantiates": "13 min, 0.6 mile walking route via Wynn Main Gate Dr (14 min via Las Vegas Blvd S)."
+    },
+    {
+      "id": "S14",
+      "publisher": "Google Maps (walking directions)",
+      "label": "Walking route: Flamingo to The Venetian Resort",
+      "url": "https://www.google.com/maps/dir/Flamingo+Las+Vegas/The+Venetian+Resort+Las+Vegas/?travelmode=walking&hl=en",
+      "retrieved": "2026-11-16",
+      "substantiates": "10 min, 0.5 mile walking route via Las Vegas Blvd S."
+    },
+    {
+      "id": "S15",
+      "publisher": "Google Maps (walking directions)",
+      "label": "Walking route: Caesars Palace to The Venetian Resort",
+      "url": "https://www.google.com/maps/dir/Caesars+Palace+Las+Vegas/The+Venetian+Resort+Las+Vegas/data=!4m2!4m1!3e2?hl=en",
+      "retrieved": "2026-11-16",
+      "substantiates": "12 min, 0.5 mile walking route via Las Vegas Blvd S."
+    },
+    {
+      "id": "S16",
+      "publisher": "Google Maps (walking directions)",
+      "label": "Walking route: Horseshoe to The Venetian Resort",
+      "url": "https://www.google.com/maps/dir/Horseshoe+Las+Vegas/The+Venetian+Resort+Las+Vegas/data=!4m2!4m1!3e2?hl=en",
+      "retrieved": "2026-11-16",
+      "substantiates": "16 min, 0.7 mile walking route via Linq Ln."
+    },
+    {
+      "id": "S17",
+      "publisher": "Google Maps (walking directions)",
+      "label": "Walking route: Encore at Wynn Las Vegas to The Venetian Resort",
+      "url": "https://www.google.com/maps/dir/Encore+Las+Vegas/The+Venetian+Resort+Las+Vegas/data=!4m2!4m1!3e2?hl=en",
+      "retrieved": "2026-11-16",
+      "substantiates": "19 min, 0.9 mile walking route via Las Vegas Blvd S."
+    },
+    {
+      "id": "S18",
+      "publisher": "Google Maps (walking directions)",
+      "label": "Walking route: Paris Las Vegas to The Venetian Resort",
+      "url": "https://www.google.com/maps/dir/Paris+Las+Vegas/The+Venetian+Resort+Las+Vegas/data=!4m2!4m1!3e2?hl=en",
+      "retrieved": "2026-11-16",
+      "substantiates": "20 min, 0.9 mile walking route via Las Vegas Blvd S."
+    },
+    {
+      "id": "S19",
+      "publisher": "Google Maps (walking directions)",
+      "label": "Walking route: Planet Hollywood to The Venetian Resort",
+      "url": "https://www.google.com/maps/dir/Planet+Hollywood+Las+Vegas/The+Venetian+Resort+Las+Vegas/data=!4m2!4m1!3e2?hl=en",
+      "retrieved": "2026-11-16",
+      "substantiates": "20 min, 0.9 mile walking route via Las Vegas Blvd S."
+    },
+    {
+      "id": "S20",
+      "publisher": "Google Maps (walking directions)",
+      "label": "Walking route: Bellagio to The Venetian Resort",
+      "url": "https://www.google.com/maps/dir/Bellagio+Las+Vegas/The+Venetian+Resort+Las+Vegas/data=!4m2!4m1!3e2?hl=en",
+      "retrieved": "2026-11-16",
+      "substantiates": "21 min, 0.9 mile walking route via Las Vegas Blvd S."
+    },
+    {
+      "id": "S21",
+      "publisher": "Google Maps (walking directions)",
+      "label": "Walking route: The Cosmopolitan to The Venetian Resort",
+      "url": "https://www.google.com/maps/dir/The+Cosmopolitan+of+Las+Vegas/The+Venetian+Resort+Las+Vegas/data=!4m2!4m1!3e2?hl=en",
+      "retrieved": "2026-11-16",
+      "substantiates": "22 min, 1.0 mile walking route via Las Vegas Blvd S."
+    },
+    {
+      "id": "S22",
+      "publisher": "Google Maps (walking directions)",
+      "label": "Walking route: Circus Circus to The Venetian Resort",
+      "url": "https://www.google.com/maps/dir/Circus+Circus+Las+Vegas/The+Venetian+Resort+Las+Vegas/data=!4m2!4m1!3e2?hl=en",
+      "retrieved": "2026-11-16",
+      "substantiates": "28 min, 1.2 mile walking route via Las Vegas Blvd S."
+    },
+    {
+      "id": "S23",
+      "publisher": "Google Maps (walking directions)",
+      "label": "Walking route: Resorts World to The Venetian Resort",
+      "url": "https://www.google.com/maps/dir/Resorts+World+Las+Vegas/The+Venetian+Resort+Las+Vegas/data=!4m2!4m1!3e2?hl=en",
+      "retrieved": "2026-11-16",
+      "substantiates": "27 min, 1.2 mile walking route; Google flags 'This route has restricted usage or private roads'."
+    },
+    {
+      "id": "S24",
+      "publisher": "Google Maps (walking directions)",
+      "label": "Walking route: Vdara to The Venetian Resort",
+      "url": "https://www.google.com/maps/dir/Vdara+Hotel+and+Spa/The+Venetian+Resort+Las+Vegas/data=!4m2!4m1!3e2?hl=en",
+      "retrieved": "2026-11-16",
+      "substantiates": "30 min, 1.3 mile walking route via Las Vegas Blvd S."
+    },
+    {
+      "id": "S25",
+      "publisher": "Google Maps (walking directions)",
+      "label": "Walking route: Fontainebleau to The Venetian Resort",
+      "url": "https://www.google.com/maps/dir/Fontainebleau+Las+Vegas/The+Venetian+Resort+Las+Vegas/data=!4m2!4m1!3e2?hl=en",
+      "retrieved": "2026-11-16",
+      "substantiates": "30 min, 1.3 mile walking route via Las Vegas Blvd S."
+    },
+    {
+      "id": "S26",
+      "publisher": "Google Maps (walking directions)",
+      "label": "Walking route: ARIA Resort and Casino to The Venetian Resort",
+      "url": "https://www.google.com/maps/dir/ARIA+Resort+and+Casino/The+Venetian+Resort+Las+Vegas/data=!4m2!4m1!3e2?hl=en",
+      "retrieved": "2026-11-16",
+      "substantiates": "31 min, 1.4 mile walking route via Las Vegas Blvd S."
+    }
+  ]
+}

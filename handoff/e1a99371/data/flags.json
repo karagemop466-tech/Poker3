@@ -1,0 +1,165 @@
+{
+  "asOf": "2026-11-16",
+  "flags": [
+    {
+      "id": "F01",
+      "severity": "Blocker for the single-entry claim",
+      "title": "No Venetian structure sheet prints the words 'single entry', 'freezeout', 'no re-entry' or 'no add-on'",
+      "detail": "All 37 official DSE IV structure sheets were read in full on 2026-11-16. Every one prints the buy-in, house fee, prize-pool share, guarantee, starting chips, level duration, late-registration window and payout percentage. None states the number of entries a player may make. The 1Day events are therefore listed as 'one-day event; sheet prints no re-entry or add-on', which is NOT the same as 'single entry confirmed'.",
+      "impact": "The user's core filter - single entry only - cannot be satisfied from official documents alone. It must be confirmed with the poker room.",
+      "action": "Call the Venetian poker room at 702.414.7657 or email lv_cas_poker@venetianlasvegas.com and ask for the written maximum-entry policy for each event number. Do this before paying any non-refundable deposit.",
+      "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "sourceId": "S04"
+    },
+    {
+      "id": "F02",
+      "severity": "High",
+      "title": "Multi-flight sheets imply multiple entries but never say 're-entry'",
+      "detail": "Sheets 2, 3, 4, 9, 10, 12, 13, 14, 20, 21, 35, 36 and 37 all contain the rule 'Any player who bags chips for Day 2 may not play a subsequent flight.' That sentence only has meaning if a player is allowed to enter more than one flight, so these events are classified as NOT single entry. The sheets still never use the word 're-entry' or state how many flights a player may enter.",
+      "impact": "Events 1, 7, 19, 26, 47, 49, 56 and 59 are excluded from the single-entry list on an inference, not on printed text.",
+      "action": "Ask the poker room to confirm in writing how many flights a player may enter and whether a player who busts flight 1A may buy into 1B.",
+      "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_2.pdf",
+      "sourceId": "S04"
+    },
+    {
+      "id": "F03",
+      "severity": "High",
+      "title": "Events 18 and 58 (PokerAtlas Valuetown Bounty) are the only 1Day sheets that refer to subsequent buy-ins",
+      "detail": "Structure sheet 8 states: 'All subsequent buy in's after the initial buy in will be $200.' That is the only 1Day sheet that contemplates more than one buy-in, so these two events are the weakest single-entry candidates. The same sheet also grants a $20 rake discount to PokerAtlas PRO members, which is a paid membership.",
+      "impact": "Events 18 and 58 are the only 1Day events with any textual hint of re-entry and the only ones tied to a paid membership discount.",
+      "action": "Treat events 18 and 58 as 'needs confirmation' rather than candidates. Ask the poker room whether a player may buy in more than once.",
+      "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf",
+      "sourceId": "S04"
+    },
+    {
+      "id": "F04",
+      "severity": "Medium",
+      "title": "Bounty events are not listed with a cash prize pool separate from bounties",
+      "detail": "For every bounty event the guarantee is printed as 'prize pool + total bounties'. The official sheets do not split the guarantee between the cash prize pool and the bounty pool, so 'guarantee' on those rows is a combined figure.",
+      "impact": "Guarantee-per-dollar comparisons mix two different things for bounty vs non-bounty events.",
+      "action": "Read the 'Guaranteed pool + entry fee' ratio column with this in mind, and use the bounty label. Do not compare a bounty guarantee directly with a plain freezeout guarantee.",
+      "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf",
+      "sourceId": "S04"
+    },
+    {
+      "id": "F05",
+      "severity": "Medium",
+      "title": "Events 3, 4 and 5 (RaceDay Stack) and event 6 print no guarantee at all",
+      "detail": "Structure sheets 18 and 29 state the buy-in, house fee and prize-pool share but contain no 'Guarantee' line. The official schedule PDF also leaves the GUARANTEE column blank for these rows.",
+      "impact": "These four events cannot be ranked on guaranteed pool, and the ratio column is blank for them.",
+      "action": "Ask the poker room whether a guarantee applies; otherwise rank them on entry cost alone.",
+      "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_18.pdf",
+      "sourceId": "S04"
+    },
+    {
+      "id": "F06",
+      "severity": "Medium",
+      "title": "No official source publishes a finish time for any event",
+      "detail": "The schedule PDF publishes a start time and a registration-close time, and the structure sheets publish level durations, but no official page states when any event ends. Field size is not published either, so the finish time cannot be derived.",
+      "impact": "The overlap check on this site compares registration windows, not verified finish times. A clean window gap does not guarantee you will actually be finished.",
+      "action": "Do not rely on the overlap column to build a two-events-per-day plan. Confirm expected duration with the poker room for the specific events you plan to play.",
+      "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+      "sourceId": "S03"
+    },
+    {
+      "id": "F07",
+      "severity": "Medium",
+      "title": "The earliest verified start in the whole series is 10:10 AM, not 8:00 AM",
+      "detail": "Across all 94 published starts, the earliest start times are 9:10 AM (event 46 satellite, Dec 12) and 10:10 AM (many events). No event in DSE IV starts at 8:00 AM.",
+      "impact": "The 'play from 8 AM all day' plan cannot be delivered from DSE IV alone. Cash games are available 24 hours a day in the room, but that is a different product from the tournament schedule.",
+      "action": "Either accept a 10:10 AM start, or fill 8:00-10:00 AM with cash games. Do not plan around an 8 AM tournament that does not exist in the official schedule.",
+      "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "sourceId": "S02"
+    },
+    {
+      "id": "F08",
+      "severity": "Medium",
+      "title": "The official schedule PDF has non-date strings in its DATE column",
+      "detail": "Rows in the official PDF carry '@PokerAtlas PRO', '@PokerAtlas* TOUR', 'LIPS CHAMPIONSHIP CHAMPIES CHAMPIES CHAMPIES' and 'LIPS FRIDAY, DECEMBER 11' where a weekday/date should be. The HTML structures page publishes a full explicit date for every row, so the HTML is used as the date authority. Prior-session data that inherited PDF row order assigned dates by inference.",
+      "impact": "Any row dated only from the PDF could be off by a day.",
+      "action": "This site dates every row from the HTML table (S02) and cross-checks the start time against the PDF (S03). Nothing is dated by inference.",
+      "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "sourceId": "S02"
+    },
+    {
+      "id": "F-H1",
+      "severity": "Blocker for hotel ranking",
+      "title": "No official hotel page publishes a date-specific nightly rate for the target dates",
+      "detail": "Every official booking engine renders rates with client-side scripting that cannot be read from a static fetch. The only official numbers that could be verified are the Venetian resort fee ($55 plus tax per night), the Venetian poker suite 'starting as low as $119 and $209' (conditional on qualifying poker play and only published out to 150 days) and the Clark County Room Tax of 13.38%.",
+      "impact": "The true cost per night cannot be computed from official sources yet. The calculator on this site is wired to the verified fee and tax figures and takes the rate as an input you supply from a live quote.",
+      "action": "Open each official booking link on the Hotels page for your exact dates, read the itemised total, and log it in the rate log. Compare like-for-like: same dates, same occupancy, same room category.",
+      "source": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
+      "sourceId": "S07"
+    },
+    {
+      "id": "F-H2",
+      "severity": "Medium",
+      "title": "13.38% tax is verified only on the Venetian's own terms page",
+      "detail": "The Venetian's hotel terms state 'Daily rates do not include the applicable Clark County Room Tax of 13.38%.' The same rate applies county-wide, but this session did not read an official page for each of the other 16 hotels confirming it.",
+      "impact": "The tax field on non-Venetian hotel rows is an extrapolation from one official source, not a per-hotel verification.",
+      "action": "Confirm the tax line on each hotel's own itemised quote before comparing totals.",
+      "source": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
+      "sourceId": "S08"
+    },
+    {
+      "id": "F-H3",
+      "severity": "Medium",
+      "title": "Wynn's official resort-fee and terms pages are unreachable",
+      "detail": "https://www.wynnlasvegas.com/resort-fee and https://www.wynnlasvegas.com/stay/terms-and-conditions both returned 'IT SEEMS THIS PAGE HAS CHECKED OUT' on 2026-11-16. A prior session recorded a Wynn resort fee of $55 with a conflicting $50 figure elsewhere; neither could be reproduced this session.",
+      "impact": "The Wynn and Encore rows have no verified resort fee, so their true cost per night cannot be computed.",
+      "action": "Re-fetch the Wynn pages, or read the fee off a live Wynn quote for your dates.",
+      "source": "https://www.wynnlasvegas.com/",
+      "sourceId": ""
+    },
+    {
+      "id": "F-H4",
+      "severity": "Low",
+      "title": "Encore is further on foot than Wynn despite being adjacent",
+      "detail": "Google Maps returns 13 min / 0.6 mile for Wynn to the Venetian but 19 min / 0.9 mile for Encore. The Encore query resolved to 'Encore Las Vegas' and routed via Las Vegas Blvd S. The gap is larger than the properties' adjacency suggests.",
+      "impact": "Encore's walk time may be an artefact of which entrance Google used.",
+      "action": "Re-check the route from the Encore tower entrance specifically before relying on the 19-minute figure.",
+      "source": "https://www.google.com/maps/dir/Encore+Las+Vegas/The+Venetian+Resort+Las+Vegas/data=!4m2!4m1!3e2?hl=en",
+      "sourceId": "S17"
+    },
+    {
+      "id": "F-H5",
+      "severity": "Medium",
+      "title": "'The Mirage' no longer resolves on Google Maps",
+      "detail": "A walking query for 'The Mirage Las Vegas' resolves to 'Hard Rock Hotel & Casino Las Vegas' (6 min, 0.2 mile) and Google shows 'This place has been reported closed.' The Mirage is therefore not carried as a verified hotel row.",
+      "impact": "A hotel that used to be one of the closest to the Venetian may not be bookable under that name for these dates.",
+      "action": "Confirm the current name and operating status of the property at 3400 S Las Vegas Blvd before booking it.",
+      "source": "https://www.google.com/maps/dir/The+Mirage+Las+Vegas/The+Venetian+Resort+Las+Vegas/data=!4m2!4m1!3e2?hl=en",
+      "sourceId": ""
+    },
+    {
+      "id": "F-H6",
+      "severity": "Low",
+      "title": "Resorts World walking route is flagged as restricted",
+      "detail": "Google's 27 min / 1.2 mile walking route from Resorts World to the Venetian carries the warning 'This route has restricted usage or private roads.' The alternative route listed is 28 min / 1.2 mile via Genting Blvd.",
+      "impact": "The published walking time may not be walkable in practice at all hours.",
+      "action": "Walk it once in daylight, or treat Resorts World as a rideshare trip rather than a walk.",
+      "source": "https://www.google.com/maps/dir/Resorts+World+Las+Vegas/The+Venetian+Resort+Las+Vegas/data=!4m2!4m1!3e2?hl=en",
+      "sourceId": "S23"
+    },
+    {
+      "id": "F-X1",
+      "severity": "Medium",
+      "title": "Only the Venetian is covered; other Strip poker rooms were not re-verified this session",
+      "detail": "This session verified the Venetian DSE IV schedule in full. Wynn, Bellagio, ARIA, MGM Grand, Caesars, Horseshoe, Resorts World, South Point, Orleans, Golden Nugget and Circa were not re-fetched this session. Prior sessions recorded that the Wynn WPT festival and the Bellagio weekly events carry re-entry or rebuy wording, and that ARIA's poker guide is undated; those findings are preserved in the repository but were not re-verified here.",
+      "impact": "The tournament table is not a complete inventory of Strip poker tournaments.",
+      "action": "Decide whether you want only the Venetian series (fully verified here) or a wider scan. A wider scan needs each room's official schedule fetched and each event's structure sheet read.",
+      "source": "https://www.venetianlasvegas.com/resort/casino/poker.html",
+      "sourceId": "S05"
+    },
+    {
+      "id": "F-X2",
+      "severity": "Low",
+      "title": "Change monitoring is configured but has not yet run a second pass",
+      "detail": "The monitoring page lists every official URL with the date it was last fetched and the value it substantiates. A GitHub Actions workflow re-fetches them on a schedule and opens an issue when a page changes. As of 2026-11-16 only the baseline snapshot exists.",
+      "impact": "'Last checked' shows the first check, not a confirmed-stable value.",
+      "action": "After the first scheduled run, rows whose source changed will be marked on the Changes page.",
+      "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "sourceId": "S02"
+    }
+  ]
+}
