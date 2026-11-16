@@ -37,7 +37,7 @@
     return new Intl.DateTimeFormat('en-US', { weekday: 'short', timeZone: 'UTC' }).format(new Date(Date.UTC(year, month - 1, day)));
   };
   const sourceLink = (source, label) => source
-    ? `<a class="source-link" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(label || 'Official source')} ↗</a>${source.check?.changed ? '<span class="source-change" role="status">Changed</span>' : source.check?.result === 'unavailable' ? '<span class="source-unavailable" role="status">Check unavailable</span>' : ''}`
+    ? `<a class="source-link" href="${esc(source.url)}" target="_blank" rel="noopener noreferrer">${esc(label || 'Official source')} ↗</a>${source.check?.lastChecked ? `<span class="source-last-checked">Last checked ${esc(source.check.lastChecked)} UTC</span>` : ''}${source.check?.changed ? '<span class="source-change" role="status">Changed</span>' : source.check?.result === 'unavailable' ? '<span class="source-unavailable" role="status">Check unavailable</span>' : ''}`
     : '';
   const sourceLinks = (ids, sources, max = 3) => (ids || []).slice(0, max).map((id) => {
     const source = sources[id];

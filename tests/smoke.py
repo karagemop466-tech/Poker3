@@ -48,6 +48,7 @@ def main() -> None:
     assert "source-monitor.json" in (SITE / "stay.html").read_text(encoding="utf-8") or "source-monitor.json" in (SITE / "assets/app.js").read_text(encoding="utf-8")
     app = (SITE / "assets/app.js").read_text(encoding="utf-8")
     assert "trip-cost-result" in app and "entries * buyIn" in app and "trueNightly" in app
+    assert "source-last-checked" in app, "official-source recheck time should be exposed beside linked rows"
     assert "event-date" in app, "tournament date filter should remain available"
     for source in data["sources"]:
         assert source["url"].startswith("https://"), source["id"]
