@@ -24,7 +24,7 @@ Run `python3 scripts/verify_site.py`, `node --check site/assets/app.js`, and `py
 
 ## Expanded Poker3 research companion
 
-`site/poker3/` adds a separate, source-linked Las Vegas field guide with tournament filters, a cautious date planner, room schedules, a sample hotel/fee comparison, route estimates, and a flagged-review register. It is included automatically in the existing Pages artifact at `/poker3/`; the canonical dashboard at `/` is preserved. The Dec. 10–14, 2026 two-adult hotel window is a research sample, not user-provided travel dates, and no strict-entry event is verified.
+`site/poker3/` adds a separate, source-linked Las Vegas field guide with tournament filters, a cautious date planner, room schedules, a sample hotel/fee comparison, route estimates, and a flagged-review register. The current live Pages setting still reports legacy `main`-root publishing, so the verified public path is [`/site/poker3/`](https://karagemop466-tech.github.io/Poker3/site/poker3/); the canonical dashboard at `/` is preserved. The existing Actions workflow uploads `site/`, where the same companion is available at `/poker3/` if Pages is switched to that source. The Dec. 10–14, 2026 two-adult hotel window is a research sample, not user-provided travel dates, and no strict-entry event is verified.
 
 Run `python3 tests/smoke.py` to validate this companion. When serving the repository's `site/` directory locally, open `http://localhost:8000/poker3/`.
 
