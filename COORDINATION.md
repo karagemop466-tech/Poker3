@@ -638,3 +638,11 @@ passed (10 main pages, 5 detail pages) · `python3 tests/smoke.py` → OK ·
 → OK · `python3 scripts/data_source.py` + `git diff --exit-code site/data.json` →
 reproducible, no diff.
  (verify: independent cross-check of published DSE IV data against all 37 official structure sheets)
+
+### Result (session `arena/e1a99371-poker3`)
+
+- PR: [#29](https://github.com/karagemop466-tech/Poker3/pull/29) (`arena/e1a99371-poker3` → `main`). **Merged** with a merge commit on 2026-11-16. Checks on the PR: workflow "Verify static research site" **passed** (run [43944160863](https://github.com/karagemop466-tech/Poker3/actions/runs/43944160863)).
+- One conflict on rebase: `COORDINATION.md` against session `arena/ef37b79e-poker3`'s record. Resolved by keeping **both** sections in full, in order. No other session's text was removed. Verified afterwards that all five session records (`e1a99371`, `ef37b79e`, `ed88c788`, `62cea180`, `779af4ba`) are still present.
+- Pages: workflow "Publish integrated Vegas Poker Planner to GitHub Pages", run [43944299631](https://github.com/karagemop466-tech/Poker3/actions/runs/43944299631): **success**. Pages API reports `status: built`, source `main` `/`, url https://karagemop466-tech.github.io/Poker3/ .
+- Overlap with session `arena/ef37b79e-poker3`: that session also read all 37 official structure sheets and shipped its own verification layer (`data/sheet_extracts.jsonl`, `scripts/build_data.py`, `scripts/build_addendum.py`, `site/sheets.html`). My sheet reads were done independently and are preserved as `raw/dse_nov_2026_structures_page.md` (verbatim official HTML table) and under `handoff/e1a99371/`. **Neither session's work was overwritten** — the two are complementary: theirs publishes a per-sheet page, mine cross-checks the published row data.
+- Status: **done**. Nothing further is blocked. Outstanding items are the three user decisions recorded above (R4 single-entry confirmation, R5 duplicate-tree retirement, R6 RaceDay level detail).
