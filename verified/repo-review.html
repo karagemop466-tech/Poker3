@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Home | Las Vegas Strip Poker Dashboard</title>
+<title>Repo review | Las Vegas Strip Poker Dashboard</title>
 <link rel="icon" href="data:,">
 <style>
 :root{--ink:#1d2433;--muted:#5d6678;--line:#e3e7ef;--bg:#f7f8fb;--card:#fff;--accent:#1f5eff;
@@ -39,46 +39,24 @@ ul.tight li{margin:3px 0}
 .calc label{display:block;margin:6px 0}.calc input,.calc select{padding:7px;border:1px solid #c9d1e0;border-radius:6px;width:220px}
 .calc button{padding:8px 12px;border:0;border-radius:6px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer;margin-top:8px}
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;font-size:12.5px}
+.other{background:#eef2fa;padding:4px 18px;font-size:12.5px;color:#334}
 .slot{background:#fbfcfe;border:1px solid var(--line);border-radius:8px;padding:6px}
 </style></head>
 <body>
-<header><div class="brand">Las Vegas Strip Poker Dashboard</div><nav><a href="index.html" class="on">Home</a><a href="summary.html" class="">Executive summary</a><a href="tournaments-single.html" class="">Single-entry (Venetian)</a><a href="tournaments-multi.html" class="">Re-entry &amp; unverified</a><a href="best-picks.html" class="">Best picks</a><a href="schedule.html" class="">Day schedule</a><a href="hotels.html" class="">Hotels</a><a href="suggestions.html" class="">Suggestions</a><a href="questions.html" class="">Questions</a><a href="repo-review.html" class="">Repo review</a><a href="flagged.html" class="">Flagged for Review</a><a href="sources.html" class="">Sources</a></nav></header>
+<header><div class="brand">Las Vegas Strip Poker Dashboard (verified-only)</div><nav><a href="index.html" class="">Home</a><a href="summary.html" class="">Executive summary</a><a href="tournaments-single.html" class="">Single-entry (Venetian)</a><a href="tournaments-multi.html" class="">Re-entry &amp; unverified</a><a href="best-picks.html" class="">Best picks</a><a href="schedule.html" class="">Day schedule</a><a href="hotels.html" class="">Hotels</a><a href="suggestions.html" class="">Suggestions</a><a href="questions.html" class="">Questions</a><a href="repo-review.html" class="on">Repo review</a><a href="flagged.html" class="">Flagged for Review</a><a href="sources.html" class="">Sources</a></nav></header>
+<div class="other">Other sites in this repository: <a href="../">root dashboard</a> &middot; <a href="../docs/">docs site</a></div>
 <main>
 
-<h1>Las Vegas Strip poker: official tournaments, hotels and planning</h1>
-<p class="lead">Built only from official venue and resort pages and PDFs, retrieved 2026-11-16. Blank cells are unverified, not estimates.</p>
-
-<div class="cards">
- <div class="card"><span class="k">Venetian flights (official)</span><b>83</b><a href="tournaments-single.html">Open &rarr;</a></div>
- <div class="card"><span class="k">Flights with sheet read</span><b>24</b><a href="tournaments-single.html">Open &rarr;</a></div>
- <div class="card"><span class="k">Wynn WPT buy-in rows (official)</span><b>116</b><a href="tournaments-multi.html">Open &rarr;</a></div>
- <div class="card"><span class="k">Wynn WPT re-entry verified</span><b>4</b><a href="tournaments-multi.html">Open &rarr;</a></div>
- <div class="card"><span class="k">Hotels with official fee</span><b>3</b><a href="hotels.html">Open &rarr;</a></div>
- <div class="card"><span class="k">Flags for review</span><b>22</b><a href="flagged.html">Open &rarr;</a></div>
-</div>
-<div class="box okbox"><b>What the official data shows</b>
+<h1>Repo review (line by line)</h1>
+<p class="lead">Checked against the repository and the GitHub Pages API. Links go to the repository or GitHub documentation.</p>
+<div class="wrap"><table id="t-repo"><thead><tr><th>Item</th><th>What was found</th><th>Status / action</th><th>Link</th></tr></thead><tbody><tr><td>README.md</td><td>One line: &#x27;# Poker3&#x27;. 8 bytes. No description, purpose or usage.</td><td>Irregular: README is a placeholder. Not changed in this session (you review first).</td><td><a href="https://github.com/karagemop466-tech/Poker3/blob/main/README.md" target="_blank" rel="noopener">https://github.com/karagemop466-tech/Poker3/blob/main/README.md</a></td></tr><tr><td>Repository root</td><td>No index.html, no COORDINATION.md, no LICENSE, no site folder before this session.</td><td>COORDINATION.md added; site pages, scripts, data and raw sources added. No license added (you have not chosen one).</td><td><a href="https://github.com/karagemop466-tech/Poker3" target="_blank" rel="noopener">https://github.com/karagemop466-tech/Poker3</a></td></tr><tr><td>Branches</td><td>main (1 commit, &#x27;Initial commit&#x27;, 895478b) and arena/f332570d-poker3 (this session).</td><td>All work is on the session branch, as required for this session.</td><td><a href="https://github.com/karagemop466-tech/Poker3/branches" target="_blank" rel="noopener">https://github.com/karagemop466-tech/Poker3/branches</a></td></tr><tr><td>GitHub Pages</td><td>Pages API (checked this session): status &#x27;built&#x27;, source main, path /.</td><td>The site publishes from main root. A .nojekyll file is added so Jekyll does not process the files.</td><td><a href="https://github.com/karagemop466-tech/Poker3/settings/pages" target="_blank" rel="noopener">https://github.com/karagemop466-tech/Poker3/settings/pages</a></td></tr><tr><td>Remote</td><td>origin = https://github.com/karagemop466-tech/Poker3.git</td><td>Matches this repository.</td><td><a href="https://github.com/karagemop466-tech/Poker3" target="_blank" rel="noopener">https://github.com/karagemop466-tech/Poker3</a></td></tr><tr><td>Task vs. repo</td><td>The task names COORDINATION.md and session-&lt;id&gt;/&lt;task&gt; branches.</td><td>COORDINATION.md is created; session branches are not used because this session has one branch (flag F20).</td><td><a href="https://github.com/karagemop466-tech/Poker3" target="_blank" rel="noopener">https://github.com/karagemop466-tech/Poker3</a></td></tr></tbody></table></div>
+<h2>Irregularities</h2>
 <ul class="tight">
-<li>The Venetian's DeepStack Extravaganza IV runs Nov 16 to Dec 23, 2026, with 83 dated flights. Its structure sheets read so far state no re-entry rule; 59 flights are still unchecked.</li>
-<li>Highest guarantee ÷ buy-in (calculated, not expected return): <b>$800 NO LIMIT HOLD&#x27;EM 1A</b> on Thu Dec 3 at 11:10 AM: $500,000 guarantee on a $800 buy-in = 625x.</li>
-<li>Wynn's WPT World Championship has 116 buy-in rows. Only 4 (Nov 27) are verified as re-entry events. The rest are kept separate until checked.</li>
-<li>No official source printed a start before 9:10 AM. A full 8 AM to close day cannot be confirmed (flag F18).</li>
-<li>Resort fee is $55 plus tax per night at The Venetian and Wynn, and $55 plus tax at Resorts World (waived on select dates through Dec 28, 2026 under its offer). Room rates and tax are not verified.</li>
-</ul></div>
-<div class="box warnbox"><b>Not covered yet:</b> Bellagio, Aria, MGM Grand, Caesars Palace, Horseshoe, Resorts World tournaments and other Strip rooms (flag F13 and F14).</div>
-<h2>Where to go</h2>
-<div class="cards">
- <div class="card"><a href="summary.html">Executive summary</a><br><span class="k">One page of findings.</span></div>
- <div class="card"><a href="tournaments-single.html">Single-entry (Venetian)</a><br><span class="k">All 83 flights, each with its source.</span></div>
- <div class="card"><a href="tournaments-multi.html">Re-entry &amp; unverified</a><br><span class="k">Kept apart from single-entry.</span></div>
- <div class="card"><a href="best-picks.html">Best picks</a><br><span class="k">Ranked by official numbers.</span></div>
- <div class="card"><a href="schedule.html">Day schedule</a><br><span class="k">Every printed start, by day.</span></div>
- <div class="card"><a href="hotels.html">Hotels</a><br><span class="k">Official fees, parking and calculator.</span></div>
- <div class="card"><a href="suggestions.html">Suggestions</a><br><span class="k">Proposed changes. None is made until you choose.</span></div>
- <div class="card"><a href="questions.html">Questions</a><br><span class="k">What is known, and how to find out the rest.</span></div>
- <div class="card"><a href="repo-review.html">Repo review</a><br><span class="k">The repository, line by line.</span></div>
- <div class="card"><a href="flagged.html">Flagged for Review</a><br><span class="k">Conflicts, gaps and unverified values.</span></div>
- <div class="card"><a href="sources.html">Sources</a><br><span class="k">Every official link used.</span></div>
-</div>
+<li>README is an 8-byte placeholder (F21).</li>
+<li>COORDINATION.md named in the task did not exist and has been created (F20).</li>
+<li>The task asks for separate session branches; this session has one branch (F20).</li>
+<li>No license file. Not added, because you have not chosen one.</li>
+</ul>
 <footer>Figures come only from the official venue and resort pages and PDFs linked on each row (see <a href="sources.html">Sources</a>), retrieved 2026-11-16.
 Blank = not verified. Nothing is estimated. Ratios (guarantee divided by buy-in) are calculated by the site from official numbers and are not expected return.
 Check every value on the official page before you enter or book.</footer>

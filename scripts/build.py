@@ -16,6 +16,8 @@ sys.path.insert(0, HERE)
 import data as D  # noqa: E402
 
 ROOT = os.path.abspath(os.path.join(HERE, ".."))
+OUT = os.path.join(ROOT, "verified")  # site folder; other sites in this repo are not touched
+os.makedirs(OUT, exist_ok=True)
 
 
 def load(name):
@@ -152,6 +154,7 @@ ul.tight li{margin:3px 0}
 .calc label{display:block;margin:6px 0}.calc input,.calc select{padding:7px;border:1px solid #c9d1e0;border-radius:6px;width:220px}
 .calc button{padding:8px 12px;border:0;border-radius:6px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer;margin-top:8px}
 .grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;font-size:12.5px}
+.other{background:#eef2fa;padding:4px 18px;font-size:12.5px;color:#334}
 .slot{background:#fbfcfe;border:1px solid var(--line);border-radius:8px;padding:6px}
 """
 
@@ -191,7 +194,8 @@ def page(title, active, body):
 <link rel="icon" href="data:,">
 <style>{CSS}</style></head>
 <body>
-<header><div class="brand">Las Vegas Strip Poker Dashboard</div><nav>{nav}</nav></header>
+<header><div class="brand">Las Vegas Strip Poker Dashboard (verified-only)</div><nav>{nav}</nav></header>
+<div class="other">Other sites in this repository: <a href="../">root dashboard</a> &middot; <a href="../docs/">docs site</a></div>
 <main>
 {body}
 <footer>Figures come only from the official venue and resort pages and PDFs linked on each row (see <a href="sources.html">Sources</a>), retrieved {D.ACCESS_DATE}.
@@ -770,8 +774,8 @@ def build():
         srows.append([esc(k), esc(label), link(url, url)])
     srows.append(["ven_struct", "Venetian structure sheets read (sheet numbers)",
                   " ; ".join(link(D.VEN_STRUCT.format(n=n), "#" + n) for n in D.VEN_STRUCT_OPENED)])
-    srows.append(["ven_raw", "Venetian schedule text saved verbatim in this repo", '<a href="raw/venetian_dse_nov_2026_schedule.md">raw/venetian_dse_nov_2026_schedule.md</a>'])
-    srows.append(["wynn_raw", "Wynn WPT schedule text saved verbatim in this repo", '<a href="raw/wynn_wpt_world_championship_schedule.md">raw/wynn_wpt_world_championship_schedule.md</a>'])
+    srows.append(["ven_raw", "Venetian schedule text saved verbatim in this repo", '<a href="../raw/venetian_dse_nov_2026_schedule.md">raw/venetian_dse_nov_2026_schedule.md</a>'])
+    srows.append(["wynn_raw", "Wynn WPT schedule text saved verbatim in this repo", '<a href="../raw/wynn_wpt_world_championship_schedule.md">raw/wynn_wpt_world_championship_schedule.md</a>'])
     body = f"""
 <h1>Sources</h1>
 <p class="lead">Every official link used. Access date {D.ACCESS_DATE}. Sources that returned errors are listed in Flagged for Review.</p>
@@ -783,10 +787,8 @@ def build():
 def main():
     pages = build()
     for name, html_text in pages.items():
-        with open(os.path.join(ROOT, name), "w", encoding="utf-8") as f:
+        with open(os.path.join(OUT, name), "w", encoding="utf-8") as f:
             f.write(html_text)
-    with open(os.path.join(ROOT, ".nojekyll"), "w") as f:
-        f.write("")
     print(f"wrote {len(pages)} pages")
     print(f"venetian flights={N_VEN} checked={N_CHECKED} unchecked={N_UNCHECKED} satellites={N_SAT} inferred={N_INFERRED}")
     print(f"venetian printed-weekday conflicts={len(VEN_CAL_CONFLICTS)}")
