@@ -270,16 +270,49 @@ Branch: `arena/701f2252-poker3` (forked from `main` at `e9af34c`). This session 
 | Task | Status | Owner | Scope | Notes |
 |---|---|---|---|---|
 | Claim, branch and coordination record | done | arena/701f2252-poker3 | `COORDINATION.md` | Claim committed and pushed before the build. |
-| Venetian DSE IV official refresh (schedule PDF + all 37 structure sheets) | done, corrections in progress | arena/701f2252-poker3 | `scripts/curate_dse_iv.py`, `data/venetian_dse_iv.json` | 94 schedule rows, 37 sheets read 2026-11-16. Eligibility labels being corrected: silence is not proof of a single entry. |
-| Official venue and hotel research (rooms, hotels, routes, sources, flags) | done | arena/701f2252-poker3 | `data/rooms.json`, `data/hotels.json`, `data/routes.json`, `data/sources.json`, `data/flags.json` | Staged research inputs, 9 rooms / 6 hotels / 8 walking pairs / 28 flags. |
-| Canonical `site/` rebuild with the remaining required features | in progress | arena/701f2252-poker3 | `site/**`, `scripts/build_site.py` | Global search, date filter, venue pages, strict-entry toggle, per-field entry terms, dated rate log, overlap analysis, trip-cost page, change monitor. |
-| Re-verify, PR to `main`, merge, Pages deploy | pending | arena/701f2252-poker3 | whole repo | Links recorded here when done. |
+| Venetian DSE IV official refresh (schedule PDF + all 37 structure sheets) | done | arena/701f2252-poker3 | `scripts/curate_dse_iv.py`, `scripts/reconcile_dse_iv.py`, `data/venetian_dse_iv.json`, `raw/venetian_dse_nov_2026_schedule.md`, `raw/venetian_dse4_official_page_rows.md` | All 37 sheets re-read in full on 2026-11-16. All 94 rows reconcile line by line against the official schedule PDF and the official event page. Entry labels corrected. |
+| Official venue and hotel research (rooms, hotels, routes, sources, flags) | done | arena/701f2252-poker3 | `data/rooms.json`, `data/hotels.json`, `data/routes.json`, `data/sources.json`, `data/flags.json` | 9 rooms / 6 hotels / 8 walking pairs / 29 official sources / 28 flags, each with its own source link and retrieval date. |
+| Canonical `site/` rebuild with the remaining required features | done | arena/701f2252-poker3 | `site/**`, `scripts/build_site.py`, `scripts/verify_site.py`, `scripts/check_hotel_rates.py`, `tests/test_canonical_site.py`, `tests/test_hotel_rate_lookup.py` | 20 generated pages. Global search, date/venue/bucket filters, strict-entry toggle, sorting, per-field entry terms with excerpts, dated rate log, overlap analysis with primary and fallback, trip-cost calculator, live hotel-rate lookup, one page per venue, change monitor. |
+| Re-verify, PR to `main`, merge, Pages deploy | in progress | arena/701f2252-poker3 | whole repo | Links recorded here when done. |
 
 ### Scope and non-overlap
 
 - This session edits `site/**`, `scripts/**`, `data/**` and this coordination file only. It does not touch `docs/`, `planner/`, `verified/`, `single-entry/` or `site/poker3/`, which belong to earlier sessions and stay in the repository as prior research artifacts.
 - `site/data.json` becomes generated output of `scripts/build_site.py`. The generator is the single source of truth; the JSON is never hand-edited.
 - Request to other sessions: none. No file owned by another session is modified, and no earlier branch is deleted.
+
+### What the entry labels now say, and why
+
+All 37 official Venetian structure sheets were read in full again on 2026-11-16. Each sheet's
+own wording is recorded against four separate questions: one entry, re-entry, add-on, rebuy,
+and any paid chip boost. The rule applied is that silence is not proof.
+
+| Verdict | Rows | Basis |
+|---|---|---|
+| `unverified - single entry not stated` | 48 | The sheet was read in full and does not mention re-entry, a rebuy, an add-on or a paid chip boost. That is not the same as stating that there is one entry, so these rows are not called confirmed. |
+| `extra spend possible - one entry per flight` | 36 | The sheet names separate starting flights and rule 08 restricts only players who bag chips for Day 2: "Any player who bags chips for Day 2 may not play a subsequent flight." A player eliminated in one flight may buy into another. |
+| `extra spend possible - seat prize` | 7 | The prize is a direct-entry seat, so every extra buy-in is another chance at the same prize. |
+| `extra spend confirmed - the sheet sells further buy-ins` | 2 | Structure sheet 8, rule 07: "All subsequent buy in's after the initial buy in will be $200." |
+| `team format - needs review` | 1 | The $600 buy-in covers a two-player team, so the per-player cost is $300. |
+
+**No row in the whole dataset is confirmed single-entry.** The strict filter on the Tournaments
+page returns nothing, and the page says so plainly rather than hiding it. The earlier
+48 provisional "single-entry confirmed" labels were inferred from silence and were removed.
+
+### Reconciliation
+
+`scripts/reconcile_dse_iv.py` compares all 94 curated rows against two official
+transcriptions and fails on any difference:
+
+- `raw/venetian_dse_nov_2026_schedule.md` - the official schedule PDF. On 15 rows the PDF's
+  DATE cell is covered by a series badge graphic, so the date is taken from the official
+  event page for the same event number, flight and start time. The correction is written into
+  the raw file so it stays auditable.
+- `raw/venetian_dse4_official_page_rows.md` - the official event page, which links each row to
+  its own structure sheet. This is what proves which sheet belongs to which row.
+
+All 94 rows now agree on date, start time, registration close, guarantee, starting chips,
+level length and structure-sheet number.
 
 ### Method notes (this session)
 

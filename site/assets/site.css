@@ -232,6 +232,29 @@ tr:hover td { background: #fbfdfb; }
 .badge.third-party { background: #f4e8d2; color: #7d5715; }
 .linklist { margin: 8px 0 0; padding-left: 18px; font-size: 12.5px; }
 .linklist li { margin: 4px 0; }
+.tag {
+  display: inline-block;
+  background: #eef4f0;
+  color: #2d5b4a;
+  border: 1px solid #d6e3db;
+  border-radius: 5px;
+  padding: 1px 6px;
+  font-size: 10.5px;
+  font-weight: 700;
+  margin: 0 4px 3px 0;
+  white-space: nowrap;
+}
+.entry-detail { margin-top: 8px; }
+.entry-detail summary { font-size: 11.5px; margin-top: 4px; }
+.entry-fields {
+  margin: 8px 0;
+  display: grid;
+  grid-template-columns: minmax(96px, 34%) 1fr;
+  gap: 0;
+  font-size: 11.5px;
+}
+.entry-fields dt { font-weight: 700; color: #33564a; padding: 4px 8px 4px 0; }
+.entry-fields dd { margin: 0; padding: 4px 0; color: #4c5f58; }
 .verdict-ok { color: #1f6b4d; font-weight: 700; }
 .verdict-warn { color: var(--amber); font-weight: 700; }
 .verdict-bad { color: var(--red); font-weight: 700; }

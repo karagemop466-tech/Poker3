@@ -246,12 +246,51 @@ def build_dataset():
         hotel["rateLog"] = sorted(
             observations, key=lambda r: (r["checked"], r.get("nightlyWithFee", 0))
         )
-        latest = hotel["rateLog"][-1] if hotel["rateLog"] else None
+        # The rate to plan with is the cheapest one published on the most recent check
+        # date. The other observations on that date are the room types above it.
+        latest = None
+        if hotel["rateLog"]:
+            newest_date = max(r["checked"] for r in hotel["rateLog"])
+            on_newest = [r for r in hotel["rateLog"] if r["checked"] == newest_date]
+            latest = min(on_newest, key=lambda r: r["nightlyWithFee"])
+            hotel["newestDate"] = newest_date
+            hotel["newestObservations"] = on_newest
+            hotel["rateRange"] = {
+                "lowest": min(r["nightlyWithFee"] for r in on_newest),
+                "highest": max(r["nightlyWithFee"] for r in on_newest),
+            }
         hotel["latestRate"] = latest
         hotel["trueNightly"] = latest["trueNightly"] if latest else ""
         hotel["trueStay"] = latest["trueStay"] if latest else ""
         hotel["preTaxStay"] = latest["preTaxStay"] if latest else ""
         hotel["hasRate"] = latest is not None
+        # The nightly average across every dated observation of the same stay.
+        if hotel["rateLog"]:
+            hotel["nightlyAverage"] = round(
+                sum(r["trueNightly"] for r in hotel["rateLog"]) / len(hotel["rateLog"]), 2
+            )
+            hotel["nightlyAveragePreTax"] = round(
+                sum(r["preTaxStay"] / max(r.get("nights", 1), 1) for r in hotel["rateLog"])
+                / len(hotel["rateLog"]),
+                2,
+            )
+            hotel["observationCount"] = len(hotel["rateLog"])
+        else:
+            hotel["nightlyAverage"] = ""
+            hotel["nightlyAveragePreTax"] = ""
+            hotel["observationCount"] = 0
+        # A checkout total is only published when every component of it is published.
+        # The booking pages state the rate excludes taxes, so the tax-inclusive figure
+        # is an estimate of the nightly cost, not the folio the guest is charged.
+        hotel["checkoutTotal"] = ""
+        hotel["checkoutTotalNote"] = (
+            "not published: the official booking page states the rate excludes taxes, so the "
+            "final folio is not a figure this site can quote"
+        )
+        hotel["trueStayNote"] = (
+            "Tax-inclusive estimate of the stay: the published rate including the resort fee, "
+            "plus 13.38% room tax, times the number of nights."
+        )
         hotel["rateStatus"] = (
             f"Latest dated observation: {usd(latest['nightlyWithFee'])} per night with the resort fee, "
             f"{usd(latest['trueNightly'], 2)} with {tax_rate*100:.2f}% room tax "
@@ -473,6 +512,64 @@ def empty_note(text):
 
 
 # --------------------------------------------------------- shared fragments --
+def format_label(event) -> str:
+    """A short label for the format, kept separate from the entry rule.
+
+    A bounty guarantee and a freezeout guarantee are not comparable, and a multi-flight
+    event is a different shape from a one-day one, so the format is labelled on its own.
+    """
+    labels = []
+    kind = (event.get("format") or "").lower()
+    if "bounty" in kind:
+        labels.append("bounty")
+    if "pkO" in kind or "pko" in kind:
+        labels.append("progressive knock-out")
+    if "multi-flight" in kind:
+        labels.append("multi-flight")
+    if "satellite" in kind:
+        labels.append("seat prize")
+    if "omaha" in kind:
+        labels.append("omaha")
+    if "big o" in kind:
+        labels.append("big O")
+    if event.get("guaranteeIncludesBounties"):
+        labels.append("guarantee includes bounties")
+    if event.get("handed"):
+        labels.append(event["handed"])
+    if not labels:
+        labels.append("freezeout")
+    return "<br>".join(
+        f'<span class="tag">{esc(label)}</span>' for label in labels
+    )
+
+
+def entry_terms_detail(event) -> str:
+    """The four separate entry questions, with the sheet's own words."""
+    rows = [
+        ("One entry", event.get("singleEntry", "")),
+        ("Re-entry", event.get("reEntry", "")),
+        ("Add-on", event.get("addOn", "")),
+        ("Rebuy", event.get("rebuy", "")),
+        ("Paid chip boost", event.get("paidChipBoost", "")),
+    ]
+    items = "".join(
+        f"<dt>{esc(name)}</dt><dd>{esc(value)}</dd>" for name, value in rows
+    )
+    fee = event.get("feeExcerpt", "")
+    excerpt = event.get("ruleExcerpt", "")
+    basis = event.get("entryRuleBasis", "")
+    checked = event.get("lastChecked", "")
+    return (
+        '<details class="entry-detail"><summary>Entry terms and the sheet\'s words</summary>'
+        f'<dl class="entry-fields">{items}</dl>'
+        + (f'<p class="muted small"><strong>Fee split:</strong> {esc(fee)}</p>' if fee else "")
+        + (f'<p class="muted small"><strong>Other rules:</strong> {esc(excerpt)}</p>' if excerpt else "")
+        + (f'<p class="muted small"><strong>Why this label:</strong> {esc(basis)}</p>' if basis else "")
+        + f'<p class="muted small">Structure sheet read on {esc(checked)}.</p>'
+        + "</details>"
+    )
+
+
 def tournament_row(event):
     """One row of the tournament table, with the data attributes the filters use."""
     verdict = event.get("entryRule", "")
@@ -502,6 +599,7 @@ def tournament_row(event):
         esc(event["dateLabel"]) if event.get("dateLabel") else '<span class="muted">recurring</span>',
         esc(event.get("time", "")),
         esc(event.get("name", "")),
+        format_label(event),
         usd(event.get("buyIn")) if event.get("buyIn") else '<span class="muted">not published</span>',
         guarantee_text,
         fee_text,
@@ -520,7 +618,7 @@ def tournament_row(event):
             f'<br><a href="{esc(event["scheduleUrl"])}" target="_blank" rel="noopener">'
             f'Event schedule <span class="badge official">official</span></a>'
         )
-    entries.append(links)
+    entries.append(links + entry_terms_detail(event))
 
     attrs = (
         f'data-row="tournament" '
@@ -540,6 +638,7 @@ TOURNAMENT_HEADERS = [
     "Date",
     "Start",
     "Tournament",
+    "Format",
     "Buy-in",
     "Guaranteed pool",
     "Fee split",
@@ -934,33 +1033,46 @@ def build_hotels(dataset):
             true_text = usd(hotel.get("trueNightly"), 2)
             stay_text = usd(hotel.get("trueStay"), 2)
             pretax_text = usd(hotel.get("preTaxStay"), 2)
+            average_text = usd(hotel.get("nightlyAverage"), 2)
         else:
             rate_text = '<span class="muted">not published</span>'
             true_text = '<span class="muted">blank</span>'
             stay_text = '<span class="muted">blank</span>'
             pretax_text = '<span class="muted">blank</span>'
+            average_text = '<span class="muted">blank</span>'
         rows.append(
             f'<tr data-hotel="{esc(hotel["id"])}">'
             f"<td><strong>{esc(hotel['name'])}</strong><br>"
             f'<span class="muted">{esc(hotel.get("venue",""))}</span></td>'
-            f"<td>{rate_text}</td>"
+            f"<td>{rate_text}<br><span class='muted'>average {average_text} across "
+            f"{hotel.get('observationCount', 0)} observation(s)</span>"
+            + (
+                f"<span class='muted'>published range {usd(hotel['rateRange']['lowest'])} "
+                f"to {usd(hotel['rateRange']['highest'])}</span>"
+                if hotel.get("rateRange")
+                else ""
+            )
+            + "</td>"
             f"<td>{esc(fee.get('text',''))}</td>"
             f"<td>{esc(hotel.get('tax',{}).get('text',''))}</td>"
             f"<td>{true_text}</td>"
             f"<td>{pretax_text}<br><span class='muted'>{stay_text} with tax</span></td>"
+            f"<td><span class='muted'>{esc(hotel.get('checkoutTotalNote',''))}</span></td>"
             f"<td>{esc(parking.get('text',''))}</td>"
             f"<td>{esc(cancel.get('text',''))}<br>"
             f"<span class='muted'>{esc(cancel.get('deadline','') or 'no deadline printed')}</span></td>"
             f"<td>{esc(quality.get('value',''))}<br>"
             f"<span class='muted'>{esc(quality.get('proxy',''))}</span></td>"
             f"<td>{esc(latest.get('checked',''))}<br>"
-            f"<span class='muted'>{esc(latest.get('note',''))}</span></td>"
+            f"<span class='muted'>{esc(latest.get('note',''))}</span>"
+            f"{rate_log_detail(hotel)}</td>"
             f"<td>{source_links([link])}</td>"
             "</tr>"
         )
     headers = [
         "Hotel and poker room", "Nightly with fee", "Resort fee", "Tax", "True nightly",
-        "Stay total", "Parking", "Cancellation", "Quality", "Rate log", "Official source",
+        "Stay total", "Checkout total", "Parking", "Cancellation", "Quality", "Rate log",
+        "Official source",
     ]
     body = f"""
 <h1>Hotels</h1>
@@ -1009,6 +1121,38 @@ the calculation could not be read from an official page.</p>
 </section>
 """
     return page("hotels.html", "Hotels", body)
+
+
+def rate_log_detail(hotel) -> str:
+    """The dated rate log for one property, newest first."""
+    entries = []
+    for observation in sorted(
+        hotel.get("rateLog", []), key=lambda r: (r["checked"], r["nightlyWithFee"])
+    ):
+        entries.append(
+            f"<tr><td>{esc(observation.get('checked',''))}</td>"
+            f"<td>{esc(observation.get('arrival',''))} to {esc(observation.get('departure',''))}</td>"
+            f"<td>{esc(observation.get('nights',''))}</td>"
+            f"<td>{esc(observation.get('occupancy',''))}</td>"
+            f"<td>{esc(observation.get('roomType',''))}</td>"
+            f"<td>{usd(observation.get('nightlyRate'))}</td>"
+            f"<td>{usd(observation.get('resortFeeIncluded'))}</td>"
+            f"<td>{usd(observation.get('nightlyWithFee'))}</td>"
+            f"<td>{usd(observation.get('trueNightly'), 2)}</td>"
+            f"<td>{esc(observation.get('sourceId',''))}</td></tr>"
+        )
+    if not entries:
+        return ""
+    return (
+        '<details class="entry-detail"><summary>Rate log '
+        f'({len(entries)} dated observation(s))</summary>'
+        '<div class="table-wrap"><table class="data-table compact"><thead><tr>'
+        "<th>Checked</th><th>Arrival</th><th>Nights</th><th>Occupancy</th><th>Room type</th>"
+        "<th>Room rate</th><th>Resort fee</th><th>Nightly with fee</th><th>True nightly</th>"
+        "<th>Source</th></tr></thead><tbody>"
+        + "".join(entries)
+        + "</tbody></table></div></details>"
+    )
 
 
 def route_table(dataset):
