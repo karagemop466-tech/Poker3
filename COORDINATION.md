@@ -146,8 +146,6 @@ Automated checks (rerun after Bellagio hotel/fee integration on 2026-11-16): `py
 
 ---
 
----
-
 ## Session e125b4a2 (Strip planner pages, per-row verified data)
 
 Branch: `arena/e125b4a2-poker3`. This session's files are kept in their own folder so no shared root or `verified/` file is overwritten.
