@@ -1205,12 +1205,22 @@ def build_cost(dataset):
     venue = [v for v in dataset["venues"] if v["id"] == "venetian"][0]
 
     buyin_options = sorted({e["buyIn"] for e in events})
-    event_options = "".join(
-        f'<option value="{esc(e["id"])}" data-buyin="{esc(e.get("buyIn"))}" '
-        f'data-date="{esc(e.get("dateISO"))}">{esc(e["dateLabel"])} {esc(e["time"])} '
-        f'{esc(e["name"])}</option>'
-        for e in events
-    )
+    # The tournament picker is grouped by date so a long series stays navigable.
+    by_day = {}
+    for event in events:
+        by_day.setdefault(event.get("dateISO", ""), []).append(event)
+    event_options = ""
+    for date_iso in sorted(by_day):
+        day_rows = by_day[date_iso]
+        label = day_rows[0].get("dateLabel", date_iso)
+        event_options += f'<optgroup label="{esc(label)}">'
+        for event in day_rows:
+            event_options += (
+                f'<option value="{esc(event["id"])}" data-buyin="{esc(event.get("buyIn"))}" '
+                f'data-date="{esc(event.get("dateISO"))}">{esc(event["time"])} '
+                f'{esc(event["name"])}</option>'
+            )
+        event_options += "</optgroup>"
     hotel_options = "".join(
         f'<option value="{esc(h["id"])}" data-nightly="{esc(h.get("trueNightly"))}" '
         f'data-nights="{esc(stay["nights"])}">{esc(h["name"])}</option>'
