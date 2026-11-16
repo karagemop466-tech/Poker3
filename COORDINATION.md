@@ -240,6 +240,7 @@ Branch: `arena/e125b4a2-poker3`. This session's files are kept in their own fold
 - Planner scenarios use a user-entered time-at-event assumption and are explicitly not verified or guaranteed itineraries. Unknown terms are labeled “Flagged for Review.”
 - Checks: `node --check site/poker3/assets/app.js`; `python3 tests/smoke.py`; JSON validation; headless DOM rendering/interaction checks on all eight pages, event filters, the mobile navigation, planner date/scenario controls, and internal links.
 
+
 ## Current session `arena/e58b73b1-poker3` — trip estimate and source-change monitor
 
 | Task | Status | Owner session | Scope | Branch | Notes |
@@ -259,3 +260,30 @@ Branch: `arena/e125b4a2-poker3`. This session's files are kept in their own fold
 - Follow-up PR [#19](https://github.com/karagemop466-tech/Poker3/pull/19) added the push-path trigger after workflow dispatch was denied; merged 2026-11-16 19:21 UTC as `b72bedb`.
 - Initial live check/deploy: workflow run [43938523153](https://github.com/karagemop466-tech/Poker3/actions/runs/43938523153) succeeded, including Pages deploy. It checked 52 official URLs at `2026-11-16T19:22:25Z`: 45 first-baseline fetches, 7 unavailable, 0 content changes. Unavailable: `aria-fee`, `aria-poker`, `bellagio-fee`, `bellagio-poker`, `mgm-fee`, `mgm-poker` (read timeouts), and `golden-nugget` (HTTP 403). See `site/poker3/data/source-monitor.json` for all per-source results and exact errors. Pages API reports `built`, source `main` `/`.
 - Row-level official source links now show the last-check UTC timestamp and distinguish changed pages from unavailable checks. The timestamp is a retrieval time, not a claim that every event's terms were re-reviewed by a human.
+
+---
+
+## Session arena/701f2252-poker3 — official-source refresh and feature build
+
+Branch: `arena/701f2252-poker3` (forked from `main` at `e9af34c`). This session is the active editor and the integration owner for the canonical `site/` output.
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| Claim, branch and coordination record | done | arena/701f2252-poker3 | `COORDINATION.md` | Claim committed and pushed before the build. |
+| Venetian DSE IV official refresh (schedule PDF + all 37 structure sheets) | done, corrections in progress | arena/701f2252-poker3 | `scripts/curate_dse_iv.py`, `data/venetian_dse_iv.json` | 94 schedule rows, 37 sheets read 2026-11-16. Eligibility labels being corrected: silence is not proof of a single entry. |
+| Official venue and hotel research (rooms, hotels, routes, sources, flags) | done | arena/701f2252-poker3 | `data/rooms.json`, `data/hotels.json`, `data/routes.json`, `data/sources.json`, `data/flags.json` | Staged research inputs, 9 rooms / 6 hotels / 8 walking pairs / 28 flags. |
+| Canonical `site/` rebuild with the remaining required features | in progress | arena/701f2252-poker3 | `site/**`, `scripts/build_site.py` | Global search, date filter, venue pages, strict-entry toggle, per-field entry terms, dated rate log, overlap analysis, trip-cost page, change monitor. |
+| Re-verify, PR to `main`, merge, Pages deploy | pending | arena/701f2252-poker3 | whole repo | Links recorded here when done. |
+
+### Scope and non-overlap
+
+- This session edits `site/**`, `scripts/**`, `data/**` and this coordination file only. It does not touch `docs/`, `planner/`, `verified/`, `single-entry/` or `site/poker3/`, which belong to earlier sessions and stay in the repository as prior research artifacts.
+- `site/data.json` becomes generated output of `scripts/build_site.py`. The generator is the single source of truth; the JSON is never hand-edited.
+- Request to other sessions: none. No file owned by another session is modified, and no earlier branch is deleted.
+
+### Method notes (this session)
+
+- Every table row links the official page that produced it. Third-party material appears only as a labelled conflict or a review item, never as evidence.
+- A blank value means the value could not be read from an official source; each blank maps to an item on the Flagged for review page.
+- Hotel figures are stored as dated observations. A total is only published when every component (nightly rate, resort fee, room tax, occupancy, nights) is published; a subtotal that excludes tax is labelled as a subtotal, not as a checkout total.
+
