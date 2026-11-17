@@ -63,6 +63,20 @@ class WorkflowFiles(unittest.TestCase):
                 with self.subTest(workflow=path.name, cron=entry.get("cron")):
                     self.assertEqual(len(str(entry["cron"]).split()), 5)
 
+    def test_scheduled_recheck_cannot_trigger_itself(self):
+        """The job writes site/checks.json and site/feed/**, so neither may trigger it."""
+        doc = yaml.load(
+            (ROOT / ".github" / "workflows" / "checks.yml").read_text(encoding="utf-8"),
+            Loader=StrictLoader,
+        )
+        triggers = doc.get(True, doc.get("on"))
+        paths = (triggers.get("push") or {}).get("paths") or []
+        for written in ("site/checks.json", "site/feed/**", "site/feed"):
+            with self.subTest(path=written):
+                self.assertNotIn(
+                    written, paths,
+                    "the job writes this file, so including it would make the job trigger itself")
+
     def test_scheduled_recheck_can_run_without_a_cron_wait(self):
         doc = yaml.load(
             (ROOT / ".github" / "workflows" / "checks.yml").read_text(encoding="utf-8"),
