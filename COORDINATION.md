@@ -2659,7 +2659,7 @@ Branch: `arena/8689ef6e-poker3` (platform-bound; the `session-<id>/<task>` namin
 |---|---|---|---|---|
 | H1 Live re-read of the official Venetian booking engine and poker suite-rate page for the trip window 2026-11-23 to 2026-11-30 | done | arena/8689ef6e-poker3 | verification; writes go through `scripts/data_hotels.py` | Dated checkout total, nightly rates, resort fee, tax, average rate, calendar cells, rate timestamp. |
 | H2 Correct the hotel module, which still priced 2026-11-25 to 2026-12-02 while the trip profile is 2026-11-23 to 2026-11-30; remove the calendar-cell average that the trip profile presented as an observed nightly price | done | arena/8689ef6e-poker3 | `scripts/data_hotels.py`, `scripts/data_source.py`, regenerated `site/data.json` | Calendar cells are observations, not prices (the hotel module's own policy, F31/F47). |
-| H3 Flag new discrepancies found by H1/H2 with official source links | done (F65-F68) | arena/8689ef6e-poker3 | `scripts/data_source.py` (FLAGS only) | Each flag names the official URL. |
+| H3 Flag new discrepancies found by H1/H2 with official source links | done (F66-F69) | arena/8689ef6e-poker3 | `scripts/data_source.py` (FLAGS only) | Each flag names the official URL. |
 | H4 Verification suite, PR to `main`, merge, Pages confirmation, record here | pending | arena/8689ef6e-poker3 | whole repo | Flagged irregularities do not block merge. |
 
 ### Result (session `arena/8689ef6e-poker3`, 2026-11-17 UTC)
@@ -2686,7 +2686,7 @@ Branch: `arena/8689ef6e-poker3` (platform-bound; the `session-<id>/<task>` namin
 - `tests/test_integrity.py`, `tests/test_recheck_ed1d2489.py`: three assertions pinned the old window or the placeholder text. They now assert the printed $4,010.55 total, the 23-30 Nov link and the logged quote. No assertion was loosened to hide a discrepancy; the dated-quote reconciliation test still runs on every quote.
 
 **Flags raised (each with an official link; visible on `site/flagged.html`).**
-- **F65** (Medium) - calendar cells for 23-29 Nov are below rate plus resort fee on every night (e.g. $165 vs $219.25 on 23 Nov), so they are not the quote.
+- **F69** (Medium; renumbered from F65 during integration, see collision note) - calendar cells for 23-29 Nov are below rate plus resort fee on every night (e.g. $165 vs $219.25 on 23 Nov), so they are not the quote.
 - **F66** (High) - the $119 poker rate is phone-only (code EPOKR25, six hours or a $300+ buy-in per night) and does not appear in the engine quote; ask before paying.
 - **F67** (Medium) - Venetian to Bellagio Poker Room walks 27 min against the planner's 21 min for the reverse direction; the day plan only models venue-to-Venetian.
 - **F68** (Low, Publishing) - `site/data/hotels.json`, `rates.json` and `routes.json` are stale (25 Nov - 2 Dec window, $2,140 figure), written by no script and read by no page.
@@ -2696,4 +2696,14 @@ Branch: `arena/8689ef6e-poker3` (platform-bound; the `session-<id>/<task>` namin
 **Not done, and why.** No phone call was possible, so the poker-rate question (F66) is open. The Palazzo quote, MGM, Caesars, Horseshoe and ARIA rates were not re-read today. The walking pairs measured today are single reads and should be re-read on another day. The 8 AM all-day plan remains unsupported: no official start before 9:00 AM is verified. The single-entry rule is still unconfirmed by any official sheet (F31); nothing was promoted.
 
 **Hand-off.** The scheduled re-check (`checks.yml`) runs on push to `main` when `site/data.json` or the scripts change, so it will re-read the sources after this merge.
+
+### Integration log (session `arena/8689ef6e-poker3`, 2026-11-17 UTC)
+
+- **Collision with `arena/fe903bcb-poker3` (PR #87, merged).** That session claimed H1/H2 (dated 23-30 Nov Venetian quote) at 21:53:50 UTC, before this session's claim at 21:55:03 UTC, and merged the same quote to `main` first. This session did not overwrite it. Resolution: their `RATE_LOG` row (per-night arrays, merged on `main`) is kept as the one 23-30 Nov quote row; my duplicate row was removed, so the quote is logged once.
+- **Flag-ID collision.** Their merged tax flag is `F65` (Low). My calendar-cell flag was also `F65`; it is renumbered to `F69` everywhere it is cited (flags, Q01, the calendar notes, README). `F66`-`F68` do not collide with `main`.
+- **Stale claim on `main`.** PR #88 (`calculator.html`) and `scripts/trip_cost.py` said the engine "publishes no price for the recommended trip window at all". That became false with the dated quote. Both sentences are corrected; the calculator's Venetian rows are labelled as published starting rates, and the dated quote is pointed to `tripCostModel.liveQuote`.
+- **Conflicts.** `COORDINATION.md` (both sections kept, markers removed, no entries dropped). `site/data.json` (regenerated from the merged scripts, not hand-merged).
+- **Verification after integration.** `scripts/data_source.py` regenerates `site/data.json`; `verify_site.py` passed (341 events, 8 hotels, 15 routes, 43 sources, 66 flags, 7 plan days, 16 pages; no duplicate flag IDs); all eight unit suites in `tests/` OK (includes `test_calculator_page.py` from `main`); `canonical_render.js` all pages rendered; `canonical_smoke.py` passed (11 main pages, 5 detail pages); `smoke.py` OK; `node --check site/assets/app.js` OK.
+- **Next.** Push, open the PR to `main`, merge, confirm the Pages deploy, record the result here.
+- **Force-push of this session's own branch.** The branch was pushed as `28ee9bd` before the rebase onto `main` (`c86803a`). The rebase replaced that commit with `a8c2c78`. Only this session's commits were replaced; no one else's commit was on the remote branch. The push uses `--force-with-lease` pinned to `28ee9bd`, so it cannot overwrite anything that is not that commit.
 
