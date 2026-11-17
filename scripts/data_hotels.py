@@ -25,13 +25,6 @@ WYNN_TERMS = "https://www.wynnlasvegas.com/about-us/resort-information"
 WYNN_EXPIRED_OFFER = "https://www.wynnlasvegas.com/terms-and-conditions/850070"
 MGM_TERMS = "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html"
 ARIA_TERMS = "https://aria.mgmresorts.com/en/terms-and-conditions.html"
-# The Caesars fee panel and policies print only inside the booking flow. These
-# booking URLs (read 2026-11-17) reproduce the printed fee breakdown, deposit,
-# parking and cancellation wording quoted in the hotel records and rate log.
-CAESARS_BOOK = ("https://www.caesars.com/book/hotel-calendar?adults=2&children=0&propCode=clv"
-                "&checkin=2026-11-25&checkout=2026-12-02")
-HORSESHOE_BOOK = ("https://www.caesars.com/book/hotel-calendar?adults=2&children=0&propCode=blv"
-                  "&checkin=2026-11-25&checkout=2026-12-02")
 BELLAGIO_HOTEL = "https://bellagio.mgmresorts.com/en/hotel.html"
 BELLAGIO_TERMS = "https://bellagio.mgmresorts.com/en/terms-and-conditions.html"
 MGM_HOTEL = "https://mgmgrand.mgmresorts.com/en/hotel.html"
@@ -40,6 +33,57 @@ HORSESHOE_HOTEL = "https://www.caesars.com/horseshoe-las-vegas/hotels"
 ARIA_HOTEL = "https://aria.mgmresorts.com/en/hotel.html"
 
 TAX_RATE = 13.38  # Clark County room tax, printed in the Venetian hotel terms
+
+# --- Caesars Entertainment properties: read from the properties' own pages on 2026-11-17 ---
+# The official Caesars booking page publishes a "Hotel Policies > Fees" block for each property
+# even when the rate grid is empty.  That block is the fee source for Caesars Palace and
+# Horseshoe Las Vegas; the room-tax percentage is still not printed, so `taxRate` stays blank.
+CAESARS_CALENDAR = ("https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates"
+                    "&flexibleMonth=December&propCode=clv")
+HORSESHOE_CALENDAR_NOV = ("https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates"
+                          "&flexibleMonth=November&propCode=blv")
+HORSESHOE_CALENDAR_DEC = ("https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates"
+                          "&flexibleMonth=December&propCode=blv")
+CAESARS_BOOKING_HOMEPAGE = "https://www.caesars.com/caesars-palace/hotel"
+# The county/city room-tax schedule, used only as a labelled reference where a property prints
+# "plus tax" without a percentage.  It is published by the City of Las Vegas for establishments
+# it licences; the Strip resorts sit in unincorporated Clark County, so this repository does NOT
+# substitute the figure into a property-published column.
+ROOM_TAX_REFERENCE = "https://files.lasvegasnevada.gov/business-licensing/RoomTaxPacket.pdf"
+ROOM_TAX_REFERENCE_NOTE = ("13.38% is the combined transient lodging tax rate published for properties inside the "
+                           "Primary Gaming Corridor (13.00% outside it).")
+
+# Dated calendar cells read off the official Horseshoe booking page at 01:26 UTC and again at
+# 01:31 UTC on 2026-11-17.  The page states: "Rates shown reflect the lowest available rate and
+# include applicable resort fees."  They are observations of a moving calendar, not quotes.
+HORSESHOE_CALENDAR_NOV_CELLS = [
+    ("2026-11-16", 55), ("2026-11-17", 72), ("2026-11-18", 99), ("2026-11-19", 99),
+    ("2026-11-20", 181), ("2026-11-21", 247), ("2026-11-22", 55), ("2026-11-23", 55),
+    ("2026-11-24", 55), ("2026-11-25", 55), ("2026-11-26", 55), ("2026-11-27", 181),
+    ("2026-11-28", 115), ("2026-11-29", 272), ("2026-11-30", 470),
+]
+HORSESHOE_CALENDAR_DEC_CELLS = [
+    ("2026-12-01", 379), ("2026-12-02", "Sold Out"), ("2026-12-03", "Sold Out"),
+    ("2026-12-04", 189), ("2026-12-05", 313), ("2026-12-06", 214), ("2026-12-07", 198),
+    ("2026-12-08", 148), ("2026-12-09", 132), ("2026-12-10", 305), ("2026-12-11", 404),
+    ("2026-12-12", 363), ("2026-12-13", 55), ("2026-12-14", 55), ("2026-12-15", 55),
+    ("2026-12-16", 55), ("2026-12-17", 55), ("2026-12-18", 61), ("2026-12-19", 189),
+    ("2026-12-20", 55), ("2026-12-21", 55), ("2026-12-22", 55), ("2026-12-23", 55),
+    ("2026-12-24", 55), ("2026-12-25", 115), ("2026-12-26", 115), ("2026-12-27", 132),
+    ("2026-12-28", 115), ("2026-12-29", 115), ("2026-12-30", 181), ("2026-12-31", 445),
+]
+# The first reading of the same December page, 01:26 UTC, before the 01:31 UTC values above.
+HORSESHOE_CALENDAR_DEC_FIRST_READ = {
+    "2026-12-01": 449, "2026-12-04": 219, "2026-12-05": 369, "2026-12-06": 249,
+    "2026-12-07": 229, "2026-12-08": 169, "2026-12-09": 149, "2026-12-10": 359,
+    "2026-12-11": 479, "2026-12-12": 429, "2026-12-13": 56, "2026-12-18": 63,
+    "2026-12-19": 219, "2026-12-25": 129, "2026-12-27": 149, "2026-12-30": 209,
+    "2026-12-31": 529,
+}
+
+
+def _cells(pairs):
+    return ", ".join(f"{d[5:]} ${v}" if isinstance(v, int) else f"{d[5:]} {v}" for d, v in pairs)
 
 # The official booking engine, opened with the dates and party size in the URL.
 VENETIAN_QUOTE_URL = ("https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17"
@@ -335,56 +379,65 @@ HOTELS = [
     ),
     dict(
         id="caesars", name="Caesars Palace", venue="Caesars Palace poker room (Appian Way)", property="Caesars Palace",
-        rooms="", baseRate="", baseRateFloor="", baseRateCeiling="",
-        baseRateNote="No room price is published on the official pages reviewed (booking page read 2026-11-17).",
+        rooms="Colosseum, Augustus, Octavius, Julius, Forum and Palace towers",
+        baseRate="", baseRateFloor="", baseRateCeiling="",
+        baseRateNote=("No room price is published for the reviewed dates. The official booking page printed 'Searching "
+                      "Rates' for the November and December 2026 flexible-month calendars on 2026-11-17 and returned no "
+                      "price cells, so there is no dated rate to log for this property."),
         resortFee=54.95,
-        resortFeeNote=("Verified 2026-11-17 on the official booking page: \"Resort fees: $62.30 ($54.95 plus $7.35 tax)\". "
-                       "Waived for Caesars Rewards Diamond and Seven Stars members."),
-        taxRate="",
-        taxNote=("The booking page prints the tax on the fee as a dollar amount ($7.35 on $54.95), not a percentage; "
-                 "$7.35 equals 13.38% of $54.95, matching the Clark County rate printed in the Venetian hotel terms. "
-                 "No tax rate is printed for the room rate itself."),
-        parking="Parking surcharge applies; waived for Caesars Rewards Platinum and above. Nevada locals (valid Nevada "
-                "driver's licence) park free for the first 3 hours, not valid during special-event pricing. Prices are "
-                "not printed; cash is not accepted.",
-        parkingSource=CAESARS_BOOK,
-        cancellation="\"FREE 48-Hour Cancellation*\" is printed on the booking page; the starred conditions are not "
-                     "reproduced on the captured page.",
-        cancellationSource=CAESARS_BOOK,
-        incidental="Deposit: $100 per day. Cash is not accepted for deposits or room charges. Comp-room no-show "
-                   "penalty: $50 plus tax.",
-        checkInOut="Check-in 4:00 pm (guests must be 21 or older); check-out 11:00 am.", qualification="",
-        source=CAESARS_HOTEL, feeSource=CAESARS_BOOK, taxSource=CAESARS_BOOK,
-        qualityNote="Not scored.",
-        status="Fee terms verified 2026-11-17; no published room price and no printed parking price.",
+        resortFeeNote=("The official booking page prints, under Hotel Policies > Fees: 'Resort fees: $62.30 ($54.95 "
+                       "plus $7.35 tax)' and 'Resort fees are not assessed for Diamond and Seven Stars guests.' The fee "
+                       "covers WiFi for two devices with a premium-speed upgrade, all local calls and daily fitness "
+                       "centre access for two."),
+        taxRate="", taxNote=("The property page does not print a room-tax percentage for the rate. It prints only the tax "
+                            "amount charged on the resort fee ($7.35 on $54.95)."),
+        parking="Self parking: surcharge applies. Valet parking: surcharge applies. Both are complimentary for Caesars Rewards members at Platinum tier or higher; Nevada locals get the first 3 hours of self parking at no charge. No dollar amount is published on the page.",
+        parkingSource=CAESARS_CALENDAR,
+        cancellation=("The official property page advertises 'FREE 48-Hour Cancellation*' under 'Why Book With Us'; the "
+                      "terms behind the asterisk are not printed on that page. The booking page adds that rates shown "
+                      "include applicable resort fees and that pricing and availability may vary with length of stay."),
+        cancellationSource=CAESARS_BOOKING_HOMEPAGE,
+        incidental="$100 per day deposit; a credit card is required at check-in for incidental charges; cash is not accepted for deposits or room charges.",
+        checkInOut="Check-in starts at 4 PM; check-out is 11 AM; minimum check-in age is 21.",
+        qualification="",
+        source=CAESARS_HOTEL, feeSource=CAESARS_CALENDAR, taxSource=CAESARS_CALENDAR,
+        taxReference=ROOM_TAX_REFERENCE_NOTE, taxReferenceSource=ROOM_TAX_REFERENCE,
+        qualityNote=("Not scored. No official quality metric is published. Facts published by the property for 2026 "
+                     "stays: 3,976 rooms, 11 restaurants, full-service spa, pool complex; 21+ check-in."),
+        status=("Resort fee, deposit, parking policy and check-in/check-out are confirmed from the property's own "
+                "booking page on 2026-11-17. The room rate and the room-tax percentage are still not published, so no "
+                "true nightly cost can be computed from property-published components."),
         walkNote="Poker room is inside the property; Google Maps walking route to The Venetian measures 12 minutes.",
     ),
     dict(
         id="horseshoe", name="Horseshoe Las Vegas", venue="Horseshoe Hall of Fame poker room", property="Horseshoe Las Vegas",
-        rooms="", baseRate="", baseRateFloor="", baseRateCeiling="",
-        baseRateNote=("The official booking engine prints a dated rate calendar (read 2026-11-17): December 2026 cells "
-                      "range $55-$481 with Dec 2 and Dec 3 'Sold Out'; January 2027 cells print $55-$499. The page says "
-                      "the cells include applicable resort fees and that tax treatment is not stated, so they are logged "
-                      "as observations and never used in a total."),
+        rooms="2,056 rooms", baseRate="", baseRateFloor="", baseRateCeiling="",
+        baseRateNote=("No date-specific checkout total is published. The official booking calendar does publish a dated "
+                      "lowest-available rate for every day of November and December 2026, and those cells are recorded in "
+                      "the rate log — but the page states the cells 'include applicable resort fees' and are not a quote."),
         resortFee=49.95,
-        resortFeeNote=("Verified 2026-11-17 on the official booking page: \"Resort fees: $56.63 ($49.95 plus $6.68 tax)\". "
-                       "Waived for Caesars Rewards Diamond and Seven Stars members."),
-        taxRate="",
-        taxNote=("The booking page prints the tax on the fee as a dollar amount ($6.68 on $49.95), not a percentage; "
-                 "$6.68 equals 13.38% of $49.95, matching the Clark County rate printed in the Venetian hotel terms."),
-        parking="Parking surcharge applies; waived for Caesars Rewards Platinum and above. Nevada locals (valid Nevada "
-                "driver's licence) park free for the first 3 hours, not valid during special-event pricing. Prices are "
-                "not printed; cash is not accepted.",
-        parkingSource=HORSESHOE_BOOK,
-        cancellation="\"FREE 48-Hour Cancellation*\" is printed on the booking page; the starred conditions are not "
-                     "reproduced on the captured page.",
-        cancellationSource=HORSESHOE_BOOK,
-        incidental="Deposit: $50 per day. Pet fee $75 per stay; rollaway $30 per day; comp-room no-show penalty "
-                   "$50 plus tax. Cash is not accepted for deposits or room charges.",
-        checkInOut="Check-in time not printed on the captured booking page; check-out 11:00 am.", qualification="",
-        source=HORSESHOE_HOTEL, feeSource=HORSESHOE_BOOK, taxSource=HORSESHOE_BOOK,
-        qualityNote="Not scored.",
-        status="Fee terms verified 2026-11-17; no checkout total exists for the trip window and no printed parking price.",
+        resortFeeNote=("The official booking page prints, under Hotel Policies > Fees: 'Resort fees: $56.63 ($49.95 plus "
+                       "$6.68 tax)' and 'Resort fees are not assessed for Diamond and Seven Stars guests.' The fee "
+                       "covers WiFi for two devices with a premium-speed upgrade, all local calls and daily fitness "
+                       "centre access for two. The rooms page states 'Wifi included in Resort Fee'."),
+        taxRate="", taxNote=("The property page does not print a room-tax percentage for the rate. It prints only the tax "
+                             "amount charged on the resort fee ($6.68 on $49.95)."),
+        parking="Self parking: surcharge applies. Valet parking: surcharge applies. Both are complimentary for Caesars Rewards members at Platinum tier or higher; Nevada locals get the first 3 hours of self parking at no charge. No dollar amount is published on the page.",
+        parkingSource=HORSESHOE_CALENDAR_NOV,
+        cancellation=("The official property page advertises 'FREE 48-Hour Cancellation*' under 'Why Book With Us'; the "
+                      "terms behind the asterisk are not printed on that page. The booking page adds: 'Rates shown "
+                      "reflect the lowest available rate and include applicable resort fees.'"),
+        cancellationSource=CAESARS_BOOKING_HOMEPAGE,
+        incidental="$50 per day deposit; a credit card is required at check-in for incidental charges. Pet fee $75; rollaway bed $30 per day; $50 plus tax no-show fee on complimentary rooms.",
+        checkInOut="Check-in starts at 4 PM; check-out is 11 AM; minimum check-in age is 21.",
+        qualification="",
+        source=HORSESHOE_HOTEL, feeSource=HORSESHOE_CALENDAR_NOV, taxSource=HORSESHOE_CALENDAR_NOV,
+        taxReference=ROOM_TAX_REFERENCE_NOTE, taxReferenceSource=ROOM_TAX_REFERENCE,
+        qualityNote=("Not scored. No official quality metric is published. Facts published by the property for 2026 "
+                     "stays: 2,056 rooms, 10 restaurants, outdoor seasonal pool, 21+ check-in."),
+        status=("The only reviewed property whose official calendar publishes a dated lowest-available rate per night "
+                "for the trip window (see the rate log, 2026-11-17). Those cells already include the $49.95 resort fee, "
+                "so the fee must not be added again; the room tax is not printed, so no true nightly cost is computed."),
         walkNote="Poker room is inside the property; Google Maps walking route to The Venetian measures 16 minutes.",
     ),
     dict(
@@ -556,34 +609,40 @@ RATE_LOG = [
                "No nightly rate is recorded for these dates. The page says its prices include the daily resort fee and "
                "exclude taxes."),
          source=VENETIAN_FIXED_STAY_BOOKING, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
-    dict(hotel="caesars", observedOn="2026-11-17", baseRate="", publishedStartingRates="",
-         resortFee="54.95 plus 7.35 tax (printed all-in fee 62.30)",
-         tax="7.35 printed on the fee (equals 13.38%); no room-rate tax rate printed",
-         trueNightlyLow="", trueNightlyHigh="",
-         quoteType="Fee terms observation (booking page, no dated room quote)",
-         note=("Official booking page prints 'Resort fees: $62.30 ($54.95 plus $7.35 tax)' and 'Deposit: $100 per day'. "
-               "No room rate is printed for any date on the captured page."),
-         source=CAESARS_BOOK, feeSource=CAESARS_BOOK, taxSource=CAESARS_BOOK),
+    # --- Caesars Entertainment properties, read from their own booking page 2026-11-17 ---
     dict(hotel="horseshoe", observedOn="2026-11-17", baseRate="",
-         publishedStartingRates=("official booking-engine calendar cells (USD), printed 2026-11-17: "
-             + ", ".join(f"{d}: {p}" for d, p in [
-                 ("Dec 1", 409), ("Dec 2", "Sold Out"), ("Dec 3", "Sold Out"), ("Dec 4", 202), ("Dec 5", 337),
-                 ("Dec 6", 229), ("Dec 7", 211), ("Dec 8", 157), ("Dec 9", 139), ("Dec 10", 328), ("Dec 11", 436),
-                 ("Dec 12", 391), ("Dec 13", 55), ("Dec 14", 55), ("Dec 15", 55), ("Dec 16", 55), ("Dec 17", 55),
-                 ("Dec 18", 62), ("Dec 19", 202), ("Dec 20", 55), ("Dec 21", 55), ("Dec 22", 55), ("Dec 23", 55),
-                 ("Dec 24", 55), ("Dec 25", 121), ("Dec 26", 121), ("Dec 27", 139), ("Dec 28", 121), ("Dec 29", 121),
-                 ("Dec 30", 193), ("Dec 31", 481),
-             ]) + "; January 2027 prints $55-$499 by date"),
-         resortFee="49.95 plus 6.68 tax (printed all-in fee 56.63)",
-         tax="6.68 printed on the fee (equals 13.38%); no room-rate tax rate printed",
+         publishedStartingRates="calendar cells for Nov. 16-30: " + _cells(HORSESHOE_CALENDAR_NOV_CELLS),
+         resortFee="49.95 plus 6.68 tax ($56.63 tax inclusive), already inside the calendar cell",
+         tax="not printed for the room rate",
          trueNightlyLow="", trueNightlyHigh="",
-         quoteType="Dated official rate-calendar observation (calendar cells, not a checkout total)",
-         note=("The booking page prints: 'Rates shown reflect the lowest available rate and include applicable resort "
-               "fees. Pricing and availability may vary based on the length of stay.' Tax treatment of the cells is not "
-               "stated, so the cells are logged as observations and are never used in a total (same rule as the Venetian "
-               "calendar). Dec 2 and Dec 3 print 'Sold Out', and the calendar starts in December, so it does not cover "
-               "the recommended Nov 25 - Dec 2 window."),
-         source=HORSESHOE_BOOK, feeSource=HORSESHOE_BOOK, taxSource=HORSESHOE_BOOK),
+         quoteType="Official booking-calendar cells (lowest available, resort-fee inclusive; not a quote)",
+         note=("Read at 01:31 UTC on the property's own booking page. The page states: 'Rates shown reflect the lowest "
+               "available rate and include applicable resort fees.' The recommended trip nights (Nov 25 to Dec 1) sum to "
+               "$1,527.00 for a room, fee included, tax excluded: 55 + 55 + 181 + 115 + 272 + 470 + 379. No checkout "
+               "total is published for a dated stay."),
+         source=HORSESHOE_CALENDAR_NOV, feeSource=HORSESHOE_CALENDAR_NOV, taxSource=HORSESHOE_CALENDAR_NOV),
+    dict(hotel="horseshoe", observedOn="2026-11-17", baseRate="",
+         publishedStartingRates="calendar cells for Dec. 1-31: " + _cells(HORSESHOE_CALENDAR_DEC_CELLS),
+         resortFee="49.95 plus 6.68 tax, already inside the calendar cell",
+         tax="not printed for the room rate",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType="Official booking-calendar cells (second reading of the same page, 01:31 UTC)",
+         note=("The same December page had printed a different grid five minutes earlier at 01:26 UTC: Dec 1 $449, "
+               "Dec 4 $219, Dec 5 $369, Dec 6 $249, Dec 7 $229, Dec 8 $169, Dec 9 $149, Dec 10 $359, Dec 11 $479, "
+               "Dec 12 $429, Dec 13 $56, Dec 18 $63, Dec 19 $219, Dec 25 $129, Dec 27 $149, Dec 30 $209, Dec 31 $529. "
+               "Both readings are kept. A calendar cell is not a price held for a guest, and this repository does not "
+               "choose between them."),
+         source=HORSESHOE_CALENDAR_DEC, feeSource=HORSESHOE_CALENDAR_DEC, taxSource=HORSESHOE_CALENDAR_DEC),
+    dict(hotel="caesars", observedOn="2026-11-17", baseRate="",
+         publishedStartingRates="",
+         resortFee="54.95 plus 7.35 tax, printed as $62.30 tax inclusive",
+         tax="not printed for the room rate",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType="No rate published; calendar returned no price cells",
+         note=("The November and December 2026 flexible-month calendars for Caesars Palace were opened twice on "
+               "2026-11-17 and both times showed 'Searching Rates' with a reservation-system error and no price cells. "
+               "The fee block on the same page did print, and is recorded on the hotel row."),
+         source=CAESARS_CALENDAR, feeSource=CAESARS_CALENDAR, taxSource=CAESARS_CALENDAR),
 ]
 
 MAPS = "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin={o}&destination={d}"

@@ -174,6 +174,29 @@ function runVenuePage(venueAttr) {
       console.log(`FAIL  ${label}: row-level dates, source status badges or strict-entry filter are missing`);
       failures++;
     }
+    if (page === 'schedule') {
+      const plan = reg.get('[data-plan]');
+      if (!plan || !plan.html.includes('Poker-rate condition for the night stayed')) {
+        console.log(`FAIL  ${label}: the per-night poker-rate result did not render on the day plan`);
+        failures++;
+      }
+    }
+    if (page === 'hotels') {
+      const table = reg.get('[data-hotel-table]');
+      const log = reg.get('[data-rate-log]');
+      if (!table || !table.html.includes('$54.95 plus tax') || !table.html.includes('$49.95 plus tax')) {
+        console.log(`FAIL  ${label}: the Caesars Palace and Horseshoe resort fees did not render`);
+        failures++;
+      }
+      if (!table || !table.html.includes('room-tax schedule')) {
+        console.log(`FAIL  ${label}: the county room-tax reference did not render beside a blank property figure`);
+        failures++;
+      }
+      if (!log || !log.html.includes('calendar cells for Nov. 16-30') || log.html.includes('$calendar')) {
+        console.log(`FAIL  ${label}: dated rate-log observations did not render correctly`);
+        failures++;
+      }
+    }
     if (page === 'sources') {
       const auto = reg.get('[data-autochecks]');
       if (!auto || !auto.html.includes('Content changed · manual review')) {
