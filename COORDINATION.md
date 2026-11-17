@@ -1166,5 +1166,23 @@ the same evidence basis the merged sessions used. Every check below was re-run t
 
 ### Result (this session)
 
-- PR and merge are recorded below.
+- **PR:** [#47](https://github.com/karagemop466-tech/Poker3/pull/47) (`arena/f0351b8d-poker3` → `main`), merged
+  with `gh pr merge 47 --merge` as merge commit `0779803ed9112c18c976620db98ec21b00d7ecef` on
+  **2026-11-17 01:01:36 UTC**. It is a record-only PR (`COORDINATION.md`); no site, script or workflow value
+  changed, so no tournament, hotel or flag data moved.
+- **Merge checks:** "Verify static research site" run [43992333229](https://github.com/karagemop466-tech/Poker3/actions/runs/43992333229)
+  → **success** before merge (the same `verify.yml` suite re-run on the PR: `verify_site.py`, canonical smoke,
+  `tests/smoke.py`, unit tests, `node --check`, JSON validation, reproducible `data_source.py` rebuild).
+- **Pages deployment confirmed:** "Publish the canonical Vegas Poker Planner to GitHub Pages" run
+  [43992333163](https://github.com/karagemop466-tech/Poker3/actions/runs/43992333163) (head `0779803`) →
+  **success**; legacy "pages build and deployment" run
+  [43992332470](https://github.com/karagemop466-tech/Poker3/actions/runs/43992332470) → **success**. GitHub
+  Pages API reports `status: built`, source `main /`. Live site: https://karagemop466-tech.github.io/Poker3/ .
+- **During this session, `main` also advanced** with PR #49 (`arena/c2b95024-poker3`, merge `a7ab1a4`). This
+  branch was rebased onto the latest `main` before merging, so PR #47 merged cleanly on top of it and no work
+  was discarded.
+- **Verdict:** every item in the brief is implemented and verified on the canonical `site/`; the open competing
+  PRs (#39, #31, #27, #7) remain held unmerged per the no-discarding-others'-work rule. Flagged irregularities
+  and unverified items are published on `site/flagged.html` with source links and do not block the merge.
+
 - **C4 result (2026-11-17).** PR #49 merged to `main` after `verify` passed. Pages build status is `built` at `0779803`, which includes #49. No duplicate flag IDs on `main` (34 flags, F31–F34 unique). PR #46 still uses F31–F34 with other meanings and must renumber when it rebases. Suggestion S-re-read is still open for user choice.
