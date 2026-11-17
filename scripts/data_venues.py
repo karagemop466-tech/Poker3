@@ -450,3 +450,149 @@ ARIA_EVENTS = [
              fee=dict(status="not-verified", excerpt="No buy-in is published in the reviewed material.")),
          note="Undated cadence only."),
 ]
+
+# ---------------------------------------------------------------------------
+# WPT World Championship structure sheets read on 2026-11-17.
+#
+# The official WPT structures PDF (WPT_World_Championship_Structures.pdf) was
+# opened on 2026-11-17 and read for every event that starts inside the planned
+# trip window (Nov 27 - Dec 2, 2026) plus the Dec 3 - 5 $1,600 event.  Each
+# entry below copies the printed registration clause, the printed fee split,
+# the printed starting stack and the printed flight dates verbatim from that
+# PDF.  The registry exists so a schedule row can be re-labelled from
+# "entry rules not verified" to a confirmed verdict with its excerpt attached.
+# Nothing here is inferred: if a field is absent, it is absent.
+WPT_READ_ON = "2026-11-17"
+WPT_SHEET_URL = WYNN_WPT_STRUCT
+
+WPT_EVENTS_READ = [
+    dict(
+        buyIn=600, game="no limit hold'em", guarantee=400000,
+        scheduleDates=["2026-11-27", "2026-11-28", "2026-11-29", "2026-11-30", "2026-12-04"],
+        sheetTitle="$600 No Limit Hold'em - $400,000 GUARANTEE (November 27-30, 2026)",
+        prizePool=510, tournamentFee=65, staffCharge=25,
+        chips=40000, levelMin=30,
+        registration=("Unlimited re-entry for each starting flight will be available until the start of level 9. "
+                      "A player who advances to Day 2 is prohibited from entering a subsequent starting flight."),
+        addOn=None,
+        flights=("Day 1A Friday, November 27, 2026 at 11 a.m.; Day 1B Friday, November 27, 2026 at 5 p.m.; "
+                 "Day 1C Saturday, November 28, 2026 at 11 a.m.; Day 1D Saturday, November 28, 2026 at 5 p.m.; "
+                 "Day 1E Sunday, November 29, 2026 at 11 a.m.; Day 1F Sunday, November 29, 2026 at 6 p.m.; "
+                 "Day 2 Monday, November 30, 2026 at 1 p.m."),
+    ),
+    dict(
+        buyIn=600, game="torse", guarantee=None,
+        scheduleDates=["2026-11-27"],
+        sheetTitle="$600 TORSE (Friday, November 27, 2026, at 12 p.m.)",
+        prizePool=510, tournamentFee=65, staffCharge=25,
+        chips=35000, levelMin=30,
+        registration="Unlimited re-entry will be available until the start of level 9",
+        addOn=None, flights=None,
+    ),
+    dict(
+        buyIn=400, game="plo", guarantee=None,
+        scheduleDates=["2026-11-27"],
+        sheetTitle="$400 PLO (Friday, November 27, 2026, at 1 p.m.)",
+        prizePool=337, tournamentFee=45, staffCharge=18,
+        chips=30000, levelMin=30,
+        registration="Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).",
+        addOn=None, flights=None,
+    ),
+    dict(
+        buyIn=600, game="mixed triple draw", guarantee=None,
+        scheduleDates=["2026-11-28", "2026-12-20"],
+        sheetTitle="$600 Mixed Triple Draw (A-5, 2-7, Badugi) (Saturday, November 28, 2026, at 12 p.m.)",
+        prizePool=510, tournamentFee=65, staffCharge=25,
+        chips=35000, levelMin=30,
+        registration="Unlimited re-entry will be available until the start of level 9.",
+        addOn=None, flights=None,
+    ),
+    dict(
+        buyIn=800, game="no limit hold'em", guarantee=1000000,
+        scheduleDates=["2026-11-30", "2026-12-01", "2026-12-02", "2026-12-03", "2026-12-04"],
+        sheetTitle="$800 No Limit Hold'em - $1,000,000 GUARANTEE (November 30 - December 4, 2026)",
+        prizePool=695, tournamentFee=72, staffCharge=33,
+        chips=40000, levelMin=30,
+        registration=("Unlimited re-entry for each starting flight will be available until the start of level 9. "
+                      "A player who advances to Day 2 is prohibited from entering a subsequent starting flight."),
+        addOn=None,
+        flights=("Day 1A Monday, November 30, 2026 at 11 a.m.; Day 1B Monday, November 30, 2026 at 5 p.m.; "
+                 "Day 1C Tuesday, December 1, 2026 at 11 a.m.; Day 1D Tuesday, December 1, 2026 at 5 p.m.; "
+                 "Day 1E Wednesday, December 2, 2026 at 11 a.m.; Day 1F Wednesday, December 2, 2026 at 6 p.m.; "
+                 "Day 2 Thursday, December 3, 2026 at 1 p.m.; Final Table Friday, December 4, 2026 at 1 p.m."),
+    ),
+    dict(
+        buyIn=600, game="limit omaha 8", guarantee=None,
+        scheduleDates=["2026-11-30"],
+        sheetTitle="$600 Limit Omaha 8 (Monday, November 30, 2026, at 12 p.m.)",
+        prizePool=510, tournamentFee=65, staffCharge=25,
+        chips=35000, levelMin=30,
+        registration="Unlimited re-entry will be available until the start of level 9",
+        addOn=None, flights=None,
+    ),
+    dict(
+        buyIn=600, game="limit omaha 8/5/stud 8", guarantee=None,
+        scheduleDates=["2026-12-01"],
+        sheetTitle="$600 Limit Omaha 8/Stud 8 (Tuesday, December 1, 2026, at 12 p.m.)",
+        prizePool=510, tournamentFee=65, staffCharge=25,
+        chips=35000, levelMin=30,
+        registration="Unlimited re-entry will be available until the start of level 9",
+        addOn=None, flights=None,
+        nameNote=("The structures sheet titles this event '$600 Limit Omaha 8/Stud 8'; the schedule PDF prints "
+                  "'Limit Omaha 8/5/stud 8'. Both names refer to the same single-day mixed event at 12 p.m. on "
+                  "December 1, 2026."),
+    ),
+    dict(
+        buyIn=1100, game="plo", guarantee=None,
+        scheduleDates=["2026-12-01"],
+        sheetTitle="$1,100 PLO (Tuesday, December 1, 2026, at 1 p.m.)",
+        prizePool=975, tournamentFee=85, staffCharge=45,
+        chips=30000, levelMin=30,
+        registration="Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).",
+        addOn=None, flights=None,
+    ),
+    dict(
+        buyIn=1600, game="no limit hold'em", guarantee=1000000,
+        scheduleDates=["2026-12-03", "2026-12-04", "2026-12-05"],
+        sheetTitle="$1,600 No Limit Hold'em - $1,000,000 GUARANTEE (December 3-5, 2026)",
+        prizePool=1430, tournamentFee=120, staffCharge=50,
+        chips=40000, levelMin=40,
+        registration=("Unlimited re-entry for each starting flight will be available until the start of level 10. "
+                      "A player who advances to Day 2 is prohibited from entering a subsequent starting flight."),
+        addOn=None,
+        flights=("Day 1A Thursday, December 3, 2026 at 11 a.m.; Day 1B Friday, December 4, 2026 at 11 a.m.; "
+                 "Day 2 Saturday, December 5, 2026 at 11 a.m."),
+        scheduleConflict=("The structures sheet places this event's Day 2 on Saturday, December 5, 2026 at 11 a.m. "
+                          "and prints no December 3 afternoon restart; the schedule PDF prints a '$1,600 No Limit "
+                          "Hold'em Day 2' row at 1 p.m. on December 3 and no December 5 row for this event. The "
+                          "schedule row is reproduced as printed and the disagreement is flagged (F31)."),
+    ),
+]
+
+
+def wpt_event_read(buy_in, name, date):
+    """Return the structures-sheet record for a WPT schedule row, or None.
+
+    Matching is deliberately narrow: the printed buy-in must be equal, the
+    schedule date must be one of the dates the sheet itself prints, and the
+    schedule event name must reduce to the game name on the sheet. Day-flight
+    and restart suffixes are stripped from the schedule name because the sheet
+    names the event once and lists its flights underneath.
+    """
+    if not isinstance(buy_in, int):
+        return None
+    key = (name or "").lower()
+    for suffix in ("day 1a", "day 1b", "day 1c", "day 1d", "day 1e", "day 1f",
+                   "day 2", "day 3", "final table"):
+        key = key.replace(suffix, "")
+    key = " ".join(key.split()).strip(" -|")
+    if key in ("no limit hold'em", "no limit hold'em turbo"):
+        key = "no limit hold'em"
+    for rec in WPT_EVENTS_READ:
+        if rec["buyIn"] != buy_in:
+            continue
+        if date and date not in rec["scheduleDates"]:
+            continue
+        if key == rec["game"] or key.startswith(rec["game"] + " ("):
+            return rec
+    return None

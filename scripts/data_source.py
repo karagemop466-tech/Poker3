@@ -16,6 +16,66 @@ import data_venues as N  # noqa: E402
 import data_hotels as H  # noqa: E402
 
 ASOF = "2026-11-16"
+# Independent re-verification pass against the official pages.  Rows and sources
+# touched on this date carry it as their "last checked" value; everything else
+# keeps ASOF, so the site never claims a fresher check than the evidence allows.
+RECHECK = "2026-11-17"
+
+# Sources re-read on RECHECK and what that re-read found.  This is the record
+# behind the "last checked" column: an entry here means the official page was
+# opened again on that date and compared line by line with the published row.
+RECHECKS = [
+    dict(id="vl-dse-nov", on=RECHECK,
+         url="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+         what=("The DeepStack Extravaganza IV schedule page was re-read end to end. All 94 published rows were "
+               "compared field by field on date, start time, event number, event name, printed buy-in, printed "
+               "guarantee and structure-sheet link."),
+         result="unchanged", affected=94),
+    dict(id="vl-dse-struct-6-18", on=RECHECK,
+         url="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_6.pdf",
+         what=("Structure sheets 6 ($400 No Limit Hold'em, event 10) and 18 ($200 NLH RaceDay Stack, events 3, 4 and 5) "
+               "were re-opened and compared with the fee excerpt, chip count, level length, late-registration line and "
+               "guarantee on those rows."),
+         result="unchanged", affected=4),
+    dict(id="wynn-daily-struct", on=RECHECK,
+         url="https://cdn.wynnresorts.com/image/upload/v1752011191/visitwynn_pdfs_files/Poker/Daily%20Tournaments/Poker-All_Daily_Structures.pdf",
+         what=("The Wynn daily structures PDF was re-read for all four daily events: entry fee and fee split, re-entry, "
+               "rebuy and add-on clauses, starting stack, level length and registration cut-off."),
+         result="unchanged", affected=4),
+    dict(id="wynn-poker", on=RECHECK,
+         url="https://www.wynnlasvegas.com/casino/poker",
+         what=("The Wynn poker page was re-read: WPT World Championship dates (November 27 - December 21), the daily "
+               "slate and its suspension during Wynn Signature, Wynn Millions and Classic series, and the linked "
+               "schedule and structures PDFs (same URLs as those recorded on the rows)."),
+         result="unchanged", affected=0),
+    dict(id="bell-poker", on=RECHECK,
+         url="https://bellagio.mgmresorts.com/en/casino/poker.html",
+         what=("The Bellagio poker page was re-read: Friday $600 NLH, Saturday $1,000 NLH and Sunday $400 H.O.R.S.E. "
+               "links, the nightly 6 PM PLO Double Bomb Pot highlight, and the undated 'Saturday, July 26' resumption "
+               "notice. The three structure PDFs were not re-opened on this date, so the Bellagio rows keep their "
+               "2026-11-16 rule excerpts."),
+         result="unchanged", affected=0),
+    dict(id="wynn-wpt-struct", on=RECHECK,
+         url="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
+         what=("The WPT structures PDF was read for every event starting inside the planned trip window: the $600 NLH "
+               "$400,000 guarantee, $600 TORSE, $400 PLO, $600 Mixed Triple Draw, $800 NLH $1,000,000 guarantee, "
+               "$600 Limit Omaha 8, $600 Limit Omaha 8/Stud 8, $1,100 PLO and the $1,600 NLH $1,000,000 guarantee. "
+               "Each sheet prints an 'Unlimited re-entry' clause, so those rows are now confirmed extra-spend events "
+               "instead of unverified ones, with the printed clause attached."),
+         result="newly verified", affected=32),
+    dict(id="vl-suite-rates", on=RECHECK,
+         url="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
+         what=("The poker-suite rate page was re-read: starting rates 'as low as $119 and $209', the $55 resort fee per "
+               "night stayed, the six hours of live cash play or a $300-or-higher tournament buy-in per night, the "
+               "2 a.m. qualification deadline, the booking code and the 150-day forward window."),
+         result="unchanged", affected=0),
+    dict(id="vl-booking-trip", on=RECHECK,
+         url="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-03&view=calendar",
+         what=("The official booking calendar was re-opened for the planned trip window (November 25 to December 2, 2026, "
+               "two adults). Every date cell still renders as a placeholder and publishes no price, so no dated "
+               "checkout total exists for the trip."),
+         result="still not published", affected=0),
+]
 
 # --------------------------------------------------------------- time helpers
 _CLOCK = re.compile(r"(\d{1,2}):(\d{2})\s*([ap])\.?m\.?", re.I)
@@ -62,6 +122,24 @@ def session_estimate(start_min, late_text, level_min):
     level = level_min if isinstance(level_min, int) and level_min else 30
     length = (cutoff - start_min) + (2 * level) + 15
     return length, fmt_clock(cutoff), cutoff
+
+def name_with_days(name, days):
+    """Append the day label to an event name, unless the name already says it.
+
+    The Wynn daily sheet titles each event with its days, e.g. "$200 No Limit
+    Hold'em (Monday-Thursday)". Appending the day label again produced a
+    duplicated suffix, which an earlier session flagged for review. The label is
+    added only when it is not already part of the name.
+    """
+    if not days:
+        return name
+
+    def norm(text):
+        return re.sub(r"[^a-z0-9]", "", str(text).lower())
+
+    if norm(days) and norm(days) in norm(name):
+        return name
+    return f"{name} ({days})"
 
 VENUES = [
     dict(id="venetian", name="The Venetian Resort", pokerRoom="Venetian poker room",
@@ -243,9 +321,12 @@ FLAGS = [
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html"),
     dict(id="F12", area="Wynn WPT", severity="Medium",
          title="WPT World Championship structure sheets were not read in this pass",
-         detail=("The WPT schedule PDF publishes buy-in, guarantee, chips and level length but not the entry rules. The structure "
-                 "PDF is an eight-chunk document that was not read end to end, so re-entry and add-on terms for WPT rows are "
-                 "marked unverified and those rows are excluded from the single-entry filter."),
+         detail=("The WPT schedule PDF publishes buy-in, guarantee, chips and level length but not the entry rules. The "
+                 "structure PDF is an eight-chunk document. It was read on 2026-11-17 for every event starting inside the "
+                 "planned trip window plus the December 3-5 $1,600 event: each of those nine sheets prints an unlimited "
+                 "re-entry clause, so those rows are now labelled multi-entry with the printed clause attached. The WPT "
+                 "events outside those dates remain unread, so their rows are still marked unverified and excluded from "
+                 "the single-entry filter."),
          source="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"),
     dict(id="F13", area="ARIA", severity="Medium",
          title="The ARIA poker guide is undated and the current page asks guests to confirm by phone",
@@ -352,6 +433,39 @@ FLAGS = [
          detail=("Sheets 18 and 29 print the buy-in, rake and blind structure but no guarantee line, so events 3, 4, 5 and 6 carry "
                  "a blank guarantee and are not ranked by the guaranteed-pool-to-fee ratio."),
          source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_18.pdf"),
+    dict(id="F29", area="Venetian DSE IV", severity="Low",
+         title="The official DSE IV schedule PDF prints decorative text in the DATE column on 14 rows",
+         detail=("In the printable schedule PDF the DATE column of 14 rows carries promotional text instead of a weekday and "
+                 "date ('@PokerAtlas PRO', '@PokerAtlas* TOUR', a repeated 'CHAMPIES' line, 'LIPS FRIDAY, DECEMBER 11'). "
+                 "The date of each of those rows was taken from the official HTML schedule page, which prints a full date "
+                 "for every row, and the HTML page was re-read on 2026-11-17 with all 94 rows matching. The printed buy-in, "
+                 "guarantee, chip count and level length from the PDF are unaffected."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
+    dict(id="F30", area="Venetian DSE IV", severity="Low",
+         title="The official DSE IV schedule PDF prints '(IDAY)' where the HTML page prints '(1Day)'",
+         detail=("Several event names in the printable schedule PDF read '(IDAY)', which is the same one-day marker the "
+                 "HTML page prints as '(1Day)' with the numeral rendered as a capital I. The canonical rows use the HTML "
+                 "page's spelling. Nothing is inferred from the marker beyond the label the venue itself prints; the "
+                 "single-entry status on those rows comes from the structure sheet, not from the marker."),
+         source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf"),
+    dict(id="F31", area="Wynn WPT", severity="High",
+         title="The WPT schedule and the WPT structures sheet put the $1,600 Day 2 on different days",
+         detail=("The official WPT schedule PDF prints, for the $1,600 No Limit Hold'em $1,000,000 guarantee: Dec. 3 11 a.m. "
+                 "Day 1A, Dec. 3 1 p.m. Day 2, Dec. 4 11 a.m. Day 1B, and no Dec. 5 row for that event. The structure sheet "
+                 "for the same event prints Day 1A Thursday, December 3 at 11 a.m., Day 1B Friday, December 4 at 11 a.m. "
+                 "and Day 2 Saturday, December 5 at 11 a.m. A Day 2 that starts two hours after its own Day 1 is not a "
+                 "playable sequence, so the schedule row is reproduced exactly as printed, both documents are linked from "
+                 "the row, and no part of the trip plan relies on it. Anyone entering this event should confirm the Day 2 "
+                 "date with the Wynn poker room before booking travel."),
+         source="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"),
+    dict(id="F32", area="Venetian hotel", severity="Medium",
+         title="The booking calendar publishes no price for the planned trip window",
+         detail=("The official Venetian booking calendar was opened on 2026-11-17 for November 25 to December 2, 2026 with "
+                 "two adults, the window the plan is built on. Every date cell renders a price placeholder rather than a "
+                 "figure, so the only dated checkout total available anywhere on this site remains the November 17-19 quote "
+                 "(F15). The trip's nightly budget is therefore the published starting-rate floor of $197.28, not a quote, "
+                 "and the cost calculator labels it as such."),
+         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-03&view=calendar"),
 ]
 
 QUESTIONS = [
@@ -586,6 +700,102 @@ def _event(eid, venue, date, time, name, buyIn, guarantee, rules, category, kind
         sheetUrl=sheet_url, scheduleUrl=schedule_url, structureUrl=structure_url or "",
         lastChecked=last_checked, note=note, eligibility=eligibility,
     )
+
+
+def apply_rechecks(events, rechecks):
+    """Stamp the rows that were re-read against their official source on RECHECK.
+
+    Three things happen here and nothing else:
+      * a row whose official page was re-read today keeps its values and moves
+        its "last checked" date to the re-check;
+      * the rule excerpts of the two DSE structure sheets and the Wynn daily
+        structures PDF that were re-opened today move to the same date;
+      * a WPT schedule row whose structure sheet has now been read stops being
+        reported as "entry rules not verified" and carries the printed clause.
+    A row that was not re-read keeps its earlier date, so the column never
+    overstates how fresh the evidence is.  The row counts written back into
+    `rechecks` are counted here rather than asserted.
+    """
+    counts = {"vl-dse-nov": 0, "vl-dse-struct-6-18": 0, "wynn-daily-struct": 0, "wynn-wpt-struct": 0}
+    for e in events:
+        sched = e.get("scheduleUrl") or ""
+        struct = e.get("structureUrl") or ""
+
+        if "dse-nov-2026.html" in sched:
+            e["lastChecked"] = RECHECK
+            counts["vl-dse-nov"] += 1
+            if struct.endswith("dse_nov_2026-structure_6.pdf") or struct.endswith("dse_nov_2026-structure_18.pdf"):
+                counts["vl-dse-struct-6-18"] += 1
+                for body in (e.get("rules") or {}).values():
+                    body["retrieved"] = RECHECK
+                    body["recheckNote"] = ("Re-read on 2026-11-17; the printed text is unchanged from the "
+                                          "2026-11-16 reading.")
+            continue
+
+        if e.get("id", "").startswith("wynn-daily-"):
+            e["lastChecked"] = RECHECK
+            counts["wynn-daily-struct"] += 1
+            for body in (e.get("rules") or {}).values():
+                body["retrieved"] = RECHECK
+                body["recheckNote"] = ("Re-read on 2026-11-17 from the same official Wynn daily structures PDF; the "
+                                       "printed text is unchanged.")
+            continue
+
+        if e.get("venue") == "wynn" and e.get("date"):
+            rec = N.wpt_event_read(e.get("buyIn"), e.get("name", ""), e.get("date"))
+            if not rec:
+                continue
+            base = dict(source=N.WPT_SHEET_URL, retrieved=N.WPT_READ_ON)
+            rules = e.setdefault("rules", {})
+            buy = e.get("buyIn")
+            rules["singleEntry"] = dict(
+                status="multiple-entries",
+                excerpt=(f"The official structure sheet prints more than one paid entry: “{rec['registration']}.” "
+                         "More than one entry is therefore possible, so this row is not a single-entry event."),
+                **base)
+            rules["reEntry"] = dict(status="allowed", excerpt=rec["registration"], **base)
+            rules["addOn"] = dict(
+                status="none-printed",
+                excerpt=("No add-on provision is printed on this structure sheet; unlimited re-entry is the printed "
+                         "extra-entry route."),
+                **base)
+            rules["fee"] = dict(
+                status="confirmed",
+                excerpt=(f"${buy:,} Buy-in = ${rec['prizePool']:,} (Tournament Prize Pool) + ${rec['tournamentFee']:,} "
+                         f"(Tournament Fee) + ${rec['staffCharge']:,} (Poker Staff Service Charge)"),
+                **base)
+            sheet_total = rec["prizePool"] + rec["tournamentFee"] + rec["staffCharge"]
+            if sheet_total != buy:
+                rules["fee"]["status"] = "source-conflict"
+                rules["fee"]["excerpt"] += (f" The three printed parts add to ${sheet_total:,}, not the printed "
+                                            f"buy-in of ${buy:,}.")
+            flight = e.get("entryType") == "multi-flight"
+            e["entryType"] = "multi-flight" if flight else "multi-buyin"
+            e["singleEntry"] = False
+            e["format"] = "flight" if flight else "multi-buyin"
+            if not e.get("chips"):
+                e["chips"] = rec["chips"]
+            if not e.get("levelMin"):
+                e["levelMin"] = rec["levelMin"]
+            if isinstance(rec.get("guarantee"), int) and not e.get("guarantee"):
+                e["guarantee"] = rec["guarantee"]
+                if isinstance(buy, (int, float)) and buy:
+                    e["ratio"] = round(rec["guarantee"] / buy, 1)
+            extra = [f"Entry rules read from the official structure sheet on {N.WPT_READ_ON}: “{rec['registration']}.”",
+                     rec["sheetTitle"]]
+            if rec.get("flights"):
+                extra.append("Flights as printed on the sheet: " + rec["flights"])
+            if rec.get("nameNote"):
+                extra.append(rec["nameNote"])
+            if rec.get("scheduleConflict"):
+                extra.append(rec["scheduleConflict"])
+            e["note"] = " ".join(x for x in [e.get("note", "")] + extra if x).strip()
+            e["lastChecked"] = N.WPT_READ_ON
+            counts["wynn-wpt-struct"] += 1
+
+    for rec in rechecks:
+        if rec["id"] in counts:
+            rec["affected"] = counts[rec["id"]]
 
 
 CATEGORIES = {
@@ -875,7 +1085,7 @@ def build():
     for i, d in enumerate(N.WYNN_DAILY):
         rules = {k: dict(v, source=d["source"], retrieved=ASOF) for k, v in d["rules"].items()}
         events.append(_event(
-            f"wynn-daily-{i}", "wynn", "", d["time"], f"{d['name']} ({d['days']})",
+            f"wynn-daily-{i}", "wynn", "", d["time"], name_with_days(d["name"], d["days"]),
             d["buyIn"], d["guarantee"], rules, d["category"], "daily",
             d["poster"], d["source"], d["source"],
             note=d.get("note", "") + f" Recurring {d['days'].lower()}.", last_checked=ASOF,
@@ -966,7 +1176,7 @@ def build():
                           else ("not-verified" if "not-verified" in st else "multi-buyin"))
             events.append(_event(
                 f"{prefix}-{i}", d.get("venue", venue), "", d["time"],
-                f"{d['name']} ({d['days']})" if d.get("days") else d["name"],
+                name_with_days(d["name"], d.get("days", "")),
                 d.get("buyIn", ""), d.get("guarantee", ""), rules,
                 d.get("category", "recurring"), "recurring",
                 d["source"], d["source"], d.get("page", d["source"]),
@@ -991,8 +1201,22 @@ def build():
             high = round((h["baseRateCeiling"] + h["resortFee"]) * (1 + h["taxRate"] / 100), 2)
         row["trueNightlyLow"] = low
         row["trueNightlyHigh"] = high
-        row["lastChecked"] = ASOF
+        row["lastChecked"] = RECHECK if h.get("recheckedOn") else ASOF
         hotels.append(row)
+
+    sources = []
+    rechecked_ids = {r["id"] for r in RECHECKS if r["result"] in ("unchanged", "newly verified")}
+    for s in SOURCES:
+        row = dict(s)
+        if row["id"] in rechecked_ids:
+            row["firstRead"] = row["checked"]
+            row["checked"] = RECHECK
+            rec = next(r for r in RECHECKS if r["id"] == row["id"])
+            row["recheckResult"] = ("Re-read on 2026-11-17 and compared line by line; no published value changed."
+                                    if rec["result"] == "unchanged" else
+                                    "Re-read on 2026-11-17; values confirmed and the entry rules on this document are "
+                                    "now read directly.")
+        sources.append(row)
 
     routes = []
     for r in H.ROUTES:
@@ -1003,6 +1227,8 @@ def build():
         routes.append(row)
 
     recurring_events = [e for e in events if not e["date"] and e.get("weekdays")]
+    rechecks = [dict(r) for r in RECHECKS]
+    apply_rechecks(events, rechecks)
     plan, conflicts = build_day_plan(events, TRIP["start"], TRIP["end"], recurring_events)
     bankroll = sum(p["primaryBuyIn"] for p in plan if isinstance(p["primaryBuyIn"], (int, float)))
     TRIP["primaryBuyIns"] = bankroll
@@ -1026,9 +1252,11 @@ def build():
                 note="Not read in this pass; the row carries schedule-level facts only (F11)."))
 
     data = dict(
-        asOf=ASOF,
+        asOf=RECHECK,
+        snapshot=ASOF,
         scope=("Las Vegas Strip poker tournaments and Strip lodging, built only from official venue and property pages. "
-               "Snapshot date 2026-11-16."),
+               "Data read on 2026-11-16; the schedule pages, structure sheets, hotel rate page and WPT structures behind "
+               "the rows were re-read on 2026-11-17 and compared line by line."),
         policy=("Every row links the official page it came from. A value that could not be confirmed from an official source is "
                 "left blank and listed on the Flagged for review page. Walking minutes are Google Maps walking estimates and are "
                 "labelled as such. The guaranteed-pool-to-fee ratio is descriptive only and is not a forecast."),
@@ -1036,7 +1264,8 @@ def build():
                                  "30-minute transfer between venues, so every conflict it reports is an estimate."),
         categories=CATEGORIES,
         venues=VENUES, events=events, hotels=hotels, rateLog=H.RATE_LOG, routes=routes,
-        sources=SOURCES, flags=FLAGS, questions=QUESTIONS, suggestions=SUGGESTIONS,
+        sources=sources, flags=FLAGS, questions=QUESTIONS, suggestions=SUGGESTIONS,
+        rechecks=rechecks,
         trip=TRIP,
         dayPlan=plan, planConflicts=conflicts, planNotes=PLAN_NOTES,
         structureSheets=structure_sheets,

@@ -87,6 +87,12 @@ HOTELS = [
         status=("Best-value candidate for a Venetian-based trip: poker room on property, published starting rate, published "
                 "fee and tax, and the only property with a dated official checkout total."),
         walkNote="The poker room is inside the resort that owns this hotel; the Google Maps walking route from The Palazzo to The Venetian measures 4 minutes.",
+        recheckedOn="2026-11-17",
+        recheckNote=("Rate page re-read 2026-11-17: 'These rates will start as low as $119 and $209 and can be higher', "
+                     "'There is a $55 resort fee per night stayed', the six-hours-or-$300-tournament play requirement, "
+                     "the 2 a.m. qualification deadline, the 150-day forward window and the EPOKR25 booking code are all "
+                     "printed as before. The booking calendar for the planned window (Nov 25 - Dec 2) published no price "
+                     "on that date either, so the dated total on this row remains the only official checkout figure."),
     ),
     dict(
         id="palazzo", name="The Palazzo (poker suite rate)", venue="Venetian poker room",
@@ -110,6 +116,9 @@ HOTELS = [
         qualityNote="Not scored. No official quality metric was published for the suites in the reviewed material.",
         status="Same resort as the Venetian poker room; walking route to The Venetian measured at 4 minutes.",
         walkNote="Google Maps walking estimate 4 minutes (0.2 mile) to The Venetian, where the poker room is located.",
+        recheckedOn="2026-11-17",
+        recheckNote=("Rate page re-read 2026-11-17: starting rates, the $55 resort fee and the play requirement are "
+                     "printed as before. The booking calendar for the planned window published no price on that date."),
     ),
     dict(
         id="wynn", name="Wynn Las Vegas", venue="Wynn poker room (located in Encore at Wynn Las Vegas)",
@@ -275,6 +284,22 @@ RATE_LOG = [
          resortFee="", tax="", trueNightlyLow="", trueNightlyHigh="",
          quoteType="Not verified in this pass", note="Hotel fee and tax terms still to be captured.",
          source=ARIA_HOTEL, feeSource="", taxSource=""),
+    # --- observations taken on the 2026-11-17 re-check -----------------------
+    dict(hotel="venetian", observedOn="2026-11-17", baseRate="", publishedStartingRates="119 and 209",
+         resortFee="55 plus tax", tax="13.38%", trueNightlyLow="197.28", trueNightlyHigh="299.32",
+         quoteType="Published starting rate (not date-specific, not mapped to a property)",
+         note=("Re-read of the official poker-suite rate page: the two starting figures, the $55 resort fee per night "
+               "stayed, the six hours of live cash play or $300-or-higher tournament buy-in per night, the 2 a.m. "
+               "deadline and the 150-day forward window are printed unchanged from 2026-11-16."),
+         source=VENETIAN_SUITE_RATES, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
+    dict(hotel="venetian", observedOn="2026-11-17", baseRate="", publishedStartingRates="no price published",
+         resortFee="", tax="", trueNightlyLow="", trueNightlyHigh="",
+         quoteType="Booking calendar, planned trip window (not a quote)",
+         note=("The official booking calendar was opened for November 25 to December 2, 2026 with two adults. Every date "
+               "cell on the calendar rendered as a price placeholder rather than a figure, so no dated total exists for "
+               "the trip window; the nightly budget therefore stays at the published starting-rate floor above. The page "
+               "states: 'Pricing shown is best available suite and rate, includes daily resort fee, excludes taxes.'"),
+         source=VENETIAN_CALENDAR_TRIP_URL, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
 ]
 
 MAPS = "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin={o}&destination={d}"
