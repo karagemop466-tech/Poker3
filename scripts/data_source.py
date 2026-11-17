@@ -410,7 +410,7 @@ FLAGS = [
          detail=("In the same PDF, 'Dec. 18 Wednesday' carries the No Limit Hold'em Day 1A and PLO rows while 'Dec. 18 Friday' "
                  "carries the WPT World Championship Day 4 rows. The rows also run out of order, with the December 17 block "
                  "printed after the December 18 Wednesday block, and no December 16 block appears anywhere in the PDF. "
-                 "December 18, 2026 is a Friday. Flag F42 sets out the official evidence that the day number, not the weekday, "
+                 "December 18, 2026 is a Friday. Flag F61 sets out the official evidence that the day number, not the weekday, "
                  "is the misprint and that these eight rows are very likely December 16. The schedule dates are reproduced "
                  "exactly as printed and the dispute is flagged rather than corrected, because the site does not silently "
                  "re-date a row on an inference."),
@@ -655,7 +655,7 @@ FLAGS = [
          title="The structure sheets do not confirm a one-entry-per-player maximum",
          detail=("The 52 Venetian rows classified as 'single entry on the sheet' have one printed buy-in and no re-entry, rebuy, add-on or second-flight provision in the reviewed sheet. However, the sheets do not state a maximum number of entries per player and do not explicitly call the event a freezeout. This is only a document-level screen, not written confirmation of the room's one-entry policy. Do not treat these candidates as strictly eligible or book around them until the venue confirms the maximum-entry, no-rebuy and no-add-on rules in writing. The source excerpt and date are attached to each row."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
-    dict(id="F42", area="Wynn WPT schedule", severity="High",
+    dict(id="F61", area="Wynn WPT schedule", severity="High",
          title="Eight WPT rows are probably two days late: the 'Dec. 18 Wednesday' block is very likely December 16",
          detail=("The official WPT schedule PDF prints one block labelled 'Dec. 18 Wednesday' and a second labelled "
                  "'Dec. 18 Friday' holding different events, and it prints no December 16 block at all. Four pieces of "
@@ -672,7 +672,7 @@ FLAGS = [
                  "Flag F01 recorded the PDF's self-contradiction and concluded the weekday was the error; this flag "
                  "records the evidence that reverses that conclusion, and F01 has been amended to point here."),
          source="https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"),
-    dict(id="F43", area="Wynn WPT schedule", severity="Low",
+    dict(id="F62", area="Wynn WPT schedule", severity="Low",
          title="Four WPT event names read differently from the printed text",
          detail=("The schedule PDF prints 'NIH Turbo', 'NIH $500 Bounty Turbo' and 'Milestone Satellite to $25K NIH High "
                  "Roller', and it prints 'Double Play Milestone Satellite1' with a trailing digit. The published rows read "
@@ -682,7 +682,7 @@ FLAGS = [
                  "cell on those four rows - date, start time, buy-in, guarantee, chips and level length - was re-checked "
                  "against the PDF on 2026-11-17 and agrees."),
          source="https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"),
-    dict(id="F44", area="Venetian DSE IV", severity="Low",
+    dict(id="F63", area="Venetian DSE IV", severity="Low",
          title="Day 2 restart rows carry values that their own schedule row leaves blank",
          detail=("The official DeepStack Extravaganza IV series schedule PDF prints an empty GUARANTEE, CHIPS, LEVEL and "
                  "REG CLOSES cell for every Day 2 restart row, because those rows continue an event whose Day 1 row "
@@ -691,17 +691,18 @@ FLAGS = [
                  "restart row. A line-by-line re-check of all 94 rows against the PDF on 2026-11-17 found 43 such cells, "
                  "all on Day 2 restart rows, and no other disagreement anywhere in the series."),
          source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf"),
-    dict(id="F45", area="Hotels", severity="Low",
+    dict(id="F64", area="Hotels", severity="Low",
          title="Two different official booking requests gave two different answers for the trip window",
          detail=("Asking the official Venetian booking engine for the trip window itself (arrival 2026-11-25, departure "
                  "2026-12-02) returns $XXX in every cell, so no checkout total exists for those nights. Asking the same "
                  "engine for a calendar view (arrival 2026-11-17) prints per-night cells for 17-30 November, including "
                  "$185 on 25 November, $190 on 26 November, $210 on 27 November, $905 on 28 November, $340 on "
                  "29 November and $165 on 30 November, and the calendar states those cells include the daily resort fee "
-                 "and exclude taxes. An earlier note on this site said the trip window published no price at all, which "
-                 "those cells contradict, so the note now names the two requests separately. The calendar cells are still "
-                 "not a quote, and nothing here converts them into one: they are recorded so a reader can see that part "
-                 "of the window does have published figures."),
+                 "and exclude taxes. A note carried by an earlier build of this site said the trip window published no "
+                 "price at all, which those cells contradict; a later live re-read rewrote that note, and this flag keeps "
+                 "the two requests distinct so the claim cannot return. The calendar cells are still not a quote, and "
+                 "nothing here converts them into one: they are recorded so a reader can see that part of the window "
+                 "does have published figures."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"),
     dict(id="F32", area="Walking routes", severity="Medium",
          title="The 30-minute walking check does not cover every hotel–venue pair",

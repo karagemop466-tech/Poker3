@@ -22463,7 +22463,7 @@
    "area": "Wynn WPT schedule",
    "severity": "High",
    "title": "The official WPT schedule PDF labels December 18 as both a Wednesday and a Friday",
-   "detail": "In the same PDF, 'Dec. 18 Wednesday' carries the No Limit Hold'em Day 1A and PLO rows while 'Dec. 18 Friday' carries the WPT World Championship Day 4 rows. The rows also run out of order, with the December 17 block printed after the December 18 Wednesday block, and no December 16 block appears anywhere in the PDF. December 18, 2026 is a Friday. Flag F42 sets out the official evidence that the day number, not the weekday, is the misprint and that these eight rows are very likely December 16. The schedule dates are reproduced exactly as printed and the dispute is flagged rather than corrected, because the site does not silently re-date a row on an inference.",
+   "detail": "In the same PDF, 'Dec. 18 Wednesday' carries the No Limit Hold'em Day 1A and PLO rows while 'Dec. 18 Friday' carries the WPT World Championship Day 4 rows. The rows also run out of order, with the December 17 block printed after the December 18 Wednesday block, and no December 16 block appears anywhere in the PDF. December 18, 2026 is a Friday. Flag F61 sets out the official evidence that the day number, not the weekday, is the misprint and that these eight rows are very likely December 16. The schedule dates are reproduced exactly as printed and the dispute is flagged rather than corrected, because the site does not silently re-date a row on an inference.",
    "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"
   },
   {
@@ -22731,7 +22731,7 @@
    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
   },
   {
-   "id": "F42",
+   "id": "F61",
    "area": "Wynn WPT schedule",
    "severity": "High",
    "title": "Eight WPT rows are probably two days late: the 'Dec. 18 Wednesday' block is very likely December 16",
@@ -22739,7 +22739,7 @@
    "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"
   },
   {
-   "id": "F43",
+   "id": "F62",
    "area": "Wynn WPT schedule",
    "severity": "Low",
    "title": "Four WPT event names read differently from the printed text",
@@ -22747,7 +22747,7 @@
    "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"
   },
   {
-   "id": "F44",
+   "id": "F63",
    "area": "Venetian DSE IV",
    "severity": "Low",
    "title": "Day 2 restart rows carry values that their own schedule row leaves blank",
@@ -22755,11 +22755,11 @@
    "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf"
   },
   {
-   "id": "F45",
+   "id": "F64",
    "area": "Hotels",
    "severity": "Low",
    "title": "Two different official booking requests gave two different answers for the trip window",
-   "detail": "Asking the official Venetian booking engine for the trip window itself (arrival 2026-11-25, departure 2026-12-02) returns $XXX in every cell, so no checkout total exists for those nights. Asking the same engine for a calendar view (arrival 2026-11-17) prints per-night cells for 17-30 November, including $185 on 25 November, $190 on 26 November, $210 on 27 November, $905 on 28 November, $340 on 29 November and $165 on 30 November, and the calendar states those cells include the daily resort fee and exclude taxes. An earlier note on this site said the trip window published no price at all, which those cells contradict, so the note now names the two requests separately. The calendar cells are still not a quote, and nothing here converts them into one: they are recorded so a reader can see that part of the window does have published figures.",
+   "detail": "Asking the official Venetian booking engine for the trip window itself (arrival 2026-11-25, departure 2026-12-02) returns $XXX in every cell, so no checkout total exists for those nights. Asking the same engine for a calendar view (arrival 2026-11-17) prints per-night cells for 17-30 November, including $185 on 25 November, $190 on 26 November, $210 on 27 November, $905 on 28 November, $340 on 29 November and $165 on 30 November, and the calendar states those cells include the daily resort fee and exclude taxes. A note carried by an earlier build of this site said the trip window published no price at all, which those cells contradict; a later live re-read rewrote that note, and this flag keeps the two requests distinct so the claim cannot return. The calendar cells are still not a quote, and nothing here converts them into one: they are recorded so a reader can see that part of the window does have published figures.",
    "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"
   },
   {
