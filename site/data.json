@@ -112,7 +112,7 @@
   {
    "id": "caesars",
    "name": "Caesars Palace",
-   "pokerRoom": "Caesars Palace poker room, Appian Way",
+   "pokerRoom": "Caesars Palace poker room",
    "page": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "series": "Four daily No Limit Hold'em tournaments",
    "schedule": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
@@ -21658,7 +21658,7 @@
   {
    "id": "caesars",
    "name": "Caesars Palace",
-   "venue": "Caesars Palace poker room (Appian Way)",
+   "venue": "Caesars Palace poker room",
    "property": "Caesars Palace",
    "rooms": "Colosseum, Augustus, Octavius, Julius, Forum and Palace towers",
    "baseRate": "",
@@ -22190,35 +22190,37 @@
    "mapsDestination": "The+Venetian+Resort,+Las+Vegas,+NV",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=The+Venetian+Resort,+Las+Vegas,+NV&destination=The+Venetian+Resort,+Las+Vegas,+NV",
    "lastChecked": "2026-11-16",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "palazzo",
    "venue": "venetian",
    "minutes": 4,
    "miles": "0.2",
-   "note": "Maps walking estimate between the two connected resort properties.",
-   "via": "unnamed resort paths",
+   "lastReadOn": "2026-11-17",
+   "walkCapture": "palazzo-to-venetian",
+   "note": "Google Maps walking directions read 2026-11-17: 4 min (0.2 mile) via unnamed roads; the poker room is in the same resort.",
+   "via": "unnamed roads",
    "source": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
-   "mapsOrigin": "The+Palazzo+Las+Vegas,+Las+Vegas,+NV",
-   "mapsDestination": "The+Venetian+Resort,+Las+Vegas,+NV",
-   "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=The+Palazzo+Las+Vegas,+Las+Vegas,+NV&destination=The+Venetian+Resort,+Las+Vegas,+NV",
-   "lastChecked": "2026-11-16",
-   "walkSourceType": "Google Maps walking estimate"
+   "mapsOrigin": "The+Palazzo+Las+Vegas+NV",
+   "mapsDestination": "The+Venetian+Resort+Las+Vegas+NV",
+   "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=The+Palazzo+Las+Vegas+NV&destination=The+Venetian+Resort+Las+Vegas+NV",
+   "lastChecked": "2026-11-17",
+   "walkSourceType": "Google Maps walking directions (walking mode), read 2026-11-17"
   },
   {
    "hotel": "wynn",
    "venue": "wynn",
    "minutes": 10,
    "miles": "0.4",
-   "note": "The official Wynn poker page states the poker room is 'located in Encore at Wynn Las Vegas'.",
+   "note": "The official Wynn poker page states the poker room is 'located in Encore at Wynn Las Vegas'. Google Maps walking estimate 10 minutes (0.4 mile); not re-read on 2026-11-17.",
    "via": "Las Vegas Blvd S",
    "source": "https://www.wynnlasvegas.com/casino/poker",
    "mapsOrigin": "Wynn+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109",
    "mapsDestination": "Encore+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Wynn+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109&destination=Encore+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109",
    "lastChecked": "2026-11-16",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "bellagio",
@@ -22232,7 +22234,7 @@
    "mapsDestination": "Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV&destination=Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-16",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "mgm",
@@ -22246,35 +22248,35 @@
    "mapsDestination": "MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV&destination=MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-16",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "caesars",
    "venue": "caesars",
    "minutes": 0,
    "miles": "",
-   "note": "Poker room is inside the hotel, along the Appian Way promenade.",
+   "note": "Room location inside the property is not stated on the source page (not re-read 2026-11-17 beyond the marketing article).",
    "via": "",
    "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "mapsOrigin": "Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV",
    "mapsDestination": "Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV&destination=Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV",
    "lastChecked": "2026-11-16",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "horseshoe",
    "venue": "horseshoe",
    "minutes": 0,
    "miles": "",
-   "note": "Poker room is inside the hotel, in a quieter section of the casino.",
+   "note": "Room name (Hall of Fame) is from the prior-session Horseshoe casino page; location inside the property is not stated there.",
    "via": "",
    "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "mapsOrigin": "Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169",
    "mapsDestination": "Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169&destination=Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169",
    "lastChecked": "2026-11-16",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "aria",
@@ -22288,21 +22290,23 @@
    "mapsDestination": "ARIA+Resort+%26+Casino,+Las+Vegas,+NV",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=ARIA+Resort+%26+Casino,+Las+Vegas,+NV&destination=ARIA+Resort+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-16",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "caesars",
    "venue": "venetian",
    "minutes": 12,
    "miles": "0.5",
-   "note": "Maps walking estimate, Las Vegas Blvd S.",
+   "lastReadOn": "2026-11-17",
+   "walkCapture": "caesars-to-venetian",
+   "note": "Google Maps walking directions read 2026-11-17: 12 min (0.5 mile) via Las Vegas Blvd S; a 12-minute alternative (0.6 mile) via S Siegfried And Roy Dr is also shown.",
    "via": "Las Vegas Blvd S",
    "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-   "mapsOrigin": "Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV",
-   "mapsDestination": "The+Venetian+Resort,+Las+Vegas,+NV",
-   "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV&destination=The+Venetian+Resort,+Las+Vegas,+NV",
-   "lastChecked": "2026-11-16",
-   "walkSourceType": "Google Maps walking estimate"
+   "mapsOrigin": "Caesars+Palace+Las+Vegas+NV",
+   "mapsDestination": "The+Venetian+Resort+Las+Vegas+NV",
+   "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Caesars+Palace+Las+Vegas+NV&destination=The+Venetian+Resort+Las+Vegas+NV",
+   "lastChecked": "2026-11-17",
+   "walkSourceType": "Google Maps walking directions (walking mode), read 2026-11-17"
   },
   {
    "hotel": "wynn",
@@ -22310,28 +22314,31 @@
    "minutes": 13,
    "miles": "0.6",
    "lastReadOn": "2026-11-17",
-   "note": "Maps walking estimate, re-read 2026-11-17 (13 min, 0.6 mile); a 14-minute alternative via Las Vegas Blvd S is also shown.",
+   "walkCapture": "wynn-to-venetian",
+   "note": "Google Maps walking directions read 2026-11-17: 13 min (0.6 mile) via Wynn Main Gate Dr; a 14-minute route (0.6 mile) via Las Vegas Blvd S and a 16-minute route (0.7 mile) via Sands Ave are also shown.",
    "via": "Wynn Main Gate Dr",
    "source": "https://www.wynnlasvegas.com/casino/poker",
    "mapsOrigin": "Wynn+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109",
    "mapsDestination": "The+Venetian+Resort,+Las+Vegas,+NV",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Wynn+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109&destination=The+Venetian+Resort,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking directions (walking mode), read 2026-11-17"
   },
   {
    "hotel": "horseshoe",
    "venue": "venetian",
    "minutes": 16,
    "miles": "0.7",
-   "note": "Maps walking estimate; a 17-minute alternative via Las Vegas Blvd S is also shown.",
+   "lastReadOn": "2026-11-17",
+   "walkCapture": "horseshoe-to-venetian",
+   "note": "Google Maps walking directions read 2026-11-17: 16 min (0.7 mile) via Linq Ln; a 16-minute route via Krueger Dr and a 17-minute route (0.8 mile) via Las Vegas Blvd S are also shown.",
    "via": "Linq Ln",
    "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-   "mapsOrigin": "Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169",
-   "mapsDestination": "The+Venetian+Resort,+Las+Vegas,+NV",
-   "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169&destination=The+Venetian+Resort,+Las+Vegas,+NV",
-   "lastChecked": "2026-11-16",
-   "walkSourceType": "Google Maps walking estimate"
+   "mapsOrigin": "Horseshoe+Las+Vegas+NV",
+   "mapsDestination": "The+Venetian+Resort+Las+Vegas+NV",
+   "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Horseshoe+Las+Vegas+NV&destination=The+Venetian+Resort+Las+Vegas+NV",
+   "lastChecked": "2026-11-17",
+   "walkSourceType": "Google Maps walking directions (walking mode), read 2026-11-17"
   },
   {
    "hotel": "bellagio",
@@ -22339,57 +22346,63 @@
    "minutes": 21,
    "miles": "0.9",
    "lastReadOn": "2026-11-17",
-   "note": "Maps walking estimate, re-read 2026-11-17 (21 min, 0.9 mile); a 24-minute alternative is also shown.",
+   "walkCapture": "bellagio-to-venetian",
+   "note": "Google Maps walking directions read 2026-11-17: 21 min (0.9 mile) via Las Vegas Blvd S; a 24-minute route (1.1 miles) via Bellagio Dr is also shown.",
    "via": "Las Vegas Blvd S",
    "source": "https://bellagio.mgmresorts.com/en/casino/poker.html",
-   "mapsOrigin": "Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV",
-   "mapsDestination": "The+Venetian+Resort,+Las+Vegas,+NV",
-   "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV&destination=The+Venetian+Resort,+Las+Vegas,+NV",
+   "mapsOrigin": "Bellagio+Hotel+%26+Casino+Las+Vegas+NV",
+   "mapsDestination": "The+Venetian+Resort+Las+Vegas+NV",
+   "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Bellagio+Hotel+%26+Casino+Las+Vegas+NV&destination=The+Venetian+Resort+Las+Vegas+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking directions (walking mode), read 2026-11-17"
   },
   {
    "hotel": "mgm",
    "venue": "venetian",
    "minutes": 35,
    "miles": "1.6",
-   "note": "Maps walking estimate; outside the 30-minute limit for a day of tournament hopping.",
+   "lastReadOn": "2026-11-17",
+   "walkCapture": "mgm-to-venetian",
+   "note": "Google Maps walking directions read 2026-11-17: 35 min (1.6 miles) via Las Vegas Blvd S. Outside the 30-minute limit.",
    "via": "Las Vegas Blvd S",
    "source": "https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
-   "mapsOrigin": "MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV",
-   "mapsDestination": "The+Venetian+Resort,+Las+Vegas,+NV",
-   "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV&destination=The+Venetian+Resort,+Las+Vegas,+NV",
-   "lastChecked": "2026-11-16",
-   "walkSourceType": "Google Maps walking estimate"
+   "mapsOrigin": "MGM+Grand+Hotel+%26+Casino+Las+Vegas+NV",
+   "mapsDestination": "The+Venetian+Resort+Las+Vegas+NV",
+   "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=MGM+Grand+Hotel+%26+Casino+Las+Vegas+NV&destination=The+Venetian+Resort+Las+Vegas+NV",
+   "lastChecked": "2026-11-17",
+   "walkSourceType": "Google Maps walking directions (walking mode), read 2026-11-17"
   },
   {
    "hotel": "aria",
    "venue": "venetian",
    "minutes": 31,
    "miles": "1.4",
-   "note": "Maps walking estimate; outside the 30-minute limit.",
+   "lastReadOn": "2026-11-17",
+   "walkCapture": "aria-to-venetian",
+   "note": "Google Maps walking directions read 2026-11-17: 31 min (1.4 miles) via Las Vegas Blvd S; 32 min via The Cosmopolitan Service Rd and 38 min (1.7 miles) via Frank Sinatra Dr are also shown. Outside the 30-minute limit on every route shown.",
    "via": "Las Vegas Blvd S",
    "source": "https://aria.mgmresorts.com/en/casino/poker.html",
-   "mapsOrigin": "ARIA+Resort+%26+Casino,+Las+Vegas,+NV",
-   "mapsDestination": "The+Venetian+Resort,+Las+Vegas,+NV",
-   "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=ARIA+Resort+%26+Casino,+Las+Vegas,+NV&destination=The+Venetian+Resort,+Las+Vegas,+NV",
-   "lastChecked": "2026-11-16",
-   "walkSourceType": "Google Maps walking estimate"
+   "mapsOrigin": "ARIA+Resort+%26+Casino+Las+Vegas+NV",
+   "mapsDestination": "The+Venetian+Resort+Las+Vegas+NV",
+   "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=ARIA+Resort+%26+Casino+Las+Vegas+NV&destination=The+Venetian+Resort+Las+Vegas+NV",
+   "lastChecked": "2026-11-17",
+   "walkSourceType": "Google Maps walking directions (walking mode), read 2026-11-17"
   },
   {
    "hotel": "venetian",
    "venue": "bellagio",
-   "minutes": 27,
-   "miles": "1.1",
+   "minutes": 21,
+   "miles": "0.9",
    "lastReadOn": "2026-11-17",
-   "note": "Google Maps walking card, read 2026-11-17 (single read): 27 min, 1.1 miles via Las Vegas Blvd S. The driving card for the same pair read 8 min. The walking card does not print its mode label; the link requested travelmode=walking. Not re-read on a second day.",
+   "walkCapture": "venetian-to-bellagio",
+   "note": "Google Maps walking directions read 2026-11-17: 21 min (0.9 mile) via Las Vegas Blvd S; a 25-minute route (1.1 miles) via Las Vegas Blvd S and Bellagio Dr is also shown. The same pair is 10 minutes by car on the control read.",
    "via": "Las Vegas Blvd S",
    "source": "https://bellagio.mgmresorts.com/en/casino/poker.html",
-   "mapsOrigin": "3355+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109",
-   "mapsDestination": "Bellagio+Poker+Room,+3600+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109",
-   "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=3355+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&destination=Bellagio+Poker+Room,+3600+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109",
+   "mapsOrigin": "The+Venetian+Resort+Las+Vegas+NV",
+   "mapsDestination": "Bellagio+Hotel+%26+Casino+Las+Vegas+NV",
+   "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=The+Venetian+Resort+Las+Vegas+NV&destination=Bellagio+Hotel+%26+Casino+Las+Vegas+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking directions (walking mode), read 2026-11-17"
   },
   {
    "hotel": "venetian",
@@ -22404,7 +22417,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=The+Venetian+Resort,+Las+Vegas,+NV&destination=Encore+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "venetian",
@@ -22419,7 +22432,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=The+Venetian+Resort,+Las+Vegas,+NV&destination=MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "venetian",
@@ -22434,7 +22447,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=The+Venetian+Resort,+Las+Vegas,+NV&destination=ARIA+Resort+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "venetian",
@@ -22449,7 +22462,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=The+Venetian+Resort,+Las+Vegas,+NV&destination=Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "venetian",
@@ -22464,7 +22477,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=The+Venetian+Resort,+Las+Vegas,+NV&destination=Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "palazzo",
@@ -22479,7 +22492,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=The+Palazzo+Las+Vegas,+Las+Vegas,+NV&destination=Encore+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "palazzo",
@@ -22494,7 +22507,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=The+Palazzo+Las+Vegas,+Las+Vegas,+NV&destination=Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "palazzo",
@@ -22509,7 +22522,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=The+Palazzo+Las+Vegas,+Las+Vegas,+NV&destination=MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "palazzo",
@@ -22524,7 +22537,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=The+Palazzo+Las+Vegas,+Las+Vegas,+NV&destination=ARIA+Resort+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "palazzo",
@@ -22539,7 +22552,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=The+Palazzo+Las+Vegas,+Las+Vegas,+NV&destination=Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "palazzo",
@@ -22554,7 +22567,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=The+Palazzo+Las+Vegas,+Las+Vegas,+NV&destination=Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "wynn",
@@ -22569,7 +22582,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Wynn+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109&destination=Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "wynn",
@@ -22584,7 +22597,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Wynn+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109&destination=MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "wynn",
@@ -22599,7 +22612,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Wynn+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109&destination=ARIA+Resort+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "wynn",
@@ -22614,7 +22627,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Wynn+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109&destination=Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "wynn",
@@ -22629,7 +22642,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Wynn+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109&destination=Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "bellagio",
@@ -22644,7 +22657,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV&destination=Encore+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "bellagio",
@@ -22659,7 +22672,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV&destination=MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "bellagio",
@@ -22674,7 +22687,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV&destination=ARIA+Resort+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "bellagio",
@@ -22689,7 +22702,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV&destination=Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "bellagio",
@@ -22704,7 +22717,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV&destination=Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "mgm",
@@ -22719,7 +22732,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV&destination=Encore+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "mgm",
@@ -22734,7 +22747,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV&destination=Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "mgm",
@@ -22749,7 +22762,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV&destination=ARIA+Resort+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "mgm",
@@ -22764,7 +22777,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV&destination=Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "mgm",
@@ -22779,7 +22792,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV&destination=Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "caesars",
@@ -22794,7 +22807,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV&destination=Encore+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "caesars",
@@ -22809,7 +22822,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV&destination=Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "caesars",
@@ -22824,7 +22837,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV&destination=MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "caesars",
@@ -22839,7 +22852,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV&destination=ARIA+Resort+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "caesars",
@@ -22854,7 +22867,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV&destination=Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "horseshoe",
@@ -22869,7 +22882,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169&destination=Encore+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "horseshoe",
@@ -22884,7 +22897,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169&destination=Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "horseshoe",
@@ -22899,7 +22912,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169&destination=MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "horseshoe",
@@ -22914,7 +22927,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169&destination=ARIA+Resort+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "horseshoe",
@@ -22929,7 +22942,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169&destination=Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "aria",
@@ -22944,7 +22957,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=ARIA+Resort+%26+Casino,+Las+Vegas,+NV&destination=Encore+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "aria",
@@ -22959,7 +22972,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=ARIA+Resort+%26+Casino,+Las+Vegas,+NV&destination=Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "aria",
@@ -22974,7 +22987,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=ARIA+Resort+%26+Casino,+Las+Vegas,+NV&destination=MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "aria",
@@ -22989,7 +23002,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=ARIA+Resort+%26+Casino,+Las+Vegas,+NV&destination=Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   },
   {
    "hotel": "aria",
@@ -23004,7 +23017,7 @@
    "measuredOn": "2026-11-17",
    "mapsUrl": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=ARIA+Resort+%26+Casino,+Las+Vegas,+NV&destination=Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169",
    "lastChecked": "2026-11-17",
-   "walkSourceType": "Google Maps walking estimate"
+   "walkSourceType": "Google Maps walking estimate, not re-read 2026-11-17"
   }
  ],
  "sources": [
@@ -23181,6 +23194,13 @@
    "name": "Bellagio hotel reservation terms (resort fee, cancellation, taxes)",
    "url": "https://bellagio.mgmresorts.com/en/terms-and-conditions.html",
    "type": "official terms",
+   "checked": "2026-11-17"
+  },
+  {
+   "id": "mandalay-poker",
+   "name": "Mandalay Bay poker room page (hours, price range; no tournament schedule printed)",
+   "url": "https://mandalaybay.mgmresorts.com/en/casino/poker-tables.html",
+   "type": "official poker page",
    "checked": "2026-11-17"
   },
   {
@@ -23871,8 +23891,8 @@
    "id": "F67",
    "area": "Walking routes",
    "severity": "Medium",
-   "title": "Venetian to Bellagio Poker Room walks 27 minutes; the planner's Bellagio-to-Venetian figure is 21 minutes",
-   "detail": "On 2026-11-17 the Google Maps walking card from 3355 S Las Vegas Blvd (The Venetian) to the Bellagio Poker Room, 3600 S Las Vegas Blvd, read 27 minutes for 1.1 miles via Las Vegas Blvd S. The driving card for the same pair read 8 minutes. The walking card does not print its mode label; the link requested travelmode=walking. The reverse pair, Bellagio Hotel & Casino to The Venetian, read 21 minutes (0.9 mile) the same day, which matches the stored route. The day plan uses only the venue-to-Venetian direction, so a Venetian-to-Bellagio transfer is understated by six minutes. The 30-minute limit is still met (27 minutes). Re-read the pair on a second day before relying on either figure.",
+   "title": "Venetian to Bellagio: an earlier 27-minute read conflicts with a second read of 21 minutes on the same day (see F84)",
+   "detail": "On 2026-11-17 the Google Maps walking card from 3355 S Las Vegas Blvd (The Venetian) to the Bellagio Poker Room, 3600 S Las Vegas Blvd, read 27 minutes for 1.1 miles via Las Vegas Blvd S. The driving card for the same pair read 8 minutes. The walking card does not print its mode label; the link requested travelmode=walking. The reverse pair, Bellagio Hotel & Casino to The Venetian, read 21 minutes (0.9 mile) the same day, which matches the stored route. The day plan uses only the venue-to-Venetian direction, so a Venetian-to-Bellagio transfer is understated by six minutes. The 30-minute limit is still met (27 minutes). Re-read the pair on a second day before relying on either figure. UPDATE 2026-11-17 (session d3a4c0f8): a second walking-mode read of the same pair returned 21 minutes (0.9 mile) via Las Vegas Blvd S and 25 minutes (1.1 miles) via Las Vegas Blvd S and Bellagio Dr, and the stored value is now 21. The 27-minute card has no saved capture, so the conflict stays open; see F84 for the raw record.",
    "source": "https://www.google.com/maps/dir/?api=1&origin=3355+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&destination=Bellagio+Poker+Room,+3600+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&travelmode=walking"
   },
   {
@@ -23896,7 +23916,7 @@
    "area": "Strip poker rooms",
    "severity": "Medium",
    "title": "Resorts World Las Vegas: no official poker schedule could be read, and third-party sources disagree on its tournaments",
-   "detail": "Checked 2026-11-17 (session arena/5b8ce14d-poker3). Official rwlasvegas.com pages read: the poker-invite e-mail page (no schedule); /gaming/poker-room/poker-room-dining/ (dining only); /gaming/casino-events/ (promotions, no poker tournament). /poker, /casino/poker/ and /poker-room/ returned no page. Third-party pages disagree on times and buy-ins for Resorts World's tournaments (PokerNews 2024, Vegas Advantage 2025, CardPlayer, Bet-NV 2023, PokerAtlas, Somuchpoker), and none is official, so no Resorts World row is published. Its poker room is a candidate to add once its official poker page is reached.",
+   "detail": "Checked 2026-11-17 (session arena/5b8ce14d-poker3). Official rwlasvegas.com pages read: the poker-invite e-mail page (no schedule); /gaming/poker-room/poker-room-dining/ (dining only); /gaming/casino-events/ (promotions, no poker tournament). /poker, /casino/poker/ and /poker-room/ returned no page. Third-party pages disagree on times and buy-ins for Resorts World's tournaments (PokerNews 2024, Vegas Advantage 2025, CardPlayer, Bet-NV 2023, PokerAtlas, Somuchpoker), and none is official, so no Resorts World row is published. Its poker room is a candidate to add once its official poker page is reached. A press search result (casino.org / Vital Vegas, March 2026; article not fetched) reports the resort saying the poker room will close on 30 March 2026. No official statement was retrieved in this pass, so the closure is unverified.",
    "source": "https://www.rwlasvegas.com/gaming/casino-events/"
   },
   {
@@ -23922,6 +23942,22 @@
    "title": "Whether the Wynn daily slate runs on November 27-29 is not stated by any official page",
    "detail": "The official Wynn poker page says the daily tournament slate 'runs twice a day during non-event timeframes' and that 'the Daily Tournament schedule will be suspended during each Wynn Signature, Wynn Millions, and Classic tournament series'. The WPT World Championship (November 27 - December 21, 2026) is a series that starts on day 5 of the trip window, but it is not named in the suspension note and no official page states whether the daily $200/$240 events run alongside it. Re-read 2026-11-17 (session arena-1bbee97f); the wording was unchanged. Until the room confirms it, the day plan's Wynn daily rows for November 27-29 are conditional and should not be counted on: the Venetian DSE IV events and the WPT $600/$800 flights are the verified options on those days.",
    "source": "https://www.wynnlasvegas.com/casino/poker"
+  },
+  {
+   "id": "F84",
+   "area": "Walking routes",
+   "severity": "Medium",
+   "title": "Walking minutes are Google Maps directions read 2026-11-17 in walking mode; no venue publishes them",
+   "detail": "All eight hotels were read to the Venetian poker room. Records, exact queries, every route card and the mode marker are in raw/google_maps_walk_2026-11-17.json, and tests/test_walk_captures_2026_11_17.py asserts each stored minute figure against it. The first (recommended) card is the stored value; the other shown cards are in the note. Walking mode is identified by the page's 'mostly flat' line; a driving control for Venetian to Bellagio read 10 minutes by car against 21 on foot. The page was in a French browser locale. Google Maps is a non-official measurement source and is labelled as such. The earlier 27-minute Venetian-to-Bellagio card (F67) has no saved capture and is not reproduced.",
+   "source": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=The+Palazzo+Las+Vegas+NV&destination=The+Venetian+Resort+Las+Vegas+NV"
+  },
+  {
+   "id": "F85",
+   "area": "Mandalay Bay",
+   "severity": "Medium",
+   "title": "Mandalay Bay is open on its official page, which prints no tournament schedule",
+   "detail": "The official poker page (read 2026-11-17) prints Wednesday to Monday, 10 AM to 4 AM, closed Tuesdays, a $60–$1,000 price range, and 'Please Visit or Call Poker Room for Details' with reservations at 702.632.7790. Third-party listings show a $60 daily at 1 PM and a $100 Saturday event at 8 PM; those are not official and are not used. The room is in the morning feed, and no Mandalay Bay event enters the plan.",
+   "source": "https://mandalaybay.mgmresorts.com/en/casino/poker-tables.html"
   }
  ],
  "questions": [
@@ -23991,16 +24027,16 @@
   {
    "id": "Q08",
    "question": "What is the real walking time between each hotel and each poker room?",
-   "answer": "The venues publish no walking times. Google Maps estimates captured on 2026-11-16 cover the recommended Venetian resort hotel to the listed rooms and selected on-site pairs only; the full 8-hotel × 7-venue matrix is incomplete (F32). The recommended-hotel estimates are: Caesars Palace 12 minutes, Wynn 13, Horseshoe 16, Bellagio 21, ARIA 31 and MGM Grand 35. The Wynn poker room is in Encore, a 10-minute estimate from the Wynn hotel. These are estimates, not verified venue times.",
+   "answer": "The venues publish no walking times. On 2026-11-17 every hotel was read to the Venetian poker room in Google Maps walking mode (first route card): The Palazzo 4 minutes, Wynn 13, Bellagio 21, Caesars Palace 12, Horseshoe 16, MGM Grand 35 and ARIA 31 (ARIA's other shown routes run to 38). The Venetian itself is in-property. These are Google Maps measurements, not official venue times (F84). Other hotel-to-room pairs, and every pair that includes Mandalay Bay, are not checked (F32).",
    "why": "Needed",
-   "blocking": "Yes - only the recommended hotel's route set is checked",
+   "blocking": "Yes - hotel-to-room pairs other than the Venetian are not checked",
    "how": "Use official property addresses to verify each hotel-to-room Google or Apple walking route; do not assume missing pairs are under 30 minutes.",
    "source": "https://www.google.com/maps/dir/?api=1&travelmode=walking"
   },
   {
    "id": "Q09",
    "question": "Which other Strip rooms should be added to the plan?",
-   "answer": "Not covered. This pass verified The Venetian, Wynn, Bellagio, MGM Grand, Caesars Palace, Horseshoe and ARIA. South Point, Golden Nugget, Resorts World, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate, Tropicana, Bally's, Flamingo, LINQ, Planet Hollywood, Rio and M Resort were not checked.",
+   "answer": "Mandalay Bay was added on 2026-11-17: its official page is open Wednesday to Monday but prints no tournament schedule (F85). Resorts World and Planet Hollywood are reported closed in press only (F79, F80; unverified) and are listed on the Strip-room status table, not as candidates. Not checked: South Point, Golden Nugget, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate, Tropicana, Bally's, Flamingo, LINQ, Rio and M Resort.",
    "why": "Useful",
    "blocking": "No",
    "how": "Say which properties to add; each needs its own official page and structure sheets.",
@@ -24116,7 +24152,7 @@
   {
    "id": "S04",
    "title": "Add the missing Strip poker rooms",
-   "detail": "South Point, Golden Nugget, Resorts World, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate, Tropicana, Bally's, Flamingo, LINQ, Planet Hollywood, Rio and M Resort are all unverified. For a trip that aims to enter as many tournaments as possible, the daily rooms in walking range are worth more than another marquee series.",
+   "detail": "Mandalay Bay was added on 2026-11-17 (F85). Resorts World and Planet Hollywood are reported closed in press only (F79, F80; unverified). South Point, Golden Nugget, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate, Tropicana, Bally's, Flamingo, LINQ, Rio and M Resort are all unverified. For a trip that aims to enter as many tournaments as possible, the daily rooms in walking range are worth more than another marquee series.",
    "impact": "Medium",
    "effort": "Medium",
    "decision": "Which properties to prioritise"
@@ -27045,6 +27081,124 @@
    "name": "ARIA poker room",
    "schedule": "https://aria.mgmresorts.com/en/casino/poker.html",
    "extra": []
+  },
+  {
+   "id": "mandalay",
+   "name": "Mandalay Bay poker room",
+   "schedule": "https://mandalaybay.mgmresorts.com/en/casino/poker-tables.html",
+   "extra": []
+  }
+ ],
+ "stripRooms": [
+  {
+   "id": "venetian",
+   "name": "The Venetian",
+   "status": "Open",
+   "statusBasis": "Official poker page and DeepStack Extravaganza schedule re-read in the trip window",
+   "read": "2026-11-17",
+   "official": "https://www.venetianlasvegas.com/resort/casino/poker.html",
+   "inFeed": true,
+   "flag": "",
+   "evidence": "venetianlasvegas.com poker page and dse-nov-2026 schedule"
+  },
+  {
+   "id": "wynn",
+   "name": "Wynn Las Vegas (Encore)",
+   "status": "Open",
+   "statusBasis": "Official poker page reachable; daily and WPT PDFs in the morning feed",
+   "read": "2026-11-17",
+   "official": "https://www.wynnlasvegas.com/casino/poker",
+   "inFeed": true,
+   "flag": "",
+   "evidence": "wynnlasvegas.com/casino/poker; Wynn PDFs in the feed"
+  },
+  {
+   "id": "bellagio",
+   "name": "Bellagio",
+   "status": "Open (on record)",
+   "statusBasis": "Official poker page on record with weekly events; not re-read on 2026-11-17",
+   "read": "2026-11-16",
+   "official": "https://bellagio.mgmresorts.com/en/casino/poker.html",
+   "inFeed": true,
+   "flag": "",
+   "evidence": "bellagio.mgmresorts.com poker page (base read)"
+  },
+  {
+   "id": "mgm",
+   "name": "MGM Grand",
+   "status": "Open (on record)",
+   "statusBasis": "Official poker page on record with a daily schedule sheet; not re-read on 2026-11-17",
+   "read": "2026-11-16",
+   "official": "https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
+   "inFeed": true,
+   "flag": "",
+   "evidence": "mgmgrand.mgmresorts.com poker page (base read)"
+  },
+  {
+   "id": "caesars",
+   "name": "Caesars Palace",
+   "status": "Open (no schedule read)",
+   "statusBasis": "Caesars poker-tournaments page fetched 2026-11-17 is a marketing article with no schedule or fee data; the room name is not confirmed in this pass",
+   "read": "2026-11-17",
+   "official": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
+   "inFeed": true,
+   "flag": "",
+   "evidence": "caesars.com poker-tournaments-las-vegas-strip (shared with Horseshoe)"
+  },
+  {
+   "id": "horseshoe",
+   "name": "Horseshoe Las Vegas",
+   "status": "Open (no schedule read)",
+   "statusBasis": "Room name from the prior-session Horseshoe casino page (Hall of Fame Poker Room); not re-read 2026-11-17; no schedule read",
+   "read": "2026-11-17",
+   "official": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
+   "inFeed": true,
+   "flag": "",
+   "evidence": "caesars.com poker-tournaments-las-vegas-strip (shared with Caesars Palace)"
+  },
+  {
+   "id": "aria",
+   "name": "ARIA Resort & Casino",
+   "status": "Open (events unconfirmed)",
+   "statusBasis": "Official page asks guests to call or check @ARIAPoker to confirm events; not re-read on 2026-11-17",
+   "read": "2026-11-16",
+   "official": "https://aria.mgmresorts.com/en/casino/poker.html",
+   "inFeed": true,
+   "flag": "",
+   "evidence": "aria.mgmresorts.com poker page (base read)"
+  },
+  {
+   "id": "mandalay",
+   "name": "Mandalay Bay",
+   "status": "Open Wed–Mon, 10 AM–4 AM; closed Tuesdays",
+   "statusBasis": "Official poker page read 2026-11-17 prints these hours and a $60–$1,000 price range, and says 'Please Visit or Call Poker Room for Details'. No tournament schedule is printed.",
+   "read": "2026-11-17",
+   "official": "https://mandalaybay.mgmresorts.com/en/casino/poker-tables.html",
+   "inFeed": true,
+   "flag": "F85",
+   "evidence": "mandalaybay.mgmresorts.com/en/casino/poker-tables.html"
+  },
+  {
+   "id": "planet_hollywood",
+   "name": "Planet Hollywood",
+   "status": "Reported closed after 31 Jan 2026 (press; unverified)",
+   "statusBasis": "Press search result (Review-Journal; article not fetched) reports a Caesars Entertainment statement that the room closes after 31 January 2026. The official statement and the Planet Hollywood poker page were not retrieved.",
+   "read": "2026-11-17",
+   "official": "",
+   "inFeed": false,
+   "flag": "F79",
+   "evidence": "Press search result only (Review-Journal; article not fetched); no official page retrieved"
+  },
+  {
+   "id": "resorts_world",
+   "name": "Resorts World Las Vegas",
+   "status": "Reported closed 30 Mar 2026 (press; unverified)",
+   "statusBasis": "Press search result (casino.org / Vital Vegas; article not fetched) reports a resort statement that the room closes on March 30. The official rwlasvegas poker page was not retrieved (the address that resolved is a marketing e-mail).",
+   "read": "2026-11-17",
+   "official": "",
+   "inFeed": false,
+   "flag": "F80",
+   "evidence": "Press search result only (casino.org / Vital Vegas; article not fetched); no official page retrieved"
   }
  ],
  "verifiedOn": "2026-11-17",

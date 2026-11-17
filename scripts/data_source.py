@@ -292,7 +292,7 @@ VENUES = [
          series="Daily No Limit Hold'em tournaments at 11:10 AM, 7:10 PM and 11:10 PM",
          schedule="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
          hotels=["mgm"], note="The published weekly schedule sheet is headed 'August'."),
-    dict(id="caesars", name="Caesars Palace", pokerRoom="Caesars Palace poker room, Appian Way",
+    dict(id="caesars", name="Caesars Palace", pokerRoom="Caesars Palace poker room",
          page="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
          series="Four daily No Limit Hold'em tournaments", schedule="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
          hotels=["caesars"], note="Buy-in, chips and guarantee are published on the official page; no structure sheet is linked."),
@@ -374,6 +374,8 @@ SOURCES = [
          type="official room page", checked=LAST_PASS),
     dict(id="bell-terms", name="Bellagio hotel reservation terms (resort fee, cancellation, taxes)",
          url="https://bellagio.mgmresorts.com/en/terms-and-conditions.html", type="official terms", checked=LAST_PASS),
+    dict(id="mandalay-poker", name="Mandalay Bay poker room page (hours, price range; no tournament schedule printed)",
+         url="https://mandalaybay.mgmresorts.com/en/casino/poker-tables.html", type="official poker page", checked="2026-11-17"),
     dict(id="mgm-poker", name="MGM Grand poker room page", url="https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
          type="official room page", checked=LAST_PASS),
     dict(id="mgm-sched", name="MGM Grand weekly tournament schedule sheet",
@@ -1067,13 +1069,16 @@ FLAGS = [
                  "total would be, then record the answer as a dated rate-log entry."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
     dict(id="F67", area="Walking routes", severity="Medium",
-         title="Venetian to Bellagio Poker Room walks 27 minutes; the planner's Bellagio-to-Venetian figure is 21 minutes",
+         title="Venetian to Bellagio: an earlier 27-minute read conflicts with a second read of 21 minutes on the same day (see F84)",
          detail=("On 2026-11-17 the Google Maps walking card from 3355 S Las Vegas Blvd (The Venetian) to the Bellagio Poker Room, "
                  "3600 S Las Vegas Blvd, read 27 minutes for 1.1 miles via Las Vegas Blvd S. The driving card for the same pair read "
                  "8 minutes. The walking card does not print its mode label; the link requested travelmode=walking. The reverse pair, "
                  "Bellagio Hotel & Casino to The Venetian, read 21 minutes (0.9 mile) the same day, which matches the stored route. "
                  "The day plan uses only the venue-to-Venetian direction, so a Venetian-to-Bellagio transfer is understated by six "
-                 "minutes. The 30-minute limit is still met (27 minutes). Re-read the pair on a second day before relying on either figure."),
+                 "minutes. The 30-minute limit is still met (27 minutes). Re-read the pair on a second day before relying on either figure. "
+                 "UPDATE 2026-11-17 (session d3a4c0f8): a second walking-mode read of the same pair returned 21 minutes (0.9 mile) via Las Vegas Blvd S "
+                 "and 25 minutes (1.1 miles) via Las Vegas Blvd S and Bellagio Dr, and the stored value is now 21. The 27-minute card has no saved capture, "
+                 "so the conflict stays open; see F84 for the raw record."),
          source="https://www.google.com/maps/dir/?api=1&origin=3355+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&destination=Bellagio+Poker+Room,+3600+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&travelmode=walking"),
     dict(id="F68", area="Publishing", severity="Low",
          title="RESOLVED 2026-11-17: stale hotel, rate and route files were feeding the sheet-verification page",
@@ -1103,7 +1108,8 @@ FLAGS = [
                  "tournament). /poker, /casino/poker/ and /poker-room/ returned no page. Third-party pages disagree on times and buy-ins "
                  "for Resorts World's tournaments (PokerNews 2024, Vegas Advantage 2025, CardPlayer, Bet-NV 2023, PokerAtlas, "
                  "Somuchpoker), and none is official, so no Resorts World row is published. Its poker room is a candidate to add "
-                 "once its official poker page is reached."),
+                 "once its official poker page is reached. A press search result (casino.org / Vital Vegas, March 2026; article not fetched) reports "
+                 "the resort saying the poker room will close on 30 March 2026. No official statement was retrieved in this pass, so the closure is unverified."),
          source="https://www.rwlasvegas.com/gaming/casino-events/"),
     dict(id="F81", area="Hotel cost", severity="Medium",
          title="MGM Resorts booking pages served the same price grid on two different property URLs",
@@ -1143,7 +1149,22 @@ FLAGS = [
                  "and should not be counted on: the Venetian DSE IV events and the WPT $600/$800 flights are the verified "
                  "options on those days."),
          source="https://www.wynnlasvegas.com/casino/poker"),
-
+    dict(id="F84", area="Walking routes", severity="Medium",
+         title="Walking minutes are Google Maps directions read 2026-11-17 in walking mode; no venue publishes them",
+         detail=("All eight hotels were read to the Venetian poker room. Records, exact queries, every route card and the mode marker are in "
+                 "raw/google_maps_walk_2026-11-17.json, and tests/test_walk_captures_2026_11_17.py asserts each stored minute figure against it. "
+                 "The first (recommended) card is the stored value; the other shown cards are in the note. Walking mode is identified by the page's "
+                 "'mostly flat' line; a driving control for Venetian to Bellagio read 10 minutes by car against 21 on foot. The page was in a French "
+                 "browser locale. Google Maps is a non-official measurement source and is labelled as such. The earlier 27-minute Venetian-to-Bellagio "
+                 "card (F67) has no saved capture and is not reproduced."),
+         source="https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=The+Palazzo+Las+Vegas+NV&destination=The+Venetian+Resort+Las+Vegas+NV"),
+    dict(id="F85", area="Mandalay Bay", severity="Medium",
+         title="Mandalay Bay is open on its official page, which prints no tournament schedule",
+         detail=("The official poker page (read 2026-11-17) prints Wednesday to Monday, 10 AM to 4 AM, closed Tuesdays, a $60–$1,000 price range, and "
+                 "'Please Visit or Call Poker Room for Details' with reservations at 702.632.7790. Third-party listings show a $60 daily at 1 PM and a "
+                 "$100 Saturday event at 8 PM; those are not official and are not used. The room is in the morning feed, and no Mandalay Bay event "
+                 "enters the plan."),
+         source="https://mandalaybay.mgmresorts.com/en/casino/poker-tables.html"),
 ]
 
 QUESTIONS = [
@@ -1205,12 +1226,12 @@ QUESTIONS = [
          how="Ask the poker room for expected finish times, or treat the plan as a template and confirm on the day.",
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
     dict(id="Q08", question="What is the real walking time between each hotel and each poker room?",
-         answer="The venues publish no walking times. Google Maps estimates captured on 2026-11-16 cover the recommended Venetian resort hotel to the listed rooms and selected on-site pairs only; the full 8-hotel × 7-venue matrix is incomplete (F32). The recommended-hotel estimates are: Caesars Palace 12 minutes, Wynn 13, Horseshoe 16, Bellagio 21, ARIA 31 and MGM Grand 35. The Wynn poker room is in Encore, a 10-minute estimate from the Wynn hotel. These are estimates, not verified venue times.",
-         why="Needed", blocking="Yes - only the recommended hotel's route set is checked",
+         answer="The venues publish no walking times. On 2026-11-17 every hotel was read to the Venetian poker room in Google Maps walking mode (first route card): The Palazzo 4 minutes, Wynn 13, Bellagio 21, Caesars Palace 12, Horseshoe 16, MGM Grand 35 and ARIA 31 (ARIA's other shown routes run to 38). The Venetian itself is in-property. These are Google Maps measurements, not official venue times (F84). Other hotel-to-room pairs, and every pair that includes Mandalay Bay, are not checked (F32).",
+         why="Needed", blocking="Yes - hotel-to-room pairs other than the Venetian are not checked",
          how="Use official property addresses to verify each hotel-to-room Google or Apple walking route; do not assume missing pairs are under 30 minutes.",
          source="https://www.google.com/maps/dir/?api=1&travelmode=walking"),
     dict(id="Q09", question="Which other Strip rooms should be added to the plan?",
-         answer="Not covered. This pass verified The Venetian, Wynn, Bellagio, MGM Grand, Caesars Palace, Horseshoe and ARIA. South Point, Golden Nugget, Resorts World, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate, Tropicana, Bally's, Flamingo, LINQ, Planet Hollywood, Rio and M Resort were not checked.",
+         answer="Mandalay Bay was added on 2026-11-17: its official page is open Wednesday to Monday but prints no tournament schedule (F85). Resorts World and Planet Hollywood are reported closed in press only (F79, F80; unverified) and are listed on the Strip-room status table, not as candidates. Not checked: South Point, Golden Nugget, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate, Tropicana, Bally's, Flamingo, LINQ, Rio and M Resort.",
          why="Useful", blocking="No",
          how="Say which properties to add; each needs its own official page and structure sheets.",
          source="https://www.venetianlasvegas.com/resort/casino/poker.html"),
@@ -1323,8 +1344,8 @@ SUGGESTIONS = [
                  "into the single-entry filter."),
          impact="High", effort="Medium", decision="Straightforward research, no new source needed"),
     dict(id="S04", title="Add the missing Strip poker rooms",
-         detail=("South Point, Golden Nugget, Resorts World, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate, Tropicana, "
-                 "Bally's, Flamingo, LINQ, Planet Hollywood, Rio and M Resort are all unverified. For a trip that aims to enter as many "
+         detail=("Mandalay Bay was added on 2026-11-17 (F85). Resorts World and Planet Hollywood are reported closed in press only (F79, F80; unverified). South Point, Golden Nugget, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate, Tropicana, "
+                 "Bally's, Flamingo, LINQ, Rio and M Resort are all unverified. For a trip that aims to enter as many "
                  "tournaments as possible, the daily rooms in walking range are worth more than another marquee series."),
          impact="Medium", effort="Medium", decision="Which properties to prioritise"),
     dict(id="S05", title="Replace the estimated walking times with a venue-published figure",
@@ -1705,6 +1726,49 @@ FEED_ROOMS = [
     dict(id="caesars", name="Caesars Palace and Horseshoe poker rooms",
          schedule="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip", extra=[]),
     dict(id="aria", name="ARIA poker room", schedule="https://aria.mgmresorts.com/en/casino/poker.html", extra=[]),
+    dict(id="mandalay", name="Mandalay Bay poker room", schedule="https://mandalaybay.mgmresorts.com/en/casino/poker-tables.html", extra=[]),
+]
+
+# Strip poker-room census, read 2026-11-17. A room is 'open' only where an official page says so; a closure
+# is recorded only with a dated company statement, and where the statement was seen second-hand (press) the row
+# says so. Rows with no official page read are listed as 'on record', never as newly confirmed.
+STRIP_ROOMS_READ = "2026-11-17"
+STRIP_ROOMS = [
+    dict(id="venetian", name="The Venetian", status="Open", statusBasis="Official poker page and DeepStack Extravaganza schedule re-read in the trip window",
+         read=STRIP_ROOMS_READ, official="https://www.venetianlasvegas.com/resort/casino/poker.html", inFeed=True, flag="",
+         evidence="venetianlasvegas.com poker page and dse-nov-2026 schedule"),
+    dict(id="wynn", name="Wynn Las Vegas (Encore)", status="Open", statusBasis="Official poker page reachable; daily and WPT PDFs in the morning feed",
+         read=STRIP_ROOMS_READ, official="https://www.wynnlasvegas.com/casino/poker", inFeed=True, flag="",
+         evidence="wynnlasvegas.com/casino/poker; Wynn PDFs in the feed"),
+    dict(id="bellagio", name="Bellagio", status="Open (on record)", statusBasis="Official poker page on record with weekly events; not re-read on 2026-11-17",
+         read="2026-11-16", official="https://bellagio.mgmresorts.com/en/casino/poker.html", inFeed=True, flag="",
+         evidence="bellagio.mgmresorts.com poker page (base read)"),
+    dict(id="mgm", name="MGM Grand", status="Open (on record)", statusBasis="Official poker page on record with a daily schedule sheet; not re-read on 2026-11-17",
+         read="2026-11-16", official="https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html", inFeed=True, flag="",
+         evidence="mgmgrand.mgmresorts.com poker page (base read)"),
+    dict(id="caesars", name="Caesars Palace", status="Open (no schedule read)", statusBasis="Caesars poker-tournaments page fetched 2026-11-17 is a marketing article with no schedule or fee data; the room name is not confirmed in this pass",
+         read=STRIP_ROOMS_READ, official="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip", inFeed=True, flag="",
+         evidence="caesars.com poker-tournaments-las-vegas-strip (shared with Horseshoe)"),
+    dict(id="horseshoe", name="Horseshoe Las Vegas", status="Open (no schedule read)", statusBasis="Room name from the prior-session Horseshoe casino page (Hall of Fame Poker Room); not re-read 2026-11-17; no schedule read",
+         read=STRIP_ROOMS_READ, official="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip", inFeed=True, flag="",
+         evidence="caesars.com poker-tournaments-las-vegas-strip (shared with Caesars Palace)"),
+    dict(id="aria", name="ARIA Resort & Casino", status="Open (events unconfirmed)", statusBasis="Official page asks guests to call or check @ARIAPoker to confirm events; not re-read on 2026-11-17",
+         read="2026-11-16", official="https://aria.mgmresorts.com/en/casino/poker.html", inFeed=True, flag="",
+         evidence="aria.mgmresorts.com poker page (base read)"),
+    dict(id="mandalay", name="Mandalay Bay", status="Open Wed–Mon, 10 AM–4 AM; closed Tuesdays",
+         statusBasis="Official poker page read 2026-11-17 prints these hours and a $60–$1,000 price range, and says 'Please Visit or Call Poker Room for Details'. No tournament schedule is printed.",
+         read=STRIP_ROOMS_READ, official="https://mandalaybay.mgmresorts.com/en/casino/poker-tables.html", inFeed=True, flag="F85",
+         evidence="mandalaybay.mgmresorts.com/en/casino/poker-tables.html"),
+    dict(id="planet_hollywood", name="Planet Hollywood", status="Reported closed after 31 Jan 2026 (press; unverified)",
+         statusBasis=("Press search result (Review-Journal; article not fetched) reports a Caesars Entertainment statement that the room closes after 31 January 2026. "
+                      "The official statement and the Planet Hollywood poker page were not retrieved."),
+         read=STRIP_ROOMS_READ, official="", inFeed=False, flag="F79",
+         evidence="Press search result only (Review-Journal; article not fetched); no official page retrieved"),
+    dict(id="resorts_world", name="Resorts World Las Vegas", status="Reported closed 30 Mar 2026 (press; unverified)",
+         statusBasis=("Press search result (casino.org / Vital Vegas; article not fetched) reports a resort statement that the room closes on March 30. "
+                      "The official rwlasvegas poker page was not retrieved (the address that resolved is a marketing e-mail)."),
+         read=STRIP_ROOMS_READ, official="", inFeed=False, flag="F80",
+         evidence="Press search result only (casino.org / Vital Vegas; article not fetched); no official page retrieved"),
 ]
 
 
@@ -2216,7 +2280,8 @@ def build():
         # writes measuredOn, the poker-room-endpoint read writes lastReadOn, and base-pass
         # rows keep the base snapshot date.
         row["lastChecked"] = r.get("measuredOn") or r.get("lastReadOn") or ASOF
-        row["walkSourceType"] = "Google Maps walking estimate"
+        row["walkSourceType"] = (f"Google Maps walking directions (walking mode), read {r['lastReadOn']}"
+                                 if r.get("walkCapture") else "Google Maps walking estimate, not re-read 2026-11-17")
         routes.append(row)
 
     # Live re-check of the official DeepStack Extravaganza IV page, 2026-11-17. Two windows, because the two
@@ -2467,6 +2532,7 @@ def build():
         dayPlan=plan, planConflicts=conflicts, planNotes=PLAN_NOTES,
         structureSheets=structure_sheets,
         feed=FEED_ROOMS,
+        stripRooms=STRIP_ROOMS,
         verifiedOn=VERIFIED_ON,
         liveFacts=LIVE_FACTS_2026_11_17,
         # entries x buy-in + nights x (rate + resort fee) x (1 + tax), computed

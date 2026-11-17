@@ -318,6 +318,20 @@ function renderVenueIndex() {
     </article>`;
   }).join('');
 }
+function renderStripRooms() {
+  const host = document.querySelector('[data-strip-rooms]');
+  if (!host) return;
+  const rows = (db.stripRooms || []).map((r) => `<tr>
+      <td class="event-name">${esc(r.name)}</td>
+      <td>${esc(r.status)}</td>
+      <td>${esc(r.statusBasis)}</td>
+      <td>${esc(r.read)}</td>
+      <td>${r.inFeed ? 'Yes' : 'No'}${r.flag ? ` <span class="muted">(${esc(r.flag)})</span>` : ''}</td>
+      <td>${r.official ? `<a href="${esc(r.official)}" target="_blank" rel="noopener">Official page</a>` : '<span class="muted">No official page retrieved</span>'}</td>
+    </tr>`).join('');
+  host.innerHTML = `<table><thead><tr><th>Room</th><th>Status</th><th>Basis</th><th>Read on</th>
+    <th>In morning feed</th><th>Official page</th></tr></thead><tbody>${rows}</tbody></table>`;
+}
 function renderBrowse() {
   const params = new URLSearchParams(location.search);
   const view = params.get('view') || 'venue';
@@ -951,7 +965,7 @@ function boot() {
     renderNav();
     if (PAGE === 'home') renderHome();
     if (PAGE === 'tournaments') { buildTournamentControls(); applyTournamentFilters(); }
-    if (PAGE === 'venues') renderVenueIndex();
+    if (PAGE === 'venues') { renderVenueIndex(); renderStripRooms(); }
     if (PAGE === 'browse') renderBrowse();
     if (PAGE === 'hotels') renderHotels();
     if (PAGE === 'schedule') renderSchedule();
