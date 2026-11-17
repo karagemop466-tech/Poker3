@@ -3043,3 +3043,39 @@ sole active editor.
 - **Post-merge on `main`:** `Verify static research site` success; `Official table transcription check` success; `Publish the canonical Vegas Poker Planner to GitHub Pages` success; `pages build and deployment` success; Pages status `built`, https://karagemop466-tech.github.io/Poker3/. The scheduled source re-check (`Scheduled source re-check and daily room feed`) was still pending when this was written.
 - **Open PR at this point:** none from this session. PR #96 (V2 log) merged earlier.
 - **F31 remains open.**
+
+### V3 result (session `arena/6d1b2adb-poker3`, recorded 2026-11-17 UTC)
+
+**What was found.** `main`'s "Verify static research site" run failed at its **last** step, *Confirm the data build is
+reproducible*, at `13a79c4`. Commit `5a9269d` had added a 13-line `perNight` block to `site/data.json` by hand without a
+builder change, so `scripts/data_source.py && git diff --exit-code` was dirty while every other check passed.
+
+**What happened next, recorded honestly.** I fixed it in this branch by having `with_live_quote()` emit the per-night
+detail — and while that branch waited on CI, another session had already made the same fix upstream. `main` @ `60b8205`
+now carries `perNight` as builder output (`liveQuote.perNight`) and reproduces cleanly. **I discarded my duplicate
+builder change rather than merge it over theirs.** What this session adds to `main` is the piece upstream did not have:
+`tests/test_trip_cost_reproducible.py`.
+
+**The test (3 cases).** The per-night true costs are `(rate + $55) × 1.1338` and must sum to the printed checkout total
+(**$4,010.55**); `liveQuote` and its per-night detail must describe the same read (same nights, same room total, same
+fee total, same tax); and the committed `site/data.json` must be byte-identical to a fresh build — the CI gate run
+locally, so a hand edit fails before it reaches `main`. The per-night lookup accepts either location
+(`liveQuote.perNight` or `tripCostModel.perNight`) so the test does not pin the shape of a key another session owns.
+
+**Verified on `main` @ `60b8205` + this test:** `verify_site.py` PASS · `unittest discover` **129 tests OK** · the data
+build reproduces (`git diff --exit-code` clean) · `audit_951cd431.py` 0 failures · `canonical_smoke.py` renders.
+
+**Earlier V1/V2 results, already merged** (kept for the record): PR **#90**, merge commit `d97e9e3`, 22:04:51 UTC —
+three mislabelled row sets fixed, F51 narrowed against the official Resort Fee page, flags F71–F73 added, 6 label tests.
+PR **#95**, merge commit `c791ba9`, 22:08:26 UTC — every root-level page turned into a redirect into `site/`, closing
+the last form of F29; both Pages publishers succeeded for `c791ba9` and the Pages API reported `built`. The live check
+confirmed F71–F76, "68 items", the rewritten F51 and the root `hotels.html` redirect landing on the canonical page.
+
+**Cross-session note.** `COORDINATION.md` took a conflicting append on **every** rebase during this session — six times,
+always the same pattern (two sessions appending a section at the end of the same file). Each time, both records were
+kept. A per-session file under `handoff/<session>/` would remove this entirely; see S-new below.
+
+**Suggested structural fix (for a later integration session, not done here):** stop appending to one 2,900-line
+`COORDINATION.md`. Keep it as a short index of session ids and task rows, and put each session's narrative in
+`handoff/<session-id>/log.md`. That makes every branch's changes disjoint and leaves the shared file small enough that a
+conflict is visible rather than routine.
