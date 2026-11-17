@@ -1023,6 +1023,48 @@ function renderHome() {
   }
 }
 
+/* ---------------------------------------------------------------- coverage */
+function renderCoverage() {
+  const host = document.querySelector('[data-coverage]');
+  if (!host) return;
+  fetch('brief-coverage.json').then((r) => (r.ok ? r.json() : null)).then((cov) => {
+    if (!cov) {
+      host.innerHTML = '<p class="muted">brief-coverage.json is not built yet — run <code>python3 scripts/coverage.py</code>.</p>';
+      return;
+    }
+    const s = cov.summary || {};
+    const sumEl = document.querySelector('[data-coverage-summary]');
+    if (sumEl) {
+      sumEl.textContent = `${(cov.items || []).length} requirements · ${s.shipped || 0} shipped · `
+        + `${s['shipped-with-flags'] || 0} shipped with flags · ${s['flagged-gap'] || 0} flagged gap`
+        + `${s['in-progress'] ? ` · ${s['in-progress']} in progress` : ''}`;
+    }
+    const statusPill = (status) => `<span class="pill">${esc(
+      status === 'shipped-with-flags' ? 'shipped with flags'
+        : status === 'flagged-gap' ? 'flagged gap' : status
+    )}</span>`;
+    const flagLinks = (flags) => (flags && flags.length)
+      ? flags.map((f) => `<a href="flagged.html#${esc(f)}">${esc(f)}</a>`).join(' · ')
+      : '<span class="muted">none</span>';
+    const whereLinks = (item) => {
+      const pages = (item.ships || []).map((p) => `<a href="${esc(p)}">${esc(p.replace(/\.html$/, ''))}</a>`);
+      const files = (item.files || []).map((f) => `<code>${esc(f)}</code>`);
+      return pages.concat(files).join(' · ') || '<span class="muted">—</span>';
+    };
+    host.innerHTML = `<div class="table-wrap"><table><thead><tr>
+        <th>#</th><th>Brief item</th><th>Status</th><th>Ships at</th><th>Flags</th><th>Notes</th>
+      </tr></thead><tbody>${(cov.items || []).map((item) => `<tr>
+        <td>${item.n}</td>
+        <td>${esc(item.item)}</td>
+        <td>${statusPill(item.status)}</td>
+        <td>${whereLinks(item)}</td>
+        <td>${flagLinks(item.flags)}</td>
+        <td>${esc(item.notes || '')}</td></tr>`).join('')}</tbody></table></div>`;
+  }).catch(() => {
+    host.innerHTML = '<p class="muted">Coverage data could not be loaded.</p>';
+  });
+}
+
 /* ------------------------------------------------------------------- boot */
 function boot() {
   renderNav();

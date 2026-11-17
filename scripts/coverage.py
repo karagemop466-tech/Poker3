@@ -10,10 +10,12 @@ residual gap. Nothing may be claimed without a location:
   * every question/suggestion ID cited must exist there too,
   * a status other than ``shipped`` must carry at least one flag.
 
-Outputs ``site/coverage.json``, rendered by ``site/coverage.html``. This script
-supersedes the data-only coverage.json generator merged earlier on main (PR #111);
-its requirement-to-location substance is folded into the items below (F49/F50/F57/
-F67 citations, the checks-workflow location) so nothing it recorded is lost.
+Outputs ``site/brief-coverage.json``, rendered by ``site/coverage.html``, and
+regenerates ``site/coverage.json`` through ``scripts/coverage_citems.py`` (the
+C-item data matrix merged on main in PR #111, kept verbatim because the walk/tax
+tests pin its C14 census). The C-item substance that applies here is folded into
+the numbered items below (F49/F50/F57/F67/F39/F86/F88 citations, the
+checks-workflow location) so nothing it recorded is lost.
 Run:  python3 scripts/coverage.py
 """
 
@@ -343,11 +345,15 @@ def main() -> int:
         "summary": summary,
         "items": items,
     }
-    (SITE / "coverage.json").write_text(
+    (SITE / "brief-coverage.json").write_text(
         json.dumps(out, indent=1, ensure_ascii=False) + "\n", encoding="utf-8"
     )
+    # Refresh the C-item matrix beside it so its census matches this build's data.
+    import subprocess
+    subprocess.run([sys.executable, str(ROOT / "scripts" / "coverage_citems.py")],
+                   check=True, cwd=ROOT)
     print(
-        f"wrote {SITE / 'coverage.json'} with {len(items)} brief items "
+        f"wrote {SITE / 'brief-coverage.json'} with {len(items)} brief items "
         f"({', '.join(f'{k}: {v}' for k, v in sorted(summary.items()))})"
     )
     return 0
