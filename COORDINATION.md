@@ -2972,3 +2972,13 @@ sole active editor.
   `node tests/canonical_render.js` — all pages rendered; `python3 tests/canonical_smoke.py` — 11 main pages,
   5 detail pages; 0 broken internal links over 25 pages; `node --check site/assets/app.js` OK.
 - PR and Pages result: recorded in the commit that follows the merge.
+- **PR [#93](https://github.com/karagemop466-tech/Poker3/pull/93)** (`arena/ab5d9f7d-poker3` -> `main`): merged with
+  `gh pr merge 93 --merge` at **2026-11-17T22:10:32Z**; merge commit **`8ddfdcc`**. The branch was rebased three times
+  onto a `main` that other sessions kept moving; the only conflicts were append/append in `COORDINATION.md` and stale
+  count lines in `README.md`, each resolved by keeping both sides and correcting the count to the merged value.
+- **CI on the merge commit `8ddfdcc`**: "Verify static research site" success - "Official table transcription check"
+  success - "Publish the canonical Vegas Poker Planner to GitHub Pages" success - "pages build and deployment" success
+  - "Scheduled source re-check and daily room feed" cancelled (superseded by a concurrent run; not a failure).
+- **GitHub Pages:** API reports `status: built`, source `main /`. Live site spot-checked with the page reader:
+  https://karagemop466-tech.github.io/Poker3/ serves the executive summary with the corrected 52 sheet-screened
+  candidates, "Structure sheets read 52/52 ... zero unread", and no row marked "sheet not read".
