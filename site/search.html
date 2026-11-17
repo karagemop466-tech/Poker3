@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="One search box across every table on the Vegas Poker Planner: tournaments, hotels, walking routes, the dated rate log, flags, questions, suggestions, sources and structure sheets.">
+<title>Vegas Poker Planner · Search every table</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="search">
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark">♠</span><span>Vegas Poker Planner</span></a>
+  <form class="top-search" data-search-form><input type="search" placeholder="Search every table…" aria-label="Search all tables"><button class="btn" type="submit">Search</button></form>
+  <span class="top-tag">Official sources only · last checked <span data-asof></span></span>
+</header>
+<nav class="mobile-nav" data-mobile-nav></nav>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="side-label">Plan your trip</div>
+    <nav class="nav" data-nav></nav>
+    <div class="side-note">
+      <strong>One box, every table</strong>
+      This page searches all of the published data at once: <span data-scope-count></span>. Each result links the table
+      it came from and the official source behind the value. A result is only shown with the same evidence the table
+      shows — nothing here is computed from a source the tables do not already cite.
+    </div>
+  </aside>
+  <main class="main">
+    <section class="hero">
+      <div class="eyebrow">Search · all tables</div>
+      <h1>Find an event, a hotel, a fee or a flag from one box.</h1>
+      <p>
+        Type a date (2026-11-28), a venue, a buy-in ($400), a guarantee ($75K), an event number, a rule phrase
+        (re-entry, add-on, bounty), a hotel, a resort fee or a flag ID. The search runs over the same published data
+        the tables use, so a value that is blank and flagged in a table is blank and flagged here.
+      </p>
+      <div class="search-bar">
+        <input type="search" data-search-input placeholder="Try: $400 single entry, Bellagio, resort fee, F02, 2026-11-28" aria-label="Search all tables">
+        <button class="btn" type="button" data-search-go>Search</button>
+        <button class="btn ghost" type="button" data-search-clear>Clear</button>
+      </div>
+      <div class="search-summary" data-search-summary></div>
+    </section>
+
+    <section class="section" data-search-results></section>
+
+    <p class="toolbar-note" data-load-error hidden>The data file could not be loaded, so the search has nothing to read.
+      Open <a href="index.html">the overview</a> and reload.</p>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

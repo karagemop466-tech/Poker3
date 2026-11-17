@@ -88,6 +88,9 @@ const PAGES = [
   ['suggestions', ''],
   ['flagged', ''],
   ['sources', ''],
+  ['search', ''],
+  ['search', '?q=%24400'],
+  ['search', '?q=F02'],
 ];
 
 /* The detailed venue pages use their own script and their own data attributes. */

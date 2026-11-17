@@ -29,6 +29,7 @@ PAGES = {
     "suggestions.html": "suggestions",
     "flagged.html": "flagged",
     "sources.html": "sources",
+    "search.html": "search",
 }
 
 # Detailed pages that use their own data attributes instead of data-page.
@@ -50,7 +51,8 @@ REQUIRED_HOOKS = {
     "questions.html": ["data-questions"],
     "suggestions.html": ["data-suggestions"],
     "flagged.html": ["data-flags"],
-    "sources.html": ["data-sources", "data-sheets", "data-feed", "data-autochecks"],
+    "sources.html": ["data-sources", "data-rechecks", "data-sheets", "data-feed", "data-autochecks"],
+    "search.html": ["data-search-results", "data-search-summary", "data-search-input"],
 }
 
 
@@ -141,8 +143,12 @@ def main() -> int:
             errors.append(f"venues/index.html: does not link {target}")
 
     data = json.loads((SITE / "data.json").read_text(encoding="utf-8"))
-    if data.get("asOf") != "2026-11-16":
-        errors.append("data.json: unexpected as-of date")
+    if data.get("asOf") != "2026-11-17":
+        errors.append(f"data.json: unexpected as-of date {data.get('asOf')!r}")
+    if data.get("snapshot") != "2026-11-16":
+        errors.append(f"data.json: unexpected source snapshot date {data.get('snapshot')!r}")
+    if not data.get("rechecks"):
+        errors.append("data.json: no dated source re-check log")
     if not data.get("trip", {}).get("start") or not data.get("trip", {}).get("end"):
         errors.append("data.json: no fixed trip dates")
     if len(data.get("dayPlan", [])) != 8:

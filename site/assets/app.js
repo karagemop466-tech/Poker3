@@ -16,6 +16,7 @@ const NAV = [
   ['flagged.html', 'Flagged for review', '⚑'],
   ['sources.html', 'Sources', '⛓'],
   ['sheets.html', 'Sheet verification', '☰'],
+  ['search.html', 'Search all tables', '⌕'],
 ];
 
 const PAGE = document.body.dataset.page || 'home';
@@ -50,7 +51,10 @@ function renderNav() {
       ev.preventDefault();
       const q = (input.value || '').trim();
       if (PAGE === 'tournaments') { state.q = q; applyTournamentFilters(); }
-      else location.href = 'tournaments.html?q=' + encodeURIComponent(q);
+      else if (PAGE === 'search') { runSearch(q); }
+      // One box, every table: from any other page the box opens the search page
+      // rather than quietly narrowing only the tournament list.
+      else location.href = 'search.html?q=' + encodeURIComponent(q);
     });
   });
 }
@@ -571,10 +575,35 @@ function renderSources() {
   const host = document.querySelector('[data-sources]');
   if (host) {
     const body = (db.sources || []).map((s) => `
-      <tr><td>${esc(s.name)}</td><td>${esc(s.type)}</td><td>${esc(s.checked)}</td>
+      <tr><td>${esc(s.name)}</td><td>${esc(s.type)}</td>
+      <td>${esc(s.checked)}${s.firstRead && s.firstRead !== s.checked ? `<span class="muted">first read ${esc(s.firstRead)}</span>` : ''}</td>
+      <td>${s.recheckResult ? `<span class="badge ok">Re-read</span><span class="muted">${esc(s.recheckResult)}</span>`
+                            : '<span class="badge warn">Not re-read</span><span class="muted">Still on its original read date; no newer check exists.</span>'}</td>
       <td><a href="${esc(s.url)}" target="_blank" rel="noopener">Open official source</a></td></tr>`).join('');
     host.innerHTML = `<div class="table-wrap"><table><thead><tr><th>Official source</th><th>Type</th><th>Last checked</th>
-      <th>Link</th></tr></thead><tbody>${body}</tbody></table></div>`;
+      <th>Latest re-check</th><th>Link</th></tr></thead><tbody>${body}</tbody></table></div>
+      <p class="toolbar-note">${(db.sources || []).filter((s) => s.checked === db.asOf).length} of ${(db.sources || []).length}
+      official sources were re-read on ${esc(db.asOf)}; the rest keep the date they were read on. A source is only
+      marked re-read when the page was opened again and compared line by line.</p>`;
+  }
+  const rechecks = document.querySelector('[data-rechecks]');
+  if (rechecks) {
+    const rows = db.rechecks || [];
+    if (!rows.length) {
+      rechecks.innerHTML = '<div class="empty">No dated re-check record has been published for this build.</div>';
+    } else {
+      const body = rows.map((r) => `
+        <tr><td>${esc(r.id)}</td><td>${esc(r.on)}</td>
+        <td>${esc(r.what)}<span class="muted">${esc(r.url)}</span></td>
+        <td>${r.result === 'unchanged' ? '<span class="badge ok">No change</span>' : `<span class="badge warn">${esc(r.result)}</span>`}</td>
+        <td>${r.affected ? `${esc(r.affected)} rows re-stamped` : 'page-level check'}</td>
+        <td><a href="${esc(r.url)}" target="_blank" rel="noopener">Open the page</a></td></tr>`).join('');
+      rechecks.innerHTML = `<div class="table-wrap"><table><thead><tr><th>Source</th><th>Re-checked</th>
+        <th>What was compared</th><th>Result</th><th>Rows affected</th><th>Link</th></tr></thead>
+        <tbody>${body}</tbody></table></div>
+        <p class="toolbar-note">A re-check moves the “last checked” date on the rows it actually re-read. Rows not in
+        this log keep their earlier date, so the column never claims a fresher check than the evidence supports.</p>`;
+    }
   }
   const sheets = document.querySelector('[data-sheets]');
   if (sheets) {
@@ -613,6 +642,285 @@ function renderSources() {
       <th>Change flag</th><th>Hash</th></tr></thead><tbody>${body}</tbody></table></div>
       <p class="toolbar-note">Last automated run: ${esc(checks.lastRun || 'not yet run')}. ${esc(checks.note || '')}</p>`;
   }
+}
+
+/* ------------------------------------------------------------------ search */
+/* One search box across every table on the site.  The index is built from the
+ * same published sections the tables render from, so a blank-and-flagged value
+ * stays blank here and never gains an inferred answer. */
+let SEARCH_INDEX = [];
+
+function searchDocParts(o, keys) {
+  const out = [];
+  keys.forEach((k) => {
+    const v = o[k];
+    if (v === 0 || v) out.push(String(v));
+  });
+  return out;
+}
+
+function buildSearchIndex() {
+  const idx = [];
+  const vname = (id) => venueName(id);
+  (db.events || []).forEach((e) => {
+    const rules = e.rules || {};
+    const ruleText = Object.keys(rules).map((k) => `${k} ${rules[k].status} ${rules[k].excerpt}`).join(' ');
+    idx.push({
+      group: 'Tournaments', icon: '♠', page: 'tournaments.html',
+      title: e.name || '(untitled row)',
+      meta: [e.date, e.time, vname(e.venue), categoryLabel(e.category), e.entryType !== 'none' ? e.entryType : 'single entry on the sheet',
+             typeof e.buyIn === 'number' ? `buy-in ${money(e.buyIn)}` : 'buy-in not published',
+             typeof e.guarantee === 'number' ? `guarantee ${money(e.guarantee)}` : (e.guarantee ? String(e.guarantee) : 'guarantee not published'),
+             e.lastChecked ? `last checked ${e.lastChecked}` : ''].filter(Boolean).join(' · '),
+      body: [ruleText, e.note, e.chips ? `${e.chips} chips` : '', e.levelMin ? `${e.levelMin}-minute levels` : '',
+             e.lateReg, e.endEstimate ? `estimated end ${e.endEstimate}` : ''].filter(Boolean).join(' '),
+      badge: e.singleEntry ? ['', 'single entry on the sheet'] : (e.entryType === 'not-verified' ? ['warn', 'entry rules not verified'] : ['warn', 'more than one entry possible']),
+      links: [e.structureUrl ? ['Structure sheet', e.structureUrl] : null,
+              e.scheduleUrl ? ['Official schedule', e.scheduleUrl] : null,
+              ['Open in the tournament table', `tournaments.html?q=${encodeURIComponent(e.date || e.name)}`]].filter(Boolean),
+      hay: searchDocParts(e, ['name', 'date', 'time', 'venue', 'category', 'entryType', 'format', 'note', 'eligibility',
+                              'buyIn', 'guarantee', 'chips', 'levelMin', 'lateReg'])
+           .concat([vname(e.venue), categoryLabel(e.category), ruleText]).join(' ').toLowerCase(),
+    });
+  });
+  (db.hotels || []).forEach((h) => {
+    const q = h.quote || {};
+    idx.push({
+      group: 'Hotels', icon: '⌂', page: 'hotels.html',
+      title: h.name,
+      meta: [h.property, h.rooms, h.lastChecked ? `last checked ${h.lastChecked}` : ''].filter(Boolean).join(' · '),
+      body: [h.baseRateNote, h.resortFeeNote, h.taxNote, h.parking, h.cancellation, h.incidental, h.qualification,
+             h.qualityNote, h.status, h.walkNote, h.recheckNote,
+             q.total ? `dated quote: ${q.checkIn} to ${q.checkOut}, ${q.nights} nights, total ${money(q.total)}, tax ${money(q.taxes)}` : '',
+             (h.baseRateFloor && h.trueNightlyLow) ? `true cost per night ${money(h.trueNightlyLow)} to ${money(h.trueNightlyHigh)}` : '']
+              .filter(Boolean).join(' '),
+      badge: (h.baseRateFloor && h.trueNightlyLow) ? ['', 'published components'] : ['warn', 'no published rate'],
+      links: [['Hotels table', 'hotels.html'], h.source ? ['Official property page', h.source] : null,
+              h.bookingUrl ? ['Booking engine quote', h.bookingUrl] : null,
+              h.calendarUrl ? ['Booking calendar', h.calendarUrl] : null].filter(Boolean),
+      hay: searchDocParts(h, ['id', 'name', 'property', 'rooms', 'venue', 'baseRateNote', 'resortFee', 'resortFeeNote',
+                              'taxRate', 'taxNote', 'parking', 'cancellation', 'incidental', 'checkInOut', 'qualification',
+                              'qualityNote', 'status', 'walkNote', 'recheckNote', 'trueNightlyLow', 'trueNightlyHigh'])
+           .concat(q.total ? [q.checkIn, q.checkOut, q.offer, q.suiteDetail, q.total, q.taxes].map(String) : [])
+           .join(' ').toLowerCase(),
+    });
+  });
+  (db.rateLog || []).forEach((r) => {
+    idx.push({
+      group: 'Dated rate log', icon: '∑', page: 'hotels.html',
+      title: `${r.hotel} · ${r.observedOn} · ${r.quoteType}`,
+      meta: [r.publishedStartingRates ? `rates ${r.publishedStartingRates}` : '', r.resortFee ? `resort fee ${r.resortFee}` : '',
+             r.tax ? `tax ${r.tax}` : '', (r.trueNightlyLow || r.trueNightlyHigh) ? `true nightly ${r.trueNightlyLow}–${r.trueNightlyHigh}` : '']
+              .filter(Boolean).join(' · '),
+      body: r.note || '',
+      badge: ['warn', 'dated observation, not a standing rate'],
+      links: [['Rate source', r.source], r.feeSource ? ['Fee source', r.feeSource] : null,
+              r.taxSource ? ['Tax source', r.taxSource] : null].filter(Boolean),
+      hay: searchDocParts(r, ['hotel', 'observedOn', 'baseRate', 'publishedStartingRates', 'resortFee', 'tax',
+                              'trueNightlyLow', 'trueNightlyHigh', 'quoteType', 'note']).join(' ').toLowerCase(),
+    });
+  });
+  (db.routes || []).forEach((r) => {
+    idx.push({
+      group: 'Walking routes', icon: '⇄', page: 'hotels.html',
+      title: `${venueName(r.hotel) || r.hotel} → ${venueName(r.venue) || r.venue}`,
+      meta: [r.minutes === '' ? 'no published time' : `${r.minutes} min`, r.miles ? `${r.miles} mile` : '',
+             r.walkSourceType, r.lastChecked ? `last checked ${r.lastChecked}` : ''].filter(Boolean).join(' · '),
+      body: [r.note, r.via ? `via ${r.via}` : ''].filter(Boolean).join(' '),
+      badge: typeof r.minutes === 'number' ? (r.minutes <= 30 ? ['', 'inside the 30-minute limit'] : ['bad', 'over the 30-minute limit']) : ['warn', 'time not verified'],
+      links: [['Maps walking route', r.mapsUrl], ['Source page', r.source]].filter(Boolean),
+      hay: [r.hotel, r.venue, r.note, r.via, r.walkSourceType, r.minutes, r.miles].map(String).join(' ').toLowerCase(),
+    });
+  });
+  (db.flags || []).forEach((f) => {
+    idx.push({
+      group: 'Flags for review', icon: '⚑', page: 'flagged.html',
+      title: `${f.id} · ${f.title}`,
+      meta: [f.severity, f.area].filter(Boolean).join(' · '),
+      body: f.detail || '',
+      badge: f.severity === 'High' ? ['bad', f.severity] : ['warn', f.severity],
+      links: [['Flagged table', `flagged.html#${f.id.toLowerCase()}`], ['Official source', f.source]].filter(Boolean),
+      hay: [f.id, f.area, f.severity, f.title, f.detail].map(String).join(' ').toLowerCase(),
+    });
+  });
+  (db.questions || []).forEach((q) => {
+    idx.push({
+      group: 'Questions to answer', icon: '?', page: 'questions.html',
+      title: `${q.id} · ${q.question}`,
+      meta: q.blocking ? (String(q.blocking).toLowerCase() === 'yes' ? 'blocks a booking decision' : 'not blocking') : '',
+      body: [q.answer, q.why, q.how].filter(Boolean).join(' '),
+      badge: q.blocking && String(q.blocking).toLowerCase() === 'yes' ? ['bad', 'decision still open'] : ['warn', 'open'],
+      links: [['Questions page', 'questions.html'], q.source ? ['Official source', q.source] : null].filter(Boolean),
+      hay: [q.id, q.question, q.answer, q.why, q.how].map(String).join(' ').toLowerCase(),
+    });
+  });
+  (db.suggestions || []).forEach((s) => {
+    idx.push({
+      group: 'Suggestions', icon: '✦', page: 'suggestions.html',
+      title: `${s.id} · ${s.title}`,
+      meta: [s.impact ? `impact ${s.impact}` : '', s.effort ? `effort ${s.effort}` : ''].filter(Boolean).join(' · '),
+      body: [s.detail, s.decision ? `decision needed: ${s.decision}` : ''].filter(Boolean).join(' '),
+      badge: ['warn', 'for review, not yet chosen'],
+      links: [['Suggestions page', 'suggestions.html']].filter(Boolean),
+      hay: [s.id, s.title, s.detail, s.impact, s.effort, s.decision].map(String).join(' ').toLowerCase(),
+    });
+  });
+  (db.sources || []).forEach((s) => {
+    idx.push({
+      group: 'Official sources', icon: '⛓', page: 'sources.html',
+      title: s.name,
+      meta: [s.type, `checked ${s.checked}`, s.firstRead && s.firstRead !== s.checked ? `first read ${s.firstRead}` : '']
+              .filter(Boolean).join(' · '),
+      body: s.recheckResult || '',
+      badge: s.recheckResult ? ['', 're-read on the latest check'] : ['warn', 'not re-read on the latest check'],
+      links: [['Open official source', s.url]].filter(Boolean),
+      hay: [s.id, s.name, s.type, s.url, s.checked].map(String).join(' ').toLowerCase(),
+    });
+  });
+  (db.rechecks || []).forEach((r) => {
+    idx.push({
+      group: 'Source re-checks', icon: '✓', page: 'sources.html',
+      title: `${r.id} · ${r.result}`,
+      meta: [r.on, r.affected ? `${r.affected} rows checked` : 'page-level check'].filter(Boolean).join(' · '),
+      body: r.what || '',
+      badge: r.result === 'unchanged' ? ['', 'no drift'] : ['warn', r.result],
+      links: [['Official page re-read', r.url]].filter(Boolean),
+      hay: [r.id, r.result, r.what, r.on].map(String).join(' ').toLowerCase(),
+    });
+  });
+  (db.structureSheets || []).forEach((s) => {
+    idx.push({
+      group: 'Structure sheets', icon: '☰', page: 'sheets.html',
+      title: `${s.series} · sheet ${s.sheet}`,
+      meta: [s.read ? `read ${s.readOn}` : 'not read', s.venue].filter(Boolean).join(' · '),
+      body: s.note || '',
+      badge: s.read ? ['', 'read line by line'] : ['warn', 'not read'],
+      links: [['Open the PDF', s.url], ['Sheet page', 'sheets.html']].filter(Boolean),
+      hay: [s.series, s.sheet, s.note, s.url, s.readOn].map(String).join(' ').toLowerCase(),
+    });
+  });
+  (db.dayPlan || []).forEach((p) => {
+    idx.push({
+      group: 'Day plan', icon: '◷', page: 'schedule.html',
+      title: `${p.date} ${p.weekday} · primary: ${p.primaryName || 'none verified'}`,
+      meta: [p.primaryTime, p.primaryVenue ? venueName(p.primaryVenue) : '', typeof p.primaryBuyIn === 'number' ? money(p.primaryBuyIn) : '',
+             typeof p.primaryGuarantee === 'number' ? `guarantee ${money(p.primaryGuarantee)}` : '',
+             p.primaryEnd ? `estimated end ${p.primaryEnd}` : ''].filter(Boolean).join(' · '),
+      body: [p.fallbackName ? `conditional fallback: ${p.fallbackName} at ${p.fallbackTime}` : '',
+             p.fallbackReason, p.candidates ? `${p.candidates} candidate rows that day` : ''].filter(Boolean).join(' '),
+      badge: p.primary ? ['', 'verified single entry'] : ['warn', 'no verified single entry'],
+      links: [['Day plan', `schedule.html#${p.date}`]].filter(Boolean),
+      hay: [p.date, p.weekday, p.primaryName, p.fallbackName, p.fallbackReason, p.primaryVenue, p.fallbackVenue]
+        .map(String).join(' ').toLowerCase(),
+    });
+  });
+  (db.venues || []).forEach((v) => {
+    idx.push({
+      group: 'Poker rooms', icon: '◈', page: `browse.html?view=venue&key=${encodeURIComponent(v.id)}`,
+      title: v.name,
+      meta: [v.pokerRoom, v.series].filter(Boolean).join(' · '),
+      body: [v.note, `hotels: ${(v.hotels || []).join(', ')}`].filter(Boolean).join(' '),
+      badge: ['', 'venue page'],
+      links: [['Venue page', `browse.html?view=venue&key=${encodeURIComponent(v.id)}`],
+              v.schedule ? ['Schedule source', v.schedule] : null,
+              v.page ? ['Official room page', v.page] : null].filter(Boolean),
+      hay: [v.id, v.name, v.pokerRoom, v.series, v.note, (v.hotels || []).join(' ')].map(String).join(' ').toLowerCase(),
+    });
+  });
+  return idx;
+}
+
+function normalise(text) {
+  return String(text).toLowerCase().replace(/[$,]/g, ' ').replace(/\s+/g, ' ').trim();
+}
+
+function runSearch(q) {
+  const host = document.querySelector('[data-search-results]');
+  const summary = document.querySelector('[data-search-summary]');
+  const input = document.querySelector('[data-search-input]');
+  if (!host) return;
+  if (input && input.value !== q) input.value = q;
+  const query = normalise(q);
+  const terms = query ? query.split(' ').filter((t) => t.length > 1) : [];
+  if (!terms.length) {
+    host.innerHTML = '<div class="empty"><strong>Nothing searched yet.</strong> Type a date, a venue, a buy-in, '
+      + 'a rule phrase or a flag ID and every table on the site is searched at once.</div>';
+    if (summary) summary.textContent = `${SEARCH_INDEX.length} published rows are searchable.`;
+    return;
+  }
+  const scored = [];
+  SEARCH_INDEX.forEach((rec) => {
+    const hay = normalise(rec.hay);
+    const hit = terms.every((t) => hay.includes(t));
+    if (!hit) return;
+    const title = normalise(rec.title);
+    const score = terms.reduce((a, t) => a + (title.includes(t) ? 3 : 0) + (hay.includes(t) ? 1 : 0), 0);
+    scored.push([score, rec]);
+  });
+  scored.sort((a, b) => b[0] - a[0]);
+  if (summary) {
+    summary.textContent = `${scored.length} of ${SEARCH_INDEX.length} published rows match “${q}”, across `
+      + `${new Set(scored.map((s) => s[1].group)).size} table(s). Blanks stay blank: an unpublished value is shown `
+      + 'as unpublished here too.';
+  }
+  if (!scored.length) {
+    host.innerHTML = `<div class="empty"><strong>No published row matches “${esc(q)}”.</strong> The tables hold nothing `
+      + 'for that term, so nothing is shown. Try a date (2026-11-28), a venue, a buy-in such as $400, a rule word '
+      + 'such as re-entry, or a flag ID such as F02.</div>';
+    return;
+  }
+  const groups = {};
+  scored.forEach(([, rec]) => { (groups[rec.group] = groups[rec.group] || []).push(rec); });
+  const mark = (text) => {
+    let out = esc(text);
+    terms.forEach((t) => {
+      if (!t) return;
+      // The text is escaped before highlighting, so the term must be escaped the
+      // same way or an apostrophe or ampersand would never line up.
+      const rx = new RegExp(`(${esc(t).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')})`, 'gi');
+      out = out.replace(rx, '<mark>$1</mark>');
+    });
+    return out;
+  };
+  host.innerHTML = Object.keys(groups).map((g) => `
+    <div class="search-group">
+      <h3>${esc(g)}<span class="count">${groups[g].length} row${groups[g].length === 1 ? '' : 's'}</span></h3>
+      ${groups[g].slice(0, 40).map((rec) => `
+        <article class="hit">
+          <div class="hit-head">
+            <div><div class="hit-title">${mark(rec.title)}</div><div class="meta">${mark(rec.meta)}</div></div>
+            ${rec.badge && rec.badge[1] ? `<span class="hit-badge ${rec.badge[0]}">${esc(rec.badge[1])}</span>` : ''}
+          </div>
+          ${rec.body ? `<p>${mark(rec.body.length > 420 ? rec.body.slice(0, 420) + '…' : rec.body)}</p>` : ''}
+          <div class="hit-links">${rec.links.map(([label, url]) =>
+            /^https?:/.test(url)
+              ? `<a href="${esc(url)}" target="_blank" rel="noopener">${esc(label)}</a>`
+              : `<a href="${esc(url)}">${esc(label)}</a>`).join('')}</div>
+        </article>`).join('')}
+      ${groups[g].length > 40 ? `<p class="toolbar-note">${groups[g].length - 40} more rows in this table match; open the table to see them.</p>` : ''}
+    </div>`).join('');
+}
+
+function renderSearchPage() {
+  SEARCH_INDEX = buildSearchIndex();
+  const scope = document.querySelector('[data-scope-count]');
+  if (scope) {
+    scope.textContent = `${SEARCH_INDEX.length} rows across ${new Set(SEARCH_INDEX.map((r) => r.group)).size} tables`;
+  }
+  const input = document.querySelector('[data-search-input]');
+  const go = document.querySelector('[data-search-go]');
+  const clear = document.querySelector('[data-search-clear]');
+  const remember = (q) => {
+    if (typeof history === 'undefined' || !history.replaceState) return;
+    history.replaceState(null, '', q ? `search.html?q=${encodeURIComponent(q)}` : 'search.html');
+  };
+  if (input) {
+    input.addEventListener('input', () => { runSearch(input.value); remember((input.value || '').trim()); });
+    input.addEventListener('keydown', (ev) => { if (ev.key === 'Enter') { runSearch(input.value); remember((input.value || '').trim()); } });
+  }
+  if (go) go.addEventListener('click', () => { const v = input ? input.value : ''; runSearch(v); remember((v || '').trim()); });
+  if (clear) clear.addEventListener('click', () => { if (input) input.value = ''; runSearch(''); remember(''); });
+  runSearch(new URLSearchParams(location.search).get('q') || (input ? input.value : ''));
 }
 
 /* ------------------------------------------------------------------- home */
@@ -687,6 +995,7 @@ function boot() {
     if (PAGE === 'suggestions') renderSuggestions();
     if (PAGE === 'flagged') renderFlags();
     if (PAGE === 'sources') renderSources();
+    if (PAGE === 'search') renderSearchPage();
   }).catch(() => {
     document.querySelectorAll('[data-load-error]').forEach((e) => { e.hidden = false; });
   });

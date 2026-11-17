@@ -46,6 +46,7 @@ OFFICIAL_HOSTS = (
 PAGES = (
     "index.html", "tournaments.html", "venues.html", "browse.html", "schedule.html",
     "hotels.html", "questions.html", "suggestions.html", "flagged.html", "sources.html",
+    "search.html",
 )
 
 # Detailed pages that carry their own data attributes instead of data-page.
@@ -126,6 +127,8 @@ def main() -> int:
                 fail(f"{eid}: rule '{rule}' has no excerpt", errors)
             if not body.get("retrieved"):
                 fail(f"{eid}: rule '{rule}' has no retrieval date", errors)
+            elif not re.fullmatch(r"\d{4}-\d{2}-\d{2}", body["retrieved"]):
+                fail(f"{eid}: rule '{rule}' retrieval date is not ISO: {body['retrieved']!r}", errors)
         statuses = {b.get("status") for b in rules.values()}
         if not e.get("buyIn"):
             if not (statuses & {"not-verified", "source-conflict", "partial"}):
@@ -161,6 +164,44 @@ def main() -> int:
             fail(f"source {s.get('id')}: not an official URL", errors)
         if not s.get("checked"):
             fail(f"source {s.get('id')}: no check date", errors)
+        if s.get("firstRead") and s["firstRead"] > s["checked"]:
+            fail(f"source {s.get('id')}: first read {s['firstRead']} is later than its check date {s['checked']}", errors)
+
+    as_of = data.get("asOf") or ""
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", as_of):
+        fail(f"data.json: asOf is not an ISO date: {as_of!r}", errors)
+
+    # A dated re-check must point at an official page and must not claim a row
+    # count that the published data cannot back.
+    stamped = 0
+    for e in events:
+        checked = e.get("lastChecked") or ""
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", checked):
+            fail(f"{e.get('id')}: lastChecked is not an ISO date: {checked!r}", errors)
+        elif as_of and checked > as_of:
+            fail(f"{e.get('id')}: lastChecked {checked} is later than the site's as-of date {as_of}", errors)
+        elif checked == as_of:
+            stamped += 1
+    for h in data["hotels"]:
+        checked = h.get("lastChecked") or ""
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", checked):
+            fail(f"hotel {h.get('id')}: lastChecked is not an ISO date: {checked!r}", errors)
+        elif as_of and checked > as_of:
+            fail(f"hotel {h.get('id')}: lastChecked {checked} is later than the as-of date {as_of}", errors)
+        elif checked == as_of:
+            stamped += 1
+    for r in data.get("rechecks", []):
+        if not official(r.get("url", "")):
+            fail(f"recheck {r.get('id')}: not an official URL", errors)
+        if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", r.get("on") or ""):
+            fail(f"recheck {r.get('id')}: no valid re-check date", errors)
+        if not r.get("what") or not r.get("result"):
+            fail(f"recheck {r.get('id')}: missing what was compared or the result", errors)
+        if as_of and (r.get("on") or "") > as_of:
+            fail(f"recheck {r.get('id')}: dated {r.get('on')}, later than the as-of date {as_of}", errors)
+        claimed = r.get("affected") or 0
+        if claimed > stamped:
+            fail(f"recheck {r.get('id')}: claims {claimed} re-stamped rows but only {stamped} exist", errors)
 
     by_id = {e["id"]: e for e in events}
     for day in data["dayPlan"]:

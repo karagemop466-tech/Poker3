@@ -750,7 +750,7 @@ def apply_rechecks(events, rechecks):
             buy = e.get("buyIn")
             rules["singleEntry"] = dict(
                 status="multiple-entries",
-                excerpt=(f"The official structure sheet prints more than one paid entry: “{rec['registration']}.” "
+                excerpt=(f"The official structure sheet prints more than one paid entry: “{rec['registration'].rstrip('.')}” "
                          "More than one entry is therefore possible, so this row is not a single-entry event."),
                 **base)
             rules["reEntry"] = dict(status="allowed", excerpt=rec["registration"], **base)
@@ -781,7 +781,7 @@ def apply_rechecks(events, rechecks):
                 e["guarantee"] = rec["guarantee"]
                 if isinstance(buy, (int, float)) and buy:
                     e["ratio"] = round(rec["guarantee"] / buy, 1)
-            extra = [f"Entry rules read from the official structure sheet on {N.WPT_READ_ON}: “{rec['registration']}.”",
+            extra = [f"Entry rules read from the official structure sheet on {N.WPT_READ_ON}: “{rec['registration'].rstrip('.')}”",
                      rec["sheetTitle"]]
             if rec.get("flights"):
                 extra.append("Flights as printed on the sheet: " + rec["flights"])
@@ -789,7 +789,13 @@ def apply_rechecks(events, rechecks):
                 extra.append(rec["nameNote"])
             if rec.get("scheduleConflict"):
                 extra.append(rec["scheduleConflict"])
-            e["note"] = " ".join(x for x in [e.get("note", "")] + extra if x).strip()
+            # The schedule-level note says the entry rules are still unread; once
+            # the structure sheet has been read, that sentence would contradict the
+            # row, so it is replaced rather than left underneath the new text.
+            lead = (e.get("note", "")
+                    .replace("entry rules not yet read.",
+                             f"entry rules read from the official structure sheet on {N.WPT_READ_ON}"))
+            e["note"] = " ".join(x for x in [lead] + extra if x).strip()
             e["lastChecked"] = N.WPT_READ_ON
             counts["wynn-wpt-struct"] += 1
 
