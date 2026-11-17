@@ -494,6 +494,8 @@ RATE_LOG = [
     dict(hotel="venetian", observedOn="2026-11-17", baseRate="",
          publishedStartingRates="621.75 (Nov 17) and 164.25 (Nov 18) per night",
          resortFee="55.00 per night", tax="119.89 printed",
+         # Low/high are the two NIGHTS in this dated quote, not a price range:
+         # 18 Nov came to $248.59 all-in and 17 Nov to $767.30.
          trueNightlyLow="248.59", trueNightlyHigh="767.30",
          quoteType="Dated official checkout total (2 adults, 2 nights) - re-read",
          note=("The same booking engine, the same stay and the same two adults printed a lower price one day after the "
