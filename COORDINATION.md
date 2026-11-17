@@ -2500,6 +2500,25 @@ would duplicate recorded work. This session claims one open gap only.
 
 | Task | Status | Owner | Files in scope | Notes |
 |---|---|---|---|---|
-| X1 Live re-read of official Strip poker schedules for any start before 10:10 AM (the 8 AM all-day question) | in progress | arena/f3c88848-poker3 | `COORDINATION.md` (this section); `research/` note only | Read from the sandbox with the page reader. Changes to `site/` data are NOT made here; any discrepancy is logged for the integration owner. |
+| X1 Live re-read of official Strip poker schedules for any start before 10:10 AM (the 8 AM all-day question) | done | arena/f3c88848-poker3 | `COORDINATION.md` (this section); `research/` note only | Read from the sandbox with the page reader. Changes to `site/` data are NOT made here; any discrepancy is logged for the integration owner. |
 
 Commit discipline: small commits; `git pull --rebase origin arena/f3c88848-poker3` before each push.
+
+### Result (X1, arena/f3c88848-poker3, 2026-11-17 UTC)
+
+- **Answer.** No official page read today publishes an 8:00 AM start. Earliest official start found: **9:00 AM**,
+  Horseshoe daily games, on a Caesars article with no buy-in or entry terms (cannot be ranked). Earliest dated
+  Venetian start: **9:10 AM**, Event #46 satellite, seats only. Earliest main-list start: **10:00 AM** (Caesars Palace,
+  excluded by its $50 add-on) and **10:10 AM** (Venetian Events 3–5). The 8 AM all-day plan remains unbuildable.
+- **Sources read live.** Venetian DSE IV HTML (page 1 of 4) and PDF (pages 1–2 of 2); Caesars article (chunks 0–2);
+  Wynn poker page; Wynn daily poster PDF; Bellagio Friday PDF; MGM Grand poker page and weekly PDF. Links are in
+  `research/live_check_2026-11-17_f3c88848.md`.
+- **Verification.** Venetian rows (Nov 23 and Nov 30 events, Events 3–5, 10:10 AM) match `site/data.json`. Wynn 12 PM
+  and 6 PM rows, Bellagio $600 11:00 AM row and MGM 11:10 AM / 7:10 PM / 11:10 PM rows match the official pages.
+- **Irregularities (not changed in `site/`, for the integration owner):**
+  - D1: MGM Grand HTML page says 11:00am/7:00pm/11:00pm; its official weekly PDF says 11:10am/7:10pm/11:10pm.
+  - D2: Venetian event numbers are reused for different events in the same PDF (#19, #47, #56 and others); key rows by date and time.
+  - D3: The Caesars daily schedule appears only in a marketing article, with no structure sheet.
+  - D4: Caesars Palace daily events carry a $50 first-break add-on (excluded by the no-add-on rule).
+- **Not done.** No hotel rates, resort fees, walking times or Horseshoe / Golden Nugget buy-ins. No `site/` change.
+  The PDF page 1 of 2 and HTML pages 2–4 of the Venetian schedule were read only in the chunks listed above.
