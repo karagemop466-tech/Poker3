@@ -1,19 +1,19 @@
 {
- "generated": "2026-11-17T01:47:37+00:00",
+ "generated": "2026-11-17T02:05:05+00:00",
  "date": "2026-11-17",
  "rooms": [
   {
    "id": "venetian",
    "name": "The Venetian poker room",
-   "fetched": "2026-11-17T01:47:37+00:00",
+   "fetched": "2026-11-17T02:05:05+00:00",
    "pages": [
     {
      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
      "status": "HTTP 200",
-     "hash": "ff7aafaf28ee1b8eb6df9c5ec05100264a75d98d213e4e1682d45dc701ba2e1b",
-     "bytes": 267637,
+     "hash": "b0f6cde9b23c1f7c110f783bf08a7e800778eca1925da61e5f1077be8716b376",
+     "bytes": 269908,
      "contentType": "text/html;charset=utf-8",
-     "textLength": 12375,
+     "textLength": 12440,
      "times": [
       "10:00 AM",
       "10:10 ",
@@ -61,7 +61,7 @@
     {
      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html",
      "status": "HTTP 200",
-     "hash": "84a56861131f80e6c9865ed41b3c782aa3c1241ab3e7509d1afc7647deaa64b1",
+     "hash": "b8ff61b112690c0ff4b6aa0d1f8c4c43e9648e521f2b0baac3d209cfc5e3e59e",
      "bytes": 245886,
      "contentType": "text/html;charset=utf-8",
      "textLength": 8376,
@@ -100,7 +100,7 @@
     {
      "url": "https://www.venetianlasvegas.com/resort/casino/poker.html",
      "status": "HTTP 200",
-     "hash": "06635e3ede3a3c474603020db61b4ae234aacacd0bc84c77ded08b3178f053ee",
+     "hash": "96dad900413e0e15c5889ac6c4407f532ce01543721c23232bf83e5aaea03f2d",
      "bytes": 255830,
      "contentType": "text/html;charset=utf-8",
      "textLength": 6235,
@@ -118,13 +118,13 @@
   {
    "id": "wynn",
    "name": "Wynn poker room",
-   "fetched": "2026-11-17T01:47:37+00:00",
+   "fetched": "2026-11-17T02:05:05+00:00",
    "pages": [
     {
      "url": "https://www.wynnlasvegas.com/casino/poker",
      "status": "HTTP 200",
-     "hash": "ec388e7aabcc4f40028e45ad6643735c227572c0468d19b39ab148c31046a26b",
-     "bytes": 459199,
+     "hash": "8a83c3b0ff53af9fc6ce467d4539287be641e4fec81ac7b9acb409f0167ed99e",
+     "bytes": 459285,
      "contentType": "text/html; charset=utf-8",
      "textLength": 3748,
      "times": [],
@@ -158,7 +158,7 @@
   {
    "id": "bellagio",
    "name": "Bellagio poker room",
-   "fetched": "2026-11-17T01:47:37+00:00",
+   "fetched": "2026-11-17T02:05:05+00:00",
    "pages": [
     {
      "url": "https://bellagio.mgmresorts.com/en/casino/poker.html",
@@ -177,7 +177,7 @@
   {
    "id": "mgm",
    "name": "MGM Grand poker room",
-   "fetched": "2026-11-17T01:47:37+00:00",
+   "fetched": "2026-11-17T02:05:05+00:00",
    "pages": [
     {
      "url": "https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
@@ -196,7 +196,7 @@
   {
    "id": "caesars",
    "name": "Caesars Palace and Horseshoe poker rooms",
-   "fetched": "2026-11-17T01:47:37+00:00",
+   "fetched": "2026-11-17T02:05:05+00:00",
    "pages": [
     {
      "url": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
@@ -208,7 +208,7 @@
   {
    "id": "aria",
    "name": "ARIA poker room",
-   "fetched": "2026-11-17T01:47:37+00:00",
+   "fetched": "2026-11-17T02:05:05+00:00",
    "pages": [
     {
      "url": "https://aria.mgmresorts.com/en/casino/poker.html",
