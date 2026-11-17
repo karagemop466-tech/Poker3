@@ -66,22 +66,22 @@ ROOM_TAX_REFERENCE_NOTE = ("13.38% is the combined transient lodging tax rate pu
 # "Transient Lodging Tax Rates Effective as of April 2021". Each line is a REFERENCE only: the
 # property's own page prints no room-tax percentage, so `taxRate` stays blank (tests enforce this).
 def county_reference(listing: str, extra: str = "") -> str:
-    return ("County per-property table, " + listing + ": 13.38% (Primary Gaming Corridor, resort hotel). "
-            "The table's Appendix III chart prints 13.38% for a resort hotel in the Stadium District and the "
-            "Primary Gaming Corridor. Shown as a reference only; the property's own page prints no percentage."
+    return ("County per-property table, " + listing + ": 13.38% for a resort hotel in the Primary Gaming Corridor (PGC). "
+            "The guide's Appendix III chart prints 13.38% for 'Resort Hotel in SD & PGC'. Shown as a reference only; "
+            "the property's own page prints no room-tax percentage."
             + (" " + extra if extra else ""))
 
-WYNN_COUNTY_REF = county_reference("\"Wynn Las Vegas / Encore at Wynn Las Vegas\", 3131 Las Vegas Blvd S, licence 2000013.RES-001")
-BELLAGIO_COUNTY_REF = county_reference("\"Bellagio\", 3600 Las Vegas Blvd S, licence 1003760.RES-001")
-MGM_COUNTY_REF = county_reference("\"MGM Grand Hotel/Casino\", 3799 Las Vegas Blvd S, licence 1003821.RES-001")
-ARIA_COUNTY_REF = county_reference("\"Aria Resort & Casino\", 3730 Las Vegas Blvd S, licence 2000035.RES-001")
+WYNN_COUNTY_REF = county_reference("\"Wynn Las Vegas / Encore at Wynn Las Vegas\"")
+BELLAGIO_COUNTY_REF = county_reference("\"Bellagio\"")
+MGM_COUNTY_REF = county_reference("\"MGM Grand Hotel/Casino\"")
+ARIA_COUNTY_REF = county_reference("\"Aria Resort & Casino\", 3730 Las Vegas Blvd S")
 CAESARS_COUNTY_REF = county_reference(
-    "\"Caesars Palace\", licence 1136233.RES-001 (the county table misprints its address as \"35/0\"; caesars.com prints 3570 Las Vegas Blvd South)",
+    "\"Caesars Palace\", licence 1136233.RES-001 (the county table prints its address as \"35/0\"; not used)",
     "Caesars' own fee block prints $7.35 tax on its $54.95 fee; 13.38% of $54.95 is $7.35 to the cent, which "
     "agrees with the county figure but is not itself a printed percentage.")
 HORSESHOE_COUNTY_REF = county_reference(
-    "\"Bally's Las Vegas\", 3645 Las Vegas Blvd S, licence 1003121.RES-001 (the Horseshoe page prints the same "
-    "street address; the county table still uses the former name, so this entry is not treated as Horseshoe's own licence)",
+    "\"Bally's Las Vegas\", 3645 Las Vegas Blvd S (the Horseshoe page prints the same street address; the county "
+    "table uses the former name, so this entry is not treated as Horseshoe's own licence)",
     "Horseshoe's own fee block prints $6.68 tax on its $49.95 fee; 13.38% of $49.95 is $6.68 to the cent.")
 
 # Dated calendar cells read off the official Horseshoe booking page at 01:26 UTC and again at

@@ -1,67 +1,55 @@
-# Verbatim official excerpts — session arena/5b8ce14d-poker3 (read 2026-11-17 UTC)
+# Source record — session arena/5b8ce14d-poker3 (read 2026-11-17 UTC)
 
-Captured by the session with `fetch_page` on 2026-11-17. Quoted text is verbatim from the page or PDF as returned; only
-line breaks were joined. Each block names the URL it came from.
+Read with `fetch_page` on 2026-11-17. Each entry says whether the text is a **verbatim quote** or a **paraphrase** of
+what the page said. Only quoted text may be treated as the printed wording. Nothing here was read beyond the chunks named.
 
 ## T1 — room-tax percentage (F39)
 
-### Clark County, General Information Guide for Transient Lodging Establishments (July 2021 edition), Appendix III chart
+### Clark County General Information Guide for Transient Lodging (July 2021 edition) — PDF
 URL: https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf
+Chunks read: 0 and 3–11 of 12. Chunks 1 and 2 were not read.
 
-> Links: Stadium District Map Primary Gaming Corridor Map Rates Effective 3-1-17 by Property
->
-> | Resort Hotel in SD & PGC | 5.5% | 2% | 1% | 1% | 3% | .88% | 13.38% |
-> | Resort Hotel in SD, outside PGC | 5.5% | 2% | 1% | 1% | 3% | .5% | 13% |
+- **Quote (Appendix III, chunk 4):** "Resort Hotel in SD & PGC" with a combined rate of 13.38%.
+- **Paraphrase:** the per-property table lists Wynn/Encore, Bellagio, MGM Grand, Venetian/Palazzo, Caesars Palace, ARIA and Bally's at 13.38% (PGC). Only these were read and are cited on the site:
+  - ARIA: 3730 Las Vegas Blvd S (printed).
+  - Bally's: 3645 Las Vegas Blvd S (printed).
+  - Caesars Palace: licence 1136233.RES-001, printed address "35/0 Las Vegas Blvd S" (irregular).
+- **Not read, so not quoted:** licence numbers and street numbers for Wynn, Bellagio, MGM Grand and ARIA, plus the Venetian row.
+- Dated July 2021. Currency not confirmed.
 
-### Per-property table (same PDF), rows quoted verbatim
-> | 2000013.RES-001 | Wynn Las Vegas / Encore at Wynn Las Vegas | 3131 Las Vegas Blvd S | Las Vegas | NV | Licensed | 13.38% | RES | 1 | Transient Lodging Tax - Resort Hotel (PGC) |
-> | 1003760.RES-001 | Bellagio | 3600 Las Vegas Blvd S | Las Vegas | NV | Licensed | 13.38% | RES | 1 | Transient Lodging Tax - Resort Hotel (PGC) |
-> | 1136233.RES-001 | Caesars Palace | 35/0 Las Vegas Blvd S | Las Vegas | NV | Licensed | 13.38% | RES | 1 | Transient Lodging Tax - Resort Hotel (PGC) |
-> | 1003821.RES-001 | MGM Grand Hotel/Casino | 3799 Las Vegas Blvd S | Las Vegas | NV | Licensed | 13.38% | RES | 1 | Transient Lodging Tax - Resort Hotel (PGC) |
-> | 2000035.RES-001 | Aria Resort & Casino | 3730 Las Vegas Blvd S | Las Vegas | NV | Licensed | 13.38% | RES | 1 | Transient Lodging Tax - Resort Hotel (PGC) |
-> | 1003121.RES-001 | Bally's Las Vegas | 3645 Las Vegas Blvd S | Las Vegas | NV | Licensed | 13.38% | RES | 1 | Transient Lodging Tax - Resort Hotel (PGC) |
-> | 1000389.RES-001 | Venetian Resort Hotel Casino / Palazzo Resort Hotel Casino | 3325 Las Vegas Blvd S | Las Vegas | NV | Licensed | 13.38% | RES | 1 | Transient Lodging Tax - Resort Hotel (PGC) |
-
-Horseshoe Las Vegas is not listed under its own name. The 'H' entries run Hoover Dam Lodge, then Hotel Galaxy.
-
-### County guidance page (listing of rate documents)
+### Clark County transient-lodging guidance page
 URL: https://www.clarkcountynv.gov/business/doing_business_with_clark_county/transient-lodging-guidance
-> **Updated** [Transient Lodging Tax Rates Effective as of April 2021](https://www.clarkcountynv.gov/business/doing_business_with_clark_county/transient-lodging-tax-rate-increases)
-> **Updated** [General Information Guide for Transient Lodging Establishments](…genl-info-guide-for-tles-july-2021.pdf)
+Chunks read: 0 and 2 of 3. Paraphrase: it lists an April 2021 rate table and the July 2021 guide as "Updated". No 2026 rate table was found.
 
-### Caesars Palace and Horseshoe fee tax lines (existing official booking-page reads, cited in data_hotels.py)
-> Resort fees: $62.30 ($54.95 plus $7.35 tax)   — caesars.com, Caesars Palace (13.38% of $54.95 = $7.35)
-> Resort fees: $56.63 ($49.95 plus $6.68 tax)   — caesars.com, Horseshoe (13.38% of $49.95 = $6.68)
+### Caesars Palace and Horseshoe — fee tax lines (booking pages, read earlier in the session)
+Paraphrase: Caesars Palace prints a $54.95 resort fee with $7.35 tax; Horseshoe prints a $49.95 resort fee with $6.68 tax. Each equals 13.38% of the fee, to the cent.
 
-### Horseshoe Las Vegas official hotel page — address footer
-URL: https://www.caesars.com/horseshoe-las-vegas/hotel
-> 3645 Las Vegas Blvd South
-> Las Vegas, NV89109
+### Horseshoe Las Vegas hotel page — address
+URL: https://www.caesars.com/horseshoe-las-vegas/hotel — chunk 3 of 4 (verbatim): "3645 Las Vegas Blvd South", "877-603-4390".
+Chunks 0 (no tax %, no address) read; chunks 1–2 not read.
 
-### Caesars Palace address (official poker article footer)
-URL: https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip
-> 3570 Las Vegas Blvd SouthLas Vegas, NV89109
-
-### Wynn Las Vegas resort-fee term (official terms page, read 2026-11-17)
-URL: https://www.wynnlasvegas.com/terms-and-conditions/850070
-> A daily resort fee of $55 plus tax will be added to your room account for each complimentary (if applicable) and purchased room night
+### Wynn terms page
+URL: https://www.wynnlasvegas.com/terms-and-conditions/850070 — chunk 0 of 2. Paraphrase: a $55 resort fee "plus tax"; no percentage printed. The promotion has expired.
 
 ## T2 — Strip poker rooms (F17, F77, F78)
 
-### Caesars official poker-tournaments article (dated July 17, 2026 on the page)
-URL: https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip
-> The Poker Room at Caesars Palace … this 16-table sanctuary …
-> At Caesars Palace, the daily schedule runs like clockwork. You will find four No-Limit Hold'em tournaments each day at 10 a.m., 2 p.m., 6 p.m. and 9 p.m. Every event carries a $100 buy-in, starts you with 20,000 chips, and features a $1,000 guaranteed prize pool. Blinds increase every 20 minutes to keep the pace lively, and a $50 add-on at the first break gives you an extra 15,000 chips if you want a deeper run.
-> At Horseshoe Las Vegas, the tournament slate ups the ante with six daily No-Limit Hold'em games. The times at 9 a.m., 11 a.m., 2 p.m., 5 p.m., 8 p.m. and 11 p.m. provide plenty of opportunity throughout the day to grab a seat.
-> Caesars properties proudly offer dedicated poker rooms with daily tournament schedules at Caesars Palace and Horseshoe Las Vegas.
+### Caesars official poker-tournaments article
+URL: https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip — chunks 0–1 of 3 read; chunk 2 not read.
+Paraphrase:
+- Caesars Palace: 16 tables; four daily No-Limit Hold'em tournaments at 10 a.m., 2 p.m., 6 p.m. and 9 p.m.; $100 buy-in; 20,000 starting chips; $1,000 guaranteed prize pool; a $50 add-on at the first break for 15,000 chips (add-on events are placed in the separate section).
+- Horseshoe: six daily No-Limit Hold'em tournaments at 9 a.m., 11 a.m., 2 p.m., 5 p.m., 8 p.m. and 11 p.m.; the buy-in is not printed.
+- The article names Caesars Palace and Horseshoe as the Caesars poker rooms with daily tournament schedules. It does not name Planet Hollywood or Flamingo.
+- Article date printed as July 17, 2026.
 
-### Planet Hollywood (third-party press, Las Vegas Review-Journal, 28 Jan 2026) — not an official source; cited as a report of a Caesars statement
+### Las Vegas Review-Journal (third-party press), 28 Jan 2026
 URL: https://www.reviewjournal.com/business/casinos-gaming/inside-gaming-strip-casino-to-close-poker-room-3612434/
-> The poker room inside Planet Hollywood hotel-casino will no longer operate after Jan. 31, according to Caesars Entertainment, the property's parent company.
-> … poker operations at Planet Hollywood will be "consolidated" into active rooms at Caesars Palace and Horseshoe.
+Paraphrase: the Planet Hollywood poker room closes after 31 January 2026; operations are consolidated into Caesars Palace and Horseshoe. Corroborated by GGB Magazine and Vegas Advantage (third-party).
 
-### Resorts World Las Vegas (official)
-URL: https://www.rwlasvegas.com/gaming/casino-events/ — lists promotions (Mystery Point Multiplier, Rodeo Roundup slot tournament, Valor, New Member). No poker tournament is listed.
-URL: https://www.rwlasvegas.com/gaming/poker-room/poker-room-dining/ — "POKER ROOM DINING … conveniently available for delivery straight to your table." No schedule.
-URL: https://www.rwlasvegas.com/eblast/poker-invite/ — e-mail template with no schedule.
-Not reachable (no page returned): https://www.rwlasvegas.com/poker , https://www.rwlasvegas.com/casino/poker/ , https://www.rwlasvegas.com/poker-room/ ; https://www.planethollywoodresort.com/poker and /casino/poker/ returned HTTP 500 on 2026-11-17.
+### Resorts World Las Vegas (official pages)
+- https://www.rwlasvegas.com/gaming/casino-events/ — chunks 0–1 of 2 read. Paraphrase: promotions only (November Mystery Point Multiplier, Rodeo Roundup slot tournament, Genting Rewards programs). No poker tournament listed.
+- https://www.rwlasvegas.com/gaming/poker-room/poker-room-dining/ — chunk 0 of 2 read. Paraphrase: a poker-room dining page with delivery to the table. No schedule.
+- https://www.rwlasvegas.com/eblast/poker-invite/ — read earlier. No schedule.
+- Not reachable: /poker, /casino/poker/, /poker-room/ (no page returned).
+
+### Planet Hollywood (official)
+https://www.planethollywoodresort.com/poker and /casino/poker/ returned HTTP 500 on 2026-11-17.

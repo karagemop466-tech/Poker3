@@ -787,21 +787,20 @@ FLAGS = [
     
     dict(id="F39", area="Hotel cost", severity="Medium",
          title="Room-tax % is still blank in the property-published column for Wynn, Caesars, Horseshoe, Bellagio, MGM Grand and ARIA; a county per-property reference now sits beside each",
-         detail=("Re-read 2026-11-17 (session arena/5b8ce14d-poker3). No property page prints a room-tax percentage for its "
-                 "room rate; Wynn prints 'plus tax' only, and Caesars and Horseshoe print only the tax amount on their resort "
-                 "fee ($7.35 on $54.95; $6.68 on $49.95, both 13.38% to the cent). The Clark County Department of Business "
-                 "License General Information Guide for Transient Lodging Establishments (July 2021 edition) prints a "
-                 "per-property table in which Wynn Las Vegas / Encore at Wynn (licence 2000013.RES-001), Caesars Palace "
-                 "(1136233.RES-001), Bellagio (1003760.RES-001), MGM Grand Hotel/Casino (1003821.RES-001) and Aria Resort & "
-                 "Casino (2000035.RES-001) are each listed at 13.38% (Primary Gaming Corridor). The guide's Appendix III chart "
-                 "prints 13.38% for 'Resort Hotel in SD & PGC'. Horseshoe is not listed under its name; the same street address "
-                 "(3645 Las Vegas Blvd S) appears as 'Bally's Las Vegas' at 13.38% (licence 1003121.RES-001), and the Horseshoe "
-                 "page prints that address, but the former name is not treated as Horseshoe's own licence, so Horseshoe stays open. "
-                 "The county's guidance page links the rate table as 'Transient Lodging Tax Rates Effective as of April 2021', so the "
-                 "listing is dated and must be re-confirmed. DECISION NEEDED: the taxRate column is blank by policy (tests enforce "
-                 "'a figure the property printed'); the county figure is shown only as a reference beside it. Whether a government "
-                 "per-property listing may fill that column is a user decision (see suggestions). True nightly cost still needs a "
-                 "dated base rate from each property, which none of these six has published."),
+         detail=("Checked 2026-11-17 (session arena/5b8ce14d-poker3). No property page read this session prints a room-tax percentage "
+                 "for its room rate. Wynn's terms page prints a $55 resort fee 'plus tax' with no percentage. Caesars and Horseshoe "
+                 "print only the tax amount on their resort fee ($7.35 on $54.95; $6.68 on $49.95; both 13.38% to the cent). "
+                 "The Clark County General Information Guide for Transient Lodging (July 2021 edition) lists per-property rows "
+                 "that include Wynn/Encore, Caesars Palace, Bellagio, MGM Grand, ARIA and Bally's at 13.38% (Primary Gaming "
+                 "Corridor), and its Appendix III chart prints 13.38% for a resort hotel in SD & PGC. Horseshoe is not listed under "
+                 "its own name; Bally's, at the same street address (3645 Las Vegas Blvd S), appears at 13.38%, but the former name "
+                 "is not treated as Horseshoe's own licence, so Horseshoe stays open. Only part of the guide was read (chunks 0 and "
+                 "3-11 of 12); the rows for Wynn, Bellagio, MGM Grand and Venetian were not all read to their licence numbers and are "
+                 "not quoted here. The guide is dated July 2021; the county's guidance page lists an April 2021 rate table as "
+                 "'Updated', and no 2026 rate table was found, so the listing must be re-confirmed. DECISION NEEDED: the taxRate "
+                 "column is blank by policy (tests enforce 'a figure the property printed'); the county figure is shown only as a "
+                 "reference beside it. Whether a government per-property listing may fill that column is a user decision (see "
+                 "suggestions). True nightly cost still needs a dated base rate from each property, which none of these six has published."),
          source="https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf"),
     dict(id="F51", area="Hotel cost", severity="High",
          title="Two official Venetian pages disagree on whether the resort fee is added to the rate or included in it",
@@ -1087,19 +1086,19 @@ FLAGS = [
                  "Planet Hollywood's own poker page could not be read (HTTP 500 on 2026-11-17). The closure is a Caesars Entertainment "
                  "statement reported by the Las Vegas Review-Journal on 28 January 2026 (https://www.reviewjournal.com/business/casinos-gaming/"
                  "inside-gaming-strip-casino-to-close-poker-room-3612434/): the room would not operate after 31 January, and its operations "
-                 "were consolidated into Caesars Palace and Horseshoe. Planet Hollywood schedules still circulating online (10 AM, 1 PM, 4 PM, "
-                 "7 PM and 10 PM rows with $80 to $135 buy-ins) are therefore not used. Flamingo is also absent from the official Caesars page; "
-                 "a third-party room list records its poker room closing in September 2021, which this site does not treat as verified."),
+                 "were consolidated into Caesars Palace and Horseshoe. Any Planet Hollywood tournament listing found online is therefore not used. "
+                 "Flamingo is also absent from the official Caesars article; a third-party closure list dates its poker-room closure to "
+                 "September 2021, which this site does not treat as verified."),
          source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"),
     dict(id="F78", area="Strip poker rooms", severity="Medium",
-         title="Resorts World Las Vegas: the official poker page could not be read, and third-party sources disagree on its tournaments",
-         detail=("Checked 2026-11-17 (session arena/5b8ce14d-poker3). Official rwlasvegas.com pages read: the poker-invite e-mail "
-                 "page (no schedule); /gaming/poker-room/poker-room-dining/ (poker-room dining only, no tournament); /gaming/casino-events/ "
-                 "(promotions, no poker tournament). /poker, /casino/poker/ and /poker-room/ returned no page. Third-party pages disagree: one says two $160 NLH tournaments "
-                 "at 12:05 PM and 7:05 PM with $3,000 guarantees; another says a $200 noon event and a $160 7 PM event; a third says "
-                 "$200 at noon. Those sites are not official, so no Resorts World row is published. The room is on the Strip at 3000 S Las "
-                 "Vegas Blvd and is the candidate to add first once its official poker page is reachable."),
-         source="https://www.rwlasvegas.com/eblast/poker-invite/"),
+         title="Resorts World Las Vegas: no official poker schedule could be read, and third-party sources disagree on its tournaments",
+         detail=("Checked 2026-11-17 (session arena/5b8ce14d-poker3). Official rwlasvegas.com pages read: the poker-invite e-mail page "
+                 "(no schedule); /gaming/poker-room/poker-room-dining/ (dining only); /gaming/casino-events/ (promotions, no poker "
+                 "tournament). /poker, /casino/poker/ and /poker-room/ returned no page. Third-party pages disagree on times and buy-ins "
+                 "for Resorts World's tournaments (PokerNews 2024, Vegas Advantage 2025, CardPlayer, Bet-NV 2023, PokerAtlas, "
+                 "Somuchpoker), and none is official, so no Resorts World row is published. Its poker room is a candidate to add "
+                 "once its official poker page is reached."),
+         source="https://www.rwlasvegas.com/gaming/casino-events/"),
 
 ]
 
