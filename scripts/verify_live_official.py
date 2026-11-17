@@ -247,8 +247,13 @@ def main() -> int:
     # 7. Every dated official quote must reconcile with (rate + resort fee) x (1 + tax rate).
     for h in json.loads(DATA.read_text())["hotels"]:
         for q in h.get("quotes") or ([] if not h.get("quote") else [h["quote"]]):
-            nights = [q["nightOne"], q["nightTwo"]]
-            derived = round(sum((n["rate"] + n["resortFee"]) * 1.1338 for n in nights), 2)
+            # Two shapes exist: two-night quotes carry nightOne/nightTwo dicts; the seven-night
+            # quote carries a 'nightly' list of (date, rate) pairs and one resortFeePerNight.
+            if "nightOne" in q:
+                pairs = [(n["rate"], n["resortFee"]) for n in (q["nightOne"], q["nightTwo"])]
+            else:
+                pairs = [(rate, q["resortFeePerNight"]) for _, rate in q["nightly"]]
+            derived = round(sum((rate + fee) * 1.1338 for rate, fee in pairs), 2)
             printed = round(q["total"], 2)
             if abs(derived - printed) > 0.02:
                 problems.append(
