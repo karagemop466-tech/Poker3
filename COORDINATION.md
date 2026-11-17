@@ -4138,3 +4138,46 @@ prior sessions' sections above are merged records, so this session acts as the i
 **Conflict discipline.** If any other session pushes to `main` while this branch is open, rebase keeping both sides
 (the append-vs-append rule used by every prior session), never discard the other session's record, and re-run the
 full verification suite before opening the PR.
+
+### Progress log — session arena/d1a97472-poker3
+
+**2026-11-17 — T1 COMPLETE** (commit `ad53ab8`, 12 files). The official Venetian booking engine returned a full
+itemized quote for the trip window (23→30 Nov, 2 adults, 7 nights) and it was read twice with identical figures;
+capture in `research/trip_window_quote_2026-11-17_d1a97472.json`. Integrated: checkout total **$4,010.55**
+(reconciles exactly: room $3,152.25 + resort fees $385.00 + tax $473.30; per-night rounding sums to the cent),
+Average Rate $505.32, all-in $572.94/night, nightly rates 164.25/164.25/201.75/231.75/1649.25/554.25/186.75,
+observed 2026-11-17. New `RATE_LOG` trip row + `TRIP` quote fields + `hotels[].quotes` entry with `nightsList`;
+F15/F28/F36/F51 copy updated (F36 keeps its "$XXX" title — history), Q05/Q15 answered, S17/S18/S20/S21 refreshed,
+`trip_cost.py` note, `site/index.html` hero + notice (F54, not F57), `site/hotels.html`, `site/calculator.html`
+(new `tripQuote` preset at 450.32 + compare row), `app.js` quote renderer loops `nightsList` and `costLine()`
+prints the dated-quote sentence. Tests: `test_trip_window_quote.py` (10 new), fixed-stay and recheck tests re-pinned
+to the new window, quote-reconciliation test now sums per-night rounding. **110 tests OK**, `verify_site.py`
+PASSED (341 events / 8 hotels / 14 routes at the time / 43 sources / 61 flags / 7 plan days / 16 pages),
+`node --check` OK.
+
+**2026-11-17 — T2 COMPLETE** (commit `44630a4`). Live re-read of every official page behind this session's rows:
+DSE IV schedule (Nov 16 – Dec 10 portion: trip-window rows match row for row, Event 18 $200 Bounty Nov 28 5:10 PM,
+Event 19 $400 1A Nov 29 11:10 AM, Event 20 $300 PLO 12:10 PM, Event 21 $200 5:10 PM), `suite-rates.html`
+($119/$209, 150-day cap, $55/night, six hours cash OR $300+ entry before 2 AM last night, EPOKR25, 866.255.8936,
+non-combinable — all verbatim matches), `resort-fee.html` ("$55 plus tax per night… Rates include…"), hotel terms
+("Clark County Room Tax of 13.38%", "$55 plus applicable tax per night" — verbatim), and the trip-window booking
+quote (two reads). `lastChecked` on those sources already read 2026-11-17; no text changed, nothing refreshed.
+Also fixed F51's internal arithmetic while re-reading: its stated alternative `$119 × 1.1338 + $55 × 1.1338` equals
+$197.28 (the same floor), not "$43 lower"; corrected to $134.92/night, $62.36/night lower, $436.51 over seven
+nights, with the correction recorded inside the flag; S20's double-count figure aligned; resort-fee "Rates include"
+phrase added as F51 evidence.
+
+**2026-11-17 — T3 COMPLETE** (commit `957b3b4`). F32 coverage gap closed: all **56** unique 8-hotel × 7-venue
+pairs now carry a checked Google Maps walking estimate — the 14 base-pass rows plus 42 measured today in batched
+reads (`research/walk_matrix_2026-11-17_d1a97472.json`, per-row `lastChecked` 2026-11-17 for the new rows).
+Nothing was invented: every minute comes from a first-listed Maps route, alternatives recorded where shown,
+direction asymmetries kept as measured (Wynn→Venetian 13 via Wynn Main Gate Dr vs Venetian→Wynn 19 via LV Blvd S).
+F32 stays open (estimates only, property-level endpoints, direction-dependent) with its coverage sentence replaced
+by the closure; Q08 rewritten with the complete Venetian-hotel row (13/16/19/21/32/36 — ARIA and MGM outside the
+30-minute limit). Fixed a latent `walkToVenetian()` direction bug in `app.js` that the completed matrix would have
+surfaced as wrong numbers (matched Venetian→venue rows while labelled "walk to the Venetian"). `verify_site.py`
+PASSED with **56 routes**; 110 tests OK; `node --check` OK.
+
+**Next:** T4 (coverage matrix: `scripts/coverage.py` → `site/coverage.json` + `site/coverage.html` + nav entry),
+then T5 (final verification, PR → `main`, merge, Pages confirm, record here). Three local commits
+(`ad53ab8`, `44630a4`, `957b3b4`) pending `git pull --rebase` + push with the T4/T5 work.
