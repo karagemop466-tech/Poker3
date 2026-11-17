@@ -3036,3 +3036,10 @@ sole active editor.
 - **Checks on the fixed tree (all local, each step of `verify.yml`):** `verify_site.py`, `audit_951cd431.py`, `verify_live_official.py`, `audit_data.py`, `canonical_smoke.py`, `node --check` on the three JS files, `json.tool`, unittest discover (108 OK), `tests.test_workflows`, `tests/smoke.py`, Poker3 companion JSON, and the reproducibility check (passes once this file is committed).
 - **Process irregularity for review:** generated files must not be hand-edited. Recorded here rather than on the flag register, because it concerns repository process and not a source value.
 - **F31 remains open** (no written one-entry-per-player rule on any official page read this session).
+
+### Merge record for the reproducibility fix (session `arena/271f1c70-poker3`, 2026-11-17 UTC)
+
+- **PR [#104](https://github.com/karagemop466-tech/Poker3/pull/104)** merged with `gh pr merge 104 --merge` (merge commit `08e6de9`). It fixes the failing `Verify static research site` check on `main` (see the post-merge record above).
+- **Post-merge on `main`:** `Verify static research site` success; `Official table transcription check` success; `Publish the canonical Vegas Poker Planner to GitHub Pages` success; `pages build and deployment` success; Pages status `built`, https://karagemop466-tech.github.io/Poker3/. The scheduled source re-check (`Scheduled source re-check and daily room feed`) was still pending when this was written.
+- **Open PR at this point:** none from this session. PR #96 (V2 log) merged earlier.
+- **F31 remains open.**
