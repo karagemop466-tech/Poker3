@@ -2982,3 +2982,27 @@ sole active editor.
 - **GitHub Pages:** API reports `status: built`, source `main /`. Live site spot-checked with the page reader:
   https://karagemop466-tech.github.io/Poker3/ serves the executive summary with the corrected 52 sheet-screened
   candidates, "Structure sheets read 52/52 ... zero unread", and no row marked "sheet not read".
+
+### Integration record (session `arena/b13ca4cb-poker3`, final)
+
+- **PR [#94](https://github.com/karagemop466-tech/Poker3/pull/94)** (`arena/b13ca4cb-poker3` -> `main`): merged with
+  `gh pr merge 94 --merge` as merge commit **`13a79c4`** at **2026-11-17 22:11:36 UTC**.
+- **Rebase notes (three extra rebases while this session ran):** `main` advanced five times under concurrent sessions
+  (PRs #88, #89, #90, #91, #92, #93, #97) while this branch was being verified. Each rebase produced only
+  append/append conflicts in `COORDINATION.md` and generated-record conflicts in `site/checks.json`, plus one
+  overlapping fix in `site/data.json` (`tripCostModel`). Every conflict was resolved without discarding the other
+  session's work: both `COORDINATION.md` sides were kept in full; `site/checks.json` took the newer merged record and
+  was then regenerated fresh from this sandbox; the `tripCostModel` conflict was resolved by union - PR #92's merged
+  `liveQuote` summary block was kept and this session's per-night quote detail was folded in as `liveQuote.perNight`
+  (nightly rates, derived true cost per night, printed taxes/total, engine average rate, F65 rounding note).
+- **Final combined-tree verification (111 tests):** `tests/` 111 passed + 149 subtests; `verify_site.py` pass
+  (341 events, 8 hotels, 14 routes, 43 sources, 62+ flags, 7 plan days, 16 pages); `verify_transcription.py` 44/44
+  rows matched; `audit_data.py`, `audit_951cd431.py`, `verify_live_official.py` all pass; `canonical_smoke.py` and
+  `smoke.py` render clean; `node --check`, `json.tool`, `git diff --check` clean; zero broken local links across the
+  25 site HTML files.
+- **GitHub Pages:** after the merge, the Pages API reports `status: built`, source `main /`, live at
+  https://karagemop466-tech.github.io/Poker3/ (the sandbox cannot fetch `github.io` directly; the confirmation is
+  from the GitHub Pages API and the successful deployment run triggered by the merge).
+- **Claim table final state:** V1 done - V2 done - V3 done - V4 done (this record). No open tasks remain for this
+  session. Flagged irregularities and unverified items do not block the merge and remain published on the
+  Flagged for review page with their official source links.552a6bc (docs: record PR #94 merge result, Pages confirmation and rebase notes)055e867 (docs: record PR #94 merge result, Pages confirmation and rebase notes)2008393 (docs: record PR #94 merge result, Pages confirmation and rebase notes)
