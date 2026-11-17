@@ -3178,8 +3178,10 @@ passed; `tests.test_workflows` OK; `tests.test_daily_feed_snapshots` OK; `unitte
 
 ### Integration record
 
-- **PR:** see the merge record appended after the merge.
-- **Pages:** confirmed via the GitHub Pages API after the merge.
+- **PR:** [#126](https://github.com/karagemop466-tech/Poker3/pull/126) (`arena/d4037af5-poker3` → `main`), merged 2026-11-17 22:43:15 UTC with `gh pr merge 126 --merge` (merge commit `7eb42b7`). Both required checks passed on the PR: `verify` (11s) and `transcription` (5s).
+- **Rebase:** `main` had advanced to `1d900ec` (PR #125) before this PR; the branch was rebased onto it. The only conflict was an append-append in this file, resolved by keeping both this session's section and `main`'s newer sections. No other file conflicted.
+- **Pages:** the "Publish the canonical Vegas Poker Planner to GitHub Pages" workflow succeeded (run [44192828053](https://github.com/karagemop466-tech/Poker3/actions/runs/44192828053), 22:43:36 UTC) and the GitHub Pages API reports `status: built` at https://karagemop466-tech.github.io/Poker3/ (source `main` `/`).
+- **Post-merge:** the site builds, all 131 unit tests pass, and the data build is reproducible. The daily-feed snapshot fix ships with this merge; the scheduled `checks.yml` run regenerates `site/feed/**` with the corrected per-page naming on its next run.
 
 ### Open items (unchanged, published as flags)
 
