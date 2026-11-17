@@ -88,6 +88,12 @@ class SheetsPageMatchesCanonicalData(unittest.TestCase):
         matrix = SHEETS.split("DeepStack Extravaganza IV sheets", 1)[1].split("<h2>", 1)[0]
         self.assertNotIn("<td></td>", matrix, "an empty cell in the sheet matrix")
 
+    def test_guarantees_render_as_money_not_raw_integers(self):
+        """The read record stores some guarantees as ints; a bare 75000 misreads as chips."""
+        matrix = SHEETS.split("DeepStack Extravaganza IV sheets", 1)[1].split("<h2>", 1)[0]
+        for bare in __import__("re").findall(r"<td>(\d{4,})", matrix):
+            self.fail(f"guarantee rendered as a bare integer: {bare}")
+
     def test_all_52_structure_sheets_are_rendered(self):
         self.assertEqual(len(DATA["structureSheets"]), 52)
         self.assertIn("37 DeepStack Extravaganza IV sheets", SHEETS)

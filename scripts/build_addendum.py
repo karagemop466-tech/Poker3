@@ -63,6 +63,13 @@ def money(x):
         return "—"
 
 
+def guarantee(x):
+    """The read record stores the guarantee as an int or as a printed string."""
+    if isinstance(x, (int, float)):
+        return money(x)
+    return esc(x) if x not in (None, "") else "—"
+
+
 def num(x):
     try:
         return f"{int(x):,}"
@@ -87,15 +94,6 @@ with open(os.path.join(ROOT, "data", "sheet_extracts.jsonl")) as f:
             s = json.loads(line)
             EXTRACTS[s["sheet"]] = s
 
-# published category for each Venetian event number, so the page shows the same
-# label the tournaments table shows rather than a second opinion.
-CATEGORY_BY_EVENT = defaultdict(set)
-for e in DATA["events"]:
-    if e.get("venue") == "venetian":
-        m = e["id"].split("-")
-        if len(m) > 3:
-            CATEGORY_BY_EVENT[m[3]].add(e.get("category", ""))
-
 # ------------------------------------------------------------------ consistency check
 DISAGREEMENTS = []
 for n, ext in EXTRACTS.items():
@@ -115,16 +113,14 @@ def rows_dse():
         wording = s["entryWording"]
         label, cls = VERDICT.get(wording, (esc(wording), ""))
         evs = ", ".join("#" + str(x) for x in s["events"])
-        cats = sorted(set().union(*[CATEGORY_BY_EVENT.get(str(x), set()) for x in s["events"]]))
         out.append(f"""<tr><td>{n}</td><td>{esc(evs)}</td><td>{esc(s['title'])}</td>
 <td>{esc(s.get('startTime',''))}</td><td>{num(s.get('chips'))}</td>
 <td>{esc(s.get('levelMinutes',''))} min × {esc(s.get('levels','—'))}</td>
 <td><small>{esc(s.get('lateReg',''))}</small></td>
 <td>{money(s.get('houseFee'))} / {money(s.get('prizeShare'))}</td>
-<td>{esc(s.get('guarantee','—'))}{' <small class="q">(' + esc(s['guaranteeNote']) + ')</small>' if s.get('guaranteeNote') else ''}</td>
+<td>{guarantee(s.get('guarantee'))}{' <small class="q">(' + esc(s['guaranteeNote']) + ')</small>' if s.get('guaranteeNote') else ''}</td>
 <td>{esc(s.get('pays','') or '—')}</td><td>{esc(s.get('bounty','') or '—')}</td>
 <td class="{cls}"><small>{label}</small>{('<br><small class="q">“' + esc(s['entryExcerpt'][:150]) + '”</small>') if s.get('entryExcerpt') else ''}</td>
-<td>{esc(' / '.join(sorted(cats)) or '—')}</td>
 <td><a href="{V.BASE}/dse_nov_2026-structure_{n}.pdf" target="_blank" rel="noopener">PDF</a></td></tr>""")
     return out
 
@@ -149,7 +145,7 @@ def rows_nye():
         out.append(f"""<tr><td>{n}</td><td>{esc(s.get('events',''))}</td><td>{esc(s.get('title',''))}</td>
 <td><small>{esc(s.get('late',''))}</small></td><td>{num(s.get('chips'))}</td>
 <td>{esc(s.get('levelMin',''))} min</td>
-<td>{money(s.get('rake'))} / {money(s.get('pool'))}</td><td>{esc(s.get('guarantee','—'))}</td>
+<td>{money(s.get('rake'))} / {money(s.get('pool'))}</td><td>{guarantee(s.get('guarantee'))}</td>
 <td class="{cls}"><small>{label}</small></td>
 <td>{('<a href="' + esc(url) + '" target="_blank" rel="noopener">PDF</a>') if url else '—'}</td></tr>""")
     return out
@@ -248,7 +244,7 @@ This page is generated from <code>data/sheet_extracts.jsonl</code>, <code>script
 <h2>1 · {len(EXTRACTS)} DeepStack Extravaganza IV sheets (16 Nov – 23 Dec 2026)</h2>
 <div class="wrap"><table><thead><tr><th>Sheet</th><th>Events</th><th>Event name</th><th>Start</th><th>Chips</th><th>Levels</th>
 <th>Registration closes</th><th>House / prize split</th><th>Guarantee</th><th>Pays</th><th>Bounty</th>
-<th>Entry rule printed on the sheet</th><th>Published as</th><th>Source</th></tr></thead>
+<th>Entry rule printed on the sheet</th><th>Source</th></tr></thead>
 <tbody>{''.join(srows)}</tbody></table></div>
 
 <h2>2 · {len(V.NYE_SHEETS)} DeepStack Extravaganza NYE sheets (26 Dec 2026 – 10 Jan 2027)</h2>
