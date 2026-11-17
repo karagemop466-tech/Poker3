@@ -181,7 +181,7 @@ class HotelFacts(unittest.TestCase):
         self.assertIn("arrival_date=2026-11-23", booking["url"])
         logged = [r for r in DATA["rateLog"] if r.get("quoteType", "").startswith("Dated official checkout total (2 adults, 7 nights")]
         # Two distinct official reads of the identical window are logged on 2026-11-17: the ~21:54 UTC
-        # venetian-suite read ($4,010.55) and the ~22:15 UTC palazzo-suite read ($3,823.46, flag F77).
+        # venetian-suite read ($4,010.55) and the ~22:15 UTC palazzo-suite read ($3,823.46, flag F78).
         # Both must be present, each with its own printed total; neither may duplicate or replace the other.
         self.assertEqual(len(logged), 2, "two distinct dated 7-night trip reads are logged")
         # Identify each read by its suite label, not by a dollar figure: each note cites the other's total

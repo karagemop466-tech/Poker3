@@ -547,7 +547,7 @@ RATE_LOG = [
          feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
     # Second read of the SAME trip window on the same day (session 7529044d, 2026-11-17 about 22:15 UTC,
     # about 20 minutes after the read above). The engine returned a different suite tower and a different
-    # total for an identical query. Both are kept as dated observations; neither replaces the other (flag F77).
+    # total for an identical query. Both are kept as dated observations; neither replaces the other (flag F78).
     dict(hotel="palazzo", observedOn="2026-11-17", baseRate="",
          publishedStartingRates="204.25 (Nov 23), 204.25 (Nov 24), 286.75 (Nov 25), 406.75 (Nov 26), "
                                 "1,119.25 (Nov 27), 561.75 (Nov 28), 204.25 (Nov 29) per night, rate before resort fee",
@@ -562,13 +562,13 @@ RATE_LOG = [
                "after the earlier read the same day: the engine returned a different suite tower - a palazzo "
                "Luxury King (about 720 sq ft) instead of the venetian Newly Remodeled Luxury King - and a lower "
                "total, $3,823.46 against $4,010.55, a difference of $187.09 with no change to dates or party size "
-               "(flag F77). Printed on the page: estimated cost of stay $3,823.46, average rate $481.75, taxes "
+               "(flag F78). Printed on the page: estimated cost of stay $3,823.46, average rate $481.75, taxes "
                "$451.21, $55.00 resort fee on each of the seven nights. The seven derived per-night true costs "
                "(rate + $55) x 1.1338 are 293.94, 293.94, 387.48, 523.53, 1331.36, 699.27 and 293.94, which add "
                "to the printed $3,823.46 exactly, and 13.38% of the printed pre-tax subtotal of $3,372.25 is the "
                "printed $451.21. This is a dated observation of the engine's best-available offer, not a booking "
                "price; compare like-for-like by suite name and read time before budgeting (see the rate log and "
-               "flag F77)."),
+               "flag F78)."),
          source=VENETIAN_CALENDAR_TRIP_URL, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
     dict(hotel="venetian", observedOn="2026-11-17", baseRate="",
          publishedStartingRates="621.75 (Nov 17) and 164.25 (Nov 18) per night",

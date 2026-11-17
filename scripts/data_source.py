@@ -1015,7 +1015,7 @@ FLAGS = [
                  "'entry rules not yet read'. The note now states that the rules were read from the structure sheet. "
                  "No value changed; the contradiction was in the prose only."),
          source="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"),
-    dict(id="F77", area="Venetian booking engine", severity="Medium",
+    dict(id="F78", area="Venetian booking engine", severity="Medium",
          title="The same trip-window query returned two different suites and totals within about 20 minutes",
          detail=("Observed on 2026-11-17, not inferred. The official booking engine was opened twice for the "
                  "identical query - 2 adults, arrival 2026-11-23, departure 2026-11-30, seven nights. The read at "
