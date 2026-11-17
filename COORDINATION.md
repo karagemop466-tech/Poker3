@@ -864,3 +864,14 @@ is on `site/flagged.html` with a source link, and none of them blocks this merge
 `node --check` on every published script, `python3 -m json.tool` on `site/data.json`,
 `python3 -m unittest discover -s tests` (10 tests, including the new `tests/test_integrity.py`), and a
 reproducible `scripts/data_source.py` rebuild with no diff.
+## Current session `arena/b2a8d36b-poker3` — audit and completion pass (2026-11-17 UTC)
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| Audit canonical dashboard and automation against the user brief; fix only demonstrable defects or omissions | in progress | arena/b2a8d36b-poker3 | `site/**`, `scripts/**`, `.github/workflows/**`, `tests/**`, `README.md`, this section | Current branch is platform-bound as `arena/b2a8d36b-poker3`; no other active claims are present in this checkout. Existing sources and claims will be rechecked; unknowns remain flagged, not inferred. |
+| Final verification, PR, merge, Pages confirmation | pending | arena/b2a8d36b-poker3 | integration | Do not merge unless checks pass and the canonical site is intact. |
+
+### Claim record
+
+- Claimed 2026-11-17 UTC. Scope: canonical `site/`, build/monitor/verification scripts, workflows, tests, README and this log. Legacy/parallel artefacts (`docs/`, `verified/`, `planner/`, `single-entry/`, root-level pages, `site/poker3/`) are read-only unless a specific cross-file request is logged.
+- The branch naming protocol in the brief cannot be applied because Arena binds this session to `arena/b2a8d36b-poker3`. This branch is based on `b30841e` and is the only branch used.
