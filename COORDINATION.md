@@ -1391,3 +1391,39 @@ Branch: `arena/169bf42c-poker3`. Scope: this COORDINATION section only. No data,
 - **Morning feed unchanged.** The scheduled 12:10 UTC `checks.yml` run is still the first live run, as recorded above.
 
 **Result (arena/169bf42c-poker3).** PR [#58](https://github.com/karagemop466-tech/Poker3/pull/58) merged with `gh pr merge 58 --merge` as merge commit `5bf0df538c5566ca04e8517e54d90bc35527ff2d`. The `verify` check on the PR passed ([run 43994010698](https://github.com/karagemop466-tech/Poker3/actions/runs/43994010698)). This follow-up records that result and is merged the same way.
+
+---
+
+---
+
+---
+
+---
+
+---
+
+## Session `arena/b573f10a-poker3` — live re-verification, dated trip-window rates, and final integration
+
+Branch: `arena/b573f10a-poker3` (base `main` @ `b30841e`, the merge of PR #34). The platform binds each session to one
+branch, so the brief's `session-<id>/<task>` naming cannot be applied; the Arena branch name is used instead. This
+session is the only active editor, so it takes the integration-owner role for every shared output: the canonical
+`site/` artifact, `site/data.json`, the flag register, the source log, navigation, `scripts/**`, `tests/**`,
+`.github/workflows/**`, `README.md` and this file.
+
+### Claim (recorded before any file edit, 2026-11-17)
+
+| Task | Status | Owner session | Files in scope | Notes |
+|---|---|---|---|---|
+| C1 Line-by-line re-verification of all canonical tournament rows against the official pages fetched today | in progress | arena/b573f10a-poker3 | `site/data.json`, `scripts/data_*.py`, `scripts/verify_site.py` | Snapshot moves 2026-11-16 → 2026-11-17; every row's `lastChecked` follows. |
+| C2 Dated official hotel quote for the actual trip window (2026-11-25 → 2026-12-02) | in progress | arena/b573f10a-poker3 | `scripts/data_hotels.py`, `site/hotels.html`, flag F15/F28 | Closes the highest-severity money gap if the official booking engine publishes a price. |
+| C3 Read the unread official structure-sheet sets (DSE NYE, WPT World Championship) | claimed | arena/b573f10a-poker3 | `scripts/data_venetian.py`, `scripts/data_venues.py`, `site/data.json` | Clears F11 and F12 where the official PDF is reachable. |
+| C4 Remaining brief items on the canonical site (past-date handling, per-date booking links, feed publication) | claimed | arena/b573f10a-poker3 | `site/**`, `site/assets/app.js` | Only where a published gap exists. |
+| C5 Verification, PR to `main`, merge, Pages confirmation, record here | pending | arena/b573f10a-poker3 | whole repo | No blocking wait for review. |
+
+**Not claimed, not edited:** `docs/`, `verified/`, `planner/`, `single-entry/`, `pages/`, `handoff/`, `raw/`, the
+root-level legacy HTML pages, `site/poker3/**`. They are prior-session artefacts and stay as they are.
+
+**Commit discipline:** small frequent commits; `git pull --rebase origin arena/b573f10a-poker3` before every push.
+
+### Work log
+
