@@ -2971,7 +2971,28 @@ sole active editor.
   72 flags, 7 plan days, 16 pages); `python3 -m unittest discover -s tests` — **125 tests OK** (17 new);
   `node tests/canonical_render.js` — all pages rendered; `python3 tests/canonical_smoke.py` — 11 main pages,
   5 detail pages; 0 broken internal links over 25 pages; `node --check site/assets/app.js` OK.
-- PR and Pages result: recorded in the commit that follows the merge.
+- **PR and merge.** PR [#101](https://github.com/karagemop466-tech/Poker3/pull/101) (`arena/57c814fd-poker3` → `main`),
+  merged 2026-11-17 22:14:02 UTC with `gh pr merge 101 --merge`, merge commit `d1313c7`. Both required checks passed on
+  the PR: `verify` (8s) and `transcription` (6s).
+- **Rebase conflicts, resolved without dropping anyone's work.** `main` moved three times while this session ran
+  (PRs #94, #96 and later #103). `scripts/data_source.py` and `site/data.json` conflicted on PR #96's text for F15 and
+  F36: that session had also corrected the same two flags. Both versions were kept in substance — the resolved text
+  carries this session's "resolved, with the dated $4,010.55 quote" framing **and** the other session's facts (four
+  stay windows inside the superseded dates returned no suite; the $197.28 floor is still labelled a floor, never a
+  quote). `site/data.json` was regenerated from the merged scripts, never hand-merged. `COORDINATION.md` conflicted a
+  second time; the V2 section from `arena/271f1c70-poker3` and this session's section were both kept, markers removed,
+  no entry dropped.
+- **Pages.** The Pages workflow for the merge of #101 completed `success`
+  ([run 44187998390](https://github.com/karagemop466-tech/Poker3/actions/runs/44187998390)) and the Pages API reports
+  `status: built` at https://karagemop466-tech.github.io/Poker3/ (source `main` `/`, html_url as returned by the API).
+- **Post-merge re-verification on the combined `main` tree** (after another session's PR #103 landed on top): reset to
+  `origin/main`, then `data_source.py` → `verify_site.py` passed (341 events, 8 hotels, 15 routes, 43 sources, 72 flags,
+  7 plan days, 16 pages); **125 tests OK**; `build_addendum.py` regenerates `site/sheets.html` byte-identically
+  (`git status` clean); `canonical_render.js` all pages rendered; 0 broken internal links across 25 pages.
+- **Still open after this pass (published as flags, not filled in):** F56 (Wynn Signature structures still
+  "COMING SOON"), F16 (no venue publishes a finish time, so the overlap check stays an estimate), F37/F39 (no published
+  room-tax percentage at Caesars, Horseshoe, Wynn or Bellagio), F66 (the phone-only poker rate cannot be observed from
+  the sandbox and needs a call). None blocks merging; all are on the Flagged for review page with official links.
 - **PR [#93](https://github.com/karagemop466-tech/Poker3/pull/93)** (`arena/ab5d9f7d-poker3` -> `main`): merged with
   `gh pr merge 93 --merge` at **2026-11-17T22:10:32Z**; merge commit **`8ddfdcc`**. The branch was rebased three times
   onto a `main` that other sessions kept moving; the only conflicts were append/append in `COORDINATION.md` and stale
