@@ -34,7 +34,11 @@ one-entry, no-rebuy and no-add-on rules in writing (flag F31). Each row carries 
 date. A row with a blank fee or guarantee is always explained by a note or a flag. Guaranteed-pool ÷ entry-fee is
 descriptive, never a forecast. Walking minutes are Google Maps estimates, because no venue publishes a walking time.
 
-Values were first read on **2026-11-16**; every official page and PDF was re-read and re-confirmed on **2026-11-17**.
+Values were first read on **2026-11-16**. On **2026-11-17** the official pages and PDFs behind the trip window were
+re-read: the DeepStack Extravaganza IV schedule, the seven structure sheets the day plan relies on (1, 5, 6, 7, 11, 17,
+22, 26), the Venetian poker-suite rate page, resort-fee page and hotel terms, and the Wynn resort policy page. The
+Bellagio weekly PDFs, the Wynn daily and WPT PDFs and the remaining WPT structure sections were not re-read that day;
+each row carries its own read and verified dates rather than one blanket claim (see question Q10).
 Both dates are carried on every row: `lastChecked` is when the value was read, `lastVerified` is when it was last
 confirmed still true. All 52 structure sheets (37 DeepStack Extravaganza IV + 15 DeepStack NYE) have been read in full.
 
@@ -80,7 +84,11 @@ window that is open, so no calendar cell is ever used as a price (F47).
 
 `raw/official_excerpts_2026-11-17.md` holds the verbatim official text behind the hotel and Wynn daily-tournament
 values, and `scripts/verify_live_official.py` asserts them on every CI run.
->>>>>>> a1af876 (Sync the narrative with the 2026-11-17 findings)
+
+`research/recheck_2026-11-17_ed1d2489.json` is an independent 2026-11-17 line-by-line re-read of the same window: all four
+chunks of the official schedule (Nov 16 – Dec 23 2026), the eight structure sheets the day plan relies on, the Venetian
+poker-suite rate, resort-fee and hotel-terms pages, and the Wynn resort policy page. `tests/test_recheck_ed1d2489.py` fails
+if a published value, fee line, guarantee or sheet link drifts from that record.
 
 ## Scheduled checks
 
@@ -111,6 +119,33 @@ Unit tests in `tests/test_integrity.py` assert the arithmetic a reader acts on �
 reconciling to the printed total, the `$197.28` nightly floor, `ratio = guarantee / buy-in` on every row, a
 `lastChecked` date on every row — and `verify.yml` runs them, so a later edit cannot quietly reintroduce a wrong
 number.
+
+The job also starts on a `push` to `main` that touches the workflow, the recorder scripts, the data modules or
+`site/data.json`, as well as on the daily cron. `site/checks.json` and `site/feed/**` are deliberately left out of
+the trigger, because the job writes them and would otherwise set itself off.
+
+`scripts/audit_951cd431.py` is a second, independent auditor that also runs in `verify.yml`. It re-derives every
+one of those numbers straight from `site/data.json` and the verbatim official copies in `raw/`, and deliberately
+does **not** import the builder, so a defect in the builder cannot hide itself from the check. It also re-parses
+all 94 official DeepStack Extravaganza IV rows and matches them on date and start time.
+
+## Resumption rows
+
+45 rows are resumptions of a field that closed on an earlier day — Day 2 to Day 5 restarts and streamed final
+tables at the Venetian and at Wynn. Those rows carry **no** late-registration cut-off and **no** estimated
+finish, because the structure sheet's late-registration clause and the session length derived from it describe the
+earlier day's flight, not the restart: registration closed when that day ended, and no venue publishes a restart
+finish time. The reason is printed on each row and recorded on the Flagged for review page. Resumption rows are
+also excluded from the day plan and from the overlap check, so the plan is unaffected.
+
+## Late-registration clauses that cover two start times
+
+Three NYE sheets print one late-registration clause with two clock times, for example
+"6 levels + break (~5:25 PM or ~8:25 PM)", because a single sheet covers more than one start flight. The builder
+takes the earliest printed time that still falls after a row's own start, so the 3:10 PM row keeps 5:25 PM and the
+6:10 PM row takes 8:25 PM. Both times are printed on the sheet, so this disambiguates published values rather than
+inventing one; where no printed time falls after a row's start, no cut-off is published at all. This is recorded
+on the Flagged for review page.
 
 ## Run locally
 

@@ -594,6 +594,7 @@ function renderSchedule() {
               · ${p.primaryWalk === 0 ? 'room on site' : p.primaryWalk + ' min walk'}</p>
             <p class="day-meta">Buy-in <strong>${money(primary.buyIn)}</strong> · guaranteed pool <strong>${money(primary.guarantee)}</strong>
               · pool ÷ fee <strong>${primary.ratio ? primary.ratio.toFixed(1) + '×' : 'not published'}</strong> (descriptive, not a forecast)</p>
+            ${p.primaryGuaranteeNote ? `<p class="day-meta warn">Pool note: ${esc(p.primaryGuaranteeNote)}.</p>` : ''}
             <p class="day-meta">Starting chips ${primary.chips ? primary.chips.toLocaleString('en-US') : 'not published'}
               · late registration: ${primary.lateReg ? esc(primary.lateReg) : 'not published'}</p>
             ${primary.eligibility ? `<p class="day-meta warn">Restricted: ${esc(primary.eligibility)}</p>` : ''}
@@ -605,6 +606,7 @@ function renderSchedule() {
           ${fallback ? `<h4>${esc(fallback.name)}</h4>
             <p class="day-meta">${esc(venueName(fallback.venue))} · starts ${esc(fallback.time)}
               · buy-in ${money(fallback.buyIn) || 'not published'} · guaranteed ${money(fallback.guarantee) || 'not published'}</p>
+            ${p.fallbackGuaranteeNote ? `<p class="day-meta warn">Pool note: ${esc(p.fallbackGuaranteeNote)}.</p>` : ''}
             <p class="day-meta">${esc(p.fallbackReason)}</p>
             <p>${sourceLinks(fallback)}</p>` : `<p class="muted">${esc(p.fallbackReason)}</p>`}
           <ul class="recurring">${rec}</ul>
@@ -638,6 +640,10 @@ function renderSchedule() {
 
 /* --------------------------------------------------------------- Q & flags */
 function renderQuestions() {
+  const blocking = (db.questions || []).filter((q) => /^yes/i.test(q.blocking || '')).length;
+  const qCount = (db.questions || []).length;
+  document.querySelectorAll('[data-question-count]').forEach((el) => { el.textContent = String(qCount); });
+  document.querySelectorAll('[data-blocking-count]').forEach((el) => { el.textContent = String(blocking); });
   const host = document.querySelector('[data-questions]');
   if (!host) return;
   host.innerHTML = (db.questions || []).map((q) => `
@@ -650,6 +656,9 @@ function renderQuestions() {
     </article>`).join('');
 }
 function renderSuggestions() {
+  document.querySelectorAll('[data-suggestion-count]').forEach((el) => {
+    el.textContent = String((db.suggestions || []).length);
+  });
   const host = document.querySelector('[data-suggestions]');
   if (!host) return;
   host.innerHTML = (db.suggestions || []).map((s) => `

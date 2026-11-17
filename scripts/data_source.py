@@ -174,6 +174,44 @@ def fmt_clock(minutes):
     return f"{hh12}:{mm:02d} {ampm}"
 
 
+def late_cutoff_times(text):
+    """Every clock time printed in a late-registration clause, in printed order."""
+    out = []
+    for m in _CLOCK.finditer(text or ""):
+        hh, mm, ap = int(m.group(1)), int(m.group(2)), m.group(3).lower()
+        if hh == 12:
+            hh = 0
+        if ap == "p":
+            hh += 12
+        out.append(hh * 60 + mm)
+    return out
+
+
+def select_cutoff(start_min, late_text):
+    """Pick the printed cut-off that belongs to this row's start time.
+
+    A few NYE sheets print one late-registration clause covering two different
+    start flights, for example "6 levels + break (~5:25 PM or ~8:25 PM)".
+    Taking the first clock time blindly puts a 5:25 PM cut-off on the 6:10 PM
+    row, which closes registration before that event begins, and the estimate
+    built on it is meaningless.
+
+    Both times are printed on the sheet, so this disambiguates published values
+    rather than inventing one: when more than one time is printed, the earliest
+    one still falling after this row's start is the one that belongs to it. If
+    no printed time falls after the start, the sheet cannot be matched to this
+    row and no cut-off is published, so the row falls back to the documented
+    six-hour planning assumption.
+    """
+    times = late_cutoff_times(late_text)
+    if not times:
+        return None
+    if len(times) == 1 or start_min is None:
+        return times[0]
+    after = [t for t in times if t > start_min]
+    return min(after) if after else None
+
+
 def session_estimate(start_min, late_text, level_min):
     """Estimate a session length from printed data only.
 
@@ -182,7 +220,7 @@ def session_estimate(start_min, late_text, level_min):
     more levels (one level and one break).  With no printed cut-off time the
     documented six-hour planning assumption is used.
     """
-    cutoff = clock_minutes(late_text)
+    cutoff = select_cutoff(start_min, late_text)
     if cutoff is None or start_min is None:
         return 360, "", None
     if cutoff <= start_min:
@@ -190,6 +228,28 @@ def session_estimate(start_min, late_text, level_min):
     level = level_min if isinstance(level_min, int) and level_min else 30
     length = (cutoff - start_min) + (2 * level) + 15
     return length, fmt_clock(cutoff), cutoff
+
+
+def is_continuation(name: str) -> bool:
+    """True when a schedule row is a resumption of a field that has already closed.
+
+    A "Day 2 Restart", a "Day 3" row or a "Final Table" row resumes a field that
+    was seeded on an earlier day, so registration is closed and no official
+    finish time is published for the row.
+
+    A starting flight is NOT a continuation even when its payout clause mentions
+    a later day: "$250 No Limit Hold'em 1A $75K GTD - Day 1 payouts with 5%
+    advancing to Day 2" is flight 1A.  Only the part of the name before the
+    first " - " separator is tested for a day number, so a trailing payout
+    clause cannot turn a flight into a restart.  "(2Day)" is also not matched,
+    because there is no word boundary between the digit and "Day".
+    """
+    n = (name or "").lower()
+    if "restart" in n or "final table" in n:
+        return True
+    head = n.split(" - ", 1)[0]
+    return bool(re.search(r"\bday\s*[2-9]\b", head))
+
 
 VENUES = [
     dict(id="venetian", name="The Venetian Resort", pokerRoom="Venetian poker room",
@@ -380,7 +440,7 @@ FLAGS = [
                  "The figures are reported as printed with the ambiguity flagged."),
          source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_33.pdf"),
     dict(id="F11", area="Venetian NYE", severity="Low",
-         title="All 15 NYE structure sheets are read, but three print entry wording that the schedule page does not",
+         title="The NYE series is fully read, but three of its sheets print multi-entry wording the schedule page omits",
          detail=("Resolved on 2026-11-17: the 15 DeepStack Extravaganza NYE structure sheets were read in full, so no NYE "
                  "row is marked 'structure sheet not read'. The sheets change the picture that the schedule page alone "
                  "gives. Sheet 2 ($200 Bounty) and sheet 9 ($200 Valuetown Bounty) both print a 'subsequent re-entry' "
@@ -560,7 +620,7 @@ FLAGS = [
          source="https://github.com/karagemop466-tech/Poker3/actions"),
     dict(id="F31", area="Venetian DSE IV", severity="High",
          title="The structure sheets do not confirm a one-entry-per-player maximum",
-         detail=("The 45 Venetian rows classified as 'single entry on the sheet' have one printed buy-in and no re-entry, rebuy, add-on or second-flight provision in the reviewed sheet. However, the sheets do not state a maximum number of entries per player and do not explicitly call the event a freezeout. This is only a document-level screen, not written confirmation of the room's one-entry policy. Do not treat these candidates as strictly eligible or book around them until the venue confirms the maximum-entry, no-rebuy and no-add-on rules in writing. The source excerpt and date are attached to each row."),
+         detail=("The 52 Venetian rows classified as 'single entry on the sheet' have one printed buy-in and no re-entry, rebuy, add-on or second-flight provision in the reviewed sheet. However, the sheets do not state a maximum number of entries per player and do not explicitly call the event a freezeout. This is only a document-level screen, not written confirmation of the room's one-entry policy. Do not treat these candidates as strictly eligible or book around them until the venue confirms the maximum-entry, no-rebuy and no-add-on rules in writing. The source excerpt and date are attached to each row."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
     dict(id="F32", area="Walking routes", severity="Medium",
          title="The 30-minute walking check does not cover every hotel–venue pair",
@@ -607,15 +667,6 @@ FLAGS = [
                  "exactly why no third-party figure is used. The fee is left blank until an official Caesars page prints "
                  "it, so these two properties cannot yet be compared like for like."),
          source="https://www.caesars.com/caesars-palace"),
-    dict(id="F38", area="Schedule coverage", severity="Medium",
-         title="The earliest official start is 9:00 AM (Horseshoe daily); no 8:00 AM start is published",
-         detail=("Read on 2026-11-17 on the Caesars Palace and Horseshoe page: Horseshoe runs six daily No-Limit Hold'em "
-                 "games at 9 a.m., 11 a.m., 2 p.m., 5 p.m., 8 p.m. and 11 p.m., and publishes no buy-in or structure for them. "
-                 "Caesars Palace runs four daily games at 10 a.m., 2 p.m., 6 p.m. and 9 p.m. The earliest Venetian start is "
-                 "9:10 AM (a $260 Turbo Milestone Satellite on Dec 12), and opening Venetian events start at 10:10 AM or later. "
-                 "No 8 AM start appears on any official source read, so an 8 AM plan cannot be built from verified data. The day "
-                 "plan starts at the earliest verified open event for each venue."),
-         source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"),
     dict(id="F39", area="Hotel cost", severity="Medium",
          title="The Wynn tax percentage is not printed, so its true nightly cost cannot be closed",
          detail=("Wynn publishes 'plus tax' on its resort fee and on the room rate but prints no percentage. Applying the "
@@ -635,15 +686,53 @@ FLAGS = [
          detail=("The official DeepStack Extravaganza NYE page is headed 'December 24, 2026 - January 10, 2027', but its "
                  "three December 26 rows read 'Saturday, December 26, 2025'. December 26 is a Saturday in 2026 (not in "
                  "2025, when it was a Friday), so the weekday is right and the year is the typo. The rows are listed with "
-                 "the series dates and the printed year is flagged rather than corrected. The NYE structure sheets were "
-                 "not read in this pass, so no NYE row is in the single-entry path."),
+                 "the series dates and the printed year is flagged rather than corrected. All 15 NYE structure sheets "
+                 "have since been read (see F11), so the printed year is the only open point on these rows."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html"),
-    dict(id="F42", area="Schedule", severity="Low",
+    # F43 rather than F38: main already defines F38 (and F17) for this exact finding.
+    # Reusing the number would give two flags in one register the same id.
+    dict(id="F43", area="Schedule", severity="Low",
          title="The Caesars page gives a general session length, not an event finish time",
          detail=("The official Caesars Palace poker-tournament page says 'Most sessions finish in four to six hours.' That is a "
                  "general statement about its tournaments, not a published finish time for any event. The six-hour planning "
                  "assumption for every room therefore remains an assumption."),
          source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"),
+    dict(id="F48", area="Venetian DeepStack NYE", severity="Medium",
+         title="Two NYE events share one 11:10 AM start on January 4, 2027",
+         detail=("The official DeepStack Extravaganza NYE schedule page lists Event #20 ($1,600 MSPT Day 2 Restart) and "
+                 "Event #27 ($250 No Limit Hold'em 1A $75K GTD) at 11:10 AM on the same day. Every other Day 2 or Day 3 "
+                 "restart row in both Venetian series is published at 10:00, 11:00 AM or 12:00 PM, never at 11:10 AM, "
+                 "while every 1A/1B/1C starting flight is published at 11:10 AM or 5:10 PM. The restart time therefore "
+                 "looks like a transcription slip on the official page rather than a genuine 11:10 AM restart, but this "
+                 "cannot be settled from the repository's copy, so the row is published exactly as the official page has "
+                 "it and is not adjusted. Confirm against the official page before sequencing anything on that date."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html"),
+    dict(id="F49", area="Day 2 / final-table rows", severity="Medium",
+         title="Resumption rows carry no late-registration cut-off and no estimated finish",
+         detail=("45 rows are resumptions of a field that closed on an earlier day: Day 2, Day 3, Day 4 and Day 5 restarts "
+                 "and streamed final tables at the Venetian and at Wynn. Earlier in this build those rows printed the "
+                 "structure sheet's late-registration clause and the session length derived from it, but both belong to "
+                 "the earlier day's flight, not to the restart: registration closed when that day ended, and no venue "
+                 "publishes a restart finish time. On the LIPS streamed final table this produced a 7:00 PM start with a "
+                 "'late registration until 4:55 PM' that closed three hours earlier, and an estimated finish at 6:30 PM "
+                 "the following afternoon. Both fields are now blank on those rows, with the reason recorded on the row. "
+                 "Four NYE rows that had been misclassified as restarts were also corrected: '$250 No Limit Hold'em "
+                 "1A/1B/1C/1D $75K GTD - Day 1 payouts with 5% advancing to Day 2' are starting flights, not resumptions, "
+                 "because their 'Day 2' mention sits in the trailing payout clause. Continuation detection is now one "
+                 "shared rule instead of four separate regexes, two of which could not see a bare 'Final Table' row."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
+    dict(id="F50", area="Venetian DeepStack NYE", severity="Low",
+         title="Three NYE sheets print one late-registration clause covering two start times",
+         detail=("Sheets dse_dec_2026-structure_4, _5 and _15 print a single late-registration clause with two clock times, "
+                 "for example '6 levels + break (~5:25 PM or ~8:25 PM)', because one sheet covers more than one start "
+                 "flight. The builder previously took the first clock time on every row, which put a 5:25 PM cut-off on the "
+                 "6:10 PM row and closed registration before that event began. The row now takes the earliest printed time "
+                 "that still falls after its own start, so the 3:10 PM row keeps 5:25 PM and the 6:10 PM row takes 8:25 PM. "
+                 "Both times are printed on the sheet, so this disambiguates published values rather than inventing one; "
+                 "where no printed time falls after a row's start, no cut-off is published at all. Sheet _5 prints "
+                 "'5:25 PM or 12:25 PM' and no row in this schedule would take the 12:25 PM figure, so confirm the "
+                 "12:25 PM reading with the poker room."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html"),
 ]
 
 QUESTIONS = [
@@ -706,7 +795,7 @@ QUESTIONS = [
          how="Say which properties to add; each needs its own official page and structure sheets.",
          source="https://www.venetianlasvegas.com/resort/casino/poker.html"),
     dict(id="Q10", question="Do the December 17-23 and holiday-week events still run as published?",
-         answer=("Re-read on 2026-11-17. Venetian DeepStack Extravaganza IV (the page covers Nov 16 to Dec 23, 2026): the 21 rows dated Nov 16 to Nov 27 match the page on date, start time, event name, buy-in, guarantee and structure-sheet link. The 73 rows dated Nov 28 to Dec 23 match on date, start time, event name, buy-in and guarantee; their structure links were not compared. Caesars Palace (four daily starts at 10 AM, 2 PM, 6 PM and 9 PM, $100 buy-in, $1,000 guarantee) and Horseshoe (six daily starts from 9 AM to 11 PM) match the page text. The page gives no Horseshoe buy-in or guarantee, so those cells stay blank. The Venetian resort fee is still $55 plus tax. The Wynn landing page confirms the WPT window and the Super Gold Million terms. The Bellagio landing page still carries a stale notice (flag F33). The Bellagio weekly PDFs, the Wynn daily and WPT PDFs and the DeepStack NYE schedule were not re-read."),
+         answer=("Re-read on 2026-11-17. Venetian DeepStack Extravaganza IV (the page covers Nov 16 to Dec 23, 2026): the 21 rows dated Nov 16 to Nov 27 match the page on date, start time, event name, buy-in, guarantee and structure-sheet link. The 73 rows dated Nov 28 to Dec 23 match on date, start time, event name, buy-in and guarantee; their structure links were not compared. Caesars Palace (four daily starts at 10 AM, 2 PM, 6 PM and 9 PM, $100 buy-in, $1,000 guarantee) and Horseshoe (six daily starts from 9 AM to 11 PM) match the page text. The page gives no Horseshoe buy-in or guarantee, so those cells stay blank. The Venetian resort fee is still $55 plus tax. The Wynn landing page confirms the WPT window and the Super Gold Million terms. The Bellagio landing page still carries a stale notice (flag F03). Not re-read by the 2026-11-17 pass that produced this answer: the Bellagio weekly PDFs, the Wynn daily and WPT PDFs and the DeepStack NYE schedule. They were read by the sessions recorded on the sources page, and each row shows its own read and verified dates."),
          why="Useful", blocking="No",
          how="Re-check the Flagged for review page and the change log before booking and again 48 hours before you travel.",
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
@@ -723,10 +812,13 @@ QUESTIONS = [
     dict(id="Q13", question="Are you 21 or older with a Venetian Rewards card, and are you 50 or older for the Seniors events?",
          answer=("Each of the seven DeepStack Extravaganza IV sheets re-read on 2026-11-17 requires players to be 21+ and to hold a "
                  "Venetian Rewards card. The Dec 2 10:10 AM $600 No Limit Hold'em Seniors event (#24) is open only to players "
-                 "50 or older, according to the official schedule. Its structure sheet has not been read, so its entry rules "
-                 "are unconfirmed. The day plan leaves age-restricted events out, so the Dec 2 primary is the 5:10 PM bounty."),
+                 "50 or older. Sheet 17, read on 2026-11-16 and re-read line by line on 2026-11-17, prints 'MUST BE 50+ YEARS OF "
+                 "AGE TO PARTICIPATE' and adds that a player who buys in under 50 is not entitled to prize money or a refund of "
+                 "the buy-in, so the age limit is confirmed on the sheet and not only on the schedule. The day plan leaves "
+                 "age-restricted events out, so the Dec 2 primary stays the 5:10 PM bounty and this Seniors event is listed "
+                 "only as an alternative for a player who is 50+."),
          why="Needed", blocking="Yes - eligibility decides which of the trip-window events a player can enter",
-         how="Confirm your age band and whether you hold a Venetian Rewards card. If you are 50+, the Seniors event can be added to the plan after its sheet is read.",
+         how="Confirm your age band and whether you hold a Venetian Rewards card. If you are 50+, the Dec 2 Seniors event (#24) is open to you: its sheet is read and its fee, guarantee, chips and late-registration cut-off are on the row.",
          source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_6.pdf"),
     dict(id="Q14", question="Does the 8 AM start the brief asks for exist anywhere on the Strip?",
          answer=("Not on any official source read for this build. The earliest verified start is Horseshoe's daily game at 9:00 AM "
@@ -958,8 +1050,24 @@ def _event(eid, venue, date, time, name, buyIn, guarantee, rules, category, kind
     buy = buyIn if isinstance(buyIn, str) else ("" if buyIn in (None, "-") else buyIn)
     gua = guarantee if isinstance(guarantee, str) else ("" if guarantee in (None, "-") else guarantee)
     start = clock_minutes(time)
-    length, cutoff, _ = session_estimate(start, late_reg, level_min)
-    end = None if start is None else start + length
+    if continuation:
+        # A restart row resumes a closed field.  The structure sheet's
+        # late-registration clause and the session arithmetic derived from it
+        # describe the earlier day's flight, not this row: registration closed
+        # when that day ended, and no venue publishes a restart finish time.
+        # Carrying either value across would print a late-registration cut-off
+        # for an event nobody can register for, so both are left blank and the
+        # reason is recorded on the row.
+        length, cutoff, end = None, "", None
+        note = (note + " " if note else "") + (
+            "Resumption row: the structure sheet's late-registration clause"
+            + (f" ({late_reg})" if late_reg else "")
+            + " and the session length derived from it belong to the earlier day, so no late-registration cut-off"
+              " and no estimated finish are published for this row.")
+        late_reg = ""
+    else:
+        length, cutoff, _ = session_estimate(start, late_reg, level_min)
+        end = None if start is None else start + length
     if not fmt:
         n = name.lower()
         if entry_type == "satellite":
@@ -1039,9 +1147,9 @@ TRIP = {
          "whose sheets omit extra-entry terms: 14, with at least one on each date. This is not proof of a one-entry-per-player cap."),
         ("All 37 DeepStack Extravaganza IV structure sheets were read directly on 2026-11-16. The sheets are primary-source "
          "evidence for their printed terms, but they do not confirm a maximum number of entries per player; see F31."),
-        ("The window stays inside DSE IV. The December 24 to January 10 DeepStack NYE dates are published on the "
-         "official schedule page, but the 15 NYE structure sheets were not read, so those rows cannot enter the "
-         "sheet-screened candidate list yet (F11)."),
+        ("The window stays inside DSE IV, the series whose 37 structure sheets were read first. The December 24 to "
+         "January 10 DeepStack NYE series is also fully published and all 15 of its structure sheets have since been "
+         "read; three of them print multi-entry wording, which is why those rows stay out of the candidate list (F11)."),
         ("It also sits before the $10,400 WPT World Championship buy-in tier on December 13, which would break the trip "
          "budget on a single entry."),
         ("The Wynn WPT schedule runs from November 27 inside the window, so three days carry additional published rows, "
@@ -1123,6 +1231,23 @@ def _plan_eligible(e):
     if not isinstance(e["guarantee"], (int, float)) or not e["guarantee"]:
         return False
     return True
+
+
+def _pool_note(e):
+    """Name what a printed guarantee counts, using only the sheet's own wording.
+
+    Bounty and PKO sheets print 'prize pool + total bounties', so their guarantee is not a
+    cash prize pool. The category stays 'single' - that label answers the entry question -
+    and this note carries the bounty split so the ratio is never read as a cash-only pool.
+    """
+    kind = e.get("kind")
+    if kind == "bounty":
+        return "Includes total bounties, not a cash-only prize pool"
+    if kind == "pko":
+        return "Progressive knockout: part of the guarantee is paid as bounties"
+    if kind == "satellite":
+        return "Seat prizes, not cash"
+    return ""
 
 
 def _plan_rank(e):
@@ -1234,6 +1359,8 @@ def build_day_plan(events, start_date, end_date, recurring=()):
             fallbackFormat=fallback["format"] if fallback else "",
             fallbackReason=fallback_reason,
             candidates=len(eligible),
+            primaryGuaranteeNote=_pool_note(primary) if primary else "",
+            fallbackGuaranteeNote=_pool_note(fallback) if fallback else "",
         ))
     return plan, conflicts
 
@@ -1257,7 +1384,7 @@ def build():
     for date, time, no, name, sheet, guarantee, category in V.DSE_ROWS:
         s = V.SHEETS[sheet]
         url = f"{V.BASE}/dse_nov_2026-structure_{sheet}.pdf"
-        cont = bool(re.search(r"day [23]\b", name.lower()))
+        cont = is_continuation(name)
         guarantee_value = guarantee
         guarantee_note = ""
         if not guarantee_value and s.get("kind") == "satellite" and s.get("guarantee"):
@@ -1325,7 +1452,7 @@ def build():
                               f"the prize pool consists of ${sh['pool']} of every ${sh['buyIn']:,} buy-in."),
                      source=url, retrieved=VERIFIED_ON),
         )
-        cont = bool(re.search(r"day [23]\b", name.lower()))
+        cont = is_continuation(name)
         events.append(_event(
             f"vl-nye-{date}-{no}-{time.replace(':', '').replace(' ', '').lower()}",
             "venetian", date, time, name, sh["buyIn"], guarantee, rules, category, sh["kind"], url, V.NYE, url,
@@ -1394,7 +1521,7 @@ def build():
                  "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read."),
                 WPT_MARK_NOTES.get(marks, "")] if x).strip(),
             chips=int(chips) if chips not in ("-", "") else "", entry_type=("multi-flight" if flight else "not-verified"),
-            continuation=bool(re.search(r"day [2345]\b|final table", name.lower())),
+            continuation=is_continuation(name),
         ))
 
     # --- Wynn Signature Series ------------------------------------------
@@ -1431,7 +1558,7 @@ def build():
                  "Wynn Signature Series row from the official schedule PDF; entry rules not yet read."),
                 SIG_MARK_NOTES.get(marks, "")] if x).strip(),
             chips=int(chips) if chips not in ("-", "") else "", entry_type=("multi-flight" if flight else "not-verified"),
-            continuation=bool(re.search(r"day [2345]\b|final table", name.lower())),
+            continuation=is_continuation(name),
         ))
 
     # --- Other venues ----------------------------------------------------
@@ -1647,6 +1774,16 @@ def main():
     out = ROOT / "site" / "data.json"
     data = build()
     out.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    # The sheet-verification page links the machine-readable sheet extracts. The
+    # source of truth lives at data/sheet_extracts.jsonl, outside the published
+    # directory, and the Pages artifact publishes only site/. Mirror it so the
+    # link resolves under the artifact publisher and under the root publisher.
+    src = ROOT / "data" / "sheet_extracts.jsonl"
+    if src.exists():
+        dst = ROOT / "site" / "data" / "sheet_extracts.jsonl"
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        if not dst.exists() or dst.read_bytes() != src.read_bytes():
+            dst.write_bytes(src.read_bytes())
     cats = {}
     for e in data["events"]:
         cats[e["category"]] = cats.get(e["category"], 0) + 1
