@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Guards for the two label defects found on 2026-11-17 by session 4fbf8168.
 
-1. **Parking, like-for-like (F79).** The recommended hotel published only its paid
+1. **Parking, like-for-like (F86).** The recommended hotel published only its paid
    self-parking figures while the resort's own poker-room parking page prints a
    complimentary-parking rule for players — and the Wynn row in the same table did carry
    its poker-room benefit. A reader comparing the two rows was not comparing the same
@@ -101,7 +101,7 @@ class ParkingWaiverIsPublished(unittest.TestCase):
     def test_calculator_page_shows_the_waiver_next_to_the_parking_field(self):
         self.assertIn(PARKING_URL.replace("https://", ""), CALC_PAGE)
         self.assertIn("three hours or more", CALC_PAGE)
-        self.assertIn("F79", CALC_PAGE, "the calculator must point at the flag that records this")
+        self.assertIn("F86", CALC_PAGE, "the calculator must point at the flag that records this")
         # The input still defaults to the paid figure — the waiver is optional, not assumed.
         self.assertRegex(CALC_PAGE.replace("\n", " "), r'id="parking"[^>]*value="20"')
 
@@ -203,8 +203,8 @@ class CandidateDisclosure(unittest.TestCase):
 
 
 class FlagRegister(unittest.TestCase):
-    def test_f79_is_registered_officially_and_says_nothing_moved(self):
-        f = FLAGS.get("F79")
+    def test_f86_is_registered_officially_and_says_nothing_moved(self):
+        f = FLAGS.get("F86")
         self.assertIsNotNone(f, "the parking defect must be on the flag register")
         self.assertEqual(f["area"], "Hotels")
         self.assertEqual(f["source"], PARKING_URL)

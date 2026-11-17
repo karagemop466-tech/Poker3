@@ -6,7 +6,7 @@ defect: a row was placed in the single-entry candidate list, or given a status, 
 excerpt quoted underneath it said something weaker or the opposite (F75: a NYE row quoted
 "the initial entry or any subsequent re-entry" and still sat in the candidate list; F76: WPT
 rows said "entry rules not yet read" while quoting the entry rule).  A third instance
-appeared on the hotel side (F79): the recommended hotel published a paid parking figure
+appeared on the hotel side (F86): the recommended hotel published a paid parking figure
 while omitting the waiver the venue prints for poker-room players, so its row was not
 like-for-like with the Wynn row, which carried its own benefit.
 
@@ -202,7 +202,7 @@ def main() -> int:
 
     for hid in ("venetian", "palazzo"):
         if hid not in waiver_bearing:
-            fail(f"hotel {hid}: the resort prints a poker-room parking waiver; the row must carry it (F79)",
+            fail(f"hotel {hid}: the resort prints a poker-room parking waiver; the row must carry it (F86)",
                  errors)
 
     # 7. The trip-cost model keeps the paid parking line; the waiver sits beside it.

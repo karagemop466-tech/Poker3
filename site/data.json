@@ -6176,7 +6176,7 @@
    "rules": {
     "singleEntry": {
      "status": "single-entry-on-sheet",
-     "excerpt": "The sheet prints one $400 buy-in, one start flight and one starting-chips figure (30,000). No re-entry, rebuy, add-on or second-flight provision appears anywhere on the sheet.",
+     "excerpt": "The sheet prints one $400 buy-in, one start flight and one starting-chips figure (30,000). No re-entry, rebuy, add-on or second-flight provision appears anywhere on the sheet. The sheet does not state a per-player maximum-entry count or explicitly call the event a freezeout; venue confirmation is still required.",
      "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_1.pdf",
      "retrieved": "2026-11-17"
     },
@@ -6294,7 +6294,7 @@
    "rules": {
     "singleEntry": {
      "status": "single-entry-on-sheet",
-     "excerpt": "The sheet prints one $400 buy-in, one start flight and one starting-chips figure (30,000). No re-entry, rebuy, add-on or second-flight provision appears anywhere on the sheet.",
+     "excerpt": "The sheet prints one $400 buy-in, one start flight and one starting-chips figure (30,000). No re-entry, rebuy, add-on or second-flight provision appears anywhere on the sheet. The sheet does not state a per-player maximum-entry count or explicitly call the event a freezeout; venue confirmation is still required.",
      "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_1.pdf",
      "retrieved": "2026-11-17"
     },
@@ -6412,7 +6412,7 @@
    "rules": {
     "singleEntry": {
      "status": "single-entry-on-sheet",
-     "excerpt": "The sheet prints one $600 buy-in, one start flight and one starting-chips figure (40,000). No re-entry, rebuy, add-on or second-flight provision appears anywhere on the sheet.",
+     "excerpt": "The sheet prints one $600 buy-in, one start flight and one starting-chips figure (40,000). No re-entry, rebuy, add-on or second-flight provision appears anywhere on the sheet. The sheet does not state a per-player maximum-entry count or explicitly call the event a freezeout; venue confirmation is still required.",
      "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_3.pdf",
      "retrieved": "2026-11-17"
     },
@@ -7120,7 +7120,7 @@
    "rules": {
     "singleEntry": {
      "status": "single-entry-on-sheet",
-     "excerpt": "The sheet prints one $600 buy-in, one start flight and one starting-chips figure (40,000). No re-entry, rebuy, add-on or second-flight provision appears anywhere on the sheet.",
+     "excerpt": "The sheet prints one $600 buy-in, one start flight and one starting-chips figure (40,000). No re-entry, rebuy, add-on or second-flight provision appears anywhere on the sheet. The sheet does not state a per-player maximum-entry count or explicitly call the event a freezeout; venue confirmation is still required.",
      "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_12.pdf",
      "retrieved": "2026-11-17"
     },
@@ -7356,7 +7356,7 @@
    "rules": {
     "singleEntry": {
      "status": "single-entry-on-sheet",
-     "excerpt": "The sheet prints one $400 buy-in, one start flight and one starting-chips figure (30,000). No re-entry, rebuy, add-on or second-flight provision appears anywhere on the sheet.",
+     "excerpt": "The sheet prints one $400 buy-in, one start flight and one starting-chips figure (30,000). No re-entry, rebuy, add-on or second-flight provision appears anywhere on the sheet. The sheet does not state a per-player maximum-entry count or explicitly call the event a freezeout; venue confirmation is still required.",
      "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_1.pdf",
      "retrieved": "2026-11-17"
     },
@@ -8359,7 +8359,7 @@
    "rules": {
     "singleEntry": {
      "status": "single-entry-on-sheet",
-     "excerpt": "The sheet prints one $400 buy-in, one start flight and one starting-chips figure (40,000). No re-entry, rebuy, add-on or second-flight provision appears anywhere on the sheet.",
+     "excerpt": "The sheet prints one $400 buy-in, one start flight and one starting-chips figure (40,000). No re-entry, rebuy, add-on or second-flight provision appears anywhere on the sheet. The sheet does not state a per-player maximum-entry count or explicitly call the event a freezeout; venue confirmation is still required.",
      "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_11.pdf",
      "retrieved": "2026-11-17"
     },
@@ -8890,7 +8890,7 @@
    "rules": {
     "singleEntry": {
      "status": "single-entry-on-sheet",
-     "excerpt": "The sheet prints one $400 buy-in, one start flight and one starting-chips figure (40,000). No re-entry, rebuy, add-on or second-flight provision appears anywhere on the sheet.",
+     "excerpt": "The sheet prints one $400 buy-in, one start flight and one starting-chips figure (40,000). No re-entry, rebuy, add-on or second-flight provision appears anywhere on the sheet. The sheet does not state a per-player maximum-entry count or explicitly call the event a freezeout; venue confirmation is still required.",
      "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_10.pdf",
      "retrieved": "2026-11-17"
     },
@@ -21006,8 +21006,18 @@
    "resortFeeNote": "$55 resort fee per night stayed, plus tax, payable upon check-in.",
    "taxRate": 13.38,
    "taxNote": "Clark County Room Tax of 13.38% applies to the daily rate; the resort fee is 'plus applicable tax'.",
-   "parking": "$20 per day for registered hotel guests (seven days a week); $20 Monday-Thursday and $25 Friday-Sunday for non-hotel guests; valet $40 per day. Separately, the poker room's own parking page states that players in the poker room who play three hours or more in tournament or cash games receive complimentary self-parking for the day, confirmed with a supervisor at the end of the session; Venetian Rewards Sapphire members and above also self-park free.",
+   "parking": "$20 per day for registered hotel guests (seven days a week); $20 Monday-Thursday and $25 Friday-Sunday for non-hotel guests; valet $40 per day (hotel terms). The resort's own poker-room parking page repeats those figures and adds a waiver: 'Players in the poker room who play three hours or more in tournament or cash games will receive complimentary self-parking for the day.' Venetian Rewards Sapphire and above park free; Nevada residents get three hours free; event parking rates may be in effect and rates are 'subject to change'.",
    "parkingSource": "https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html",
+   "parkingWaiver": {
+    "status": "published-conditional",
+    "excerpt": "Players in the poker room who play three hours or more in tournament or cash games will receive complimentary self-parking for the day. Players must visit a supervisor at the end of their session to confirm qualifications for complimentary self-parking.",
+    "conditions": "Validated by a supervisor at the end of the session. The same page adds, in its own words, that 'Venetian Rewards Sapphire members and above receive complimentary self-parking' and that 'Event parking rates may be in effect and are subject to change; check posted signage for additional details.' It also gives Nevada residents three hours of complimentary self-parking by scanning a valid Nevada driver's licence at a self-parking kiosk, not available while event parking rates are in effect; that clause is paraphrased because the page's own punctuation could not be reproduced byte for byte in this capture.",
+    "tierRoute": "75 cash-game hours or 15 tournaments in the past 12 months can be emailed to the address on the page to be validated for Sapphire tier, which carries complimentary self-parking.",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html",
+    "retrieved": "2026-11-17",
+    "appliedToTotals": false,
+    "whyNotApplied": "The $20 per night stays in every published total. No official source publishes a tournament finish time (F16), so a three-hour session cannot be confirmed for a named event, and the page makes the waiver conditional on a supervisor confirming the session. The waiver is published beside the figure, not folded into it."
+   },
    "cancellation": "A deposit for the stay including suite, fee and tax is billed on reservation confirmation. Blackout dates apply. Prepaid offers are non-cancellable and non-refundable. Early checkout before the scheduled departure date costs $100 plus tax.",
    "cancellationSource": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
    "incidental": "$150 per night credit card incidental deposit for suite charging privileges (non-Signature Suites).",
@@ -21489,8 +21499,17 @@
    "resortFeeNote": "$55 resort fee per night stayed, plus tax, payable upon check-in.",
    "taxRate": 13.38,
    "taxNote": "Clark County Room Tax of 13.38% applies to the daily rate; the resort fee is 'plus applicable tax'.",
-   "parking": "$20 per day for registered hotel guests; valet $40 per day.",
-   "parkingSource": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
+   "parking": "$20 per day for registered hotel guests; $25 Friday-Sunday for non-hotel guests; valet $40 per day. The poker room is in this building, and the row cites the resort's own poker-room parking page because that is where the player waiver appears: 'Players in the poker room who play three hours or more in tournament or cash games will receive complimentary self-parking for the day.' The same page prints the paid guest rate; the hotel terms page carries the identical figures.",
+   "parkingSource": "https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html",
+   "parkingWaiver": {
+    "status": "published-conditional",
+    "excerpt": "Players in the poker room who play three hours or more in tournament or cash games will receive complimentary self-parking for the day. Players must visit a supervisor at the end of their session to confirm qualifications for complimentary self-parking.",
+    "conditions": "The page is the resort's single poker-room parking page and does not separate The Venetian from The Palazzo; the poker room itself is at The Palazzo, level 2 of Grand Canal Shoppes, per the official poker-room page. Supervisor confirmation required.",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html",
+    "retrieved": "2026-11-17",
+    "appliedToTotals": false,
+    "whyNotApplied": "Same as The Venetian: the paid figure stays in the total because no official source publishes a finish time (F16) and the waiver needs supervisor confirmation."
+   },
    "cancellation": "Deposit billed on confirmation; blackout dates apply; prepaid offers non-refundable; early checkout $100 plus tax.",
    "cancellationSource": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
    "incidental": "$150 per night credit card incidental deposit.",
@@ -23958,6 +23977,22 @@
    "title": "Mandalay Bay is open on its official page, which prints no tournament schedule",
    "detail": "The official poker page (read 2026-11-17) prints Wednesday to Monday, 10 AM to 4 AM, closed Tuesdays, a $60–$1,000 price range, and 'Please Visit or Call Poker Room for Details' with reservations at 702.632.7790. Third-party listings show a $60 daily at 1 PM and a $100 Saturday event at 8 PM; those are not official and are not used. The room is in the morning feed, and no Mandalay Bay event enters the plan.",
    "source": "https://mandalaybay.mgmresorts.com/en/casino/poker-tables.html"
+  },
+  {
+   "id": "F86",
+   "area": "Hotels",
+   "severity": "Medium",
+   "title": "The poker-room parking waiver the venue prints for players is now carried by both Venetian rows, with the paid fee left in every total",
+   "detail": "Found on 2026-11-17 by re-reading the official poker-room pages (22:31Z), and reached independently on the same day by the session that put the poker-room page on The Venetian row's citation. The finding is the asymmetry: the Wynn row has carried a poker-room parking benefit for some time, while the Venetian and Palazzo rows published only the paid self-parking figures. The resort's own page, https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html, prints both the rates ('The daily fee for registered hotel guests is $20/day, seven days a week') and the waiver: 'Players in the poker room who play three hours or more in tournament or cash games will receive complimentary self-parking for the day. Players must visit a supervisor at the end of their session to confirm qualifications for complimentary self-parking.' What this session adds on top of the citation: The Palazzo row now states the same policy (cited to the same poker-room page, which prints both the guest rate and the waiver); both rows and the trip-cost model carry the waiver as a dated, structured field with the verbatim text, the supervisor condition, the Sapphire tier route and the reason it is not applied; the calculator prints the waiver beside its parking field; and Q12 answers the question from the venue's page. NO TOTAL WAS CHANGED. The paid $20 a night stays in the calculator and in every published trip total, because no official source publishes a tournament finish time (F16) so the three-hour condition cannot be confirmed from a schedule, the page requires a supervisor to confirm the session, and the same page warns 'Event parking rates may be in effect' and that rates are 'subject to change'. What the page does not say - whether the waiver reaches an overnight folio charge or only the exit gate - is left blank, not guessed. MGM Resorts' own parking pages (MGM Grand, ARIA, Bellagio) could not be reached from this environment on 2026-11-17, so those three parking cells stay empty rather than being filled from third-party write-ups; Caesars Palace and Horseshoe publish only \"surcharge applies\" with no figure on the pages read. A guard, scripts/verify_entry_labels.py, now fails the build if a waiver is quoted in the data but not in the table row, or netted into a total.",
+   "source": "https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html"
+  },
+  {
+   "id": "F87",
+   "area": "Venetian DSE IV",
+   "severity": "Low",
+   "title": "Three event names are re-cased against the schedule page, which prints those sub-lines in capital letters",
+   "detail": "Found by re-reading the official schedule page at 2026-11-17T22:29Z and comparing the published rows line by line with the page text (24 rows, 16-28 November). 19 rows match character for character. Four differ only in the source's own typo 'No LImit', which F27 already discloses. Three rows differ in letter case, all from one shared sub-line, of which one is inside the 24 rows re-read this session and two are in the December and NYE captures: event #18 (Saturday 28 November, 5:10 PM, $200 NLH PokerAtlas Valuetown Bounty $20K GTD) prints its sub-line as 'POKERATLAS PRO MEMBER $20 RAKE DISCOUNT' on the page, while the site publishes 'PokerAtlas PRO member $20 rake discount'. The same re-casing covers event #58 (19 December) and NYE event #25 (2 January), which share that sub-line. No date, time, event number, buy-in, guarantee or structure-sheet link differs on any of the three rows, so no money or schedule value is affected. It is published because the site's rule is that a name is either the printed name or is marked as restyled, and this one was not marked. The choice is left to the user: print the capitals, or keep the title case and leave this flag on the register.",
+   "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
   }
  ],
  "questions": [
@@ -24066,8 +24101,8 @@
    "answer": "Venetian: $20 per day for registered hotel guests, $20 Monday-Thursday and $25 Friday-Sunday for non-hotel guests, valet $40. The poker room's own parking page adds a waiver the hotel terms page does not print: players who play three hours or more in tournament or cash games receive complimentary self-parking for that day, confirmed with a supervisor at the end of the session (re-read 2026-11-17). A registered guest staying on property and playing a six-hour session therefore may pay nothing for parking, which is why the trip calculator keeps parking out of the core formula and shows it separately. Wynn: self-parking is free for registered guests and $25 per day for others, valet $40, and complimentary self-parking extends to Wynn poker-room guests. Bellagio, MGM Grand and ARIA publish no parking figure on their reservation terms pages, so those cells stay blank rather than guessed.",
    "why": "Needed",
    "blocking": "No",
-   "how": "Include parking in the trip total if you will not stay on property every night.",
-   "source": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html"
+   "how": "Parking stays in the trip total at $20 a night. If the room confirms three or more hours of play for a day, that night's self-parking is complimentary per the page, so set the parking field to 0 for those days rather than assuming the waiver in advance.",
+   "source": "https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html"
   },
   {
    "id": "Q13",
@@ -27240,7 +27275,7 @@
    "startingRate": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
    "resortFee": "https://www.venetianlasvegas.com/resort/resort-fee.html",
    "tax": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
-   "parking": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
+   "parking": "https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html",
    "cancellation": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
    "qualification": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"
   },
@@ -27250,8 +27285,16 @@
    "parking": "The daily fee for registered hotel guests is $20/day, seven days a week.",
    "qualification": "Six hours of active live cash play, or a buy-in to a $300 or higher tournament, for each night stayed. The rate is adjusted to the prevailing rate for any night the requirement is missed."
   },
+  "parkingWaiver": {
+   "status": "published-conditional",
+   "excerpt": "Players in the poker room who play three hours or more in tournament or cash games will receive complimentary self-parking for the day. Players must visit a supervisor at the end of their session to confirm qualifications for complimentary self-parking.",
+   "source": "https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html",
+   "retrieved": "2026-11-17",
+   "appliedToTotals": false,
+   "note": "The $20 per night parking line above is the registered-guest self-parking fee. The resort's own poker-room parking page prints a waiver of it for players who play three hours or more, confirmed by a supervisor at the end of the session. The waiver is not netted off this total: no official source publishes a finish time for any event (F16), so the three-hour condition cannot be confirmed from a schedule, and a rate the venue reserves the right to change is not a saving to bank. Set the parking field to 0 in the calculator only once the room has confirmed it for you."
+  },
   "cancellation": "A deposit covering suite, fee and tax is billed on confirmation. Prepaid offers are non-cancellable and non-refundable. Early checkout costs $100 plus tax. No date-specific cancellation deadline was published for a flexible booking on the reviewed pages.",
-  "note": "Computed from the published starting rate, the published $55 resort fee and the published 13.38% Clark County room tax. It is a floor for the property, not a quote for any date. The official booking engine quoted a dated checkout total for the 23-30 Nov 2026 trip window on 2026-11-17; that quote is in liveQuote and is not this floor.",
+  "note": "Computed from the published starting rate, the published $55 resort fee and the published 13.38% Clark County room tax. It is a floor for the property, not a quote for any date. The official booking engine quoted a dated checkout total for the 23-30 Nov 2026 trip window on 2026-11-17; that quote is in liveQuote and is not this floor. The parking line is the registered-guest fee; the venue publishes a conditional waiver of it for players (see parkingWaiver), which is not netted off.",
   "liveQuote": {
    "quoteDate": "2026-11-17",
    "checkIn": "2026-11-23",

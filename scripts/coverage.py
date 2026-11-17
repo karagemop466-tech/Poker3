@@ -49,7 +49,7 @@ ITEMS = [
      "Single shared board listing each task, status, owning session, scope and files; integration-owner convention for shared outputs."),
     # ---- Exact dates & occupancy / hotel cost components ----
     ("C9", "Capture checkout total, nightly average, mandatory resort fee, tax, parking, cancellation deadline, rate timestamp; compare like-for-like",
-     "partial", "site/hotels.html + site/data.json (trip, rateLog, hotels)", ["F15", "F36", "F39", "F57", "F79"],
+     "partial", "site/hotels.html + site/data.json (trip, rateLog, hotels)", ["F15", "F36", "F39", "F57", "F86"],
      "Venetian dated checkout total $4,010.55 (23-30 Nov 2026) with per-night rates, $55 fee, 13.38% tax, $20/$25/$40 parking, 11 a.m. checkout, $100 early checkout, $150 incidental. The Venetian and Palazzo rows now also carry the venue's printed poker-room parking waiver (three or more hours of play = complimentary self-parking for the day, supervisor-confirmed), so all three recommended hotels state a parking rule on the same terms; the waiver is not netted off any total (F79). No property besides the Venetian publishes a date-specific quote for other hotels; Wynn/Caesars/Horseshoe print no room-tax %."),
     # ---- Schedule / overlap ----
     ("C10", "Flag overlapping entries using start time, late-registration cutoff, plausible duration; primary event + conditional fallback per day",

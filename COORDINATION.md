@@ -3743,3 +3743,108 @@ and the regenerated `site/data.json`, `site/sheets.html`, `site/coverage.json`. 
 edited by hand**: `site/assets/app.js`, `site/index.html`, `site/hotels.html`, `site/sheets.html` (regenerated only),
 `site/checks.json`, `scripts/data_venues.py` and the WPT tests are untouched here; the overlap with #108 is limited to
 `scripts/data_hotels.py` and `scripts/data_source.py`, where both sides append in different regions.
+
+---
+
+## 2026-11-17 23:40 UTC - session `4fbf8168` - integration result, and a flag-numbering collision this session caused
+
+Rebased onto `main` at `7eb42b7` (PRs #124-#126 had landed). Reporting honestly what
+the merge found, because two of the things I prepared were already done better by
+another session, and one of them I had to undo.
+
+**1. The parking waiver was a genuine collision, and `main` had gone further than I had.**
+Session `58e42dbd` read the same page, put the poker-room URL on The Venetian row's
+own `parkingSource`, rewrote Q12 around it and re-pinned `tests/test_recheck_ed1d2489.py`
+to that citation. My version of the same finding (structured `parkingWaiver` field, the
+trip-cost disclosure, the Palazzo row, the calculator paragraph) sits on top of it
+without contradicting it. I **kept main's Q12 answer** and replaced only its `how`,
+which still told the reader to add parking "if you will not stay on property every
+night" - written before anyone had found the waiver. The two answers read as one now.
+No dollar figure moved on either side; `appliedToTotals` stays false for the reason
+F84 states (no official finish time, supervisor confirmation required).
+
+**2. I renumbered my own flags to avoid overwriting another session's.** Both of my
+new flags were written as `F79`/`F80` while my branch was open; `main` published
+`F79`-`F83` in the meantime (Planet Hollywood closure, Resorts World, MGM grid, DSE
+"Current Series", Wynn Nov 27-29). They are now **F84** (parking waiver) and **F85**
+(schedule re-casing), with every reference moved: `data_source.py`, `coverage.py`,
+`site/calculator.html`, `verify_entry_labels.py`, the new test file and the
+`verify.yml` step comment. `tests/test_label_integrity_2026-11-17.py` enforces one
+flag per id, which is exactly the failure this would have been. *Process note for
+other sessions: after a rebase, re-derive your flag ids from the merged file - the id
+you claimed on an open branch is not reserved.*
+
+**3. One citation of mine was wrong and is fixed.** `tripCostModel.parkingSource` cited
+the hotel terms page while `parkingExcerpt` quoted a sentence that page does not print
+verbatim ("The daily fee for registered hotel guests is $20/day, seven days a week.").
+That sentence is from the poker-room page, so the citation now points there. The
+Palazzo row's `parkingSource` moved to the same page for the same reason; no test
+pins it, and the paid figures it quotes are printed there.
+
+**4. `site/data.json` and `site/sheets.html` were not hand-merged.** I took `main`'s
+side during the rebase and re-ran `scripts/data_source.py` + `scripts/build_addendum.py`
++ `scripts/coverage.py`. Both derived files are regenerated output, so resolving them by
+hand risks an entry that no generator can reproduce.
+
+**5. F85 self-correction.** The flag originally read "one row differs in letter case"
+and then named three. Rewritten to say what is true: three rows, all from one shared
+sub-line, of which one (event #18) is inside the 24 rows I re-read this session and two
+(#58, NYE #25) come from the December and NYE captures. No date, time, buy-in,
+guarantee or sheet link differs, and the choice - print the page's capitals or keep the
+title case with the flag - is still the user's, so nothing was renamed unilaterally.
+
+**Suite after the merge:** `verify_site` (341 events, 8 hotels, 56 routes, 43 sources,
+**80 flags**, 16 pages), `audit_951cd431` 0 failures / 0 warnings, `verify_live_official`
+line-by-line match, `audit_data` passed, `verify_entry_labels` passed (52 screened
+candidates, 0 written-cap confirmations), `canonical_smoke` 11+5 pages, `tests/smoke.py`
+OK, `tests` **146 OK**, `verify_transcription --dry-run` 44/44, and
+`python3 scripts/data_source.py` + `git diff --exit-code -- site/data.json` clean.
+
+**Still open, not blocked by this session:** F31 stands - E1 was exhausted across every
+capture in `raw/` and the November page re-read, and no official page states a maximum
+entry count, so not one of the 52 screened rows can be promoted to `confirmed` from a
+blank. The 24-row re-read changed no money and no start time. Palazzo/MGM/Caesars/
+Horseshoe/ARIA `rateLog` are still empty, 152 Wynn + 6 Horseshoe + 2 ARIA rows are still
+`not-verified`, and Bellagio/MGM/ARIA parking stays blank because those pages could not
+be reached from this environment (direct egress returns 000; the fetch proxy was
+returning `SignatureDoesNotMatch` for PDFs by the end of this session).
+
+---
+
+## 2026-11-17 23:55 UTC - session `4fbf8168` - second renumber: my flags are **F86** and **F87**
+
+The entry above announced F84/F85 as mine. `main` moved again while that work was being
+replayed (now `86ef45ad`, with `F84` = Google Maps walking-minute provenance and `F85` =
+Mandalay Bay's empty schedule), so both ids were taken a second time. Rather than
+re-edit the announced numbers, the flags moved up again and are now:
+
+- **F86** - the poker-room parking waiver on the Venetian and Palazzo rows, paid fee left
+  in every total, `appliedToTotals` false.
+- **F87** - the three event names re-cased against the schedule page's capital sub-line.
+
+Every reference moved with them (`data_source.py`, `coverage.py` C9, `site/calculator.html`,
+`scripts/verify_entry_labels.py`, `tests/test_parking_waiver_and_candidate_disclosure_4fbf8168.py`,
+the `verify.yml` step comment, and both `raw/` captures). Nothing in this branch cites `F79`,
+`F84` or `F85` as its own any more; where those ids appear on `main` they mean the Planet
+Hollywood closure, the walking-minute provenance and the Mandalay Bay finding. The numbers in
+my earlier entries on this board are therefore **superseded, not retracted**: the findings are
+unchanged, only the register ids moved.
+
+That is now the second collision of this kind in one session, so it is worth stating the rule
+plainly for the next session: **pick a flag id from the merged file at commit time, not at
+claim time.** `scripts/data_source.py` appends flags in one region, so two branches that both
+take `max+1` will collide on the *same line*, and the id you wrote in your COORDINATION claim
+is already stale by the time anyone else reads it. `tests/test_label_integrity_2026-11-17.py`
+turns a silent overwrite into a build failure, which is the only reason this was caught twice
+instead of published once.
+
+**Merge method used both times:** take `main`'s side for `site/data.json`, `site/sheets.html`
+and `site/coverage.json`, hand-resolve only the source modules (`data_source.py`,
+`data_hotels.py`, `trip_cost.py`) and `COORDINATION.md`, then re-run
+`scripts/data_source.py` + `scripts/build_addendum.py` + `scripts/coverage.py`. Derived files
+are never hand-merged, so the tree can always be reproduced from the modules.
+
+**Suite at the merge point:** 152 tests OK; `verify_site` (341 events, 8 hotels, 56 routes,
+43 sources, **82 flags**, 7 plan days, 16 pages); entry-label integrity passed;
+`audit_951cd431` 0 failures / 0 warnings; `verify_live_official` line-by-line match;
+`audit_data` passed; `data.json` reproducible (`git diff --exit-code` clean after regeneration).

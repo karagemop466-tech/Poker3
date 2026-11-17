@@ -59,4 +59,4 @@ Not established by this page, and therefore not published anywhere on the site a
 `site/data.json` published, for the recommended hotel, only: "$20 per day for registered hotel guests (seven days a
 week); $20 Monday-Thursday and $25 Friday-Sunday for non-hotel guests; valet $40 per day", citing the hotel terms and
 conditions page. The Wynn row in the same table does carry its poker-room parking benefit. The two rows were therefore
-not like-for-like, and the Venetian row omitted a benefit printed on the venue's own page. Recorded as F84 in the flag register.
+not like-for-like, and the Venetian row omitted a benefit printed on the venue's own page. Recorded as F86 in the flag register.

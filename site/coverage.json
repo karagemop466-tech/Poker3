@@ -3,9 +3,9 @@
   "dataCounts": {
     "events": 341,
     "hotels": 8,
-    "routes": 15,
-    "sources": 43,
-    "flags": 75,
+    "routes": 56,
+    "sources": 44,
+    "flags": 82,
     "planDays": 7,
     "asOf": "2026-11-17"
   },
@@ -93,7 +93,7 @@
         "F36",
         "F39",
         "F57",
-        "F79"
+        "F86"
       ],
       "note": "Venetian dated checkout total $4,010.55 (23-30 Nov 2026) with per-night rates, $55 fee, 13.38% tax, $20/$25/$40 parking, 11 a.m. checkout, $100 early checkout, $150 incidental. The Venetian and Palazzo rows now also carry the venue's printed poker-room parking waiver (three or more hours of play = complimentary self-parking for the day, supervisor-confirmed), so all three recommended hotels state a parking rule on the same terms; the waiver is not netted off any total (F79). No property besides the Venetian publishes a date-specific quote for other hotels; Wynn/Caesars/Horseshoe print no room-tax %."
     },

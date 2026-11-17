@@ -92,7 +92,10 @@ VERIFIED_INPUTS = {
     "startingRateSource": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
     "startingRateExcerpt": "These rates will start as low as $119 and $209 and can be higher.",
     "parkingPerNight": 20.0,
-    "parkingSource": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
+    # The excerpt below is verbatim from the poker room's own parking page, so that page is the
+    # citation for the fee as well; the hotel terms page carries the same $20 figure in its own
+    # wording and is cited by the hotel rows for it.
+    "parkingSource": "https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html",
     "parkingExcerpt": "The daily fee for registered hotel guests is $20/day, seven days a week.",
     # The poker room's own parking page prints a conditional waiver of that fee for
     # players.  It is published beside the figure and deliberately NOT netted off it:
