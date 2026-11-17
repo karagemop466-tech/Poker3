@@ -716,3 +716,54 @@ Scope: `COORDINATION.md` only. No `site/**`, `scripts/**`, or workflow file is e
 
 No `site/**`, `scripts/**`, or workflow file was changed by this session. Two commits are on this branch: the claim (d64ecbb) and this record. PR and merge are recorded below.
 - **Merge result (arena/cd17e91c-poker3):** PR [#35](https://github.com/karagemop466-tech/Poker3/pull/35) merged with `gh pr merge 35 --merge` as `be90234` (2026-11-17 UTC). Its `verify` check passed before merge. After merge, "Verify static research site" and "Publish integrated Vegas Poker Planner to GitHub Pages" both succeeded, and "pages build and deployment" succeeded. Pages API: `status: built`. This record ships in a follow-up PR; no further automated record is planned.
+
+## Session arena/a1091d95-poker3 — final verification and publication (2026-11-17 UTC)
+
+Branch: `arena/a1091d95-poker3`, created from `origin/main` at b30841e (merge of PR #34). This session is the only active editor and acts as the integration owner for the canonical `site/` dashboard. It does not edit `docs/`, `verified/`, `planner/`, `single-entry/`, root-level legacy pages, or `site/poker3/**` (prior-session artefacts, left untouched).
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| F1 Trip-cost calculator (entries × buy-ins + nights × true hotel cost) | done — verified | arena/a1091d95-poker3 | `site/calculator.html` | Formula: entries × buy-in + nights × (rate + resort fee + tax); defaults labelled as defaults, not quotes. |
+| F2 Scheduled automatic re-check of every official URL; changed sources flagged | done — verified | arena/a1091d95-poker3 | `.github/workflows/{monitor,daily-check,checks,source-monitor}.yml`, `scripts/{check_sources,daily_check,daily_feed,monitor_sources}.py` | Four scheduled workflows; results in `site/checks.json`, `site/feed/`, `data/source-checks.json`; unavailable URLs flagged, never treated as unchanged. |
+| F3 Read every structure sheet; unverified label removed where the sheet confirms | done — verified | arena/a1091d95-poker3 | `site/data.json`, `site/sheets.html`, `research/structure_notes.md` | All 37 DSE IV structure sheets read; no sheet prints "single entry", so rows state "no re-entry/rebuy/add-on printed" with excerpt, source and retrieval date. |
+| F4 Last-checked date on every row | done — verified | arena/a1091d95-poker3 | `site/data.json` rows (`lastChecked`), rules (`retrieved`), routes (`lastChecked`), sources (`checked`) | Every tournament row carries `lastChecked: 2026-11-16`. |
+| F5 Rates as a dated log, not a single value | done — verified | arena/a1091d95-poker3 | `site/data.json` `rateLog`, `site/hotels.html` | Eight rate-log observations, appended never overwritten; each with observed date, source, fee, tax, quote type. |
+| F6 One page per venue (Venetian, Wynn, others) with events and hotels | done — verified | arena/a1091d95-poker3 | `site/venues.html`, `site/venues/{venetian,wynn,others}.html`, `site/browse.html` | Seven Strip rooms; per-venue dated events and hotel cards with official source links. |
+| F7 Search box across all tables | done — verified | arena/a1091d95-poker3 | `site/assets/app.js` (`data-search-form`), every page header | Global search filters tournaments; from any page it routes to tournaments.html?q=. |
+| F8 Date filter on the tournaments table | done — verified | arena/a1091d95-poker3 | `site/tournaments.html`, `site/assets/app.js` | From/To date selectors plus venue, category, format, single-entry and 30-minute-walk filters. |
+| F9 Single-entry / freezeout toggle filter | done — verified | arena/a1091d95-poker3 | `site/tournaments.html` | "Single entry only (verified on the sheet)" checkbox; entry rule panel shows excerpt + source + retrieval date per rule. |
+| F10 Walking-route check with ≤30-minute filter | done — verified | arena/a1091d95-poker3 | `site/data.json` `routes`, `site/hotels.html`, tournaments walk column | Official addresses + Google Maps walking links; minutes labelled as estimates; walkOnly filter excludes pairs over 30 minutes. |
+| F11 Schedule overlap flags; primary + conditional fallback per day | done — verified | arena/a1091d95-poker3 | `site/data.json` `dayPlan`/`planConflicts`, `site/schedule.html` | Eight-day plan 2026-11-25 → 2026-12-02, one primary single-entry event per day, conditional fallbacks, flagged impossible sequences under a disclosed six-hour session estimate. |
+| F12 Guarantee ÷ entry fee ratio, descriptive only; bounty/flight labelled separately | done — verified | arena/a1091d95-poker3 | `site/tournaments.html`, `site/data.json` categories | `ratio` column labelled "descriptive, not a forecast"; category labels separate multi-flight, satellite, bounty/PKO, extra-spend and restricted formats. |
+| F13 Executive summary, Q&A, suggestions, flagged-for-review pages | done — verified | arena/a1091d95-poker3 | `site/index.html`, `site/questions.html`, `site/suggestions.html`, `site/flagged.html`, `site/sources.html` | Landing page with trip, stats and day plan; 12 questions, 12 suggestions, 28 flags, official source log and 52 structure sheets — every flag/source linked. |
+| F14 Line-by-line verification, PR, merge, Pages deployment confirmation | in progress | arena/a1091d95-poker3 | whole repo | See work log and integration record below. |
+
+### Work log (2026-11-17, arena/a1091d95-poker3)
+
+- **Claim.** Recorded this claim on `arena/a1091d95-poker3` before any edits; branch even with `origin/main` (b30841e).
+- **Line-by-line review.** Reviewed `site/data.json` (341 events, 8 hotels, 14 routes, 27 sources, 28 flags), all 15 published pages, `scripts/data_source.py`, `scripts/data_hotels.py`, `scripts/verify_site.py`, `.github/workflows/*`.
+- **Irregularity found and fixed.** The dated Venetian rate-log observation (official booking engine, Nov 17–19, 2026, two adults) had its nightly costs swapped: night 1 is $996.91 (($824.25 + $55) × 1.1338) and night 2 is $248.61 (($164.25 + $55) × 1.1338), summing to $1,245.52 against the printed $1,245.48 total. Fixed `scripts/data_hotels.py` (`trueNightlyLow=248.61`, `trueNightlyHigh=996.91`); regenerated `site/data.json`. Also replaced a hardcoded flag count in `site/index.html` ("22 irregularities") with source-linked text (the register carries 28 flags).
+- **Verification.** `python3 scripts/verify_site.py` → verification passed (341/8/14/27/28/8/15). `python3 tests/canonical_smoke.py` → all pages render. `node --check` on app.js, venue.js, canonical_render.js → OK. `python3 -m json.tool site/data.json` → valid. `scripts/data_source.py` rebuild is byte-identical (`git diff --exit-code` clean). No value inferred; blanks stay blank and flagged.
+- **Official sources honored.** Every table row links its official venue page or PDF; rate log, rules, routes and sources carry retrieval dates; third-party values are not used as evidence.
+
+### GitHub Pages status (pre-merge)
+
+- `gh api repos/karagemop466-tech/Poker3/pages` → `status: built`, source `main` `/`, https://karagemop466-tech.github.io/Poker3/ (the sandbox cannot fetch github.io directly; confirmed via the GitHub API).
+- All seven Actions workflows are active.
+
+### Irregularities carried forward (do not block merge; published on site/flagged.html)
+
+- No structure sheet prints single-entry/freezeout wording, so no row is labelled "single entry confirmed"; each row prints what its sheet actually says.
+- Hotel true cost for the recommended window (Nov 25 → Dec 2, 2026) is blank: no property publishes a date-specific quote for those dates; the $197.28 nightly figure is a floor computed from published components, not a quote.
+- Walking times are Google Maps walking estimates; no venue publishes a walking time.
+- Finish times and overlap flags are estimates under the disclosed six-hour session assumption plus 30-minute transfer.
+- 28 flags, each with its official source link for manual review.
+
+### Integration record
+
+- **PR:** created from `arena/a1091d95-poker3` to `main`; merged with `gh pr merge <n> --merge` — link and merge commit recorded below after the merge.
+- **Pages:** re-deployment confirmed after merge via `gh api .../pages` (`status: built`).
+- **Follow-up:** this record (PR link, merge commit, Pages result) is committed to `main` as a separate follow-up commit, same pattern as PRs #10/#12/#34.
+
+
+
