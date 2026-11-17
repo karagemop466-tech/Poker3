@@ -1186,3 +1186,75 @@ the same evidence basis the merged sessions used. Every check below was re-run t
   and unverified items are published on `site/flagged.html` with source links and do not block the merge.
 
 - **C4 result (2026-11-17).** PR #49 merged to `main` after `verify` passed. Pages build status is `built` at `0779803`, which includes #49. No duplicate flag IDs on `main` (34 flags, F31–F34 unique). PR #46 still uses F31–F34 with other meanings and must renumber when it rebases. Suggestion S-re-read is still open for user choice.
+
+- PR and merge are recorded below.
+
+
+---
+
+## Session arena/52e02b46-poker3 — re-verification, trip cost, and the scheduled check repair
+
+Branch: `arena/52e02b46-poker3` (branched from `main` at `2649b47`). The platform binds each session to one branch, so the
+`session-<id>/<task>` naming in the brief cannot be applied; this session works only on its own branch and opens a PR
+from it. It is the only active editor in this window, and it owns the shared outputs it touched.
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| Read every structure sheet, remove the "unverified" label where the sheet confirms | done | arena/52e02b46-poker3 | `scripts/data_venetian.py`, `scripts/data_source.py` | All 15 DeepStack NYE sheets read in full on 2026-11-17, joining the 37 DSE IV sheets already read: **52/52 read**. |
+| Live re-check of each official URL, flag rows whose source changed | done | arena/52e02b46-poker3 | `scripts/verify_transcription.py`, `site/checks.json`, `.github/workflows/checks.yml` | New verifier writes the record (including unreachable URLs) before anything reads it; workflow repaired. |
+| Line-by-line comparison of the published rows against the official series PDF | done | arena/52e02b46-poker3 | `site/data/venetian_pdf_rows.json` | 44 transcribed rows in the trip window; 44/44 match on date, start, REG CLOSES, guarantee, chips and level length. Re-checked by `scripts/verify_transcription.py` and by a unit test. |
+| "Last checked"/"last verified" date on each row | done | arena/52e02b46-poker3 | `scripts/data_source.py`, `site/assets/app.js` | Every event and hotel row carries `lastChecked` (when read) and `lastVerified` (when re-confirmed). |
+| Estimated cost of a trip = entries × buy-ins + nights × true hotel cost | done | arena/52e02b46-poker3 | `scripts/trip_cost.py`, `site/calculator.html` | Published in `data.json` under `tripCostModel`; the calculator reads the published model instead of hard-coded defaults. |
+| Rates as a dated log, not a single value | done | arena/52e02b46-poker3 | `scripts/data_hotels.py` | Append-only, sorted by date; four observations added (MGM $50, ARIA $55, Wynn re-confirmed) and every row now has a `quoteType`. |
+| Like-for-like hotel cost parts (checkout total, nightly average, resort fee, tax, parking, cancellation, timestamp) | partial - needs review | arena/52e02b46-poker3 | `scripts/data_hotels.py`, `site/hotels.html` | Fee, tax, parking and cancellation verified for the Venetian, Bellagio, MGM Grand, ARIA and Wynn. No date-specific checkout total exists for the trip window (F33), and the Wynn and Caesars tax percentages are not published (F34, F36). |
+| Overlap check from start time, late-registration cut-off and estimated duration; one primary + conditional fallback per day | done (estimates labelled) | arena/52e02b46-poker3 | `site/data.json` `planConflicts` | 39 flagged sequences, all labelled estimates: no venue publishes a finish time. |
+| Rank only after total entry fee and guarantee are confirmed; pool ÷ fee as a descriptive ratio; bounty/flight separated | done | arena/52e02b46-poker3 | `site/data.json` `events` | Ratio only appears where both numbers are published; bounty and flight rows carry their own categories. |
+| Walking-route check with the 30-minute limit | done (Maps estimates, labelled) | arena/52e02b46-poker3 | `site/data.json` `routes` | No venue publishes a walking time; every figure is a labelled Google Maps estimate. |
+| Official URL re-check on a schedule | done (workflow repaired, first run pending) | arena/52e02b46-poker3 | `.github/workflows/checks.yml` | See F32: the job had never run and would have failed on its first run. |
+
+### What was verified in this session
+
+Every value below was fetched from the venue's own host on 2026-11-17 and read line by line.
+
+| Source | What was confirmed |
+|---|---|
+| `dse-nov-2026-schedule.pdf` (official series PDF) | All 44 rows from 2026-11-16 to 2026-12-06: date, event #, time, REG CLOSES, guarantee, chips, level length. The published app rows match 44/44. |
+| `dse-nov-2026.html` (official series page) | The same rows, plus the Day 2 restarts. |
+| `dse_dec-2026.html` (NYE series page) | 49 rows. Its December 26 rows print "2025" - flagged as F38. |
+| `dse_dec_2026-structure_1..15.pdf` | All 15 NYE sheets: buy-in, rake, chips, level length, late-registration cut-off, and the entry wording. Three sheets (2, 9, 14) contain an explicit re-entry sentence; five (1, 3, 10, 11, 12) print no re-entry clause; the rest are multi-flight or satellites. |
+| `dse_nov_2026-structure_1.pdf` | Re-read because the day plan relies on it: no re-entry clause on the DSE IV $200 bounty sheet. |
+| `structure_6.pdf` (DSE IV Event #10) | $400, 11:10 AM, 40,000 chips, 30-minute levels, late registration to ~4:55 PM, $15,000 guarantee, $65 fee. |
+| `suite-rates.html` | $119/$209 starting rates, $55 resort fee, single/double occupancy, six hours of live cash play or a $300+ tournament entry per night stayed. |
+| `resort-fee.html` and `hotel-terms-and-conditions.html` | $55 + tax resort fee; 13.38% Clark County room tax; $20/day registered-guest parking; $150/night incidentals; check-in 3:00 PM-11:59 PM, check-out 11:00 AM; $100 early-checkout fee. |
+| `booking?...2026-11-25...2026-12-02` | Returns `$XXX` for every cell: the engine loads prices with script, so no checkout total exists for the trip window (F33). |
+| Bellagio `terms-and-conditions.html` and the Saturday structure PDF | $55 + tax fee, 72-hour cancellation, taxes on the fee; the Saturday buy-in is printed three ways (F02) and the sheet sells a $40 gratuity for 20,000 extra chips. |
+| Wynn `about-us/resort-information` | Live policy page: $55 + tax resort fee, check-in 3 p.m., check-out 12 p.m. |
+| Wynn `terms-and-conditions/850070` | **Expired**: a 2025 DINING CREDIT offer that requires a stay completed by 2025-09-30. It was the earlier build's fee source and has been replaced (F31). |
+| MGM Grand and ARIA `terms-and-conditions.html` | MGM Grand $50 + tax, ARIA $55 + tax, both with 72-hour cancellation and published incidental holds. |
+| Wynn WPT schedule PDF (both pages) | Every WPT row's buy-in, guarantee, chips and level length, and the "registration opens four hours prior" rule. |
+| `caesars.com/caesars-palace` | Publishes room prices but no resort fee; no official Caesars fee page was found, so the cell stays blank (F34). Third-party figures for the same fee ranged $42-$62.30 and were **not** used. |
+
+### Irregularities raised in this session
+
+F35 (the Wynn fee source was an expired 2025 dining-credit offer), F36 (the booking engine returns `$XXX` for the trip
+dates), F37 (Caesars Palace and Horseshoe publish no resort fee), F38 (no official daily start before 09:10 AM),
+F39 (the Wynn tax percentage is not printed), F40 (the sandbox cannot reach the venue hosts), F41 (the NYE page prints
+"2025" on its December 26 rows); F11 was rewritten because the 15 NYE sheets are now read. All are published on the
+Flagged for review page with their source links. None blocks the merge.
+
+Note on numbering: this branch is based on `2649b47`, before sessions `arena/b2a8d36b-poker3` and `arena/f0351b8d-poker3`
+added F31-F34 and Q04/Q08/Q13 to `main`. During the rebase this session's new records were renumbered to **F35-F41** and
+**Q14-Q18** so that no ID is reused. One of the renumbered flags (the "scheduled check had never run" finding) was then
+dropped, because `main`'s F30 already records the same defect with a better explanation of why no run existed, and its
+`scripts/check_sources.py` had already been repaired. This branch keeps `check_sources.py` as the URL recorder and adds
+`verify_transcription.py` for the row-by-row check instead of shipping a second, competing recorder.
+
+### Hand-off notes for the next session
+
+- The scheduled job runs at 12:10 UTC. Its first real run publishes `site/checks.json` and, if any page has changed, marks
+  that URL. **A changed URL is not a changed value** until a person re-reads it.
+- To extend coverage past 2026-12-06, add rows to `site/data/venetian_pdf_rows.json` from page 2 of the series PDF; the
+  verifier will compare them automatically.
+- The WPT per-event structure sheets (three events fall inside the trip window) are the cheapest remaining gap (S17).
+- A dated checkout total for 2026-11-25 → 2026-12-02 needs a browser or a phone call (S14). That is the single change that
+  would replace the $197.28 floor with a real number.

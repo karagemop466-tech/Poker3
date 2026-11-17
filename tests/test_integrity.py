@@ -95,5 +95,71 @@ class CalculatorArithmetic(unittest.TestCase):
         self.assertAlmostEqual(entries * buy_in + nights * true_nightly, 2800 + 1380.96, places=2)
 
 
+    # ------------------------------------------------------------------
+    # Added 2026-11-17: the guarantees this pass introduced.
+    # ------------------------------------------------------------------
+    def test_trip_cost_model_is_entries_buyin_plus_nights_true_cost(self):
+        """estimated cost = entries x buy-ins + nights x true hotel cost."""
+        m = DATA["tripCostModel"]
+        nightly = round((m["roomRatePerNight"] + m["resortFeePerNight"]) * (1 + m["taxPct"] / 100), 2)
+        self.assertAlmostEqual(m["trueCostPerNight"], nightly, places=2)
+        self.assertAlmostEqual(m["trueCostPerNight"], 197.28, places=2)
+        self.assertAlmostEqual(
+            m["tripTotal"],
+            round(m["entries"] * m["buyIn"] + m["nights"] * m["trueCostPerNight"] + m["parkingTotal"], 2),
+            places=2)
+        # The published starting rate is a floor, so the model must say so.
+        self.assertIn("floor", m["basis"].lower())
+        self.assertNotIn("quote for your stay", m["basis"].lower())
+
+    def test_every_row_carries_both_dates(self):
+        for e in DATA["events"]:
+            self.assertTrue(e.get("lastChecked"), f"{e['id']} has no lastChecked")
+            self.assertTrue(e.get("lastVerified"), f"{e['id']} has no lastVerified")
+        self.assertGreaterEqual(len(DATA["events"]), 300)
+
+    def test_rate_log_is_append_only_and_dated(self):
+        log = DATA["rateLog"]
+        self.assertGreaterEqual(len(log), 10, "a rate log needs more than a single value per hotel")
+        self.assertTrue(all(r.get("observedOn") for r in log))
+        self.assertTrue(all(r.get("quoteType") for r in log))
+        dates = [r["observedOn"] for r in log]
+        self.assertEqual(dates, sorted(dates), "rate log must be in date order")
+        # Observations are never collapsed: a hotel can appear more than once.
+        hotels = [r["hotel"] for r in log]
+        self.assertGreater(len(hotels), len(set(hotels)))
+
+    def test_no_structure_sheet_is_left_unread(self):
+        sheets = DATA["structureSheets"]
+        unread = [s for s in sheets if not s["read"]]
+        self.assertEqual(unread, [], f"{len(unread)} structure sheets are still labelled unread")
+        self.assertEqual(len(sheets), 52)
+
+    def test_rows_whose_sheet_allows_more_entry_are_not_single_entry(self):
+        """Any row that prints a re-entry or bagging clause must not be in the single-entry path."""
+        for e in DATA["events"]:
+            status = (e.get("rules") or {}).get("singleEntry", {}).get("status", "")
+            if status == "multiple-entries":
+                self.assertNotEqual(e.get("entryType"), "none",
+                                    f"{e['id']} allows multiple entries but is labelled single entry")
+            if e.get("entryType") == "none":
+                self.assertEqual(status, "single-entry-on-sheet",
+                                 f"{e['id']} is labelled single entry without a sheet status")
+
+    def test_transcription_matches_the_published_rows(self):
+        import sys
+        sys.path.insert(0, str(ROOT / "scripts"))
+        import verify_transcription  # noqa: E402
+        result = verify_transcription.check_transcription(DATA)
+        self.assertEqual(result["status"], "checked", result["mismatches"])
+        self.assertEqual(result["rowsMatched"], result["rowsTranscribed"])
+        self.assertGreaterEqual(result["rowsTranscribed"], 40)
+
+    def test_flags_about_this_pass_are_present(self):
+        ids = {f["id"] for f in DATA["flags"]}
+        for expected in ("F31", "F32", "F33", "F34", "F35", "F36"):
+            self.assertIn(expected, ids)
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

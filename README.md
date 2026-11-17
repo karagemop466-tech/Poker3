@@ -16,6 +16,7 @@ dashboard either way. See flag F29 on the Flagged for review page.
 | `site/tournaments.html` | Every published tournament row, with date, venue, category, written single-entry confirmation and sheet-candidate filters, plus per-row rules. |
 | `site/search.html` | Global search across tournaments, hotel rows, dated rates, walking routes, sources, questions and review flags. |
 | `site/venues.html` | One page per Strip poker room, each with its events and its hotels (`browse.html?view=venue&key=…`). |
+| `site/calculator.html` | *Estimated cost of a trip* = entries × buy-ins + nights × true hotel cost, computed from the published components, with a like-for-like comparison of the eight entries and seven nights at each published rate. |
 | `site/browse.html` | Venue and category subpages, so a bounty event is never mixed in with a plain freezeout. |
 | `site/schedule.html` | A provisional sheet-screened candidate per day, conditional fallback, recurring room events and estimated overlap flags; none is strict-entry confirmed. |
 | `site/hotels.html` | Published rate components, the mandatory resort fee, tax, true cost per night, parking, cancellation deadlines, walking times and the dated rate log. |
@@ -27,11 +28,15 @@ dashboard either way. See flag F29 on the Flagged for review page.
 ## Evidence policy
 
 Only official venue and property pages and official PDFs substantiate a value. A structure sheet that prints one buy-in,
-one start flight and no re-entry, rebuy, add-on or second-flight clause is **sheet-screened only**; it does not prove a
-maximum number of entries per player. No candidate is treated as strictly eligible until the venue confirms the one-entry,
-no-rebuy and no-add-on rules in writing (flag F31). Each row carries the exact excerpt, source and retrieval date. A row
-with a blank fee or guarantee is explained by a note or flag. Guaranteed-pool ÷ entry-fee is descriptive, never a forecast.
-Walking minutes are Google Maps estimates because no venue publishes a walking time. Snapshot: **2026-11-16 UTC**.
+one start flight and no re-entry, rebuy, add-on or second-flight clause is **sheet-screened only**: it does not prove a
+maximum number of entries per player, so no candidate is treated as strictly eligible until the venue confirms the
+one-entry, no-rebuy and no-add-on rules in writing (flag F31). Each row carries the exact excerpt, source and retrieval
+date. A row with a blank fee or guarantee is always explained by a note or a flag. Guaranteed-pool ÷ entry-fee is
+descriptive, never a forecast. Walking minutes are Google Maps estimates, because no venue publishes a walking time.
+
+Values were first read on **2026-11-16**; every official page and PDF was re-read and re-confirmed on **2026-11-17**.
+Both dates are carried on every row: `lastChecked` is when the value was read, `lastVerified` is when it was last
+confirmed still true. All 52 structure sheets (37 DeepStack Extravaganza IV + 15 DeepStack NYE) have been read in full.
 
 ## Data pipeline
 
@@ -46,18 +51,29 @@ python3 scripts/data_source.py        # rebuilds site/data.json from the source 
 | `scripts/data_hotels.py` | Hotel components, the dated rate log and the walking-route estimates. |
 | `scripts/data_source.py` | Assembles `site/data.json`, the fixed trip profile, the day plan and the conflict flags. |
 
-`research/structure_notes.md` records the read log for all 37 DSE IV structure PDFs.
+`research/structure_notes.md` records the read log for all 37 DSE IV structure PDFs. The 15 NYE sheets were read on
+2026-11-17 and their facts live in `NYE_SHEETS` in `scripts/data_venetian.py`; three of them print an explicit re-entry
+sentence and are therefore *not* labelled single entry.
+
+`site/data/venetian_pdf_rows.json` is a hand transcription of the official series PDF for the rows inside the trip
+window (44 rows). `scripts/verify_transcription.py` compares it with `site/data.json` on every run and a unit test fails if any
+date, start time, registration cut-off, guarantee, chip count or level length drifts.
 
 `research/reread_2026-11-17.json` is the live re-read of the 13 trip-window rows (Nov 25 – Dec 2, 2026) and the seven structure sheets behind them, dated 2026-11-17. `tests/test_reread_2026_11_17.py` fails if the published rows drift from it.
 
 ## Scheduled checks
 
-`.github/workflows/checks.yml` is the single scheduled job that reviews official sources at 13:00 UTC
-(05:00 PST / 06:00 PDT) and can be dispatched by hand:
+`.github/workflows/checks.yml` is the single scheduled job that reviews official sources at 12:10 UTC
+(04:10 PST / 05:10 PDT, the morning pull) and can be dispatched by hand. It runs two recorders in order:
 
-- `scripts/check_sources.py` fetches every official URL behind the dashboard, stores a SHA-256 of the response and
-  flags any source whose body changed. It never changes a tournament value on its own: a changed page is re-read by a
-  human first. Results are published as `site/checks.json` and shown on the sources page.
+- `scripts/check_sources.py` fetches every official URL behind the dashboard, stores a SHA-256 of the response, and flags
+  any source whose body changed. A URL it cannot reach is recorded as `unavailable`, never as "changed".
+- `scripts/verify_transcription.py` re-checks the 44 transcribed series-PDF rows against the published data and writes the
+  result beside the URL record.
+
+Neither script changes a tournament value on its own: a changed page is re-read by a human first. Both results are
+published as `site/checks.json` and shown on the sources page, and the URL recorder creates the file if it does not exist,
+so a single unreachable PDF can never abort the run.
 - `scripts/daily_feed.py` pulls the schedule page of each Strip poker room and writes a dated snapshot under
   `site/feed/`, so a morning run can be compared with the previous morning instead of replacing it.
 - The job then rebases onto `origin/main` and pushes, retrying up to five times, so a race with another scheduled

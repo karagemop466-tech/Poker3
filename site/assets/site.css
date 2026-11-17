@@ -62,3 +62,10 @@ table.rules td.excerpt{font-size:12px;color:#3c4d47;max-width:520px}
 .calc-out{font-size:15px;margin:13px 0 6px}
 .sug-top{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
 @media(max-width:930px){.day-grid{grid-template-columns:1fr}.top-search{display:none}}
+/* Trip cost calculator */
+.field-label{display:block;font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:#6c7b75;margin:12px 0 3px}
+#tripForm input{width:160px;border:1px solid #d5e0d9;border-radius:8px;padding:8px 10px;background:#fff;outline-color:#4a8c72}
+.button-row{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 6px}
+.result-figure{font:800 26px Manrope,sans-serif;letter-spacing:-.03em;color:#174438;margin:6px 0 8px}
+.result-figure strong{color:#0f6b52}
+#breakdown div{margin:3px 0}

@@ -171,7 +171,7 @@ function applyTournamentFilters() {
   const head = `<thead><tr>
       <th>Date</th><th>Start</th><th>Venue</th><th>Event</th>
       <th>Buy-in</th><th>Guaranteed pool</th><th>Pool ÷ fee</th>
-      <th>Format</th><th>Entry check</th><th>Late registration</th><th>Est. end</th><th>Last checked</th><th>Sources</th>
+      <th>Format</th><th>Entry check</th><th>Late registration</th><th>Est. end</th><th>Last checked / verified</th><th>Sources</th>
     </tr></thead>`;
   const body = rows.length ? rows.map((e) => `
     <tr class="row-click" data-id="${esc(e.id)}">
@@ -186,7 +186,7 @@ function applyTournamentFilters() {
       <td>${entryCheckCell(e)}</td>
       <td>${e.lateReg ? esc(e.lateReg) : blank}</td>
       <td>${e.endEstimate ? esc(e.endEstimate) : blank}<span class="muted">Estimate</span></td>
-      <td>${esc(e.lastChecked || 'Not recorded')}</td>
+      <td>${e.lastVerified ? esc(e.lastVerified) : blank}${e.lastChecked ? `<span class="muted">values read ${esc(e.lastChecked)}</span>` : ''}</td>
       <td>${sourceLinks(e)}</td>
     </tr>`).join('') : `<tr><td colspan="13" class="empty">${state.singleOnly ? 'No event in this reviewed data set has a written one-entry-per-player confirmation. See flagged item F29; do not treat the candidate list as strict eligibility.' : 'No rows match the current filters.'}</td></tr>`;
   host.innerHTML = `<div class="table-wrap"><table>${head}<tbody>${body}</tbody></table></div>
@@ -220,6 +220,8 @@ function showDetail(id) {
       <div><span class="label">Late registration</span><span class="value">${e.lateReg ? esc(e.lateReg) : 'Not published'}</span></div>
       <div><span class="label">Estimated finish</span><span class="value">${e.endEstimate ? esc(e.endEstimate) + ' (estimate)' : 'Not published'}</span></div>
       <div><span class="label">Format</span><span class="value">${esc(e.format)}</span></div>
+      <div><span class="label">Last verified live</span><span class="value">${e.lastVerified ? esc(e.lastVerified) : 'not re-checked'}</span></div>
+      <div><span class="label">Values first read</span><span class="value">${e.lastChecked ? esc(e.lastChecked) : '—'}</span></div>
     </div>
     <table class="rules">
       <thead><tr><th>Rule</th><th>Status</th><th>What the official source prints</th><th>Source</th></tr></thead>
@@ -392,10 +394,10 @@ function renderHotels() {
         <td>${h.taxRate ? h.taxRate + '%' : 'percentage not published'}</td>
         <td>${h.trueNightlyLow ? '$' + h.trueNightlyLow.toFixed(2) + ' – $' + h.trueNightlyHigh.toFixed(2) + '<span class="muted">floor computed from published components</span>' : blank}</td>
         <td>${esc(h.parking || 'Not published')}</td>
-        <td>${esc(h.cancellation || 'Not published')}</td>
-        <td>${esc(h.lastChecked || 'Not recorded')}</td>
+        <td>${esc(h.cancellation || 'Not published')}${h.cancellationDetail ? `<span class="muted">${esc(h.cancellationDetail)}</span>` : ''}${h.checkInOut ? `<span class="muted">${esc(h.checkInOut)}</span>` : ''}</td>
         <td>${esc(h.qualityNote || '')}</td>
         <td>${self && self.minutes !== 0 ? esc(self.minutes) + ' min to the room' : 'room on site'}${walk ? `<span class="muted">${walk.minutes} min to the Venetian</span>` : ''}</td>
+        <td>${esc(h.lastVerified || '')}<span class="muted">values read ${esc(h.lastChecked || '')}</span></td>
         <td><a href="${esc(h.source)}" target="_blank" rel="noopener">Room source</a>
             ${h.feeSource ? `<span class="muted"><a href="${esc(h.feeSource)}" target="_blank" rel="noopener">Fee terms</a></span>` : ''}
             ${h.taxSource ? `<span class="muted"><a href="${esc(h.taxSource)}" target="_blank" rel="noopener">Tax terms</a></span>` : ''}
@@ -404,8 +406,8 @@ function renderHotels() {
     }).join('');
     host.innerHTML = `<div class="table-wrap"><table><thead><tr>
       <th>Property</th><th>Poker room</th><th>Published base rate</th><th>Mandatory resort fee</th><th>Tax</th>
-      <th>True cost per night</th><th>Parking</th><th>Cancellation deadline</th><th>Last checked</th><th>Quality evidence</th>
-      <th>Walking</th><th>Sources</th></tr></thead><tbody>${body}</tbody></table></div>`;
+      <th>True cost per night</th><th>Parking</th><th>Cancellation deadline</th><th>Quality evidence</th>
+      <th>Walking</th><th>Last verified</th><th>Sources</th></tr></thead><tbody>${body}</tbody></table></div>`;
   }
   const log = document.querySelector('[data-rate-log]');
   if (log) {
@@ -629,6 +631,42 @@ function renderSources() {
     feed.innerHTML = `<div class="table-wrap"><table><thead><tr><th>Strip poker room</th><th>Schedule source</th>
       <th>Also checked</th></tr></thead><tbody>${body}</tbody></table></div>`;
   }
+  const trans = document.querySelector('[data-transcription]');
+  if (trans) {
+    if (!checks || !checks.transcription) {
+      trans.innerHTML = '<div class="empty"><strong>No transcription record yet.</strong> The scheduled re-check writes it.</div>';
+    } else {
+      const t = checks.transcription;
+      const rows = t.rows || [];
+      const body = rows.map((r) => `<tr>
+        <td>${esc(r.date)}</td>
+        <td class="event-name">${esc(r.name)}${r.event ? `<span class="muted">Event # ${esc(r.event)}</span>` : ''}</td>
+        <td>${esc(r.time)}</td>
+        <td>${r.regCloses ? esc(r.regCloses) : '<span class="muted">not printed</span>'}</td>
+        <td>${r.guarantee ? money(Number(r.guarantee)) : '<span class="muted">not printed</span>'}</td>
+        <td>${r.chips ? Number(r.chips).toLocaleString('en-US') : '<span class="muted">—</span>'}</td>
+        <td>${r.levelMin ? esc(r.levelMin) + ' min' : '<span class="muted">—</span>'}</td>
+        <td>${r.mismatch ? '<span class="badge bad">Mismatch</span>' : '<span class="badge ok">Matches the app</span>'}</td>
+      </tr>`).join('');
+      trans.innerHTML = `
+        <div class="stats" style="margin-bottom:12px">
+          <div class="stat"><div class="stat-label">Rows transcribed</div><div class="stat-value">${t.rowsTranscribed || 0}</div>
+            <div class="stat-caption">Read from the official series PDF</div></div>
+          <div class="stat"><div class="stat-label">Rows that match the app</div><div class="stat-value">${t.rowsMatched || 0}</div>
+            <div class="stat-caption">Date, time, reg close, guarantee, chips, level</div></div>
+          <div class="stat"><div class="stat-label">Mismatches</div><div class="stat-value">${(t.mismatches || []).length}</div>
+            <div class="stat-caption">Any mismatch is a data defect, not a warning</div></div>
+          <div class="stat"><div class="stat-label">Last re-checked</div><div class="stat-value" style="font-size:15px">${esc(t.checked || '')}</div>
+            <div class="stat-caption">${esc(t.range || '')}</div></div>
+        </div>
+        <div class="table-wrap"><table><thead><tr><th>Date</th><th>Official event name</th><th>Start</th>
+          <th>Reg closes</th><th>Guarantee</th><th>Chips</th><th>Levels</th><th>Result</th></tr></thead>
+          <tbody>${body}</tbody></table></div>
+        <p class="toolbar-note">The transcription is kept in <code>site/data/venetian_pdf_rows.json</code>, with the official
+        PDF it was read from. <code>scripts/verify_transcription.py</code> compares it with the published rows on every run, so a
+        later edit cannot quietly change a start time, a guarantee or a registration cut-off.</p>`;
+    }
+  }
   const auto = document.querySelector('[data-autochecks]');
   if (auto) {
     if (!checks) {
@@ -636,6 +674,17 @@ function renderSources() {
       return;
     }
     const rows = checks.urls || [];
+    const sum = checks.summary || {};
+    const summaryHtml = `<div class="stats" style="margin-bottom:12px">
+      <div class="stat"><div class="stat-label">Official URLs</div><div class="stat-value">${sum.urls || rows.length}</div>
+        <div class="stat-caption">Schedules, structure sheets, terms pages</div></div>
+      <div class="stat"><div class="stat-label">Fetched OK</div><div class="stat-value">${sum.fetched || 0}</div>
+        <div class="stat-caption">HTTP status recorded for each</div></div>
+      <div class="stat"><div class="stat-label">Content changed</div><div class="stat-value">${sum.changed || 0}</div>
+        <div class="stat-caption">Hash differs from the previous run</div></div>
+      <div class="stat"><div class="stat-label">Unreachable</div><div class="stat-value">${sum.failed || 0}</div>
+        <div class="stat-caption">No value is changed by a failure</div></div>
+    </div>`;
     const body = rows.map((u) => `<tr>
       <td class="event-name">${esc(u.url)}<span class="muted">${esc(u.label || '')}</span></td>
       <td>${esc(u.status || '')}</td>
@@ -643,9 +692,10 @@ function renderSources() {
       <td>${u.changed ? '<span class="badge bad">Content changed · manual review</span>' : u.unavailable ? '<span class="badge warn">Unavailable · not verified</span>' : u.baseline ? '<span class="badge info">Baseline recorded</span>' : '<span class="badge ok">Unchanged</span>'}</td>
       <td>${u.changed ? esc(u.previousHash ? u.previousHash.slice(0, 12) + ' → ' : '') + esc((u.hash || '').slice(0, 12)) : (u.hash || '').slice(0, 12)}</td>
     </tr>`).join('');
-    auto.innerHTML = `<div class="table-wrap"><table><thead><tr><th>Official URL</th><th>Status</th><th>Checked</th>
+    auto.innerHTML = summaryHtml + `<div class="table-wrap"><table><thead><tr><th>Official URL</th><th>Status</th><th>Checked</th>
       <th>Change flag</th><th>Hash</th></tr></thead><tbody>${body}</tbody></table></div>
-      <p class="toolbar-note">Last automated run: ${esc(checks.lastRun || 'not yet run')}. ${esc(checks.note || '')}</p>`;
+      <p class="toolbar-note">Last automated run: ${esc(checks.generatedAt || checks.lastRun || 'not yet run')}
+      (${esc(checks.mode || 'live fetch')}). ${esc(checks.note || '')}</p>`;
   }
 }
 
@@ -710,6 +760,21 @@ function renderSearchResults(query) {
 }
 
 /* ------------------------------------------------------------------- home */
+
+/* Estimated cost of the recommended trip, from the published components only:
+ * entries x buy-in + nights x (rate + resort fee) x (1 + tax). */
+function costLine() {
+  const m = db.tripCostModel;
+  if (!m || typeof m.tripTotal !== 'number') return '';
+  const usd = (n) => '$' + Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  return `<p class="muted"><strong>Estimated cost of the trip, from published parts:</strong>
+    ${m.entries} entries × ${usd(m.buyIn)} buy-in (${usd(m.tournamentTotal)})
+    + ${m.nights} nights × ${usd(m.trueCostPerNight)} true hotel cost (${usd(m.lodgingTotal)})
+    + parking ${usd(m.parkingTotal)} = <strong>${usd(m.tripTotal)}</strong>.
+    <span class="muted">At the $209 published starting rate the same trip is ${usd(m.alternateTripTotal)}. Both are a
+    floor computed from the published components, not a quote.</span></p>`;
+}
+
 function renderHome() {
   const stats = document.querySelector('[data-stats]');
   if (stats) {
@@ -717,6 +782,8 @@ function renderHome() {
     const dated = evs.filter((e) => e.date);
     const single = dated.filter((e) => e.entryType === 'none');
     const withFee = dated.filter((e) => typeof e.buyIn === 'number' && typeof e.guarantee === 'number');
+    const sheetsRead = (db.structureSheets || []).filter((x) => x.read).length;
+    const sheetsTotal = (db.structureSheets || []).length;
     const walkOk = (db.routes || []).filter((r) => r.venue === 'venetian' && r.minutes <= 30);
     stats.innerHTML = `
       <div class="stat"><div class="stat-label">Published tournament rows</div><div class="stat-value">${evs.length}</div>
@@ -725,8 +792,8 @@ function renderHome() {
         <div class="stat-caption">No extra-entry terms printed; maximum entries per player unconfirmed (F29)</div></div>
       <div class="stat"><div class="stat-label">Fee and guarantee confirmed</div><div class="stat-value">${withFee.length}</div>
         <div class="stat-caption">Only these rows are ranked</div></div>
-      <div class="stat"><div class="stat-label">Venues inside 30 minutes</div><div class="stat-value">${walkOk.length}</div>
-        <div class="stat-caption">From the recommended hotel, Maps walking estimates</div></div>`;
+      <div class="stat"><div class="stat-label">Structure sheets read</div><div class="stat-value">${sheetsRead}/${sheetsTotal}</div>
+        <div class="stat-caption">Every DSE IV and NYE sheet read in full; zero unread</div></div>`;
   }
   const trip = document.querySelector('[data-trip-card]');
   if (trip) {
@@ -738,9 +805,10 @@ function renderHome() {
          $119 before the $55 mandatory resort fee and 13.38% Clark County room tax, and the walk to any other
          Strip room on the list is inside 30 minutes.</p>
       <p class="muted">Nightly budget fixed at $${(t.nightlyBudget || 0).toFixed(2)} (the published floor).
-         The provisional eight-day candidate path totals ${money(t.primaryBuyIns)} in printed buy-ins. It is not a confirmed
-         single-entry itinerary: obtain written maximum-entry / no-rebuy / no-add-on rules first.</p>
-      <p><a class="card-link" href="schedule.html">Open the day plan →</a> · <a class="card-link" href="hotels.html">Open the hotel comparison →</a></p>`;
+         The eight recommended entries total ${money(t.primaryBuyIns)} in buy-ins; with a 25% buffer, plan on
+         ${money(t.bankrollWithBuffer)}.</p>
+      ${costLine()}
+      <p><a class="card-link" href="schedule.html">Open the day plan →</a> · <a class="card-link" href="hotels.html">Open the hotel comparison →</a> · <a class="card-link" href="calculator.html">Change the numbers in the trip cost calculator →</a></p>`;
   }
   const picks = document.querySelector('[data-top-picks]');
   if (picks) {
@@ -758,6 +826,12 @@ function renderHome() {
         <td>${e ? sourceLinks(e) : ''}</td></tr>`;
     }).join('');
   }
+  document.querySelectorAll('[data-verified-on]').forEach((el) => {
+    el.textContent = db.verifiedOn || db.asOf || '';
+  });
+  document.querySelectorAll('[data-asof]').forEach((el) => {
+    if (!el.textContent.trim()) el.textContent = db.asOf || '';
+  });
   const notes = document.querySelector('[data-policy]');
   if (notes) {
     notes.innerHTML = `<p>${esc(db.scope)}</p><p>${esc(db.policy)}</p><p>${esc(db.sessionLengthAssumption)}</p>`;

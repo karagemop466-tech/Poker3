@@ -158,6 +158,56 @@ def main() -> int:
         elif not h.get("status"):
             fail(f"hotel {h.get('id')}: no true nightly cost and no status note", errors)
 
+    # --- verification dates and the published cost model -----------------
+    for e in events:
+        if not e.get("lastChecked"):
+            fail(f"event {e.get('id')}: no lastChecked date", errors)
+        if not e.get("lastVerified"):
+            fail(f"event {e.get('id')}: no lastVerified date", errors)
+    for h in data["hotels"]:
+        if not h.get("lastVerified"):
+            fail(f"hotel {h.get('id')}: no lastVerified date", errors)
+    for r in data.get("rateLog", []):
+        if not r.get("observedOn"):
+            fail("rateLog row without observedOn date", errors)
+        if not r.get("quoteType"):
+            fail("rateLog row without a quoteType", errors)
+
+    model = data.get("tripCostModel") or {}
+    if not model:
+        fail("no tripCostModel published", errors)
+    else:
+        nightly = round((model["roomRatePerNight"] + model["resortFeePerNight"])
+                        * (1 + model["taxPct"] / 100), 2)
+        if abs(nightly - model["trueCostPerNight"]) > 0.01:
+            fail(f"tripCostModel: true nightly {model['trueCostPerNight']} != {nightly}", errors)
+        total = round(model["entries"] * model["buyIn"] + model["nights"] * model["trueCostPerNight"]
+                      + model["parkingTotal"], 2)
+        if abs(total - model["tripTotal"]) > 0.01:
+            fail(f"tripCostModel: trip total {model['tripTotal']} != entries x buy-in + nights x nightly + parking ({total})",
+                 errors)
+        if model["tripTotal"] != round(model["tournamentTotal"] + model["lodgingTotal"] + model["parkingTotal"], 2):
+            fail("tripCostModel: components do not add up to the published total", errors)
+        for key in ("startingRate", "resortFee", "tax", "parking"):
+            if not official(model.get("sources", {}).get(key, "")):
+                fail(f"tripCostModel: source '{key}' is missing or not official", errors)
+        if not any("starting rate" in str(model.get("basis", "")).lower() or
+                   "floor" in str(model.get("basis", "")).lower() for _ in [0]):
+            fail("tripCostModel: basis must state that the figure is a floor, not a quote", errors)
+
+    # The transcription file must exist and cover the rows it claims to cover.
+    trans = SITE / "data" / "venetian_pdf_rows.json"
+    if not trans.exists():
+        fail("site/data/venetian_pdf_rows.json is missing", errors)
+    else:
+        doc = json.loads(trans.read_text(encoding="utf-8"))
+        ids = {e["id"] for e in events}
+        for row in doc.get("rows", []):
+            if row.get("eventId") not in ids:
+                fail(f"transcription row {row.get('eventId')} does not exist in data.json", errors)
+        if len(doc.get("rows", [])) < 40:
+            fail("transcription covers fewer than 40 rows", errors)
+
     for f in data["flags"]:
         if not f.get("source"):
             fail(f"flag {f.get('id')}: no source", errors)
