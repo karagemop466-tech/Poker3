@@ -17,8 +17,10 @@ import data_hotels as H  # noqa: E402
 
 ASOF = "2026-11-16"
 RECHECKED = "2026-11-17"
-RECHECK_FROM, RECHECK_TO = "2026-11-16", "2026-11-28"
+RECHECK_FROM, RECHECK_TO = "2026-11-16", "2026-12-23"
 DSE_NOV_URL = "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
+TODAY = "2026-11-17"          # snapshot date of the live re-check; drives past / today / upcoming
+CHECKED_TODAY = RECHECKED     # rows whose official page was re-read on TODAY
 
 # Live re-read of the 13 trip-window rows and their seven structure sheets (2026-11-17).
 # The record is the single source for those dates; tests/test_reread_2026_11_17.py checks
@@ -425,11 +427,15 @@ FLAGS = [
                  "and every conflict it reports is an estimate, not an official statement."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
     dict(id="F17", area="Schedule", severity="High",
-         title="No verified start time earlier than 9:10 AM exists in the reviewed official schedules",
-         detail=("The earliest verified starts are the Venetian RaceDay Stack at 10:10 AM, the Venetian seniors and tag-team events "
-                 "at 10:10 AM, Horseshoe at 9:00 AM and Caesars Palace at 10:00 AM, the Wynn daily at 12:00 PM and the Wynn WPT "
-                 "at 11:00 AM. An 'all day from 8:00 AM' plan cannot be built from official sources. The day plan therefore starts "
-                 "at the earliest verified start for each venue."),
+         title="The earliest verified official start is 9:00 AM (Horseshoe daily); no 8:00 AM start is published",
+         detail=("Re-read on 2026-11-17 on the Caesars page: Horseshoe runs six daily No-Limit Hold'em games at 9 a.m., "
+                 "11 a.m., 2 p.m., 5 p.m., 8 p.m. and 11 p.m., with no buy-in published. Caesars Palace runs four daily games "
+                 "at 10 a.m., 2 p.m., 6 p.m. and 9 p.m. ($100 buy-in, $50 add-on). On the Venetian schedule re-read on "
+                 "2026-11-17 the earliest start is 9:10 AM, a $260 satellite on Dec 12. Opening Venetian events start at "
+                 "10:10 AM or later; the only 10:00 AM Venetian starts are restarts (Day 2 or Day 3). The Wynn daily starts at 12:00 PM. "
+                 "Most Wynn WPT rows start at 11:00 AM. Its 10:00 AM rows are the Super Gold Million flights (Dec 10 and 11), one WPT "
+                 "row on Dec 12 and a satellite on Dec 18, all from the WPT PDF read on 2026-11-16. An 'all day from 8:00 AM' plan cannot be built from official sources. The day plan starts at "
+                 "the earliest verified start for each venue."),
          source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"),
     dict(id="F18", area="Wynn", severity="Low",
          title="Wynn daily tournaments are suspended during Wynn Signature, Wynn Millions and Classic series",
@@ -567,12 +573,14 @@ FLAGS = [
                  "it, so these two properties cannot yet be compared like for like."),
          source="https://www.caesars.com/caesars-palace"),
     dict(id="F38", area="Schedule coverage", severity="Medium",
-         title="No daily tournament starts before 09:10 AM on any official schedule read",
-         detail=("The 8 AM start in the brief cannot be met from verified data. The earliest published start found is "
-                 "09:10 AM (Venetian Turbo Milestone Satellite, Dec 12), and the earliest event that is not a satellite "
-                 "or a continuation is 10:00 AM. The day plan therefore begins at the earliest verified open event time "
-                 "and never invents an earlier start."),
-         source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf"),
+         title="The earliest official start is 9:00 AM (Horseshoe daily); no 8:00 AM start is published",
+         detail=("Read on 2026-11-17 on the Caesars Palace and Horseshoe page: Horseshoe runs six daily No-Limit Hold'em "
+                 "games at 9 a.m., 11 a.m., 2 p.m., 5 p.m., 8 p.m. and 11 p.m., and publishes no buy-in or structure for them. "
+                 "Caesars Palace runs four daily games at 10 a.m., 2 p.m., 6 p.m. and 9 p.m. The earliest Venetian start is "
+                 "9:10 AM (a $260 Turbo Milestone Satellite on Dec 12), and opening Venetian events start at 10:10 AM or later. "
+                 "No 8 AM start appears on any official source read, so an 8 AM plan cannot be built from verified data. The day "
+                 "plan starts at the earliest verified open event for each venue."),
+         source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"),
     dict(id="F39", area="Hotel cost", severity="Medium",
          title="The Wynn tax percentage is not printed, so its true nightly cost cannot be closed",
          detail=("Wynn publishes 'plus tax' on its resort fee and on the room rate but prints no percentage. Applying the "
@@ -595,6 +603,12 @@ FLAGS = [
                  "the series dates and the printed year is flagged rather than corrected. The NYE structure sheets were "
                  "not read in this pass, so no NYE row is in the single-entry path."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html"),
+    dict(id="F42", area="Schedule", severity="Low",
+         title="The Caesars page gives a general session length, not an event finish time",
+         detail=("The official Caesars Palace poker-tournament page says 'Most sessions finish in four to six hours.' That is a "
+                 "general statement about its tournaments, not a published finish time for any event. The six-hour planning "
+                 "assumption for every room therefore remains an assumption."),
+         source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"),
 ]
 
 QUESTIONS = [
@@ -653,7 +667,7 @@ QUESTIONS = [
          how="Say which properties to add; each needs its own official page and structure sheets.",
          source="https://www.venetianlasvegas.com/resort/casino/poker.html"),
     dict(id="Q10", question="Do the December 17-23 and holiday-week events still run as published?",
-         answer="The schedule pages are current as published on 2026-11-16, and this site re-checks every source URL on a schedule. Any source that changes is flagged on the change log.",
+         answer=("Re-read on 2026-11-17. Venetian DeepStack Extravaganza IV (the page covers Nov 16 to Dec 23, 2026): the 21 rows dated Nov 16 to Nov 27 match the page on date, start time, event name, buy-in, guarantee and structure-sheet link. The 73 rows dated Nov 28 to Dec 23 match on date, start time, event name, buy-in and guarantee; their structure links were not compared. Caesars Palace (four daily starts at 10 AM, 2 PM, 6 PM and 9 PM, $100 buy-in, $1,000 guarantee) and Horseshoe (six daily starts from 9 AM to 11 PM) match the page text. The page gives no Horseshoe buy-in or guarantee, so those cells stay blank. The Venetian resort fee is still $55 plus tax. The Wynn landing page confirms the WPT window and the Super Gold Million terms. The Bellagio landing page still carries a stale notice (flag F33). The Bellagio weekly PDFs, the Wynn daily and WPT PDFs and the DeepStack NYE schedule were not re-read."),
          why="Useful", blocking="No",
          how="Re-check the Flagged for review page and the change log before booking and again 48 hours before you travel.",
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
@@ -676,13 +690,14 @@ QUESTIONS = [
          how="Confirm your age band and whether you hold a Venetian Rewards card. If you are 50+, the Seniors event can be added to the plan after its sheet is read.",
          source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_6.pdf"),
     dict(id="Q14", question="Does the 8 AM start the brief asks for exist anywhere on the Strip?",
-         answer=("Not on any official schedule read for this build. The earliest published start is 09:10 AM (a Venetian "
-                 "Turbo Milestone Satellite on Dec 12), and the earliest non-satellite, non-continuation start is 10:00 AM. "
-                 "An all-day 8 AM plan therefore cannot be built from verified data; the day plan starts at the first "
-                 "verified open event each day."),
+         answer=("Not on any official source read for this build. The earliest verified start is Horseshoe's daily game at 9:00 AM "
+                 "on the Caesars page (read 2026-11-17), which publishes no buy-in or structure. Caesars Palace starts at 10:00 AM. "
+                 "The earliest Venetian start is 9:10 AM (a satellite on Dec 12), and the earliest non-satellite Venetian start is "
+                 "10:10 AM. An all-day 8 AM plan therefore cannot be built from verified data; the day plan starts at the first "
+                 "verified open event for each venue."),
          why="Needed", blocking="Yes - the all-day schedule in the brief cannot be produced without it",
-         how="Ask each room for its earliest daily start, or read the room's full daily schedule page on the morning of travel.",
-         source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf"),
+         how="Ask Horseshoe for the buy-in, structure and single-entry rule of its 9:00 AM game; ask each room for its earliest daily start.",
+         source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"),
     dict(id="Q15", question="What is the real checkout total for the trip dates?",
          answer=("Unresolved. The official booking engine prints $XXX for 2026-11-25 to 2026-12-02 because prices load "
                  "after the page renders, and no property publishes a date-specific total. The only dated official total "
@@ -1165,6 +1180,17 @@ def build_day_plan(events, start_date, end_date, recurring=()):
 
 
 
+BOOKING_LINKS = [dict(
+    hotel="venetian", property="The Venetian and The Palazzo (one booking engine)",
+    stay="2026-11-25 to 2026-12-02 (7 nights), 2 adults, 0 children",
+    url=H.VENETIAN_FIXED_STAY_BOOKING, checkedOn=CHECKED_TODAY,
+    priceInStaticPage=("No. A static read of this booking page on 2026-11-17 showed $XXX in every calendar cell. "
+                       "The page states that its prices include the daily resort fee and exclude taxes."),
+    source=H.VENETIAN_FIXED_STAY_BOOKING,
+    feeSource="https://www.venetianlasvegas.com/resort/resort-fee.html",
+)]
+
+
 def build():
     events = []
 
@@ -1350,7 +1376,7 @@ def build():
         ))
 
     # --- Other venues ----------------------------------------------------
-    def add_group(group, venue, prefix):
+    def add_group(group, venue, prefix, last_checked=ASOF):
         for i, d in enumerate(group):
             rules = {k: dict(v, source=d["source"], retrieved=ASOF) for k, v in d["rules"].items()}
             st = rules["singleEntry"]["status"]
@@ -1362,7 +1388,7 @@ def build():
                 d.get("buyIn", ""), d.get("guarantee", ""), rules,
                 d.get("category", "recurring"), "recurring",
                 d["source"], d["source"], d.get("page", d["source"]),
-                note=d.get("note", ""),
+                note=d.get("note", ""), last_checked=last_checked,
                 chips=d.get("chips", ""), level_min=d.get("levelMin", ""),
                 late_reg=d.get("lateReg", ""), entry_type=entry_type,
                 weekdays=d.get("weekdays", []),
@@ -1370,8 +1396,8 @@ def build():
 
     add_group(N.BELLAGIO_EVENTS, "bellagio", "bell")
     add_group(N.MGM_EVENTS, "mgm", "mgm")
-    add_group(N.CAESARS_EVENTS, "caesars", "caes")
-    add_group(N.HORSESHOE_EVENTS, "horseshoe", "horse")
+    add_group(N.CAESARS_EVENTS, "caesars", "caes", last_checked=CHECKED_TODAY)
+    add_group(N.HORSESHOE_EVENTS, "horseshoe", "horse", last_checked=CHECKED_TODAY)
     add_group(N.ARIA_EVENTS, "aria", "aria")
 
     hotels = []
@@ -1383,7 +1409,7 @@ def build():
             high = round((h["baseRateCeiling"] + h["resortFee"]) * (1 + h["taxRate"] / 100), 2)
         row["trueNightlyLow"] = low
         row["trueNightlyHigh"] = high
-        row["lastChecked"] = ASOF
+        row["lastChecked"] = CHECKED_TODAY if h["id"] in ("venetian", "palazzo") else ASOF
         row["lastVerified"] = VERIFIED_ON
         # Facts confirmed live on 2026-11-17 that the earlier build left blank.
         if h.get("id") in ("venetian", "palazzo"):
@@ -1413,15 +1439,25 @@ def build():
         row["walkSourceType"] = "Google Maps walking estimate"
         routes.append(row)
 
-    # Live re-check of the official DeepStack Extravaganza IV page, 2026-11-17: the 24 rows dated
-    # 2026-11-16 to 2026-11-28 were matched on date, start time and structure-sheet link.
-    n = 0
+    # Live re-check of the official DeepStack Extravaganza IV page, 2026-11-17. Two windows, because the two
+    # checks compared different things: rows dated 2026-11-16 to 2026-11-27 (chunk 0 of the page) were matched on
+    # date, start time, event name, buy-in, guarantee and structure-sheet link; rows dated 2026-11-28 to 2026-12-23
+    # (chunks 1 to 3) were matched on date, start time, event name, buy-in and guarantee only, and their structure
+    # links were not compared.
+    n_first = n_second = 0
     for e in events:
         if e["venue"] == "venetian" and e["date"] and RECHECK_FROM <= e["date"] <= RECHECK_TO:
             e["lastChecked"] = RECHECKED
-            e["recheck"] = dict(date=RECHECKED, source=DSE_NOV_URL, result="matched on date, start time and structure link")
-            n += 1
-    assert n == 24, f"expected 24 re-checked DSE IV rows, got {n}"
+            if e["date"] < "2026-11-28":
+                e["recheck"] = dict(date=RECHECKED, source=DSE_NOV_URL,
+                                    result="matched on date, start time and structure link")
+                n_first += 1
+            else:
+                e["recheck"] = dict(date=RECHECKED, source=DSE_NOV_URL,
+                                    result=("matched on date, start time, event name, buy-in and guarantee; "
+                                            "structure links not compared"))
+                n_second += 1
+    assert n_first == 21 and n_second == 73, f"re-check windows: expected 21 and 73, got {n_first} and {n_second}"
 
     # Live re-check, 2026-11-17 (session c1655bf5): the official WPT World Championship schedule PDF
     # was re-fetched and every published Wynn row inside the trip window (2026-11-25 to 2026-12-02,
@@ -1492,10 +1528,22 @@ def build():
     for r in rate_log:
         r.setdefault("quoteType", "Observation")
 
+    for e in events:
+        if not e["date"]:
+            e["status"] = "recurring"
+        elif e["date"] < TODAY:
+            e["status"] = "past"
+        elif e["date"] == TODAY:
+            e["status"] = "today"
+        else:
+            e["status"] = "upcoming"
+
     data = dict(
-        asOf=ASOF,
+        asOf=TODAY,
+        today=TODAY,
+        bookingLinks=BOOKING_LINKS,
         scope=("Las Vegas Strip poker tournaments and Strip lodging, built only from official venue and property pages. "
-               "Snapshot date 2026-11-16."),
+               "Snapshot date 2026-11-17. Rows re-read that day carry 2026-11-17 as their last-checked date; every other row keeps the date it was last read."),
         policy=("Every row links the official page it came from. A value that could not be confirmed from an official source is "
                 "left blank and listed on the Flagged for review page. Walking minutes are Google Maps walking estimates and are "
                 "labelled as such. The guaranteed-pool-to-fee ratio is descriptive only and is not a forecast."),

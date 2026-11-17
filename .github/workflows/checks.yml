@@ -9,14 +9,14 @@ name: Scheduled source re-check and daily room feed
 # `python3 scripts/verify_site.py` and `json.tool site/checks.json` BEFORE the
 # step that creates checks.json. On the first run checks.json does not exist, so
 # the job would have failed at the verify step and never written or published the
-# record it exists to produce. The old script also exited non-zero only on
-# curl-style failures while treating a single unreachable optional PDF as fatal
-# for the whole record. Both were repaired:
+# record it exists to produce. The old checker also treated a single unreachable
+# optional PDF as fatal for the whole record. Both were repaired:
 #   * scripts/check_sources.py records the state of every URL, including the ones
-#     it could not reach, so the record always exists;
+#     it could not reach, so the record always exists and a failure is published
+#     as "unavailable" rather than as a content change;
 #   * scripts/verify_transcription.py then re-checks the 44 transcribed series-PDF
 #     rows against the published data and records the result beside it;
-#   * the dashboard verifier runs last and no longer depends on checks.json existing.
+#   * the dashboard verifier runs last, after both records exist.
 #
 # It only records observations. It never rewrites a tournament, fee, hotel or
 # guarantee value: a changed page is flagged for a human to re-read.

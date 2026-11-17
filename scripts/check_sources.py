@@ -147,14 +147,32 @@ def main() -> int:
         state = "CHANGED" if row["changed"] else "UNAVAILABLE" if row["unavailable"] else "BASELINE" if row["baseline"] else "unchanged"
         print(f"{row['status']:>14}  {state:>11}  {url}")
 
+    # The sources page reads summary.generatedAt/mode, so publish the same shape the
+    # page renders. A later verify_transcription.py run adds the "transcription" key
+    # to this same file instead of replacing it.
+    fetched = sum(1 for r in rows if str(r.get("status", "")).startswith("HTTP 2"))
     payload = {
-        "lastRun": now,
-        "note": ("Automated re-check of every official URL behind this dashboard. A changed flag means the page body "
-                 "differs from the stored hash and a human must re-read the source before any value is changed."),
+        "generatedAt": now,
+        "mode": "live fetch",
+        "summary": {
+            "urls": len(rows),
+            "fetched": fetched,
+            "changed": len(changed),
+            "failed": sum(1 for r in rows if r.get("unavailable")),
+        },
         "urls": rows,
         "changedCount": len(changed),
         "changed": [r["url"] for r in changed],
+        "note": ("Automated re-check of every official URL behind this dashboard. A changed flag means the page body "
+                 "differs from the stored hash and a human must re-read the source before any value is changed."),
     }
+    if CHECKS.exists():
+        try:
+            previous_payload = json.loads(CHECKS.read_text(encoding="utf-8"))
+        except ValueError:
+            previous_payload = {}
+        if previous_payload.get("transcription"):
+            payload["transcription"] = previous_payload["transcription"]
     if not args.dry_run:
         CHECKS.write_text(json.dumps(payload, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
         print(f"\nwrote {CHECKS} with {len(rows)} URLs, {len(changed)} changed")
