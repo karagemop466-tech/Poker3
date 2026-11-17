@@ -25,6 +25,7 @@ WYNN_ROOMS = "https://www.wynnlasvegas.com/rooms-and-suites"
 # before September 30, 2025".  The live, non-offer policy page below is therefore
 # used instead; the expired page is kept only as a cross-check and is flagged.
 WYNN_TERMS = "https://www.wynnlasvegas.com/about-us/resort-information"
+WYNN_PARKING = "https://www.wynnlasvegas.com/about-us/parking"
 WYNN_EXPIRED_OFFER = "https://www.wynnlasvegas.com/terms-and-conditions/850070"
 MGM_TERMS = "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html"
 ARIA_TERMS = "https://aria.mgmresorts.com/en/terms-and-conditions.html"
@@ -289,7 +290,12 @@ HOTELS = [
                       "quote is published."),
         resortFee=55, resortFeeNote="$55 resort fee per night stayed, plus tax, payable upon check-in.",
         taxRate=TAX_RATE,
-        taxNote="Clark County Room Tax of 13.38% applies to the daily rate; the resort fee is 'plus applicable tax'.",
+        taxNote=("Printed in the official Hotel Terms and Conditions, 'Taxes, Surcharges, and Resort Fee' section: 'Daily "
+                 "rates do not include the applicable Clark County Room Tax of 13.38%.' and 'The Venetian Resort has a "
+                 "standard Las Vegas Resort Fee of $55 plus applicable tax per night, payable upon check-in.' The same "
+                 "page still opens its Resort Fee section with 'Rates include a daily Resort Fee of $55 plus tax per "
+                 "night', and the booking calendar footnote says its prices 'include daily resort fee, excludes taxes', "
+                 "so the two official pages describe the fee differently and the site uses the fee-on-top reading (F51)."),
         parking="$20 per day for registered hotel guests (seven days a week); $20 Monday-Thursday and $25 Friday-Sunday for non-hotel guests; valet $40 per day.",
         parkingSource=VENETIAN_HOTEL_TERMS,
         cancellation=("A deposit for the stay including suite, fee and tax is billed on reservation confirmation. Blackout "
@@ -330,7 +336,12 @@ HOTELS = [
                       "property is not stated."),
         resortFee=55, resortFeeNote="$55 resort fee per night stayed, plus tax, payable upon check-in.",
         taxRate=TAX_RATE,
-        taxNote="Clark County Room Tax of 13.38% applies to the daily rate; the resort fee is 'plus applicable tax'.",
+        taxNote=("Printed in the official Hotel Terms and Conditions, 'Taxes, Surcharges, and Resort Fee' section: 'Daily "
+                 "rates do not include the applicable Clark County Room Tax of 13.38%.' and 'The Venetian Resort has a "
+                 "standard Las Vegas Resort Fee of $55 plus applicable tax per night, payable upon check-in.' The same "
+                 "page still opens its Resort Fee section with 'Rates include a daily Resort Fee of $55 plus tax per "
+                 "night', and the booking calendar footnote says its prices 'include daily resort fee, excludes taxes', "
+                 "so the two official pages describe the fee differently and the site uses the fee-on-top reading (F51)."),
         parking="$20 per day for registered hotel guests; valet $40 per day.",
         parkingSource=VENETIAN_HOTEL_TERMS,
         cancellation=("Deposit billed on confirmation; blackout dates apply; prepaid offers non-refundable; early checkout "
@@ -363,9 +374,12 @@ HOTELS = [
         taxRate="",
         taxNote=("Wynn prints 'plus tax' without a percentage. The 13.38% Clark County room tax is the rate printed in the "
                  "Venetian hotel terms; applying it to Wynn's own total is an assumption and is labelled as one."),
-        parking=("Self parking is complimentary for registered guests. Non-registered guests pay $25 per day with the first "
-                 "three hours free; valet $40 per day. Complimentary self-parking is extended to Wynn Poker Room guests."),
-        parkingSource=WYNN_TERMS,
+        parking=("Confirmed on the official Parking page: 'Self-parking garages at Wynn and Encore ... complimentary "
+                 "parking for all Wynn and Encore Resort and Tower Suite registered guests'; 'The daily parking fee for "
+                 "non-registered guests is $25 per day with the first three (3) hours complimentary'; 'Complimentary "
+                 "self-parking is extended to Wynn Poker Room guests'; 'Valet parking is $40 per day up to 24 hours (no "
+                 "grace period, no re-entry)'."),
+        parkingSource=WYNN_PARKING,
         cancellation=("A deposit of one night's room rate and tax is charged at booking. The live policy page does not "
                       "print a cancellation window; the 48-hour window appears only in offer terms, so no Wynn "
                       "cancellation deadline is marked verified for a flexible 2026 booking."),

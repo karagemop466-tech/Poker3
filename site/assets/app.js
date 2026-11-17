@@ -96,6 +96,9 @@ function ruleBadge(status) {
     'multiple-entries': ['warn', 'More than one entry possible'],
     'multi-buyin': ['warn', 'More than one entry possible'],
     'separate-flights': ['warn', 'Separate start flights'],
+    // The section prints an explicit cap on starting flights, but still permits one re-entry
+    // into that flight, so the event is not a one-entry tournament.
+    'one-flight-cap': ['warn', 'One entry per flight + one re-entry'],
     'not-verified': ['bad', 'Entry rules not verified'],
     'not-allowed': ['ok', 'Re-entry not allowed'],
     'allowed': ['warn', 'Allowed'],

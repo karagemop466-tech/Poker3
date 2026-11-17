@@ -76,10 +76,13 @@ class WptTripWindowRows(unittest.TestCase):
         return matches[0]
 
     def test_matched_rows_carry_the_printed_re_entry_clause(self):
+        # The status is "confirmed": the recorded excerpt IS the document's own registration
+        # sentence, so what is confirmed is re-entry, not a paraphrase of it. It was
+        # "re-entry-printed" while the stored text was a paraphrase (see flag F77).
         for row in RECORD["wpt"]["rows"]:
             with self.subTest(row=row["id"]):
                 e = self._event(row["id"])
-                self.assertEqual(e["rules"]["reEntry"]["status"], "re-entry-printed")
+                self.assertEqual(e["rules"]["reEntry"]["status"], "confirmed")
                 self.assertEqual(e["rules"]["reEntry"]["excerpt"], row["excerpt"])
                 self.assertEqual(e["rules"]["reEntry"]["source"], RECORD["wpt"]["sheetUrl"])
                 self.assertEqual(e["rules"]["reEntry"]["retrieved"], RECORD["wpt"]["retrievedOn"])
