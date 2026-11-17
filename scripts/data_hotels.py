@@ -445,7 +445,13 @@ HOTELS = [
                       "$165 mid-week or $200 weekend cancellation fee."),
         cancellationSource=BELLAGIO_TERMS,
         incidental="$150 incidental amount per day authorised at check-in.",
+        # The Bellagio hotel reservation terms page was read live on 2026-11-17 (2 chunks) and prints
+        # the resort fee, taxes, deposit, incidental hold and cancellation window, but no check-in or
+        # check-out clock time. Left as an explicit blank rather than copied from another MGM property.
         checkInOut="",
+        checkInOutNote=("Not published on the Bellagio hotel reservation terms page, which was read in full on "
+                        "2026-11-17: it prints the deposit, cancellation, tax and incidental terms but no check-in or "
+                        "check-out time. Not inferred from MGM Grand or ARIA, which both print 3:00 pm / 11:00 am."),
         qualification="",
         source=BELLAGIO_HOTEL, feeSource=BELLAGIO_TERMS, taxSource=BELLAGIO_TERMS,
         qualityNote="Not scored. No official, comparable quality metric was published in the reviewed material.",

@@ -1160,8 +1160,16 @@ QUESTIONS = [
                  "same stay the day before, plus $2,504.00 for November 20-22. For the trip window itself it "
                  "returned no suite at all. The engine's calendar cells are not prices: read twice on the same day, "
                  "November 16 printed $555 with one stay window open and $854 with another, and November 27 printed "
-                 "$905 against $1,814 (F47). The rate page publishes only starting rates of $119 and $209, which are "
-                 "explicitly not date-specific, and states that rates are provided up to 150 days out."),
+                 "$905 against $1,814 (F47). The last sentence of this answer was superseded later on 2026-11-17: the "
+                 "engine DID price the trip window (23-30 Nov 2026, $4,010.55 checkout total, logged in the rate log) "
+                 "and, on a second read about 20 minutes later, a Palazzo Luxury King at $3,823.46 (F78). The rate page "
+                 "still publishes only starting rates of $119 and $209, which are explicitly not date-specific, and "
+                 "states that rates are provided up to 150 days out. Two other properties now have dated figures too, "
+                 "both from their own booking pages on 2026-11-17: MGM Grand printed MGM King calendar cells (22-28 Nov "
+                 "$84, $84, $84, $84, $149, $349, $149; 30 Nov $649) under a legend that says the cells include the "
+                 "average daily resort fee and exclude taxes, and Horseshoe printed its own November and December "
+                 "grids. A calendar cell is not a checkout total; only the Venetian has a printed, itemised checkout "
+                 "total for the trip stay."),
          why="Needed", blocking="Yes for a confirmed total",
          how="Open the booking link with the exact dates, then log the printed total in the rate log with its timestamp.",
          source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
@@ -1191,12 +1199,27 @@ QUESTIONS = [
          how="Re-check the Flagged for review page and the change log before booking and again 48 hours before you travel.",
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
     dict(id="Q11", question="What is the cancellation deadline at each property?",
-         answer="Published and different: Wynn requires 48 hours before arrival, Bellagio 72 hours before arrival, and the Venetian bills a deposit on confirmation with blackout dates and non-refundable prepaid offers; an early checkout costs $100 plus tax.",
+         answer=("Published and different, all re-read live on 2026-11-17. Wynn: 'cancellations must be received at least "
+                 "48 hours prior to arrival date or deposit (if applicable) will be forfeited', plus an early-departure "
+                 "penalty, with offer-specific date exceptions on the same page (F35 corrected). Bellagio, MGM Grand and "
+                 "ARIA: the first night's deposit is refundable if Room Reservations receives notice at least 72 hours "
+                 "before arrival; later cancellations and no-shows forfeit it. Caesars Palace and Horseshoe: the property "
+                 "pages advertise 'FREE 48-Hour Cancellation*' but do not print the terms behind the asterisk. Venetian: "
+                 "a deposit is billed on confirmation, blackout dates apply, prepaid offers are non-refundable, and an "
+                 "early checkout costs $100 plus tax."),
          why="Needed", blocking="No",
          how="Use the cancellation column in the hotel table when choosing where to hold the booking.",
          source="https://www.wynnlasvegas.com/terms-and-conditions/850070"),
     dict(id="Q12", question="What does parking cost, and does it change the true cost per night?",
-         answer="Venetian: $20 per day for registered hotel guests, $20 Monday-Thursday and $25 Friday-Sunday for non-hotel guests, valet $40. Wynn: self-parking is free for registered guests and $25 per day for others, valet $40, and complimentary self-parking extends to Wynn poker-room guests. Bellagio parking was not captured in this pass.",
+         answer=("Venetian: $20 per day for registered hotel guests, $20 Monday-Thursday and $25 Friday-Sunday for non-hotel "
+                 "guests, valet $40. The poker room's own parking page adds a waiver the hotel terms page does not print: "
+                 "players who play three hours or more in tournament or cash games receive complimentary self-parking for "
+                 "that day, confirmed with a supervisor at the end of the session (re-read 2026-11-17). A registered guest "
+                 "staying on property and playing a six-hour session therefore may pay nothing for parking, which is why "
+                 "the trip calculator keeps parking out of the core formula and shows it separately. Wynn: self-parking is "
+                 "free for registered guests and $25 per day for others, valet $40, and complimentary self-parking extends "
+                 "to Wynn poker-room guests. Bellagio, MGM Grand and ARIA publish no parking figure on their reservation "
+                 "terms pages, so those cells stay blank rather than guessed."),
          why="Needed", blocking="No",
          how="Include parking in the trip total if you will not stay on property every night.",
          source="https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html"),
@@ -1243,10 +1266,12 @@ QUESTIONS = [
              "return counts again.",
          source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
     dict(id="Q17", question="Which hotel fees are still unverified, and does that break the comparison?",
-         answer=("Caesars Palace and Horseshoe publish no resort fee on their official pages, and Wynn prints 'plus tax' "
-                 "without a percentage. MGM Grand ($50), Bellagio ($55), ARIA ($55) and the Venetian ($55) are verified. "
-                 "Any hotel comparison that includes the unverified properties is therefore incomplete, not wrong; the "
-                 "site leaves those cells blank and flags them."),
+         answer=("Corrected 2026-11-17: every one of the eight properties now has a verified resort fee. Caesars Palace "
+                 "prints $54.95 plus $7.35 tax ($62.30 tax inclusive) and Horseshoe $49.95 plus $6.68 ($56.63), both on "
+                 "their own booking pages; MGM Grand $50, Bellagio $55, ARIA $55, Wynn $55 and the Venetian $55 come from "
+                 "each property's own reservation terms. What remains unverified is the ROOM-TAX PERCENTAGE: only the "
+                 "Venetian prints 13.38%, so true-nightly figures stay blank at the other properties and the comparison is "
+                 "incomplete rather than wrong (F39). The site leaves those cells blank and flags them."),
          why="Needed", blocking="No - the recommended property is fully verified",
          how="Read each property's own reservation terms page, or ask the front desk for the resort fee and tax in writing.",
          source="https://www.caesars.com/caesars-palace"),
@@ -2129,7 +2154,13 @@ def build():
             high = round((h["baseRateCeiling"] + h["resortFee"]) * (1 + h["taxRate"] / 100), 2)
         row["trueNightlyLow"] = low
         row["trueNightlyHigh"] = high
-        row["lastChecked"] = (CHECKED_TODAY if h["id"] in ("venetian", "palazzo", "caesars", "horseshoe") else ASOF)
+        # lastChecked is per row and records only properties whose page this build actually re-read.
+        # 2026-11-17 re-reads (session 58e42dbd, live): Venetian + Palazzo poker-suite rates, resort fee and
+        # hotel terms; Wynn Resort Policies + Terms; Bellagio poker page and hotel reservation terms;
+        # MGM Grand poker page, hotel page and hotel reservation terms; ARIA poker page and reservation terms;
+        # Caesars Palace / Horseshoe tournament page. 2026-11-16 is the earlier capture date.
+        _reread_today = ("venetian", "palazzo", "caesars", "horseshoe", "wynn", "bellagio", "mgm", "aria")
+        row["lastChecked"] = (CHECKED_TODAY if h["id"] in _reread_today else ASOF)
         row["lastVerified"] = VERIFIED_ON
         # Facts confirmed live on 2026-11-17 that the earlier build left blank.
         if h.get("id") in ("venetian", "palazzo"):
