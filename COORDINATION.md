@@ -972,7 +972,7 @@ Branch: `arena/c2b95024-poker3` (platform-bound; the `session-<id>/<task>` namin
 | C1 Re-read the official DSE IV schedule rows and structure sheets behind the trip-window primary and fallback picks (Nov 25 – Dec 2, 2026) | done 2026-11-17 | arena/c2b95024-poker3 | `COORDINATION.md`, flag/data files only if a value is wrong | Live fetch of the official pages, not the earlier snapshot. |
 | C2 Check the scheduled re-check and morning feed | done (first scheduled run not yet due) | arena/c2b95024-poker3 | `COORDINATION.md` | `checks.yml` cron is 12:13 UTC; at claim time (00:50 UTC) no scheduled run had yet been due. |
 | C3 Hotel rate for the exact trip dates from the official booking engine | done: no price published | arena/c2b95024-poker3 | `COORDINATION.md` | Previous sessions found none published. Re-tried once. |
-| C4 Integration: PR to `main`, merge, Pages check, record result | in progress | arena/c2b95024-poker3 | `COORDINATION.md` | Merge only after the checks pass. |
+| C4 Integration: PR to `main`, merge, Pages check, record result | done 2026-11-17: PR #49 merged (merge commit `a7ab1a4`); Pages build `built` at `0779803` (includes #49) | arena/c2b95024-poker3 | `COORDINATION.md` | Merged only after `verify` passed. Live URL not fetchable from the sandbox; Pages build status checked via API. |
 
 ### Results (2026-11-17 UTC, arena/c2b95024-poker3)
 
@@ -1167,3 +1167,4 @@ the same evidence basis the merged sessions used. Every check below was re-run t
 ### Result (this session)
 
 - PR and merge are recorded below.
+- **C4 result (2026-11-17).** PR #49 merged to `main` after `verify` passed. Pages build status is `built` at `0779803`, which includes #49. No duplicate flag IDs on `main` (34 flags, F31–F34 unique). PR #46 still uses F31–F34 with other meanings and must renumber when it rebases. Suggestion S-re-read is still open for user choice.
