@@ -688,3 +688,30 @@ Claim recorded 2026-11-16 UTC before any file edits in this session.
 - **Pages:** "pages build and deployment" run 43950193086 → success; "Publish integrated Vegas Poker Planner to GitHub Pages" run 43950194425 → success, both at `f5013e4`. GitHub Pages API: `status: built` → https://karagemop466-tech.github.io/Poker3/ (github.io not reachable from this sandbox; confirmed via `gh api .../pages`).
 - **Merge result:** no site file changed by this session's PR — the deployed canonical site remains the richer merged build (62cea180/ef37b79e/e58b73b1/ed88c788). Flagged items from this session's research (decorative DATE cells, `(IDAY)` typo, expired-offer sources, unpublished tax rates) are logged above as requests; none blocks the merge.
 - This record itself ships in follow-up PR [#34](https://github.com/karagemop466-tech/Poker3/pull/34).
+
+## Session arena/cd17e91c-poker3 — audit of canonical `site/` on `main` (2026-11-17 UTC)
+
+Scope: `COORDINATION.md` only. No `site/**`, `scripts/**`, or workflow file is edited by this session, because those are shared outputs owned by the integration session. Base: `main` at `b30841e`.
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| Re-verify the shipped canonical site (verify, smoke, reproducible build, Pages status) and log irregularities | done (2026-11-17) | arena/cd17e91c-poker3 | `COORDINATION.md` | Claim committed first (d64ecbb). Results below. No site value changed. |
+
+### Results (2026-11-17 UTC, arena/cd17e91c-poker3)
+
+- **Checks run on `main` at `b30841e`:**
+  - `python3 scripts/verify_site.py` → passed (341 events, 8 hotels, 14 routes, 27 sources, 28 flags, 8 plan days, 15 pages).
+  - `python3 tests/canonical_smoke.py` → passed (10 main pages, 5 detail pages rendered).
+  - `node --check site/assets/app.js` and `python3 -m json.tool site/data.json` → passed.
+  - `python3 scripts/data_source.py` re-run → zero diff against the committed `site/data.json`, so the published data reproduces from its source modules.
+  - GitHub Pages API: `status: built`, source `main` `/`, https://karagemop466-tech.github.io/Poker3/ . Latest Pages and "Verify static research site" runs on `main` are `success`.
+- **8 AM question re-checked against the raw official text (not only the derived JSON):** the earliest verified start on any official schedule is **9:10 AM**, which is Venetian Event #46, a $260 Turbo Milestone Satellite on Dec 12, 2026 (`raw/venetian_dse_nov_2026_schedule.md` line 67; `raw/dse_nov_2026_structures_page.md` line 74; `data.json` id `vl-dse-2026-12-12-46-910am`). Regular events start at 10:00 AM or later. The satellite pays seats, not cash, and is excluded from the main list. No 8:00 AM start is verified, so the 8 AM all-day plan is still not buildable from verified data.
+- **Sources:** this session did not fetch new live pages. All values are the existing official-source records from `raw/` and `data.json`, with their retrieval date of 2026-11-16. Nothing here is newly verified.
+
+**Irregularities for the integration owner (logged, not edited, because `site/**` is a shared output):**
+1. Wynn daily row name is duplicated: "$200 No Limit Hold'em (Monday-Thursday) (Monday-Thursday)" (`site/data.json` at about lines 8289 and 21017). It likely comes from `scripts/data_venues.py`. Request: remove the duplicate suffix in the generator, then rebuild.
+2. The trip window (Nov 25 to Dec 2, 2026) was fixed by an earlier session. The brief asks to "fix trip dates", and no user-supplied dates exist in the repo. Request: confirm the dates with the user before any nonrefundable payment.
+3. Open PRs from other sessions still target `main` with overlapping content: #7 (`arena/92941c56-poker3`), #27 (`arena/701f2252-poker3`), #31 (`arena/ea188b20-poker3`). This session did not touch them. Request: the user chooses which, if any, to merge. Merging them could conflict with the canonical site.
+4. Only one verified start is before 10:00 AM (the satellite at 9:10 AM). The brief asks for an 8 AM all-day schedule. The site already states this (`site/sheets.html` line 352). Discovery step for the user: ask Horseshoe and Golden Nugget about early daily events, because their times are unpublished.
+
+No `site/**`, `scripts/**`, or workflow file was changed by this session. Two commits are on this branch: the claim (d64ecbb) and this record. PR and merge are recorded below.
