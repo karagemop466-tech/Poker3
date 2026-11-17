@@ -138,6 +138,13 @@ LIVE_FACTS_2026_11_17 = dict(
                               "event is excluded from the single-entry path for all three reasons."),
 )
 
+# Aliases used by the per-row re-read bookkeeping below. LAST_PASS is ASOF, so a row or
+# source that was not re-read today keeps the base snapshot date. RECHECKED_TODAY is the
+# scheduleUrl fragment of the rows that scripts/verify_live_official.py compares line by
+# line against a fresh capture of the official page.
+LAST_PASS = ASOF
+RECHECKED_TODAY = "dse-nov-2026"
+
 # --------------------------------------------------------------- time helpers
 _CLOCK = re.compile(r"(\d{1,2}):(\d{2})\s*([ap])\.?m\.?", re.I)
 
@@ -226,70 +233,70 @@ VENUES = [
 SOURCES = [
     dict(id="vl-dse-nov", name="Venetian DeepStack Extravaganza IV schedule and structure sheets (Nov 16 - Dec 23, 2026)",
          url="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-         type="official schedule", checked=ASOF),
+         type="official schedule", checked=RECHECKED),
     dict(id="vl-dse-dec", name="Venetian DeepStack Extravaganza NYE schedule and structure sheets (Dec 24, 2026 - Jan 10, 2027)",
          url="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html",
-         type="official schedule", checked=ASOF),
+         type="official schedule", checked=LAST_PASS),
     dict(id="vl-series", name="Venetian DeepStack Poker Series index (current, next and future series)",
          url="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html",
-         type="official index", checked=ASOF),
+         type="official index", checked=LAST_PASS),
     dict(id="vl-poker", name="Venetian poker room page", url="https://www.venetianlasvegas.com/resort/casino/poker.html",
-         type="official room page", checked=ASOF),
+         type="official room page", checked=LAST_PASS),
     dict(id="vl-suite-rates", name="Venetian poker-room suite rates and play requirements 2026",
-         url="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html", type="official rate page", checked=ASOF),
+         url="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html", type="official rate page", checked=RECHECKED),
     dict(id="vl-resort-fee", name="Venetian resort fee page", url="https://www.venetianlasvegas.com/resort/resort-fee.html",
-         type="official fee page", checked=ASOF),
+         type="official fee page", checked=LAST_PASS),
     dict(id="vl-hotel-terms", name="Venetian hotel terms and conditions (tax, parking, cancellation)",
-         url="https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html", type="official terms", checked=ASOF),
+         url="https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html", type="official terms", checked=LAST_PASS),
     dict(id="wynn-poker", name="Wynn Las Vegas poker room page", url="https://www.wynnlasvegas.com/casino/poker",
-         type="official room page", checked=ASOF),
+         type="official room page", checked=LAST_PASS),
     dict(id="wynn-daily-poster", name="Wynn daily tournament poster",
          url="https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf",
-         type="official schedule", checked=ASOF),
+         type="official schedule", checked=RECHECKED),
     dict(id="wynn-daily-struct", name="Wynn daily tournament terms and structures",
          url="https://cdn.wynnresorts.com/image/upload/v1752011191/visitwynn_pdfs_files/Poker/Daily%20Tournaments/Poker-All_Daily_Structures.pdf",
-         type="official structures", checked=ASOF),
+         type="official structures", checked=LAST_PASS),
     dict(id="wynn-wpt-sched", name="WPT World Championship schedule at Wynn Las Vegas (Nov 27 - Dec 21, 2026)",
          url="https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
-         type="official schedule", checked=ASOF),
+         type="official schedule", checked=LAST_PASS),
     dict(id="wynn-wpt-struct", name="WPT World Championship structures at Wynn Las Vegas",
          url="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-         type="official structures", checked=ASOF),
+         type="official structures", checked=LAST_PASS),
     dict(id="wynn-sig-sched", name="Wynn Signature Series schedule (Jan 11-24, 2027)",
          url="https://cdn.wynnresorts.com/image/upload/v1753296112/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Schedule.pdf",
-         type="official schedule", checked=ASOF),
+         type="official schedule", checked=LAST_PASS),
     dict(id="wynn-rooms", name="Wynn Las Vegas rooms and suites", url="https://www.wynnlasvegas.com/rooms-and-suites",
-         type="official room page", checked=ASOF),
+         type="official room page", checked=LAST_PASS),
     dict(id="wynn-terms", name="Wynn Las Vegas terms (resort fee, cancellation, parking)",
-         url="https://www.wynnlasvegas.com/terms-and-conditions/850070", type="official terms", checked=ASOF),
+         url="https://www.wynnlasvegas.com/terms-and-conditions/850070", type="official terms", checked=LAST_PASS),
     dict(id="bell-poker", name="Bellagio poker room page", url="https://bellagio.mgmresorts.com/en/casino/poker.html",
-         type="official room page", checked=ASOF),
+         type="official room page", checked=LAST_PASS),
     dict(id="bell-fri", name="Bellagio Friday $600 No Limit Hold'em structure",
          url="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf",
-         type="official structure", checked=ASOF),
+         type="official structure", checked=LAST_PASS),
     dict(id="bell-sat", name="Bellagio Saturday No Limit Hold'em structure (buy-in conflict)",
          url="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf",
-         type="official structure", checked=ASOF),
+         type="official structure", checked=LAST_PASS),
     dict(id="bell-sun", name="Bellagio Sunday $400 H.O.R.S.E. structure",
          url="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt07fcf1244a6da661/6af491a339e2b4f6b76a86ad/mgm-bellagio-poker-sundays-$400-horse.pdf",
-         type="official structure", checked=ASOF),
+         type="official structure", checked=LAST_PASS),
     dict(id="bell-hotel", name="Bellagio hotel rooms and suites", url="https://bellagio.mgmresorts.com/en/hotel.html",
-         type="official room page", checked=ASOF),
+         type="official room page", checked=LAST_PASS),
     dict(id="bell-terms", name="Bellagio hotel reservation terms (resort fee, cancellation, taxes)",
-         url="https://bellagio.mgmresorts.com/en/terms-and-conditions.html", type="official terms", checked=ASOF),
+         url="https://bellagio.mgmresorts.com/en/terms-and-conditions.html", type="official terms", checked=LAST_PASS),
     dict(id="mgm-poker", name="MGM Grand poker room page", url="https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
-         type="official room page", checked=ASOF),
+         type="official room page", checked=LAST_PASS),
     dict(id="mgm-sched", name="MGM Grand weekly tournament schedule sheet",
          url="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
-         type="official schedule", checked=ASOF),
+         type="official schedule", checked=LAST_PASS),
     dict(id="mgm-struct", name="MGM Grand $120 No Limit Hold'em structure",
          url="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/bltb2a45da7e8ee5621/mgm-grand-casino-poker-120_nlh.pdf",
-         type="official structure", checked=ASOF),
+         type="official structure", checked=LAST_PASS),
     dict(id="caesars-poker", name="Caesars Palace and Horseshoe poker tournament page",
          url="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-         type="official room page", checked=ASOF),
+         type="official room page", checked=LAST_PASS),
     dict(id="aria-poker", name="ARIA poker room page", url="https://aria.mgmresorts.com/en/casino/poker.html",
-         type="official room page", checked=ASOF),
+         type="official room page", checked=LAST_PASS),
     dict(id="aria-guide", name="ARIA official poker guide (undated)",
          url="https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
          type="official guide", checked=ASOF),
@@ -404,21 +411,49 @@ FLAGS = [
                  "is flagged rather than resolved."),
          source="https://www.wynnlasvegas.com/terms-and-conditions/850070"),
     dict(id="F15", area="Hotels", severity="High",
-         title="Only one dated checkout total exists, and it is not for the recommended trip window",
-         detail=("The Venetian booking engine prints a dated total for November 17-19, 2026 with two adults: $824.25 + $55, "
-                 "$164.25 + $55, $146.98 tax, $1,245.48 total for a 650 sq ft Newly Remodeled Luxury King suite. For the "
-                 "recommended trip window of November 25 to December 2, 2026 the same engine publishes no price, so the "
-                 "nightly budget on this site stays at the floor computed from the published starting rates of $119 and $209 "
-                 "and is labelled a floor, not a quote."),
+         title="Dated checkout totals exist for near-term stays, but none for the recommended trip window",
+         detail=("The Venetian booking engine has now printed three dated totals. November 17-19, 2026 with two adults: "
+                 "$824.25 + $55, $164.25 + $55, $146.98 tax, $1,245.48 total on 2026-11-16, and the same stay at "
+                 "$621.75 + $55, $164.25 + $55, $119.89 tax, $1,015.89 total on 2026-11-17. November 20-22, 2026: "
+                 "$899.25 + $55, $1,199.25 + $55, $295.50 tax, $2,504.00 total. On 2026-11-17 four stay windows inside "
+                 "the recommended trip window of November 25 to December 2, 2026 were opened and none returned a suite or "
+                 "a price, so the nightly budget stays at the floor computed from the published starting rates of $119 "
+                 "and $209 and is labelled a floor, not a quote."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"),
-    dict(id="F28", area="Hotels", severity="Medium",
-         title="The Venetian booking calendar disagrees with the quote, and the cells move within a day",
+    dict(id="F28", area="Hotels", severity="High",
+         title="The Venetian booking calendar disagrees with the quote, and its cells change with the query",
          detail=("The calendar cell for November 17 read $855 in the observation recorded on 2026-11-16, while the same "
                  "page's quote for the same night printed a $824.25 room rate, and an earlier observation of the same "
                  "calendar on the same day recorded $605. The calendar states that its prices are the best available suite "
                  "and rate, include the daily resort fee and exclude taxes. Calendar cells are logged as observations and "
                  "are never used in a total. On 2026-11-17 the same booking engine, fetched live for Nov 25 to Dec 2, "
                  "showed no amount in any date cell, so the trip window is still unpriced and no cell was recorded."),
+         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"),
+    dict(id="F45", area="Sources", severity="Low",
+         title="The official schedule PDF and the official schedule page print the event name differently",
+         detail=("Both captures are official and they agree on date, time, event number and structure-sheet link for all "
+                 "94 rows, but 83 of the 94 names are rendered differently: the PDF puts the guarantee in its own "
+                 "GUARANTEE column, while the HTML page inlines '$XXK GTD' into the event name. Example: the PDF prints "
+                 "'$200 NLH BOUNTY (1DAY)' with a separate $8,000 guarantee, and the page prints '$200 No Limit Hold'em "
+                 "Bounty $8K GTD (1Day)'. The site's names follow the HTML page, which is the page every row links to."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
+    dict(id="F46", area="Sources", severity="Medium",
+         title="The official schedule PDF prints decorative sponsor art in the DATE column on 20 rows",
+         detail=("20 of the 94 rows on the official DeepStack Extravaganza IV schedule PDF carry no date at all: 6 read "
+                 "'@PokerAtlas* TOUR', 6 read 'LIPS CHAMPIONSHIP CHAMPIES CHAMPIES CHAMPIES', 5 read "
+                 "'LIPS FRIDAY, DECEMBER 11', 2 read '@PokerAtlas PRO' and 1 reads '@PokerAtlas* PRO'. Those rows cover "
+                 "events 17, 18, 32-38, 41-46, 48, 50, 51 and 58. The dates on this site for those rows come from the "
+                 "official schedule page, not from the PDF, and the two were cross-checked row by row."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
+    dict(id="F47", area="Hotels", severity="High",
+         title="Booking-calendar cells are not prices: the same date prints a different figure per query",
+         detail=("On 2026-11-17 the official Venetian booking calendar was read twice, with two different stay windows "
+                 "open. November 16 printed $555 with the November 17-19 window open and $854 with the November 27-28 "
+                 "window open; November 22 printed $165 against $230; November 27 printed $905 against $1,814. The page's "
+                 "own footnote says the figure is the best available suite and rate, includes the daily resort fee and "
+                 "excludes taxes, so the cell tracks the cheapest suite the engine can offer for that context rather than "
+                 "a fixed nightly rate. No calendar cell is used anywhere on this site as a price; only the engine's "
+                 "itemised quote panel is."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"),
     dict(id="F16", area="Schedule", severity="High",
          title="No official schedule publishes tournament finish times",
@@ -613,11 +648,12 @@ FLAGS = [
 
 QUESTIONS = [
     dict(id="Q01", question="What are the actual travel dates, and how many nights?",
-         answer=("For planning purposes this session fixed the dates at November 25 to December 2, 2026 because that window "
-                 "contains the most sheet-screened candidates (not confirmed single-entry events) in the reviewed snapshot. "
-                 "The official booking engine publishes no "
-                 "price for those dates. The one dated checkout total it does publish is November 17-19, 2026 for two "
-                 "adults: $1,245.48 including the $55 nightly resort fee and $146.98 of tax."),
+         answer=("For planning purposes this session fixed the dates at November 25 to December 2, 2026 because that "
+                 "window contains the most sheet-screened candidates (not confirmed single-entry events) in the reviewed "
+                 "snapshot. The official booking engine was opened on 2026-11-17 for four stay windows inside those dates "
+                 "and returned no suite and no price for any of them. It does quote near-term stays: it priced November "
+                 "17-19, 2026 for two adults at $1,245.48 on 2026-11-16 and at $1,015.89 on 2026-11-17, and November "
+                 "20-22 at $2,504.00."),
          why="Needed", blocking="Yes - no hotel total can be confirmed without it",
          how="Open the booking link on the hotels page with the arrival and departure dates you want; the price is printed by the venue itself.",
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"),
@@ -637,12 +673,15 @@ QUESTIONS = [
          how="Ask the poker room to confirm in writing that a second buy-in is not accepted for a specific event if that matters for your decision.",
          source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf"),
     dict(id="Q05", question="Which hotels actually publish a room price for the dates you want?",
-         answer=("Only The Venetian, and only through its own booking engine rather than on the rate page. For November "
-                 "17-19, 2026 the engine printed $824.25 + $55, $164.25 + $55, $146.98 tax and a $1,245.48 total for a "
-                 "650 sq ft Luxury King suite. Its calendar cells for November are best-available rates that include the "
-                 "resort fee and exclude tax, and they moved within a single day. The rate page itself still publishes "
-                 "only starting rates of $119 and $209, which are explicitly not date-specific, and states that rates are "
-                 "provided up to 150 days out."),
+         answer=(
+                 "Only The Venetian, and only through its own booking engine rather than on the rate page. Re-read "
+                 "on 2026-11-17, the engine printed $621.75 + $55 and $164.25 + $55 with $119.89 tax and a "
+                 "$1,015.89 total for a 650 sq ft Luxury King suite on November 17-19, against $1,245.48 for the "
+                 "same stay the day before, plus $2,504.00 for November 20-22. For the trip window itself it "
+                 "returned no suite at all. The engine's calendar cells are not prices: read twice on the same day, "
+                 "November 16 printed $555 with one stay window open and $854 with another, and November 27 printed "
+                 "$905 against $1,814 (F47). The rate page publishes only starting rates of $119 and $209, which are "
+                 "explicitly not date-specific, and states that rates are provided up to 150 days out."),
          why="Needed", blocking="Yes for a confirmed total",
          how="Open the booking link with the exact dates, then log the printed total in the rate log with its timestamp.",
          source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
@@ -831,6 +870,21 @@ SUGGESTIONS = [
                  "2026-12-02 would settle it."),
          impact="High", effort="Low",
          decision="Read three PDFs; no new source needed"),
+    dict(id="S18", title="Re-quote the trip window every morning and log what the engine returns",
+         detail=("Three dated quotes show the engine moves: the same November 17-19 stay printed $1,245.48 on "
+                 "2026-11-16 and $1,015.89 on 2026-11-17. Four stay windows inside the trip window returned no suite at "
+                 "all. A scheduled job that opens the seven per-night booking links each morning and appends whatever "
+                 "the engine prints - a total, or 'no suite returned' - would turn the trip budget from a floor into a "
+                 "tracked number without anyone having to remember to look."),
+         impact="High", effort="Medium",
+         decision="Automate the morning re-quote, or keep the per-night links manual"),
+    dict(id="S19", title="Never treat a booking-calendar cell as a price",
+         detail=("Read twice on the same day, the official calendar printed $555 and $854 for November 16 and $905 and "
+                 "$1,814 for November 27 depending on which stay window was open. The cell tracks the cheapest suite the "
+                 "engine can offer for that query, not a nightly rate. This is already enforced in the data - only the "
+                 "itemised quote panel is used - but the comparison is worth keeping on the hotels page so a reader does "
+                 "not copy a calendar figure into a budget."),
+         impact="Medium", effort="Done", decision="Keep the comparison published"),
 ]
 
 
@@ -898,7 +952,7 @@ def _rules_for_sheet(sheet_no):
 
 
 def _event(eid, venue, date, time, name, buyIn, guarantee, rules, category, kind,
-           sheet_url, schedule_url, structure_url=None, last_checked=ASOF,
+           sheet_url, schedule_url, structure_url=None, last_checked=LAST_PASS,
            note="", eligibility="", guarantee_note="", chips="", level_min="",
            late_reg="", entry_type="not-verified", fmt="", continuation=False, weekdays=None):
     buy = buyIn if isinstance(buyIn, str) else ("" if buyIn in (None, "-") else buyIn)
@@ -997,10 +1051,15 @@ TRIP = {
                      "permission or a budget for rebuys/add-ons; no event qualifies for strict entry policy until the venue "
                      "confirms the written rules. It is a planning figure, not a forecast."),
     "lodgingEvidence": (
-        "The official Venetian booking engine publishes one dated checkout total, for November 17-19, 2026 with two "
-        "adults: $824.25 + $55 on the 17th, $164.25 + $55 on the 18th, $146.98 tax, $1,245.48 total. For the recommended "
-        "trip window of November 25 to December 2, 2026 the same booking engine publishes no price at all, so the trip "
-        "budget stays at the published starting-rate floor and is labelled a floor, not a quote."),
+        "The official Venetian booking engine was opened on 2026-11-17 for four stay windows inside the recommended trip "
+        "dates of November 25 to December 2, 2026, with two adults. None returned a suite or a price: the seven-night stay "
+        "and the November 30 single night rendered every calendar cell as the placeholder '$XXX', the November 25-27 stay "
+        "did not finish loading, and the November 27-28 stay rendered the calendar with no suite panel. The engine does "
+        "quote near-term stays, and it priced the same November 17-19 stay twice on consecutive days: $1,245.48 on "
+        "2026-11-16 and $1,015.89 on 2026-11-17, because the first night fell from $824.25 to $621.75. A second stay, "
+        "November 20-22, was quoted on 2026-11-17 at $2,504.00. All three quotes reconcile exactly with "
+        "(rate + $55 resort fee) x 1.1338. No dated official price exists for the trip window itself, so the trip budget "
+        "stays at the published starting-rate floor and is labelled a floor, not a quote."),
 }
 
 PLAN_NOTES = {
@@ -1296,7 +1355,7 @@ def build():
             f"wynn-daily-{i}", "wynn", "", d["time"], label,
             d["buyIn"], d["guarantee"], rules, d["category"], "daily",
             d["poster"], d["source"], d["source"],
-            note=d.get("note", "") + f" Recurring {d['days'].lower()}.", last_checked=ASOF,
+            note=d.get("note", "") + f" Recurring {d['days'].lower()}.", last_checked=LAST_PASS,
             chips=d.get("chips", ""), level_min=d.get("levelMin", ""), late_reg=d.get("lateReg", ""),
             entry_type="multi-buyin", weekdays=d.get("weekdays", []),
         ))
@@ -1429,12 +1488,18 @@ def build():
             row["cancellationDetail"] = LIVE_FACTS_2026_11_17["bellagioCancellation"]
             row["cancellationDetailSource"] = row.get("cancellationSource", "")
         row["trueNightlyLow"] = row["trueNightlyLow"]
+        # The Venetian and Palazzo rows were re-queried on the official booking engine on
+        # 2026-11-17, so their lastChecked moves to that date; every other property keeps
+        # the base snapshot date because its page was not opened today.
+        if h["id"] in ("venetian", "palazzo"):
+            row["lastChecked"] = VERIFIED_ON
         hotels.append(row)
 
     routes = []
     for r in H.ROUTES:
         row = dict(r)
         row["mapsUrl"] = H.MAPS.format(o=r["mapsOrigin"], d=r["mapsDestination"])
+        # Walking times were measured on the base pass and were not re-measured today.
         row["lastChecked"] = ASOF
         row["walkSourceType"] = "Google Maps walking estimate"
         routes.append(row)
@@ -1471,6 +1536,14 @@ def build():
                                           retrieved=WPT_REREAD["retrievedOn"])
         ev["lastChecked"] = WPT_REREAD["retrievedOn"]
         ev["note"] = (ev.get("note", "") + f" Official structure sheet ({rec['section']}): {rec['excerpt']}").strip()
+
+    # lastChecked is per row, not per build. Every row on the official DSE IV schedule page
+    # was re-read against that page on 2026-11-17 (scripts/verify_live_official.py compares
+    # all 94 of them line by line), so those rows carry the later date. Every other row keeps
+    # the date of the pass that last read it, including the rows the block above re-read.
+    for e in events:
+        if RECHECKED_TODAY in (e.get("scheduleUrl") or ""):
+            e["lastChecked"] = RECHECKED
 
     recurring_events = [e for e in events if not e["date"] and e.get("weekdays")]
     plan, conflicts = build_day_plan(events, TRIP["start"], TRIP["end"], recurring_events)

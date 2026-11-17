@@ -449,27 +449,88 @@ function renderHotels() {
     routes.innerHTML = `<div class="table-wrap"><table><thead><tr><th>From</th><th>To</th><th>Walk</th><th>Distance</th>
       <th>Via</th><th>Note</th><th>Last checked</th><th>Sources</th></tr></thead><tbody>${body}</tbody></table></div>`;
   }
-  const quote = document.querySelector('[data-quote]');
-  if (quote) {
-    const q = (db.hotels || []).map((h) => h.quote).filter(Boolean)[0];
-    if (!q) {
-      quote.innerHTML = '<div class="empty"><strong>No dated checkout total.</strong> No property publishes one for the reviewed dates.</div>';
+  const quotesHost = document.querySelector('[data-quotes]');
+  if (quotesHost) {
+    const all = [];
+    (db.hotels || []).forEach((h) => (h.quotes || (h.quote ? [h.quote] : [])).forEach((q) => all.push(q)));
+    all.sort((a, b) => (a.observedOn < b.observedOn ? 1 : a.observedOn > b.observedOn ? -1 : 0));
+    if (!all.length) {
+      quotesHost.innerHTML = '<div class="empty"><strong>No dated checkout total.</strong> No property publishes one for the reviewed dates.</div>';
     } else {
-      quote.innerHTML = `
-        <div class="detail-grid">
-          <div><span class="label">Property and room</span><span class="value">${esc(q.property)}</span></div>
-          <div><span class="label">Stay</span><span class="value">${esc(q.checkIn)} → ${esc(q.checkOut)} · ${esc(q.nights)} nights · ${esc(q.guests)} adults</span></div>
-          <div><span class="label">Offer printed</span><span class="value">${esc(q.offer)}</span></div>
-          <div><span class="label">Room type</span><span class="value">${esc(q.suiteDetail)}</span></div>
-          <div><span class="label">Night 1</span><span class="value">$${q.nightOne.rate.toFixed(2)} + $${q.nightOne.resortFee.toFixed(2)} resort fee</span></div>
-          <div><span class="label">Night 2</span><span class="value">$${q.nightTwo.rate.toFixed(2)} + $${q.nightTwo.resortFee.toFixed(2)} resort fee</span></div>
-          <div><span class="label">Taxes printed</span><span class="value">$${q.taxes.toFixed(2)}</span></div>
-          <div><span class="label">Checkout total printed</span><span class="value">$${q.total.toFixed(2)}</span></div>
-          <div><span class="label">Average rate printed</span><span class="value">$${q.averageRate.toFixed(2)}</span></div>
-        </div>
-        <p class="detail-note">${esc(q.note)}</p>
-        <p class="detail-note">Derived nightly cost: $${q.derivedNightly[0].toFixed(2)} and $${q.derivedNightly[1].toFixed(2)}, from (rate + $55 resort fee) × 1.1338.</p>
-        <p class="detail-note">Observed ${esc(q.observedOn)} · <a href="${esc(q.source)}" target="_blank" rel="noopener">open the same official booking link →</a></p>`;
+      quotesHost.innerHTML = `<div class="cards">${all.map((q) => `
+        <article class="card">
+          <span class="pill ${q.observedOn === db.asOf ? 'ok' : ''}">Observed ${esc(q.observedOn)}</span>
+          <h3>$${q.total.toFixed(2)} for ${esc(q.nights)} nights</h3>
+          <div class="detail-grid">
+            <div><span class="label">Property and room</span><span class="value">${esc(q.property)}</span></div>
+            <div><span class="label">Stay</span><span class="value">${esc(q.checkIn)} → ${esc(q.checkOut)} · ${esc(q.guests)} adults</span></div>
+            <div><span class="label">Offer printed</span><span class="value">${esc(q.offer)}</span></div>
+            <div><span class="label">Room detail</span><span class="value">${esc(q.suiteDetail)}</span></div>
+            <div><span class="label">${esc(q.nightOne.date)}</span><span class="value">$${q.nightOne.rate.toFixed(2)} + $${q.nightOne.resortFee.toFixed(2)} resort fee</span></div>
+            <div><span class="label">${esc(q.nightTwo.date)}</span><span class="value">$${q.nightTwo.rate.toFixed(2)} + $${q.nightTwo.resortFee.toFixed(2)} resort fee</span></div>
+            <div><span class="label">Taxes printed</span><span class="value">$${q.taxes.toFixed(2)}</span></div>
+            <div><span class="label">Average rate printed</span><span class="value">$${q.averageRate.toFixed(2)}</span></div>
+          </div>
+          <p class="detail-note">${esc(q.note)}</p>
+          <p class="detail-note">Derived nightly cost $${q.derivedNightly[0].toFixed(2)} and $${q.derivedNightly[1].toFixed(2)}, from (rate + $55) × 1.1338 — total $${q.derivedTotal.toFixed(2)} against the printed $${q.total.toFixed(2)}.</p>
+          <p class="detail-note"><a href="${esc(q.source)}" target="_blank" rel="noopener">Open the same official booking link →</a></p>
+        </article>`).join('')}</div>`;
+    }
+  }
+  const linksHost = document.querySelector('[data-booking-links]');
+  if (linksHost) {
+    const rows = [];
+    (db.hotels || []).forEach((h) => {
+      if (!(h.bookingLinks || []).length) return;
+      rows.push(`<p><strong>${esc(h.name)}</strong></p><ul class="list">${
+        h.bookingLinks.map((l) => `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a></li>`).join('')
+      }</ul><p class="muted">${esc(h.bookingLinksNote || '')}</p>`);
+    });
+    linksHost.innerHTML = rows.length
+      ? rows.join('')
+      : '<div class="empty"><strong>No date-parameterised booking link verified.</strong> Only the official property pages are linked.</div>';
+  }
+  const noQuoteHost = document.querySelector('[data-no-quote]');
+  if (noQuoteHost) {
+    const rows = [];
+    (db.hotels || []).forEach((h) => (h.noQuoteWindows || []).forEach((w) => rows.push([h, w])));
+    noQuoteHost.innerHTML = rows.length
+      ? `<div class="table-wrap"><table><thead><tr><th>Property</th><th>Stay window</th><th>Nights</th>
+         <th>What the official engine returned</th><th>Link</th></tr></thead><tbody>${
+        rows.map(([h, w]) => `<tr><td>${esc(h.name)}</td><td>${esc(w.checkIn)} → ${esc(w.checkOut)}</td>
+          <td>${esc(w.nights)}</td><td>${esc(w.result)}</td>
+          <td><a href="${esc(w.url)}" target="_blank" rel="noopener">Open it yourself</a></td></tr>`).join('')
+      }</tbody></table></div>`
+      : '<div class="empty"><strong>Nothing recorded.</strong> Every stay window opened returned a price.</div>';
+  }
+  const calHost = document.querySelector('[data-calendar]');
+  if (calHost) {
+    const h = (db.hotels || []).filter((x) => x.calendarObservation)[0];
+    if (!h) {
+      calHost.innerHTML = '<div class="empty"><strong>No comparison recorded.</strong></div>';
+    } else {
+      const c = h.calendarObservation;
+      const byDate = {};
+      c.windowA.cells.forEach(([d, v]) => { byDate[d] = { a: v }; });
+      c.windowB.cells.forEach(([d, v]) => { (byDate[d] = byDate[d] || {}).b = v; });
+      const body = Object.keys(byDate).sort().map((d) => {
+        const cell = (v) => (v === '' || v === undefined ? '<span class="muted">no price</span>'
+          : v === 'placeholder' ? '<span class="muted">$XXX placeholder</span>' : '$' + v.toLocaleString());
+        const a = byDate[d].a, b = byDate[d].b;
+        const same = String(a) === String(b);
+        return `<tr><td>${esc(d)}</td><td>${cell(a)}</td><td>${cell(b)}</td>
+          <td>${same ? 'agrees' : '<strong>differs</strong>'}</td></tr>`;
+      }).join('');
+      calHost.innerHTML = `
+        <p class="detail-note">The calendar's own footnote: “${esc(c.footnote)}”</p>
+        <div class="table-wrap"><table><thead><tr><th>Date</th>
+          <th>${esc(c.windowA.label)}</th><th>${esc(c.windowB.label)}</th><th>Cells agree?</th></tr></thead>
+          <tbody>${body}</tbody></table></div>
+        <p class="detail-note">Read on ${esc(c.observedOn)}. Where the two readings differ, the calendar is quoting a
+        different suite for a different query, not a different nightly price for the same room. Nothing on this site uses
+        a calendar cell as a rate; only the itemised quote panel above does. See flag F47.</p>
+        <p class="detail-note"><a href="${esc(c.windowA.url)}" target="_blank" rel="noopener">First reading</a> ·
+        <a href="${esc(c.windowB.url)}" target="_blank" rel="noopener">Second reading</a></p>`;
     }
   }
   const calc = document.querySelector('[data-calculator]');
