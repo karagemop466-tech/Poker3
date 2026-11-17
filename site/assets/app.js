@@ -528,7 +528,7 @@ function renderHotels() {
           <tbody>${body}</tbody></table></div>
         <p class="detail-note">Read on ${esc(c.observedOn)}. Where the two readings differ, the calendar is quoting a
         different suite for a different query, not a different nightly price for the same room. Nothing on this site uses
-        a calendar cell as a rate; only the itemised quote panel above does. See flag F31.</p>
+        a calendar cell as a rate; only the itemised quote panel above does. See flag F37.</p>
         <p class="detail-note"><a href="${esc(c.windowA.url)}" target="_blank" rel="noopener">First reading</a> ·
         <a href="${esc(c.windowB.url)}" target="_blank" rel="noopener">Second reading</a></p>`;
     }

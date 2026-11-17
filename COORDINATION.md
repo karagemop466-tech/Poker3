@@ -1469,7 +1469,7 @@ root-level legacy HTML pages, `site/poker3/**`. They are prior-session artefacts
   Palazzo, closing the "live hotel rate lookup with official booking links per date" item. No date-parameterised
   link was verified for Wynn, Bellagio, MGM, Caesars, Horseshoe or ARIA, so none is published for them.
 
-**New irregularity: the booking calendar is not a price list (F31).** The same official calendar was read twice on
+**New irregularity: the booking calendar is not a price list (F37).** The same official calendar was read twice on
 2026-11-17 with two different stay windows open. November 16 printed $555 against $854; November 22 printed $165
 against $230; November 27 printed $905 against $1,814. The cell tracks the cheapest suite the engine can offer for
 that query, not a nightly rate. No calendar cell on the site has ever been used in a total, and the comparison is now
