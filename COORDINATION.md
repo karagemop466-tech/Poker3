@@ -3171,10 +3171,12 @@ URL. `tests/test_daily_feed_snapshots.py` (2 cases) locks the behaviour. The sch
 
 ### Checks run on the fixed tree
 
-`verify_site.py` PASS (341 events, 8 hotels, 15 routes, 43 sources, 72 flags, 7 plan days,
-16 pages); `audit_951cd431.py` 0 failures; `verify_live_official.py` OK; `audit_data.py`
-passed; `tests.test_workflows` OK; `tests.test_daily_feed_snapshots` OK; `unittest discover`
-**131 tests OK** (2 new); `node --check` on the JS assets OK.
+`verify_site.py` PASS (341 events, 8 hotels, 56 routes, 43 sources, 75 flags, 7 plan days,
+16 pages — the route and flag counts reflect the `main` state after the rebase, which carried
+other sessions' work); `audit_951cd431.py` 0 failures; `verify_live_official.py` OK;
+`audit_data.py` passed; `tests.test_workflows` OK; `tests.test_daily_feed_snapshots` OK;
+`unittest discover` **131 tests OK** (2 new); `node --check` on the JS assets OK; the data
+build reproduces cleanly.
 
 ### Integration record
 
