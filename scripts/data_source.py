@@ -826,6 +826,21 @@ FLAGS = [
                  "12:00 PM' without Day 1F. The structure_14 rules are applied to all three linked rows and the header "
                  "mismatch is flagged here. Read 2026-11-17."),
          source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_14.pdf"),
+    dict(id="F57", area="Hotels", severity="High",
+         title="30 November and 1 December 2026 print no figure in any reading, so a stay spanning them cannot be booked online",
+         detail=("The official Venetian booking calendar was read on 2026-11-17 with two different stay windows open. "
+                 "Every date in the captured range printed a figure in at least one of the two renderings except two: "
+                 "30 November and 1 December were blank in both. An arrival date of 30 November returns the message "
+                 "\u201cWe're sorry, but there is no availability for some of your selected dates. Please select different "
+                 "dates to proceed.\u201d No rate, no suite and no checkout total can therefore be obtained online for a stay "
+                 "that includes either night. This is why the recommended trip is 23 November to 30 November and not 25 "
+                 "November to 2 December: the longer window spans two nights the engine will not price, so it cannot be "
+                 "booked as one stay. This finding does not depend on treating a calendar cell as a price \u2014 F47 records "
+                 "that the cells move with the query, and F28 that they disagree with the quote. It is narrower than "
+                 "either: across two independent renderings these were the only two dates that printed no figure at all. "
+                 "Confirm by phone on 866.255.8936 before booking either night."),
+         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-30&children[]=0&departure_date=2026-12-02&view=calendar"),
+
 ]
 
 QUESTIONS = [
@@ -935,9 +950,9 @@ QUESTIONS = [
                  "buy-in to a $300 or higher tournament, for each night stayed. Any night that misses the requirement is "
                  "repriced at the prevailing rate at checkout. Measured against the published plan on 2026-11-17: five "
                  "of the seven nights carry a $300 or higher primary (Nov 25 $400, Nov 26 $300, Nov 27 $600, Nov 28 "
-                 "$600, Nov 29 $300) and two do not (Nov 30 and Dec 1, both $200); the Dec 2 $200 entry is on the "
-                 "departure day and is not a night. Each day of the plan now prints its own result. What the page does "
-                 "not say is whether one entry covers every night of a multi-day event, or only the night it is paid - "
+                 "$600, Nov 29 $300) and two do not (Nov 23 and Nov 24, both $200). The seven nights are 23-29 "
+                 "November because the trip ends with an 11:00 a.m. check-out on 30 November, which is a departure "
+                 "day and not a night. Each day of the plan prints its own result. What the page does not say is whether one entry covers every night of a multi-day event, or only the night it is paid - "
                  "ask the room before treating the $119 floor as certain (F54)."),
          why="Needed", blocking="No, but it decides which events belong on which day",
          how="Confirm with the poker room that the tournament buy-in counts on the day it is paid, and whether a Day 2 "
@@ -1230,6 +1245,10 @@ CATEGORIES = {
     "single": {"label": "Sheet-screened candidates (entry cap unconfirmed)", "blurb":
                "The official structure sheet prints one buy-in and no re-entry, rebuy, add-on or second-flight clause, "
                "but does not state a maximum number of entries per player. These are candidates only until the venue confirms its written policy."},
+    "unverified": {"label": "Unverified — structure sheet not read", "blurb":
+                   "Published on an official schedule but its structure sheet has not been read, so no entry rule, "
+                   "fee split or chip count is confirmed. These rows keep the unverified label on purpose and are "
+                   "never counted as single-entry events."},
     "flight": {"label": "Multi-flight", "blurb":
                "The official schedule publishes separate start flights. A player who does not bag for Day 2 may buy into "
                "another flight, so more than one entry is possible."},
@@ -1251,18 +1270,29 @@ CATEGORIES = {
 }
 
 TRIP = {
-    "start": "2026-11-25",
-    "end": "2026-12-02",
+    "start": "2026-11-23",
+    "end": "2026-11-30",
+    "playableEnd": "2026-11-29",
     "nights": 7,
-    "days": 8,
+    "days": 7,
     "hotel": "venetian",
     "alternativeHotel": "palazzo",
+    "checkoutNote": (
+        "Check-out is 11:00 a.m. on 2026-11-30, so 30 November is a departure day, not a playable day. The seven "
+        "playable days are 23-29 November 2026. The Venetian does publish a 5:10 p.m. $200 bounty on 30 November, "
+        "but it cannot be played after an 11:00 a.m. check-out unless the player pays for a late check-out, which "
+        "the official terms say is subject to an additional fee."),
     "nightlyBudget": 197.28,
     "nightlyBudgetNote": (
-        "Fixed by this session at the lowest published true nightly cost of the recommended property: "
-        "($119 published poker-suite starting rate + $55 mandatory resort fee) x 1.1338 Clark County room tax = $197.28. "
-        "It is a floor computed from published components, not a quote."),
+        "Two figures, because they answer different questions. The floor is $197.28: ($119 published poker-suite "
+        "starting rate + $55 mandatory resort fee) x 1.1338 Clark County room tax. It is a floor computed from "
+        "published components, not a quote, and the $119 rate is available only by phone under code EPOKR25 and only "
+        "to a player who meets the daily play requirement. The observed figure is $346.62: the average of the seven "
+        "dated calendar cells for these nights, $2,140 before tax and $2,426.33 all-in."),
     "nightlyBudgetCeiling": 299.32,
+    "nightlyObservedAverage": 346.62,
+    "lodgingTotalBeforeTax": 2140,
+    "lodgingTotalAllIn": 2426.33,
     "qualityFloor": (
         "Fixed by this session on an objective published-evidence test rather than an invented score: the property must "
         "publish its own poker-room rate, keep the poker room on site, and publish its resort fee, tax and cancellation "
@@ -1281,9 +1311,15 @@ TRIP = {
         ("The Wynn WPT schedule runs from November 27 inside the window, so three days carry additional published rows, "
          "all clearly marked as series rows with unverified entry rules (F12)."),
     ],
-    "bankrollNote": ("The provisional path's buy-in sum is shown with a 25% general contingency buffer. The buffer is not "
-                     "permission or a budget for rebuys/add-ons; no event qualifies for strict entry policy until the venue "
-                     "confirms the written rules. It is a planning figure, not a forecast."),
+    "nightlyRisk": (
+        "The night of Friday 27 November 2026, the night after Thanksgiving, is published at $905 against a $165 "
+        "baseline on the surrounding nights - 5.5x, and 42% of the whole lodging bill on its own. A player who can "
+        "move the trip, or who is willing to change property for that one night, removes $839 of all-in cost. The "
+        "phone-only poker rate ($119-$209 + $55) is the other lever, if the daily play requirement is met."),
+    "bankrollNote": ("Bankroll figure on the day-plan page is the sum of the recommended primary buy-ins plus a 25% "
+                     "buffer. The buffer is not permission or a budget for rebuys or add-ons: no event is treated as a confirmed "
+                     "one-entry event until the venue confirms the written rules (F31). It is a planning number, not "
+                     "a forecast."),
     "lodgingEvidence": (
         "The official Venetian booking engine was opened on 2026-11-17 for four stay windows inside the recommended trip "
         "dates of November 25 to December 2, 2026, with two adults. None returned a suite or a price: the seven-night stay "
@@ -1811,20 +1847,30 @@ def build():
         ev["note"] = (ev.get("note", "") + f" Official structure sheet ({rec['section']}): {rec['excerpt']}").strip()
 
     # Live re-check, 2026-11-17 (session c1655bf5): the official WPT World Championship schedule PDF
-    # was re-fetched independently and every published Wynn row inside the trip window (2026-11-25 to
-    # 2026-12-02, 19 rows) was matched on date, start time, buy-in and guarantee. This complements the
-    # structure-level REREAD above (which covers the rows whose structure section that PDF prints) by
-    # also recording the rows the REREAD does not list.
+    # was re-fetched independently and every published Wynn row across the range that PDF covers,
+    # 2026-11-25 to 2026-12-02, was matched on date, start time, buy-in and guarantee: 19 rows. This
+    # complements the structure-level REREAD above (which covers the rows whose structure section that
+    # PDF prints) by also recording the rows the REREAD does not list.
+    #
+    # The range is deliberately the PDF's own coverage and NOT the trip window. The trip moved to
+    # 2026-11-23..2026-11-30 (flag F51: 30 Nov and 1 Dec print no price, so a stay cannot span them),
+    # and scoping this re-check to the trip window would have silently withdrawn the re-check
+    # evidence from the 1 and 2 December rows, which were read just as carefully as the others.
+    # Evidence of a read belongs to the rows that were read, not to the window we happen to advise.
     WPT_SCHEDULE_URL = ("https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/"
                         "Poker/WPT/WPT_World_Championship_Schedule.pdf")
+    WPT_REREAD_FROM, WPT_REREAD_TO = "2026-11-25", "2026-12-02"
     n2 = 0
     for e in events:
-        if e["venue"] == "wynn" and e["date"] and TRIP["start"] <= e["date"] <= TRIP["end"]:
+        if e["venue"] == "wynn" and e["date"] and WPT_REREAD_FROM <= e["date"] <= WPT_REREAD_TO:
             e["lastChecked"] = RECHECKED
             e["recheck"] = dict(date=RECHECKED, source=WPT_SCHEDULE_URL,
                                 result="matched on date, start time, buy-in and guarantee")
             n2 += 1
-    assert n2 == 19, f"expected 19 re-checked Wynn in-window rows, got {n2}"
+    assert n2 == 19, (
+        f"expected 19 re-checked Wynn rows across {WPT_REREAD_FROM}..{WPT_REREAD_TO}, got {n2}. "
+        "This range is the coverage of the official WPT schedule PDF, not the trip window; if the PDF "
+        "changes, re-read it and update both together.")
 
     # lastChecked is per row, not per build. Every row on the official DSE IV schedule page
     # was re-read against that page on 2026-11-17 (scripts/verify_live_official.py compares
@@ -1876,12 +1922,38 @@ def build():
             h["lastChecked"] = RECHECKED
 
     recurring_events = [e for e in events if not e["date"] and e.get("weekdays")]
-    plan, conflicts = build_day_plan(events, TRIP["start"], TRIP["end"], recurring_events)
+    plan, conflicts = build_day_plan(events, TRIP["start"], TRIP.get("playableEnd", TRIP["end"]), recurring_events)
     bankroll = sum(p["primaryBuyIn"] for p in plan if isinstance(p["primaryBuyIn"], (int, float)))
     TRIP["primaryBuyIns"] = bankroll
     TRIP["bankrollWithBuffer"] = round(bankroll * 1.25)
-    TRIP["bankrollNote"] = (f"The eight recommended primary entries total ${bankroll:,} in buy-ins. With a 25% buffer "
-                            f"for one rebuy or add-on where a room allows it, plan on ${round(bankroll * 1.25):,}.")
+    n_days = len(plan)
+    TRIP["bankrollNote"] = (f"The {n_days} recommended primary entries total ${bankroll:,} in buy-ins. With a 25% "
+                            f"buffer for one rebuy or an add-on where a room allows it, plan on "
+                            f"${round(bankroll * 1.25):,}. It is a planning number, not a forecast.")
+
+    # The poker-suite rate holds only if a daily requirement is met. Say which nights the recommended
+    # entries already satisfy, so the gap is visible rather than discovered at check-out.
+    _qual, _gap = [], []
+    for day in plan:
+        pr = day.get("primary")
+        pid = pr if isinstance(pr, str) else (pr or {}).get("id")
+        e = next((x for x in events if x["id"] == pid), None)
+        if not e:
+            continue
+        fee = e.get("buyIn")
+        if isinstance(fee, (int, float)) and fee >= 300:
+            _qual.append(f"{day['date']} (${fee:,})")
+        else:
+            _gap.append(f"{day['date']} (${fee:,})" if fee else f"{day['date']} (no fee printed)")
+    TRIP["pokerRateQualification"] = (
+        "The Venetian poker-suite rate is held only if, for each night stayed, the player completes six hours of "
+        "active live cash play or buys in to a $300 or higher tournament, before 2 a.m. on the last night. "
+        + (f"The recommended entries already meet the tournament test on {len(_qual)} of the {n_days} nights: "
+           f"{', '.join(_qual)}. " if _qual else "")
+        + (f"They do not meet it on {', '.join(_gap)}, where the primary event is under $300, so those nights depend "
+           f"on the six-hour cash-play test or on paying the prevailing rate. " if _gap else "")
+        + "For every night the requirement is missed the rate is adjusted to the prevailing rate, which the booking "
+          "calendar prices at $165 to $905 across these dates.")
 
     structure_sheets = []
     for n in sorted(V.SHEETS):

@@ -144,12 +144,17 @@ def main() -> int:
             errors.append(f"venues/index.html: does not link {target}")
 
     data = json.loads((SITE / "data.json").read_text(encoding="utf-8"))
-    if data.get("asOf") != "2026-11-17":
-        errors.append("data.json: unexpected as-of date")
-    if not data.get("trip", {}).get("start") or not data.get("trip", {}).get("end"):
+    if not data.get("asOf"):
+        errors.append("data.json: no as-of date")
+    trip = data.get("trip", {})
+    if not trip.get("start") or not trip.get("end"):
         errors.append("data.json: no fixed trip dates")
-    if len(data.get("dayPlan", [])) != 8:
-        errors.append("data.json: the day plan does not cover eight days")
+    # The plan covers the playable days: check-in up to, but not including, check-out day.
+    want_days = int(trip.get("days", 0))
+    if want_days and len(data.get("dayPlan", [])) != want_days:
+        errors.append(f"data.json: the day plan covers {len(data.get('dayPlan', []))} days, trip says {want_days}")
+    if trip.get("end") and any(d.get("date", "") >= trip["end"] for d in data.get("dayPlan", [])):
+        errors.append("data.json: the day plan includes the check-out date, which is not playable")
     for collection in ("events", "hotels", "routes"):
         for index, row in enumerate(data.get(collection, []), start=1):
             if not row.get("lastChecked"):
