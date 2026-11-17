@@ -143,7 +143,7 @@ def main() -> int:
             errors.append(f"venues/index.html: does not link {target}")
 
     data = json.loads((SITE / "data.json").read_text(encoding="utf-8"))
-    if data.get("asOf") != "2026-11-16":
+    if data.get("asOf") != "2026-11-17":
         errors.append("data.json: unexpected as-of date")
     if not data.get("trip", {}).get("start") or not data.get("trip", {}).get("end"):
         errors.append("data.json: no fixed trip dates")

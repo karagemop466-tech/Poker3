@@ -1288,3 +1288,71 @@ dropped, because `main`'s F30 already records the same defect with a better expl
   the next 12:10 UTC cron**. Until that run lands, `site/checks.json` on `main` is the offline record dated
   `2026-11-17T00:59:12Z` (`mode: "offline (transcription re-check only)"`): 88 URLs known, 0 fetched, 44/44 transcribed
   rows matched. The sources page states that mode exactly, so nothing is overclaimed.
+
+---
+
+## Session arena/741b3a8e-poker3 (live re-check 2026-11-17, freshness, booking links, merge with main)
+
+Branch: `arena/741b3a8e-poker3`. This session works only on this branch.
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| T-A Live re-check of official sources on 2026-11-17 (Venetian DSE IV schedule; Caesars Palace and Horseshoe page; Wynn and Bellagio poker pages; Venetian resort-fee page; Venetian booking engine) | done | 741b3a8e | `scripts/data_source.py`, `site/data.json`, this section | Row-level results in the record below |
+| T-B Freshness: per-event `status` (past / today / upcoming), past rows hidden by default, snapshot date 2026-11-17 | done | 741b3a8e | `scripts/data_source.py`, `site/assets/app.js` | Past rows are still shown when "Include past events" is ticked |
+| T-C Hotel: official booking link for the fixed stay (per date, no price) | done (no price captured) | 741b3a8e | `scripts/data_source.py` (`BOOKING_LINKS`), `site/hotels.html`, `site/assets/app.js` | The booking engine returns `$XXX` for every date in a static read (F36 on `main`) |
+| T-D Flags and answers for this pass's irregularities | done | 741b3a8e | `scripts/data_source.py` | Flags F42 added; F38 and Q14 corrected; duplicates dropped (see below) |
+| T-E Tests, verification, PR to `main`, merge, Pages check | in progress | 741b3a8e | this section | PR [#46](https://github.com/karagemop466-tech/Poker3/pull/46). Merge and Pages result recorded below once done |
+
+### Merge with `main` (this session)
+
+`main` moved several times while this session worked (PRs #45, #47, #48, #52, #53 and the 45cfee0b re-check). The branch now contains `origin/main` as an ancestor. Conflicts and how they were resolved:
+
+- `COORDINATION.md`: both records kept, in order.
+- `README.md`: `main`'s paragraph kept, because it already states the 2026-11-17 snapshot and both date fields.
+- `scripts/data_source.py`, three hunks:
+  1. **Flags.** `main`'s F33–F41 kept. My F33 (Bellagio "July 26" notice) duplicated `main`'s F03. My F34 (booking-engine `$XXX`) duplicated `main`'s F36. My F36 ("some sources were not re-read") was obsolete, because `main` now reads the 52 structure sheets and the NYE schedule. Dropped. My F35 ("four to six hours") was unique and is kept as **F42**.
+  2. **Questions.** My Q13 ("8 AM start") duplicated `main`'s Q14, so it was dropped. `main`'s Q14 said the earliest start is 9:10 AM. That is wrong: the Caesars page read today lists Horseshoe at 9:00 AM daily. Q14 corrected. `main`'s Q13 (21+ / Venetian Rewards / Seniors) kept.
+  3. **Hotel rows.** `main`'s `lastVerified` and live-fact block kept. `lastChecked` is 2026-11-17 for the Venetian and Palazzo rows, which I re-read today; other rows keep `main`'s date.
+- `tests/test_integrity.py`: both test classes kept.
+- `site/data.json`: regenerated from the merged code. Running the generator again gives identical bytes.
+
+### Record for 2026-11-17 (this session)
+
+**Sources read today, and what matched**
+
+- Venetian DeepStack Extravaganza IV, all four chunks of https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html (covers Nov 16 to Dec 23):
+  - Nov 16–27 (21 rows, chunk 0): date, start time, event name, buy-in, guarantee and structure-sheet link match `site/data.json`. Row-level check, not automated.
+  - Nov 28–Dec 23 (73 rows, chunks 1–3): date, start time, event name, buy-in and guarantee match. **Structure links were not compared** for these rows.
+  - The 94 rows carry `lastChecked` 2026-11-17 and a per-row `recheck` record that states which fields were compared.
+- Caesars Palace and Horseshoe page, chunks 0–2 of 3 (chunk 2 is footer only): Caesars four daily starts (10 AM, 2 PM, 6 PM, 9 PM), $100 buy-in, $1,000 guarantee — match. Horseshoe six daily starts (9, 11, 2, 5, 8, 11) — match. Horseshoe publishes no buy-in or guarantee on the page; those cells stay blank.
+- Venetian resort-fee page: still $55 plus tax per night.
+- Wynn poker landing page: WPT window Nov 27 to Dec 21; Super Gold Million at $400 with a $3,000,000 guarantee.
+- Bellagio poker landing page: the stale "Saturday, July 26" notice is still there (F03 on `main`).
+- Venetian booking engine, Nov 25 to Dec 2, 2026, two adults: `$XXX` in every cell (F36 on `main`). No price recorded.
+
+**Not re-read today:** the Bellagio weekly PDFs, the Wynn daily and WPT PDFs, the DeepStack NYE schedule, and the hotel-terms pages. These rely on the other sessions' records, which are cited on `main`.
+
+**Points for the integration review (not changed by this session)**
+
+- `main`'s README paragraph says "every official page and PDF was re-read and re-confirmed on 2026-11-17". My own checks did not cover every page, so that sentence is broader than what I verified. I left it unchanged because it is another session's text. The integration reviewer should confirm it or narrow it.
+- Q10 on this branch was rewritten to state the exact comparisons above. It no longer claims "64 event numbers" (that count was never made).
+
+**Verification on the merged tree**
+
+- `python3 scripts/data_source.py` (run twice; identical output)
+- `python3 scripts/verify_site.py`: passed (341 events, 8 hotels, 14 routes, 39 sources, 42 flags, 18 questions)
+- `python3 -m unittest discover -s tests -p 'test_*.py'`: 37 tests OK
+- `python3 tests/test_integrity.py`: OK
+- `python3 tests/canonical_smoke.py`: 11 main pages, 5 detail pages
+- `node tests/canonical_render.js`: all pages rendered
+- `python3 tests/smoke.py`: OK
+- `node --check` on `site/assets/app.js`, `site/assets/venue.js`, `site/poker3/assets/app.js`, `tests/canonical_render.js`; `json.tool` on `site/data.json` and `site/poker3/data/research.json`
+- Local link check on `site/`: 133 local references, none broken
+- `git diff --check`: clean
+
+**Still open (not blocking this session)**
+
+- No nightly price exists for the fixed stay. It stays blank until a dated price is read in a browser on the booking day.
+- Google Maps walking minutes are estimates and were not re-checked.
+- The 8 AM question (Q14) stays open: no official 8 AM start was found.
+- Horseshoe's 9:00 AM game has no published buy-in or structure, so it cannot be ranked.

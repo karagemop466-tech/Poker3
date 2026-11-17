@@ -127,7 +127,7 @@ function ratioCell(e) {
 /* ------------------------------------------------------------- tournaments */
 const state = {
   q: '', from: '', to: '', venue: '', category: '', format: '',
-  singleOnly: false, candidateOnly: false, walkOnly: true, showUndated: true,
+  singleOnly: false, candidateOnly: false, walkOnly: true, showUndated: true, showPast: false,
 };
 
 function filteredEvents() {
@@ -139,6 +139,7 @@ function filteredEvents() {
     if (state.category && e.category !== state.category) return false;
     if (state.format && e.format !== state.format) return false;
     if (!state.showUndated && !e.date) return false;
+    if (!state.showPast && e.status === 'past') return false;
     if (state.from && e.date && e.date < state.from) return false;
     if (state.to && e.date && e.date > state.to) return false;
     if (state.from && !e.date) return false;
@@ -175,7 +176,7 @@ function applyTournamentFilters() {
     </tr></thead>`;
   const body = rows.length ? rows.map((e) => `
     <tr class="row-click" data-id="${esc(e.id)}">
-      <td>${e.date ? esc(e.date) : '<span class="muted">Recurring</span>'}</td>
+      <td>${e.date ? esc(e.date) : '<span class="muted">Recurring</span>'}${e.status === 'past' ? '<span class="muted">Past</span>' : ''}</td>
       <td>${esc(e.time)}</td>
       <td>${esc(venueName(e.venue))}${walkToVenetian(e.venue) !== null ? `<span class="muted">${walkToVenetian(e.venue)} min walk to the Venetian</span>` : ''}</td>
       <td class="event-name">${esc(e.name)}${e.eligibility ? `<span class="muted">Restricted: ${esc(e.eligibility)}</span>` : ''}${e.note ? `<span class="muted">${esc(e.note)}</span>` : ''}</td>
@@ -261,6 +262,7 @@ function buildTournamentControls() {
       <label class="check"><input type="checkbox" data-f="candidateOnly"> Sheet-screened candidates (entry cap unconfirmed)</label>
       <label class="check"><input type="checkbox" data-f="walkOnly" checked> Within 30 minutes of the Venetian</label>
       <label class="check"><input type="checkbox" data-f="showUndated" checked> Include recurring rooms</label>
+      <label class="check"><input type="checkbox" data-f="showPast"> Include past events (before ${esc(db.today || db.asOf)})</label>
       <button class="btn" data-reset>Reset</button>
     </div>`;
   host.querySelectorAll('[data-f]').forEach((el) => {
@@ -273,7 +275,7 @@ function buildTournamentControls() {
   });
   host.querySelector('[data-reset]').addEventListener('click', () => {
     state.q = ''; state.from = ''; state.to = ''; state.venue = ''; state.category = '';
-    state.format = ''; state.singleOnly = false; state.candidateOnly = false; state.walkOnly = true; state.showUndated = true;
+    state.format = ''; state.singleOnly = false; state.candidateOnly = false; state.walkOnly = true; state.showUndated = true; state.showPast = false;
     buildTournamentControls();
     applyTournamentFilters();
   });
@@ -408,6 +410,18 @@ function renderHotels() {
       <th>Property</th><th>Poker room</th><th>Published base rate</th><th>Mandatory resort fee</th><th>Tax</th>
       <th>True cost per night</th><th>Parking</th><th>Cancellation deadline</th><th>Quality evidence</th>
       <th>Walking</th><th>Last verified</th><th>Sources</th></tr></thead><tbody>${body}</tbody></table></div>`;
+  }
+  const bookingHost = document.querySelector('[data-booking]');
+  if (bookingHost) {
+    const rows = (db.bookingLinks || []).map((b) => `<tr>
+      <td class="event-name">${esc(b.property)}<span class="muted">${esc(b.stay)}</span></td>
+      <td><a href="${esc(b.url)}" target="_blank" rel="noopener">Official booking page for these dates</a>
+          <span class="muted">Page read ${esc(b.checkedOn)}</span></td>
+      <td>${esc(b.priceInStaticPage)}</td>
+      <td><a href="${esc(b.feeSource)}" target="_blank" rel="noopener">Resort-fee terms</a></td></tr>`).join('');
+    bookingHost.innerHTML = rows ? `<div class="table-wrap"><table><thead><tr><th>Property and stay</th>
+      <th>Official booking link for the dates</th><th>Price read from the page</th><th>Fee terms</th></tr></thead>
+      <tbody>${rows}</tbody></table></div>` : '';
   }
   const log = document.querySelector('[data-rate-log]');
   if (log) {

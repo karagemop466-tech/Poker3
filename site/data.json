@@ -1,6 +1,19 @@
 {
- "asOf": "2026-11-16",
- "scope": "Las Vegas Strip poker tournaments and Strip lodging, built only from official venue and property pages. Snapshot date 2026-11-16.",
+ "asOf": "2026-11-17",
+ "today": "2026-11-17",
+ "bookingLinks": [
+  {
+   "hotel": "venetian",
+   "property": "The Venetian and The Palazzo (one booking engine)",
+   "stay": "2026-11-25 to 2026-12-02 (7 nights), 2 adults, 0 children",
+   "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-02&view=calendar",
+   "checkedOn": "2026-11-17",
+   "priceInStaticPage": "No. A static read of this booking page on 2026-11-17 showed $XXX in every calendar cell. The page states that its prices include the daily resort fee and exclude taxes.",
+   "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-02&view=calendar",
+   "feeSource": "https://www.venetianlasvegas.com/resort/resort-fee.html"
+  }
+ ],
+ "scope": "Las Vegas Strip poker tournaments and Strip lodging, built only from official venue and property pages. Snapshot date 2026-11-17. Rows re-read that day carry 2026-11-17 as their last-checked date; every other row keeps the date it was last read.",
  "policy": "Every row links the official page it came from. A value that could not be confirmed from an official source is left blank and listed on the Flagged for review page. Walking minutes are Google Maps walking estimates and are labelled as such. The guaranteed-pool-to-fee ratio is descriptive only and is not a forecast.",
  "sessionLengthAssumption": "No venue publishes a finish time. The schedule planner assumes a six-hour session plus a 30-minute transfer between venues, so every conflict it reports is an estimate.",
  "categories": {
@@ -191,7 +204,8 @@
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "result": "matched on date, start time and structure link"
-   }
+   },
+   "status": "past"
   },
   {
    "id": "vl-dse-2026-11-16-1-510pm",
@@ -254,7 +268,8 @@
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "result": "matched on date, start time and structure link"
-   }
+   },
+   "status": "past"
   },
   {
    "id": "vl-dse-2026-11-17-1-1110am",
@@ -317,7 +332,8 @@
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "result": "matched on date, start time and structure link"
-   }
+   },
+   "status": "today"
   },
   {
    "id": "vl-dse-2026-11-17-1-510pm",
@@ -380,7 +396,8 @@
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "result": "matched on date, start time and structure link"
-   }
+   },
+   "status": "today"
   },
   {
    "id": "vl-dse-2026-11-18-2-1110am",
@@ -443,7 +460,8 @@
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "result": "matched on date, start time and structure link"
-   }
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-18-1-1200pm",
@@ -506,7 +524,8 @@
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "result": "matched on date, start time and structure link"
-   }
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-19-3-1010am",
@@ -569,7 +588,8 @@
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "result": "matched on date, start time and structure link"
-   }
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-20-4-1010am",
@@ -632,7 +652,8 @@
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "result": "matched on date, start time and structure link"
-   }
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-21-5-1010am",
@@ -695,7 +716,8 @@
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "result": "matched on date, start time and structure link"
-   }
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-22-6-1110am",
@@ -758,7 +780,8 @@
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "result": "matched on date, start time and structure link"
-   }
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-23-7-1110am",
@@ -821,7 +844,8 @@
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "result": "matched on date, start time and structure link"
-   }
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-23-8-510pm",
@@ -884,7 +908,8 @@
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "result": "matched on date, start time and structure link"
-   }
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-24-7-1110am",
@@ -947,7 +972,8 @@
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "result": "matched on date, start time and structure link"
-   }
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-24-9-510pm",
@@ -1010,7 +1036,8 @@
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "result": "matched on date, start time and structure link"
-   }
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-25-7-1100am",
@@ -1073,7 +1100,8 @@
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "result": "matched on date, start time and structure link"
-   }
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-25-10-1110am",
@@ -1136,7 +1164,8 @@
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "result": "matched on date, start time and structure link"
-   }
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-25-11-510pm",
@@ -1199,7 +1228,8 @@
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "result": "matched on date, start time and structure link"
-   }
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-26-12-1110am",
@@ -1262,7 +1292,8 @@
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "result": "matched on date, start time and structure link"
-   }
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-26-13-510pm",
@@ -1325,7 +1356,8 @@
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "result": "matched on date, start time and structure link"
-   }
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-27-14-1110am",
@@ -1388,7 +1420,8 @@
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "result": "matched on date, start time and structure link"
-   }
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-27-15-510pm",
@@ -1451,7 +1484,8 @@
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
     "result": "matched on date, start time and structure link"
-   }
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-28-16-1110am",
@@ -1513,8 +1547,9 @@
    "recheck": {
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time and structure link"
-   }
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-28-17-1210pm",
@@ -1576,8 +1611,9 @@
    "recheck": {
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time and structure link"
-   }
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-28-18-510pm",
@@ -1639,8 +1675,9 @@
    "recheck": {
     "date": "2026-11-17",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time and structure link"
-   }
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-29-19-1110am",
@@ -1695,10 +1732,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-29-20-1210pm",
@@ -1756,7 +1799,13 @@
    "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "Played 8-handed, pays 12.5% of the field",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-29-21-510pm",
@@ -1814,7 +1863,13 @@
    "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-30-19-1110am",
@@ -1869,10 +1924,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-11-30-22-510pm",
@@ -1930,7 +1991,13 @@
    "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-01-19-1110am",
@@ -1985,10 +2052,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-01-23-510pm",
@@ -2046,7 +2119,13 @@
    "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-02-24-1010am",
@@ -2101,10 +2180,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_17.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_17.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": "Must be 50+ years of age to participate"
+   "eligibility": "Must be 50+ years of age to participate",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-02-19-1100am",
@@ -2159,10 +2244,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-02-25-510pm",
@@ -2220,7 +2311,13 @@
    "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-03-26-1110am",
@@ -2275,10 +2372,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-03-27-1210pm",
@@ -2333,10 +2436,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_28.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_28.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "Played 8-handed, pays 12.5% of the field",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-03-26-510pm",
@@ -2391,10 +2500,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_13.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_13.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-04-26-1110am",
@@ -2449,10 +2564,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-04-26-510pm",
@@ -2507,10 +2628,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_13.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_13.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-05-26-1110am",
@@ -2565,10 +2692,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-05-26-510pm",
@@ -2623,10 +2756,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_14.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_14.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-06-28-1110am",
@@ -2681,10 +2820,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-06-26-1200pm",
@@ -2739,10 +2884,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-06-29-510pm",
@@ -2797,10 +2948,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-07-30-1110am",
@@ -2855,10 +3012,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-07-31-510pm",
@@ -2913,10 +3076,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-08-32-1010am",
@@ -2971,10 +3140,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_17.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_17.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": "Must be 50+ years of age to participate"
+   "eligibility": "Must be 50+ years of age to participate",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-08-33-410pm",
@@ -3029,10 +3204,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_19.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_19.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": "Open to female players, 21+"
+   "eligibility": "Open to female players, 21+",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-08-34-510pm",
@@ -3087,10 +3268,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-09-35-1010am",
@@ -3145,10 +3332,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_31.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_31.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "$80 of the $600 Buy-In is withheld for house fees plus a $10 flat fee for the Ladies International Poker Series.Teams will rotate their players at the start of every level. Each team member must play every other level until the event concludes.",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-09-36-1110am",
@@ -3203,10 +3396,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_16.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_16.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-09-37-410pm",
@@ -3261,10 +3460,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_19.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_19.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": "Open to female players, 21+"
+   "eligibility": "Open to female players, 21+",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-09-38-510pm",
@@ -3319,10 +3524,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-10-39-1010am",
@@ -3377,10 +3588,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_32.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_32.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "Day 1 Dec 10 10:10 AM, Day 2 Dec 11 10:00 AM, final table approximately 7:00 PM.",
-   "eligibility": "Must be a female 21+ years of age"
+   "eligibility": "Must be a female 21+ years of age",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-10-40-1210pm",
@@ -3435,10 +3652,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_27.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_27.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-10-41-410pm",
@@ -3493,10 +3716,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_24.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_24.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-10-42-510pm",
@@ -3551,10 +3780,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-11-39-1000am",
@@ -3609,10 +3844,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_32.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_32.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "Day 1 Dec 10 10:10 AM, Day 2 Dec 11 10:00 AM, final table approximately 7:00 PM.",
-   "eligibility": "Must be a female 21+ years of age"
+   "eligibility": "Must be a female 21+ years of age",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-11-43-1110am",
@@ -3667,10 +3908,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_33.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_33.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "$80 of the $600 Buy-In is withheld for house fees plus a $10 flat fee for the Ladies International Poker Series.",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-11-44-410pm",
@@ -3725,10 +3972,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_24.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_24.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-11-39-700pm",
@@ -3783,10 +4036,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_32.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_32.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "Day 1 Dec 10 10:10 AM, Day 2 Dec 11 10:00 AM, final table approximately 7:00 PM.",
-   "eligibility": "Must be a female 21+ years of age"
+   "eligibility": "Must be a female 21+ years of age",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-11-45-810pm",
@@ -3841,10 +4100,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-12-46-910am",
@@ -3899,10 +4164,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-12-47-1010am",
@@ -3957,10 +4228,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_21.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_21.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-12-48-1210pm",
@@ -4015,10 +4292,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-12-47-610pm",
@@ -4073,10 +4356,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_37.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_37.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-13-49-1010am",
@@ -4131,10 +4420,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_20.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_20.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": "Must be 50+ years of age to participate"
+   "eligibility": "Must be 50+ years of age to participate",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-13-47-100pm",
@@ -4189,10 +4484,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_21.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_21.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-13-50-510pm",
@@ -4247,10 +4548,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-14-49-1010am",
@@ -4305,10 +4612,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_20.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_20.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": "Must be 50+ years of age to participate"
+   "eligibility": "Must be 50+ years of age to participate",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-14-47-1100am",
@@ -4363,10 +4676,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_21.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_21.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-14-51-510pm",
@@ -4421,10 +4740,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-15-49-1000am",
@@ -4479,10 +4804,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_20.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_20.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": "Must be 50+ years of age to participate"
+   "eligibility": "Must be 50+ years of age to participate",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-15-52-1110am",
@@ -4537,10 +4868,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_34.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_34.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-15-53-510pm",
@@ -4595,10 +4932,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-16-54-1110am",
@@ -4653,10 +4996,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-16-55-510pm",
@@ -4711,10 +5060,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-17-56-1010am",
@@ -4769,10 +5124,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "On Day 1A, players who register before the start of the event (10:10 a.m.) will receive a forty ($40) discount on house fees for a total buy in of $1,060 instead of $1,100.",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-17-57-1210pm",
@@ -4827,10 +5188,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_23.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_23.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "Played 8-handed, pays 12.5% of the field",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-17-56-610pm",
@@ -4885,10 +5252,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_36.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_36.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "On Day 1B, players who register before the start of the event (6:10 PM.) will receive a forty ($40) discount on house fees for a total buy in of $1,060 instead of $1,100.",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-18-56-1010am",
@@ -4943,10 +5316,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "On Day 1A, players who register before the start of the event (10:10 a.m.) will receive a forty ($40) discount on house fees for a total buy in of $1,060 instead of $1,100.",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-18-56-610pm",
@@ -5001,10 +5380,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_36.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_36.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "On Day 1B, players who register before the start of the event (6:10 PM.) will receive a forty ($40) discount on house fees for a total buy in of $1,060 instead of $1,100.",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-19-56-1010am",
@@ -5059,10 +5444,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "On Day 1A, players who register before the start of the event (10:10 a.m.) will receive a forty ($40) discount on house fees for a total buy in of $1,060 instead of $1,100.",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-19-58-510pm",
@@ -5117,10 +5508,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "PokerAtlas PRO players will receive a twenty ($20) rake discount on their initial $200 buy in only, for a total buy in of $180 instead of $200. ... All subsequent buy in's after the initial buy in will be $200.",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-20-56-1100am",
@@ -5175,10 +5572,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "On Day 1A, players who register before the start of the event (10:10 a.m.) will receive a forty ($40) discount on house fees for a total buy in of $1,060 instead of $1,100.",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-20-59-1110am",
@@ -5233,10 +5636,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "On Day 1A only, players who register before the start of the event (11:10 a.m.), will receive a $20 discount on house fees for a total buy in of $580 instead of $600.",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-20-60-510pm",
@@ -5291,10 +5700,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-21-59-1110am",
@@ -5349,10 +5764,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "On Day 1A only, players who register before the start of the event (11:10 a.m.), will receive a $20 discount on house fees for a total buy in of $580 instead of $600.",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-21-61-510pm",
@@ -5407,10 +5828,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-22-59-1110am",
@@ -5465,10 +5892,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "On Day 1A only, players who register before the start of the event (11:10 a.m.), will receive a $20 discount on house fees for a total buy in of $580 instead of $600.",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-22-62-510pm",
@@ -5523,10 +5956,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-23-59-1100am",
@@ -5581,10 +6020,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "On Day 1A only, players who register before the start of the event (11:10 a.m.), will receive a $20 discount on house fees for a total buy in of $580 instead of $600.",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-23-63-1110am",
@@ -5639,10 +6084,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-dse-2026-12-23-64-510pm",
@@ -5697,10 +6148,16 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "recheck": {
+    "date": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+   },
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-24-1-1110am",
@@ -5758,7 +6215,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-24-2-510pm",
@@ -5816,7 +6274,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-25-3-1110am",
@@ -5874,7 +6333,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-25-4-510pm",
@@ -5932,7 +6392,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-26-5-1110am",
@@ -5990,7 +6451,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-26-6-310pm",
@@ -6048,7 +6510,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-26-7-610pm",
@@ -6106,7 +6569,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-27-8-1110am",
@@ -6164,7 +6628,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-27-9-310pm",
@@ -6222,7 +6687,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-27-10-610pm",
@@ -6280,7 +6746,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-28-8-1110am",
@@ -6338,7 +6805,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-28-11-310pm",
@@ -6396,7 +6864,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-28-12-610pm",
@@ -6454,7 +6923,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-29-8-1110am",
@@ -6512,7 +6982,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-29-13-510pm",
@@ -6570,7 +7041,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-30-8-1100am",
@@ -6628,7 +7100,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-30-14-1110am",
@@ -6686,7 +7159,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-30-15-310pm",
@@ -6744,7 +7218,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-30-16-610pm",
@@ -6802,7 +7277,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-31-8-1000am",
@@ -6860,7 +7336,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-31-17-1110am",
@@ -6918,7 +7395,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-31-18-310pm",
@@ -6976,7 +7454,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2026-12-31-19-610pm",
@@ -7034,7 +7513,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-01-20-1110am",
@@ -7092,7 +7572,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-01-21-310pm",
@@ -7150,7 +7631,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-01-22-510pm",
@@ -7208,7 +7690,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-02-23-1010am",
@@ -7266,7 +7749,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-02-20-1110am",
@@ -7324,7 +7808,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-02-24-310pm",
@@ -7382,7 +7867,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-02-25-510pm",
@@ -7440,7 +7926,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-03-20-1110am",
@@ -7498,7 +7985,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-03-26-510pm",
@@ -7556,7 +8044,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-04-20-1110am",
@@ -7614,7 +8103,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-04-27-1110am",
@@ -7672,7 +8162,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-04-27-510pm",
@@ -7730,7 +8221,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-05-27-1110am",
@@ -7788,7 +8280,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-05-27-510pm",
@@ -7846,7 +8339,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-06-28-1110am",
@@ -7904,7 +8398,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-06-27-1200pm",
@@ -7962,7 +8457,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-06-29-510pm",
@@ -8020,7 +8516,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-07-30-1110am",
@@ -8078,7 +8575,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-07-30-510pm",
@@ -8136,7 +8634,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-08-30-1110am",
@@ -8194,7 +8693,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-08-30-510pm",
@@ -8252,7 +8752,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-09-30-1110am",
@@ -8310,7 +8811,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-09-30-510pm",
@@ -8368,7 +8870,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-10-31-1010am",
@@ -8426,7 +8929,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": "Must be 50+ years of age to participate."
+   "eligibility": "Must be 50+ years of age to participate.",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-10-30-1200pm",
@@ -8484,7 +8988,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "vl-nye-2027-01-10-32-510pm",
@@ -8542,7 +9047,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted from it.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-daily-0",
@@ -8605,7 +9111,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "The daily slate is suspended during each Wynn Signature, Wynn Millions and Classic tournament series (per the official poker-room page). Recurring monday-thursday.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "wynn-daily-1",
@@ -8671,7 +9178,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "A rebuy-heavy event: spending more buys a second shot at the same prize pool. Recurring friday.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "wynn-daily-2",
@@ -8732,7 +9240,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": " Recurring saturday, sunday.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "wynn-daily-3",
@@ -8798,7 +9307,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": " Recurring nightly monday-sunday.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "wynn-wpt-2026-11-27-000-1100am",
@@ -8856,7 +9366,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-11-27-001-1200pm",
@@ -8914,7 +9425,8 @@
    "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Official structure sheet ($600 TORSE, Friday Nov 27 at 12 p.m.): Registration: Unlimited re-entry will be available until the start of level 9.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-11-27-002-100pm",
@@ -8972,7 +9484,8 @@
    "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Official structure sheet ($400 PLO, Friday Nov 27 at 1 p.m.): Registration: Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-11-27-003-500pm",
@@ -9030,7 +9543,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-11-28-004-1100am",
@@ -9088,7 +9602,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-11-28-005-1200pm",
@@ -9146,7 +9661,8 @@
    "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Official structure sheet ($600 Mixed Triple Draw (A-5, 2-7, Badugi), Saturday Nov 28 at 12 p.m.): Registration: Unlimited re-entry will be available until the start of level 9.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-11-28-006-500pm",
@@ -9204,7 +9720,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-11-29-007-1100am",
@@ -9262,7 +9779,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-11-29-008-600pm",
@@ -9320,7 +9838,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-11-30-009-1100am",
@@ -9378,7 +9897,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-11-30-010-1200pm",
@@ -9436,7 +9956,8 @@
    "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Official structure sheet ($600 Limit Omaha 8, Monday Nov 30 at 12 p.m.): Registration: Unlimited re-entry will be available until the start of level 9.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-11-30-011-100pm",
@@ -9494,7 +10015,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-11-30-012-500pm",
@@ -9552,7 +10074,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-01-013-1100am",
@@ -9610,7 +10133,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-01-014-1200pm",
@@ -9668,7 +10192,8 @@
    "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Official structure sheet ($600 Limit Omaha 8/Stud 8, Tuesday Dec 1 at 12 p.m.): Registration: Unlimited re-entry will be available until the start of level 9.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-01-015-100pm",
@@ -9726,7 +10251,8 @@
    "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Official structure sheet ($1,100 PLO, Tuesday Dec 1 at 1 p.m.): Registration: Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-01-016-500pm",
@@ -9784,7 +10310,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-02-017-1100am",
@@ -9842,7 +10369,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-02-018-600pm",
@@ -9900,7 +10428,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-03-019-1100am",
@@ -9958,7 +10487,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-03-020-100pm",
@@ -10016,7 +10546,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-03-021-700pm",
@@ -10074,7 +10605,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive two (2) prizes valued at $1,100 each. Prizes may be used separately or combined for a tournament entry.\"",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-04-022-1100am",
@@ -10132,7 +10664,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-04-023-1200pm",
@@ -10190,7 +10723,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-04-024-100pm",
@@ -10248,7 +10782,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-04-025-700pm",
@@ -10306,7 +10841,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive two (2) prizes valued at $1,100 each. Prizes may be used separately or combined for a tournament entry.\"",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-05-026-1100am",
@@ -10364,7 +10900,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-05-027-1100am",
@@ -10422,7 +10959,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-05-028-900pm",
@@ -10480,7 +11018,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-06-029-1100am",
@@ -10538,7 +11077,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-06-030-1100am",
@@ -10596,7 +11136,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-06-031-1200pm",
@@ -10654,7 +11195,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-06-032-600pm",
@@ -10712,7 +11254,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-06-033-700pm",
@@ -10770,7 +11313,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive two (2) prizes valued at $1,100 each. Prizes may be used separately or combined for a tournament entry.\"",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-06-034-900pm",
@@ -10828,7 +11372,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-07-035-1100am",
@@ -10886,7 +11431,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-07-036-1100am",
@@ -10944,7 +11490,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-07-037-1200pm",
@@ -11002,7 +11549,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-07-038-100pm",
@@ -11060,7 +11608,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-07-039-700pm",
@@ -11118,7 +11667,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-07-040-900pm",
@@ -11176,7 +11726,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-08-041-1100am",
@@ -11234,7 +11785,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-08-042-700pm",
@@ -11292,7 +11844,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-08-043-900pm",
@@ -11350,7 +11903,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-09-044-1100am",
@@ -11408,7 +11962,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-09-045-1200pm",
@@ -11466,7 +12021,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-09-046-100pm",
@@ -11524,7 +12080,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-09-047-100pm",
@@ -11582,7 +12139,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-09-048-200pm",
@@ -11640,7 +12198,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-09-049-700pm",
@@ -11698,7 +12257,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-09-050-900pm",
@@ -11756,7 +12316,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-10-051-1000am",
@@ -11814,7 +12375,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-10-052-1200pm",
@@ -11872,7 +12434,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-10-053-600pm",
@@ -11930,7 +12493,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-11-054-1000am",
@@ -11988,7 +12552,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-11-055-1200pm",
@@ -12046,7 +12611,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-11-056-600pm",
@@ -12104,7 +12670,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-12-057-1000am",
@@ -12162,7 +12729,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-12-058-100pm",
@@ -12220,7 +12788,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-12-059-200pm",
@@ -12278,7 +12847,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-12-060-200pm",
@@ -12336,7 +12906,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-12-061-200pm",
@@ -12394,7 +12965,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-12-062-400pm",
@@ -12452,7 +13024,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-12-063-700pm",
@@ -12510,7 +13083,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-12-064-900pm",
@@ -12568,7 +13142,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-13-065-1100am",
@@ -12626,7 +13201,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible. The schedule prints \"$1,000,000 Added\" with the footnote \"$1,000,000 will be added in cash prizes by ClubWPT Gold. ClubWPT Gold is not available in Nevada.\"",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-13-066-1100am",
@@ -12684,7 +13260,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. The schedule prints a discounted-entry marker on this row: \"The Tournament Entry for the Ladies Championship is $11,100. Ladies will receive a discounted entry.\" and \"Players registered prior to the start of the event will receive a discounted entry.\" The marker on this row does not resolve cleanly against the footnote list, so the printed entry is shown and nothing is adjusted.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-13-067-1100am",
@@ -12742,7 +13319,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. The schedule prints \"$1,000,000 Added\" with the footnote \"$1,000,000 will be added in cash prizes by ClubWPT Gold. ClubWPT Gold is not available in Nevada.\"",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-13-068-1100am",
@@ -12800,7 +13378,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible. The schedule prints \"$1,000,000 Added\" with the footnote \"$1,000,000 will be added in cash prizes by ClubWPT Gold. ClubWPT Gold is not available in Nevada.\"",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-13-069-1200pm",
@@ -12858,7 +13437,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-13-070-1200pm",
@@ -12916,7 +13496,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-13-071-100pm",
@@ -12974,7 +13555,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-13-072-600pm",
@@ -13032,7 +13614,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-14-073-1100am",
@@ -13090,7 +13673,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible. The schedule prints \"$1,000,000 Added\" with the footnote \"$1,000,000 will be added in cash prizes by ClubWPT Gold. ClubWPT Gold is not available in Nevada.\"",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-14-074-1100am",
@@ -13148,7 +13732,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible. The schedule prints \"$1,000,000 Added\" with the footnote \"$1,000,000 will be added in cash prizes by ClubWPT Gold. ClubWPT Gold is not available in Nevada.\"",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-14-075-1200pm",
@@ -13206,7 +13791,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-14-076-1200pm",
@@ -13264,7 +13850,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-14-077-1200pm",
@@ -13322,7 +13909,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-14-078-200pm",
@@ -13380,7 +13968,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-14-079-600pm",
@@ -13438,7 +14027,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-14-080-700pm",
@@ -13496,7 +14086,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-14-081-900pm",
@@ -13554,7 +14145,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-15-082-1100am",
@@ -13612,7 +14204,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible. The schedule prints \"$1,000,000 Added\" with the footnote \"$1,000,000 will be added in cash prizes by ClubWPT Gold. ClubWPT Gold is not available in Nevada.\"",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-15-083-1100am",
@@ -13670,7 +14263,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. The schedule prints \"$1,000,000 Added\" with the footnote \"$1,000,000 will be added in cash prizes by ClubWPT Gold. ClubWPT Gold is not available in Nevada.\"",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-15-084-1100am",
@@ -13728,7 +14322,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. The schedule prints \"$1,000,000 Added\" with the footnote \"$1,000,000 will be added in cash prizes by ClubWPT Gold. ClubWPT Gold is not available in Nevada.\"",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-15-085-1200pm",
@@ -13786,7 +14381,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-15-086-1200pm",
@@ -13844,7 +14440,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-15-087-100pm",
@@ -13902,7 +14499,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-15-088-600pm",
@@ -13960,7 +14558,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-15-089-700pm",
@@ -14018,7 +14617,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-18-090-1100am",
@@ -14076,7 +14676,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-18-091-1200pm",
@@ -14134,7 +14735,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-18-092-1200pm",
@@ -14192,7 +14794,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-18-093-100pm",
@@ -14250,7 +14853,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-18-094-100pm",
@@ -14308,7 +14912,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-18-095-600pm",
@@ -14366,7 +14971,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-18-096-600pm",
@@ -14424,7 +15030,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-18-097-700pm",
@@ -14482,7 +15089,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-17-098-1100am",
@@ -14540,7 +15148,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-17-099-1100am",
@@ -14598,7 +15207,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-17-100-1200pm",
@@ -14656,7 +15266,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-17-101-1200pm",
@@ -14714,7 +15325,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-17-102-1200pm",
@@ -14772,7 +15384,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-17-103-100pm",
@@ -14830,7 +15443,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. The schedule prints a discounted-entry marker on this row: \"The Tournament Entry for the Ladies Championship is $11,100. Ladies will receive a discounted entry.\" and \"Players registered prior to the start of the event will receive a discounted entry.\" The marker on this row does not resolve cleanly against the footnote list, so the printed entry is shown and nothing is adjusted.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-17-104-200pm",
@@ -14888,7 +15502,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-17-105-700pm",
@@ -14946,7 +15561,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-18-106-1000am",
@@ -15004,7 +15620,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-18-107-1200pm",
@@ -15062,7 +15679,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-18-108-1200pm",
@@ -15120,7 +15738,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-18-109-1200pm",
@@ -15178,7 +15797,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-18-110-1200pm",
@@ -15236,7 +15856,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-18-111-100pm",
@@ -15294,7 +15915,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-18-112-200pm",
@@ -15352,7 +15974,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-18-113-600pm",
@@ -15410,7 +16033,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-19-114-1100am",
@@ -15468,7 +16092,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-19-115-1100am",
@@ -15526,7 +16151,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-19-116-1200pm",
@@ -15584,7 +16210,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-19-117-1200pm",
@@ -15642,7 +16269,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-19-118-1200pm",
@@ -15700,7 +16328,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-19-119-100pm",
@@ -15758,7 +16387,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-19-120-100pm",
@@ -15816,7 +16446,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-19-121-100pm",
@@ -15874,7 +16505,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-19-122-500pm",
@@ -15932,7 +16564,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Prize footnote on the schedule: \"Winners will receive direct entry to the corresponding event(s) for which it was held.\" These are seat prizes, not cash.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-19-123-600pm",
@@ -15990,7 +16623,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-19-124-700pm",
@@ -16048,7 +16682,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-20-125-1100am",
@@ -16106,7 +16741,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-20-126-1200pm",
@@ -16164,7 +16800,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-20-127-1200pm",
@@ -16222,7 +16859,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-20-128-100pm",
@@ -16280,7 +16918,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. The schedule prints a discounted-entry marker on this row: \"The Tournament Entry for the Ladies Championship is $11,100. Ladies will receive a discounted entry.\" and \"Players registered prior to the start of the event will receive a discounted entry.\" The marker on this row does not resolve cleanly against the footnote list, so the printed entry is shown and nothing is adjusted.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-20-129-100pm",
@@ -16338,7 +16977,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. The schedule prints a discounted-entry marker on this row: \"The Tournament Entry for the Ladies Championship is $11,100. Ladies will receive a discounted entry.\" and \"Players registered prior to the start of the event will receive a discounted entry.\" The marker on this row does not resolve cleanly against the footnote list, so the printed entry is shown and nothing is adjusted.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-20-130-200pm",
@@ -16396,7 +17036,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-20-131-600pm",
@@ -16454,7 +17095,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-20-132-700pm",
@@ -16512,7 +17154,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event, so more than one entry is possible.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-21-133-1200pm",
@@ -16570,7 +17213,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-21-134-100pm",
@@ -16628,7 +17272,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-wpt-2026-12-21-135-800pm",
@@ -16686,7 +17331,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-11-000-1200pm",
@@ -16744,7 +17390,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-11-001-500pm",
@@ -16802,7 +17449,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-12-002-1200pm",
@@ -16860,7 +17508,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-12-003-500pm",
@@ -16918,7 +17567,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-13-004-1200pm",
@@ -16976,7 +17626,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-13-005-500pm",
@@ -17034,7 +17685,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-14-006-1100am",
@@ -17092,7 +17744,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-14-007-100pm",
@@ -17150,7 +17803,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Wynn Signature Series row from the official schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-14-008-600pm",
@@ -17208,7 +17862,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Wynn Signature Series row from the official schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-15-009-1100am",
@@ -17266,7 +17921,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-15-010-600pm",
@@ -17324,7 +17980,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Wynn Signature Series row from the official schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-16-011-1100am",
@@ -17382,7 +18039,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-16-012-600pm",
@@ -17440,7 +18098,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-17-013-1200pm",
@@ -17498,7 +18157,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Wynn Signature Series row from the official schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-17-014-100pm",
@@ -17556,7 +18216,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Wynn Signature Series row from the official schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-17-015-600pm",
@@ -17614,7 +18275,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Wynn Signature Series row from the official schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-18-016-1100am",
@@ -17672,7 +18334,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-18-017-100pm",
@@ -17730,7 +18393,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Wynn Signature Series row from the official schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-18-018-600pm",
@@ -17788,7 +18452,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Wynn Signature Series row from the official schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-19-019-1100am",
@@ -17846,7 +18511,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-19-020-100pm",
@@ -17904,7 +18570,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Wynn Signature Series row from the official schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-19-021-600pm",
@@ -17962,7 +18629,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Wynn Signature Series row from the official schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-20-022-1100am",
@@ -18020,7 +18688,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-20-023-100pm",
@@ -18078,7 +18747,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Wynn Signature Series row from the official schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-20-024-600pm",
@@ -18136,7 +18806,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Wynn Signature Series row from the official schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-21-025-1100am",
@@ -18194,7 +18865,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-21-026-1200pm",
@@ -18252,7 +18924,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Wynn Signature Series row from the official schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-21-027-100pm",
@@ -18310,7 +18983,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Wynn Signature Series row from the official schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-21-028-600pm",
@@ -18368,7 +19042,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Wynn Signature Series row from the official schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-22-029-1100am",
@@ -18426,7 +19101,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-22-030-100pm",
@@ -18484,7 +19160,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Wynn Signature Series row from the official schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-22-031-600pm",
@@ -18542,7 +19219,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Wynn Signature Series row from the official schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-23-032-1100am",
@@ -18600,7 +19278,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-23-033-600pm",
@@ -18658,7 +19337,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Multiple start flights are published for this event.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-24-034-1200pm",
@@ -18716,7 +19396,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Wynn Signature Series row from the official schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-24-035-100pm",
@@ -18774,7 +19455,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Wynn Signature Series row from the official schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-24-036-100pm",
@@ -18832,7 +19514,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Wynn Signature Series row from the official schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "wynn-sig-2027-01-24-037-600pm",
@@ -18890,7 +19573,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Wynn Signature Series row from the official schedule PDF; entry rules not yet read.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "upcoming"
   },
   {
    "id": "bell-0",
@@ -18950,7 +19634,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "The optional $40 staff gratuity buys 15,000 extra chips, so paying more raises your stack. No guarantee is printed on the sheet.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "bell-1",
@@ -19010,7 +19695,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Not ranked: the official sources disagree on the buy-in. The sheet also references a 'Combined Final Day 2 (9/13/26)' date.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "bell-2",
@@ -19070,7 +19756,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Payout structure is approximately 12.5% of the field. No guarantee is printed on the sheet.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "bell-3",
@@ -19136,7 +19823,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Start-time conflict: the page highlights say 6 PM nightly, the page notice says 2 PM PT. The 'July 26' notice carries no year.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "mgm-0",
@@ -19200,7 +19888,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "The published weekly schedule PDF is headed 'MGM Grand August Tournament Schedule', so the month on the sheet is not current.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "mgm-1",
@@ -19266,7 +19955,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Registration is open until Level 8 per the $120 structure sheet.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "mgm-2",
@@ -19332,7 +20022,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "No guarantee is printed on the $120 sheet.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "mgm-3",
@@ -19392,7 +20083,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "20-minute levels on Saturday per the published weekly schedule.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "caes-0",
@@ -19455,10 +20147,11 @@
    "sheetUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "scheduleUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "structureUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "The official page publishes buy-in, chips and guarantee but no structure sheet link.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "caes-1",
@@ -19521,10 +20214,11 @@
    "sheetUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "scheduleUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "structureUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "caes-2",
@@ -19587,10 +20281,11 @@
    "sheetUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "scheduleUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "structureUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "caes-3",
@@ -19653,10 +20348,11 @@
    "sheetUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "scheduleUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "structureUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "horse-0",
@@ -19719,10 +20415,11 @@
    "sheetUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "scheduleUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "structureUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "Buy-in, level structure and guarantee are not published for this slot.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "horse-1",
@@ -19785,10 +20482,11 @@
    "sheetUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "scheduleUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "structureUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "Buy-in, level structure and guarantee are not published for this slot.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "horse-2",
@@ -19851,10 +20549,11 @@
    "sheetUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "scheduleUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "structureUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "Buy-in, level structure and guarantee are not published for this slot.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "horse-3",
@@ -19917,10 +20616,11 @@
    "sheetUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "scheduleUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "structureUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "Buy-in, level structure and guarantee are not published for this slot.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "horse-4",
@@ -19983,10 +20683,11 @@
    "sheetUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "scheduleUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "structureUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "Buy-in, level structure and guarantee are not published for this slot.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "horse-5",
@@ -20049,10 +20750,11 @@
    "sheetUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "scheduleUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "structureUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "note": "Buy-in, level structure and guarantee are not published for this slot.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "aria-0",
@@ -20118,7 +20820,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Undated cadence only. No date-specific event, buy-in or guarantee is published.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   },
   {
    "id": "aria-1",
@@ -20184,7 +20887,8 @@
    "lastChecked": "2026-11-16",
    "lastVerified": "2026-11-17",
    "note": "Undated cadence only.",
-   "eligibility": ""
+   "eligibility": "",
+   "status": "recurring"
   }
  ],
  "hotels": [
@@ -20249,7 +20953,7 @@
    "walkNote": "The poker room is inside the resort that owns this hotel; the Google Maps walking route from The Palazzo to The Venetian measures 4 minutes.",
    "trueNightlyLow": 197.28,
    "trueNightlyHigh": 299.32,
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "parkingPerNight": 20.0,
    "parkingNote": "The daily fee for registered hotel guests is $20/day, seven days a week.",
@@ -20285,7 +20989,7 @@
    "walkNote": "Google Maps walking estimate 4 minutes (0.2 mile) to The Venetian, where the poker room is located.",
    "trueNightlyLow": 197.28,
    "trueNightlyHigh": 299.32,
-   "lastChecked": "2026-11-16",
+   "lastChecked": "2026-11-17",
    "lastVerified": "2026-11-17",
    "parkingPerNight": 20.0,
    "parkingNote": "The daily fee for registered hotel guests is $20/day, seven days a week.",
@@ -20665,6 +21369,21 @@
    "source": "https://mgmgrand.mgmresorts.com/en/hotel.html",
    "feeSource": "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html",
    "taxSource": "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html"
+  },
+  {
+   "hotel": "venetian",
+   "observedOn": "2026-11-17",
+   "baseRate": "",
+   "publishedStartingRates": "",
+   "resortFee": "55.00 per night plus tax (resort-fee page re-read 2026-11-17)",
+   "tax": "13.38% Clark County room tax (hotel terms not re-read on 2026-11-17)",
+   "trueNightlyLow": "",
+   "trueNightlyHigh": "",
+   "quoteType": "Booking-engine calendar, no price captured",
+   "note": "Static read of the booking page for Nov 25 to Dec 2, 2026 (2 adults): every calendar cell showed $XXX. No nightly rate is recorded for these dates. The page says its prices include the daily resort fee and exclude taxes.",
+   "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-02&view=calendar",
+   "feeSource": "https://www.venetianlasvegas.com/resort/resort-fee.html",
+   "taxSource": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html"
   },
   {
    "hotel": "wynn",
@@ -21281,8 +22000,8 @@
    "id": "F17",
    "area": "Schedule",
    "severity": "High",
-   "title": "No verified start time earlier than 9:10 AM exists in the reviewed official schedules",
-   "detail": "The earliest verified starts are the Venetian RaceDay Stack at 10:10 AM, the Venetian seniors and tag-team events at 10:10 AM, Horseshoe at 9:00 AM and Caesars Palace at 10:00 AM, the Wynn daily at 12:00 PM and the Wynn WPT at 11:00 AM. An 'all day from 8:00 AM' plan cannot be built from official sources. The day plan therefore starts at the earliest verified start for each venue.",
+   "title": "The earliest verified official start is 9:00 AM (Horseshoe daily); no 8:00 AM start is published",
+   "detail": "Re-read on 2026-11-17 on the Caesars page: Horseshoe runs six daily No-Limit Hold'em games at 9 a.m., 11 a.m., 2 p.m., 5 p.m., 8 p.m. and 11 p.m., with no buy-in published. Caesars Palace runs four daily games at 10 a.m., 2 p.m., 6 p.m. and 9 p.m. ($100 buy-in, $50 add-on). On the Venetian schedule re-read on 2026-11-17 the earliest start is 9:10 AM, a $260 satellite on Dec 12. Opening Venetian events start at 10:10 AM or later; the only 10:00 AM Venetian starts are restarts (Day 2 or Day 3). The Wynn daily starts at 12:00 PM. Most Wynn WPT rows start at 11:00 AM. Its 10:00 AM rows are the Super Gold Million flights (Dec 10 and 11), one WPT row on Dec 12 and a satellite on Dec 18, all from the WPT PDF read on 2026-11-16. An 'all day from 8:00 AM' plan cannot be built from official sources. The day plan starts at the earliest verified start for each venue.",
    "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"
   },
   {
@@ -21441,9 +22160,9 @@
    "id": "F38",
    "area": "Schedule coverage",
    "severity": "Medium",
-   "title": "No daily tournament starts before 09:10 AM on any official schedule read",
-   "detail": "The 8 AM start in the brief cannot be met from verified data. The earliest published start found is 09:10 AM (Venetian Turbo Milestone Satellite, Dec 12), and the earliest event that is not a satellite or a continuation is 10:00 AM. The day plan therefore begins at the earliest verified open event time and never invents an earlier start.",
-   "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf"
+   "title": "The earliest official start is 9:00 AM (Horseshoe daily); no 8:00 AM start is published",
+   "detail": "Read on 2026-11-17 on the Caesars Palace and Horseshoe page: Horseshoe runs six daily No-Limit Hold'em games at 9 a.m., 11 a.m., 2 p.m., 5 p.m., 8 p.m. and 11 p.m., and publishes no buy-in or structure for them. Caesars Palace runs four daily games at 10 a.m., 2 p.m., 6 p.m. and 9 p.m. The earliest Venetian start is 9:10 AM (a $260 Turbo Milestone Satellite on Dec 12), and opening Venetian events start at 10:10 AM or later. No 8 AM start appears on any official source read, so an 8 AM plan cannot be built from verified data. The day plan starts at the earliest verified open event for each venue.",
+   "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"
   },
   {
    "id": "F39",
@@ -21468,6 +22187,14 @@
    "title": "The NYE schedule page prints the year 2025 on its December 26 rows",
    "detail": "The official DeepStack Extravaganza NYE page is headed 'December 24, 2026 - January 10, 2027', but its three December 26 rows read 'Saturday, December 26, 2025'. December 26 is a Saturday in 2026 (not in 2025, when it was a Friday), so the weekday is right and the year is the typo. The rows are listed with the series dates and the printed year is flagged rather than corrected. The NYE structure sheets were not read in this pass, so no NYE row is in the single-entry path.",
    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html"
+  },
+  {
+   "id": "F42",
+   "area": "Schedule",
+   "severity": "Low",
+   "title": "The Caesars page gives a general session length, not an event finish time",
+   "detail": "The official Caesars Palace poker-tournament page says 'Most sessions finish in four to six hours.' That is a general statement about its tournaments, not a published finish time for any event. The six-hour planning assumption for every room therefore remains an assumption.",
+   "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"
   }
  ],
  "questions": [
@@ -21555,7 +22282,7 @@
   {
    "id": "Q10",
    "question": "Do the December 17-23 and holiday-week events still run as published?",
-   "answer": "The schedule pages are current as published on 2026-11-16, and this site re-checks every source URL on a schedule. Any source that changes is flagged on the change log.",
+   "answer": "Re-read on 2026-11-17. Venetian DeepStack Extravaganza IV (the page covers Nov 16 to Dec 23, 2026): the 21 rows dated Nov 16 to Nov 27 match the page on date, start time, event name, buy-in, guarantee and structure-sheet link. The 73 rows dated Nov 28 to Dec 23 match on date, start time, event name, buy-in and guarantee; their structure links were not compared. Caesars Palace (four daily starts at 10 AM, 2 PM, 6 PM and 9 PM, $100 buy-in, $1,000 guarantee) and Horseshoe (six daily starts from 9 AM to 11 PM) match the page text. The page gives no Horseshoe buy-in or guarantee, so those cells stay blank. The Venetian resort fee is still $55 plus tax. The Wynn landing page confirms the WPT window and the Super Gold Million terms. The Bellagio landing page still carries a stale notice (flag F33). The Bellagio weekly PDFs, the Wynn daily and WPT PDFs and the DeepStack NYE schedule were not re-read.",
    "why": "Useful",
    "blocking": "No",
    "how": "Re-check the Flagged for review page and the change log before booking and again 48 hours before you travel.",
@@ -21591,11 +22318,11 @@
   {
    "id": "Q14",
    "question": "Does the 8 AM start the brief asks for exist anywhere on the Strip?",
-   "answer": "Not on any official schedule read for this build. The earliest published start is 09:10 AM (a Venetian Turbo Milestone Satellite on Dec 12), and the earliest non-satellite, non-continuation start is 10:00 AM. An all-day 8 AM plan therefore cannot be built from verified data; the day plan starts at the first verified open event each day.",
+   "answer": "Not on any official source read for this build. The earliest verified start is Horseshoe's daily game at 9:00 AM on the Caesars page (read 2026-11-17), which publishes no buy-in or structure. Caesars Palace starts at 10:00 AM. The earliest Venetian start is 9:10 AM (a satellite on Dec 12), and the earliest non-satellite Venetian start is 10:10 AM. An all-day 8 AM plan therefore cannot be built from verified data; the day plan starts at the first verified open event for each venue.",
    "why": "Needed",
    "blocking": "Yes - the all-day schedule in the brief cannot be produced without it",
-   "how": "Ask each room for its earliest daily start, or read the room's full daily schedule page on the morning of travel.",
-   "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf"
+   "how": "Ask Horseshoe for the buy-in, structure and single-entry rule of its 9:00 AM game; ask each room for its earliest daily start.",
+   "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"
   },
   {
    "id": "Q15",
