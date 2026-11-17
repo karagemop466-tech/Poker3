@@ -198,9 +198,11 @@ class FreshnessAndBookingTests(unittest.TestCase):
         self.assertIn("departure_date=2026-11-30", url)
         self.assertIn("adults[]=2", url)
         # The stored price text must be the dated checkout total read from the engine, not a placeholder.
+        # Two same-day readings of the identical query are recorded, so both printed totals must appear.
         text = links[0].get("priceInStaticPage", "")
         self.assertTrue(text.startswith("Yes."), text)
         self.assertIn("$4,010.55", text)
+        self.assertIn("$3,823.46", text)
 
     def test_no_official_event_starts_before_nine_am(self):
         """Earliest verified start is 9:00 AM (Horseshoe daily). The all-day 8 AM plan stays unsupported."""

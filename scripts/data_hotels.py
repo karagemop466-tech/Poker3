@@ -194,7 +194,10 @@ VENETIAN_QUOTE_NOV_20 = dict(
 # booking engine on 2026-11-17 after 21:54 UTC (sandbox clock). Every figure is printed on the page. The per-night
 # all-in figures are derived as (rate + $55 resort fee) x 1.1338, rounded to the cent, and they add to the printed
 # checkout total exactly. This is the first dated checkout total for the trip window itself.
-VENETIAN_QUOTE_TRIP = dict(
+#
+# It is kept as its own dated observation and is NOT overwritten: a second reading of the identical query later the
+# same day returned a different total (see VENETIAN_QUOTE_TRIP). The site's policy is a dated log, not one number.
+VENETIAN_QUOTE_TRIP_PRIOR = dict(
     property="The Venetian Resort - venetian Newly Remodeled Luxury King suite",
     checkIn="2026-11-23", checkOut="2026-11-30", guests=2, nights=7,
     offer="Book Direct: Up to 25% Off",
@@ -204,13 +207,43 @@ VENETIAN_QUOTE_TRIP = dict(
     resortFeePerNight=55.00,
     taxes=473.30, total=4010.55, averageRate=505.32,
     derivedNightly=[248.59, 248.59, 291.10, 325.12, 1932.28, 690.77, 274.10], derivedTotal=4010.55,
-    note=("Re-read from the official booking engine on 2026-11-17 after 21:54 UTC. The engine's Average Rate of $505.32 "
+    note=("Read from the official booking engine on 2026-11-17 after 21:54 UTC. The engine's Average Rate of $505.32 "
           "is the average of (rate + $55 resort fee) over the seven nights. The printed taxes of $473.30 equal the sum of "
           "13.38% of (rate + resort fee) on each night, rounded to the cent per night. This is the engine's best available "
-          "rate for a Luxury King suite. It is not the phone-only poker rate (code EPOKR25; see F66)."),
+          "rate for a Luxury King suite. It is not the phone-only poker rate (code EPOKR25; see F66). SUPERSEDED as the "
+          "current figure by a later reading of the same query on the same day, which printed $3,823.46; the two "
+          "readings are both kept in the dated log and the difference is flagged (F78)."),
     source=VENETIAN_CALENDAR_TRIP_URL, observedOn="2026-11-17")
 
-VENETIAN_QUOTES = [VENETIAN_QUOTE, VENETIAN_QUOTE_2026_11_17, VENETIAN_QUOTE_NOV_20, VENETIAN_QUOTE_TRIP]
+# The same official query, read again later on 2026-11-17 (about 22:07 UTC, sandbox clock). Two independent reads
+# minutes apart agreed on every printed figure. The engine returned the palazzo Luxury King rather than the venetian
+# Luxury King and a lower total. Every money figure below is printed on the page; the per-night all-in figures are
+# derived as (rate + $55 resort fee) x 1.1338, rounded to the cent, and they add to the printed checkout total
+# exactly. Unlike the earlier reading, the printed tax equals the sum of the per-night rounded taxes with no
+# rounding difference.
+VENETIAN_QUOTE_TRIP = dict(
+    property="The Venetian Resort - palazzo Luxury King suite",
+    checkIn="2026-11-23", checkOut="2026-11-30", guests=2, nights=7,
+    offer="Book Direct: Up to 25% Off",
+    suiteDetail="Approximately 720 square feet, king bed, living room, Roman tub",
+    nightly=[("2026-11-23", 204.25), ("2026-11-24", 204.25), ("2026-11-25", 286.75), ("2026-11-26", 406.75),
+             ("2026-11-27", 1119.25), ("2026-11-28", 561.75), ("2026-11-29", 204.25)],
+    resortFeePerNight=55.00,
+    taxes=451.21, total=3823.46, averageRate=481.75,
+    derivedNightly=[293.94, 293.94, 387.48, 523.53, 1331.36, 699.27, 293.94], derivedTotal=3823.46,
+    note=("Read from the official booking engine on 2026-11-17 at about 22:07 UTC, the same official query that was "
+          "read at 21:54 UTC for a different total. The page printed an 'Estimated cost of stay' of $3,823.46, an "
+          "Average Rate of $481.75 (the average of rate + $55 resort fee over the seven nights), a $55.00 resort fee on "
+          "each night, taxes of $451.21, and the seven nightly rates above. The seven derived per-night all-in costs "
+          "add to $3,823.46 exactly and the seven derived per-night taxes add to the printed $451.21 exactly; the "
+          "$0.02 tax-rounding difference of the earlier reading (F65) does not reproduce here. The engine offered the "
+          "palazzo Luxury King this time and the venetian Newly Remodeled Luxury King at 21:54 UTC, so this is the "
+          "best available rate for a Luxury King suite on the resort, not a fixed price for one tower. It is not the "
+          "phone-only poker rate (code EPOKR25; see F66)."),
+    source=VENETIAN_CALENDAR_TRIP_URL, observedOn="2026-11-17")
+
+VENETIAN_QUOTES = [VENETIAN_QUOTE, VENETIAN_QUOTE_2026_11_17, VENETIAN_QUOTE_NOV_20,
+                   VENETIAN_QUOTE_TRIP_PRIOR, VENETIAN_QUOTE_TRIP]
 
 # Stay windows the engine was opened for on 2026-11-17 that returned no suite and no price.
 # Each is a dated observation of the official engine, not an inference.
@@ -312,9 +345,10 @@ HOTELS = [
         + [dict(label="whole trip, 7 nights", url=VENETIAN_CALENDAR_TRIP_URL)],
         bookingLinksNote=(
             "Each link opens the official booking engine with that night's dates and two adults already filled in. "
-            "On 2026-11-17 the engine returned an itemised checkout total for the 23-30 November trip stay ($4,010.55; "
-            "see the rate log) and for near-term stays. The one-night links open the engine for a single night; the "
-            "dated rate log is the record of what the engine printed, and the links are not a price."),
+            "On 2026-11-17 the engine returned an itemised checkout total for the 23-30 November trip stay ($3,823.46 "
+            "at the later of two same-day readings, and $4,010.55 at the earlier one; see the rate log) and for "
+            "near-term stays. The one-night links open the engine for a single night; the dated rate log is the record "
+            "of what the engine printed, and the links are not a price."),
         qualityNote=("Not scored. No official quality metric was published for the suites in the reviewed material, so the "
                      "quality ranking is left blank rather than inferred."),
         status=("Best-value candidate for a Venetian-based trip: poker room on property, published starting rate, published "
@@ -522,6 +556,31 @@ RATE_LOG = [
     # Recommended trip window, read from the official booking engine (session fe903bcb, 2026-11-17 UTC).
     # The engine printed a best-available "Newly Remodeled Luxury King" quote for 7 nights, 2 adults.
     # Every money figure below is printed on the page; the per-night true cost is derived (see note).
+    # This is the FIRST of two same-day readings of the identical official query; the second one is the row
+    # after it. Both are kept because the site keeps a dated log, not one number.
+    dict(hotel="venetian", observedOn="2026-11-17", baseRate="",
+         publishedStartingRates="204.25 (Nov 23), 204.25 (Nov 24), 286.75 (Nov 25), 406.75 (Nov 26), "
+                                "1,119.25 (Nov 27), 561.75 (Nov 28), 204.25 (Nov 29) per night, rate before resort fee",
+         resortFee="55.00 per night",
+         tax="451.21 printed (7 nights)",
+         # Derived = (printed rate + printed $55 resort fee) x 1.1338, one value per night.
+         trueNightlyLow="293.94", trueNightlyHigh="1331.36",
+         # Printed per-night room rates (23-29 Nov) and the derived all-in night costs, in stay order.
+         nightlyRates=[204.25, 204.25, 286.75, 406.75, 1119.25, 561.75, 204.25],
+         nightlyTrueCost=[293.94, 293.94, 387.48, 523.53, 1331.36, 699.27, 293.94],
+         quoteType=("Dated official checkout total (2 adults, 7 nights, 23-30 Nov 2026, best available "
+                    "palazzo Luxury King suite) - read 2026-11-17 at about 22:07 UTC"),
+         note=("Printed on the page: the engine's 'Estimated cost of stay' of $3,823.46 (average rate $481.75 per "
+               "night, all-in before tax). Its breakdown lists the seven nightly rates above, a $55.00 resort fee on "
+               "each night ($385.00 total) and taxes of $451.21. Seven derived per-night true costs add to $3,823.46 "
+               "exactly and the seven derived per-night taxes add to the printed $451.21 exactly. The engine offered "
+               "the palazzo Luxury King at this reading and the venetian Newly Remodeled Luxury King at 21:54 UTC for "
+               "$4,010.55; both readings are in this log (F78). The 27 Nov night ($1,119.25) is the engine's own price "
+               "for that night and is not a reference rate. This is a non-poker-suite, best-available quote; the "
+               "$119/$209 poker suite rate needs the poker-play conditions on the official rate page and is not "
+               "applied here. The engine's price for a stay moves between reads, so this is one dated observation."),
+         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar",
+         feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
     dict(hotel="venetian", observedOn="2026-11-17", baseRate="",
          publishedStartingRates="164.25 (Nov 23), 164.25 (Nov 24), 201.75 (Nov 25), 231.75 (Nov 26), "
                                 "1,649.25 (Nov 27), 554.25 (Nov 28), 186.75 (Nov 29) per night, rate before resort fee",
@@ -533,7 +592,7 @@ RATE_LOG = [
          nightlyRates=[164.25, 164.25, 201.75, 231.75, 1649.25, 554.25, 186.75],
          nightlyTrueCost=[248.59, 248.59, 291.10, 325.12, 1932.28, 690.77, 274.10],
          quoteType=("Dated official checkout total (2 adults, 7 nights, 23-30 Nov 2026, best available "
-                    "Luxury King suite) - read 2026-11-17"),
+                    "venetian Luxury King suite) - read 2026-11-17 after 21:54 UTC"),
          note=("Printed on the page: the engine's 'Estimated cost of stay' of $4,010.55 (average rate $505.32 per "
                "night, all-in before tax). Its breakdown lists the seven nightly rates above, a $55.00 resort fee on "
                "each night ($385.00 total) and taxes of $473.30. Seven derived per-night true costs add to $4,010.55 "
@@ -541,8 +600,9 @@ RATE_LOG = [
                "$473.30 differs by $0.02; the page gives no reason, and the figure is recorded as printed "
                "(flagged). The 27 Nov night ($1,649.25) is the engine's own price for that night and is not a "
                "reference rate. This is a non-poker-suite, best-available quote; the $119/$209 poker suite rate "
-               "needs the poker-play conditions on the official rate page and is not applied here. Reads on the same "
-               "day for other windows differed (see the rows below), so this quote is one dated observation."),
+               "needs the poker-play conditions on the official rate page and is not applied here. SUPERSEDED as the "
+               "current figure by a later reading of the identical query the same day, which printed $3,823.46; "
+               "both readings are kept here because the site keeps a dated log (F78)."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar",
          feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
     dict(hotel="venetian", observedOn="2026-11-17", baseRate="",

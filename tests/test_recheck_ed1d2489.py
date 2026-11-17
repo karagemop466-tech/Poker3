@@ -174,15 +174,47 @@ class HotelFacts(unittest.TestCase):
     def test_no_dated_total_is_invented_for_the_trip_window(self):
         # The 2026-11-17 record above was written at an earlier read, for the then-trip window (25 Nov - 2 Dec).
         self.assertEqual(self.rec["datedCheckoutTotalForTripWindow"], "")
-        # A later read on the same day priced the 23-30 Nov trip stay. The stored total must be exactly the printed one,
-        # and it must be the rate-log entry for the same stay (not a figure derived from calendar cells).
+        # Two later reads on the same day priced the 23-30 Nov trip stay. Every stored total must be exactly the
+        # printed one, must be a rate-log entry for the same stay (not a figure derived from calendar cells), and
+        # must reconcile against (rate + $55) x 1.1338 on each of its seven nights.
         booking = DATA["bookingLinks"][0]
-        self.assertIn("$4,010.55", booking["priceInStaticPage"])
         self.assertIn("arrival_date=2026-11-23", booking["url"])
-        logged = [r for r in DATA["rateLog"] if r.get("quoteType", "").startswith("Dated official checkout total (2 adults, 7 nights")]
-        self.assertEqual(len(logged), 1, "exactly one dated 7-night trip quote is logged")
-        self.assertEqual(logged[0]["observedOn"], "2026-11-17")
-        self.assertIn("4010.55", logged[0]["note"].replace(",", ""))
+        for printed in ("$4,010.55", "$3,823.46"):
+            self.assertIn(printed, booking["priceInStaticPage"])
+        logged = [r for r in DATA["rateLog"]
+                  if r.get("quoteType", "").startswith("Dated official checkout total (2 adults, 7 nights")]
+        self.assertEqual(len(logged), 2, "both same-day readings of the 23-30 Nov trip quote are logged")
+        for row in logged:
+            with self.subTest(quote=row["quoteType"]):
+                self.assertEqual(row["observedOn"], "2026-11-17")
+                self.assertEqual(len(row["nightlyRates"]), 7)
+                self.assertEqual(len(row["nightlyTrueCost"]), 7)
+                # The derived per-night cost must be exactly (printed rate + printed $55 fee) x 1.1338.
+                computed = [round((r + 55.0) * 1.1338, 2) for r in row["nightlyRates"]]
+                self.assertEqual(computed, row["nightlyTrueCost"])
+                # The derived nights must add up to the total the page printed, not to an invented figure.
+                match = re.search(r"cost of stay' of \$([\d,]+\.\d{2})", row["note"])
+                self.assertIsNotNone(match, row["note"][:120])
+                printed_total = float(match.group(1).replace(",", ""))
+                self.assertAlmostEqual(round(sum(row["nightlyTrueCost"]), 2), printed_total, places=2)
+
+    def test_the_published_figure_is_the_later_same_day_reading(self):
+        """The trip budget uses the latest dated reading; the earlier one stays in the log beside it."""
+        live = DATA["tripCostModel"]["liveQuote"]
+        self.assertEqual(live["checkoutTotal"], 3823.46)
+        self.assertEqual(live["taxTotal"], 451.21)
+        self.assertEqual(live["roomRatesTotal"], 2987.25)
+        self.assertEqual(live["nightlyAllInAverage"], 546.21)
+        earlier = live["earlierSameDayReading"]
+        self.assertEqual(earlier["checkoutTotal"], 4010.55)
+        self.assertEqual(earlier["taxTotal"], 473.30)
+        self.assertEqual(earlier["roomRatesTotal"], 3152.25)
+        self.assertEqual(earlier["nightlyAllInAverage"], 572.94)
+        # The trip profile must publish the same current figure, not a third one.
+        self.assertEqual(DATA["trip"]["lodgingTotalAllIn"], 3823.46)
+        self.assertEqual(DATA["trip"]["lodgingTotalBeforeTax"], 3372.25)
+        self.assertEqual(DATA["trip"]["nightlyObservedAverage"], 546.21)
+        self.assertEqual(live["tripTotal"], round(live["tournamentTotal"] + live["checkoutTotal"] + live["parkingTotal"], 2))
 
     def test_every_hotel_fact_links_the_recorded_source(self):
         self.assertEqual(self.hotel["source"], self.rec["sources"]["pokerSuiteRate"])
