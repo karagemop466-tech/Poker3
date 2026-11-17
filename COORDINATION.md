@@ -715,3 +715,23 @@ Scope: `COORDINATION.md` only. No `site/**`, `scripts/**`, or workflow file is e
 4. Only one verified start is before 10:00 AM (the satellite at 9:10 AM). The brief asks for an 8 AM all-day schedule. The site already states this (`site/sheets.html` line 352). Discovery step for the user: ask Horseshoe and Golden Nugget about early daily events, because their times are unpublished.
 
 No `site/**`, `scripts/**`, or workflow file was changed by this session. Two commits are on this branch: the claim (d64ecbb) and this record. PR and merge are recorded below.
+
+---
+
+---
+
+## Current session `arena/3f335f1f-poker3` — canonical freshness and monitoring integration (2026-11-17 UTC)
+
+Platform branch: `arena/3f335f1f-poker3`, active, based on `main` at `b30841e`. The platform binds this session to this branch; no alternate branch or worktree is being created. Prior implementation tasks listed above are already merged and are not re-claimed.
+
+| Task | Status | Owner session | Scope | Branch | PR |
+|---|---|---|---|---|---|
+| Make each event/hotel row show its last verified date; visibly mark rows linked to changed or unavailable official sources; expose the actual latest scheduled feed run and preserve clear distinctions between automated fetches and human verification | in progress | `arena/3f335f1f-poker3` | `site/assets/app.js`, `site/assets/site.css`, `site/tournaments.html`, `site/sources.html`, `scripts/verify_site.py`, `tests/canonical_render.js`, `tests/canonical_smoke.py`, `README.md`, `COORDINATION.md` | `arena/3f335f1f-poker3` | pending |
+
+### Claim record
+
+- **Claimed 2026-11-17 UTC before editing implementation files.** The shared board contained no active claim on these files; earlier canonical feature work is marked done. The current branch restriction is honored instead of the requested `session-<id>/<task>` branch naming.
+- **Initial check:** `scripts/verify_site.py`, `tests/canonical_smoke.py`, `tests/smoke.py`, Python unit tests and JavaScript syntax checks passed on the branch at claim time. The canonical snapshot is still dated 2026-11-16.
+- **Live official spot-check at claim time (2026-11-17):** the Venetian Nov/Dec 2026 schedule pages, Wynn poker-room page, WPT schedule/structures PDFs, Wynn Signature schedule/structures PDFs, Caesars tournament page and Bellagio poker page were fetched from the venue-controlled URLs. Findings are pending line-by-line comparison and will be recorded below; no data value is changed from a spot-check alone.
+
+- **Concurrent edit/rebase note:** `git pull --rebase origin main` found a `COORDINATION.md` conflict with session `arena/cd17e91c-poker3`; its audit record was preserved intact and this claim was appended after it.
