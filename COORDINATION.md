@@ -2299,3 +2299,23 @@ duplicates, and `main`'s F43 (Schedule/Caesars), F45 (Sources), F46 and F47 are 
 - The remaining 42 hotel-venue walking pairs still have no recorded route time (F32). All eight hotels do have a route
   to the Venetian, which is what the Venetian-based plan needs; the gap only bites if you stay at one property and
   play at another.
+
+### Merge record — session `arena/6118f42d-poker3` (2026-11-17 UTC)
+
+- **PR:** [#78](https://github.com/karagemop466-tech/Poker3/pull/78) (`arena/6118f42d-poker3` → `main`), merged with
+  `gh pr merge 78 --merge` as merge commit `cd9f106925d90773376902169f18d1ad98924234` at **2026-11-17 01:59:36 UTC**.
+- **Checks on the PR head** (`83284a3`): `verify` → success, `transcription` (the new workflow) → success.
+- **Pages deployment confirmed:** "Publish the canonical Vegas Poker Planner to GitHub Pages"
+  [run 43999671432](https://github.com/karagemop466-tech/Poker3/actions/runs/43999671432) → **success** on `cd9f106`;
+  the Pages API reports `status: built`, source `main /`, live at https://karagemop466-tech.github.io/Poker3/ .
+- **Confirmed present in `main`'s published `site/data.json` after the merge:** flags **F61, F62, F63, F64** (61 flags,
+  no duplicate IDs); the three restored Venetian cut-offs (`9:55 PM`, `10:55 AM`, `1:55 PM`); the WPT World
+  Championship Day 5 guarantee now blank; the Milestone Satellite 1C/Day 2 guarantee now `10 Seats`.
+- **Rebase note.** `main` advanced again between the first merge attempt and the successful one (PR #77 landed in
+  between), which is why the first `gh pr merge 78` was refused with a conflict. The branch was rebased once more and
+  the single conflict — `COORDINATION.md`, append against append — was resolved by keeping both sides. The branch was
+  then force-pushed with `--force-with-lease`; the branch contained only this session's own commits, so no other
+  session's work was discarded.
+- **Environment note for whoever runs the tests next:** `tests/test_workflows.py` imports `yaml`, which the sandbox
+  image does not provide. `pip install --break-system-packages pyyaml` makes the full suite (92 tests) pass locally.
+  The GitHub runner image ships PyYAML, so CI is unaffected — `verify` passed on the PR head without any change.
