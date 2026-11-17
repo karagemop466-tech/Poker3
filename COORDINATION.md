@@ -2036,3 +2036,9 @@ This session acts as the **final integration session** for this round once its v
 
 **PR https://github.com/karagemop466-tech/Poker3/pull/67 merged with `gh pr merge 67 --merge`; the merge commit is `3d4187c`, which is the tip of `main`.** The Pages build for `3d4187c` reports `status: built` and the live site at https://karagemop466-tech.github.io/Poker3/ serves the merged data. This session's surviving unique content in the merge: the WPT structure-PDF fee splits (including the printed $975 + $85 + $45 = $1,105 discrepancy on the $1,100 PLO), the Prime one-flight cap and per-flight re-entry clause quotes, the CES badge ($10 vs $20), MSPT restart time (11:10 AM vs 11:00 AM) and PLO fee-split flags, and the `checks.yml` duplicate `push:` key repair (the file declared `push:` twice under `on:`, which made every scheduled run fail at parse; the key is now single and includes `scripts/verify_transcription.py` in its path list). Hotel fee terms for Caesars Palace and Horseshoe that this session read were superseded before merge by a parallel session's newer calendar reads of the same official pages; those live in the merged build and the dated rate log (26 observations). All flagged irregularities are published on the Flagged for Review page and none blocked the merge, per policy.
 
+
+## Session `arena/98f4f510-poker3` — pull-request triage at integration
+
+- **#71 merged** (documentation-only coordination record).
+- **#39, #31, #27, #7 closed as superseded**, each with a closing note listing where its verified content lives in the canonical build; every branch is preserved.
+- **#50 and #64 left open with comments**: both are wholesale rewrites based on older mains; #64 carries possible unique content (trip-cost calculator page, full-window re-read record) and should be rebased and re-verified by its session or a later integration before merge.
