@@ -1356,3 +1356,36 @@ Branch: `arena/741b3a8e-poker3`. This session works only on this branch.
 - Google Maps walking minutes are estimates and were not re-checked.
 - The 8 AM question (Q14) stays open: no official 8 AM start was found.
 - Horseshoe's 9:00 AM game has no published buy-in or structure, so it cannot be ranked.
+
+---
+
+## Session arena/169bf42c-poker3 — live re-check of the Venetian schedule and Wynn fee (2026-11-17)
+
+Branch: `arena/169bf42c-poker3`. Scope: this COORDINATION section only. No data, page or script was changed, because the re-check found no drift.
+
+| Task | Status | Notes |
+|---|---|---|
+| Live re-check of the Venetian DeepStack Extravaganza IV series page and schedule PDF | done | Sources below. |
+| Live re-check of the Wynn resort fee | done | Sources below. |
+| Test suite and site verification on the current branch | done | Results below. |
+| Full brief (live feed of all Strip rooms, hotel rate lookup, Maps walking times, 8 AM all-day plan, mapping of every structure sheet) | not done in this session | Already partly covered by earlier sessions; the open gaps are listed in the flags and questions pages. |
+
+### Sources read in this session (2026-11-17, UTC)
+
+- Venetian poker room page: https://www.venetianlasvegas.com/resort/casino/poker.html. Location, 24-hour hours, and the statement that the room is on level 2, Grand Canal Shoppes, were read.
+- Venetian DeepStack Extravaganza landing page: https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html. The DSE IV series is listed as November 16 – December 23, 2026, with the schedule PDF linked.
+- Official DSE IV schedule PDF: https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf. Page 1 (November 16 to December 6) was read in full.
+- Wynn resort policies: https://www.wynnlasvegas.com/about-us/resort-information. Resort fee $55 plus tax; check-in 3 p.m.; check-out 12 p.m.
+
+### Verification performed
+
+- **Schedule PDF vs `site/data/venetian_pdf_rows.json`.** Compared every row of the PDF's first page: date, event number, name, start time, registration close, guarantee, chips and level. The transcription matches on all of them. The sampled rows included events 1A/1B/1C/1D, 2, 7, 8, 14, 16, 24, 26 (1A, 1B, 1C, 1D, 1E, 1F) and 28.
+- **Wynn fee.** `site/data.json` carries $55 for Wynn Las Vegas. The live page matches.
+- **Tests and verifiers** (run on the current branch, after `git merge --ff-only origin/main`): `scripts/data_source.py` rebuilt `site/data.json`; `scripts/verify_site.py` passed; `tests/canonical_smoke.py` and `tests/smoke.py` passed; `tests/test_integrity.py`, `tests/test_checks_schema.py`, `tests/test_reread_2026_11_17.py` and `tests/test_source_monitor.py` passed. `node --check site/assets/app.js` passed. `tests/test_check_sources.py` needs `PYTHONPATH=.` when run as a bare script; CI runs it with `python3 -m unittest discover`, so it passes there. This is not a defect.
+
+### Irregularities and gaps
+
+- **F40 is out of date.** The earlier note that the sandbox cannot reach the venue hosts was true for the session that wrote it. In this session the Venetian and Wynn official pages were reachable. The flag stays on the page as a historical record.
+- **Hotel total not verified.** The Venetian booking engine and rate pages were not read to a dated checkout total, so no rate or resort-fee figure for the Venetian is re-confirmed here.
+- **Schedule PDF page 2 not re-read.** Only the first page of the PDF was checked in this session (through December 6).
+- **Morning feed unchanged.** The scheduled 12:10 UTC `checks.yml` run is still the first live run, as recorded above.
