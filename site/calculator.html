@@ -29,10 +29,12 @@
       <div class="eyebrow">Tool · estimated cost of a trip</div>
       <h1>Trip cost, computed from published parts.</h1>
       <p>
-        The formula is the one in the brief: <strong>estimated cost = entries × buy-ins + nights × true hotel cost</strong>.
-        The defaults are the recommended trip — eight verified single-entry entries and seven nights on the Venetian /
-        Palazzo poker rate — priced from the official starting rate, the published $55 resort fee and the published
-        13.38% Clark County room tax. Change any field and the arithmetic is redone in the browser.
+        The core formula is <strong>entries × average buy-in + nights × true hotel cost</strong>. Parking is shown
+        separately and added only to the optional all-in figure. The defaults reflect the seven planned primary-event
+        candidates across the selected trip dates and seven nights on the Venetian / Palazzo poker rate, priced from
+        the official starting rate, the published $55 resort fee and the published 13.38% Clark County room tax.
+        These are provisional candidates, not confirmed single-entry events: no reviewed sheet states a maximum of
+        one entry per player (F31). Change any field and the arithmetic is redone in the browser.
       </p>
     </section>
 
@@ -48,15 +50,16 @@
         <div class="card">
           <h3>Tournament entries</h3>
           <label class="field-label" for="entries">Number of entries</label>
-          <input type="number" id="entries" min="0" step="1" value="8">
+          <input type="number" id="entries" min="0" step="1" value="7">
           <label class="field-label" for="buyIn">Average buy-in per entry ($)</label>
-          <input type="number" id="buyIn" min="0" step="1" value="350">
+          <input type="number" id="buyIn" min="0" step="0.01" value="371.43">
           <p class="smallprint">
-            The default is the eight recommended primary events: $400 + $300 + $600 + $600 + $300 + $200 + $200 + $200 =
-            $2,800 across 8 entries, so $350 average. Single-entry events count once; multi-flight, rebuy and add-on
-            formats can cost more than one entry, so they are excluded from that default.
+            The default follows the seven primary candidates in the day plan (printed buy-ins total $2,600; the model
+            stores the rounded average as $371.43 per entry). These are <strong>not confirmed single-entry</strong>:
+            written maximum-entry-per-player rules are not published for them (F31). Treat this as a budget scenario,
+            not a recommendation to register before confirming the rule.
           </p>
-          <p class="smallprint"><a href="schedule.html">See the eight recommended entries →</a></p>
+          <p class="smallprint"><a href="schedule.html">See the seven planned primary candidates →</a></p>
         </div>
         <div class="card">
           <h3>Hotel stay</h3>
@@ -102,10 +105,10 @@
     </section>
 
     <section class="section" id="compare">
-      <div class="section-head"><div><h2>Like-for-like comparison</h2><p>The same eight entries and seven nights, priced from each published component set.</p></div></div>
+      <div class="section-head"><div><h2>Like-for-like comparison</h2><p>The same seven planned entries and seven nights, priced from each published component set. Parking is excluded from this comparison.</p></div></div>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Hotel</th><th>Room rate</th><th>Resort fee</th><th>Tax</th><th>True cost / night</th><th>7 nights</th><th>8 entries</th><th>Trip total</th><th>Official sources</th></tr></thead>
+          <thead><tr><th>Hotel</th><th>Room rate</th><th>Resort fee</th><th>Tax</th><th>True cost / night</th><th>Nights</th><th>Entries</th><th>Core trip estimate</th><th>Official sources</th></tr></thead>
           <tbody data-cost-compare></tbody>
         </table>
       </div>
@@ -117,7 +120,7 @@
       <ol class="list">
         <li>Get a date-specific checkout total for the same stay and occupancy from the hotel's official booking page. Rates are date- and availability-dependent.</li>
         <li>Split that total into room rate, mandatory resort fee and tax, so hotels can be compared like for like.</li>
-        <li>Replace the eight-event default with the entries you would actually play, and remember that re-entry, rebuy and add-on formats may cost more than one buy-in.</li>
+        <li>Replace the seven-candidate default with the entries you would actually play, and remember that re-entry, rebuy and add-on formats may cost more than one buy-in.</li>
         <li>Re-confirm the official schedule, the rate and the cancellation deadline before paying anything non-refundable.</li>
       </ol>
     </section>
@@ -159,14 +162,19 @@
     const tournament = v.entries * v.buyIn;
     const lodging = v.nights * trueNightly;
     const parking = v.nights * v.parking;
-    const grand = tournament + lodging + parking;
-    out.innerHTML = 'Estimated trip cost: <strong>' + money(grand) + '</strong>';
+    const coreEstimate = tournament + lodging;
+    const allIn = coreEstimate + parking;
+    out.innerHTML = 'Core trip estimate: <strong>' + money(coreEstimate) + '</strong>' +
+      '<span class="muted"> · ' + money(allIn) + ' including parking</span>';
     brk.innerHTML =
+      '<div><strong>Core formula</strong> entries × average buy-in + nights × true hotel cost</div>' +
       '<div><strong>Entries</strong> ' + v.entries + ' × ' + money(v.buyIn) + ' = ' + money(tournament) + '</div>' +
       '<div><strong>Hotel</strong> ' + v.nights + ' nights × ' + money(trueNightly) + ' true cost = ' + money(lodging) +
       ' <span class="muted">(rate ' + money(v.rate) + ' + resort fee ' + money(v.resortFee) + ' + tax ' + money(taxes) + ')</span></div>' +
-      '<div><strong>Parking</strong> ' + v.nights + ' nights × ' + money(v.parking) + ' = ' + money(parking) + '</div>' +
-      '<div class="muted">Tax is charged on the room rate and on the resort fee, because every property terms page says the fee is "plus applicable tax".</div>';
+      '<div><strong>Core estimate</strong> ' + money(tournament) + ' + ' + money(lodging) + ' = ' + money(coreEstimate) + '</div>' +
+      '<div><strong>Parking, separate</strong> ' + v.nights + ' nights × ' + money(v.parking) + ' = ' + money(parking) +
+      '; all-in including parking: <strong>' + money(allIn) + '</strong></div>' +
+      '<div class="muted">Tax is charged on the room rate and on the resort fee, because the official terms describe the fee as "plus applicable tax". Parking is not included in true room cost per night or in the core formula.</div>';
   }
   form.addEventListener('input', calc);
 
