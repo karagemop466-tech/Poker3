@@ -715,3 +715,35 @@ Scope: `COORDINATION.md` only. No `site/**`, `scripts/**`, or workflow file is e
 4. Only one verified start is before 10:00 AM (the satellite at 9:10 AM). The brief asks for an 8 AM all-day schedule. The site already states this (`site/sheets.html` line 352). Discovery step for the user: ask Horseshoe and Golden Nugget about early daily events, because their times are unpublished.
 
 No `site/**`, `scripts/**`, or workflow file was changed by this session. Two commits are on this branch: the claim (d64ecbb) and this record. PR and merge are recorded below.
+
+---
+
+## Session `arena/cf53e83c-poker3` — live re-verification pass + final integration (2026-11-17 UTC)
+
+Branch: `arena/cf53e83c-poker3` (fast-forwarded to `origin/main` at `be90234`, the merge of PR #35).
+**Platform deviation:** the brief's `session-<id>/<task>` branch naming is unavailable here; the Arena session branch
+is used, as recorded by every earlier session. This session takes the **integration-owner** role for the shared
+outputs (`site/**`, `scripts/data_*.py`, `site/data.json`, workflows, `README.md`) because no other session holds a
+live claim: the three open PRs (#7, #27, #31) were last updated 2026-11-16 18:47–19:55 UTC, more than 60 minutes
+before this claim, so under the takeover rule they are reviewed and dispositioned by this session.
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| T1 Claim, branch setup | done | arena-cf53e83c | `COORDINATION.md` | Claimed before any file edit; branch fast-forwarded to `origin/main` so no prior work is lost. |
+| T2 Live re-verification of every official source behind the canonical data | in progress | arena-cf53e83c | `site/data.json` + `scripts/data_*.py` | Each official page re-opened on 2026-11-17 and compared row by row against the published data. Drift and unverified values are recorded, not silently corrected. |
+| T3 Known irregularities from earlier sessions' requests | in progress | arena-cf53e83c | `scripts/data_venues.py`, `scripts/data_source.py` | (a) duplicated Wynn daily row name suffix; (b) flags for the decorative DATE cells and the "(IDAY)" typo in the official DSE schedule PDF. |
+| T4 Dated hotel quote for the fixed trip window | in progress | arena-cf53e83c | `scripts/data_hotels.py` | The trip window has no dated official total. The venue's own booking engine is re-opened for 2026-11-25 → 2026-12-02 and for a control window. |
+| T5 Disposition of the three stale PRs | in progress | arena-cf53e83c | `COORDINATION.md` | #7, #27, #31 reviewed; any value not already in the canonical build is imported with its own source, otherwise the PR is closed with a reason. |
+| T6 Site improvement: one search box across every table | in progress | arena-cf53e83c | `site/search.html`, `site/assets/app.js` | The brief asks for a search box across all tables; the current top bar only filters the tournament table. |
+| T7 Final integration: verify, PR, merge, Pages deploy | pending | arena-cf53e83c | whole repo | Line-by-line re-verification of the combined data, no broken links, explicit merge, deployment confirmation recorded here. |
+
+### Claim record (this session)
+
+- **Claimed:** `site/**`, `scripts/data_*.py`, `scripts/data_source.py`, `scripts/verify_site.py`,
+  `scripts/audit_data.py`, `scripts/check_sources.py`, `scripts/daily_feed.py`, `tests/**`,
+  `.github/workflows/**`, `research/structure_notes.md`, `README.md`, `COORDINATION.md`.
+- **Not claimed, not edited:** `docs/`, `verified/`, `planner/`, `single-entry/`, `pages/`, the root-level legacy
+  HTML pages, `raw/`, `data/`, `handoff/`, `site/poker3/`. They stay in the repository as prior research artefacts.
+- **Standing constraints honoured:** nothing is inferred; a value that cannot be confirmed from an official source
+  stays blank and is flagged. The guaranteed-pool ÷ entry-fee figure stays a descriptive ratio. Bounty, flight,
+  satellite and extra-spend formats stay separated from the single-entry path.
