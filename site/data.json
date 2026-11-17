@@ -4094,12 +4094,12 @@
    "format": "satellite",
    "chips": 20000,
    "levelMin": 15,
-   "lateReg": "6 levels",
+   "lateReg": "6 levels (REG CLOSES 9:55 PM)",
    "weekdays": [],
-   "lateRegEnd": "",
-   "sessionMin": 360,
-   "endEstimate": "2:10 AM",
-   "endEstimateMin": 1570,
+   "lateRegEnd": "9:55 PM",
+   "sessionMin": 150,
+   "endEstimate": "10:40 PM",
+   "endEstimateMin": 1360,
    "isContinuation": false,
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
@@ -4158,12 +4158,12 @@
    "format": "satellite",
    "chips": 20000,
    "levelMin": 15,
-   "lateReg": "6 levels",
+   "lateReg": "6 levels (REG CLOSES 10:55 AM)",
    "weekdays": [],
-   "lateRegEnd": "",
-   "sessionMin": 360,
-   "endEstimate": "3:10 PM",
-   "endEstimateMin": 910,
+   "lateRegEnd": "10:55 AM",
+   "sessionMin": 150,
+   "endEstimate": "11:40 AM",
+   "endEstimateMin": 700,
    "isContinuation": false,
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
@@ -4286,12 +4286,12 @@
    "format": "satellite",
    "chips": 20000,
    "levelMin": 15,
-   "lateReg": "6 levels",
+   "lateReg": "6 levels (REG CLOSES 1:55 PM)",
    "weekdays": [],
-   "lateRegEnd": "",
-   "sessionMin": 360,
-   "endEstimate": "6:10 PM",
-   "endEstimateMin": 1090,
+   "lateRegEnd": "1:55 PM",
+   "sessionMin": 150,
+   "endEstimate": "2:40 PM",
+   "endEstimateMin": 880,
    "isContinuation": false,
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
@@ -12897,7 +12897,7 @@
    "time": "2:00 PM",
    "name": "WPT Prime Championship Final Table",
    "buyIn": "",
-   "guarantee": "75 Seats",
+   "guarantee": "",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -12921,7 +12921,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $- and guarantee $75 Seats are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $- and guarantee $- are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-17"
     }
@@ -12956,7 +12956,7 @@
    "time": "2:00 PM",
    "name": "Super Gold Million Mystery Bounty Day 2",
    "buyIn": "",
-   "guarantee": "75 Seats",
+   "guarantee": "",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -12980,7 +12980,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $- and guarantee $75 Seats are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $- and guarantee $- are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-17"
     }
@@ -13900,7 +13900,7 @@
    "time": "12:00 PM",
    "name": "Mixed Triple Draw (A-5, 2-7, Badugi) (2 Day)",
    "buyIn": 1100,
-   "guarantee": "25 Seats",
+   "guarantee": "",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -13924,7 +13924,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $1100 and guarantee $25 Seats are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $1100 and guarantee $- are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-17"
     }
@@ -14372,7 +14372,7 @@
    "time": "11:00 AM",
    "name": "Milestone Satellite to $10,400 World Championship 1C/Day 2",
    "buyIn": 1100,
-   "guarantee": "",
+   "guarantee": "10 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -14396,7 +14396,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $1100 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $1100 and guarantee $10 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-17"
     }
@@ -15080,7 +15080,7 @@
    "time": "6:00 PM",
    "name": "Milestone Satellite to $3,000 NLH",
    "buyIn": 400,
-   "guarantee": "",
+   "guarantee": "25 Seats",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -15104,7 +15104,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $400 and guarantee $- are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $400 and guarantee $25 Seats are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-17"
     }
@@ -16260,7 +16260,7 @@
    "time": "12:00 PM",
    "name": "WPT World Championship Day 5",
    "buyIn": "",
-   "guarantee": "10 Seats",
+   "guarantee": "",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -16284,7 +16284,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $- and guarantee $10 Seats are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $- and guarantee $- are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-17"
     }
@@ -16319,7 +16319,7 @@
    "time": "12:00 PM",
    "name": "No Limit Hold'em Day 2",
    "buyIn": "",
-   "guarantee": "10 Seats",
+   "guarantee": "",
    "ratio": "",
    "guaranteeNote": "",
    "rules": {
@@ -16343,7 +16343,7 @@
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "Buy-in $- and guarantee $10 Seats are printed on the official schedule PDF.",
+     "excerpt": "Buy-in $- and guarantee $- are printed on the official schedule PDF.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "retrieved": "2026-11-17"
     }

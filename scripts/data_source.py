@@ -214,6 +214,20 @@ def select_cutoff(start_min, late_text):
     after = [t for t in times if t > start_min]
     return min(after) if after else None
 
+# DeepStack Extravaganza IV rows whose late-registration cut-off is published as a
+# clock time on the official series schedule PDF but not on their structure sheet.
+#
+# The series PDF is the only official place that prints REG CLOSES as a clock time,
+# and it prints one per row. Sheet 25 ($260 Turbo Milestone Satellite) covers three
+# rows that start at three different times, and the sheet itself says only "6 levels",
+# so a single sheet-level value cannot carry the printed cut-off for all three.
+# These are the values printed in the REG CLOSES column, applied per row.
+DSE_REG_CLOSES = {
+    ("2026-12-11", "45"): "6 levels (REG CLOSES 9:55 PM)",
+    ("2026-12-12", "46"): "6 levels (REG CLOSES 10:55 AM)",
+    ("2026-12-12", "48"): "6 levels (REG CLOSES 1:55 PM)",
+}
+
 
 def session_estimate(start_min, late_text, level_min):
     """Estimate a session length from printed data only.
@@ -1602,7 +1616,8 @@ def build():
                             else guarantee_note
                             or ("includes bounties" if ("bounties" in s["guarantee"] or "Bounty" in name
                                                        or "PKO" in name or "Knock-Out" in name) else "")),
-            chips=s.get("chips", ""), level_min=s.get("levelMin", ""), late_reg=s.get("late", ""),
+            chips=s.get("chips", ""), level_min=s.get("levelMin", ""),
+            late_reg=DSE_REG_CLOSES.get((date, no), s.get("late", "")),
             entry_type=s["entry"], continuation=cont,
         ))
 
