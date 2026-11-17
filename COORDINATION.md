@@ -1301,7 +1301,7 @@ Branch: `arena/741b3a8e-poker3`. This session works only on this branch.
 | T-B Freshness: per-event `status` (past / today / upcoming), past rows hidden by default, snapshot date 2026-11-17 | done | 741b3a8e | `scripts/data_source.py`, `site/assets/app.js` | Past rows are still shown when "Include past events" is ticked |
 | T-C Hotel: official booking link for the fixed stay (per date, no price) | done (no price captured) | 741b3a8e | `scripts/data_source.py` (`BOOKING_LINKS`), `site/hotels.html`, `site/assets/app.js` | The booking engine returns `$XXX` for every date in a static read (F36 on `main`) |
 | T-D Flags and answers for this pass's irregularities | done | 741b3a8e | `scripts/data_source.py` | Flags F42 added; F38 and Q14 corrected; duplicates dropped (see below) |
-| T-E Tests, verification, PR to `main`, merge, Pages check | in progress | 741b3a8e | this section | PR [#46](https://github.com/karagemop466-tech/Poker3/pull/46). Merge and Pages result recorded below once done |
+| T-E Tests, verification, PR to `main`, merge, Pages check | done | 741b3a8e | this section | PR [#46](https://github.com/karagemop466-tech/Poker3/pull/46) merged as `2625d5b` with `gh pr merge 46 --merge`. Result below |
 
 ### Merge with `main` (this session)
 
@@ -1356,3 +1356,14 @@ Branch: `arena/741b3a8e-poker3`. This session works only on this branch.
 - Google Maps walking minutes are estimates and were not re-checked.
 - The 8 AM question (Q14) stays open: no official 8 AM start was found.
 - Horseshoe's 9:00 AM game has no published buy-in or structure, so it cannot be ranked.
+
+### Result (session `arena/741b3a8e-poker3`)
+
+- **PR:** [#46](https://github.com/karagemop466-tech/Poker3/pull/46) (`arena/741b3a8e-poker3` → `main`), merged with `gh pr merge 46 --merge` as merge commit `2625d5b41e87da486cde6b9d0be4af23db32ee89` at **2026-11-17 01:13:52 UTC**.
+- **Verify before the merge:** `Verify static research site` run [43993814474](https://github.com/karagemop466-tech/Poker3/actions/runs/43993814474) on head `301a78e` → **success**.
+- **Verify and Pages after the merge:** on `2625d5b`, `Verify static research site` run 43993963606 → success; `Publish the canonical Vegas Poker Planner to GitHub Pages` run 43993963660 → success; `pages-build-deployment` run 43993962410 → success. The Pages API reports `status: built`, source `main /`.
+- **Live check of the deployed site:** `https://karagemop466-tech.github.io/Poker3/site/data.json` returns `asOf` 2026-11-17 and the Venetian booking link in `bookingLinks`, so the new data is served.
+- **Flag and question numbering:** this session's records were renumbered after `main` took F31–F41 and Q13–Q18 (my F33–F36 became F42; my Q13 duplicated Q14 and was dropped). See the merge notes above.
+- **Branch history:** the pre-rebase commits `ccbeca5` and `8da8039` on the remote branch were replaced by a force-push (`8da8039` → `8501962`) during the first rebase. Later pushes were fast-forward only. This was the only force-push and it affected only this session's own branch.
+- **Not verified in this session (carried forward):** nightly price for Nov 25–Dec 2 (none published in a static read); Bellagio weekly PDFs; Wynn daily and WPT PDFs; DeepStack NYE schedule; hotel-terms pages; walking minutes (Maps estimates). Each is blank or flagged on the site.
+
