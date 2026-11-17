@@ -780,3 +780,87 @@ Branch: `arena/b1fadb7e-poker3` (platform-bound; `session-<id>/<task>` naming ca
 | B3 Prove the scheduled re-check actually operates (or report that it does not) | in progress | arena/b1fadb7e-poker3 | `.github/workflows/checks.yml`, `site/checks.json` | No scheduled run of `checks.yml`/`daily-check.yml`/`monitor.yml` has ever executed; `site/checks.json` (fetched by `app.js`) does not exist. |
 | B4 Fix verified generator defects | in progress | arena/b1fadb7e-poker3 | `scripts/data_venues.py`, `scripts/data_hotels.py` | Wynn daily names print their day range twice; rate-log night labels are swapped. |
 | B5 Re-verify, PR, merge, confirm Pages deploy | in progress | arena/b1fadb7e-poker3 | `COORDINATION.md` | Not done until the deployed site is confirmed. |
+
+### Findings, fixes and verdicts (2026-11-17, arena/b1fadb7e-poker3)
+
+Everything below was checked in this session against the repository's verbatim copies of the official
+pages (`raw/`) and, where reachable, the live official host. Line-by-line results first, then what changed.
+
+#### B1 — Venetian DSE IV rows vs the official table: 94 / 94 agree
+
+An independent re-parse of `raw/dse_nov_2026_structures_page.md` (the verbatim official structures table,
+retrieved 2026-11-16) was matched against `site/data.json` on `(date, start time)`:
+
+- 94 official DSE IV rows parsed by date; 94 published rows on or before 2026-12-23.
+- **Zero** discrepancies in date, start time or structure-sheet link.
+- **Zero** official rows missing from the published set; **zero** duplicate `(date, time)` keys.
+- 49 further published Venetian rows are DeepStack NYE (2026-12-24 onwards). They are outside the
+  verbatim copy in `raw/`, carry no read structure sheet, and are already flagged (F11).
+- The official `dse-nov-2026.html` was re-fetched on 2026-11-17 and its first 24 rows (Nov 16-28) match
+  the verbatim copy row for row, including the $200 RaceDay Stack at 10:10 AM and event 8's 5:10 PM PKO.
+- Cosmetic only, not a value error: the published names normalise the official typos
+  ("No LImit" -> "No Limit", "Event # 39" -> "Event #39") and lower-case the `<br>-` clause.
+  Recorded as acceptable; F27 already lists the misspellings.
+
+#### B2 — the published root URL was serving a stale page (fixed)
+
+`https://karagemop466-tech.github.io/Poker3/` returned the **earlier-round** page (46 Venetian rows,
+"0 hotels with a verified nightly total", "no hotel ranking is shown"), while
+`https://karagemop466-tech.github.io/Poker3/site/` returned the canonical 341-row dashboard. Two
+publishers wrote the same URL: Pages source was legacy `main /` and `pages.yml` also deployed `site/`.
+The Pages build type cannot be changed by this session's token (`PUT /pages` -> 403), so the fix is
+twofold and does not depend on which publisher wins:
+
+1. root `index.html` is now a redirect to `site/index.html` (old content stays in git history);
+2. `pages.yml` redeploys the canonical artifact after `pages build and deployment` completes.
+
+#### B3 — nothing was being monitored (fixed)
+
+`checks.yml`, `monitor.yml` and `daily-check.yml` were all scheduled to commit to `main`, under three
+different concurrency groups, so the last writer wiped the others; `gh run list` showed **0 runs** for all
+three. `site/checks.json`, which `site/assets/app.js` fetches, did not exist either, so the sources page
+showed "No automated check file yet". `monitor.yml` and `daily-check.yml` are removed, `checks.yml` is the
+single scheduled committer (shared `scheduled-source-review` group, setup-python, rebase-retry push), and
+`source-monitor.yml` joins the same group so the two never race. The checker itself was run here: it is
+safe (it records hashes, never edits a value, always exits 0). Unreachable hosts in this sandbox are
+reported as `unreachable`, which is the correct observation, not a failure.
+
+#### B4 — verified data defects (fixed)
+
+- Wynn daily names printed their day range twice: `$200 No Limit Hold'em (Monday-Thursday)
+  (Monday-Thursday)`. `scripts/data_source.py` appended `({days})` to names that already contained the
+  range. Fixed at the generator; the fourth daily (`$160 ... Nightly`) still gets its label.
+- The dated Venetian quote stored `trueNightlyLow=996.91` / `trueNightlyHigh=248.61`, so the hotels page
+  labelled the **worst** night a "nightly floor". Recomputing from the printed lines gives
+  (824.25+55) x 1.1338 = **$996.89** and (164.25+55) x 1.1338 = **$248.59**, which add to the printed
+  **$1,245.48 exactly**. The stored pair was 2 cents off and its note excused a 4-cent gap that does not
+  exist; the gap was arithmetic error in this repository, not venue rounding. Both records corrected.
+- The rate-log renderer now prints the pair as "observed nights ... not a price range and not a floor".
+
+#### B5 — PR #31 and PR #27 (open, from earlier sessions): reviewed, not merged
+
+Both branches replace the canonical shared outputs wholesale: each rewrites `site/data.json`,
+`site/assets/app.js`, `site/assets/site.css`, `site/index.html`, `site/tournaments.html`,
+`scripts/verify_site.py`, `.github/workflows/verify.yml`, `README.md` and this file. PR #31 carries
+14,209 added / 499 deleted lines and adds a fifth source monitor; PR #27 carries 42,143 / 851 and a
+third `source-monitor.yml`. Merging either would discard the 94/94-verified DSE IV match, the monitor
+consolidation and the arithmetic fixes above, and would restore two competing page trees at the same
+URLs. Following the no-discarding-others'-work rule they are **left open and unmerged**, with this
+verdict recorded. Their useful content is preserved in their own branches. A user decision is requested
+below rather than a unilateral merge. PR #7 (an earlier `pages/` site) is unaffected by this round and
+stays open for the same reason.
+
+#### B6 — what is still not verified (unchanged, still flagged)
+
+Hotel cost components for MGM Grand, Caesars Palace, Horseshoe and ARIA; date-specific totals for the
+trip window; published finish times; any verified start before 9:10 AM; walking times, which no venue
+publishes (Google Maps estimates only); the 15 NYE and the WPT structure sheets that were not read. Each
+is on `site/flagged.html` with a source link, and none of them blocks this merge.
+
+#### Checks run before the pull request
+
+`scripts/verify_site.py` (341 events / 8 hotels / 14 routes / 27 sources / 30 flags / 8 plan days /
+15 pages), `tests/canonical_smoke.py` (10 main + 5 detail pages rendered), `tests/smoke.py`,
+`node --check` on every published script, `python3 -m json.tool` on `site/data.json`,
+`python3 -m unittest discover -s tests` (10 tests, including the new `tests/test_integrity.py`), and a
+reproducible `scripts/data_source.py` rebuild with no diff.
