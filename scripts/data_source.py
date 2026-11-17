@@ -729,8 +729,8 @@ FLAGS = [
                  "either figure. Per-night true costs are derived as (rate + $55) x 1.1338 and sum to the printed total."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar"),
     dict(id="F32", area="Walking routes", severity="Medium",
-         title="The 30-minute walking check does not cover every hotel–venue pair",
-         detail=("The current 14 route rows cover routes from the recommended Venetian resort hotel to the listed poker rooms, plus selected on-site pairs. The requested full hotel-by-venue matrix would contain 56 pairs (8 hotel records × 7 venue records); the remaining pairs have no checked walking time here and are not assumed to meet the 30-minute limit. The existing schedule filter applies only to the recommended Venetian resort route estimates. Check the official property addresses and each Google/Apple walking route before comparing other hotel choices."),
+         title="Walking-route estimates are point-in-time Google Maps readings",
+         detail=("The hotel-by-venue matrix now holds all 56 pairs (8 hotel records × 7 venue records): 14 rows from the 2026-11-16 base pass plus 42 rows read on 2026-11-17 — 41 resort-to-resort readings added by this pass and the Venetian-to-Bellagio row added by a concurrent pass with poker-room endpoints (27 min, see F67). Cross-checks: every resort-to-resort pair this pass measured agrees with its already-published reverse direction within one minute, except Wynn-venue rows, where this pass walked to Encore (where the poker room actually is) while the stored wynn-origin rows start at Wynn Las Vegas. What remains flagged: every figure is a reading of one moment — sidewalks, crossings and route recommendations change — endpoint choice alone moves the answer by several minutes (F67), and no unofficial path is used. Re-measure the specific pair on Google or Apple Maps before relying on it, and confirm the official property addresses."),
          source="https://www.google.com/maps/dir/?api=1&travelmode=walking"),
     dict(id="F33", area="Schedule overlap", severity="Medium",
          title="Day 2 restarts of earlier Venetian events overlap the trip-window primaries",
@@ -2137,8 +2137,10 @@ def build():
     for r in H.ROUTES:
         row = dict(r)
         row["mapsUrl"] = H.MAPS.format(o=r["mapsOrigin"], d=r["mapsDestination"])
-        # Walking times were measured on the base pass and were not re-measured today.
-        row["lastChecked"] = r.get("lastReadOn", ASOF)
+        # Each route row carries its own measurement date: the 2026-11-17 full-matrix pass
+        # writes measuredOn, the poker-room-endpoint read writes lastReadOn, and base-pass
+        # rows keep the base snapshot date.
+        row["lastChecked"] = r.get("measuredOn") or r.get("lastReadOn") or ASOF
         row["walkSourceType"] = "Google Maps walking estimate"
         routes.append(row)
 
