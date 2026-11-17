@@ -1,30 +1,45 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Questions and suggestions | Vegas Poker Trip Planner</title><link rel="stylesheet" href="style.css"></head>
-<body><header><div class="wrap"><p class="eyebrow">DECISION GAPS</p><h1>Questions &amp; suggestions</h1><p class="lede">A checklist of open research questions and proposed site improvements. Nothing here is a request for manual work.</p><nav><a href="index.html">Overview</a><a href="tournaments.html">Tournaments</a><a href="schedule.html">Schedule</a><a href="hotels.html">Hotels</a><a href="questions.html" aria-current=page>Questions &amp; suggestions</a><a href="flagged.html">Flagged for review</a></nav></div></header>
-<main class="wrap">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vegas Poker Planner — moving to Open questions before booking</title>
+<!--
+  This root-level page is a redirect, not content.
 
-<h2>Information still needed (not requests for manual work)</h2>
-<div class="table-wrap"><table><thead><tr><th>Question</th><th>Why it matters</th><th>Status</th><th>How to verify</th></tr></thead><tbody>
-<tr><td>Travel dates and nights?</td><td>Schedules, rates and availability depend on dates.</td><td>Unknown</td><td>Choose dates; then pull official hotel totals and event sheets for those days.</td></tr>
-<tr><td>Single-entry confirmation for each main-list event?</td><td>The sheets do not print it.</td><td>Not explicit on any sheet</td><td>Written confirmation from The Venetian poker room.</td></tr>
-<tr><td>Is a player allowed to enter more than one Venetian flight?</td><td>Determines whether multi-flight events can be used as single-entry.</td><td>Implied by the bagging rule; not confirmed</td><td>Ask the poker room.</td></tr>
-<tr><td>Should PokerAtlas PRO membership count as paid advantage?</td><td>The $20 discount is excluded until the membership cost is known.</td><td>Membership cost unknown</td><td>Check PokerAtlas PRO pricing.</td></tr>
-<tr><td>Does “all day starting 8 AM” mean the first event starts at 8 AM, or back-to-back play?</td><td>No verified 8 AM start exists; finish times are unknown.</td><td>Not achievable from verified data</td><td>Confirm durations and registration close with the room.</td></tr>
-<tr><td>Budget and buy-in range?</td><td>Needed to filter the main list.</td><td>Unknown</td><td>User decision.</td></tr>
-<tr><td>Hotel quality tier, room type, guests, and cancellation needs?</td><td>These change the true total cost.</td><td>Unknown</td><td>User decision, then official booking flow.</td></tr>
-</tbody></table></div>
-<h2>Suggestions for improving this site (for review, not implemented)</h2>
-<p>These are proposals. None has been built, and none will be built until you approve it.</p>
-<div class="panel"><ol>
-<li><b>Date filter.</b> Add a date selector that shows only events on the chosen days.</li>
-<li><b>Structured rule fields.</b> Store single-entry, re-entry, add-on, and fee values separately for each event, each with its source excerpt and retrieval date.</li>
-<li><b>Schedule overlap check.</b> Once finish times are verified, flag any two events that cannot be played in sequence.</li>
-<li><b>Walking-route check.</b> Add official-address walking times for each hotel–venue pair, with the 30-minute limit applied.</li>
-<li><b>Change monitoring.</b> Re-check official pages on a schedule and flag any value that changed.</li>
-</ol></div>
-<h2>Decision gate</h2>
-<p>Do not book from this snapshot. A recommendation needs confirmed dates, written single-entry confirmation, official hotel totals with mandatory fees for those dates, and verified walking times for the events actually chosen.</p>
+  It was a 2026-11-16 template whose tables were intentionally blank ("Nightly room
+  rate ... unverified"). The canonical dashboard in site/ now publishes Open questions before booking
+  with a source link on every row, and it is served at /Poker3/site/.
 
+  The repository's Pages source is still the legacy "deploy from a branch: main /"
+  setting, so GitHub publishes the whole repository root after every push and these
+  stale templates were reachable at the root URL, contradicting the dashboard at the
+  same host. Redirecting removes that possibility whichever publisher wins the race
+  (flag F29). Nothing is lost: the old page is in version control and the canonical
+  page is the successor.
+-->
+<link rel="canonical" href="site/questions.html">
+<meta http-equiv="refresh" content="0; url=site/questions.html">
+<style>
+  :root{color-scheme:dark light}
+  body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0d1117;color:#e6edf3;
+       font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding:24px}
+  main{max-width:34rem;text-align:center}
+  h1{font-size:1.25rem;margin:0 0 .5rem;font-weight:650}
+  p{margin:.5rem 0;color:#9aa7b4}
+  a{color:#6ea8fe}
+  .note{font-size:.85rem;margin-top:1.5rem;color:#7d8896}
+</style>
+</head>
+<body>
+<main>
+  <h1>Opening Open questions before booking</h1>
+  <p>The current page is loading. If nothing happens,
+     <a href="site/questions.html">open Open questions before booking</a>.</p>
+  <p class="note">Every value there links the official venue page it was read from.
+     Blank cells are values no official source published, and they are listed on the
+     Flagged for review page.</p>
 </main>
-<footer class="wrap">Research snapshot 2026-11-16 UTC. Every value links to an official source; blank cells are unverified and flagged. Confirm schedules and terms with the venue before entry.</footer>
-</body></html>
+<script>location.replace('site/questions.html' + location.hash);</script>
+</body>
+</html>

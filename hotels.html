@@ -1,19 +1,45 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hotels | Vegas Poker Trip Planner</title><link rel="stylesheet" href="style.css"></head>
-<body><header><div class="wrap"><p class="eyebrow">LODGING RESEARCH</p><h1>Hotels &amp; true nightly cost</h1><p class="lede">Quality and total cost come first; walking time is a constraint. Nothing is shown as verified until an official booking page supplies the figure.</p><nav><a href="index.html">Overview</a><a href="tournaments.html">Tournaments</a><a href="schedule.html">Schedule</a><a href="hotels.html" aria-current=page>Hotels</a><a href="questions.html">Questions &amp; suggestions</a><a href="flagged.html">Flagged for review</a></nav></div></header>
-<main class="wrap">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vegas Poker Planner — moving to Hotels and the true cost of a night</title>
+<!--
+  This root-level page is a redirect, not content.
 
-<section class="callout"><b>No hotel ranking yet</b><p>Nightly room rate, mandatory resort fee, and walking time are all unverified. The official Venetian hotel page loads but shows no date-specific rate or fee. The official Wynn hotel page could not be reached in this pass. No value is filled in from a third-party listing.</p></section>
-<h2>Price comparison template (blank until verified)</h2>
-<div class="table-wrap"><table><thead><tr><th>Hotel</th><th>Official source</th><th>Dates / room</th><th>Nightly room rate</th><th>Mandatory resort fee per night</th><th>Taxes / other mandatory</th><th>True nightly total</th><th>Walking time to nearest main-list event</th><th>Status</th></tr></thead><tbody>
-<tr><td>The Venetian Resort</td><td><a href="https://www.venetianlasvegas.com/hotel.html">Official hotel page</a></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Unverified: no date-specific official quote; no official walking source</td></tr>
-<tr><td>The Palazzo</td><td><a href="https://www.venetianlasvegas.com/hotel.html">Official hotel page</a></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Unverified: same as above</td></tr>
-<tr><td>Wynn Las Vegas</td><td><a href="https://www.wynnlasvegas.com/casino/poker">Official poker hub (hotel page unavailable)</a></td><td></td><td></td><td></td><td></td><td></td><td></td><td>Unverified: official hotel page not reachable in this pass</td></tr>
-</tbody></table></div>
-<h2>How the total will be calculated, once sourced</h2>
-<p>(Room charges for all nights + mandatory resort fees for all nights + mandatory taxes and fees) ÷ number of nights. Parking, optional services, and refundable deposits are listed separately and are not mixed into the nightly rate. Walking time is a constraint: it must be verified from an official address and route before a hotel is shown as meeting the 30-minute limit.</p>
-<p class="small">Third-party resort-fee figures for The Venetian and Wynn exist but are not used (see Flagged for review).</p>
+  It was a 2026-11-16 template whose tables were intentionally blank ("Nightly room
+  rate ... unverified"). The canonical dashboard in site/ now publishes Hotels and the true cost of a night
+  with a source link on every row, and it is served at /Poker3/site/.
 
+  The repository's Pages source is still the legacy "deploy from a branch: main /"
+  setting, so GitHub publishes the whole repository root after every push and these
+  stale templates were reachable at the root URL, contradicting the dashboard at the
+  same host. Redirecting removes that possibility whichever publisher wins the race
+  (flag F29). Nothing is lost: the old page is in version control and the canonical
+  page is the successor.
+-->
+<link rel="canonical" href="site/hotels.html">
+<meta http-equiv="refresh" content="0; url=site/hotels.html">
+<style>
+  :root{color-scheme:dark light}
+  body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0d1117;color:#e6edf3;
+       font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding:24px}
+  main{max-width:34rem;text-align:center}
+  h1{font-size:1.25rem;margin:0 0 .5rem;font-weight:650}
+  p{margin:.5rem 0;color:#9aa7b4}
+  a{color:#6ea8fe}
+  .note{font-size:.85rem;margin-top:1.5rem;color:#7d8896}
+</style>
+</head>
+<body>
+<main>
+  <h1>Opening Hotels and the true cost of a night</h1>
+  <p>The current page is loading. If nothing happens,
+     <a href="site/hotels.html">open Hotels and the true cost of a night</a>.</p>
+  <p class="note">Every value there links the official venue page it was read from.
+     Blank cells are values no official source published, and they are listed on the
+     Flagged for review page.</p>
 </main>
-<footer class="wrap">Research snapshot 2026-11-16 UTC. Every value links to an official source; blank cells are unverified and flagged. Confirm schedules and terms with the venue before entry.</footer>
-</body></html>
+<script>location.replace('site/hotels.html' + location.hash);</script>
+</body>
+</html>
