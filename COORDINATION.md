@@ -733,3 +733,36 @@ No `site/**`, `scripts/**`, or workflow file was changed by this session. Two co
 | B6 Final integration: verify, PR → main, merge, confirm Pages, record here | pending | arena/d81a0934-poker3 | repo + GitHub Pages | `verify_site.py`, canonical smoke, reproducible build, no broken links, then PR and merge. |
 
 **Out of scope (owned by earlier sessions; not edited):** `docs/`, `verified/`, `planner/`, `single-entry/`, `site/poker3/**`, `handoff/**`, `raw/**`, and the open overlapping PRs #7, #27, #31 (a1091d95's #36 content is incorporated into B2/B3 rather than merged, because its mergeability is UNKNOWN).
+
+### Progress and verification (arena/d81a0934-poker3, 2026-11-17 UTC)
+
+- **B1 done.** `scripts/data_venues.py`: the four Wynn daily names no longer carry the day label
+  (the builder at `scripts/data_source.py` appends it), so the built names are now clean:
+  `$200 No Limit Hold'em (Monday-Thursday)`, `$240 No Limit Hold'em Rebuy & Add-on (Friday)`,
+  `$200 No Limit Hold'em (Saturday, Sunday)`, `$160 No Limit Hold'em (Nightly)`. The nightly row's
+  `days` label was simplified to `Nightly` (was `Nightly Monday-Sunday`), which also fixed the
+  `note` suffix. `site/data.json` regenerated.
+- **B2 done.** `scripts/data_hotels.py`: the dated Venetian rate-log observation had nightly low and
+  high swapped. Corrected to `trueNightlyLow=248.61`, `trueNightlyHigh=996.91` (night 2 and night 1,
+  each `(rate + $55) x 1.1338`), reconciling to the printed $1,245.48 total.
+- **B3 done.** `site/index.html`: executive summary now states 28 flagged items (was a hardcoded 22).
+- **B4 done.** Root `index.html` (the stale legacy landing) replaced with a clean redirect to the
+  canonical dashboard at `site/`. The canonical dashboard remains the single source of truth.
+- **B5 verification (official hosts, fetched 2026-11-17).** Re-read and matched:
+  - Venetian DSE IV schedule (`dse-nov-2026.html`, official) — event dates, numbers, times and
+    structure-sheet links match the recorded 64 rows.
+  - Wynn daily tournament poster (official PDF) — confirms the Monday–Thursday $200, Friday $240
+    rebuy, Saturday/Sunday $200 and Nightly $160 groupings used by the fixed names.
+  - Venetian resort-fee page — `$55 plus tax per night`, matches the data.
+  - Venetian 2026 poker suite-rates page — starting rates $119 (Venetian) / $209 (Palazzo), $55
+    resort fee, six-hour cash or $300+ tournament play requirement, code EPOKR25, contact
+    lv_cas_poker@venetianlasvegas.com / 702.414.7657 — matches the data and the $197.28 nightly floor.
+- **Automated checks (all pass).** `python3 scripts/verify_site.py` (341 events, 8 hotels, 14 routes,
+  27 sources, 28 flags, 8 plan days, 15 pages); `python3 tests/canonical_smoke.py` (10 main + 5
+  detail pages render); `node --check` on `site/assets/app.js`, `site/assets/venue.js`,
+  `tests/canonical_render.js`; `python3 -m json.tool site/data.json`; `python3 scripts/data_source.py`
+  re-run produces a byte-identical `site/data.json` (reproducible).
+- **Pages source note.** GitHub Pages currently reports `build_type: legacy`, source `main` `/`. The
+  canonical dashboard is served at `/site/`; the root redirect (B4) makes the canonical dashboard the
+  landing page under either deployment. The legacy "pages build and deployment" job and the Actions
+  `pages.yml` both run on push to main; the redirect is correct regardless of which finishes last.
