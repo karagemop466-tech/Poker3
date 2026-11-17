@@ -223,10 +223,13 @@ change with the stay window selected (F69). The earlier $2,140 and $346.62 figur
 for the superseded 25 Nov – 2 Dec window, so they are withdrawn.
 
 The most expensive night on the trip is **Friday 27 November 2026 at $1,932.28 all-in**, the night after Thanksgiving —
-48% of the stay total on its own, against $248.59 all-in on 23 and 24 November. Sheet-screened candidate events: **45**, each
+48% of the stay total on its own, against $248.59 all-in on 23 and 24 November. Sheet-screened candidate events: **52**, each
 re-checked against its official structure sheet on 2026-11-17. None of those sheets states a maximum number of
-entries per player, so none is a confirmed one-entry event (F31). A further 14 published rows carry the
-*Unverified* label because their structure sheets have not been read (F40).
+entries per player, so none is a confirmed one-entry event (F31). Every structure sheet behind every published row
+has now been read in full — all 37 DeepStack Extravaganza IV and all 15 DeepStack Extravaganza NYE sheets — so no
+published row carries the *Unverified* label. The 11 NYE rows that still carried it after the sheets were read were
+reclassified on 2026-11-17 to `single` (sheet prints one buy-in, no re-entry) or `extra` (sheet prints a
+subsequent-re-entry clause), and `verify_sheets.py` now checks those sheets too.
 
 ## Verification
 
