@@ -2649,3 +2649,62 @@ F15/F36/F57 no dated checkout total for the poker rate; F31 no written one-entry
 walking time for every hotel–venue pair; F39 no published room-tax percentage at Wynn/Bellagio/Caesars/Horseshoe;
 F16 no published finish time; F17 no 8:00 AM start at any Strip room; F56 Wynn Signature structures unpublished.
 None blocks merging; all are on the Flagged for review page with their source links.
+## Session `arena/8689ef6e-poker3` — Venetian trip-window quote, stale hotel window, live re-read (2026-11-17 UTC)
+
+Branch: `arena/8689ef6e-poker3` (platform-bound; the `session-<id>/<task>` naming cannot be applied). Branched from `main` @ `2bdcc0d`, no other branch touched. No other session holds an active claim on the board when this claim was written.
+
+### Claim (recorded before any data edit, 2026-11-17 21:5x UTC)
+
+| Task | Status | Owner session | Files in scope | Notes |
+|---|---|---|---|---|
+| H1 Live re-read of the official Venetian booking engine and poker suite-rate page for the trip window 2026-11-23 to 2026-11-30 | done | arena/8689ef6e-poker3 | verification; writes go through `scripts/data_hotels.py` | Dated checkout total, nightly rates, resort fee, tax, average rate, calendar cells, rate timestamp. |
+| H2 Correct the hotel module, which still priced 2026-11-25 to 2026-12-02 while the trip profile is 2026-11-23 to 2026-11-30; remove the calendar-cell average that the trip profile presented as an observed nightly price | done | arena/8689ef6e-poker3 | `scripts/data_hotels.py`, `scripts/data_source.py`, regenerated `site/data.json` | Calendar cells are observations, not prices (the hotel module's own policy, F31/F47). |
+| H3 Flag new discrepancies found by H1/H2 with official source links | done (F66-F69) | arena/8689ef6e-poker3 | `scripts/data_source.py` (FLAGS only) | Each flag names the official URL. |
+| H4 Verification suite, PR to `main`, merge, Pages confirmation, record here | pending | arena/8689ef6e-poker3 | whole repo | Flagged irregularities do not block merge. |
+
+### Result (session `arena/8689ef6e-poker3`, 2026-11-17 UTC)
+
+**Scope actually done.** The hotel window and the trip-cost figures were the largest defects on the published site: the hotel module priced 25 Nov - 2 Dec while the trip is 23 - 30 Nov, and the "observed" nightly average ($346.62) was an average of calendar cells that the site's own policy says are not prices. This session replaced those with a dated official quote for the trip stay.
+
+**Official sources read live (sandbox clock, after 21:54 UTC, 2026-11-17).** The sandbox cannot reach these hosts from bash; they were read through the page reader.
+
+| Source | What was read |
+|---|---|
+| https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar | Itemised checkout total $4,010.55 for 7 nights (2 adults, Luxury King, "Book Direct: Up to 25% Off"): nightly rates $164.25, $164.25, $201.75, $231.75, $1,649.25, $554.25, $186.75; $55 resort fee each night; taxes $473.30; Average Rate $505.32. Calendar cells for 23-29 Nov: $165, $165, $190, $210, $1,155, $425, $180 (not prices; F65). |
+| https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html | "as low as $119 and $209"; phone 866.255.8936 with code EPOKR25; six hours of live cash or a $300+ buy-in per night; $55 resort fee; 150-day horizon. |
+| https://www.venetianlasvegas.com/resort/resort-fee.html | $55 plus tax per night, payable at check-in. |
+| https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html | 13.38% Clark County room tax; resort fee "plus applicable tax"; early checkout $100 plus tax; prepaid offers non-cancellable and non-refundable; $150 incidental per night; check-in 3 p.m., check-out 11 a.m.; parking $20/day for registered guests, $20 Mon-Thu and $25 Fri-Sun for non-guests, valet $40/day. |
+| Google Maps directions (walking and driving, `travelmode` in the URL) | Venetian (3355 S Las Vegas Blvd) to Bellagio Poker Room: 27 min walking, 1.1 mi (driving 8 min). Bellagio Hotel & Casino to The Venetian: 21 min walking, 0.9 mi (matches stored). Wynn (3131 Las Vegas Blvd S) to The Venetian: 13 min walking, 0.6 mi (matches stored). Walking cards do not print the mode label; the URL requested walking. Single reads. |
+
+**Checks of the arithmetic.** Each night's all-in figure equals (rate + $55) x 1.1338 rounded to the cent: $248.59, $248.59, $291.10, $325.12, $1,932.28, $690.77, $274.10, which add to the printed $4,010.55 exactly. The printed tax of $473.30 is the sum of the per-night tax. The average all-in per night is $572.94 ($4,010.55 / 7).
+
+**Changes on this branch.**
+- `scripts/data_hotels.py`: booking links, per-night links, the whole-trip link and `TRIP_NIGHTS` now cover 23-30 Nov. New `VENETIAN_QUOTE_TRIP` and a new `RATE_LOG` row for the dated quote (append-only; the earlier 25 Nov - 2 Dec rows are kept and labelled as the superseded window). Two walking routes re-read today (Wynn and Bellagio to the Venetian); a Venetian-to-Bellagio Poker Room route added (27 min).
+- `scripts/data_source.py`: trip profile observed figures replaced ($346.62 -> $572.94 per night all-in; $2,140 -> $3,537.25 before tax; $2,426.33 -> $4,010.55 all-in; largest night $905 -> $1,932.28). The calendar-cell figures are withdrawn. `tripCostModel.liveQuote` adds the dated quote beside the $197.28 published-components floor: 7 entries ($2,600.01) + checkout total $4,010.55 + parking $140 = **$6,750.56** (floor model $4,120.97). Questions Q01 and Q15 answers updated. Flags F65-F68 added. Route dates now follow each row's `lastReadOn`.
+- `site/assets/app.js`: the dated-quote renderer assumed two nights and threw on the seven-night quote (found by `tests/canonical_render.js`, which failed on the hotels page). It now lists every night. The calculator-side `costLine()` shows the dated quote.
+- `README.md`: the Snapshot lodging table now uses the dated quote; the calendar cells are labelled as not prices.
+- `tests/test_integrity.py`, `tests/test_recheck_ed1d2489.py`: three assertions pinned the old window or the placeholder text. They now assert the printed $4,010.55 total, the 23-30 Nov link and the logged quote. No assertion was loosened to hide a discrepancy; the dated-quote reconciliation test still runs on every quote.
+
+**Flags raised (each with an official link; visible on `site/flagged.html`).**
+- **F69** (Medium; renumbered from F65 during integration, see collision note) - calendar cells for 23-29 Nov are below rate plus resort fee on every night (e.g. $165 vs $219.25 on 23 Nov), so they are not the quote.
+- **F66** (High) - the $119 poker rate is phone-only (code EPOKR25, six hours or a $300+ buy-in per night) and does not appear in the engine quote; ask before paying.
+- **F67** (Medium) - Venetian to Bellagio Poker Room walks 27 min against the planner's 21 min for the reverse direction; the day plan only models venue-to-Venetian.
+- **F68** (Low, Publishing) - `site/data/hotels.json`, `rates.json` and `routes.json` are stale (25 Nov - 2 Dec window, $2,140 figure), written by no script and read by no page.
+
+**Verification run.** `python3 scripts/data_source.py` (rebuilt `site/data.json`); `python3 scripts/verify_site.py` (341 events, 8 hotels, 15 routes, 43 sources, 65 flags: passed); all eight unit suites in `tests/` OK (`test_workflows` needed PyYAML installed for the user, not a repo change); `node tests/canonical_render.js` (all pages rendered); `node --check site/assets/app.js`; `python3 -m json.tool site/data.json`; `git diff --check`.
+
+**Not done, and why.** No phone call was possible, so the poker-rate question (F66) is open. The Palazzo quote, MGM, Caesars, Horseshoe and ARIA rates were not re-read today. The walking pairs measured today are single reads and should be re-read on another day. The 8 AM all-day plan remains unsupported: no official start before 9:00 AM is verified. The single-entry rule is still unconfirmed by any official sheet (F31); nothing was promoted.
+
+**Hand-off.** The scheduled re-check (`checks.yml`) runs on push to `main` when `site/data.json` or the scripts change, so it will re-read the sources after this merge.
+
+### Integration log (session `arena/8689ef6e-poker3`, 2026-11-17 UTC)
+
+- **Collision with `arena/fe903bcb-poker3` (PR #87, merged).** That session claimed H1/H2 (dated 23-30 Nov Venetian quote) at 21:53:50 UTC, before this session's claim at 21:55:03 UTC, and merged the same quote to `main` first. This session did not overwrite it. Resolution: their `RATE_LOG` row (per-night arrays, merged on `main`) is kept as the one 23-30 Nov quote row; my duplicate row was removed, so the quote is logged once.
+- **Flag-ID collision.** Their merged tax flag is `F65` (Low). My calendar-cell flag was also `F65`; it is renumbered to `F69` everywhere it is cited (flags, Q01, the calendar notes, README). `F66`-`F68` do not collide with `main`.
+- **Stale claim on `main`.** PR #88 (`calculator.html`) and `scripts/trip_cost.py` said the engine "publishes no price for the recommended trip window at all". That became false with the dated quote. Both sentences are corrected; the calculator's Venetian rows are labelled as published starting rates, and the dated quote is pointed to `tripCostModel.liveQuote`.
+- **Conflicts.** `COORDINATION.md` (both sections kept, markers removed, no entries dropped). `site/data.json` (regenerated from the merged scripts, not hand-merged).
+- **Verification after integration.** `scripts/data_source.py` regenerates `site/data.json`; `verify_site.py` passed (341 events, 8 hotels, 15 routes, 43 sources, 66 flags, 7 plan days, 16 pages; no duplicate flag IDs); all eight unit suites in `tests/` OK (includes `test_calculator_page.py` from `main`); `canonical_render.js` all pages rendered; `canonical_smoke.py` passed (11 main pages, 5 detail pages); `smoke.py` OK; `node --check site/assets/app.js` OK.
+- **Next.** Push, open the PR to `main`, merge, confirm the Pages deploy, record the result here.
+- **Force-push of this session's own branch.** The branch was pushed as `28ee9bd` before the rebase onto `main` (`c86803a`). The rebase replaced that commit with `a8c2c78`. Only this session's commits were replaced; no one else's commit was on the remote branch. The push uses `--force-with-lease` pinned to `28ee9bd`, so it cannot overwrite anything that is not that commit.
+- **CI `verify` failure on PR #92 and fix.** The job failed at `scripts/verify_live_official.py` (`KeyError: 'nightOne'`). Step 7 of that script read only the two-night quote shape; the seven-night 23-30 Nov quote stores its nights as a `nightly` list with one `resortFeePerNight`. The script now reads both shapes and reconciles the seven-night total to the printed $4,010.55. Every other `verify.yml` step was reproduced locally and passes. The GitHub log could not be downloaded from the sandbox, so the failing step was identified by running each step in turn.
+

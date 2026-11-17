@@ -172,10 +172,17 @@ class HotelFacts(unittest.TestCase):
         self.assertAlmostEqual(self.hotel["trueNightlyHigh"], self.rec["trueNightlyCeiling209"], places=2)
 
     def test_no_dated_total_is_invented_for_the_trip_window(self):
+        # The 2026-11-17 record above was written at an earlier read, for the then-trip window (25 Nov - 2 Dec).
         self.assertEqual(self.rec["datedCheckoutTotalForTripWindow"], "")
+        # A later read on the same day priced the 23-30 Nov trip stay. The stored total must be exactly the printed one,
+        # and it must be the rate-log entry for the same stay (not a figure derived from calendar cells).
         booking = DATA["bookingLinks"][0]
-        self.assertIn("$XXX", booking["priceInStaticPage"])
-        self.assertEqual(booking["url"], DATA["sources"][0]["url"] if False else booking["url"])
+        self.assertIn("$4,010.55", booking["priceInStaticPage"])
+        self.assertIn("arrival_date=2026-11-23", booking["url"])
+        logged = [r for r in DATA["rateLog"] if r.get("quoteType", "").startswith("Dated official checkout total (2 adults, 7 nights")]
+        self.assertEqual(len(logged), 1, "exactly one dated 7-night trip quote is logged")
+        self.assertEqual(logged[0]["observedOn"], "2026-11-17")
+        self.assertIn("4010.55", logged[0]["note"].replace(",", ""))
 
     def test_every_hotel_fact_links_the_recorded_source(self):
         self.assertEqual(self.hotel["source"], self.rec["sources"]["pokerSuiteRate"])

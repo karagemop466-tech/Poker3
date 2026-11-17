@@ -453,6 +453,13 @@ function renderHotels() {
     routes.innerHTML = `<div class="table-wrap"><table><thead><tr><th>From</th><th>To</th><th>Walk</th><th>Distance</th>
       <th>Via</th><th>Note</th><th>Last checked</th><th>Sources</th></tr></thead><tbody>${body}</tbody></table></div>`;
   }
+  // A dated quote lists one row per night: two for the older stays, seven for the 23-30 Nov trip stay.
+  const nightRows = (q) => {
+    const nights = q.nightly
+      ? q.nightly.map(([date, rate]) => ({ date, rate, resortFee: q.resortFeePerNight }))
+      : [q.nightOne, q.nightTwo];
+    return nights.map((n, i) => `<div><span class="label">${esc(n.date)}</span><span class="value">$${n.rate.toFixed(2)} + $${n.resortFee.toFixed(2)} resort fee${q.derivedNightly ? ` · $${q.derivedNightly[i].toFixed(2)} all-in` : ''}</span></div>`).join('');
+  };
   const quotesHost = document.querySelector('[data-quotes]');
   if (quotesHost) {
     const all = [];
@@ -470,13 +477,12 @@ function renderHotels() {
             <div><span class="label">Stay</span><span class="value">${esc(q.checkIn)} → ${esc(q.checkOut)} · ${esc(q.guests)} adults</span></div>
             <div><span class="label">Offer printed</span><span class="value">${esc(q.offer)}</span></div>
             <div><span class="label">Room detail</span><span class="value">${esc(q.suiteDetail)}</span></div>
-            <div><span class="label">${esc(q.nightOne.date)}</span><span class="value">$${q.nightOne.rate.toFixed(2)} + $${q.nightOne.resortFee.toFixed(2)} resort fee</span></div>
-            <div><span class="label">${esc(q.nightTwo.date)}</span><span class="value">$${q.nightTwo.rate.toFixed(2)} + $${q.nightTwo.resortFee.toFixed(2)} resort fee</span></div>
+            ${nightRows(q)}
             <div><span class="label">Taxes printed</span><span class="value">$${q.taxes.toFixed(2)}</span></div>
             <div><span class="label">Average rate printed</span><span class="value">$${q.averageRate.toFixed(2)}</span></div>
           </div>
           <p class="detail-note">${esc(q.note)}</p>
-          <p class="detail-note">Derived nightly cost $${q.derivedNightly[0].toFixed(2)} and $${q.derivedNightly[1].toFixed(2)}, from (rate + $55) × 1.1338 — total $${q.derivedTotal.toFixed(2)} against the printed $${q.total.toFixed(2)}.</p>
+          <p class="detail-note">Derived nightly cost ${q.derivedNightly.map((v) => '$' + v.toFixed(2)).join(', ')}, from (rate + $55) × 1.1338 — total $${q.derivedTotal.toFixed(2)} against the printed $${q.total.toFixed(2)}.</p>
           <p class="detail-note"><a href="${esc(q.source)}" target="_blank" rel="noopener">Open the same official booking link →</a></p>
         </article>`).join('')}</div>`;
     }
@@ -863,12 +869,13 @@ function costLine() {
   const m = db.tripCostModel;
   if (!m || typeof m.tripTotal !== 'number') return '';
   const usd = (n) => '$' + Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const live = m.liveQuote ? ` <span class="muted">Dated official quote, ${m.liveQuote.nights} nights ${m.liveQuote.checkIn} to ${m.liveQuote.checkOut} (Venetian booking engine, ${m.liveQuote.quoteDate}): ${usd(m.liveQuote.checkoutTotal)} checkout total including the resort fee and tax, so the trip total is ${usd(m.liveQuote.tripTotal)}.</span>` : '';
   return `<p class="muted"><strong>Estimated cost of the trip, from published parts:</strong>
     ${m.entries} entries × ${usd(m.buyIn)} buy-in (${usd(m.tournamentTotal)})
     + ${m.nights} nights × ${usd(m.trueCostPerNight)} true hotel cost (${usd(m.lodgingTotal)})
     + parking ${usd(m.parkingTotal)} = <strong>${usd(m.tripTotal)}</strong>.
     <span class="muted">At the $209 published starting rate the same trip is ${usd(m.alternateTripTotal)}. Both are a
-    floor computed from the published components, not a quote.</span></p>`;
+    floor computed from the published components, not a quote.</span>${live}</p>`;
 }
 
 function renderHome() {

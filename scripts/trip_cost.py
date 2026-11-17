@@ -128,7 +128,8 @@ def published_model(entries, buy_in, nights):
         },
         "cancellation": v["cancellation"],
         "note": ("Computed from the published starting rate, the published $55 resort fee and the published "
-                 "13.38% Clark County room tax. It is a floor for the property, not a quote for any date, and the "
-                 "official booking engine publishes no price for the recommended trip window at all."),
+                 "13.38% Clark County room tax. It is a floor for the property, not a quote for any date. The official "
+                 "booking engine quoted a dated checkout total for the 23-30 Nov 2026 trip window on 2026-11-17; that "
+                 "quote is in liveQuote and is not this floor."),
     })
     return low

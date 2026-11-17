@@ -226,7 +226,8 @@
       }).join('');
       note.textContent = 'Entry total is ' + entries + ' entries × ' + money(buyIn) + ' published average = ' + money(tournament) +
         '. A row is left blank rather than estimated when the property does not publish both a room rate and a tax rate. ' +
-        'Neither Venetian row is a quote: the booking engine publishes no price for the recommended dates.';
+        'Both Venetian rows are published starting rates, not quotes. The official booking engine quoted a dated checkout total for 23-30 Nov 2026 on 2026-11-17 ' +
+        '(see the hotels page and tripCostModel.liveQuote in data.json).';
     }).catch(() => { body.innerHTML = '<tr><td colspan="9">The published data file could not be loaded.</td></tr>'; });
   }
   buildCompare();

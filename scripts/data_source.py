@@ -1008,12 +1008,49 @@ FLAGS = [
                  "more than the printed $1,100 buy-in on the schedule. The row reproduces the schedule buy-in and the rule "
                  "panel reproduces the split as printed; nothing is adjusted. Confirm the amounts with the poker room."),
          source="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"),
+    dict(id="F69", area="Hotels", severity="Medium",
+         title="The engine's calendar cells for 23-30 November are not the quote for the same nights",
+         detail=("On 2026-11-17 the booking calendar printed $165, $165, $190, $210, $1,155, $425 and $180 for the nights of "
+                 "23 to 29 November, under a footnote that says its prices include the daily resort fee. The itemised quote for "
+                 "the same stay, read the same day, printed a room rate of $164.25, $164.25, $201.75, $231.75, $1,649.25, $554.25 "
+                 "and $186.75 on those nights, plus a $55 resort fee on each night. Rate plus fee is higher than the cell on every "
+                 "night (for example $165 against $219.25 on 23 November), so the calendar cell is not the price the engine charges. "
+                 "The dashboard uses the itemised quote and never a calendar cell as a nightly price. Confirm the price for the "
+                 "chosen dates on the booking screen or by phone (866.255.8936) before paying."),
+         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar"),
+    dict(id="F66", area="Hotels", severity="High",
+         title="The $119 poker rate is phone-only and does not appear in the booking-engine quote",
+         detail=("The official poker-room rate page says poker suite rates 'start as low as $119 and $209 and can be higher'. "
+                 "They are booked by calling 866.255.8936 with code EPOKR25 and require six hours of active live cash play, or a "
+                 "buy-in to a $300-or-higher tournament, for each night stayed, completed before 2 a.m. on the last night; a night "
+                 "that fails is re-priced at the prevailing rate. The 23-30 November engine quote of $4,010.55 ('Book Direct: Up to "
+                 "25% Off') does not show the code. The $197.28 a night floor in the trip profile is computed from published "
+                 "components and is not a quote. Ask the poker room whether EPOKR25 applies to these dates and what the all-in "
+                 "total would be, then record the answer as a dated rate-log entry."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
+    dict(id="F67", area="Walking routes", severity="Medium",
+         title="Venetian to Bellagio Poker Room walks 27 minutes; the planner's Bellagio-to-Venetian figure is 21 minutes",
+         detail=("On 2026-11-17 the Google Maps walking card from 3355 S Las Vegas Blvd (The Venetian) to the Bellagio Poker Room, "
+                 "3600 S Las Vegas Blvd, read 27 minutes for 1.1 miles via Las Vegas Blvd S. The driving card for the same pair read "
+                 "8 minutes. The walking card does not print its mode label; the link requested travelmode=walking. The reverse pair, "
+                 "Bellagio Hotel & Casino to The Venetian, read 21 minutes (0.9 mile) the same day, which matches the stored route. "
+                 "The day plan uses only the venue-to-Venetian direction, so a Venetian-to-Bellagio transfer is understated by six "
+                 "minutes. The 30-minute limit is still met (27 minutes). Re-read the pair on a second day before relying on either figure."),
+         source="https://www.google.com/maps/dir/?api=1&origin=3355+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&destination=Bellagio+Poker+Room,+3600+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&travelmode=walking"),
+    dict(id="F68", area="Publishing", severity="Low",
+         title="Legacy hotel, rate and route files in site/data/ are stale and are written by no script",
+         detail=("site/data/hotels.json, site/data/rates.json and site/data/routes.json are dated 2026-11-16, are written by no script "
+                 "in scripts/, and are not linked or read by any dashboard page. They still show the 25 November - 2 December window, "
+                 "the calendar-based $2,140 figure and blank walking minutes. They are left in place so nothing else breaks; they "
+                 "should be removed or regenerated in a separate change. site/data.json is the only current source."),
+         source="https://github.com/karagemop466-tech/Poker3/tree/main/site/data"),
 
 ]
 
 QUESTIONS = [
     dict(id="Q01", question="What are the actual travel dates, and how many nights?",
-         answer=("For planning purposes this session fixed the dates at November 25 to December 2, 2026 because that "
+         answer=("Superseded 2026-11-17: the trip is now 23 to 30 November 2026 (seven nights), because the engine prices that "
+                 "window in full (F69, F66). Earlier: for planning purposes the dates were fixed at November 25 to December 2, 2026 because that "
                  "window contains the most sheet-screened candidates (not confirmed single-entry events) in the reviewed "
                  "snapshot. The official booking engine was opened on 2026-11-17 for four stay windows inside those dates "
                  "and returned no suite and no price for any of them. It does quote near-term stays: it priced November "
@@ -1106,9 +1143,10 @@ QUESTIONS = [
          how="Ask Horseshoe for the buy-in, structure and single-entry rule of its 9:00 AM game; ask each room for its earliest daily start.",
          source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"),
     dict(id="Q15", question="What is the real checkout total for the trip dates?",
-         answer=("Unresolved. The official booking engine prints $XXX for 2026-11-25 to 2026-12-02 because prices load "
-                 "after the page renders, and no property publishes a date-specific total. The only dated official total "
-                 "in the data is the Venetian's own November 17-19, 2026 quote of $1,245.48 for two adults."),
+         answer=("Partly answered 2026-11-17. The official Venetian booking engine printed an itemised checkout total of $4,010.55 "
+                 "for 2026-11-23 to 2026-11-30 (two adults, Luxury King suite, best available rate; $55 resort fee each night and $473.30 tax). "
+                 "Earlier readings for 2026-11-25 to 2026-12-02 printed $XXX. No other property publishes a date-specific total in the data. "
+                 "The phone-only poker rate is not in the quote (F66)."),
          why="Needed", blocking="Yes - the trip budget is a computed floor until a real total exists",
          how="Open the booking engine in a browser, select the dates and two adults, and read the checkout total; or call the "
              "poker rate line on 866.255.8936 and ask for code EPOKR25 priced for those dates.",
@@ -1453,14 +1491,14 @@ TRIP = {
     "nightlyBudget": 197.28,
     "nightlyBudgetNote": (
         "Two figures, because they answer different questions. The floor is $197.28: ($119 published poker-suite "
-        "starting rate + $55 mandatory resort fee) x 1.1338 Clark County room tax. It is a floor computed from "
-        "published components, not a quote, and the $119 rate is available only by phone under code EPOKR25 and only "
-        "to a player who meets the daily play requirement. The observed figure is $346.62: the average of the seven "
-        "dated calendar cells for these nights, $2,140 before tax and $2,426.33 all-in."),
+        "starting rate + $55 mandatory resort fee) x 1.1338 Clark County room tax. It is a floor computed from published "
+        "components, not a quote. The $119 rate is available only by phone under code EPOKR25 and only to a player who "
+        "meets the daily play requirement (F66). The dated figure is $572.94 a night all-in: the official Venetian booking "
+        "engine's checkout total of $4,010.55 for 23-30 November 2026 (2 adults, Luxury King, read 2026-11-17 after 21:54 UTC), divided by seven nights. That total already includes the $55 resort fee and the 13.38% tax."),
     "nightlyBudgetCeiling": 299.32,
-    "nightlyObservedAverage": 346.62,
-    "lodgingTotalBeforeTax": 2140,
-    "lodgingTotalAllIn": 2426.33,
+    "nightlyObservedAverage": 572.94,
+    "lodgingTotalBeforeTax": 3537.25,
+    "lodgingTotalAllIn": 4010.55,
     "qualityFloor": (
         "Fixed by this session on an objective published-evidence test rather than an invented score: the property must "
         "publish its own poker-room rate, keep the poker room on site, and publish its resort fee, tax and cancellation "
@@ -1482,30 +1520,28 @@ TRIP = {
          "all clearly marked as series rows with unverified entry rules (F12)."),
     ],
     "nightlyRisk": (
-        "The night of Friday 27 November 2026, the night after Thanksgiving, is published at $905 against a $165 "
-        "baseline on the surrounding nights - 5.5x, and 42% of the whole lodging bill on its own. A player who can "
-        "move the trip, or who is willing to change property for that one night, removes $839 of all-in cost. The "
-        "phone-only poker rate ($119-$209 + $55) is the other lever, if the daily play requirement is met."),
+        "The night of Friday 27 November 2026, the night after Thanksgiving, is quoted at $1,649.25 room rate + $55 resort "
+        "fee + tax = $1,932.28 all-in, against $248.59 all-in on 23 and 24 November. It is 48% of the whole $4,010.55 stay on "
+        "its own. A player who can move the trip, or who is willing to change property for that one night, removes $1,683.69 "
+        "of all-in cost compared with a $248.59 night. The phone-only poker rate ($119-$209 + $55) is the other lever, if the "
+        "daily play requirement is met and the code applies to these dates (F66)."),
     "bankrollNote": ("Bankroll figure on the day-plan page is the sum of the recommended primary buy-ins plus a 25% "
                      "buffer. The buffer is not permission or a budget for rebuys or add-ons: no event is treated as a confirmed "
                      "one-entry event until the venue confirms the written rules (F31). It is a planning number, not "
                      "a forecast."),
     "lodgingEvidence": (
-        "The official Venetian booking engine was opened on 2026-11-17 for four stay windows inside the originally "
-        "considered 25 November - 2 December dates, with two adults, and none returned a suite or a price: the "
-        "seven-night stay and the November 30 single night rendered every calendar cell as the placeholder '$XXX', "
-        "the November 25-27 stay did not finish loading, and the November 27-28 stay rendered the calendar with no "
-        "suite panel. A fifth independent read the same day (session 688eb797, with the 25 November - 2 December "
-        "window open) rendered 25 November through 1 December as 'Date Unavailable' with no price cell at all and "
-        "'$XXX' placeholders from 2 December onward - the strongest form of the finding that became F57, and the "
-        "reason the recommended trip is 23 - 30 November, the seven-night window the engine prices on every night. "
-        "The engine does quote near-term stays, and it priced the same November 17-19 stay twice on consecutive days: "
-        "$1,245.48 on 2026-11-16 and $1,015.89 on 2026-11-17, because the first night fell from $824.25 to $621.75. "
-        "A second stay, November 20-22, was quoted on 2026-11-17 at $2,504.00. All three quotes reconcile exactly "
-        "with (rate + $55 resort fee) x 1.1338. The seven nights of the 23-30 November stay (23-29 November) carry "
-        "a dated calendar reading of $165, $165, $190, $210, $905, $340, $165 = $2,140 before tax and $2,426.33 "
-        "all-in (recorded in the rate log), so the trip budget carries both the published starting-rate floor and "
-        "that dated reading."),
+        "The official Venetian booking engine was opened on 2026-11-17 for several stay windows, with two adults. Four windows "
+        "inside the originally considered 25 November - 2 December dates returned no suite or price: the seven-night stay and "
+        "the November 30 single night rendered every calendar cell as the placeholder '$XXX', the November 25-27 stay did not "
+        "finish loading, and the November 27-28 stay rendered the calendar with no suite panel. A further read the same day "
+        "rendered 25 November through 1 December as 'Date Unavailable' (F57). The trip was therefore moved to 23-30 November, "
+        "the seven-night window the engine prices on every night. A read on 2026-11-17 after 21:54 UTC priced that window in "
+        "full: a checkout total of $4,010.55, with the nightly rate, the $55 resort fee and 13.38% tax itemised for each night. "
+        "Those figures are the dated quote in the rate log and the basis of the observed nightly figure. The earlier $2,140 and "
+        "$346.62 figures were the sum and average of calendar cells for the superseded window; the engine's own footnote says the "
+        "cells are not the price, so they are withdrawn from the trip budget (F69). The engine quotes near-term stays too, and it "
+        "priced the same 17-19 November stay twice on consecutive days ($1,245.48 on 2026-11-16 and $1,015.89 on 2026-11-17), so "
+        "every figure here is dated and can move."),
 }
 
 PLAN_NOTES = {
@@ -1721,10 +1757,11 @@ def build_day_plan(events, start_date, end_date, recurring=()):
 
 BOOKING_LINKS = [dict(
     hotel="venetian", property="The Venetian and The Palazzo (one booking engine)",
-    stay="2026-11-25 to 2026-12-02 (7 nights), 2 adults, 0 children",
+    stay="2026-11-23 to 2026-11-30 (7 nights, check-out 30 Nov), 2 adults, 0 children",
     url=H.VENETIAN_FIXED_STAY_BOOKING, checkedOn=CHECKED_TODAY,
-    priceInStaticPage=("No. A static read of this booking page on 2026-11-17 showed $XXX in every calendar cell. "
-                       "The page states that its prices include the daily resort fee and exclude taxes."),
+    priceInStaticPage=("Yes. On 2026-11-17 (after 21:54 UTC) the engine printed an itemised checkout total of $4,010.55 for "
+                       "this stay: nightly rates of $164.25 to $1,649.25 before a $55 resort fee per night, plus $473.30 tax. "
+                       "The calendar cells on the same page are not the quote (F69). The phone-only poker rate is separate (F66)."),
     source=H.VENETIAN_FIXED_STAY_BOOKING,
     feeSource="https://www.venetianlasvegas.com/resort/resort-fee.html",
 )]
@@ -2039,7 +2076,7 @@ def build():
         row = dict(r)
         row["mapsUrl"] = H.MAPS.format(o=r["mapsOrigin"], d=r["mapsDestination"])
         # Walking times were measured on the base pass and were not re-measured today.
-        row["lastChecked"] = ASOF
+        row["lastChecked"] = r.get("lastReadOn", ASOF)
         row["walkSourceType"] = "Google Maps walking estimate"
         routes.append(row)
 
@@ -2295,9 +2332,32 @@ def build():
         liveFacts=LIVE_FACTS_2026_11_17,
         # entries x buy-in + nights x (rate + resort fee) x (1 + tax), computed
         # from the eight primary entries and the seven recommended nights.
-        tripCostModel=published_model(len([p for p in plan if p.get("primary")]), _avg_primary_buyin(plan), TRIP["nights"]),
+        tripCostModel=with_live_quote(published_model(len([p for p in plan if p.get("primary")]), _avg_primary_buyin(plan), TRIP["nights"])),
     )
     return data
+
+
+def with_live_quote(model):
+    """Adds the dated official quote for the trip stay beside the published-floor model.
+
+    The quote is the booking engine's checkout total for all nights, with the resort fee and tax included,
+    read on 2026-11-17. The tournament total and parking are the same as in the floor model.
+    """
+    q = H.VENETIAN_QUOTE_TRIP
+    rates = [r for _, r in q["nightly"]]
+    nights = len(rates)
+    model["liveQuote"] = dict(
+        quoteDate=q["observedOn"], checkIn=q["checkIn"], checkOut=q["checkOut"], nights=nights,
+        roomRatesTotal=round(sum(rates), 2), resortFeeTotal=round(q["resortFeePerNight"] * nights, 2),
+        taxTotal=q["taxes"], checkoutTotal=q["total"],
+        nightlyAllInAverage=round(q["total"] / nights, 2),
+        tournamentTotal=model["tournamentTotal"], parkingTotal=model["parkingTotal"],
+        tripTotal=round(model["tournamentTotal"] + q["total"] + model["parkingTotal"], 2),
+        basis=("Dated official booking-engine checkout total for two adults in a Luxury King suite, read 2026-11-17 after 21:54 UTC. It is the engine's best available rate, not the phone-only poker rate (F66), and it is one read, "
+               "not a guarantee."),
+        sources=dict(quote=q["source"], resortFee=H.VENETIAN_RESORT_FEE, tax=H.VENETIAN_HOTEL_TERMS),
+    )
+    return model
 
 
 def _avg_primary_buyin(plan):

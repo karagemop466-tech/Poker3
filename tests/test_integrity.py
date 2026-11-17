@@ -102,9 +102,15 @@ class DataIntegrity(unittest.TestCase):
         quotes = [q for h in DATA["hotels"] for q in (h.get("quotes") or [])]
         self.assertGreaterEqual(len(quotes), 1, "expected at least one dated quote")
         for q in quotes:
-            nights = [q["nightOne"], q["nightTwo"]]
-            self.assertLess(q["nightOne"]["date"], q["nightTwo"]["date"],
-                            f"{q['checkIn']}: night one must be the earlier night")
+            if "nightly" in q:
+                # A multi-night quote (the 23-30 Nov trip stay) lists every night as (date, rate).
+                nights = [{"date": d, "rate": r, "resortFee": q["resortFeePerNight"]} for d, r in q["nightly"]]
+                dates = [n["date"] for n in nights]
+                self.assertEqual(dates, sorted(dates), f"{q['checkIn']}: nights must be in date order")
+            else:
+                nights = [q["nightOne"], q["nightTwo"]]
+                self.assertLess(q["nightOne"]["date"], q["nightTwo"]["date"],
+                                f"{q['checkIn']}: night one must be the earlier night")
             derived = round(sum((n["rate"] + n["resortFee"]) * (1 + TAX) for n in nights), 2)
             self.assertLess(abs(derived - q["total"]), 0.05,
                             f"{q['checkIn']} -> {q['checkOut']}: derived {derived} != printed {q['total']}")
@@ -187,11 +193,14 @@ class FreshnessAndBookingTests(unittest.TestCase):
         self.assertTrue(links, "no per-date booking link")
         url = links[0]["url"]
         self.assertTrue(url.startswith("https://www.venetianlasvegas.com/booking?"), url)
-        self.assertIn("arrival_date=2026-11-25", url)
-        self.assertIn("departure_date=2026-12-02", url)
+        # The trip is 23-30 November (seven nights). The engine priced that window on 2026-11-17.
+        self.assertIn("arrival_date=2026-11-23", url)
+        self.assertIn("departure_date=2026-11-30", url)
         self.assertIn("adults[]=2", url)
-        # The page printed $XXX placeholders, so no price may be stored with the link.
-        self.assertNotIn("nightly", links[0].get("priceInStaticPage", "").lower().split("no.")[0])
+        # The stored price text must be the dated checkout total read from the engine, not a placeholder.
+        text = links[0].get("priceInStaticPage", "")
+        self.assertTrue(text.startswith("Yes."), text)
+        self.assertIn("$4,010.55", text)
 
     def test_no_official_event_starts_before_nine_am(self):
         """Earliest verified start is 9:00 AM (Horseshoe daily). The all-day 8 AM plan stays unsupported."""
