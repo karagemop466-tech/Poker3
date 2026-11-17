@@ -2649,3 +2649,15 @@ F15/F36/F57 no dated checkout total for the poker rate; F31 no written one-entry
 walking time for every hotel–venue pair; F39 no published room-tax percentage at Wynn/Bellagio/Caesars/Horseshoe;
 F16 no published finish time; F17 no 8:00 AM start at any Strip room; F56 Wynn Signature structures unpublished.
 None blocks merging; all are on the Flagged for review page with their source links.
+## Session `arena/8689ef6e-poker3` — Venetian trip-window quote, stale hotel window, live re-read (2026-11-17 UTC)
+
+Branch: `arena/8689ef6e-poker3` (platform-bound; the `session-<id>/<task>` naming cannot be applied). Branched from `main` @ `2bdcc0d`, no other branch touched. No other session holds an active claim on the board when this claim was written.
+
+### Claim (recorded before any data edit, 2026-11-17 21:5x UTC)
+
+| Task | Status | Owner session | Files in scope | Notes |
+|---|---|---|---|---|
+| H1 Live re-read of the official Venetian booking engine and poker suite-rate page for the trip window 2026-11-23 to 2026-11-30 | in progress | arena/8689ef6e-poker3 | verification; writes go through `scripts/data_hotels.py` | Dated checkout total, nightly rates, resort fee, tax, average rate, calendar cells, rate timestamp. |
+| H2 Correct the hotel module, which still priced 2026-11-25 to 2026-12-02 while the trip profile is 2026-11-23 to 2026-11-30; remove the calendar-cell average that the trip profile presented as an observed nightly price | in progress | arena/8689ef6e-poker3 | `scripts/data_hotels.py`, `scripts/data_source.py`, regenerated `site/data.json` | Calendar cells are observations, not prices (the hotel module's own policy, F31/F47). |
+| H3 Flag new discrepancies found by H1/H2 with official source links | in progress | arena/8689ef6e-poker3 | `scripts/data_source.py` (FLAGS only) | Each flag names the official URL. |
+| H4 Verification suite, PR to `main`, merge, Pages confirmation, record here | pending | arena/8689ef6e-poker3 | whole repo | Flagged irregularities do not block merge. |
