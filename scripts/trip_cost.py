@@ -94,6 +94,15 @@ VERIFIED_INPUTS = {
     "parkingPerNight": 20.0,
     "parkingSource": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
     "parkingExcerpt": "The daily fee for registered hotel guests is $20/day, seven days a week.",
+    # The poker room's own parking page prints a conditional waiver of that fee for
+    # players.  It is published beside the figure and deliberately NOT netted off it:
+    # no official source publishes a finish time, so a three-hour session cannot be
+    # confirmed for a named event, and the page requires a supervisor to validate it.
+    "parkingWaiverSource": "https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html",
+    "parkingWaiverExcerpt": ("Players in the poker room who play three hours or more in tournament or cash games will "
+                            "receive complimentary self-parking for the day. Players must visit a supervisor at the end "
+                            "of their session to confirm qualifications for complimentary self-parking."),
+    "parkingWaiverRetrieved": "2026-11-17",
     "cancellation": "A deposit covering suite, fee and tax is billed on confirmation. Prepaid offers are non-cancellable "
                     "and non-refundable. Early checkout costs $100 plus tax. No date-specific cancellation deadline was "
                     "published for a flexible booking on the reviewed pages.",
@@ -126,10 +135,24 @@ def published_model(entries, buy_in, nights):
             "parking": v["parkingExcerpt"],
             "qualification": v["qualification"],
         },
+        "parkingWaiver": {
+            "status": "published-conditional",
+            "excerpt": v["parkingWaiverExcerpt"],
+            "source": v["parkingWaiverSource"],
+            "retrieved": v["parkingWaiverRetrieved"],
+            "appliedToTotals": False,
+            "note": ("The $20 per night parking line above is the registered-guest self-parking fee. The resort's own "
+                     "poker-room parking page prints a waiver of it for players who play three hours or more, confirmed "
+                     "by a supervisor at the end of the session. The waiver is not netted off this total: no official "
+                     "source publishes a finish time for any event (F16), so the three-hour condition cannot be "
+                     "confirmed from a schedule, and a rate the venue reserves the right to change is not a saving to "
+                     "bank. Set the parking field to 0 in the calculator only once the room has confirmed it for you."),
+        },
         "cancellation": v["cancellation"],
         "note": ("Computed from the published starting rate, the published $55 resort fee and the published "
                  "13.38% Clark County room tax. It is a floor for the property, not a quote for any date. The official "
                  "booking engine quoted a dated checkout total for the 23-30 Nov 2026 trip window on 2026-11-17; that "
-                 "quote is in liveQuote and is not this floor."),
+                 "quote is in liveQuote and is not this floor. The parking line is the registered-guest fee; the venue "
+                 "publishes a conditional waiver of it for players (see parkingWaiver), which is not netted off."),
     })
     return low

@@ -1165,6 +1165,44 @@ FLAGS = [
                  "$100 Saturday event at 8 PM; those are not official and are not used. The room is in the morning feed, and no Mandalay Bay event "
                  "enters the plan."),
          source="https://mandalaybay.mgmresorts.com/en/casino/poker-tables.html"),
+    dict(id="F86", area="Hotels", severity="Medium",
+         title="The poker-room parking waiver the venue prints for players is now carried by both Venetian rows, with the paid fee left in every total",
+         detail=("Found on 2026-11-17 by re-reading the official poker-room pages (22:31Z), and reached independently on the same "
+                 "day by the session that put the poker-room page on The Venetian row's citation. The finding is the asymmetry: "
+                 "the Wynn row has carried a poker-room parking benefit for some time, while the Venetian and Palazzo rows "
+                 "published only the paid self-parking figures. The resort's own page, "
+                 "https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html, prints both the rates ('The daily "
+                 "fee for registered hotel guests is $20/day, seven days a week') and the waiver: 'Players in the poker room "
+                 "who play three hours or more in tournament or cash games will receive complimentary self-parking for the day. "
+                 "Players must visit a supervisor at the end of their session to confirm qualifications for complimentary "
+                 "self-parking.' What this session adds on top of the citation: The Palazzo row now states the same policy "
+                 "(its paid figures stay cited to the hotel terms page, its waiver to the poker-room page); both rows and the "
+                 "trip-cost model carry the waiver as a dated, structured field with the verbatim text, the supervisor "
+                 "condition, the Sapphire tier route and the reason it is not applied; the calculator prints the waiver beside "
+                 "its parking field; and Q12 answers the question from the venue's page. NO DOLLAR TOTAL WAS CHANGED - the "
+                 "paid $20 a night stays in the calculator and in every published trip total, because no official source "
+                 "publishes a tournament finish time (F16) so the three-hour condition cannot be confirmed from a schedule, the "
+                 "page requires a supervisor to confirm the session, and the same page warns 'Event parking rates may be in "
+                 "effect' and that rates are 'subject to change'. What the page does not say - whether the waiver reaches an "
+                 "overnight folio charge or only the exit gate - is left blank, not guessed. MGM Resorts' own parking pages "
+                 "(MGM Grand, ARIA, Bellagio) could not be reached from this environment on 2026-11-17, so their parking cells "
+                 "stay empty rather than being filled from third-party write-ups. A guard, scripts/verify_entry_labels.py, now "
+                 "fails the build if a waiver is quoted in the data but not in the table row, or netted into a total."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html"),
+    dict(id="F87", area="Venetian DSE IV", severity="Low",
+         title="Three event names are re-cased against the schedule page, which prints those sub-lines in capital letters",
+         detail=("Found by re-reading the official schedule page at 2026-11-17T22:29Z and comparing the published rows line by "
+                 "line with the page text (24 rows, 16-28 November). 19 rows match character for character. Four differ only in "
+                 "the source's own typo 'No LImit', which F27 already discloses. One row differs in letter case: event #18 "
+                 "(Saturday 28 November, 5:10 PM, $200 NLH PokerAtlas Valuetown Bounty $20K GTD) prints its sub-line as "
+                 "'POKERATLAS PRO MEMBER $20 RAKE DISCOUNT' on the page, while the site publishes 'PokerAtlas PRO member $20 "
+                 "rake discount'. The same re-casing covers event #58 (19 December) and NYE event #25 (2 January), which share "
+                 "that sub-line. No date, time, event number, buy-in, guarantee or structure-sheet link differs on any of the "
+                 "three rows, so no money or schedule value is affected. It is published because the site's rule is that a name "
+                 "is either the printed name or is marked as restyled, and this one was not marked. The choice is left to the "
+                 "user: print the capitals, or keep the title case and leave this flag on the register."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
+
 ]
 
 QUESTIONS = [
@@ -1263,8 +1301,10 @@ QUESTIONS = [
                  "to Wynn poker-room guests. Bellagio, MGM Grand and ARIA publish no parking figure on their reservation "
                  "terms pages, so those cells stay blank rather than guessed."),
          why="Needed", blocking="No",
-         how="Include parking in the trip total if you will not stay on property every night.",
-         source="https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html"),
+         how=("Parking stays in the trip total at $20 a night. If the room confirms three or more hours of play for a day, that "
+              "night's self-parking is complimentary per the page, so set the parking field to 0 for those days rather than "
+              "assuming the waiver in advance."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html"),
     dict(id="Q13", question="Are you 21 or older with a Venetian Rewards card, and are you 50 or older for the Seniors events?",
          answer=("Each of the seven DeepStack Extravaganza IV sheets re-read on 2026-11-17 requires players to be 21+ and to hold a "
                  "Venetian Rewards card. The Dec 2 10:10 AM $600 No Limit Hold'em Seniors event (#24) is open only to players "
@@ -2006,7 +2046,8 @@ def build():
             se_status = "single-entry-on-sheet"
             se_excerpt = (f"The sheet prints one ${sh['buyIn']:,} buy-in, one start flight and one starting-chips figure "
                           f"({sh['chips']:,}). No re-entry, rebuy, add-on or second-flight provision appears anywhere on "
-                          f"the sheet.")
+                          f"the sheet. The sheet does not state a per-player maximum-entry count or explicitly call the "
+                          f"event a freezeout; venue confirmation is still required.")
             re_status, re_excerpt = "none-printed", "No re-entry provision appears on this structure sheet."
             ao_status, ao_excerpt = "none-printed", "No add-on provision appears on this structure sheet."
             etype = "none"
