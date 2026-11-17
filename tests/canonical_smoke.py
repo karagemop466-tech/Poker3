@@ -144,16 +144,10 @@ def main() -> int:
             errors.append(f"venues/index.html: does not link {target}")
 
     data = json.loads((SITE / "data.json").read_text(encoding="utf-8"))
-<<<<<<< HEAD
-    if data.get("asOf") != "2026-11-17":
-        errors.append("data.json: unexpected as-of date")
-    if not data.get("trip", {}).get("start") or not data.get("trip", {}).get("end"):
-=======
     if not data.get("asOf"):
         errors.append("data.json: no as-of date")
     trip = data.get("trip", {})
     if not trip.get("start") or not trip.get("end"):
->>>>>>> 56e9254 (site: surface the poker-rate play requirement; assert rendered content in the headless check)
         errors.append("data.json: no fixed trip dates")
     # The plan covers the playable days: check-in up to, but not including, check-out day.
     want_days = int(trip.get("days", 0))
