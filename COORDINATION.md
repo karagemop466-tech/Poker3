@@ -1548,3 +1548,18 @@ Three sessions independently re-read the same official pages on 2026-11-17 and r
   independently by this session and by session `arena/c2b95024-poker3`; both corrected it to $996.89/$248.59.
 - The booking engine returning no suite for the trip window is recorded three times over, as F15, F36 (another
   session) and in this session's four recorded stay windows.
+
+---
+
+## Session arena/ed1d2489-poker3 — final verification and integration (2026-11-17)
+
+Branch: `arena/ed1d2489-poker3`, rebased onto `main` at `2625d5b` before any work. The platform binds a session to one
+branch, so the `session-<id>/<task>` naming in the brief cannot be applied; this session works only on this branch and
+opens one PR from it. No other session holds a claim on these files in this window, so the scope below does not overlap.
+This session is the integration owner for the shared outputs it touches.
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| Live line-by-line re-verification of every published trip-window row and hotel term against the official source | in progress | arena/ed1d2489-poker3 | `research/recheck_2026-11-17_ed1d2489.json`, `tests/**` | Read by the page reader on 2026-11-17; every row linked. |
+| Defect pass on the canonical data (duplicate flag IDs, stale README claim, any row that fails its own source) | in progress | arena/ed1d2489-poker3 | `scripts/data_source.py`, `README.md`, `site/data.json`, `site/*.html` | Only values already backed by an official source are touched. |
+| Rebuild, verify, PR, merge, Pages confirmation | pending | arena/ed1d2489-poker3 | whole repo | `scripts/verify_site.py`, `tests/**`, `verify.yml`, `pages.yml` |
