@@ -14,6 +14,7 @@ const NAV = [
   ['questions.html', 'Questions', '?'],
   ['suggestions.html', 'Suggestions', '✦'],
   ['flagged.html', 'Flagged for review', '⚑'],
+  ['coverage.html', 'Brief coverage', '☑'],
   ['sources.html', 'Sources', '⛓'],
   ['sheets.html', 'Sheet verification', '☰'],
 ];
@@ -775,7 +776,7 @@ function renderFlags() {
   if (!host) return;
   const sev = { High: 'danger', Medium: 'warn', Low: '' };
   const body = (db.flags || []).map((f) => `
-    <tr>
+    <tr id="${esc(f.id)}">
       <td>${esc(f.id)}</td>
       <td><span class="badge ${sev[f.severity] || ''}">${esc(f.severity)}</span></td>
       <td>${esc(f.area)}</td>
@@ -1039,6 +1040,7 @@ function boot() {
     if (PAGE === 'questions') renderQuestions();
     if (PAGE === 'suggestions') renderSuggestions();
     if (PAGE === 'flagged') renderFlags();
+    if (PAGE === 'coverage') renderCoverage();
     if (PAGE === 'sources') renderSources();
     if (PAGE === 'search') renderSearchResults(new URLSearchParams(location.search).get('q') || '');
   }).catch(() => {

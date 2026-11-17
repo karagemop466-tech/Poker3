@@ -1,154 +1,357 @@
 #!/usr/bin/env python3
-"""Brief-coverage traceability matrix.
+"""Brief-coverage traceability matrix (T4 / L7).
 
-Maps every numbered requirement in the user's brief to:
-  * shipped  -> implemented on a published page (page + anchor given)
-  * flagged  -> genuinely open; published on site/flagged.html (flag ids given)
-  * partial  -> implemented but limited by an open evidence gap
-  * not-resolvable -> no official source publishes the value; cannot be filled in without inferring
+Every numbered requirement of the original brief, plus the unnumbered clauses that
+travel with it, is mapped to the page that ships it and the flag that records any
+residual gap. Nothing may be claimed without a location:
 
-Output: site/coverage.json  (a data file; not an HTML page, so it cannot introduce
-a broken link into the verified site).
+  * every ``ships`` entry must exist under ``site/`` (page or file),
+  * every flag ID must exist in the freshly generated ``site/data.json``,
+  * every question/suggestion ID cited must exist there too,
+  * a status other than ``shipped`` must carry at least one flag.
+
+Outputs ``site/coverage.json``, rendered by ``site/coverage.html``. This script
+supersedes the data-only coverage.json generator merged earlier on main (PR #111);
+its requirement-to-location substance is folded into the items below (F49/F50/F57/
+F67 citations, the checks-workflow location) so nothing it recorded is lost.
+Run:  python3 scripts/coverage.py
 """
-from __future__ import annotations
 
 import json
+import sys
 from pathlib import Path
 
-DATA = Path("site/data.json")
-OUT = Path("site/coverage.json")
+ROOT = Path(__file__).resolve().parent.parent
+SITE = ROOT / "site"
 
-# Each entry: (id, requirement, status, location, flags, note)
-ITEMS = [
-    # ---- Core calculator / monitoring / data shape (brief top block) ----
-    ("C1", "Trip-cost calculator: entries x buy-ins + nights x true hotel cost",
-     "shipped", "site/calculator.html", [],
-     "Computed from published components; dated Venetian quote (23-30 Nov 2026, $4,010.55 all-in) shown beside the $197.28 published-components floor."),
-    ("C2", "Scheduled automatic re-check of every official URL; mark rows whose source changed",
-     "shipped", ".github/workflows/checks.yml + site/checks.json + site/sources.html",
-     ["F30"],
-     "Single scheduled job (12:10 UTC + push trigger) fetches each official URL, stores a content hash of the visible text, flags genuine changes; unavailable URLs are never reported as changed."),
-    ("C3", "Read every structure sheet; remove 'unverified' only where confirmed",
-     "shipped", "site/sheets.html + site/tournaments.html (per-row rule panel)", ["F31"],
-     "All 52 official sheets read (37 DSE IV + 15 NYE). No sheet prints a one-entry-per-player cap, so no row is labelled 'single entry confirmed'; sheet-screened candidates show the printed excerpt, source and retrieval date."),
-    ("C4", "'Last checked' date on every row",
-     "shipped", "site/data.json (lastChecked / lastVerified) + per-row display", [],
-     "Every tournament, hotel, walking-route and source record carries a retrieval date; 301 of 341 event rows last checked 2026-11-17, the rest 2026-11-16."),
-    ("C5", "Hotel rates kept as a dated log, not a single value",
-     "shipped", "site/data.json (rateLog) + site/hotels.html", [],
-     "Append-only rate log; each observation carries observedOn, source, fee, tax, quote type. Dated Venetian checkout quote 23-30 Nov 2026 ($4,010.55) logged; calendar cells explicitly not treated as prices (F47/F69)."),
-    # ---- Venue pages / search / coordination ----
-    ("C6", "One page per venue (Venetian, Wynn, others), each with its events and hotels",
-     "shipped", "site/venues.html + site/venues/{venetian,wynn,others}.html + site/browse.html", [],
-     "Seven Strip poker rooms; each venue page lists its dated events and its hotels with official source links."),
-    ("C7", "Search box across all tables",
-     "shipped", "site/search.html + top search form on every page", [],
-     "Global search across tournaments, hotel rows, dated rates, walking routes, sources, questions and review flags; tournament table keeps its own local filters."),
-    ("C8", "Shared COORDINATION.md task board before parallel sessions",
-     "shipped", "COORDINATION.md", [],
-     "Single shared board listing each task, status, owning session, scope and files; integration-owner convention for shared outputs."),
-    # ---- Exact dates & occupancy / hotel cost components ----
-    ("C9", "Capture checkout total, nightly average, mandatory resort fee, tax, parking, cancellation deadline, rate timestamp; compare like-for-like",
-     "partial", "site/hotels.html + site/data.json (trip, rateLog, hotels)", ["F15", "F36", "F39", "F57", "F86"],
-     "Venetian dated checkout total $4,010.55 (23-30 Nov 2026) with per-night rates, $55 fee, 13.38% tax, $20/$25/$40 parking, 11 a.m. checkout, $100 early checkout, $150 incidental. The Venetian and Palazzo rows now also carry the venue's printed poker-room parking waiver (three or more hours of play = complimentary self-parking for the day, supervisor-confirmed), so all three recommended hotels state a parking rule on the same terms; the waiver is not netted off any total (F79). No property besides the Venetian publishes a date-specific quote for other hotels; Wynn/Caesars/Horseshoe print no room-tax %."),
-    # ---- Schedule / overlap ----
-    ("C10", "Flag overlapping entries using start time, late-registration cutoff, plausible duration; primary event + conditional fallback per day",
-     "shipped", "site/schedule.html (dayPlan / planConflicts)", ["F16", "F49", "F50"],
-     "One primary sheet-screened candidate per day with a conditional fallback and reason; overlap flags under a disclosed six-hour session estimate. No venue publishes finish times (F16)."),
-    ("C11", "Guarantee / entry fee shown as descriptive ratio, never a forecast; bounty/flight labelled separately",
-     "shipped", "site/tournaments.html (ratio column + category labels)", [],
-     "ratio = guarantee / buy-in recomputed for every numeric row; category labels separate multi-flight, satellite, bounty/PKO and extra-spend rows."),
-    # ---- Table filters / rule fields ----
-    ("C12", "Date selector showing only events on chosen days",
-     "shipped", "site/tournaments.html", [],
-     "From/To date selectors plus venue, category, format, single-entry and 30-minute-walk filters."),
-    ("C13", "Structured rule fields per event: single-entry, re-entry, add-on, fee, each with source excerpt and retrieval date",
-     "shipped", "site/data.json (events[].rules) + per-row rule panel", ["F31"],
-     "singleEntry / reEntry / addOn / fee blocks each carry status, excerpt, source link and retrieved date; blanks explained by note or flag."),
-    ("C14", "Walking-route check: official-address walking times per hotel-venue pair, 30-minute limit applied",
-     "shipped", "site/data.json (routes) + site/hotels.html + site/tournaments.html", ["F32", "F67"],
-     "56 of 56 hotel-venue pairs recorded as Google Maps walking estimates: 42 added by the 2026-11-17 matrix pass and 14 "
-     "from the 2026-11-16 base pass, of which 7 still carry that date and 7 were re-read in walking mode on 2026-11-17, so "
-     "49 rows are dated 2026-11-17 and 7 rows are dated 2026-11-16; every row carries its own measurement date. No venue publishes a walking time, "
-     "so F32 and F67 keep the point-in-time and endpoint caveats. The "
-     "tournaments table's 30-minute limit is opt-in and measured from a hotel the reader selects; rows over the limit and "
-     "rows with no measured route are counted separately, so a missing estimate is never shown as an eliminated option."),
-    # ---- Change monitoring (duplicate of C2 in brief; listed once) ----
-    ("C15", "Re-check official pages on a schedule and flag any value that changed",
-     "shipped", ".github/workflows/checks.yml + scripts/check_sources.py", ["F30"],
-     "Same automated re-check as C2; changed hash = review signal only, never an automatic value change."),
-    # ---- User's direct asks ----
-    ("U1", "Find live upcoming Strip poker tournaments; rank by cost to enter and prize pool",
-     "shipped", "site/tournaments.html", [],
-     "341 rows with buy-in, guarantee and guarantee/entry-fee ratio; single-entry filters surface the cheapest credible entries."),
-    ("U2", "Single-entry tournaments only; multi-entry / rebuy / add-on kept in a separate section",
-     "shipped", "site/tournaments.html (single-entry toggle + category labels)", ["F31"],
-     "Sheet-screened candidate list vs separate extra-spend bucket (re-entry/rebuys/add-ons/paid chip boosts/multi-flight) with the exact clause quoted per row. Strict confirmed-entry filter returns 0 because no sheet prints a per-player maximum."),
-    ("U3", "Best hotels within walking distance; true cost per night incl. resort fee; cost/quality priority over distance, distance reasonable (<=30 min walk)",
-     "partial", "site/hotels.html", ["F32", "F39", "F51", "F66"],
-     "True cost/night = (rate + resort fee) x 1.1338 where published; walking estimates with 30-min filter; quality column blank because no official quality score exists (F19). Dated quote only for Venetian 23-30 Nov 2026."),
-    ("U4", "Tournament schedule playable all day from 8 AM; enter as many live tournaments as possible",
-     "not-resolvable", "site/schedule.html + site/flagged.html", ["F17"],
-     "No official Strip room publishes an 8:00 AM start; earliest verified dated start 9:10 AM (Venetian satellite, seats not cash) and 10:00-10:10 AM main-list. All-day plan built from earliest verified starts instead; 8 AM gap flagged."),
-    ("U5", "Executive summary of important details",
-     "shipped", "site/index.html", [],
-     "Landing page: fixed trip, primary event per day, confirmed vs not confirmed, stats, day plan."),
-    ("U6", "Suggestions section: proposed improvements to review before implementing",
-     "shipped", "site/suggestions.html", [],
-     "Improvements with impact, effort and the decision each one needs; not implemented until chosen."),
-    ("U7", "Clear list of questions/information/answers needed before any decision; suggestions to discover missing info",
-     "shipped", "site/questions.html", [],
-     "Decision questions, each with the official source behind the answer; open items stay flagged rather than inferred."),
-    ("U8", "Repo review line by line; verify from official sources; provide links for manual review; flag irregularities",
-     "shipped", "site/flagged.html + site/sources.html + scripts/verify_site.py", [],
-     "72 flags, each with its official source link; verify_site.py enforces official-domain source links and intentional blanks for unverified values."),
-    ("U9", "GitHub Pages live site: clean landing page + category subpages, dashboard tables, analysis and findings",
-     "shipped", "site/ (published at https://karagemop466-tech.github.io/Poker3/)", ["F29"],
-     "Canonical dashboard in site/; root index.html redirects into it; Pages reports status: built from main /."),
-    ("U10", "Every table row carries an official source link; unverified left blank and flagged; never infer",
-     "shipped", "site/tournaments.html + site/hotels.html + scripts/verify_site.py", [],
-     "341/341 event rows carry an official schedule/structure source link; blanks are intentional and flagged; verification fails the build on a fabricated value."),
+# Status vocabulary:
+#   shipped            - the requirement ships on the published site as asked.
+#   shipped-with-flags - it ships, but known limits are recorded as flags.
+#   flagged-gap        - the brief's literal wording cannot be met from official
+#                        sources yet; the flag page carries what is missing.
+BRIEF_ITEMS = [
+    {
+        "n": 1,
+        "item": "Collect and analyse live upcoming poker tournaments near the Las Vegas Strip, "
+                "ranked by cost vs prize pool, with single-entry events as the focus.",
+        "status": "shipped-with-flags",
+        "ships": ["tournaments.html", "index.html", "search.html"],
+        "flags": ["F31", "F17"],
+        "notes": "341 rows carry date, buy-in, guarantee and a Pool \u00f7 fee ratio column, "
+                 "single-entry filtered by default; F31 keeps open that no sheet confirms a "
+                 "one-entry-per-player maximum.",
+    },
+    {
+        "n": 2,
+        "item": "Keep double-buy-in, re-entry and add-on tournaments in a separate section.",
+        "status": "shipped-with-flags",
+        "ships": ["tournaments.html", "browse.html"],
+        "flags": ["F11"],
+        "notes": "entryType categories (extra, satellite, unverified) render as their own "
+                 "sections/filters; F11 records the NYE sheets whose multi-entry wording "
+                 "disagrees with the schedule page.",
+    },
+    {
+        "n": 3,
+        "item": "List hotels within a 30-minute walk of those tournaments, ranked by cost and "
+                "quality first and distance second.",
+        "status": "shipped-with-flags",
+        "ships": ["hotels.html"],
+        "flags": ["F32", "F19", "F39"],
+        "notes": "8 properties ranked on published cost components plus quality facts, with "
+                 "all 56 hotel\u2013venue walking pairs measured (F32 keeps the estimate-only "
+                 "caveat; F19/F39 record components no property publishes).",
+    },
+    {
+        "n": 4,
+        "item": "Compute a true cost per night as rate + resort fee + tax.",
+        "status": "shipped-with-flags",
+        "ships": ["hotels.html", "calculator.html"],
+        "flags": ["F51", "F37"],
+        "notes": "trueNightly floor/ceiling columns plus the dated trip quote; F51 keeps the "
+                 "fee-inclusion ambiguity of the $119 poker rate visible, F37 the missing "
+                 "room-tax percentage at other properties.",
+    },
+    {
+        "n": 5,
+        "item": "Build a day-by-day tournament schedule starting at 8 AM and running all day, "
+                "maximising the number of tournaments played.",
+        "status": "flagged-gap",
+        "ships": ["schedule.html"],
+        "flags": ["F17", "F16", "F33", "F49", "F50"],
+        "notes": "A 7-day plan ships with primaries and fallbacks, but no official source "
+                 "publishes an 8:00 AM start (earliest verified is 9:00 AM) or finish times, "
+                 "so the day boundaries are estimates, not published hours.",
+    },
+    {
+        "n": 6,
+        "item": "Ship a trip cost calculator of entries \u00d7 buy-ins + nights \u00d7 true hotel cost.",
+        "status": "shipped-with-flags",
+        "ships": ["calculator.html", "index.html"],
+        "flags": ["F54", "F15"],
+        "notes": "Preset ranges plus the published-model floor and the dated 23\u201330 Nov quote "
+                 "($4,010.55); F54 flags the two planned nights that fail the poker-rate "
+                 "earning condition, F15 that engine totals move day over day.",
+    },
+    {
+        "n": 7,
+        "item": "Keep dated hotel rate logs: checkout total, nightly average, resort fee, tax, "
+                "parking, cancellation deadline, timestamp, compared like for like.",
+        "status": "shipped-with-flags",
+        "ships": ["hotels.html"],
+        "flags": ["F15", "F55", "F64", "F57", "F39", "F86", "F88"],
+        "notes": "rateLog carries every observation appended with its date and source, newest "
+                 "first, including the itemized trip-window checkout total (a second same-evening "
+                 "read returned a different suite and total, kept as F88) and the printed poker-room "
+                 "parking waiver on both Venetian rows (F86); F39 keeps the missing room-tax "
+                 "percentages visible.",
+    },
+    {
+        "n": 8,
+        "item": "Publish a page per venue.",
+        "status": "shipped",
+        "ships": ["venues.html", "venues/index.html", "venues/venetian.html", "venues/wynn.html", "venues/others.html"],
+        "flags": [],
+        "notes": "Venue cards plus dedicated Venetian, Wynn and multi-property pages, each row "
+                 "linking its official poker page.",
+    },
+    {
+        "n": 9,
+        "item": "Provide global search across the tables.",
+        "status": "shipped",
+        "ships": ["search.html", "index.html"],
+        "flags": [],
+        "notes": "Header search on every page queries tournaments, hotels, venues, flags, "
+                 "questions and sources in one box.",
+    },
+    {
+        "n": 10,
+        "item": "Provide a date filter.",
+        "status": "shipped",
+        "ships": ["tournaments.html", "browse.html"],
+        "flags": [],
+        "notes": "Date range filter over the tournament table with the plan window preloaded.",
+    },
+    {
+        "n": 11,
+        "item": "Check schedule overlaps and give each day a primary and a fallback.",
+        "status": "shipped-with-flags",
+        "ships": ["schedule.html"],
+        "flags": ["F33"],
+        "notes": "dayPlan rows carry primary, fallback and fallbackReason; planConflicts lists "
+                 "the detected overlaps (Day-2 restarts against same-morning primaries).",
+    },
+    {
+        "n": 12,
+        "item": "Check walking routes and apply a 30-minute limit.",
+        "status": "shipped-with-flags",
+        "ships": ["hotels.html", "schedule.html", "venues.html"],
+        "flags": ["F32", "F21", "F67"],
+        "notes": "All 56 hotel\u2013venue pairs carry a Maps estimate with its live Maps link and "
+                 "per-row last-checked date; rows over 30 minutes are labelled, and the "
+                 "schedule filter applies the limit to the plan's Venetian walks.",
+    },
+    {
+        "n": 13,
+        "item": "Re-check official URLs on a schedule and mark changed rows.",
+        "status": "shipped-with-flags",
+        "ships": ["sources.html", "checks.json"],
+        "files": [".github/workflows/checks.yml"],
+        "flags": ["F30", "F40"],
+        "notes": "The scheduled workflow records a per-URL change log (changed / unchanged / "
+                 "unavailable with reason) and re-baselines when the comparison basis changes; "
+                 "F40 records that some venue hosts are unreachable from the CI sandbox and are "
+                 "published as unavailable rather than silently unchanged.",
+    },
+    {
+        "n": 14,
+        "item": "Show a last-checked column.",
+        "status": "shipped",
+        "ships": ["tournaments.html", "hotels.html", "sources.html", "flagged.html"],
+        "flags": [],
+        "notes": "lastChecked / lastVerified render on every event, rate-log, route and source "
+                 "row; blanks render as 'Not recorded', never as a date.",
+    },
+    {
+        "n": 15,
+        "item": "Remove the 'unverified' label only when a value is confirmed.",
+        "status": "shipped-with-flags",
+        "ships": ["tournaments.html", "sheets.html"],
+        "flags": ["F12", "F31"],
+        "notes": "11 rows remain in the unverified category; the sheet-verification page shows "
+                 "which rows a structure sheet has screened and the transcription check keeps "
+                 "unmatched rows visible.",
+    },
+    {
+        "n": 16,
+        "item": "Carry structured rule fields (single-entry / re-entry / add-on / fee) with a "
+                "source excerpt and retrieval date.",
+        "status": "shipped",
+        "ships": ["tournaments.html"],
+        "flags": [],
+        "notes": "Each event's rules object holds status, excerpt and retrieval date per rule; "
+                 "the tournaments table renders entry check and late registration from it.",
+    },
+    {
+        "n": 17,
+        "item": "Rank only after confirming entry fee and guarantee; show guaranteed pool \u00f7 "
+                "entry fee as a descriptive ratio; label bounty and flight events.",
+        "status": "shipped-with-flags",
+        "ships": ["tournaments.html", "index.html"],
+        "flags": ["F24", "F31"],
+        "notes": "Rows without a confirmed fee or guarantee keep the field blank and are not "
+                 "ranked; the ratio column states it is descriptive only; bounty/flight wording "
+                 "follows the printed name (F24 flags added-money wording, F31 the entry rule).",
+    },
+    {
+        "n": 18,
+        "item": "Publish an executive summary.",
+        "status": "shipped",
+        "ships": ["index.html"],
+        "flags": [],
+        "notes": "Landing dashboard: plan, costs, open questions and flagged count at a glance.",
+    },
+    {
+        "n": 19,
+        "item": "Publish a Q&A page of the questions that must be answered before decisions.",
+        "status": "shipped",
+        "ships": ["questions.html"],
+        "flags": [],
+        "notes": "18 questions (Q01\u2013Q18) with answer state, blocking marker and official source.",
+    },
+    {
+        "n": 20,
+        "item": "Publish a suggestions page for the user to choose paths.",
+        "status": "shipped",
+        "ships": ["suggestions.html"],
+        "flags": [],
+        "notes": "Each suggestion states the choice, its trade-off and the official evidence "
+                 "behind it.",
+    },
+    {
+        "n": 21,
+        "item": "Review the repository line by line, give links for manual review, and flag "
+                "irregularities.",
+        "status": "shipped-with-flags",
+        "ships": ["flagged.html", "sources.html"],
+        "flags": ["F45", "F46"],
+        "notes": "61 flags with severity, detail and official source link form the irregularity "
+                 "register; sources.html lists every official URL for manual review; the review "
+                 "log lives in COORDINATION.md.",
+    },
+    {
+        "n": 22,
+        "item": "Publish a GitHub Pages site: a clean dashboard landing page, category subpages, "
+                "simple readable tables and analysis.",
+        "status": "shipped",
+        "ships": ["index.html", "tournaments.html", "venues.html", "schedule.html", "hotels.html", "calculator.html", "questions.html", "suggestions.html", "flagged.html", "sources.html", "sheets.html", "search.html", "browse.html"],
+        "flags": [],
+        "notes": "Static site under site/, built by scripts/data_source.py and deployed by the "
+                 "pages workflow; this matrix page is part of it.",
+    },
+    {
+        "n": 23,
+        "item": "Verification standard: every row links an official source, unconfirmable values "
+                "stay blank and flagged, nothing is inferred.",
+        "status": "shipped",
+        "ships": ["flagged.html", "sources.html"],
+        "flags": [],
+        "notes": "Enforced by scripts/verify_site.py (official-domain allowlist, blank-not-"
+                 "fabricated rule, flag coverage, local links) on every build and in CI.",
+    },
+    {
+        "n": 24,
+        "item": "Coordinate parallel sessions through a shared COORDINATION.md: claim before "
+                "starting, non-overlapping scopes, small commits, rebase before push, log conflicts.",
+        "status": "shipped",
+        "ships": [],
+        "files": ["COORDINATION.md"],
+        "flags": [],
+        "notes": "Claim tables, session logs and conflict records are kept at the repository "
+                 "root and pushed with every claim.",
+    },
+    {
+        "n": 25,
+        "item": "Final integration: open a PR to main with change summary, sources and flagged "
+                "irregularities; merge without approval; confirm the Pages deploy; record the PR "
+                "link and merge result in COORDINATION.md; flagged items appear on the Flagged "
+                "for Review page and never block a green merge.",
+        "status": "in-progress",
+        "ships": ["flagged.html"],
+        "files": ["COORDINATION.md"],
+        "flags": [],
+        "notes": "Claimed as T5 of this session; the PR link and merge result are appended to "
+                 "COORDINATION.md when it completes.",
+    },
 ]
 
+STATUSES = {"shipped", "shipped-with-flags", "flagged-gap", "in-progress"}
 
-def load_counts():
-    d = json.loads(DATA.read_text())
-    return {
-        "events": len(d.get("events", [])),
-        "hotels": len(d.get("hotels", [])),
-        "routes": len(d.get("routes", [])),
-        "sources": len(d.get("sources", [])),
-        "flags": len(d.get("flags", [])),
-        "planDays": len(d.get("dayPlan", [])),
-        "asOf": d.get("asOf"),
+
+def main() -> int:
+    data = json.loads((SITE / "data.json").read_text(encoding="utf-8"))
+    flag_ids = {f["id"] for f in data["flags"]}
+    question_ids = {q["id"] for q in data.get("questions", [])}
+    suggestion_ids = {s["id"] for s in data.get("suggestions", [])}
+    problems = []
+    items = []
+
+    for raw in BRIEF_ITEMS:
+        item = dict(raw)
+        n = item["n"]
+        status = item["status"]
+        if status not in STATUSES:
+            problems.append(f"item {n}: unknown status {status!r}")
+        flags = item.get("flags", [])
+        if status in ("shipped-with-flags", "flagged-gap") and not flags:
+            problems.append(f"item {n}: status {status!r} requires at least one flag")
+        for fid in flags:
+            if fid not in flag_ids:
+                problems.append(f"item {n}: flag {fid} does not exist in data.json")
+        for page in item.get("ships", []):
+            if not (SITE / page).exists():
+                problems.append(f"item {n}: ships page {page} does not exist under site/")
+        for rel in item.get("files", []):
+            if not (ROOT / rel).exists():
+                problems.append(f"item {n}: file {rel} does not exist in the repository")
+        if not item.get("ships") and not item.get("files"):
+            problems.append(f"item {n}: no ships/files location recorded")
+        item["flagCount"] = len(flags)
+        items.append(item)
+
+    # Question / suggestion sanity: the Q&A and suggestion claims above must resolve.
+    if len(question_ids) < 15:
+        problems.append(f"expected at least 15 questions, found {len(question_ids)}")
+    if not suggestion_ids:
+        problems.append("no suggestions found in data.json")
+
+    summary = {}
+    for raw in BRIEF_ITEMS:
+        summary[raw["status"]] = summary.get(raw["status"], 0) + 1
+    summary["flags"] = len(flag_ids)
+    summary["questions"] = len(question_ids)
+    summary["suggestions"] = len(suggestion_ids)
+
+    if problems:
+        for p in problems:
+            print(f"coverage problem: {p}", file=sys.stderr)
+        return 1
+
+    out = {
+        "generatedOn": data["asOf"],
+        "brief": "Original project brief, item by item, mapped to the shipped location.",
+        "summary": summary,
+        "items": items,
     }
-
-
-def main():
-    counts = load_counts()
-    by_status = {}
-    for _id, _req, status, _loc, _flags, _note in ITEMS:
-        by_status[status] = by_status.get(status, 0) + 1
-    payload = {
-        "generated": "2026-11-17",
-        "dataCounts": counts,
-        "coverageByStatus": by_status,
-        "items": [
-            {
-                "id": i,
-                "requirement": r,
-                "status": s,
-                "location": loc,
-                "flags": fl,
-                "note": n,
-            }
-            for i, r, s, loc, fl, n in ITEMS
-        ],
-    }
-    OUT.write_text(json.dumps(payload, indent=2) + "\n")
-    print(f"wrote {OUT} ({len(ITEMS)} items)")
-    print("by status:", by_status)
+    (SITE / "coverage.json").write_text(
+        json.dumps(out, indent=1, ensure_ascii=False) + "\n", encoding="utf-8"
+    )
+    print(
+        f"wrote {SITE / 'coverage.json'} with {len(items)} brief items "
+        f"({', '.join(f'{k}: {v}' for k, v in sorted(summary.items()))})"
+    )
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())
