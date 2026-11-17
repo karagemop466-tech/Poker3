@@ -2740,3 +2740,56 @@ flag register under F29; a later session found the same 403.
 - **Stale claim found on the live site after merge:** the executive summary and the calculator notice still said no checkout total existed for the trip window (F15, F36). Corrected in a follow-up PR from the same branch (see the entry below), with F15 and F36 reworded to the superseded 25 Nov - 2 Dec window.
 - **Still open (not blocking):** flags F66 (phone-only $119 poker rate), F67 (Venetian-to-Bellagio walk), F68 (stale `site/data/*.json`), F69 (calendar cells are not prices), plus the 8 AM plan gap and the unconfirmed single-entry rule (F31). All are published on the Flagged for Review page with source links.
 
+## Session `arena/ab5d9f7d-poker3` — NYE "unverified" label removal + sheet-verification coverage (2026-11-17 UTC)
+
+Branch: `arena/ab5d9d7d-poker3`, branched from `2bdcc0de` of `main`. This session is the integration owner for the
+shared outputs; it changed only the files listed below and left every other session's work untouched.
+
+### Claim record
+- Task: finish the stated requirements on the canonical `site/` dashboard — specifically "Read every structure sheet
+  and remove the 'unverified' label from each event that is confirmed" and keep the verification line-by-line.
+- Scope: `scripts/data_venetian.py`, `scripts/data_source.py`, `scripts/verify_sheets.py`,
+  `data/sheet_facts_2026-11-17.json`, `site/data.json`, `README.md`, `COORDINATION.md`, `site/checks.json`.
+- No other session was active on these files; the task board showed every prior task done.
+
+### Finding (the defect this session fixed)
+The 11 DeepStack Extravaganza NYE rows linked to structure sheets 1, 2, 3 and 12 still carried the `unverified`
+category even though their sheets had been read in full on 2026-11-17 and their rule excerpts, fee splits, chip
+counts and late-registration lines were already published on each row. The category `unverified` means "structure
+sheet not read", so the label contradicted the row's own note and flag F11 (which already stated the NYE sheets were
+read). Fix: the builder now derives each NYE row's category from its sheet's printed entry rule instead of a stale
+literal — `none` → `single`, `multi-flight` → `flight`, `multi-buyin` → `extra`, `satellite` → `satellite`.
+
+- 5 rows reclassified `unverified → single` (sheets 1, 3, 12 print one buy-in and no re-entry clause).
+- 6 rows reclassified `unverified → extra` (sheet 2 prints a "subsequent re-entry" clause, so the format allows more
+  than one buy-in and stays out of the single-entry path).
+- 1 further correction: NYE Event #29 (Jan 6, 2027, 5:10 PM) was hardcoded `single` but links sheet 2 (multi-buyin);
+  it is now correctly `extra`.
+- After the fix the `unverified` category count is **0**; `single` is 52, matching flag F31.
+
+### Sources verified live this session (official hosts, read 2026-11-17)
+- Venetian DeepStack Extravaganza IV schedule page (all four chunks) — matches the 94 published rows.
+- NYE structure sheets 1, 2, 3, 12 (official PDFs) — each read in full; buy-in, starting chips, level length,
+  late-registration line, guarantee, fee split and entry wording all match the transcribed `NYE_SHEETS` facts.
+  Sheet 1/3/12 print no re-entry/rebuy/add-on clause; sheet 2 prints the "subsequent re-entry" sentence.
+- Venetian poker-suite rate page — "$119 and $209" starting rates, $55 resort fee, code EPOKR25, six-hours-or-$300
+  qualification (the calculator's basis).
+- Venetian resort-fee page — "$55 plus tax per night".
+
+### Verification performed
+- `scripts/verify_sheets.py` was made series-agnostic (it now derives the series from the sheet URL, so NYE sheets
+  are covered too) and the four NYE sheets were added to `data/sheet_facts_2026-11-17.json`. It now checks **22
+  sheets / 57 rows / 50 single-entry rows confirmed against their sheet** (was 18 / 45 / 45).
+- Full CI-equivalent suite green: `verify_site.py` PASS (341 events), `audit_951cd431.py` 0 failures,
+  `verify_live_official.py` OK, `audit_data.py` PASS, `verify_live.py` "matches on every field",
+  `verify_transcription.py` 44/44, `canonical_smoke.py` and `smoke.py` PASS, `node --check` on all JS,
+  `python3 -m json.tool` valid, 99 unit tests OK.
+- `scripts/data_source.py` rebuild is deterministic (rebuild reproduces `site/data.json` exactly).
+
+### Irregularities
+- None introduced. The README's stale counts were corrected (flagged page "31 items" → 61; sheet-screened
+  candidates "45" → 52; the stale "14 published rows carry the Unverified label" sentence removed). The pre-existing
+  flags F01–F61 remain unchanged and none blocks publication.
+
+### Result
+- Committed and pushed on `arena/ab5d9d7d-poker3`; PR opened to `main` and merged (recorded below).

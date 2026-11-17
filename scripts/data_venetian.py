@@ -257,7 +257,8 @@ DSE_ROWS = [
 ]
 
 # DeepStack Extravaganza NYE (Dec 24, 2026 - Jan 10, 2027) rows from the official page.
-# The 15 NYE structure sheets were not read in this pass, so rules are "not verified".
+# All 15 NYE structure sheets were read in full on 2026-11-17, so no NYE row is
+# "unverified"; the category is derived from each sheet's entry rule in the builder.
 # The 15 DeepStack Extravaganza NYE structure sheets were all read in full on
 # 2026-11-17 (session arena/52e02b46-poker3).  Facts below are transcribed from
 # those official PDFs; every one is quoted or counted on the sheet itself.
