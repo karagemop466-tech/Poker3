@@ -1563,3 +1563,42 @@ This session is the integration owner for the shared outputs it touches.
 | Live line-by-line re-verification of every published trip-window row and hotel term against the official source | in progress | arena/ed1d2489-poker3 | `research/recheck_2026-11-17_ed1d2489.json`, `tests/**` | Read by the page reader on 2026-11-17; every row linked. |
 | Defect pass on the canonical data (duplicate flag IDs, stale README claim, any row that fails its own source) | in progress | arena/ed1d2489-poker3 | `scripts/data_source.py`, `README.md`, `site/data.json`, `site/*.html` | Only values already backed by an official source are touched. |
 | Rebuild, verify, PR, merge, Pages confirmation | pending | arena/ed1d2489-poker3 | whole repo | `scripts/verify_site.py`, `tests/**`, `verify.yml`, `pages.yml` |
+
+### Work log (session arena/ed1d2489-poker3, 2026-11-17)
+
+**Source position.** This session re-read, from the venue hosts on 2026-11-17, the official DeepStack Extravaganza IV
+schedule (all four chunks, Nov 16 – Dec 23 2026), the eight structure PDFs the day plan relies on (sheets 1, 5, 6, 7,
+11, 17, 22, 26), the Venetian poker-suite rate page, the resort-fee page, the hotel terms and conditions page, and the
+Wynn Resort Policies page. The transcript is `research/recheck_2026-11-17_ed1d2489.json`; `tests/test_recheck_ed1d2489.py`
+(19 tests) pins every published row, fee line, guarantee, chip count, late-registration line and hotel component to it.
+
+**What matched the published data.** All 21 scheduled rows between 2026-11-25 and 2026-12-02 (date, start time, event
+number, printed name, buy-in, guarantee and the structure-sheet link the page prints). For sheets 1, 5, 6, 7, 11, 17, 22
+and 26: the title, the event numbers each sheet covers, start time, starting chips, level duration, the late-registration
+line, the guarantee (including the per-event-number guarantees on sheets 7 and 11) and the exact house-fee sentence,
+including the $60/$340 split on sheet 26. Venetian hotel: $119/$209 starting rates, $55 resort fee, 13.38% Clark County
+room tax, $20/day registered-guest parking, $150/night incidental authorisation, 3:00 PM check-in / 11:00 AM check-out,
+$100 early-checkout fee, code EPOKR25, and the six-hours-or-$300-tournament qualification. Wynn: $55 + tax resort fee,
+3 p.m. / 12 p.m. check-in and check-out, no printed tax percentage.
+
+**Defects found and fixed in this pass** (each one was a published statement that the sources do not support):
+
+| # | Defect | Fix |
+|---|---|---|
+| D1 | Flag IDs were not unique: `F38` was defined twice (schedule/Caesars coverage, and DSE NYE 2025 year). | The second definition stays as F41; the duplicate F38 is removed. All 41 flags now have unique IDs and every `F##` citation on every page resolves (asserted in a test). |
+| D2 | F41 said the 15 NYE structure sheets were "not read". They are read (F11, 52/52). | F41 now says the printed year is the only open point on those rows. |
+| D3 | The trip rationale said NYE rows "cannot enter the candidate list" because their sheets were unread. | Rewritten: the sheets are read; three of them print multi-entry wording, which is the real reason those rows stay out. |
+| D4 | `site/index.html` repeated the same false "15 structure sheets were not read" statement. | Same correction; the test fails if either file reintroduces it. |
+| D5 | Q13 said the Seniors sheet (#24) "has not been read", so its entry rules were unconfirmed. | Sheet 17 was read and re-read: it prints "MUST BE 50+ YEARS OF AGE TO PARTICIPATE" and a no-refund clause for under-50 buy-ins. Q13 now quotes the sheet. |
+| D6 | `app.js` attributed the entry-cap gap to F29 (a Pages publishing incident) and the tournaments empty state did too. | Both now cite F31, which is the entry-cap flag. |
+| D7 | Q10 cited F33 (schedule overlap) for the Bellagio stale notice. | Now F03. |
+| D8 | F31's detail and the `tournaments.html` notice said "45 sheet-screened" rows; the data has 52. | Both say 52. |
+| D9 | `questions.html` said "four questions marked as blocking" and "Seventeen questions"; `suggestions.html` said "Twelve items" and described a fixed 3/2/1 split. Data: 18 questions (8 blocking) and 17 suggestions. | All replaced by render-time counts from `site/data.json`; a test forbids the hard-coded numbers returning. |
+| D10 | README claimed "every official page and PDF was re-read and re-confirmed on 2026-11-17". No pass did that; Q10 itself lists what was not re-read. | README now names what was re-read and points at Q10 for the rest. |
+| D11 | No way to prove the scheduled re-check runs: `checks.yml` had only `schedule` + `workflow_dispatch`, and this session's token cannot dispatch (HTTP 403). | Added a path-filtered `push` trigger on `main` for `checks.yml` itself and the scripts it runs, so the first real run happens on merge. This was the same repair PR #55 proposes; it is applied here rather than in a competing branch. |
+| D12 | The day plan printed a bounty-inclusive guarantee ("$8,000 (prize pool + total bounties)") as a plain pool figure. | Each primary and fallback now carries a `*GuaranteeNote` taken from the sheet wording ("Includes total bounties, not a cash-only prize pool"), rendered beside the ratio. |
+
+**Not changed, and why.** No tournament, fee, guarantee, hotel or route value was altered: the re-read found no
+discrepancy. The competing PRs (#56, #55, #54, #50, #46, #39, #31, #27, #7) were read for unique findings and left
+unmerged so no other session's work is discarded; the one repair they shared that this session needed (D11) is applied
+here on top of `main`.
