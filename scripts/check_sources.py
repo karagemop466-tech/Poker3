@@ -120,19 +120,23 @@ def content_hash(body: bytes, content_type: str) -> str:
 def compare_check(old: dict | None, status: str, digest: str | None) -> dict:
     """Classify a fetch without conflating a failed request with changed content."""
     available = status.startswith("HTTP 2")
-    # `digest` is the visible-text hash. Older records carry only a raw `hash`, so fall
-    # back to it rather than reporting every URL as changed on the first run after the
-    # switch to text comparison.
-    prior_hash = (old or {}).get("textHash") or (old or {}).get("hash")
+    # `digest` is the visible-text hash. A record written before the switch to text
+    # comparison carries only a raw body `hash`; comparing the two bases would report
+    # every page as changed, so that record seeds a fresh baseline instead (basisReset)
+    # and the difference is still recorded as rawOnly for audit.
+    prior_text = (old or {}).get("textHash")
+    prior_raw = (old or {}).get("hash")
+    basis_reset = bool(available and prior_raw and not prior_text)
+    prior_hash = prior_text if prior_text else None
     changed = bool(available and prior_hash and digest and prior_hash != digest)
     baseline = bool(available and not prior_hash)
-    prior_text = (old or {}).get("textHash")
     wording = bool(available and prior_text and digest and prior_text != digest) if digest else False
     return {
         "changed": changed,
         "wordingChanged": wording,
         "unavailable": not available,
         "baseline": baseline,
+        "basisReset": basis_reset,
         "previousHash": prior_hash or None,
         "previousTextHash": prior_text or None,
         "previousChecked": (old or {}).get("checked", "") or None,

@@ -2440,3 +2440,15 @@ suite-rate pages) matches today's records. **Closed as fully superseded.**
 These closures do not discard work: the superseding verified data, the monitoring consolidation and the
 verification suite on `main` implement (or improve on) everything each of these PRs introduced, and the
 branches remain reachable for audit.
+
+### Rollout defect in the visible-text switch, found on the live record and fixed
+
+The first checks record written after the visible-text change (2026-11-17T01:59Z) reported **15 changed** pages instead of
+14. Cause: the stored record still carried only a raw `hash` and no `textHash`, so every comparison was made across two
+different hash bases. That is a rollout artefact, not a content change, and it would have flagged all 79 reachable pages
+on a bigger roster.
+
+`compare_check` now treats a record that has a raw hash but no text hash as a **new baseline** (`basisReset`), never as a
+change; the raw difference is still recorded for audit and rendered as "Baseline re-seeded (text comparison began)".
+Two tests pin it: a legacy record must not flag every page, and a record with a text hash must still detect a real
+change. Full suite: **97 tests OK**.
