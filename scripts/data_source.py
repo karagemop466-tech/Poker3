@@ -826,7 +826,7 @@ FLAGS = [
                  "12:00 PM' without Day 1F. The structure_14 rules are applied to all three linked rows and the header "
                  "mismatch is flagged here. Read 2026-11-17."),
          source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_14.pdf"),
-    dict(id="F54", area="Hotels", severity="High",
+    dict(id="F57", area="Hotels", severity="High",
          title="30 November and 1 December 2026 print no figure in any reading, so a stay spanning them cannot be booked online",
          detail=("The official Venetian booking calendar was read on 2026-11-17 with two different stay windows open. "
                  "Every date in the captured range printed a figure in at least one of the two renderings except two: "
@@ -950,8 +950,9 @@ QUESTIONS = [
                  "buy-in to a $300 or higher tournament, for each night stayed. Any night that misses the requirement is "
                  "repriced at the prevailing rate at checkout. Measured against the published plan on 2026-11-17: five "
                  "of the seven nights carry a $300 or higher primary (Nov 25 $400, Nov 26 $300, Nov 27 $600, Nov 28 "
-                 "$600, Nov 29 $300) and two do not (Nov 30 and Dec 1, both $200); the Dec 2 $200 entry is on the "
-                 "departure day and is not a night. Each day of the plan now prints its own result. What the page does "
+                 "$600, Nov 29 $300) and two do not (Nov 23 and Nov 24, both $200). The seven nights are 23-29 "
+                 "November because the trip ends with an 11:00 a.m. check-out on 30 November, which is a departure "
+                 "day and not a night. Each day of the plan prints its own result. What the page does not say is "
                  "not say is whether one entry covers every night of a multi-day event, or only the night it is paid - "
                  "ask the room before treating the $119 floor as certain (F54)."),
          why="Needed", blocking="No, but it decides which events belong on which day",
