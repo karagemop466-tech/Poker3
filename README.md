@@ -130,6 +130,39 @@ one of those numbers straight from `site/data.json` and the verbatim official co
 does **not** import the builder, so a defect in the builder cannot hide itself from the check. It also re-parses
 all 94 official DeepStack Extravaganza IV rows and matches them on date and start time.
 
+## Brief coverage traceability
+
+`scripts/coverage.py` builds `site/coverage.json`, a traceability matrix that maps every numbered requirement in the
+user's brief to a shipped page, a published flag, or a genuine not-resolvable gap. Current result: 25 items —
+21 shipped, 3 partial (limited by an open evidence gap), 1 not-resolvable (no official source publishes the value).
+
+| Requirement | Status | Where |
+|---|---|---|
+| Trip-cost calculator | shipped | site/calculator.html |
+| Scheduled official-URL re-check + changed-row flags | shipped | .github/workflows/checks.yml, site/checks.json |
+| Structure sheets read; unverified removed only where confirmed | shipped | site/sheets.html, per-row rule panels |
+| Last-checked date on every row | shipped | site/data.json lastChecked/lastVerified |
+| Hotel rates as a dated log | shipped | site/data.json rateLog, site/hotels.html |
+| One page per venue with events and hotels | shipped | site/venues.html, site/venues/*.html |
+| Search box across all tables | shipped | site/search.html |
+| Checkout total, nightly average, fee, tax, parking, cancellation, timestamp | partial | site/hotels.html (Venetian dated quote; other hotels blank + flagged) |
+| Overlap flags; primary + fallback per day | shipped | site/schedule.html |
+| Guarantee/entry fee ratio, descriptive; bounty/flight separate | shipped | site/tournaments.html |
+| Date filter | shipped | site/tournaments.html |
+| Structured rule fields with excerpt + retrieval date | shipped | site/data.json events[].rules |
+| Walking-route check, 30-minute limit | partial | site/hotels.html, routes (estimates only; not all pairs) |
+| Single entry only; multi-entry separate section | shipped | site/tournaments.html (single-entry toggle, category labels) |
+| Best hotels within walking distance, true cost/night | partial | site/hotels.html (Venetian dated quote; others blank + flagged) |
+| All-day schedule from 8 AM | not-resolvable | site/schedule.html (no official 8 AM start; flagged F17) |
+| Executive summary | shipped | site/index.html |
+| Suggestions section | shipped | site/suggestions.html |
+| Questions/information/answers before decisions | shipped | site/questions.html |
+| Line-by-line repo review; flag irregularities with links | shipped | site/flagged.html, site/sources.html |
+| GitHub Pages live site, landing + category pages | shipped | site/ (Pages status: built) |
+| Every row official source link; unverified blank + flagged | shipped | site/tournaments.html, site/hotels.html, verify_site.py |
+
+Full matrix with flag references: `site/coverage.json`.
+
 ## Resumption rows
 
 45 rows are resumptions of a field that closed on an earlier day — Day 2 to Day 5 restarts and streamed final
