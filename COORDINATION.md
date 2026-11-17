@@ -1036,7 +1036,11 @@ official copies the prior sessions recorded under `raw/` and against the canonic
 the same evidence basis the merged sessions used. Every check below was re-run this session:
 
 - **`scripts/verify_site.py`** — passed: **341 events, 8 hotels, 14 routes, 27 sources, 32 flags, 8 plan days,
-  15 pages**. Confirms official-domain links, intentional blanks for unverified values, and valid local links.
+  16 pages** (11 main pages incl. the global `search.html` results page, plus 5 detail/venue/calculator
+  pages). Confirms official-domain links, intentional blanks for unverified values, and valid local links.
+  Note: session `45cfee0b` (PR #42) re-checked the 24 DSE IV rows dated 2026-11-16 to 2026-11-28 against the
+  live official page on 2026-11-17 and set `lastChecked: 2026-11-17` on those rows; this session confirmed
+  those 24 rows still agree with the recorded data.
 - **`tests/canonical_smoke.py`** — passed: 10 main pages + 5 detail pages render with populated tables
   (home, tournaments 143 rows, venues, browse venue/category, hotels, schedule, questions, suggestions,
   flagged, sources; venue detail pages venetian 144 rows / wynn 179 rows).
