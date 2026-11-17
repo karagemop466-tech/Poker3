@@ -104,16 +104,28 @@ jobs:
           fi
           git commit -m "chore: record official source re-check and daily room feed ($(date -u +%F))"
 
-      - name: Push to main, rebasing if another commit landed first
+      - name: Push the record to main, tolerating a concurrent merge
+        # This step used to give up after five rebase attempts. On 2026-11-17 four
+        # sessions merged within eight minutes and it failed, even though the record
+        # itself was correct and had already been committed locally. The record is a
+        # derived artefact: the next scheduled run regenerates it. So a failed push is
+        # reported on the run (::warning::) rather than failing the job, while a real
+        # error in the recorder still fails the steps above, which is where it should.
         run: |
-          for attempt in 1 2 3 4 5; do
+          for attempt in $(seq 1 8); do
             git fetch origin main
-            if git rebase origin/main && git push origin HEAD:main; then
-              echo "pushed on attempt ${attempt}"
+            # Rebase only our own record commit on top of whatever landed first.
+            if git pull --rebase origin main && git push origin HEAD:main; then
+              echo "record published on attempt ${attempt}"
               exit 0
             fi
-            git rebase --abort || true
-            sleep $((attempt * 10))
+            git rebase --abort 2>/dev/null || true
+            echo "attempt ${attempt} did not land; retrying"
+            sleep $((attempt * 5))
           done
-          echo "::error::could not publish the source check record after 5 attempts"
-          exit 1
+          git fetch origin main
+          if git diff --quiet origin/main -- site/checks.json; then
+            echo "origin/main already carries an identical record; nothing to publish"
+            exit 0
+          fi
+          echo "::warning::the check record could not be published after 8 attempts; the next scheduled run will regenerate it"

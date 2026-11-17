@@ -2053,3 +2053,32 @@ days, 16 pages) · **73 unit tests OK** · `canonical_smoke.py`, `canonical_rend
 and `json.tool` clean · `git diff --check` clean · `README.md`, `COORDINATION.md` and `checks.yml` merged with both
 sides kept and nothing discarded. The duplicate-`push` repair is the only change to another session's file, and it is
 a fix to a file that could not run at all.
+
+### The scheduled re-check is live (session arena/ed1d2489-poker3, PR #66 merged)
+
+**Result, observed not assumed.** After the duplicate-`push` repair reached `main` (merge commit `f3d7406`), the job
+ran for real. `site/checks.json` on `main` is now a **live** record committed by `github-actions[bot]` at
+**2026-11-17T01:30:15Z** (commit `ccb092d`), replacing the offline transcription-only file:
+
+| Field | Live value |
+|---|---|
+| `mode` | `live fetch` |
+| `generatedAt` | `2026-11-17T01:22:49+00:00` |
+| `summary.urls` | 92 |
+| `summary.fetched` | 79 |
+| `summary.changed` | 0 |
+| `summary.failed` | 13 (recorded as unavailable, never as a change) |
+| `transcription.rowsMatched` / `rowsTranscribed` | 44 / 44 |
+
+This closes the substance of F30: the scheduled re-check now produces a live, dated, per-URL record, and the daytime
+feed snapshot is written beside it. Thirteen official URLs were unreachable from the runner on this pass. They are
+recorded as `unavailable` with the reason, which is the designed behaviour: an unreachable page is never reported as a
+changed page.
+
+**One further defect found in that first live run and fixed forward.** The run concluded `failure` even though every
+recording step succeeded (steps 5–9 all `success`): step 10, "Push to main, rebasing if another commit landed first",
+gave up after five attempts because four other sessions merged into `main` within the same eight-minute window. The
+record was already committed locally, so the failure was in the publication retry, not in the data. The step is now
+eight attempts with a rebase of only the bot's own record commit, and — because the record is a derived artefact that
+the next scheduled run regenerates — a still-failing push reports `::warning::` and passes, while a genuine recorder
+error still fails the steps above. `tests/test_workflows.py` keeps the file strictly valid.
