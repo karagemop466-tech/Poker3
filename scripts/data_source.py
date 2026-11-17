@@ -1015,6 +1015,21 @@ FLAGS = [
                  "'entry rules not yet read'. The note now states that the rules were read from the structure sheet. "
                  "No value changed; the contradiction was in the prose only."),
          source="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"),
+    dict(id="F77", area="Venetian booking engine", severity="Medium",
+         title="The same trip-window query returned two different suites and totals within about 20 minutes",
+         detail=("Observed on 2026-11-17, not inferred. The official booking engine was opened twice for the "
+                 "identical query - 2 adults, arrival 2026-11-23, departure 2026-11-30, seven nights. The read at "
+                 "about 21:54 UTC returned a venetian Newly Remodeled Luxury King suite with an estimated cost of "
+                 "stay of $4,010.55 (nightly rates 164.25/164.25/201.75/231.75/1,649.25/554.25/186.75, taxes "
+                 "$473.30). The read at about 22:15 UTC returned a palazzo Luxury King suite with an estimated "
+                 "cost of stay of $3,823.46 (nightly rates 204.25/204.25/286.75/406.75/1,119.25/561.75/204.25, "
+                 "taxes $451.21) - $187.09 less, with no change to the dates or the party size. Both quotes "
+                 "reconcile exactly to (rate + $55 resort fee) x 1.1338, so neither is arithmetic error: the "
+                 "engine's best-available offer moved between requests. Both are logged as dated observations in "
+                 "the rate log and neither replaces the other. For a like-for-like comparison, record the suite "
+                 "name, the read time and the itemised breakdown, and re-read the engine immediately before any "
+                 "nonrefundable payment."),
+         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar"),
     dict(id="F60", area="Wynn WPT", severity="Medium",
          title="The $1,100 PLO structure sheet's printed buy-in components total $1,105, not $1,100",
          detail=("The WPT World Championship structure sheet for the $1,100 PLO (Tuesday Dec 1, 1 p.m.) prints the buy-in "
