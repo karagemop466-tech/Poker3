@@ -23238,7 +23238,7 @@
    "source": "https://github.com/karagemop466-tech/Poker3/blob/main/scripts/build_addendum.py"
   },
   {
-   "id": "F77",
+   "id": "F79",
    "area": "Strip poker rooms",
    "severity": "Medium",
    "title": "Planet Hollywood's poker room is no longer open (closed 31 January 2026), so it has no rows on this site",
@@ -23246,7 +23246,7 @@
    "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"
   },
   {
-   "id": "F78",
+   "id": "F80",
    "area": "Strip poker rooms",
    "severity": "Medium",
    "title": "Resorts World Las Vegas: no official poker schedule could be read, and third-party sources disagree on its tournaments",

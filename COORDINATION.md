@@ -3248,5 +3248,5 @@ Branch: `arena/7529044d-poker3` (platform-bound; the `session-<id>/<task>` namin
 | Task | Status | Owner | Scope | Notes |
 |---|---|---|---|---|
 | T1 Resolve F39 room-tax % (Wynn, Caesars, Horseshoe) | done (reference only; `taxRate` stays blank) | arena/5b8ce14d-poker3 | `scripts/data_hotels.py`, `scripts/data_source.py` (F39), `site/data.json` | commits `39ea638`, `b3477cc`; unread values removed (see log) |
-| T2 Strip room coverage and earliest-start check (F17, F21) | done (F17 stands; F77 and F78 added) | arena/5b8ce14d-poker3 | `scripts/data_source.py` (F77, F78), `raw/official_excerpts_5b8ce14d_2026-11-17.md` | commit `da255ae`; Paris and Flamingo unresolved |
+| T2 Strip room coverage and earliest-start check (F17, F21) | done (F17 stands; F79 and F80 added) | arena/5b8ce14d-poker3 | `scripts/data_source.py` (F79, F80), `raw/official_excerpts_5b8ce14d_2026-11-17.md` | commit `da255ae`; Paris and Flamingo unresolved |
 | T3 Integration, PR, merge, Pages check | in progress | arena/5b8ce14d-poker3 | whole repo | PR and merge result recorded below |

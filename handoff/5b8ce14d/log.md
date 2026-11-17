@@ -28,10 +28,11 @@ Commits on `arena/5b8ce14d-poker3`: `dfef263` claim → `39ea638` T1 → `da255a
 ### T2 — Strip room coverage and F17
 - Official Caesars article (dated July 17, 2026; chunks 0–1 of 3 read) gives Caesars Palace: 10 a.m., 2 p.m., 6 p.m., 9 p.m., $100 buy-in, $1,000 guarantee, $50 add-on at the first break. It gives Horseshoe: 9 a.m., 11 a.m., 2 p.m., 5 p.m., 8 p.m., 11 p.m., buy-in not printed. These match the existing rows in `site/data.json`; no event rows changed.
 - **F17 stands.** The earliest official start found is Horseshoe at 9:00 AM. No official 8 AM start was found.
-- **F77 (new):** Planet Hollywood's poker room closed after Jan 31, 2026. Caesars' article names only Caesars Palace and Horseshoe. Planet Hollywood's poker pages returned HTTP 500 on this date. Source is the Review-Journal (third-party, citing Caesars).
-- **F78 (new):** Resorts World's official pages read this session (`/gaming/casino-events/`, `/gaming/poker-room/poker-room-dining/`, the eblast page) show no poker tournament schedule. `/poker`, `/casino/poker/` and `/poker-room/` returned no page. Third-party times and buy-ins conflict, so no row is published.
+- **F79 (new):** Planet Hollywood's poker room closed after Jan 31, 2026. Caesars' article names only Caesars Palace and Horseshoe. Planet Hollywood's poker pages returned HTTP 500 on this date. Source is the Review-Journal (third-party, citing Caesars).
+- **F80 (new):** Resorts World's official pages read this session (`/gaming/casino-events/`, `/gaming/poker-room/poker-room-dining/`, the eblast page) show no poker tournament schedule. `/poker`, `/casino/poker/` and `/poker-room/` returned no page. Third-party times and buy-ins conflict, so no row is published.
 - Flamingo: no official source found. Its status remains unresolved.
 - `rwlasvegas.com` was added to the official-host allowlist (`scripts/verify_site.py`, test file) because it is the property's own site.
+- **Flag IDs:** F77 and F78 were already taken on `main` (PR #108 claims F77; the Venetian booking-engine flag is F78), so this session's flags are F79 (Planet Hollywood) and F80 (Resorts World).
 - **Scope note:** the claim listed `scripts/data_venues.py` and Paris. Neither was changed. Paris was not checked. Flamingo, Paris and Resorts World remain unresolved, and the rooms-on-site list is not expanded.
 
 ### Gate (on `b3477cc`)
@@ -40,7 +41,7 @@ Commits on `arena/5b8ce14d-poker3`: `dfef263` claim → `39ea638` T1 → `da255a
 - unittest: 129 OK.
 
 ### Open items (not blocking merge; shown on `site/flagged.html`)
-- F31 (no written one-entry cap), F16 (no published finish times), F32 (walking times are Google Maps estimates), F56 (Wynn Signature structures unpublished), F17 (no 8 AM start), F39 (room-tax % blank; county reference only; the county listing is dated July 2021), F77, F78.
+- F31 (no written one-entry cap), F16 (no published finish times), F32 (walking times are Google Maps estimates), F56 (Wynn Signature structures unpublished), F17 (no 8 AM start), F39 (room-tax % blank; county reference only; the county listing is dated July 2021), F79, F80.
 - Older flags (not touched here): a Wynn sheet note says "re-read line by line on 2026-11-17", which is unverified in the same way as the F39 wording. Walking-route origin addresses (Wynn 3131, Bellagio 3600) predate T1 and are used only in Maps links.
 
 ### Open next steps

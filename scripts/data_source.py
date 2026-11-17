@@ -1079,7 +1079,7 @@ FLAGS = [
                  "build_addendum.py now reads site/data.json and the two data modules only, so it cannot drift again. "
                  "site/data.json is the only current data file. Kept on the register as the record of the defect."),
          source="https://github.com/karagemop466-tech/Poker3/blob/main/scripts/build_addendum.py"),
-    dict(id="F77", area="Strip poker rooms", severity="Medium",
+    dict(id="F79", area="Strip poker rooms", severity="Medium",
          title="Planet Hollywood's poker room is no longer open (closed 31 January 2026), so it has no rows on this site",
          detail=("Re-read 2026-11-17 (session arena/5b8ce14d-poker3). The official Caesars poker-tournaments page (dated 17 July 2026) "
                  "names only Caesars Palace and Horseshoe Las Vegas as Caesars poker rooms with daily tournament schedules, and "
@@ -1090,7 +1090,7 @@ FLAGS = [
                  "Flamingo is also absent from the official Caesars article; a third-party closure list dates its poker-room closure to "
                  "September 2021, which this site does not treat as verified."),
          source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"),
-    dict(id="F78", area="Strip poker rooms", severity="Medium",
+    dict(id="F80", area="Strip poker rooms", severity="Medium",
          title="Resorts World Las Vegas: no official poker schedule could be read, and third-party sources disagree on its tournaments",
          detail=("Checked 2026-11-17 (session arena/5b8ce14d-poker3). Official rwlasvegas.com pages read: the poker-invite e-mail page "
                  "(no schedule); /gaming/poker-room/poker-room-dining/ (dining only); /gaming/casino-events/ (promotions, no poker "
