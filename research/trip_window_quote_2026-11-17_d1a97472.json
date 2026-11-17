@@ -1,0 +1,72 @@
+{
+  "session": "arena/d1a97472-poker3",
+  "retrievedOn": "2026-11-17",
+  "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar",
+  "reads": [
+    {
+      "n": 1,
+      "date": "2026-11-17",
+      "identicalToSecondRead": true
+    },
+    {
+      "n": 2,
+      "date": "2026-11-17",
+      "identicalToFirstRead": true
+    }
+  ],
+  "stay": {
+    "checkIn": "2026-11-23",
+    "checkOut": "2026-11-30",
+    "nights": 7,
+    "guests": "2 adults, 0 children",
+    "suites": 1
+  },
+  "quote": {
+    "suiteTypePrinted": "venetian Newly Remodeled Luxury King",
+    "ratePlanPrinted": "Best Available Rate & Suite",
+    "offerPrinted": "Book Direct: Up to 25% Off",
+    "estimatedCostOfStay": 4010.55,
+    "averageRatePrinted": 505.32,
+    "taxesPrinted": 473.30,
+    "totalPrinted": 4010.55,
+    "nightly": [
+      { "date": "2026-11-23", "rate": 164.25, "resortFee": 55.0 },
+      { "date": "2026-11-24", "rate": 164.25, "resortFee": 55.0 },
+      { "date": "2026-11-25", "rate": 201.75, "resortFee": 55.0 },
+      { "date": "2026-11-26", "rate": 231.75, "resortFee": 55.0 },
+      { "date": "2026-11-27", "rate": 1649.25, "resortFee": 55.0 },
+      { "date": "2026-11-28", "rate": 554.25, "resortFee": 55.0 },
+      { "date": "2026-11-29", "rate": 186.75, "resortFee": 55.0 }
+    ]
+  },
+  "arithmetic": {
+    "sumOfRates": 3152.25,
+    "sumOfResortFees": 385.0,
+    "subtotalBeforeTax": 3537.25,
+    "perNightDerived": [248.59, 248.59, 291.1, 325.12, 1932.28, 690.77, 274.1],
+    "perNightFormula": "round((rate + 55.00) * 1.1338, 2), summed",
+    "sumOfPerNightDerived": 4010.55,
+    "printedTotal": 4010.55,
+    "averageRateCheck": "(3152.25 + 385.00) / 7 = 505.3214... -> 505.32, matching the printed Average Rate",
+    "taxCheck": "473.30 / 3537.25 = 13.381%, matching the published 13.38% Clark County room tax; the printed figure equals the sum of the per-night rounded taxes",
+    "reconciles": true
+  },
+  "calendarFootnote": "Pricing shown is best available suite and rate, includes daily resort fee, excludes taxes.",
+  "calendarCellsWithTripWindowOpen": [
+    { "date": "2026-11-23", "cell": 165 },
+    { "date": "2026-11-24", "cell": 165 },
+    { "date": "2026-11-25", "cell": 190 },
+    { "date": "2026-11-26", "cell": 210 },
+    { "date": "2026-11-27", "cell": 1155 },
+    { "date": "2026-11-28", "cell": 425 },
+    { "date": "2026-11-29", "cell": 180 },
+    { "date": "2026-11-30", "cell": null },
+    { "date": "2026-12-01", "cell": null }
+  ],
+  "calendarNotes": [
+    "The trip-window cells disagree with the itemised quote panel on the same page (F28/F47): the panel is the only figure used as a price.",
+    "With this window open the trip-night cells differ from the earlier recorded readings (Nov 27: 1155 here against 905 and 1814 earlier; Nov 28: 425 against 340 and 510; Nov 29: 180 against 165 and 230), a third independent confirmation that cells move with the query (F47).",
+    "30 November and 1 December still print no figure in this reading, confirming F57."
+  ],
+  "verification": "Both reads returned byte-identical quote panels. Every printed figure was re-derived from the itemised nightly lines before it was stored; no figure was inferred."
+}
