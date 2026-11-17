@@ -3110,3 +3110,11 @@ Branch: `arena/da83eca8-poker3` (platform-bound; the `session-<id>/<task>` namin
 - **Pages:** API reports `status: built`, source `main` `/`, https://karagemop466-tech.github.io/Poker3/ . The canonical dashboard serves the coverage matrix, the dated 23-30 Nov Venetian quote ($4,010.55 all-in) and the 72-flag register.
 - **Changes merged:** `scripts/coverage.py` + `site/coverage.json` (brief-coverage traceability matrix: 25 items, 21 shipped / 3 partial / 1 not-resolvable), `README.md` (coverage section), `COORDINATION.md` (this session's claim + result records). All other shared outputs (`site/**`, `scripts/**`, tests, workflows) unchanged from the verified `main` state.
 - **Open items (do not block merge; published on site/flagged.html):** F31 (no one-entry-per-player cap → strict-entry filter returns 0), F17 (no official 8 AM start), F16 (no published finish times), F32 (walking times are Google Maps estimates; not all pairs), F39 (room-tax % unpublished at Wynn/Caesars/Horseshoe), F56 (Wynn Signature structures unpublished), F15/F36/F57 (no date-specific hotel quotes for non-Venetian / trip dates).
+
+## Session `arena/5b8ce14d-poker3` — index entry (narrative in `handoff/5b8ce14d/log.md`)
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| T1 Resolve F39 room-tax % (Wynn, Caesars, Horseshoe) | in progress | arena/5b8ce14d-poker3 | `scripts/data_hotels.py`, `site/data.json` | claimed 2026-11-17 UTC |
+| T2 Strip room coverage and earliest-start check (F17, F21) | in progress | arena/5b8ce14d-poker3 | `scripts/data_venues.py`, `raw/**` | claimed 2026-11-17 UTC |
+| T3 Integration, PR, merge, Pages check | pending | arena/5b8ce14d-poker3 | whole repo | after T1-T2 |
