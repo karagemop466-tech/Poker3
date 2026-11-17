@@ -27,6 +27,19 @@ on:
     # and captures each room's daily schedule. GitHub Actions cron is UTC-only.
     - cron: "10 12 * * *"
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      # A change to this file itself gives the job a real first run through the
+      # normal push path, so site/checks.json exists immediately instead of
+      # waiting for the cron. GitHub runs the *new* version of a workflow whose
+      # own file changes in the push, so editing this file (or the scripts it
+      # calls) is what fires it. A change to checks.yml cannot trigger a
+      # different workflow's path filter, which is what the earlier attempt in
+      # source-monitor.yml assumed.
+      - '.github/workflows/checks.yml'
+      - 'scripts/check_sources.py'
+      - 'scripts/daily_feed.py'
 
 permissions:
   contents: write
