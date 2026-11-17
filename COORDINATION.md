@@ -761,9 +761,11 @@ Branch: `arena/a1091d95-poker3`, created from `origin/main` at b30841e (merge of
 
 ### Integration record
 
-- **PR:** created from `arena/a1091d95-poker3` to `main`; merged with `gh pr merge <n> --merge` — link and merge commit recorded below after the merge.
-- **Pages:** re-deployment confirmed after merge via `gh api .../pages` (`status: built`).
-- **Follow-up:** this record (PR link, merge commit, Pages result) is committed to `main` as a separate follow-up commit, same pattern as PRs #10/#12/#34.
+- **PR:** [#36](https://github.com/karagemop466-tech/Poker3/pull/36) (`arena/a1091d95-poker3` → `main`), merged with `gh pr merge 36 --merge` as merge commit `d9734177bf3a1d42ef6307c1371ed073572e1cd3` on 2026-11-17 UTC.
+- **Merge checks:** "Verify static research site" run 43989193008 → success (341 events, 8 hotels, 14 routes, 27 sources, 28 flags, 8 plan days, 15 pages; canonical smoke + node + JSON checks green; `data_source.py` rebuild byte-identical).
+- **Pages:** "Publish integrated Vegas Poker Planner to GitHub Pages" run 43989192927 → success; legacy "pages build and deployment" run 43989191223 → success. Pages API: `status: built`, source `main` `/`, https://karagemop466-tech.github.io/Poker3/ — the canonical `site/` dashboard is live.
+- **Result:** every brief item is implemented and verified (trip-cost calculator entries × buy-ins + nights × true hotel cost; scheduled official-URL re-check with changed-source flags; all 37 structure sheets read; last-checked date on every row; rates kept as a dated log; one page per venue; global search box; date filter; single-entry/freezeout toggle; walking-route ≤30 min filter; day-plan overlap flags with primary + conditional fallback; descriptive guarantee÷fee ratio; executive summary/Q&A/suggestions; Flagged-for-review page).
+- **Irregularities:** 28 flagged items on `site/flagged.html` do not block the merge; each links its official source for manual review, including unresolved single-entry wording on sheets, blank date-specific hotel totals for Nov 25 → Dec 2, 2026, Google Maps walking estimates, and estimated finish times under the disclosed six-hour session assumption.
 
 
 
