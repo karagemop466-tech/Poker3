@@ -189,7 +189,7 @@ function applyTournamentFilters() {
       <td>${e.endEstimate ? esc(e.endEstimate) : blank}<span class="muted">Estimate</span></td>
       <td>${e.lastVerified ? esc(e.lastVerified) : blank}${e.lastChecked ? `<span class="muted">values read ${esc(e.lastChecked)}</span>` : ''}</td>
       <td>${sourceLinks(e)}</td>
-    </tr>`).join('') : `<tr><td colspan="13" class="empty">${state.singleOnly ? 'No event in this reviewed data set has a written one-entry-per-player confirmation. See flagged item F29; do not treat the candidate list as strict eligibility.' : 'No rows match the current filters.'}</td></tr>`;
+    </tr>`).join('') : `<tr><td colspan="13" class="empty">${state.singleOnly ? 'No event in this reviewed data set has a written one-entry-per-player confirmation. See flagged item F31; do not treat the candidate list as strict eligibility.' : 'No rows match the current filters.'}</td></tr>`;
   host.innerHTML = `<div class="table-wrap"><table>${head}<tbody>${body}</tbody></table></div>
     <p class="toolbar-note">${rows.length} of ${(db.events || []).length} rows.
     Every row links the official page or PDF it came from. Blank cells are values no official source published.</p>`;
@@ -594,6 +594,7 @@ function renderSchedule() {
               · ${p.primaryWalk === 0 ? 'room on site' : p.primaryWalk + ' min walk'}</p>
             <p class="day-meta">Buy-in <strong>${money(primary.buyIn)}</strong> · guaranteed pool <strong>${money(primary.guarantee)}</strong>
               · pool ÷ fee <strong>${primary.ratio ? primary.ratio.toFixed(1) + '×' : 'not published'}</strong> (descriptive, not a forecast)</p>
+            ${p.primaryGuaranteeNote ? `<p class="day-meta warn">Pool note: ${esc(p.primaryGuaranteeNote)}.</p>` : ''}
             <p class="day-meta">Starting chips ${primary.chips ? primary.chips.toLocaleString('en-US') : 'not published'}
               · late registration: ${primary.lateReg ? esc(primary.lateReg) : 'not published'}</p>
             ${primary.eligibility ? `<p class="day-meta warn">Restricted: ${esc(primary.eligibility)}</p>` : ''}
@@ -605,6 +606,7 @@ function renderSchedule() {
           ${fallback ? `<h4>${esc(fallback.name)}</h4>
             <p class="day-meta">${esc(venueName(fallback.venue))} · starts ${esc(fallback.time)}
               · buy-in ${money(fallback.buyIn) || 'not published'} · guaranteed ${money(fallback.guarantee) || 'not published'}</p>
+            ${p.fallbackGuaranteeNote ? `<p class="day-meta warn">Pool note: ${esc(p.fallbackGuaranteeNote)}.</p>` : ''}
             <p class="day-meta">${esc(p.fallbackReason)}</p>
             <p>${sourceLinks(fallback)}</p>` : `<p class="muted">${esc(p.fallbackReason)}</p>`}
           <ul class="recurring">${rec}</ul>
@@ -864,7 +866,7 @@ function renderHome() {
       <div class="stat"><div class="stat-label">Published tournament rows</div><div class="stat-value">${evs.length}</div>
         <div class="stat-caption">${dated.length} dated, ${evs.length - dated.length} recurring room events</div></div>
       <div class="stat"><div class="stat-label">Sheet-screened candidates</div><div class="stat-value">${single.length}</div>
-        <div class="stat-caption">No extra-entry terms printed; maximum entries per player unconfirmed (F29)</div></div>
+        <div class="stat-caption">No extra-entry terms printed; maximum entries per player unconfirmed (F31)</div></div>
       <div class="stat"><div class="stat-label">Fee and guarantee confirmed</div><div class="stat-value">${withFee.length}</div>
         <div class="stat-caption">Only these rows are ranked</div></div>
       <div class="stat"><div class="stat-label">Structure sheets read</div><div class="stat-value">${sheetsRead}/${sheetsTotal}</div>
