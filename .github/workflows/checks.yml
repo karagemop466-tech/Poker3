@@ -22,6 +22,25 @@ name: Scheduled source re-check and daily room feed
 # guarantee value: a changed page is flagged for a human to re-read.
 
 on:
+  push:
+    branches: [main]
+    paths:
+      # Run as soon as the job, the data it reads or the dashboard changes, so
+      # the published change record is never older than the content it
+      # describes. It also gives the job its first real run: a cron that has
+      # never fired leaves site/checks.json absent, and the Actions token cannot
+      # dispatch this workflow by hand (POST /dispatches returns 403).
+      #
+      # site/checks.json and site/feed/** are deliberately absent: this job
+      # writes them, so including them would make it trigger itself.
+      - '.github/workflows/checks.yml'
+      - 'scripts/check_sources.py'
+      - 'scripts/daily_feed.py'
+      - 'scripts/data_source.py'
+      - 'scripts/data_venetian.py'
+      - 'scripts/data_venues.py'
+      - 'scripts/data_hotels.py'
+      - 'site/data.json'
   schedule:
     # 12:10 UTC = 04:10 PST / 05:10 PDT, the morning pull. Re-reads every official URL
     # and captures each room's daily schedule. GitHub Actions cron is UTC-only.
