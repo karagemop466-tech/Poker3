@@ -40,6 +40,7 @@ on:
       - 'scripts/data_venetian.py'
       - 'scripts/data_venues.py'
       - 'scripts/data_hotels.py'
+      - 'scripts/verify_transcription.py'
       - 'site/data.json'
   schedule:
     # 12:10 UTC = 04:10 PST / 05:10 PDT, the morning pull. Re-reads every official URL

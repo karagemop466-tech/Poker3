@@ -201,3 +201,40 @@ Run `python3 tests/smoke.py` to validate this companion. When serving the reposi
 README describing what can be imported. The dated Venetian booking-engine quote it recorded (November 17-19, 2026,
 two adults, $1,245.48 including $146.98 of tax) was re-read and imported into the canonical rate log by the
 integration session; the rest of the handoff is kept for audit.
+
+## Snapshot
+
+Trip fixed to **2026-11-23 → 2026-11-30**, seven nights at The Venetian / Palazzo, seven playable days (23–29
+November). It is the only seven-night window in the captured range where the official booking calendar publishes a
+price for every night; the previously recommended 25 November → 2 December window is not bookable online because
+30 November and 1 December publish no price (F38).
+
+| Lodging figure | Value | Basis |
+|---|---|---|
+| Seven nightly cells (resort fee in, tax out) | $165, $165, $190, $210, $905, $340, $165 | Official booking calendar, read twice on 2026-11-17 |
+| Total before tax | $2,140 | sum of the cells |
+| All-in at 13.38% Clark County room tax | $2,426.33 | confirmed from the printed checkout total (F37) |
+| Average per night, all-in | $346.62 | $2,426.33 / 7 |
+| Poker-rate floor | $197.28 | ($119 + $55) x 1.1338, phone-only under code EPOKR25, not a quote |
+
+The single most expensive night on the trip is **Friday 27 November 2026 at $905**, the night after Thanksgiving —
+5.5x the $165 baseline and 42% of the lodging bill on its own. Sheet-screened candidate events: **45**, each
+re-checked against its official structure sheet on 2026-11-17. None of those sheets states a maximum number of
+entries per player, so none is a confirmed one-entry event (F31). A further 14 published rows carry the
+*Unverified* label because their structure sheets have not been read (F40).
+
+## Verification
+
+```sh
+python3 scripts/verify_site.py      # official-source, blank-value and link checks over site/data.json
+python3 scripts/verify_live.py      # every published DSE IV row against the live official schedule capture
+python3 scripts/verify_sheets.py    # every sheet-screened row against facts read from its official structure PDF
+python3 scripts/audit_data.py       # all 37 structure sheets against the read log
+python3 tests/canonical_smoke.py    # page structure plus a headless render check of every page
+node --check site/assets/app.js
+python3 -m json.tool site/data.json
+```
+
+`verify_live.py` and `verify_sheets.py` compare the published data against dated captures in `raw/` and
+`data/sheet_facts_2026-11-17.json`, so a value that drifts from the official source fails the build instead of
+being silently kept. `.github/workflows/verify.yml` runs all of these on every pull request and push to `main`.

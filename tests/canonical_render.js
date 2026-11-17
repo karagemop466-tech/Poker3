@@ -168,11 +168,49 @@ function runVenuePage(venueAttr) {
     let total = 0;
     reg.forEach((el) => { total += el.html.length + el.text.length; });
     const label = page + (search ? search : '');
+    // Content assertions: a page that renders but omits a card is still a failure.
+    if (page === 'hotels') {
+      const pr = reg.get('[data-poker-rate]');
+      if (!pr || !/poker-suite rate is held only if/.test(pr.html)) {
+        console.log('FAIL  hotels: the poker-rate requirement card did not render');
+        failures++;
+      }
+    }
+    if (page === 'schedule') {
+      const dp = reg.get('[data-plan]') || reg.get('[data-plan-summary]');
+      if (!dp || !/2026-11-23/.test(dp.html + (reg.get('[data-plan-summary]') || {}).html)) {
+        console.log('FAIL  schedule: the day plan does not start on the recommended trip date');
+        failures++;
+      }
+    }
     const table = reg.get('[data-tournament-table]');
     const rows = table ? (table.html.match(/row-click/g) || []).length : 0;
     if (page === 'tournaments' && (!table.html.includes('Last checked / verified') || !table.html.includes('Source changed · review') || !table.html.includes('Source unavailable · recheck') || !reg.get('[data-filters]').html.includes('Single-entry / freezeout confirmed'))) {
       console.log(`FAIL  ${label}: row-level dates, source status badges or strict-entry filter are missing`);
       failures++;
+    }
+    if (page === 'schedule') {
+      const plan = reg.get('[data-plan]');
+      if (!plan || !plan.html.includes('Poker-rate condition for the night stayed')) {
+        console.log(`FAIL  ${label}: the per-night poker-rate result did not render on the day plan`);
+        failures++;
+      }
+    }
+    if (page === 'hotels') {
+      const table = reg.get('[data-hotel-table]');
+      const log = reg.get('[data-rate-log]');
+      if (!table || !table.html.includes('$54.95 plus tax') || !table.html.includes('$49.95 plus tax')) {
+        console.log(`FAIL  ${label}: the Caesars Palace and Horseshoe resort fees did not render`);
+        failures++;
+      }
+      if (!table || !table.html.includes('room-tax schedule')) {
+        console.log(`FAIL  ${label}: the county room-tax reference did not render beside a blank property figure`);
+        failures++;
+      }
+      if (!log || !log.html.includes('calendar cells for Nov. 16-30') || log.html.includes('$calendar')) {
+        console.log(`FAIL  ${label}: dated rate-log observations did not render correctly`);
+        failures++;
+      }
     }
     if (page === 'sources') {
       const auto = reg.get('[data-autochecks]');
