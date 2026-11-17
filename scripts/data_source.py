@@ -411,12 +411,14 @@ FLAGS = [
                  "is flagged rather than resolved."),
          source="https://www.wynnlasvegas.com/terms-and-conditions/850070"),
     dict(id="F15", area="Hotels", severity="High",
-         title="Only one dated checkout total exists, and it is not for the recommended trip window",
-         detail=("The Venetian booking engine prints a dated total for November 17-19, 2026 with two adults: $824.25 + $55, "
-                 "$164.25 + $55, $146.98 tax, $1,245.48 total for a 650 sq ft Newly Remodeled Luxury King suite. For the "
-                 "recommended trip window of November 25 to December 2, 2026 the same engine publishes no price, so the "
-                 "nightly budget on this site stays at the floor computed from the published starting rates of $119 and $209 "
-                 "and is labelled a floor, not a quote."),
+         title="Dated checkout totals exist for near-term stays, but none for the recommended trip window",
+         detail=("The Venetian booking engine has now printed three dated totals. November 17-19, 2026 with two adults: "
+                 "$824.25 + $55, $164.25 + $55, $146.98 tax, $1,245.48 total on 2026-11-16, and the same stay at "
+                 "$621.75 + $55, $164.25 + $55, $119.89 tax, $1,015.89 total on 2026-11-17. November 20-22, 2026: "
+                 "$899.25 + $55, $1,199.25 + $55, $295.50 tax, $2,504.00 total. On 2026-11-17 four stay windows inside "
+                 "the recommended trip window of November 25 to December 2, 2026 were opened and none returned a suite or "
+                 "a price, so the nightly budget stays at the floor computed from the published starting rates of $119 "
+                 "and $209 and is labelled a floor, not a quote."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"),
     dict(id="F28", area="Hotels", severity="High",
          title="The Venetian booking calendar disagrees with the quote, and its cells change with the query",
@@ -646,11 +648,12 @@ FLAGS = [
 
 QUESTIONS = [
     dict(id="Q01", question="What are the actual travel dates, and how many nights?",
-         answer=("For planning purposes this session fixed the dates at November 25 to December 2, 2026 because that window "
-                 "contains the most sheet-screened candidates (not confirmed single-entry events) in the reviewed snapshot. "
-                 "The official booking engine publishes no "
-                 "price for those dates. The one dated checkout total it does publish is November 17-19, 2026 for two "
-                 "adults: $1,245.48 including the $55 nightly resort fee and $146.98 of tax."),
+         answer=("For planning purposes this session fixed the dates at November 25 to December 2, 2026 because that "
+                 "window contains the most sheet-screened candidates (not confirmed single-entry events) in the reviewed "
+                 "snapshot. The official booking engine was opened on 2026-11-17 for four stay windows inside those dates "
+                 "and returned no suite and no price for any of them. It does quote near-term stays: it priced November "
+                 "17-19, 2026 for two adults at $1,245.48 on 2026-11-16 and at $1,015.89 on 2026-11-17, and November "
+                 "20-22 at $2,504.00."),
          why="Needed", blocking="Yes - no hotel total can be confirmed without it",
          how="Open the booking link on the hotels page with the arrival and departure dates you want; the price is printed by the venue itself.",
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"),
@@ -670,12 +673,15 @@ QUESTIONS = [
          how="Ask the poker room to confirm in writing that a second buy-in is not accepted for a specific event if that matters for your decision.",
          source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf"),
     dict(id="Q05", question="Which hotels actually publish a room price for the dates you want?",
-         answer=("Only The Venetian, and only through its own booking engine rather than on the rate page. For November "
-                 "17-19, 2026 the engine printed $824.25 + $55, $164.25 + $55, $146.98 tax and a $1,245.48 total for a "
-                 "650 sq ft Luxury King suite. Its calendar cells for November are best-available rates that include the "
-                 "resort fee and exclude tax, and they moved within a single day. The rate page itself still publishes "
-                 "only starting rates of $119 and $209, which are explicitly not date-specific, and states that rates are "
-                 "provided up to 150 days out."),
+         answer=(
+                 "Only The Venetian, and only through its own booking engine rather than on the rate page. Re-read "
+                 "on 2026-11-17, the engine printed $621.75 + $55 and $164.25 + $55 with $119.89 tax and a "
+                 "$1,015.89 total for a 650 sq ft Luxury King suite on November 17-19, against $1,245.48 for the "
+                 "same stay the day before, plus $2,504.00 for November 20-22. For the trip window itself it "
+                 "returned no suite at all. The engine's calendar cells are not prices: read twice on the same day, "
+                 "November 16 printed $555 with one stay window open and $854 with another, and November 27 printed "
+                 "$905 against $1,814 (F31). The rate page publishes only starting rates of $119 and $209, which are "
+                 "explicitly not date-specific, and states that rates are provided up to 150 days out."),
          why="Needed", blocking="Yes for a confirmed total",
          how="Open the booking link with the exact dates, then log the printed total in the rate log with its timestamp.",
          source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
@@ -864,6 +870,21 @@ SUGGESTIONS = [
                  "2026-12-02 would settle it."),
          impact="High", effort="Low",
          decision="Read three PDFs; no new source needed"),
+    dict(id="S15", title="Re-quote the trip window every morning and log what the engine returns",
+         detail=("Three dated quotes show the engine moves: the same November 17-19 stay printed $1,245.48 on "
+                 "2026-11-16 and $1,015.89 on 2026-11-17. Four stay windows inside the trip window returned no suite at "
+                 "all. A scheduled job that opens the seven per-night booking links each morning and appends whatever "
+                 "the engine prints - a total, or 'no suite returned' - would turn the trip budget from a floor into a "
+                 "tracked number without anyone having to remember to look."),
+         impact="High", effort="Medium",
+         decision="Automate the morning re-quote, or keep the per-night links manual"),
+    dict(id="S16", title="Never treat a booking-calendar cell as a price",
+         detail=("Read twice on the same day, the official calendar printed $555 and $854 for November 16 and $905 and "
+                 "$1,814 for November 27 depending on which stay window was open. The cell tracks the cheapest suite the "
+                 "engine can offer for that query, not a nightly rate. This is already enforced in the data - only the "
+                 "itemised quote panel is used - but the comparison is worth keeping on the hotels page so a reader does "
+                 "not copy a calendar figure into a budget."),
+         impact="Medium", effort="Done", decision="Keep the comparison published"),
 ]
 
 
