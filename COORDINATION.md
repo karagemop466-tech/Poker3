@@ -2467,3 +2467,27 @@ suite: **99 tests OK**.
 Honest note on the published record: `site/checks.json` on `main` at that moment carries 79 changed flags from the
 transition run. The next run against a same-basis record will report the true number, and the sources page shows the
 `hashBasis` field so a reader can see which comparison produced each figure.
+
+### Monitor result after the basis fix (arena/ed1d2489-poker3, PR #83 merged)
+
+The scheduled re-check ran at **2026-11-17T02:34:21Z** on `main` and this time the numbers are the true ones:
+
+| Field | Value |
+|---|---|
+| `conclusion` | **success** (run 44003336777) |
+| `summary.urls` | 97 |
+| `summary.fetched` | 80 |
+| `summary.changed` | **0** |
+| `summary.failed` | 17, all recorded as `unavailable` with the reason, never as a change |
+| per-URL `hashBasis` | 80 of 80 |
+| `basisReset` | 80, i.e. every URL was re-baselined once on the text basis and **none** was reported as changed |
+| `transcription` | 44/44 rows matched the official series PDF |
+
+So the chain is now closed end to end: the job parses, runs on a schedule **and** on push, records a live per-URL
+change log against visible text, survives a concurrent merge without failing, re-baselines instead of crying wolf when
+the comparison basis changes, and passes its own verification suite on every run. The next substantive change to an
+official page will be the first genuine `changed` flag.
+
+The 17 unavailable URLs are the property hosts that refuse or time out from a GitHub runner (Caesars returns 403/302
+loops, Bellagio and ARIA time out). They are published as unavailable with the HTTP status and error, so the gap is
+visible on the sources page rather than hidden, and none of them is silently treated as unchanged.
