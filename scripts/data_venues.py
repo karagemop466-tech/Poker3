@@ -30,7 +30,7 @@ ARIA_GUIDE = "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria
 # ---------------------------------------------------------------- Wynn daily
 # Recurring daily tournaments. Structure PDF is the rule source.
 WYNN_DAILY = [
-    dict(name="$200 No Limit Hold'em (Monday-Thursday)", days="Monday-Thursday", time="12:00 PM", weekdays=[0,1,2,3],
+    dict(name="$200 No Limit Hold'em", days="Monday-Thursday", time="12:00 PM", weekdays=[0,1,2,3],
          buyIn=200, guarantee=10000, chips=25000, levelMin=30, lateReg="Registration and re-entries until the start of level 9 (approximately 4:30 p.m.)",
          source=WYNN_DAILY_STRUCT, poster=WYNN_DAILY_POSTER, category="extra",
          rules=dict(
@@ -39,7 +39,7 @@ WYNN_DAILY = [
              addOn=dict(status="none-printed", excerpt="No add-on provision appears on this structure sheet."),
              fee=dict(status="confirmed", excerpt="The $200 Entry Fee will be distributed as follows: $26 for the Tournament fee, $12 for the poker staff service charge, and $162 for the Tournament prize pool.")),
          note="The daily slate is suspended during each Wynn Signature, Wynn Millions and Classic tournament series (per the official poker-room page)."),
-    dict(name="$240 No Limit Hold'em Rebuy & Add-on (Friday)", days="Friday", time="12:00 PM", weekdays=[4],
+    dict(name="$240 No Limit Hold'em Rebuy & Add-on", days="Friday", time="12:00 PM", weekdays=[4],
          buyIn=240, guarantee=40000, chips=25000, levelMin=30, lateReg="Registration, rebuys and add-ons until the start of level 9 (approximately 4:30 p.m.)",
          source=WYNN_DAILY_STRUCT, poster=WYNN_DAILY_POSTER, category="extra",
          rules=dict(
@@ -49,7 +49,7 @@ WYNN_DAILY = [
              rebuy=dict(status="allowed", excerpt="Unlimited $200 rebuys for 25,000 tournament chips are available any time a player is at 15,000 chips or less."),
              fee=dict(status="confirmed", excerpt="The Tournament entry fee is $240, of which $35 will be withheld for the Tournament fee and $15 as a service charge for poker staff. $190 of each Entry Fee and rebuy will fund the Tournament prize pool.")),
          note="A rebuy-heavy event: spending more buys a second shot at the same prize pool."),
-    dict(name="$200 No Limit Hold'em (Saturday & Sunday)", days="Saturday, Sunday", time="12:00 PM", weekdays=[5,6],
+    dict(name="$200 No Limit Hold'em", days="Saturday, Sunday", time="12:00 PM", weekdays=[5,6],
          buyIn=200, guarantee=25000, chips=25000, levelMin=30, lateReg="Registration, re-entries, and one (1) add-on per entry until the start of level 11 (approximately 5:30 p.m.)",
          source=WYNN_DAILY_STRUCT, poster=WYNN_DAILY_POSTER, category="extra",
          rules=dict(
@@ -57,7 +57,7 @@ WYNN_DAILY = [
              reEntry=dict(status="allowed", excerpt="Registration, re-entries, and one (1) add-on per entry will be available until the start of level 11 (approximately 5:30 p.m.)."),
              addOn=dict(status="allowed", excerpt="One (1) $100 add-on for 25,000 tournament chips is available any time until the end of registration."),
              fee=dict(status="confirmed", excerpt="The $200 Entry Fee will be distributed as follows: $26 for the Tournament fee, $12 for the poker staff service charge, and $162 for the Tournament prize pool."))),
-    dict(name="$160 No Limit Hold'em Nightly", days="Nightly Monday-Sunday", time="6:00 PM", weekdays=[0,1,2,3,4,5,6],
+    dict(name="$160 No Limit Hold'em Nightly", days="Monday-Sunday", time="6:00 PM", weekdays=[0,1,2,3,4,5,6],
          buyIn=160, guarantee=10000, chips=25000, levelMin=20, lateReg="Registration, re-entries, and one (1) add-on per entry until the start of level 9 (approximately 9:00 p.m.)",
          source=WYNN_DAILY_STRUCT, poster=WYNN_DAILY_POSTER, category="extra",
          rules=dict(
@@ -263,7 +263,7 @@ BELLAGIO_EVENTS = [
          note="The optional $40 staff gratuity buys 15,000 extra chips, so paying more raises your stack. No guarantee is printed on the sheet."),
     dict(name="$1,000 / $1,100 No Limit Hold'em (multi-flight)", days="Saturdays", time="11:00 AM", weekdays=[5],
          buyIn="", guarantee="", chips=40000, levelMin=30, source=BELLAGIO_SAT, page=BELLAGIO_POKER,
-         category="conflict", lateReg="Registration and re-entry through the end of level 8 (including break). Level length 30 minutes.",
+         category="conflict", lateReg="Registration will be open until the start of Level 10. (Approximately 5:15pm for Flights 1A, 1B, 4:15pm for 1C and 9:30pm for Flight D).",
          rules=dict(
              singleEntry=dict(status="source-conflict", excerpt="The PDF header reads 'NLH $1100 BUY-IN', the poker-room page link reads '$1,000 NLH', and rule 07 reads 'Of the $600 Buy-in, $510 goes to the Prize Pool, $50 is Admin Fees and $40 is optional staff gratuity.'"),
              reEntry=dict(status="not-verified", excerpt="No re-entry clause appears on the sheet; the entry fee itself is in conflict, so the event is not ranked."),
@@ -292,14 +292,14 @@ BELLAGIO_EVENTS = [
 
 # ---------------------------------------------------------------- MGM Grand
 MGM_EVENTS = [
-    dict(name="$120 No Limit Hold'em", days="Monday-Friday", time="11:10 AM", weekdays=[0,1,2,3,4], buyIn=120, guarantee="",
+    dict(name="$120 No Limit Hold'em", days="Sunday-Friday", time="11:10 AM", weekdays=[0,1,2,3,4,6], buyIn=120, guarantee="",
          chips=25000, levelMin=15, source=MGM_SCHED, page=MGM_POKER, category="recurring",
          lateReg="Registration is open until Level 8. Level length 15 minutes.",
          rules=dict(
              singleEntry=dict(status="multiple-entries", excerpt="Sunday through Friday - All players with 5 entries into daily tournaments will receive one (1) free entry into the Saturday $150 NLH - $2,000 Guarantee."),
              reEntry=dict(status="implied-multiple", excerpt="The same promotion counts five entries into the daily tournaments, so repeated entries are expected and rewarded."),
-             addOn=dict(status="paid-chip-gratuity", excerpt="Each initial $120 buy-in is allocated as follows: $92 to Prize Pool, $13 House Fee and a onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips."),
-             fee=dict(status="confirmed", excerpt="Each initial $120 buy-in is allocated as follows: $92 to Prize Pool, $13 House Fee and a onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips. $4 will fund Tournament Promotions.")),
+             addOn=dict(status="paid-chip-gratuity", excerpt="Each initial $120 buy-in is allocated as follows: $92 to Prize Pool, $13 House Fee and a onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips.", source=MGM_STRUCT),
+             fee=dict(status="confirmed", excerpt="Each initial $120 buy-in is allocated as follows: $92 to Prize Pool, $13 House Fee and a onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips. $4 will fund Tournament Promotions.", source=MGM_STRUCT)),
          note="The published weekly schedule PDF is headed 'MGM Grand August Tournament Schedule', so the month on the sheet is not current."),
     dict(name="$120 No Limit Hold'em", days="Monday-Sunday", time="7:10 PM", weekdays=[0,1,2,3,4,5,6], buyIn=120, guarantee="",
          chips=25000, levelMin=15, source=MGM_SCHED, page=MGM_POKER, category="recurring",
@@ -307,8 +307,8 @@ MGM_EVENTS = [
          rules=dict(
              singleEntry=dict(status="multiple-entries", excerpt="Sunday through Friday - All players with 5 entries into daily tournaments will receive one (1) free entry into the Saturday $150 NLH - $2,000 Guarantee."),
              reEntry=dict(status="implied-multiple", excerpt="The promotion counts five entries into the daily tournaments."),
-             addOn=dict(status="paid-chip-gratuity", excerpt="A onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips."),
-             fee=dict(status="confirmed", excerpt="Each initial $120 buy-in is allocated as follows: $92 to Prize Pool, $13 House Fee and a onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips.")),
+             addOn=dict(status="paid-chip-gratuity", excerpt="A onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips.", source=MGM_STRUCT),
+             fee=dict(status="confirmed", excerpt="Each initial $120 buy-in is allocated as follows: $92 to Prize Pool, $13 House Fee and a onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips.", source=MGM_STRUCT)),
          note="Registration is open until Level 8 per the $120 structure sheet."),
     dict(name="$120 No Limit Hold'em", days="Monday-Sunday", time="11:10 PM", weekdays=[0,1,2,3,4,5,6], buyIn=120, guarantee="",
          chips=25000, levelMin=15, source=MGM_SCHED, page=MGM_POKER, category="recurring",
@@ -316,8 +316,8 @@ MGM_EVENTS = [
          rules=dict(
              singleEntry=dict(status="multiple-entries", excerpt="Sunday through Friday - All players with 5 entries into daily tournaments will receive one (1) free entry into the Saturday $150 NLH - $2,000 Guarantee."),
              reEntry=dict(status="implied-multiple", excerpt="The promotion counts five entries into the daily tournaments."),
-             addOn=dict(status="paid-chip-gratuity", excerpt="A onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips."),
-             fee=dict(status="confirmed", excerpt="Each initial $120 buy-in is allocated as follows: $92 to Prize Pool, $13 House Fee and a onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips.")),
+             addOn=dict(status="paid-chip-gratuity", excerpt="A onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips.", source=MGM_STRUCT),
+             fee=dict(status="confirmed", excerpt="Each initial $120 buy-in is allocated as follows: $92 to Prize Pool, $13 House Fee and a onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips.", source=MGM_STRUCT)),
          note="No guarantee is printed on the $120 sheet."),
     dict(name="$150 No Limit Hold'em $2,000 Guarantee", days="Saturday", time="11:10 AM", weekdays=[5], buyIn=150,
          guarantee=2000, chips=25000, levelMin=20, source=MGM_SCHED, page=MGM_POKER, category="recurring",
@@ -325,8 +325,8 @@ MGM_EVENTS = [
          rules=dict(
              singleEntry=dict(status="multiple-entries", excerpt="Sunday through Friday - All players with 5 entries into daily tournaments will receive one (1) free entry into the Saturday $150 NLH - $2,000 Guarantee."),
              reEntry=dict(status="implied-multiple", excerpt="The prize is earned by taking five entries in the daily tournaments."),
-             addOn=dict(status="paid-chip-gratuity", excerpt="The $120 daily structure sheet provides a $11 optional gratuity for 10,000 extra chips; the $150 structure was not published on the poker-room page."),
-             fee=dict(status="not-verified", excerpt="The $150 structure sheet was not published on the MGM Grand poker-room page.")),
+             addOn=dict(status="paid-chip-gratuity", excerpt="The $120 daily structure sheet provides a $11 optional gratuity for 10,000 extra chips; the $150 structure was not published on the poker-room page.", source=MGM_STRUCT),
+             fee=dict(status="not-verified", excerpt="The $150 structure sheet was not published on the MGM Grand poker-room page.", source=MGM_POKER)),
          note="20-minute levels on Saturday per the published weekly schedule."),
 ]
 
