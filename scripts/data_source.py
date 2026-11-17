@@ -751,14 +751,20 @@ FLAGS = [
                  "poker room before any decision that depends on it."),
          source="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"),
     dict(id="F35", area="Hotel terms", severity="High",
-         title="The Wynn terms page used as the fee source is an expired 2025 offer",
+         title="The Wynn terms page cited for the resort fee is an expired 2025 offer; the cancellation term lives elsewhere",
          detail=("The earlier build cited https://www.wynnlasvegas.com/terms-and-conditions/850070 for Wynn's $55 resort "
                  "fee, parking and 48-hour cancellation. That page is a DINING CREDIT offer whose own text says a stay "
                  "booked under it 'must be completed on or before September 30, 2025', so it cannot substantiate a "
                  "November 2026 trip. The fee was re-verified on 2026-11-17 from the live Resort Policies page, which "
-                 "still prints $55 plus tax, check-in 3 p.m. and check-out 12 p.m. The 48-hour cancellation window appears "
-                 "only in offer terms, so Wynn has no verified flexible-booking cancellation deadline and is shown blank."),
-         source="https://www.wynnlasvegas.com/about-us/resort-information"),
+                 "still prints $55 plus tax, check-in 3 p.m. and check-out 12 p.m.; that page does not print a "
+                 "cancellation window. Corrected 2026-11-17 on a second live read: the 48-hour window is NOT confined "
+                 "to offer terms. The live Terms page (the same /terms-and-conditions/850070 URL) carries a "
+                 "'CANCELLATION POLICY' section whose body reads 'cancellations must be received at least 48 hours "
+                 "prior to arrival date or deposit (if applicable) will be forfeited', plus an early-departure penalty "
+                 "of the departing night's rate and tax. The hotel row now records that general 48-hour term with the "
+                 "Terms URL as its source, and notes that the same page also prints offer-specific date exceptions "
+                 "that were not read one by one."),
+         source="https://www.wynnlasvegas.com/terms-and-conditions/850070"),
     dict(id="F36", area="Hotel cost", severity="Medium",
          title="RESOLVED 2026-11-17: the booking engine does print an itemised total for the trip window; the $XXX cells were a rendering artefact",
          detail=("Superseded on the evening of 2026-11-17. This flag was written against the superseded 25 November - "
@@ -1099,6 +1105,23 @@ FLAGS = [
                  "Somuchpoker), and none is official, so no Resorts World row is published. Its poker room is a candidate to add "
                  "once its official poker page is reached."),
          source="https://www.rwlasvegas.com/gaming/casino-events/"),
+    dict(id="F81", area="Hotel cost", severity="Medium",
+         title="MGM Resorts booking pages served the same price grid on two different property URLs",
+         detail=("Read live on 2026-11-17 by session 58e42dbd. The MGM Grand room booking page, opened with the MGM King "
+                 "picker and 2 guests, printed a November 2026 calendar: 22 Nov $84, 23 Nov $84, 24 Nov $84, 25 Nov "
+                 "$84, 26 Nov $149, 27 Nov $349, 28 Nov $149, 29 Nov unavailable, 30 Nov $649. The Bellagio booking "
+                 "page, opened in the same session on its own URL, printed a grid containing the same run of figures "
+                 "(22-25 Nov $84, 26 Nov $149, 27 Nov $349, 28 Nov $149, 30 Nov $649) alongside Bellagio-only values "
+                 "on other nights (17 Nov $309, 19 Nov $249). Both pages carry a resort picker and a shared cart, so "
+                 "the most likely explanation is that the grid renders whichever property the booking session has "
+                 "selected, not necessarily the URL's property. Consequence for this project: a cell from an MGM "
+                 "Resorts booking URL cannot be attributed to a property without the property name printed beside it. "
+                 "The MGM Grand cells are logged with the room type the page names in its own picker ('Price on "
+                 "calendar for MGM King'); the Bellagio cells are deliberately NOT logged as a Bellagio rate and its "
+                 "room rate stays blank. Anyone re-reading either page must confirm the selected property first. This "
+                 "was renumbered twice as other sessions published their own flags on main while this branch was open, and "
+                 "is now F81; flag ids are kept unique across the whole repository, not per session."),
+         source="https://bellagio.mgmresorts.com/book-room?property=bellagio&resort=66964e2b-2550-4476-84c3-1a4c0c5c067f"),
 
 ]
 

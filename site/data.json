@@ -21006,8 +21006,8 @@
    "resortFeeNote": "$55 resort fee per night stayed, plus tax, payable upon check-in.",
    "taxRate": 13.38,
    "taxNote": "Clark County Room Tax of 13.38% applies to the daily rate; the resort fee is 'plus applicable tax'.",
-   "parking": "$20 per day for registered hotel guests (seven days a week); $20 Monday-Thursday and $25 Friday-Sunday for non-hotel guests; valet $40 per day.",
-   "parkingSource": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
+   "parking": "$20 per day for registered hotel guests (seven days a week); $20 Monday-Thursday and $25 Friday-Sunday for non-hotel guests; valet $40 per day. Separately, the poker room's own parking page states that players in the poker room who play three hours or more in tournament or cash games receive complimentary self-parking for the day, confirmed with a supervisor at the end of the session; Venetian Rewards Sapphire members and above also self-park free.",
+   "parkingSource": "https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html",
    "cancellation": "A deposit for the stay including suite, fee and tax is billed on reservation confirmation. Blackout dates apply. Prepaid offers are non-cancellable and non-refundable. Early checkout before the scheduled departure date costs $100 plus tax.",
    "cancellationSource": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
    "incidental": "$150 per night credit card incidental deposit for suite charging privileges (non-Signature Suites).",
@@ -21564,8 +21564,8 @@
    "taxReferenceSource": "https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf",
    "parking": "Self parking is complimentary for registered guests. Non-registered guests pay $25 per day with the first three hours free; valet $40 per day. Complimentary self-parking is extended to Wynn Poker Room guests.",
    "parkingSource": "https://www.wynnlasvegas.com/about-us/resort-information",
-   "cancellation": "A deposit of one night's room rate and tax is charged at booking. The live policy page does not print a cancellation window; the 48-hour window appears only in offer terms, so no Wynn cancellation deadline is marked verified for a flexible 2026 booking.",
-   "cancellationSource": "https://www.wynnlasvegas.com/about-us/resort-information",
+   "cancellation": "A deposit of the first night's room rate and tax is charged at booking. The property's live terms page prints a CANCELLATION POLICY section: \"cancellations must be received at least 48 hours prior to arrival date or deposit (if applicable) will be forfeited\", and early departures without notice cost \"the room rate and tax for the night on which the guest departed early\". The same page carries offer-specific date exceptions, which were not read individually, so the 48-hour window is recorded as the general term only (re-read 2026-11-17, flag F35).",
+   "cancellationSource": "https://www.wynnlasvegas.com/terms-and-conditions/850070",
    "incidental": "A credit card authorised to cover room, resort fees and tax plus $150 a night for incidentals is required at check-in.",
    "checkInOut": "Check-in after 3 p.m.; check-out before 12 p.m.",
    "qualification": "",
@@ -21906,6 +21906,21 @@
    "taxSource": "https://aria.mgmresorts.com/en/terms-and-conditions.html"
   },
   {
+   "hotel": "bellagio",
+   "observedOn": "2026-11-17",
+   "baseRate": "",
+   "publishedStartingRates": "",
+   "resortFee": "55.00 per night plus applicable tax (Bellagio hotel reservation terms)",
+   "tax": "not printed: Bellagio's terms print no room-tax percentage",
+   "trueNightlyLow": "",
+   "trueNightlyHigh": "",
+   "quoteType": "No property-identified price captured; grid did not identify Bellagio in this read",
+   "note": "The Bellagio booking page was opened for 2 guests on 2026-11-17 and rendered a calendar grid, but the grid is NOT recorded as a Bellagio price. The identical grid appeared on the MGM Grand booking page in the same session (see flag F81 in the register): 22-28 November printed $84, $84, $84, $84, $149, $349, $149 and 30 November printed $649, with 17 November $309 and 19 November $249 on the Bellagio URL. A page that can serve another property's grid is not evidence of this property's rate, so the Bellagio room rate stays blank and no nightly figure is derived from these cells.",
+   "source": "https://bellagio.mgmresorts.com/book-room?property=bellagio&resort=66964e2b-2550-4476-84c3-1a4c0c5c067f",
+   "feeSource": "https://bellagio.mgmresorts.com/en/terms-and-conditions.html",
+   "taxSource": "https://bellagio.mgmresorts.com/en/terms-and-conditions.html"
+  },
+  {
    "hotel": "caesars",
    "observedOn": "2026-11-17",
    "baseRate": "",
@@ -21959,6 +21974,21 @@
    "quoteType": "Fee verified, no published room rate",
    "note": "Resort fee read from the MGM Grand official hotel reservation terms: 'A daily resort fee of $50.00 plus applicable tax will be applied to all reservations.' Room rate still blank: no official date-specific price was published.",
    "source": "https://mgmgrand.mgmresorts.com/en/hotel.html",
+   "feeSource": "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html",
+   "taxSource": "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html"
+  },
+  {
+   "hotel": "mgm",
+   "observedOn": "2026-11-17",
+   "baseRate": "",
+   "publishedStartingRates": "MGM King calendar cells, November 2026: 11-18 $219; 11-22 $84, 11-23 $84, 11-24 $84, 11-25 $84, 11-26 $149, 11-27 $349, 11-28 $149; 11-30 $649. December 2026: 12-01 $649, 12-02 $1,049, 12-03 $1,149, 12-04 $299, 12-05 $349, 12-06 $429, 12-07 $210, 12-08 $210, 12-09 $91, 12-10 $229, 12-11 $579, 12-12 $409",
+   "resortFee": "50.00 per night plus applicable tax (MGM Grand hotel reservation terms), already inside the calendar cell",
+   "tax": "not printed: the calendar states it excludes taxes and the terms print no percentage",
+   "trueNightlyLow": "",
+   "trueNightlyHigh": "",
+   "quoteType": "Official booking-calendar cells (lowest available, resort-fee inclusive, tax exclusive; not a quote)",
+   "note": "Read on the MGM Grand room booking page with the MGM King picker selected and 2 guests. The page's own legend reads: 'Calendar pricing includes avg. daily resort fee (if applicable), excludes taxes. Rates are based on the lowest rate available. Rates and room availability may vary based on the actual length of your stay.' Six of the seven trip nights (23-29 Nov) printed a cell; 29 Nov printed as unavailable. No checkout total is printed for a dated stay without completing a reservation, so no true-nightly figure is derived. Tax stays blank because MGM Grand prints no room-tax percentage.",
+   "source": "https://mgmgrand.mgmresorts.com/book-room?property=mgmgrand&room=23f5bef8-63ea-4ba9-a290-13b5a3056595&resort=66964e2b-2550-4476-84c3-1a4c0c5c067f",
    "feeSource": "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html",
    "taxSource": "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html"
   },
@@ -23608,9 +23638,9 @@
    "id": "F35",
    "area": "Hotel terms",
    "severity": "High",
-   "title": "The Wynn terms page used as the fee source is an expired 2025 offer",
-   "detail": "The earlier build cited https://www.wynnlasvegas.com/terms-and-conditions/850070 for Wynn's $55 resort fee, parking and 48-hour cancellation. That page is a DINING CREDIT offer whose own text says a stay booked under it 'must be completed on or before September 30, 2025', so it cannot substantiate a November 2026 trip. The fee was re-verified on 2026-11-17 from the live Resort Policies page, which still prints $55 plus tax, check-in 3 p.m. and check-out 12 p.m. The 48-hour cancellation window appears only in offer terms, so Wynn has no verified flexible-booking cancellation deadline and is shown blank.",
-   "source": "https://www.wynnlasvegas.com/about-us/resort-information"
+   "title": "The Wynn terms page cited for the resort fee is an expired 2025 offer; the cancellation term lives elsewhere",
+   "detail": "The earlier build cited https://www.wynnlasvegas.com/terms-and-conditions/850070 for Wynn's $55 resort fee, parking and 48-hour cancellation. That page is a DINING CREDIT offer whose own text says a stay booked under it 'must be completed on or before September 30, 2025', so it cannot substantiate a November 2026 trip. The fee was re-verified on 2026-11-17 from the live Resort Policies page, which still prints $55 plus tax, check-in 3 p.m. and check-out 12 p.m.; that page does not print a cancellation window. Corrected 2026-11-17 on a second live read: the 48-hour window is NOT confined to offer terms. The live Terms page (the same /terms-and-conditions/850070 URL) carries a 'CANCELLATION POLICY' section whose body reads 'cancellations must be received at least 48 hours prior to arrival date or deposit (if applicable) will be forfeited', plus an early-departure penalty of the departing night's rate and tax. The hotel row now records that general 48-hour term with the Terms URL as its source, and notes that the same page also prints offer-specific date exceptions that were not read one by one.",
+   "source": "https://www.wynnlasvegas.com/terms-and-conditions/850070"
   },
   {
    "id": "F36",
@@ -23867,6 +23897,14 @@
    "title": "Resorts World Las Vegas: no official poker schedule could be read, and third-party sources disagree on its tournaments",
    "detail": "Checked 2026-11-17 (session arena/5b8ce14d-poker3). Official rwlasvegas.com pages read: the poker-invite e-mail page (no schedule); /gaming/poker-room/poker-room-dining/ (dining only); /gaming/casino-events/ (promotions, no poker tournament). /poker, /casino/poker/ and /poker-room/ returned no page. Third-party pages disagree on times and buy-ins for Resorts World's tournaments (PokerNews 2024, Vegas Advantage 2025, CardPlayer, Bet-NV 2023, PokerAtlas, Somuchpoker), and none is official, so no Resorts World row is published. Its poker room is a candidate to add once its official poker page is reached.",
    "source": "https://www.rwlasvegas.com/gaming/casino-events/"
+  },
+  {
+   "id": "F81",
+   "area": "Hotel cost",
+   "severity": "Medium",
+   "title": "MGM Resorts booking pages served the same price grid on two different property URLs",
+   "detail": "Read live on 2026-11-17 by session 58e42dbd. The MGM Grand room booking page, opened with the MGM King picker and 2 guests, printed a November 2026 calendar: 22 Nov $84, 23 Nov $84, 24 Nov $84, 25 Nov $84, 26 Nov $149, 27 Nov $349, 28 Nov $149, 29 Nov unavailable, 30 Nov $649. The Bellagio booking page, opened in the same session on its own URL, printed a grid containing the same run of figures (22-25 Nov $84, 26 Nov $149, 27 Nov $349, 28 Nov $149, 30 Nov $649) alongside Bellagio-only values on other nights (17 Nov $309, 19 Nov $249). Both pages carry a resort picker and a shared cart, so the most likely explanation is that the grid renders whichever property the booking session has selected, not necessarily the URL's property. Consequence for this project: a cell from an MGM Resorts booking URL cannot be attributed to a property without the property name printed beside it. The MGM Grand cells are logged with the room type the page names in its own picker ('Price on calendar for MGM King'); the Bellagio cells are deliberately NOT logged as a Bellagio rate and its room rate stays blank. Anyone re-reading either page must confirm the selected property first. This was renumbered twice as other sessions published their own flags on main while this branch was open, and is now F81; flag ids are kept unique across the whole repository, not per session.",
+   "source": "https://bellagio.mgmresorts.com/book-room?property=bellagio&resort=66964e2b-2550-4476-84c3-1a4c0c5c067f"
   }
  ],
  "questions": [
