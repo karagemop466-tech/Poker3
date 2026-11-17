@@ -1051,3 +1051,119 @@ confirmed anywhere and the site now says "sheet-screened candidate" instead of i
 
 **Open PRs left deliberately unmerged:** #31 and #27 (verdict in B5 above) and #7. None of them is required for the
 brief, and each rewrites shared outputs that this round verified.
+
+---
+
+---
+
+## Session `arena/f0351b8d-poker3` — final integration verification and publication record (2026-11-17 UTC)
+
+**Claim recorded 2026-11-17 UTC before any file edits in this session.** Branch `arena/f0351b8d-poker3`, rebased
+onto `origin/main` @ `1f8c045` (which carries PRs #38, #40 and #41 — the merged final integration, the
+eligibility-clarification UX pass, and the first-run source-check trigger). This session is the **final
+integration session** for this round: it re-verifies the combined canonical data line by line, confirms the
+site builds with no broken links, reviews the remaining open PRs, and records the PR/merge/deploy result.
+
+| Task | Status | Owner | Scope (files) | Notes |
+|---|---|---|---|---|
+| F1 Re-verify the canonical `site/` data line by line against the recorded verbatim official copies | done | arena/f0351b8d-poker3 | `site/data.json`, `raw/**`, `scripts/verify_site.py` | Structural, arithmetic and link checks re-run this session; see below. |
+| F2 Confirm the site builds with no broken links and the build is reproducible | done | arena/f0351b8d-poker3 | `site/**`, `scripts/data_source.py` | 0 broken internal links; `data_source.py` rebuild byte-identical. |
+| F3 Review the open competing PRs (#39, #31, #27, #7) and decide merge vs. hold | done | arena/f0351b8d-poker3 | `COORDINATION.md` | Held unmerged; verdict and reason recorded below. |
+| F4 Final integration: record, PR → main, merge, confirm Pages, record result here | done | arena/f0351b8d-poker3 | `COORDINATION.md` | PR and merge recorded below. |
+
+**Scope protocol.** This session edits only `COORDINATION.md` (this record). It does **not** edit `site/**`,
+`scripts/**`, the workflows, or the prior-session artefact directories (`docs/`, `verified/`, `planner/`,
+`single-entry/`, `site/poker3/**`, `handoff/`, `raw/`, root legacy HTML). The canonical data and pages are
+already correct and verified on `main`; this session adds the final verification record rather than
+overwriting verified outputs, so nothing another session verified is discarded.
+
+### Verification performed (this session, 2026-11-17 UTC)
+
+The sandbox can reach only `github.com` / `codeload.github.com` / `api.github.com` and the npm/PyPI registries,
+so official venue hosts cannot be re-fetched live here. Verification is therefore done against the verbatim
+official copies the prior sessions recorded under `raw/` and against the canonical `site/data.json`, which is
+the same evidence basis the merged sessions used. Every check below was re-run this session:
+
+- **`scripts/verify_site.py`** — passed: **341 events, 8 hotels, 14 routes, 27 sources, 32 flags, 8 plan days,
+  16 pages** (11 main pages incl. the global `search.html` results page, plus 5 detail/venue/calculator
+  pages). Confirms official-domain links, intentional blanks for unverified values, and valid local links.
+  Note: session `45cfee0b` (PR #42) re-checked the 24 DSE IV rows dated 2026-11-16 to 2026-11-28 against the
+  live official page on 2026-11-17 and set `lastChecked: 2026-11-17` on those rows; this session confirmed
+  those 24 rows still agree with the recorded data.
+- **`tests/canonical_smoke.py`** — passed: 10 main pages + 5 detail pages render with populated tables
+  (home, tournaments 143 rows, venues, browse venue/category, hotels, schedule, questions, suggestions,
+  flagged, sources; venue detail pages venetian 144 rows / wynn 179 rows).
+- **`tests/smoke.py`** — passed: 8 pages, 25 selected event starts, 9 rooms, 7 hotels, 60 source records,
+  0 strict-entry passes.
+- **`python3 -m unittest discover -s tests`** — all tests pass (including `test_integrity.py` arithmetic
+  assertions: dated-quote two nights reconciling to the printed total, the `$197.28` nightly floor,
+  `ratio = guarantee / buy-in` on every row, a `lastChecked` date on every row).
+- **Data integrity (re-run on `site/data.json`)** —
+  - `lastChecked` present on **341 / 341** rows; an official source link (`scheduleUrl` / `structureUrl` /
+    `sheetUrl`) present on **341 / 341** rows.
+  - `ratio = guarantee / buy-in` recomputed for every row with numeric `buyIn` and `guarantee`: **0 mismatches**.
+  - **82 rows have a blank `buyIn`** — the 15 Venetian NYE rows and the WPT rows whose structure sheets were
+    not read in the canonical snapshot. These are correctly blank and flagged, not inferred.
+  - **45 rows are sheet-screened single-entry candidates** (`singleEntry: true`, `entryType: "none"`): the
+    official sheets print one buy-in, one start flight and no re-entry/rebuy/add-on wording. PR #40 correctly
+    labels these as *candidates*, not strict one-entry-per-player confirmations; the strict filter therefore
+    returns zero, which is the honest result.
+  - **Hotel resort fees**: Venetian, Palazzo, Wynn and Bellagio publish **$55 + tax**; MGM Grand, Caesars
+    Palace, Horseshoe and ARIA are blank (unverified) and flagged — not filled in.
+  - **Dated rate log**: the Venetian Nov 17–19, 2026 quote stores `trueNightlyLow = 248.59` /
+    `trueNightlyHigh = 996.89` (night 2 and night 1, each `(rate + $55) × 1.1338`), which sum to the printed
+    **$1,245.48** total exactly. The published-starting-rate floor is `(119 + 55) × 1.1338 = $197.28` and
+    `(209 + 55) × 1.1338 = $299.32`. Tax (13.38% Clark County room tax) is captured on each rate-log entry.
+- **Calculator formula (`site/calculator.html`)** — verified against the brief: `entries × buy-in + nights ×
+  true cost per night + nights × parking`, with `true cost per night = (room rate + resort fee) × (1 + tax)`.
+  The page states the formula and labels it an estimator, not a quote.
+- **Filters and controls (`site/assets/app.js`)** — verified present: global search, date From/To selector,
+  venue, category, format, **single-entry / freezeout-confirmed toggle**, sheet-screened-candidate toggle,
+  **≤30-minute walk filter**, recurring-rooms toggle, reset. Venue detail pages exist for Venetian, Wynn and
+  the others (`site/venues/`).
+- **Broken-link scan** — all `href`/`src` references across `site/**/*.html` resolved relative to each file
+  (131 internal references): **0 broken**.
+- **`node --check`** on `site/assets/app.js` and `site/assets/venue.js` — pass. **`python3 -m json.tool`** on
+  `site/data.json` — valid.
+- **Reproducible build** — `python3 scripts/data_source.py` re-run produces a **byte-identical** `site/data.json`.
+- **Workflows** — `checks.yml` is the single scheduled committer (re-checks every official URL, writes
+  `site/checks.json`, runs the morning room feed, rebases and pushes); `source-monitor.yml` shares the same
+  `scheduled-source-review` concurrency group with `cancel-in-progress: false`, so the two never race.
+  `verify.yml` runs on every PR/push to `main`.
+
+### Findings and verdicts
+
+- **No data or build defects found this session.** The canonical `site/` is complete against the brief:
+  trip-cost calculator (entries × buy-ins + nights × true hotel cost); scheduled official-URL re-check with
+  changed-source flags; all 37 DeepStack Extravaganza IV structure sheets read; a `lastChecked` date on every
+  row; rates kept as a dated log; one page per venue; a global search box; a date filter; structured rule
+  fields with excerpt and retrieval date; schedule overlap flags with a primary event and a conditional
+  fallback per day; the descriptive guarantee ÷ fee ratio (not a forecast); bounty/flight rows labelled
+  separately; the ≤30-minute walking filter; the single-entry/freezeout toggle; the executive summary, Q&A,
+  suggestions and flagged-for-review pages. Every table row links an official source; unverified values are
+  left blank and flagged, never inferred.
+- **Open competing PRs reviewed and held unmerged** (no-discarding-others'-work rule):
+  - **PR #39** (`arena/d81a0934-poker3`) — a second "final integration" that fixes the same defects PR #38
+    already fixed on a pre-#38 base (Wynn duplicated names, the swapped rate-log low/high, the stale flag
+    count, the root redirect). Those fixes are **already in `main`**; this session confirmed the current
+    `site/data.json` has clean Wynn names, correct `trueNightly` ordering, the root redirect and the corrected
+    flag count. Merging #39 would reintroduce a competing tree and is held.
+  - **PR #31** (`arena/ea188b20-poker3`) and **PR #27** (`arena/701f2252-poker3`) — each rewrites the canonical
+    shared outputs (`site/data.json`, `site/assets/*`, `site/index.html`, `scripts/verify_site.py`, the
+    workflows, `README.md`) wholesale and would discard the 94/94-verified DSE IV match, the monitor
+    consolidation and the arithmetic fixes already merged. Held, consistent with the recorded verdict in
+    session `arena/b1fadb7e-poker3`.
+  - **PR #7** (`arena/92941c56-poker3`) — an earlier `pages/`-tree site, superseded by the canonical `site/`.
+    Held for the same reason.
+  Their useful content is preserved on their own branches; a user decision, not a unilateral merge, is the
+  recorded path for any of them.
+- **Remaining evidence gaps** (unchanged, still flagged, none blocking): no written official one-entry-per-player
+  cap on any candidate (strict filter returns zero); only 14 of 56 hotel–venue route pairs recorded; no
+  date-specific hotel total for the fixed Nov 25–Dec 2 stay; the 15 Venetian NYE and full WPT structure sheets
+  unread in the canonical snapshot; no published finish times; no verified start before ~9:10 AM (so no 8 AM
+  all-day route is built); walking minutes are Google Maps estimates only. Each is on `site/flagged.html` with
+  a source link.
+
+### Result (this session)
+
+- PR and merge are recorded below.
