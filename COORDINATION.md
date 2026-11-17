@@ -3134,12 +3134,17 @@ Branch: `arena/da83eca8-poker3` (platform-bound; the `session-<id>/<task>` namin
 
 ### Integration record (session `arena/da83eca8-poker3`)
 
-### Integration record (session `arena/da83eca8-poker3`)
-
-## Current session `arena/4c7b94ab-poker3` — integration, verification and publication (2026-11-17 UTC)
 ## Current session `arena/4c7b94ab-poker3` — integration, verification and publication (2026-11-17 UTC)
 
 Branch: `arena/4c7b94ab-poker3` (platform-bound; platform-assigned, status `active`). Branched from `main` @ `b9c8d77` (PR #100, session arena/da83eca8-poker3, merged 2026-11-18 07:23:52 UTC). No other session holds an active claim when this claim is written. This session adopts the pending integration task D5 from the da83eca8 board section and acts as integration owner for the canonical `site/` dashboard, `scripts/**`, `tests/**`, `.github/workflows/**`, `README.md` and this section of `COORDINATION.md`, until the PR to `main` is merged and Pages is confirmed live. Prior artefacts (`docs/`, `verified/`, `planner/`, `single-entry/`, root legacy pages, `site/poker3/`, `handoff/`, `raw/`, `data/`) are read-only here.
+
+---
+
+## Current session `arena/58e42dbd-poker3` — independent live re-verification and publication (2026-11-17 UTC)
+
+Branch: `arena/58e42dbd-poker3`, branched from `main` @ `b9c8d77` (PR #100 merged). No other session holds an open claim on this board at the time of writing (the last recorded task table is D1–D5 of `arena/da83eca8-poker3`, D5 marked pending but PR #100 is merged and `main` is green). This session therefore acts as the integration owner for the canonical outputs: `site/**`, `scripts/**`, `tests/**`, `raw/**`, `.github/workflows/**`, `README.md` and this section.
+
+**Tooling note (affects what "verified" means here).** The sandbox network allowlist permits only github.com, codeload.github.com, api.github.com, registry.npmjs.org, pypi.org and files.pythonhosted.org, so `curl` cannot reach any venue host (SSL_ERROR_SYSCALL on every attempt, reproduced). Official pages were therefore re-read live through the platform's page-retrieval tool, which returns the rendered page text rather than raw bytes. Consequence: this session can re-confirm **values** (dates, times, buy-ins, guarantees, fees, percentages) line by line, but it cannot recompute the SHA-256 bodies that `scripts/check_sources.py` stores in CI. Every value re-read this session is logged below with the exact text it was read from.
 
 ### Claim (recorded before any data edit, 2026-11-17 UTC)
 
@@ -3332,3 +3337,9 @@ PR + merge + Pages confirmation will be recorded here after the merge.
   #109). COORDINATION conflicts were resolved by keeping both sides; when the sequencer
   stalled, the branch was rebuilt by hand as main + the three session commits + this
   section, so the published history sits directly on `6a40bca`.
+
+| E1 Re-read the official Venetian DeepStack IV schedule page and series PDF; compare every trip-window row against `site/data.json` | in progress | arena/58e42dbd-poker3 | `raw/**`, `scripts/data_venetian.py` | Full 94-row comparison on date, time, event number, name, buy-in, guarantee. |
+| E2 Re-read the official hotel sources (suite rates, resort fee, hotel terms, booking engine) and re-check the dated quote arithmetic | in progress | arena/58e42dbd-poker3 | `scripts/data_hotels.py`, `site/data.json` rateLog | Confirm $4,010.55 / 23–30 Nov and the 13.38% application to rate + fee. |
+| E3 Re-read the other rooms' official tournament pages (Wynn, Bellagio, MGM Grand, Caesars, Horseshoe, ARIA) and any Strip-area room not yet covered | in progress | arena/58e42dbd-poker3 | `scripts/data_venues.py`, `raw/**` | Add only what the venue's own page prints; blanks stay blank. |
+| E4 Confirm the open flags that block the brief (F17 no 8 AM start, F31 no written one-entry rule, F16 no finish times) still stand against the current official pages | in progress | arena/58e42dbd-poker3 | `site/data/flags.json` (via builder), README | A flag is only kept if the source still does not print the value. |
+| E5 Verification suite, PR → `main`, merge, Pages confirmation, record here | pending | arena/58e42dbd-poker3 | whole repo | Flagged irregularities do not block merge; they ship on `site/flagged.html`. |
