@@ -1843,7 +1843,7 @@ guarantee.
 - 27 rows differ in the event name only, all presentational: the site writes `Limit` where the page misspells `LImit`
   (5 rows, not the 4 that F27 records), lower-cases the page's block capitals, writes `Event #39` for `Event # 39`, and
   trims `to participate` from the Seniors rule. `verify_live.py` prints all 27 so the difference is visible rather than
-  silent. Logged as **F33**.
+  silent. Logged as **F39**.
 - Earliest published start on the page is **9:10 AM** (Sat 12 Dec, event 46). No 8 AM start exists, so the all-day
   plan the brief asks for still cannot be built from an official start time. F17 stands.
 
@@ -1861,21 +1861,22 @@ buy-in. `scripts/verify_sheets.py` checks all of it.
 
 **L5 — hotel data, and four errors found (done).**
 
-1. **F29, High — the 2026-11-16 calendar reading is off by one day.** The November calendar was read twice on
+1. **F35, High — the 2026-11-16 calendar reading is off by one day.** The November calendar was read twice on
    2026-11-17 from two different arrival dates and the two renderings agreed on every cell they both showed. Against
    that, the earlier reading's 26–30 November cells ($190, $210, $905, $340, $165) are the cells for **25–29 November**.
    The shift understated the trip twice over: it priced **Friday 27 November, the night after Thanksgiving, at $210 when
    the page prints $905** (5.5x the $165 baseline, and 42% of the lodging bill on its own), and it recorded a price for
    30 November when the page prints none.
-2. **F32, High — 30 November and 1 December publish no price at The Venetian**, and an arrival on 30 November returns
+2. **F38, High — 30 November and 1 December publish no price at The Venetian**, and an arrival on 30 November returns
    "We're sorry, but there is no availability for some of your selected dates." The previously recommended window,
-   25 November to 2 December, therefore **cannot be booked online as one stay**. The trip has moved to
+   25 November to 2 December, therefore **cannot be booked online as one stay**. This matches flag F38 raised by
+   session `arena/b1fadb7e-poker3` independently. The trip has moved to
    **23–30 November**: the only seven-night window in the captured range where every night publishes a price, carrying
    12 verified single-entry events across its seven playable days (23–29 November), the joint highest of any window.
-3. **F30, Medium — the same quoted stay fell $229.59 in under 24 hours.** 17–19 November, two adults, the same named
+3. **F36, Medium — the same quoted stay fell $229.59 in under 24 hours.** 17–19 November, two adults, the same named
    suite and the same offer: $824.25 + $55, $164.25 + $55, $146.98 tax, **$1,245.48** on 2026-11-16; and $621.75 + $55,
    $164.25 + $55, $119.89 tax, **$1,015.89** on 2026-11-17. Only the first night moved. Both are kept in the rate log.
-4. **F31, High — the calendar tile and the itemised panel disagree.** For 17 November the calendar showed $440 while the
+4. **F37, High — the calendar tile and the itemised panel disagree.** For 17 November the calendar showed $440 while the
    itemised panel showed $621.75 + $55. The calendar is "best available suite" across the resort, the panel is one named
    suite under one offer, and the engine re-prices between requests. Budget from the itemised breakdown or the phone
    quote, never from the calendar tile alone.
@@ -1895,7 +1896,7 @@ rate. That is now on the hotels page.
 "Google Maps walking estimate" label and F21 stands. This session did not re-query the maps and did not invent a
 number.
 
-**Correctness fix found while verifying (F34, High).** 14 DeepStack NYE rows carried the `single` category — whose
+**Correctness fix found while verifying (F40, High).** 14 DeepStack NYE rows carried the `single` category — whose
 label reads "Single entry (verified on the official sheet)" — while their own rules block said `not-verified`, because
 the 15 NYE structure sheets have never been read. The two statements contradicted each other. The rows now sit in a new
 **`unverified`** category, so the count of verified single-entry events is **45, not the 59 the site previously
@@ -1917,3 +1918,25 @@ reproducible-build `git diff --exit-code` on `site/data.json`. All pass.
 **Open PRs at merge time.** #7, #27 and #31 are left open and untouched. #27 and #31 each replace the canonical
 `site/data.json`; merging either without its session present would discard the other's work, so this session did not
 merge them and the decision is the user's. #7 touches the repository root and `pages/` only.
+
+### Rebase note (session `arena/13439072-poker3`, added after the rebase onto `main` at `a6ba599`)
+
+`main` advanced through PR #45 while this session was working, and session `arena/b1fadb7e-poker3` had already
+taken the integration role. Three conflicts were resolved **without discarding their work**:
+
+1. **Flag IDs collided.** They had added F29–F32; I had independently used the same IDs. Mine are renumbered
+   **F35–F40**, so all 38 flag IDs are unique.
+2. **The `single` category label.** Their wording, *"Sheet-screened candidates (entry cap unconfirmed)"*, is more
+   defensible than mine and is kept. It is also **independently corroborated by this session's live re-read**: all 18
+   structure PDFs behind those 45 rows print one buy-in, one start flight and no re-entry, rebuy, add-on or
+   second-flight clause — and none of them states a maximum number of entries per player or uses the word
+   "freezeout". Their F31 and my sheet reads agree. My `unverified` category is added alongside theirs.
+3. **The dated hotel quote arithmetic.** They corrected $996.91/$248.61 to $996.89/$248.59, noting the 4-cent gap was
+   this repository's rounding, not the venue's. **They are right**, and the correction matters more than they knew:
+   applying their per-night rounding to the 2026-11-17 observation gives $767.30 + $248.59 = **$1,015.89, exactly the
+   printed total**. So two independent quotes reconcile to the cent, which is the strongest available official
+   confirmation that the 13.38% room tax is charged on the rate and the resort fee together. My own first figure of
+   $767.28 was a rounding error of mine and is fixed.
+
+The trip window is left at **2026-11-23 → 2026-11-30** on the strength of the live calendar read (F38): the window
+main still carried, 25 November → 2 December, spans two nights the official calendar will not price.
