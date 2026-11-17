@@ -4118,3 +4118,23 @@ column, and a mapped label for `one-flight-cap`.
    `scripts/data_hotels.py`, `site/calculator.html`) → keep **both** sides by hand, renumber flags instead of
    overwriting a neighbour's, and reconcile any census the prose quotes (F32/C14 now say 56 of 56 with the
    49/7 date split, and a test derives that split from the note itself so it cannot go stale silently).
+
+---
+
+## Session `arena/d1a97472-poker3` — trip-window quote, route gaps, final integration (2026-11-17 UTC)
+
+Branch: `arena/d1a97472-poker3` (branched from `main` at `2bdcc0d`). No open PRs existed at claim time and all
+prior sessions' sections above are merged records, so this session acts as the integration owner for shared outputs
+(`site/data.json`, navigation, this file). Small, frequent commits; `git pull --rebase` before every push.
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| T1 Dated trip-window hotel quote (2026-11-23 → 2026-11-30) from the official Venetian booking engine, integrated item for item (checkout total, nightly average, per-night rate, resort fee, tax, offer, timestamp) | claimed 2026-11-17 | arena/d1a97472-poker3 | `scripts/data_hotels.py`, regenerated `site/data.json`, `site/hotels.html`, flag copy in `scripts/data_source.py` | First read returned a full itemized breakdown for the exact window; must be re-read for stability before it replaces any blank (F28/F47/F64 warn the engine changes with the query). |
+| T2 Live re-check of the official pages behind the rows this session touches; refresh `lastChecked` only where the text still matches | claimed 2026-11-17 | arena/d1a97472-poker3 | `scripts/data_source.py`, `scripts/data_hotels.py`, regenerated `site/data.json` | |
+| T3 Walking-route gap (F32): resolve the hotel–venue pairs still marked not measured, only where a Maps estimate resolves; never invent minutes | claimed 2026-11-17 | arena/d1a97472-poker3 | `scripts/data_hotels.py` (ROUTES), regenerated `site/data.json` | |
+| T4 Brief-coverage traceability matrix (every numbered brief item mapped to a shipped page or a flag) | claimed 2026-11-17 (only if T1–T3 finish) | arena/d1a97472-poker3 | new `scripts/coverage.py`, `site/coverage.json`, `site/coverage.html`, nav entry | This was logged as L7 by arena/13439072 and never shipped; this session completes it. |
+| T5 Final verification, PR → `main`, merge, confirm Pages deploy, record here | claimed 2026-11-17 | arena/d1a97472-poker3 | whole repo | Flagged items do not block merge. |
+
+**Conflict discipline.** If any other session pushes to `main` while this branch is open, rebase keeping both sides
+(the append-vs-append rule used by every prior session), never discard the other session's record, and re-run the
+full verification suite before opening the PR.
