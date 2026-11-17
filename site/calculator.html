@@ -1,78 +1,219 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Estimated cost of a poker trip calculator">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Estimated cost of a Las Vegas poker trip: entries times buy-ins plus nights times the true hotel cost per night, computed from official published components.">
 <title>Trip cost calculator · Vegas Poker Planner</title>
 <link rel="stylesheet" href="assets/site.css">
 </head>
-<body>
-<header class="topbar"><a class="brand" href="index.html"><span class="brand-mark">&#9826;</span><span>Vegas Poker Planner</span></a><span class="top-tag">Trip cost &middot; estimator only, no stored data</span></header>
+<body data-page="calculator">
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark">♠</span><span>Vegas Poker Planner</span></a>
+  <form class="top-search" data-search-form><input type="search" placeholder="Search every tournament, venue and rule…" aria-label="Search tournaments"><button class="btn" type="submit">Search</button></form>
+  <span class="top-tag">Official sources only · verified <span data-asof></span></span>
+</header>
 <nav class="mobile-nav" data-mobile-nav></nav>
 <div class="layout">
-<aside class="sidebar"><div class="side-label">Plan your trip</div><nav class="nav" data-nav></nav><div class="side-note"><strong>Estimated cost of a trip = entries &times; buy-ins + nights &times; true hotel cost.</strong>You supply the numbers; nothing is stored or inferred from this page. Hotel inputs below are defaults from the reviewed official terms, not a quote for your stay.</div></aside>
-<main class="main">
-<section class="hero">
-<div class="eyebrow">Tool &middot; estimated cost of a trip</div>
-<h1>Trip cost calculator</h1><p>Fill in your planned entries and stay. True cost per night = room rate + resort fee + tax. Trip total = entries &times; buy-in + nights &times; true cost per night (plus optional parking).</p>
-</section>
-<section class="section"><div class="section-head"><div><h2>Your inputs</h2><p>All fields are optional; leave a field blank to treat it as zero.</p></div></div>
-<form id="tripForm" class="two-col">
-<div class="card">
-<h3>Tournament entries</h3>
-<label style="display:block;font-size:12px;margin:8px 0 2px">Number of entries (all events combined)</label><input type="number" id="entries" min="0" value="0" style="width:140px">
-<label style="display:block;font-size:12px;margin:16px 0 2px">Average buy-in per entry ($)</label><input type="number" id="buyIn" min="0" step="10" value="0" style="width:140px">
-<p class="smallprint" style="margin-top:10px">Single-entry events count once; multi-flight/rebuy events can require more entries than you plan &mdash; confirm entry rules first.</p>
-</div>
-<div class="card">
-<h3>Hotel stay</h3>
-<label style="display:block;font-size:12px;margin:8px 0 2px">Number of nights</label><input type="number" id="nights" min="0" value="0" style="width:140px">
-<label style="display:block;font-size:12px;margin:16px 0 2px">Room rate per night ($)</label><input type="number" id="rate" min="0" step="1" value="" style="width:140px">
-<label style="display:block;font-size:12px;margin:16px 0 2px">Resort fee per night ($)</label><input type="number" id="resortFee" min="0" step="1" value="55" style="width:140px">
-<label style="display:block;font-size:12px;margin:16px 0 2px">Room tax rate (%)</label><input type="number" id="taxRate" min="0" step="0.1" value="13.38" style="width:140px">
-<label style="display:block;font-size:12px;margin:16px 0 2px">Parking per night ($)</label><input type="number" id="parking" min="0" step="1" value="" style="width:140px">
-<p class="smallprint" style="margin-top:10px">Venetian terms: $55 resort fee plus applicable tax, 13.38% Clark County room tax on the daily rate. The one dated official checkout total found is the venue's own booking engine for Nov. 17-19, 2026: $824.25 + $55, $164.25 + $55, $146.98 tax, $1,245.48 total for two adults. See the hotels page.</p>
-</div>
-</form>
-<div class="card" style="margin-top:14px">
-<h3>Result</h3>
-<div id="result" style="font-size:15px;margin-top:8px"></div>
-<div id="breakdown" style="font-size:12px;color:var(--muted);margin-top:6px"></div>
-</div>
-</section>
-<section class="section"><div class="section-head"><div><h2>How to use it</h2></div></div>
-<ol class="list">
-<li>Get a date-specific checkout total for the same stay and occupancy from the hotel&rsquo;s official booking page (rates are date- and availability-dependent).</li><li>Split it into room rate, mandatory resort fee, and tax. Compare like-for-like across hotels.</li><li>Add entries &times; buy-ins for every event you plan to enter. Re-entry/rebuy events may cost more than one buy-in per day.</li><li>Only book after confirming entry rules, finish times, walking routes, and cancellation deadlines from official sources.</li>
-</ol>
-</section>
-<div class="footer">This estimator does not fetch live rates and stores nothing. Official hotel links are on the hotels page. <a href="hotels.html">Hotels &#8594;</a> &middot; <a href="flagged.html">Flagged for review &#8594;</a></div>
-</main>
+  <aside class="sidebar">
+    <div class="side-label">Plan your trip</div>
+    <nav class="nav" data-nav></nav>
+    <div class="side-note">
+      <strong>estimated cost = entries × buy-ins + nights × true hotel cost</strong>
+      True hotel cost is the published room rate plus the mandatory resort fee plus tax on both. Every default on this
+      page comes from an official page and links to it; nothing here is a forecast.
+    </div>
+  </aside>
+  <main class="main">
+    <section class="hero">
+      <div class="eyebrow">Tool · estimated cost of a trip</div>
+      <h1>Trip cost, computed from published parts.</h1>
+      <p>
+        The formula is the one in the brief: <strong>estimated cost = entries × buy-ins + nights × true hotel cost</strong>.
+        The defaults are the recommended trip — eight verified single-entry entries and seven nights on the Venetian /
+        Palazzo poker rate — priced from the official starting rate, the published $55 resort fee and the published
+        13.38% Clark County room tax. Change any field and the arithmetic is redone in the browser.
+      </p>
+    </section>
+
+    <div class="notice" data-model-notice>
+      <strong>This is a floor, not a quote.</strong> No property publishes a date-specific total for the recommended
+      window: the official booking engine returns <code>$XXX</code> until its prices load. The floor below is built from
+      the published starting rate and is labelled as a floor everywhere it appears.
+    </div>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Your inputs</h2><p>Every field starts at a value the site can source. Leave a field blank to treat it as zero.</p></div></div>
+      <form id="tripForm" class="two-col">
+        <div class="card">
+          <h3>Tournament entries</h3>
+          <label class="field-label" for="entries">Number of entries</label>
+          <input type="number" id="entries" min="0" step="1" value="8">
+          <label class="field-label" for="buyIn">Average buy-in per entry ($)</label>
+          <input type="number" id="buyIn" min="0" step="1" value="350">
+          <p class="smallprint">
+            The default is the eight recommended primary events: $400 + $300 + $600 + $600 + $300 + $200 + $200 + $200 =
+            $2,800 across 8 entries, so $350 average. Single-entry events count once; multi-flight, rebuy and add-on
+            formats can cost more than one entry, so they are excluded from that default.
+          </p>
+          <p class="smallprint"><a href="schedule.html">See the eight recommended entries →</a></p>
+        </div>
+        <div class="card">
+          <h3>Hotel stay</h3>
+          <label class="field-label" for="nights">Number of nights</label>
+          <input type="number" id="nights" min="0" step="1" value="7">
+          <label class="field-label" for="rate">Room rate per night ($)</label>
+          <input type="number" id="rate" min="0" step="1" value="119">
+          <label class="field-label" for="resortFee">Mandatory resort fee per night ($)</label>
+          <input type="number" id="resortFee" min="0" step="1" value="55">
+          <label class="field-label" for="taxRate">Room tax rate (%)</label>
+          <input type="number" id="taxRate" min="0" step="0.01" value="13.38">
+          <label class="field-label" for="parking">Parking per night ($)</label>
+          <input type="number" id="parking" min="0" step="1" value="20">
+          <div class="button-row">
+            <button class="btn" type="button" data-preset="floor">Venetian floor · $119</button>
+            <button class="btn" type="button" data-preset="high">Venetian high · $209</button>
+            <button class="btn" type="button" data-preset="quote">Dated quote · Nov 17-19</button>
+          </div>
+          <p class="smallprint">
+            $119 and $209 are the two official starting rates on the poker rate page: "These rates will start as low as
+            $119 and $209 and can be higher." The page does not say which figure belongs to which tower. $55 is the
+            resort fee, "plus tax"; 13.38% is the Clark County room tax, applied to the rate and the fee. $20 is the
+            registered-guest self-parking fee. Qualifying play is six hours of live cash, or a $300+ tournament entry,
+            per night stayed.
+          </p>
+        </div>
+      </form>
+      <div class="card" style="margin-top:14px">
+        <h3>Estimated trip cost</h3>
+        <div id="result" class="result-figure"></div>
+        <div id="breakdown" class="smallprint"></div>
+      </div>
+    </section>
+
+    <section class="section" id="compare">
+      <div class="section-head"><div><h2>Like-for-like comparison</h2><p>The same eight entries and seven nights, priced from each published component set.</p></div></div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Hotel</th><th>Room rate</th><th>Resort fee</th><th>Tax</th><th>True cost / night</th><th>7 nights</th><th>8 entries</th><th>Trip total</th><th>Official sources</th></tr></thead>
+          <tbody data-cost-compare></tbody>
+        </table>
+      </div>
+      <p class="toolbar-note" data-compare-note></p>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>How to use it before booking</h2></div></div>
+      <ol class="list">
+        <li>Get a date-specific checkout total for the same stay and occupancy from the hotel's official booking page. Rates are date- and availability-dependent.</li>
+        <li>Split that total into room rate, mandatory resort fee and tax, so hotels can be compared like for like.</li>
+        <li>Replace the eight-event default with the entries you would actually play, and remember that re-entry, rebuy and add-on formats may cost more than one buy-in.</li>
+        <li>Re-confirm the official schedule, the rate and the cancellation deadline before paying anything non-refundable.</li>
+      </ol>
+    </section>
+
+    <div class="footer">
+      Computed from <a href="hotels.html">the published hotel components</a>; every figure links its official page.
+      The formula and its inputs are published in <code>site/data.json</code> under <code>tripCostModel</code> and
+      re-checked by the site verifier. <a href="flagged.html">Flagged for review →</a>
+    </div>
+  </main>
 </div>
 <script src="assets/app.js"></script>
 <script>
-(function(){
-  const form=document.getElementById('tripForm');
-  const out=document.getElementById('result');
-  const brk=document.getElementById('breakdown');
-  function money(n){return n.toLocaleString(undefined,{style:'currency',currency:'USD'});}
-  function calc(){
-    const entries=Number(form.entries.value)||0;
-    const buyIn=Number(form.buyIn.value)||0;
-    const nights=Number(form.nights.value)||0;
-    const rate=Number(form.rate.value)||0;
-    const resortFee=Number(form.resortFee.value)||0;
-    const taxRate=Number(form.taxRate.value)||0;
-    const parking=Number(form.parking.value)||0;
-    const taxPerNight=(rate+resortFee)*(taxRate/100);
-    const trueNightly=rate+resortFee+taxPerNight;
-    const tourneyTotal=entries*buyIn;
-    const hotelTotal=nights*trueNightly;
-    const parkingTotal=nights*parking;
-    const grand=tourneyTotal+hotelTotal+parkingTotal;
-    out.innerHTML='Estimated trip total: <strong>'+money(grand)+'</strong>';
-    brk.innerHTML='Tournament entries: '+money(tourneyTotal)+' &middot; Hotel: '+nights+' nights &times; '+money(trueNightly)+' true cost/night (rate '+money(rate)+' + resort fee '+money(resortFee)+' + tax '+money(taxPerNight)+') = '+money(hotelTotal)+' &middot; Parking '+money(parkingTotal);
+(function () {
+  const form = document.getElementById('tripForm');
+  const out = document.getElementById('result');
+  const brk = document.getElementById('breakdown');
+  const PRESETS = {
+    floor: { rate: 119, note: 'published starting rate, low end' },
+    high: { rate: 209, note: 'published starting rate, high end' },
+    quote: { rate: 164.25, note: 'second night of the dated Nov 17-19 quote' }
+  };
+  const money = (n) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+  function read() {
+    return {
+      entries: Number(form.entries.value) || 0,
+      buyIn: Number(form.buyIn.value) || 0,
+      nights: Number(form.nights.value) || 0,
+      rate: Number(form.rate.value) || 0,
+      resortFee: Number(form.resortFee.value) || 0,
+      taxRate: Number(form.taxRate.value) || 0,
+      parking: Number(form.parking.value) || 0
+    };
   }
-  form.addEventListener('input',calc);
+  function calc() {
+    const v = read();
+    const taxes = (v.rate + v.resortFee) * (v.taxRate / 100);
+    const trueNightly = v.rate + v.resortFee + taxes;
+    const tournament = v.entries * v.buyIn;
+    const lodging = v.nights * trueNightly;
+    const parking = v.nights * v.parking;
+    const grand = tournament + lodging + parking;
+    out.innerHTML = 'Estimated trip cost: <strong>' + money(grand) + '</strong>';
+    brk.innerHTML =
+      '<div><strong>Entries</strong> ' + v.entries + ' × ' + money(v.buyIn) + ' = ' + money(tournament) + '</div>' +
+      '<div><strong>Hotel</strong> ' + v.nights + ' nights × ' + money(trueNightly) + ' true cost = ' + money(lodging) +
+      ' <span class="muted">(rate ' + money(v.rate) + ' + resort fee ' + money(v.resortFee) + ' + tax ' + money(taxes) + ')</span></div>' +
+      '<div><strong>Parking</strong> ' + v.nights + ' nights × ' + money(v.parking) + ' = ' + money(parking) + '</div>' +
+      '<div class="muted">Tax is charged on the room rate and on the resort fee, because every property terms page says the fee is "plus applicable tax".</div>';
+  }
+  form.addEventListener('input', calc);
+
+  // Like-for-like table, built from the published data so the numbers cannot
+  // drift from site/data.json.
+  function buildCompare() {
+    const body = document.querySelector('[data-cost-compare]');
+    const note = document.querySelector('[data-compare-note]');
+    if (!body) return;
+    fetch('data.json').then((r) => r.json()).then((db) => {
+      const model = db.tripCostModel || {};
+      const entries = model.entries || 8;
+      const buyIn = model.buyIn || 350;
+      const nights = model.nights || 7;
+      const tournament = entries * buyIn;
+      const rows = [];
+      const money = (n) => (typeof n === 'number' && isFinite(n)) ? n.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) : '—';
+      rows.push({ hotel: 'The Venetian / The Palazzo — published starting rate (low)', rate: 119, fee: 55, tax: 13.38,
+        sources: 'https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html' });
+      rows.push({ hotel: 'The Venetian / The Palazzo — published starting rate (high)', rate: 209, fee: 55, tax: 13.38,
+        sources: 'https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html' });
+      (db.hotels || []).forEach((h) => {
+        if (h.id === 'venetian' || h.id === 'palazzo') return;
+        if (typeof h.resortFee !== 'number') return;
+        rows.push({ hotel: h.name + ' — resort fee verified, room rate not published', rate: null, fee: h.resortFee,
+          tax: null, sources: h.feeSource || h.source });
+      });
+      body.innerHTML = rows.map((r) => {
+        const rate = r.rate;
+        const taxPct = r.tax;
+        const closed = typeof rate === 'number' && typeof taxPct === 'number';
+        const nightly = closed ? (rate + r.fee) * (1 + taxPct / 100) : null;
+        const lodging = closed ? nightly * nights : null;
+        const total = closed ? tournament + lodging : null;
+        return '<tr><td class="event-name">' + r.hotel +
+          '<span class="muted">' + (closed ? 'Rate, fee and tax all published' : 'Cannot be closed: room rate and/or tax not published') + '</span></td>' +
+          '<td>' + (typeof rate === 'number' ? money(rate) : '<span class="muted">Not published</span>') + '</td>' +
+          '<td>' + money(r.fee) + '</td>' +
+          '<td>' + (typeof taxPct === 'number' ? taxPct + '%' : '<span class="muted">Not published</span>') + '</td>' +
+          '<td>' + (nightly ? money(nightly) : '<span class="muted">Blank</span>') + '</td>' +
+          '<td>' + (lodging ? money(lodging) : '<span class="muted">Blank</span>') + '</td>' +
+          '<td>' + money(tournament) + '</td>' +
+          '<td>' + (total ? money(total) : '<span class="muted">Blank</span>') + '</td>' +
+          '<td><a href="' + r.sources + '" target="_blank" rel="noopener">Official</a></td></tr>';
+      }).join('');
+      note.textContent = 'Entry total is ' + entries + ' entries × ' + money(buyIn) + ' published average = ' + money(tournament) +
+        '. A row is left blank rather than estimated when the property does not publish both a room rate and a tax rate. ' +
+        'Neither Venetian row is a quote: the booking engine publishes no price for the recommended dates.';
+    }).catch(() => { body.innerHTML = '<tr><td colspan="9">The published data file could not be loaded.</td></tr>'; });
+  }
+  buildCompare();
+  document.querySelectorAll('[data-preset]').forEach((b) => {
+    b.addEventListener('click', () => {
+      form.rate.value = PRESETS[b.dataset.preset].rate;
+      calc();
+    });
+  });
   calc();
 })();
 </script>

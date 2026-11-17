@@ -14,7 +14,10 @@ const vm = require('vm');
 const ROOT = path.resolve(__dirname, '..');
 const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'site', 'data.json'), 'utf8'));
 const fixtureEvent = data.events.find((event) => event.venue === 'venetian' && event.scheduleUrl);
+const transcriptionPath = path.join(ROOT, 'site', 'checks.json');
+const liveChecks = fs.existsSync(transcriptionPath) ? JSON.parse(fs.readFileSync(transcriptionPath, 'utf8')) : null;
 const checksFixture = {
+  transcription: liveChecks && liveChecks.transcription,
   lastRun: '2026-11-17T13:00:00+00:00',
   note: 'Test fixture only: a changed source is shown for UI verification.',
   urls: [{
@@ -35,7 +38,6 @@ const checksFixture = {
     unavailable: true,
   }],
 };
-
 function makeElement(selector) {
   const el = {
     selector,
@@ -114,6 +116,7 @@ const PAGES = [
   ['flagged', ''],
   ['sources', ''],
   ['search', '?q=venetian'],
+  ['calculator', ''],
 ];
 
 /* The detailed venue pages use their own script and their own data attributes. */
@@ -167,7 +170,7 @@ function runVenuePage(venueAttr) {
     const label = page + (search ? search : '');
     const table = reg.get('[data-tournament-table]');
     const rows = table ? (table.html.match(/row-click/g) || []).length : 0;
-    if (page === 'tournaments' && (!table.html.includes('Last checked') || !table.html.includes('Source changed · review') || !table.html.includes('Source unavailable · recheck') || !reg.get('[data-filters]').html.includes('Single-entry / freezeout confirmed'))) {
+    if (page === 'tournaments' && (!table.html.includes('Last checked / verified') || !table.html.includes('Source changed · review') || !table.html.includes('Source unavailable · recheck') || !reg.get('[data-filters]').html.includes('Single-entry / freezeout confirmed'))) {
       console.log(`FAIL  ${label}: row-level dates, source status badges or strict-entry filter are missing`);
       failures++;
     }
@@ -191,6 +194,15 @@ function runVenuePage(venueAttr) {
     } else if (page === 'tournaments' && rows < 10) {
       console.log(`FAIL  ${label}: only ${rows} tournament rows rendered`);
       failures++;
+    } else if (page === 'sources') {
+      const trans = reg.get('[data-transcription]');
+      const tRows = trans ? (trans.html.match(/<tr>/g) || []).length : 0;
+      if (tRows < 40) {
+        console.log(`FAIL  ${label}: transcription table rendered ${tRows} rows, expected the official 44`);
+        failures++;
+      } else {
+        console.log(`ok    ${label}: rendered ${total} characters, ${tRows} transcription rows`);
+      }
     } else {
       console.log(`ok    ${label}: rendered ${total} characters` + (page === 'tournaments' ? `, ${rows} rows` : ''));
     }

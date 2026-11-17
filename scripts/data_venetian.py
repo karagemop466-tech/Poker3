@@ -258,6 +258,69 @@ DSE_ROWS = [
 
 # DeepStack Extravaganza NYE (Dec 24, 2026 - Jan 10, 2027) rows from the official page.
 # The 15 NYE structure sheets were not read in this pass, so rules are "not verified".
+# The 15 DeepStack Extravaganza NYE structure sheets were all read in full on
+# 2026-11-17 (session arena/52e02b46-poker3).  Facts below are transcribed from
+# those official PDFs; every one is quoted or counted on the sheet itself.
+NYE_SHEETS = {
+    1: dict(title="$400 No Limit Hold'em (1Day)", events="01, 03, 17", buyIn=400, rake=65, pool=335,
+            chips=30000, levelMin=30, late="8 levels + break (~3:40 PM)",
+            guarantee="$15,000", entry="none", kind="cash"),
+    2: dict(title="$200 No Limit Hold'em Bounty (1Day)", events="02, 04, 13, 22, 26, 29, 32", buyIn=200,
+            rake=40, pool=160, chips=25000, levelMin=30, late="8 levels + break (9:40 PM)",
+            guarantee="$8,000 (prize pool + total bounties)", entry="multi-buyin", kind="bounty",
+            entryExcerpt=("Rule 06: 'The $20 discount can be applied to the initial entry or any subsequent re-entry' "
+                          "(Event #29, CES badge). The sheet therefore contemplates more than one entry.")),
+    3: dict(title="$600 No Limit Hold'em Bounty (1Day)", events="05", buyIn=600, rake=90, pool=510,
+            chips=40000, levelMin=30, late="10 levels + break (4:55 PM)",
+            guarantee="$40,000 (prize pool + total bounties)", entry="none", kind="bounty"),
+    4: dict(title="$260 No Limit Hold'em Milestone Satellite (1Day)", events="06, 07, 09, 10, 11, 12",
+            buyIn=260, rake=40, pool=220, chips=20000, levelMin=20,
+            late="6 levels + break (~5:25 PM or ~8:25 PM)", guarantee="4 seats", entry="satellite",
+            kind="satellite"),
+    5: dict(title="$200 No Limit Hold'em Milestone Satellite (1Day)", events="15, 18, 21, 23, 24",
+            buyIn=200, rake=35, pool=165, chips=20000, levelMin=20,
+            late="6 levels + break (~5:25 PM or 12:25 PM)", guarantee="2 seats", entry="satellite",
+            kind="satellite"),
+    6: dict(title="$1,100 No Limit Hold'em Ante Up Championship", events="08", buyIn=1100, rake=140, pool=960,
+            chips=40000, levelMin=40, late="9 levels + break (~5:55 PM)", guarantee="$300,000",
+            entry="multi-flight", kind="flight",
+            entryExcerpt=("Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.'")),
+    7: dict(title="$200 No Limit Hold'em Turbo Milestone Satellite (1Day)", events="16, 19", buyIn=200,
+            rake=30, pool=170, chips=20000, levelMin=15, late="6 levels + break (~7:55 PM)",
+            guarantee="2 seats", entry="satellite", kind="satellite"),
+    8: dict(title="$1,600 No Limit Hold'em MSPT", events="20", buyIn=1600, rake=180, pool=1420,
+            chips=40000, levelMin=40, late="9 levels + break (~5:55 PM)", guarantee="$400,000",
+            entry="multi-flight", kind="flight",
+            entryExcerpt=("Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.'")),
+    9: dict(title="$200 No Limit Hold'em Valuetown Bounty (1Day)", events="25", buyIn=200, rake=40, pool=160,
+            chips=25000, levelMin=30, late="8 levels + break (9:40 PM)",
+            guarantee="$20,000 (prize pool + total bounties)", entry="multi-buyin", kind="bounty",
+            entryExcerpt=("Rule 07: 'All subsequent buy in's after the initial buy in will be $200.'")),
+    10: dict(title="$400 No Limit Hold'em Seniors (1Day)", events="31", buyIn=400, rake=65, pool=335,
+             chips=40000, levelMin=30, late="10 levels + break (~3:55 PM)", guarantee="$20,000",
+             entry="none", kind="cash", eligibility="Must be 50+ years of age to participate."),
+    11: dict(title="$400 No Limit Hold'em (1Day)", events="28", buyIn=400, rake=65, pool=335,
+             chips=40000, levelMin=30, late="10 levels + break (~4:55 PM)", guarantee="$15,000",
+             entry="none", kind="cash"),
+    12: dict(title="$600 No Limit Hold'em (1Day)", events="14", buyIn=600, rake=90, pool=510,
+             chips=40000, levelMin=30, late="10 levels + break (~4:55 PM)", guarantee="$50,000",
+             entry="none", kind="cash"),
+    13: dict(title="$300 No Limit Hold'em - Days A+C+E", events="30", buyIn=300, rake=60, pool=240,
+             chips=30000, levelMin=40, late="6 levels + break (~3:40 PM)", guarantee="$100,000",
+             entry="multi-flight", kind="flight",
+             entryExcerpt=("Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight.'")),
+    14: dict(title="$300 No Limit Hold'em - Days B+D+F", events="30", buyIn=300, rake=60, pool=240,
+             chips=30000, levelMin=30, late="6 levels + break (~8:40 PM)", guarantee="$100,000",
+             entry="multi-flight", kind="flight",
+             entryExcerpt=("The $10 CES discount 'can be applied to the initial entry or any subsequent re-entry'. "
+                          "Rule 08: a player who bags for Day 2 may not play a subsequent flight.")),
+    15: dict(title="$250 No Limit Hold'em (Days A+B+C+D)", events="27", buyIn=250, rake=50, pool=200,
+             chips=40000, levelMin=30, late="8 levels + break (~3:40 PM or ~9:40 PM)", guarantee="$75,000",
+             entry="multi-flight", kind="flight",
+             entryExcerpt=("Rule 08: 'Any player who bags chips for Day 2 may not play a subsequent flight. Players who "
+                           "cash on Day 1 but bust before making Day 2 may play another flight.'")),
+}
+
 NYE_ROWS = [
     ("2026-12-24", "11:10 AM", "1", "$400 No Limit Hold'em $15K GTD (1Day)", "dse_dec_2026-structure_1.pdf", 15000, "single"),
     ("2026-12-24", "5:10 PM", "2", "$200 No Limit Hold'em Bounty $8K GTD (1Day)", "dse_dec_2026-structure_2.pdf", 8000, "single"),

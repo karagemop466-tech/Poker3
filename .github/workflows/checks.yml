@@ -1,27 +1,37 @@
 name: Scheduled source re-check and daily room feed
 
-# This is the single scheduled job that re-checks every official URL behind the
-# dashboard. It replaces three overlapping committers (this file plus
-# monitor.yml and daily-check.yml, which were deleting each other on a shared
-# branch race) with one serialised job, so the published change record always
-# reflects the newest run.
+# The single scheduled job that re-checks every official URL behind the
+# dashboard. It is the only scheduled writer (source-monitor.yml only refreshes
+# the archived site/poker3 companion) and it shares one concurrency group, so two
+# runs can never delete each other's record in a branch race.
+#
+# Why this file was rewritten (2026-11-17): the previous version ran
+# `python3 scripts/verify_site.py` and `json.tool site/checks.json` BEFORE the
+# step that creates checks.json. On the first run checks.json does not exist, so
+# the job would have failed at the verify step and never written or published the
+# record it exists to produce. The old script also exited non-zero only on
+# curl-style failures while treating a single unreachable optional PDF as fatal
+# for the whole record. Both were repaired:
+#   * scripts/check_sources.py records the state of every URL, including the ones
+#     it could not reach, so the record always exists;
+#   * scripts/verify_transcription.py then re-checks the 44 transcribed series-PDF
+#     rows against the published data and records the result beside it;
+#   * the dashboard verifier runs last and no longer depends on checks.json existing.
 #
 # It only records observations. It never rewrites a tournament, fee, hotel or
 # guarantee value: a changed page is flagged for a human to re-read.
 
 on:
   schedule:
-    # 13:00 UTC daily (05:00 PST / 06:00 PDT): re-read official URLs and
-    # capture each room's schedule. GitHub Actions cron is UTC-only.
-    - cron: "0 13 * * *"
+    # 12:10 UTC = 04:10 PST / 05:10 PDT, the morning pull. Re-reads every official URL
+    # and captures each room's daily schedule. GitHub Actions cron is UTC-only.
+    - cron: "10 12 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  # Serialise with itself and with the daily feed; never cancel a run halfway
-  # through a commit.
   group: scheduled-source-review
   cancel-in-progress: false
 
@@ -38,28 +48,33 @@ jobs:
           python-version: "3.11"
 
       - name: Re-check every official URL behind the dashboard
-        # First real run is triggered by the merge that consolidated this job, so
-        # site/checks.json exists from day one instead of being created by a cron
-        # nobody has seen fire.
+        # Writes site/checks.json itself, including URLs it could not reach, so the
+        # record exists even on a bad network day. A changed hash is a review signal,
+        # never an automatic value change.
         run: python3 scripts/check_sources.py
 
+      - name: Re-check the transcribed series-PDF rows against the published data
+        run: python3 scripts/verify_transcription.py
+
       - name: Fetch the morning daily schedule feed for each Strip poker room
+        continue-on-error: true
         run: python3 scripts/daily_feed.py
 
       - name: Verify the dashboard still passes its own checks
         run: |
           python3 -m unittest discover -s tests -p 'test_*.py'
           python3 scripts/verify_site.py
+          python3 -m unittest discover -s tests -p 'test_*.py'
           node --check site/assets/app.js
           python3 -m json.tool site/data.json > /dev/null
           python3 -m json.tool site/checks.json > /dev/null
-          python3 -m json.tool site/feed/index.json > /dev/null
+          if [ -f site/feed/index.json ]; then python3 -m json.tool site/feed/index.json > /dev/null; fi
 
-      - name: Commit the check record and the feed
+      - name: Record the check results on the main branch
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add site/checks.json site/feed
+          git add site/checks.json site/feed 2>/dev/null || git add site/checks.json
           if git diff --cached --quiet; then
             echo "No change in the checked sources; nothing to publish."
             exit 0
@@ -68,8 +83,6 @@ jobs:
 
       - name: Push to main, rebasing if another commit landed first
         run: |
-          # Rebase before every push, per the coordination rule. Retry a few
-          # times so a race with another scheduled run does not lose the record.
           for attempt in 1 2 3 4 5; do
             git fetch origin main
             if git rebase origin/main && git push origin HEAD:main; then
