@@ -3128,11 +3128,13 @@ D1–D4 board rows are carried forward as follows:
 
 ### Integration log
 
-- (pending) Commit this claim on `arena/4c7b94ab-poker3`; `git pull --rebase` and push immediately.
-- (pending) Run full verification suite locally before the PR.
-- (pending) Open PR `arena/4c7b94ab-poker3` → `main`; merge with `gh pr merge <n> --merge`.
-- (pending) Confirm GitHub Pages deployment via the Pages API / workflow runs.
-- (pending) Record PR link and merge result in this section; commit to `main`.
+- Commit this claim on `arena/4c7b94ab-poker3`; `git pull --rebase origin/main` and push (done; conflict with PR #109's COORDINATION.md record resolved by keeping both records)
+- Run full verification suite locally before the PR (done, all green)
+- Open PR `arena/4c7b94ab-poker3` → `main` (PR #110: https://github.com/karagemop466-tech/Poker3/pull/110)
+- Merge PR #110 with `gh pr merge 110 --merge`: merged as merge commit `e0c360b7b2fef84fedaeda72b870c23c4e1af642` (no auto-merge; PR was MERGEABLE before merge)
+- `pages.yml` re-deploys the canonical `site/` artifact on every push to `main`; this merge's push triggered a new Pages deployment (confirmation below)
+- Confirm GitHub Pages deployment via the Pages API / workflow runs after the merge (in progress)
+- Record PR link and merge result in this section (done); Pages confirmation record follows once `status: built` is observed
 
 
 - **PR:** [#100](https://github.com/karagemop466-tech/Poker3/pull/100) (`arena/da83eca8-poker3` → `main`), merged with `gh pr merge 100 --merge` as merge commit `b9c8d77a1f17a6000dc5aa29fff5ab9a2ceec50e` on 2026-11-17 UTC.
