@@ -785,7 +785,7 @@ function renderSources() {
       <td class="event-name">${esc(u.url)}<span class="muted">${esc(u.label || '')}</span></td>
       <td>${esc(u.status || '')}</td>
       <td>${esc(u.checked || '')}</td>
-      <td>${u.changed ? '<span class="badge bad">Content changed · manual review</span>' : u.unavailable ? '<span class="badge warn">Unavailable · not verified</span>' : u.baseline ? '<span class="badge info">Baseline recorded</span>' : u.rawOnly ? '<span class="badge info">Raw body differs, visible text identical · noise</span>' : '<span class="badge ok">Unchanged</span>'}</td>
+      <td>${u.changed ? '<span class="badge bad">Content changed · manual review</span>' : u.unavailable ? '<span class="badge warn">Unavailable · not verified</span>' : u.basisReset ? '<span class="badge info">Baseline re-seeded (text comparison began)</span>' : u.baseline ? '<span class="badge info">Baseline recorded</span>' : u.rawOnly ? '<span class="badge info">Raw body differs, visible text identical · noise</span>' : '<span class="badge ok">Unchanged</span>'}</td>
       <td>${u.changed ? esc(u.previousTextHash ? u.previousTextHash.slice(0, 12) + ' → ' : '') + esc((u.textHash || '').slice(0, 12)) : (u.textHash || u.hash || '').slice(0, 12)}</td>
     </tr>`).join('');
     auto.innerHTML = summaryHtml + `<div class="table-wrap"><table><thead><tr><th>Official URL</th><th>Status</th><th>Checked</th>

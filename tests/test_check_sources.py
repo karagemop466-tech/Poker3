@@ -26,7 +26,7 @@ class CompareCheckTests(unittest.TestCase):
         self.assertFalse(result["unavailable"])
 
     def test_same_body_is_unchanged(self):
-        old = {"hash": "abc", "status": "HTTP 200", "checked": "2026-11-16"}
+        old = {"hash": "rawabc", "textHash": "abc", "status": "HTTP 200", "checked": "2026-11-16"}
         result = compare_check(old, "HTTP 200", "abc")
         self.assertFalse(result["baseline"])
         self.assertFalse(result["changed"])
@@ -34,7 +34,7 @@ class CompareCheckTests(unittest.TestCase):
         self.assertFalse(result["statusChanged"])
 
     def test_different_body_is_a_change(self):
-        old = {"hash": "old", "status": "HTTP 200", "checked": "2026-11-16"}
+        old = {"hash": "rawold", "textHash": "old", "status": "HTTP 200", "checked": "2026-11-16"}
         result = compare_check(old, "HTTP 200", "new")
         self.assertTrue(result["changed"])
         self.assertFalse(result["unavailable"])
@@ -79,6 +79,15 @@ class VisibleTextTests(unittest.TestCase):
         a = content_hash(b"%PDF-1.4\nstream binary-one endstream\nStart Time: 11:10 AM", "application/pdf")
         b = content_hash(b"%PDF-1.4\nstream binary-two endstream\nStart Time: 11:10 AM", "application/pdf")
         self.assertEqual(a, b)
+
+    def test_a_record_without_a_text_hash_seeds_a_new_baseline(self):
+        """Rolling this change out must not flag all 79 pages at once."""
+        from scripts.check_sources import compare_check
+        legacy = {"hash": "rawabc", "status": "HTTP 200", "checked": "2026-11-17"}
+        result = compare_check(legacy, "HTTP 200", "brand-new-text-hash")
+        self.assertFalse(result["changed"])
+        self.assertTrue(result["basisReset"])
+        self.assertTrue(result["baseline"])
 
     def test_compare_check_uses_the_text_hash_it_is_given(self):
         from scripts.check_sources import compare_check
