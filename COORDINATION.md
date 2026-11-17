@@ -3142,3 +3142,42 @@ Branch: `arena/7529044d-poker3` (platform-bound; the `session-<id>/<task>` namin
 **Not claimed, not edited:** `docs/`, `verified/`, `planner/`, `single-entry/`, `pages/`, `handoff/`, `raw/`, root-level legacy `*.html`, `site/poker3/**`. Prior-session artefacts stay as they are.
 
 **Concurrency note at claim time:** open PRs #92 (`arena/8689ef6e-poker3`), #93 (`arena/ab5d9f7d-poker3`) and #94 (`arena/b13ca4cb-poker3`) were opened minutes before this claim by concurrent sessions and are not touched by this session unless they are stale at integration time.
+
+### Work log (session `arena/7529044d-poker3`, 2026-11-17 UTC)
+
+**Claim** recorded first, then rebased twice as concurrent sessions merged PRs #92–#109 (each COORDINATION conflict resolved by keeping every session's section; nothing discarded).
+
+**Live line-by-line re-verification (official hosts, read through the page reader on 2026-11-17 evening):**
+
+| Source | Result |
+|---|---|
+| Venetian DSE IV schedule page, all 4 chunks (Nov 16 – Dec 23, 2026) | **94/94 published rows match** on date, start time, event number, structure-sheet link, and the buy-in/guarantee printed in the name. No drift, no missing rows, no extra rows. |
+| https://www.venetianlasvegas.com/resort/resort-fee.html | "daily Resort Fee of $55 plus tax per night" — matches published. |
+| https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html | $119/$209 starting rates, $55 fee, six hours live cash **or** $300+ buy-in per night, 2 a.m. deadline, code EPOKR25, 150-day horizon, no combining with other rates — all match the excerpts published on the site. |
+| https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html (2 chunks) | 13.38% Clark County room tax; $55 plus applicable tax; parking $20/day guests, $20 Mon–Thu / $25 Fri–Sun non-guests, valet $40; early check-out $100 plus tax; $150/night incidental; check-in 3:00 p.m. / check-out 11:00 a.m.; prepaid offers non-refundable — all match. |
+| Venetian booking engine, 2 adults, 23–30 Nov 2026 | **New observation, see below.** |
+| https://www.wynnlasvegas.com/about-us/resort-information | $55 plus tax (standard and Tower Suites); check-in 3 p.m. / check-out 12 p.m. — matches. |
+| Wynn daily tournament poster PDF | Mon–Thu $200 NLH 12 p.m. $10K; Fri $240 rebuy 12 p.m. $40K; Sat–Sun $200 NLH 12 p.m. $25K; nightly $160 6 p.m. $10K — all four recurring rows match. |
+| https://bellagio.mgmresorts.com/en/casino/poker.html | Friday $600 / Saturday $1,000 / Sunday $400 H.O.R.S.E. PDF links and the "resume Saturday, July 26" undated notice all still present, matching the published rows and their disclosed conflicts (F02, F03). Nightly PLO Double Bomb Pot "at 6 PM" matches row bell-3, whose note already records the 6 PM vs 2 PM conflict. |
+| https://karagemop466-tech.github.io/Poker3/site/flagged.html | Live Pages deployment reachable and serving the current flag register (checked directly this session). |
+
+**New finding — the same trip-window query returned two different suites (flag F78).** The booking engine was opened twice for the identical query (2 adults, arrival 2026-11-23, departure 2026-11-30): the earlier read this session (~21:54 UTC, merged via PR #92) returned a venetian Newly Remodeled Luxury King at **$4,010.55** (taxes $473.30); my read (~22:15 UTC) returned a palazzo Luxury King at **$3,823.46** (taxes $451.21) — $187.09 less, no change to dates or party size. Both reconcile **exactly** to (rate + $55) × 1.1338, so neither is arithmetic error: the engine's best-available offer moved between requests. Both are kept as dated rate-log observations (append-only, neither replaces the other), and **F78** records the discrepancy with the official link. The second observation is in `RATE_LOG` with its suite name, printed nightly rates, printed taxes and derived per-night true costs summing to the printed total.
+
+**Flag-ID note.** This session's flag was first written as F77; open PR #108 (`arena/57416062-poker3`) also claims F77 (WPT structures), so this branch renumbered its own flag to **F78** before opening its PR. Nothing on `main` uses F77 or F78 yet.
+
+**Test updated deliberately.** `tests/test_recheck_ed1d2489.py` pinned "exactly one dated 7-night trip quote is logged" — written to stop the duplicate-logging collision recorded for PRs #87/#92. It now requires **two distinct** dated 7-night reads, each with its own printed total, identified by suite label (each note cites the other's total for comparison, so a money filter would match both rows).
+
+**Verification run on this branch (after the final rebase onto `main` @ `6a40bca`):**
+- `scripts/data_source.py` rebuild byte-identical across consecutive runs (reproducibility gate).
+- `scripts/verify_site.py` — passed: 341 events, 8 hotels, 15 routes, 43 sources, **73 flags**, 7 plan days, 16 pages.
+- `python3 -m unittest discover -s tests -p 'test_*.py'` — **129 tests OK** (includes the new `test_sheet_page_not_stale` coverage of the flag register).
+- `scripts/audit_951cd431.py` — 0 failures (the new rate-log row reconciles night by night to its printed total).
+- `scripts/audit_data.py`, `scripts/verify_live.py`, `scripts/verify_live_official.py`, `scripts/verify_sheets.py`, `scripts/verify_dse_full.py`, `scripts/verify_wpt_full.py`, `scripts/verify_transcription.py --dry-run` — all pass.
+- `tests/canonical_smoke.py` (11 main + 5 detail pages), `tests/smoke.py`, `tests/canonical_render.js`, `node --check site/assets/app.js`, `python3 -m json.tool`, `git diff --check` — all pass.
+- `scripts/build_addendum.py` regenerated `site/sheets.html` so the new flag renders on the sheet-verification page (caught by the new `test_every_flag_is_rendered` test).
+
+**Observation for later sessions (not changed):** running `scripts/verify_transcription.py` without `--dry-run` rewrites the `transcription.checked` timestamp inside `site/checks.json`, which is the scheduled monitor's committed record. Use `--dry-run` for local verification, as done here, so a local run does not dirty the monitor record.
+
+**Not claimed, not edited:** `docs/`, `verified/`, `planner/`, `single-entry/`, `pages/`, `handoff/`, `raw/`, root-level legacy `*.html`, `site/poker3/**`.
+
+**Open PRs at integration time:** #99 (`arena/8689ef6e-poker3`, coordination record) and #108 (`arena/57416062-poker3`, WPT structures + flag F77) belong to their own sessions and are not touched here; this branch renumbered its flag to F78 so either order of merge is safe.
