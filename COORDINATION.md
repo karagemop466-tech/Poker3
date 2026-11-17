@@ -3457,3 +3457,30 @@ Branch: `arena/e9de19dc-poker3`, based on `origin/main` @ `4005a86` (PR #119 mer
 
 ### Open flags carried forward (do not block merge; published on site/flagged.html)
 F17 (no 8:00 AM start → 8 AM all-day plan not buildable), F31 (no written one-entry-per-player cap → strict-entry filter returns 0), F32 (walking times are Google Maps estimates), F39 (room-tax % unpublished at Wynn/Bellagio/Caesars/Horseshoe), F56 (Wynn Signature structures unpublished → 38 rows not-verified), F57 (no dated quote for some windows), F66 (phone-only poker rate), plus the per-source unavailable URLs in the monitor (17 URLs recorded as unavailable, never as unchanged).
+
+### E5 — PR #120 merged, Pages live (session `arena/58e42dbd-poker3`, 2026-11-17)
+
+- **PR:** [#120 — "Independent live re-verification: 94/94 Venetian rows agree; Wynn cancellation, poker parking and 4 questions corrected; flag F81"](https://github.com/karagemop466-tech/Poker3/pull/120)
+- **Merged:** 2026-11-17T22:38:55Z, merge commit `46cf326`, into `main` (`gh pr merge 120 --merge`), mergeable/CLEAN at merge time.
+- **CI before merge:** `verify` pass (7s), `transcription` pass (10s) on `ac4840c`.
+- **Pages:** `pages.yml` run on `46cf326` — **completed / success**. The site is live from that commit.
+- **Rebase history:** the branch was rebased twice during review. `main` moved to `88e709f` (PR #118 merged) while the PR was open, which conflicted on `COORDINATION.md`, `scripts/data_source.py` and the two generated files. Resolution kept **both** sessions' content; `site/data.json` and `site/sheets.html` were **regenerated** rather than merged.
+
+**Flag renumbering (unique across the repository, not per branch).** The new flag began as
+`F77` (taken on `main` by PR #108), then `F80`/`F79` (PR #118 landed `F79` Planet Hollywood and `F80`
+Resorts World while this PR was open), and finally shipped as **`F81`**. A test asserting every flag id cited in
+published text exists would have caught a stale `F79` reference; `scripts/data_hotels.py`'s Bellagio note was
+repointed to `F81` and the flag's own detail text no longer prints a bare numeric cross-reference.
+
+**Final verified state on `main` @ `46cf326`:** 76 flags (all unique, zero dangling id citations), 26 rate-log
+records, 52 sheets, 8 hotels, 15 routes — `verify_site.py` passed · `audit_951cd431.py` 0 failures/0 warnings ·
+`verify_live_official.py`, `audit_data.py` (37 sheets / 94 rows), `verify_sheets.py` (50 single-entry rows
+sheet-confirmed), `node --check` pass · **130 unit tests OK** · `canonical_smoke.py` 11 main + 5 detail pages ·
+rebuild from `scripts/data_source.py` byte-reproducible.
+
+**Open defects deliberately left open (they do not block merge, and they ship on `site/flagged.html`):**
+1. `site/calculator.html` prints dollar subtotals in its "Nights" and "Entries" columns.
+2. `site/checks.json` labels 17 runner-blocked URLs as failed; they are bot blocks, not dead links
+   (PR #118 re-read all 17 by hand and corroborated every published value).
+3. No dated room rate for Palazzo (only a 2026-11-17 $3,823.46 total, F78), Caesars Palace, Horseshoe or ARIA.
+4. Bellagio check-in/check-out is blank because its own reservation-terms page prints no clock time.
