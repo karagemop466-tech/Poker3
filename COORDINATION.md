@@ -3243,3 +3243,11 @@ Branch: `arena/7529044d-poker3` (platform-bound; the `session-<id>/<task>` namin
 **Not claimed, not edited:** `docs/`, `verified/`, `planner/`, `single-entry/`, `pages/`, `handoff/`, `raw/`, root-level legacy `*.html`, `site/poker3/**`.
 
 **Open PRs at integration time:** #99 (`arena/8689ef6e-poker3`, coordination record) and #108 (`arena/57416062-poker3`, WPT structures + flag F77) belong to their own sessions and are not touched here; this branch renumbered its flag to F78 so either order of merge is safe.
+
+## Session `arena/5b8ce14d-poker3` — index entry (narrative in `handoff/5b8ce14d/log.md`)
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| T1 Resolve F39 room-tax % (Wynn, Caesars, Horseshoe) | done (reference only; `taxRate` stays blank) | arena/5b8ce14d-poker3 | `scripts/data_hotels.py`, `scripts/data_source.py` (F39), `site/data.json` | commits `39ea638`, `b3477cc`; unread values removed (see log) |
+| T2 Strip room coverage and earliest-start check (F17, F21) | done (F17 stands; F79 and F80 added) | arena/5b8ce14d-poker3 | `scripts/data_source.py` (F79, F80), `raw/official_excerpts_5b8ce14d_2026-11-17.md` | commit `da255ae`; Paris and Flamingo unresolved |
+| T3 Integration, PR, merge, Pages check | in progress | arena/5b8ce14d-poker3 | whole repo | PR and merge result recorded below |

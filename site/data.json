@@ -21560,6 +21560,8 @@
    "resortFeeNote": "Reservations are charged a daily resort fee of $55 plus tax for each room night, on both standard rooms and Tower Suites.",
    "taxRate": "",
    "taxNote": "Wynn prints 'plus tax' without a percentage. The 13.38% Clark County room tax is the rate printed in the Venetian hotel terms; applying it to Wynn's own total is an assumption and is labelled as one.",
+   "taxReference": "County per-property table, \"Wynn Las Vegas / Encore at Wynn Las Vegas\": 13.38% for a resort hotel in the Primary Gaming Corridor (PGC). The guide's Appendix III chart prints 13.38% for 'Resort Hotel in SD & PGC'. Shown as a reference only; the property's own page prints no room-tax percentage.",
+   "taxReferenceSource": "https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf",
    "parking": "Self parking is complimentary for registered guests. Non-registered guests pay $25 per day with the first three hours free; valet $40 per day. Complimentary self-parking is extended to Wynn Poker Room guests.",
    "parkingSource": "https://www.wynnlasvegas.com/about-us/resort-information",
    "cancellation": "A deposit of one night's room rate and tax is charged at booking. The live policy page does not print a cancellation window; the 48-hour window appears only in offer terms, so no Wynn cancellation deadline is marked verified for a flexible 2026 booking.",
@@ -21596,6 +21598,8 @@
    "resortFeeNote": "A daily resort fee of $55.00 plus applicable tax applies to all reservations.",
    "taxRate": "",
    "taxNote": "'Lodging taxes apply to the basic room rate, any resort fee, additional per occupant charges, upgrades, as well as any other charges as required by applicable law.' The percentage is not printed on the page; the Clark County rate of 13.38% is published in the Venetian hotel terms.",
+   "taxReference": "County per-property table, \"Bellagio\": 13.38% for a resort hotel in the Primary Gaming Corridor (PGC). The guide's Appendix III chart prints 13.38% for 'Resort Hotel in SD & PGC'. Shown as a reference only; the property's own page prints no room-tax percentage.",
+   "taxReferenceSource": "https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf",
    "parking": "",
    "parkingSource": "https://bellagio.mgmresorts.com/en/terms-and-conditions.html",
    "cancellation": "The first night's deposit is fully refundable if cancellation is received at least 72 hours prior to arrival. Cancelling later, or failing to show, forfeits the first night. Complimentary stays incur a $165 mid-week or $200 weekend cancellation fee.",
@@ -21630,6 +21634,8 @@
    "resortFeeNote": "A daily resort fee of $50.00 plus applicable tax applies to all reservations; waived for eligible MGM Rewards Gold+ members.",
    "taxRate": "",
    "taxNote": "'Lodging taxes apply to the basic room rate, any resort fee...' The percentage is not printed; the Clark County 13.38% rate is printed in the Venetian hotel terms.",
+   "taxReference": "County per-property table, \"MGM Grand Hotel/Casino\": 13.38% for a resort hotel in the Primary Gaming Corridor (PGC). The guide's Appendix III chart prints 13.38% for 'Resort Hotel in SD & PGC'. Shown as a reference only; the property's own page prints no room-tax percentage.",
+   "taxReferenceSource": "https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf",
    "parking": "",
    "parkingSource": "",
    "cancellation": "The first night's deposit is fully refundable with notice at least 72 hours before arrival; later cancellations and no-shows forfeit the first night.",
@@ -21672,7 +21678,7 @@
    "source": "https://www.caesars.com/caesars-palace/hotels",
    "feeSource": "https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=December&propCode=clv",
    "taxSource": "https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=December&propCode=clv",
-   "taxReference": "13.38% is the combined transient lodging tax rate published for properties inside the Primary Gaming Corridor (13.00% outside it). Government sources read 2026-11-17: the Clark County Department of Business License schedule (Appendix III) lists the corridor resort hotels at 13.38% line by line; the City of Las Vegas room-tax packet (https://files.lasvegasnevada.gov/business-licensing/RoomTaxPacket.pdf) prints the same split. The rate is a reference beside the property's own figure, never a substitute for it.",
+   "taxReference": "County per-property table, \"Caesars Palace\", licence 1136233.RES-001 (the county table prints its address as \"35/0\"; not used): 13.38% for a resort hotel in the Primary Gaming Corridor (PGC). The guide's Appendix III chart prints 13.38% for 'Resort Hotel in SD & PGC'. Shown as a reference only; the property's own page prints no room-tax percentage. Caesars' own fee block prints $7.35 tax on its $54.95 fee; 13.38% of $54.95 is $7.35 to the cent, which agrees with the county figure but is not itself a printed percentage.",
    "taxReferenceSource": "https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf",
    "qualityNote": "Not scored. No official quality metric is published. Facts published by the property for 2026 stays: 3,976 rooms, 11 restaurants, full-service spa, pool complex; 21+ check-in.",
    "status": "Resort fee, deposit, parking policy and check-in/check-out are confirmed from the property's own booking page on 2026-11-17. The room rate and the room-tax percentage are still not published, so no true nightly cost can be computed from property-published components.",
@@ -21706,7 +21712,7 @@
    "source": "https://www.caesars.com/horseshoe-las-vegas/hotels",
    "feeSource": "https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=November&propCode=blv",
    "taxSource": "https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=November&propCode=blv",
-   "taxReference": "13.38% is the combined transient lodging tax rate published for properties inside the Primary Gaming Corridor (13.00% outside it). Government sources read 2026-11-17: the Clark County Department of Business License schedule (Appendix III) lists the corridor resort hotels at 13.38% line by line; the City of Las Vegas room-tax packet (https://files.lasvegasnevada.gov/business-licensing/RoomTaxPacket.pdf) prints the same split. The rate is a reference beside the property's own figure, never a substitute for it.",
+   "taxReference": "County per-property table, \"Bally's Las Vegas\", 3645 Las Vegas Blvd S (the Horseshoe page prints the same street address; the county table uses the former name, so this entry is not treated as Horseshoe's own licence): 13.38% for a resort hotel in the Primary Gaming Corridor (PGC). The guide's Appendix III chart prints 13.38% for 'Resort Hotel in SD & PGC'. Shown as a reference only; the property's own page prints no room-tax percentage. Horseshoe's own fee block prints $6.68 tax on its $49.95 fee; 13.38% of $49.95 is $6.68 to the cent.",
    "taxReferenceSource": "https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf",
    "qualityNote": "Not scored. No official quality metric is published. Facts published by the property for 2026 stays: 2,056 rooms, 10 restaurants, outdoor seasonal pool, 21+ check-in.",
    "status": "The only reviewed property whose official calendar publishes a dated lowest-available rate per night for the trip window (see the rate log, 2026-11-17). Those cells already include the $49.95 resort fee, so the fee must not be added again; the room tax is not printed, so no true nightly cost is computed.",
@@ -21730,6 +21736,8 @@
    "resortFeeNote": "A daily resort fee of $55.00 plus applicable tax applies to all reservations; waived for eligible MGM Rewards Gold+ members.",
    "taxRate": "",
    "taxNote": "Lodging taxes apply to the basic room rate and to any resort fee. The percentage is not printed; the 13.38% Clark County rate is printed in the Venetian hotel terms.",
+   "taxReference": "County per-property table, \"Aria Resort & Casino\", 3730 Las Vegas Blvd S: 13.38% for a resort hotel in the Primary Gaming Corridor (PGC). The guide's Appendix III chart prints 13.38% for 'Resort Hotel in SD & PGC'. Shown as a reference only; the property's own page prints no room-tax percentage.",
+   "taxReferenceSource": "https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf",
    "parking": "",
    "parkingSource": "",
    "cancellation": "The first night's deposit is fully refundable with notice at least 72 hours before arrival; later cancellations and no-shows forfeit the first night.",
@@ -23009,9 +23017,9 @@
    "id": "F39",
    "area": "Hotel cost",
    "severity": "Medium",
-   "title": "Wynn, Caesars Palace and Horseshoe print no room-tax percentage, so their true nightly cost stays open",
-   "detail": "Wynn publishes 'plus tax' on the resort fee and on the room rate but no percentage (page re-read 2026-11-17: 'Reservations will be charged a daily resort fee of $55 plus tax'). Caesars Palace and Horseshoe print only the tax amount charged on their fee. The Clark County Department of Business License Combined Transient Lodging Tax schedule (Appendix III of the General Information Guide for Transient Lodging Establishments) lists every resort hotel in the Primary Gaming Corridor at 13.38% - MGM Grand, Luxor, Paris, New York-New York, Sahara and Rio were read line by line on 2026-11-17 (session 688eb797) - and the City of Las Vegas room-tax packet prints the same 13.38%/13.00% split (https://files.lasvegasnevada.gov/business-licensing/RoomTaxPacket.pdf); 13.38% is also the figure the Venetian prints in its own hotel terms. This site does not substitute a government schedule into a property-published column: the row shows the reference beside a blank property figure. Closing it needs a dated checkout total from each property.",
-   "source": "https://www.wynnlasvegas.com/about-us/resort-information"
+   "title": "Room-tax % is still blank in the property-published column for Wynn, Caesars, Horseshoe, Bellagio, MGM Grand and ARIA; a county per-property reference now sits beside each",
+   "detail": "Checked 2026-11-17 (session arena/5b8ce14d-poker3). No property page read this session prints a room-tax percentage for its room rate. Wynn's terms page prints a $55 resort fee 'plus tax' with no percentage. Caesars and Horseshoe print only the tax amount on their resort fee ($7.35 on $54.95; $6.68 on $49.95; both 13.38% to the cent). The Clark County General Information Guide for Transient Lodging (July 2021 edition) lists per-property rows that include Wynn/Encore, Caesars Palace, Bellagio, MGM Grand, ARIA and Bally's at 13.38% (Primary Gaming Corridor), and its Appendix III chart prints 13.38% for a resort hotel in SD & PGC. Horseshoe is not listed under its own name; Bally's, at the same street address (3645 Las Vegas Blvd S), appears at 13.38%, but the former name is not treated as Horseshoe's own licence, so Horseshoe stays open. Only part of the guide was read (chunks 0 and 3-11 of 12); the rows for Wynn, Bellagio, MGM Grand and Venetian were not all read to their licence numbers and are not quoted here. The guide is dated July 2021; the county's guidance page lists an April 2021 rate table as 'Updated', and no 2026 rate table was found, so the listing must be re-confirmed. DECISION NEEDED: the taxRate column is blank by policy (tests enforce 'a figure the property printed'); the county figure is shown only as a reference beside it. Whether a government per-property listing may fill that column is a user decision (see suggestions). True nightly cost still needs a dated base rate from each property, which none of these six has published.",
+   "source": "https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf"
   },
   {
    "id": "F51",
@@ -23228,6 +23236,22 @@
    "title": "RESOLVED 2026-11-17: stale hotel, rate and route files were feeding the sheet-verification page",
    "detail": "site/data/hotels.json, site/data/rates.json and site/data/routes.json were dated 2026-11-16, were written by no script, and were not read by any dashboard page — but scripts/build_addendum.py did read hotels.json, rates.json and routes.json, and it generates site/sheets.html, which is a page in the site navigation. That page therefore published 2026-11-16 data: 14 retired FL-prefixed flags instead of the live 72-item F register, 5 of the 8 hotels, and 13 of the 15 walking routes with every walking time blank. The three files are deleted and build_addendum.py now reads site/data.json and the two data modules only, so it cannot drift again. site/data.json is the only current data file. Kept on the register as the record of the defect.",
    "source": "https://github.com/karagemop466-tech/Poker3/blob/main/scripts/build_addendum.py"
+  },
+  {
+   "id": "F79",
+   "area": "Strip poker rooms",
+   "severity": "Medium",
+   "title": "Planet Hollywood's poker room is no longer open (closed 31 January 2026), so it has no rows on this site",
+   "detail": "Re-read 2026-11-17 (session arena/5b8ce14d-poker3). The official Caesars poker-tournaments page (dated 17 July 2026) names only Caesars Palace and Horseshoe Las Vegas as Caesars poker rooms with daily tournament schedules, and Planet Hollywood's own poker page could not be read (HTTP 500 on 2026-11-17). The closure is a Caesars Entertainment statement reported by the Las Vegas Review-Journal on 28 January 2026 (https://www.reviewjournal.com/business/casinos-gaming/inside-gaming-strip-casino-to-close-poker-room-3612434/): the room would not operate after 31 January, and its operations were consolidated into Caesars Palace and Horseshoe. Any Planet Hollywood tournament listing found online is therefore not used. Flamingo is also absent from the official Caesars article; a third-party closure list dates its poker-room closure to September 2021, which this site does not treat as verified.",
+   "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"
+  },
+  {
+   "id": "F80",
+   "area": "Strip poker rooms",
+   "severity": "Medium",
+   "title": "Resorts World Las Vegas: no official poker schedule could be read, and third-party sources disagree on its tournaments",
+   "detail": "Checked 2026-11-17 (session arena/5b8ce14d-poker3). Official rwlasvegas.com pages read: the poker-invite e-mail page (no schedule); /gaming/poker-room/poker-room-dining/ (dining only); /gaming/casino-events/ (promotions, no poker tournament). /poker, /casino/poker/ and /poker-room/ returned no page. Third-party pages disagree on times and buy-ins for Resorts World's tournaments (PokerNews 2024, Vegas Advantage 2025, CardPlayer, Bet-NV 2023, PokerAtlas, Somuchpoker), and none is official, so no Resorts World row is published. Its poker room is a candidate to add once its official poker page is reached.",
+   "source": "https://www.rwlasvegas.com/gaming/casino-events/"
   }
  ],
  "questions": [

@@ -95,6 +95,7 @@ class LabelIntegrity(unittest.TestCase):
     def test_every_flag_links_an_official_host(self) -> None:
         allowed = ("venetianlasvegas.com", "wynnlasvegas.com", "wynnresorts.com", "mgmresorts.com",
                    "contentstack.io", "caesars.com", "google.com", "lasvegasnevada.gov", "worldpokertour.com",
+                   "clarkcountynv.gov", "rwlasvegas.com",  # Clark County Dept. of Business License (official county host, as in verify_site.py)
                    # findings about this repository's own publishing and build
                    "github.com/karagemop466-tech/Poker3")
         bad = [f["id"] for f in self.data["flags"]
