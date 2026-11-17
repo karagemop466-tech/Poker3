@@ -16,6 +16,9 @@ import data_venues as N  # noqa: E402
 import data_hotels as H  # noqa: E402
 
 ASOF = "2026-11-16"
+RECHECKED = "2026-11-17"
+RECHECK_FROM, RECHECK_TO = "2026-11-16", "2026-11-28"
+DSE_NOV_URL = "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
 
 # --------------------------------------------------------------- time helpers
 _CLOCK = re.compile(r"(\d{1,2}):(\d{2})\s*([ap])\.?m\.?", re.I)
@@ -1040,6 +1043,16 @@ def build():
         row["lastChecked"] = ASOF
         row["walkSourceType"] = "Google Maps walking estimate"
         routes.append(row)
+
+    # Live re-check of the official DeepStack Extravaganza IV page, 2026-11-17: the 24 rows dated
+    # 2026-11-16 to 2026-11-28 were matched on date, start time and structure-sheet link.
+    n = 0
+    for e in events:
+        if e["venue"] == "venetian" and e["date"] and RECHECK_FROM <= e["date"] <= RECHECK_TO:
+            e["lastChecked"] = RECHECKED
+            e["recheck"] = dict(date=RECHECKED, source=DSE_NOV_URL, result="matched on date, start time and structure link")
+            n += 1
+    assert n == 24, f"expected 24 re-checked DSE IV rows, got {n}"
 
     recurring_events = [e for e in events if not e["date"] and e.get("weekdays")]
     plan, conflicts = build_day_plan(events, TRIP["start"], TRIP["end"], recurring_events)
