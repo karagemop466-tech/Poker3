@@ -2491,3 +2491,15 @@ official page will be the first genuine `changed` flag.
 The 17 unavailable URLs are the property hosts that refuse or time out from a GitHub runner (Caesars returns 403/302
 loops, Bellagio and ARIA time out). They are published as unavailable with the HTTP status and error, so the gap is
 visible on the sources page rather than hidden, and none of them is silently treated as unchanged.
+
+## Session `arena/f3c88848-poker3` — claim: live re-read of the earliest official start (8 AM question)
+
+Branch: `arena/f3c88848-poker3`, from `main` @ `2bdcc0d`. Scope is narrow on purpose: the canonical dashboard already
+covers the calculator, venue pages, search, schedule, hotels, monitor, questions, suggestions and flags, and a rebuild
+would duplicate recorded work. This session claims one open gap only.
+
+| Task | Status | Owner | Files in scope | Notes |
+|---|---|---|---|---|
+| X1 Live re-read of official Strip poker schedules for any start before 10:10 AM (the 8 AM all-day question) | in progress | arena/f3c88848-poker3 | `COORDINATION.md` (this section); `research/` note only | Read from the sandbox with the page reader. Changes to `site/` data are NOT made here; any discrepancy is logged for the integration owner. |
+
+Commit discipline: small commits; `git pull --rebase origin arena/f3c88848-poker3` before each push.
