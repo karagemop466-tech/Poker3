@@ -3563,3 +3563,10 @@ Branch: `arena/1bbee97f-poker3`. Platform-bound (the `session-<id>/<task>` namin
 - **Flag-ID collisions, found at PR time, resolved without discarding any session's work.** This session first committed its two new flags as F77/F78; main had already taken F78-F80 (and F77 is reserved by PR #108), so they became F81/F82; main then took F81 (session 58e42dbd), so they are published as **F82/F83**. Each renumber is recorded in the flag detail text itself and in the research record. The superseded branch heads (`9150a29`..`ac4e1f8`, `82ef2bb`, `39beb77`) remain reachable in the remote reflog for audit.
 - **COORDINATION.md conflicting appends:** four rebase rounds hit the known end-of-file append pattern; each time this session took main's copy and re-appended its own section, keeping every other session's record verbatim.
 - No shared output other than this file and the flag register was touched.
+
+### Result
+
+- PR: [#124](https://github.com/karagemop466-tech/Poker3/pull/124), merged to `main` with `gh pr merge 124 --merge` (merge commit `9978cf9`).
+- Pages: publish run [44192659523](https://github.com/karagemop466-tech/Poker3/actions/runs/44192659523) for the merge commit completed `success`; the Pages API reports `status: built`, source `main` `/`. Live site: https://karagemop466-tech.github.io/Poker3/ (the sandbox cannot reach github.io directly, so the deployment is confirmed via the Actions run and the Pages API, as in prior sessions).
+- Checks on the merge commit: "Verify static research site" `success`, "Official table transcription check" `success`; "Scheduled source re-check and daily room feed" was still running at record time (it is the scheduled monitor that writes `site/checks.json`; it records observations only and never rewrites values).
+- Published state of this session: flags F82 and F83 on the register (78 items), the 20-URL recheck record in `research/recheck_2026-11-17_arena-1bbee97f.json`, and no value changed by a read anywhere in the dashboard.
