@@ -38,6 +38,9 @@ jobs:
           python-version: "3.11"
 
       - name: Re-check every official URL behind the dashboard
+        # First real run is triggered by the merge that consolidated this job, so
+        # site/checks.json exists from day one instead of being created by a cron
+        # nobody has seen fire.
         run: python3 scripts/check_sources.py
 
       - name: Fetch the morning daily schedule feed for each Strip poker room
