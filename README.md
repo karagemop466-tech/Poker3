@@ -64,7 +64,10 @@ date, start time, registration cut-off, guarantee, chip count or level length dr
 ## Scheduled checks
 
 `.github/workflows/checks.yml` is the single scheduled job that reviews official sources at 12:10 UTC
-(04:10 PST / 05:10 PDT, the morning pull) and can be dispatched by hand. It runs two recorders in order:
+(04:10 PST / 05:10 PDT, the morning pull) and can be dispatched by hand. It also carries a push trigger on its own
+file and on the two recorder scripts, so a change to the monitoring setup runs the job immediately instead of waiting
+for the cron (a change to one workflow file cannot trigger a different workflow — the earlier attempt routed this
+through `source-monitor.yml`, which only starts the poker3 companion monitor). It runs two recorders in order:
 
 - `scripts/check_sources.py` fetches every official URL behind the dashboard, stores a SHA-256 of the response, and flags
   any source whose body changed. A URL it cannot reach is recorded as `unavailable`, never as "changed".

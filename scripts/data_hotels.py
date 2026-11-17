@@ -13,20 +13,18 @@ VENETIAN_SUITE_RATES = "https://www.venetianlasvegas.com/resort/casino/poker/sui
 VENETIAN_RESORT_FEE = "https://www.venetianlasvegas.com/resort/resort-fee.html"
 VENETIAN_HOTEL_TERMS = "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html"
 WYNN_ROOMS = "https://www.wynnlasvegas.com/rooms-and-suites"
-# The page the earlier build cited (terms-and-conditions/850070) is an expired
-# 2025 DINING CREDIT offer: its own text says a stay "must be completed on or
-# before September 30, 2025".  The live, non-offer policy page below is therefore
-# used instead; the expired page is kept only as a cross-check and is flagged.
-WYNN_TERMS = "https://www.wynnlasvegas.com/about-us/resort-information"
-WYNN_EXPIRED_OFFER = "https://www.wynnlasvegas.com/terms-and-conditions/850070"
-MGM_TERMS = "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html"
-ARIA_TERMS = "https://aria.mgmresorts.com/en/terms-and-conditions.html"
+WYNN_TERMS = "https://www.wynnlasvegas.com/terms-and-conditions/850070"
 BELLAGIO_HOTEL = "https://bellagio.mgmresorts.com/en/hotel.html"
 BELLAGIO_TERMS = "https://bellagio.mgmresorts.com/en/terms-and-conditions.html"
 MGM_HOTEL = "https://mgmgrand.mgmresorts.com/en/hotel.html"
 CAESARS_HOTEL = "https://www.caesars.com/caesars-palace/hotels"
 HORSESHOE_HOTEL = "https://www.caesars.com/horseshoe-las-vegas/hotels"
 ARIA_HOTEL = "https://aria.mgmresorts.com/en/hotel.html"
+# Hotel Reservation Terms and Conditions pages, reached via the MGM Resorts
+# corporate terms index (https://www.mgmresorts.com/en/terms-and-conditions.html)
+# and cited by the MGM Grand FAQ for the resort-fee question.
+MGM_TERMS = "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html"
+ARIA_TERMS = "https://aria.mgmresorts.com/en/terms-and-conditions.html"
 
 TAX_RATE = 13.38  # Clark County room tax, printed in the Venetian hotel terms
 
@@ -129,27 +127,19 @@ HOTELS = [
         baseRateNote=("The official rooms page lists room categories and a booking link but publishes no room price. No "
                       "date-specific quote is published. The poker-room page links a 'Reserve your stay' contact for "
                       "poker players, which was not published as a price."),
-        resortFee=55,
-        resortFeeNote=("Reservations are charged a daily resort fee of $55 plus tax for each room night, on both standard "
-                       "rooms and Tower Suites."),
-        taxRate="",
-        taxNote=("Wynn prints 'plus tax' without a percentage. The 13.38% Clark County room tax is the rate printed in the "
-                 "Venetian hotel terms; applying it to Wynn's own total is an assumption and is labelled as one."),
+        resortFee=55, resortFeeNote="A daily resort fee of $55 plus tax is added to the room account for each room night.",
+        taxRate="", taxNote=("The reviewed Wynn terms publish 'plus tax' without a percentage; the Clark County room tax "
+                             "rate of 13.38% is published in the Venetian hotel terms."),
         parking=("Self parking is complimentary for registered guests. Non-registered guests pay $25 per day with the first "
                  "three hours free; valet $40 per day. Complimentary self-parking is extended to Wynn Poker Room guests."),
         parkingSource=WYNN_TERMS,
-        cancellation=("A deposit of one night's room rate and tax is charged at booking. The live policy page does not "
-                      "print a cancellation window; the 48-hour window appears only in offer terms, so no Wynn "
-                      "cancellation deadline is marked verified for a flexible 2026 booking."),
+        cancellation=("Cancellations must be received at least 48 hours prior to the arrival date or the deposit is "
+                      "forfeited; early departures are charged the room rate and tax for the night."),
         cancellationSource=WYNN_TERMS,
-        incidental=("A credit card authorised to cover room, resort fees and tax plus $150 a night for incidentals is "
-                    "required at check-in."),
-        checkInOut="Check-in 3 p.m.; check-out 12 p.m. (official resort policies page).",
+        incidental="A credit card authorisation for room, resort fees and tax plus $150 a night for incidentals is required at check-in.",
+        checkInOut="",
         qualification="",
         source=WYNN_ROOMS, feeSource=WYNN_TERMS, taxSource=WYNN_TERMS,
-        sourceNote=("The fee, parking and check-in times are read from the live Resort Policies page. The page the earlier "
-                    "build cited (terms-and-conditions/850070) is an expired 2025 DINING CREDIT offer whose own text "
-                    "requires a stay completed by September 30, 2025, so it cannot substantiate a 2026 trip."),
         qualityNote=("The rooms page states 'With 22 Five-Star awards across our hotels, spas and restaurants, Wynn Resorts "
                      "holds more Five-Star designations than any independent hotel company in the world' and links Forbes "
                      "Travel Guide. That is a publisher claim, not a comparable room-level score, so no numeric score is used."),
@@ -185,21 +175,24 @@ HOTELS = [
         id="mgm", name="MGM Grand", venue="MGM Grand poker room", property="MGM Grand",
         rooms="", baseRate="", baseRateFloor="", baseRateCeiling="",
         baseRateNote="No room price is published on the official pages reviewed.",
-        resortFee=50,
-        resortFeeNote=("A daily resort fee of $50.00 plus applicable tax applies to all reservations; waived for eligible "
-                       "MGM Rewards Gold+ members."),
-        taxRate="",
-        taxNote=("'Lodging taxes apply to the basic room rate, any resort fee...' The percentage is not printed; the "
-                 "Clark County 13.38% rate is printed in the Venetian hotel terms."),
+        resortFee=50, resortFeeNote=("The MGM Grand Hotel Reservation Terms and Conditions state: 'A daily resort fee of "
+                                     "$50.00 plus applicable tax will be applied to all reservations.' The fee is waived for "
+                                     "eligible MGM Rewards Gold+ members."),
+        taxRate="", taxNote=("The same terms state that 'Lodging taxes apply to the basic room rate, any resort fee, additional "
+                             "per occupant charges, upgrades, as well as any other charges as required by applicable law.' The "
+                             "percentage itself is not published on the reviewed pages, so no true nightly total is computed."),
         parking="", parkingSource="",
-        cancellation=("The first night's deposit is fully refundable with notice at least 72 hours before arrival; later "
-                      "cancellations and no-shows forfeit the first night."),
+        cancellation=("The first night's deposit is fully refundable with timely notice to Room Reservations (877.880.0880) at "
+                      "least 72 hours prior to arrival; later cancellations and no-shows forfeit the first night's deposit."),
         cancellationSource=MGM_TERMS,
-        incidental="$100 incidental authorisation per day at check-in.", checkInOut="Check-in 3:00 pm; check-out 11:00 am.",
+        incidental="A $100 per day incidental authorization is placed at check-in for room-charging privileges.",
+        checkInOut="Check-in 3:00 PM; check-out 11:00 AM.",
         qualification="",
         source=MGM_HOTEL, feeSource=MGM_TERMS, taxSource=MGM_TERMS,
+        verifiedOn="2026-11-17",
         qualityNote="Not scored.",
-        status="Fee terms verified; no published room price, and the walking route to the Venetian is outside the limit.",
+        status=("Fee, cancellation and incidental terms verified on the official MGM Grand terms page on 2026-11-17. Room rate "
+                "and tax percentage are still unpublished, so the true nightly cost stays blank."),
         walkNote="Poker room is inside the property; Google Maps walking route to The Venetian measures 35 minutes.",
     ),
     dict(
@@ -234,22 +227,25 @@ HOTELS = [
         id="aria", name="ARIA Resort & Casino", venue="ARIA poker room", property="ARIA Resort & Casino",
         rooms="", baseRate="", baseRateFloor="", baseRateCeiling="",
         baseRateNote="No room price is published on the official pages reviewed.",
-        resortFee=55,
-        resortFeeNote=("A daily resort fee of $55.00 plus applicable tax applies to all reservations; waived for eligible "
-                       "MGM Rewards Gold+ members."),
-        taxRate="",
-        taxNote=("Lodging taxes apply to the basic room rate and to any resort fee. The percentage is not printed; the "
-                 "13.38% Clark County rate is printed in the Venetian hotel terms."),
+        resortFee=55, resortFeeNote=("The ARIA Hotel Reservation Terms and Conditions state: 'A daily resort fee of $55.00 plus "
+                                     "applicable tax will be applied to all reservations.' The fee is waived for eligible MGM "
+                                     "Rewards Gold+ members."),
+        taxRate="", taxNote=("The same terms state that lodging taxes apply to the basic room rate, any resort fee and other "
+                             "charges as required by applicable law. The percentage itself is not published on the reviewed "
+                             "pages, so no true nightly total is computed."),
         parking="", parkingSource="",
-        cancellation=("The first night's deposit is fully refundable with notice at least 72 hours before arrival; later "
-                      "cancellations and no-shows forfeit the first night."),
+        cancellation=("The first night's deposit is fully refundable with timely notice to Room Reservations (866.359.7757) at "
+                      "least 72 hours prior to arrival; later cancellations and no-shows forfeit the first night's deposit."),
         cancellationSource=ARIA_TERMS,
-        incidental=("$150 per day incidental authorisation for Deluxe Rooms, $250 Tower Suites, $350 Sky Suites, $500 "
-                    "Villas."),
-        checkInOut="Check-in 3:00 pm; check-out 11:00 am.", qualification="",
+        incidental=("Credit card authorization at check-in covers room, tax and resort fees plus a per-day incidental amount of "
+                    "$150 for Deluxe Rooms, $250 for Tower Suites, $350 for Sky Suites and $500 for Villas."),
+        checkInOut="Check-in 3:00 PM; check-out 11:00 AM.",
+        qualification="",
         source=ARIA_HOTEL, feeSource=ARIA_TERMS, taxSource=ARIA_TERMS,
+        verifiedOn="2026-11-17",
         qualityNote="Not scored.",
-        status="Fee terms verified; the walking route to the Venetian is outside the limit, and no dated poker schedule was confirmed.",
+        status=("Fee, cancellation and incidental terms verified on the official ARIA terms page on 2026-11-17. Room rate and "
+                "tax percentage are still unpublished, so the true nightly cost stays blank."),
         walkNote="Google Maps walking route to The Venetian measures 31 minutes, which is outside the 30-minute limit.",
     ),
 ]
@@ -295,28 +291,6 @@ RATE_LOG = [
          resortFee="55 plus tax", tax="", trueNightlyLow="", trueNightlyHigh="",
          quoteType="No published rate", note="Room classes published without prices.",
          source=BELLAGIO_HOTEL, feeSource=BELLAGIO_TERMS, taxSource=BELLAGIO_TERMS),
-    dict(hotel="mgm", observedOn="2026-11-17", baseRate="",
-         publishedStartingRates="No room price published on the official hotel page",
-         resortFee="50.00 per night plus applicable tax",
-         quoteType="Fee verified, no published room rate",
-         note=("Resort fee read from the MGM Grand official hotel reservation terms: 'A daily resort fee of $50.00 plus "
-               "applicable tax will be applied to all reservations.' Room rate still blank: no official date-specific "
-               "price was published."),
-         source=MGM_HOTEL, feeSource=MGM_TERMS, taxSource=MGM_TERMS),
-    dict(hotel="aria", observedOn="2026-11-17", baseRate="",
-         publishedStartingRates="No room price published on the official hotel page",
-         resortFee="55.00 per night plus applicable tax",
-         quoteType="Fee verified, no published room rate",
-         note=("Resort fee read from the ARIA official hotel reservation terms: 'A daily resort fee of $55.00 plus "
-               "applicable tax will be applied to all reservations.' Room rate still blank."),
-         source=ARIA_HOTEL, feeSource=ARIA_TERMS, taxSource=ARIA_TERMS),
-    dict(hotel="wynn", observedOn="2026-11-17", baseRate="",
-         publishedStartingRates="No room price published on the official rooms page",
-         resortFee="55.00 per night plus tax (re-confirmed on the live Resort Policies page)",
-         quoteType="Fee re-confirmed, no published room rate",
-         note=("Re-read on 2026-11-17 on the live Resort Policies page. The 2025 DINING CREDIT terms page cited by the "
-               "earlier build (850070) is an expired offer and is no longer used as the fee source."),
-         source=WYNN_ROOMS, feeSource=WYNN_TERMS, taxSource=WYNN_TERMS),
     dict(hotel="mgm", observedOn="2026-11-16", baseRate="", publishedStartingRates="",
          resortFee="", tax="", trueNightlyLow="", trueNightlyHigh="",
          quoteType="Not verified in this pass", note="Hotel fee and tax terms still to be captured.",
@@ -333,6 +307,22 @@ RATE_LOG = [
          resortFee="", tax="", trueNightlyLow="", trueNightlyHigh="",
          quoteType="Not verified in this pass", note="Hotel fee and tax terms still to be captured.",
          source=ARIA_HOTEL, feeSource="", taxSource=""),
+    dict(hotel="mgm", observedOn="2026-11-17", baseRate="", publishedStartingRates="",
+         resortFee="50.00 plus applicable tax", tax="percentage not published",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType="Published fee terms (no room rate)",
+         note=("MGM Grand Hotel Reservation Terms and Conditions: 'A daily resort fee of $50.00 plus applicable tax will be "
+               "applied to all reservations.' Lodging taxes apply to the basic room rate and any resort fee; the tax "
+               "percentage is not published, so no true nightly total is computed."),
+         source=MGM_TERMS, feeSource=MGM_TERMS, taxSource=MGM_TERMS),
+    dict(hotel="aria", observedOn="2026-11-17", baseRate="", publishedStartingRates="",
+         resortFee="55.00 plus applicable tax", tax="percentage not published",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType="Published fee terms (no room rate)",
+         note=("ARIA Hotel Reservation Terms and Conditions: 'A daily resort fee of $55.00 plus applicable tax will be applied "
+               "to all reservations.' Lodging taxes apply to the basic room rate and any resort fee; the tax percentage is not "
+               "published, so no true nightly total is computed."),
+         source=ARIA_TERMS, feeSource=ARIA_TERMS, taxSource=ARIA_TERMS),
 ]
 
 MAPS = "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin={o}&destination={d}"

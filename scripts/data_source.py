@@ -224,7 +224,7 @@ VENUES = [
 SOURCES = [
     dict(id="vl-dse-nov", name="Venetian DeepStack Extravaganza IV schedule and structure sheets (Nov 16 - Dec 23, 2026)",
          url="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-         type="official schedule", checked=ASOF),
+         type="official schedule", checked=RECHECKED),
     dict(id="vl-dse-dec", name="Venetian DeepStack Extravaganza NYE schedule and structure sheets (Dec 24, 2026 - Jan 10, 2027)",
          url="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html",
          type="official schedule", checked=ASOF),
@@ -236,20 +236,20 @@ SOURCES = [
     dict(id="vl-suite-rates", name="Venetian poker-room suite rates and play requirements 2026",
          url="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html", type="official rate page", checked=ASOF),
     dict(id="vl-resort-fee", name="Venetian resort fee page", url="https://www.venetianlasvegas.com/resort/resort-fee.html",
-         type="official fee page", checked=ASOF),
+         type="official fee page", checked=RECHECKED),
     dict(id="vl-hotel-terms", name="Venetian hotel terms and conditions (tax, parking, cancellation)",
-         url="https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html", type="official terms", checked=ASOF),
+         url="https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html", type="official terms", checked=RECHECKED),
     dict(id="wynn-poker", name="Wynn Las Vegas poker room page", url="https://www.wynnlasvegas.com/casino/poker",
          type="official room page", checked=ASOF),
     dict(id="wynn-daily-poster", name="Wynn daily tournament poster",
          url="https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf",
-         type="official schedule", checked=ASOF),
+         type="official schedule", checked=RECHECKED),
     dict(id="wynn-daily-struct", name="Wynn daily tournament terms and structures",
          url="https://cdn.wynnresorts.com/image/upload/v1752011191/visitwynn_pdfs_files/Poker/Daily%20Tournaments/Poker-All_Daily_Structures.pdf",
          type="official structures", checked=ASOF),
     dict(id="wynn-wpt-sched", name="WPT World Championship schedule at Wynn Las Vegas (Nov 27 - Dec 21, 2026)",
          url="https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
-         type="official schedule", checked=ASOF),
+         type="official schedule", checked=RECHECKED),
     dict(id="wynn-wpt-struct", name="WPT World Championship structures at Wynn Las Vegas",
          url="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
          type="official structures", checked=ASOF),
@@ -261,7 +261,7 @@ SOURCES = [
     dict(id="wynn-terms", name="Wynn Las Vegas terms (resort fee, cancellation, parking)",
          url="https://www.wynnlasvegas.com/terms-and-conditions/850070", type="official terms", checked=ASOF),
     dict(id="bell-poker", name="Bellagio poker room page", url="https://bellagio.mgmresorts.com/en/casino/poker.html",
-         type="official room page", checked=ASOF),
+         type="official room page", checked=RECHECKED),
     dict(id="bell-fri", name="Bellagio Friday $600 No Limit Hold'em structure",
          url="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf",
          type="official structure", checked=ASOF),
@@ -1422,6 +1422,29 @@ def build():
             e["recheck"] = dict(date=RECHECKED, source=DSE_NOV_URL, result="matched on date, start time and structure link")
             n += 1
     assert n == 24, f"expected 24 re-checked DSE IV rows, got {n}"
+
+    # Live re-check, 2026-11-17 (session c1655bf5): the official WPT World Championship schedule PDF
+    # was re-fetched and every published Wynn row inside the trip window (2026-11-25 to 2026-12-02,
+    # 19 rows) was matched on date, start time, buy-in and guarantee. The official Venetian DSE IV
+    # page was also re-fetched in the same pass and the 20 published Venetian rows dated inside the
+    # trip window matched on date, start time, event number, name and structure-sheet link.
+    WPT_SCHEDULE_URL = ("https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/"
+                        "Poker/WPT/WPT_World_Championship_Schedule.pdf")
+    n2 = 0
+    for e in events:
+        if e["venue"] == "wynn" and e["date"] and TRIP["start"] <= e["date"] <= TRIP["end"]:
+            e["lastChecked"] = RECHECKED
+            e["recheck"] = dict(date=RECHECKED, source=WPT_SCHEDULE_URL,
+                                result="matched on date, start time, buy-in and guarantee")
+            n2 += 1
+    assert n2 == 19, f"expected 19 re-checked Wynn in-window rows, got {n2}"
+    n3 = 0
+    for e in events:
+        if e["venue"] == "venetian" and e["date"] and TRIP["start"] <= e["date"] <= TRIP["end"]:
+            e["lastChecked"] = RECHECKED
+            e["recheck"] = dict(date=RECHECKED, source=DSE_NOV_URL, result="matched on date, start time and structure link")
+            n3 += 1
+    assert n3 == 20, f"expected 20 re-checked Venetian in-window rows, got {n3}"
 
     # Wynn WPT: the trip-window rows whose section the structure PDF prints (2026-11-17 read).
     for ev in events:
