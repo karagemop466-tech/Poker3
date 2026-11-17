@@ -73,11 +73,30 @@
     </section>
 
     <section class="section">
-      <div class="section-head"><div><h2>The one dated official checkout total</h2><p>Read directly from the venue's own booking engine.</p></div></div>
-      <div class="card" data-quote></div>
-      <p class="toolbar-note">The official booking engine publishes this total for November 17-19, 2026 with two adults.
-      For the recommended trip window of November 25 to December 2, 2026 it publishes no price, which is why the nightly
-      budget on this site stays at the published starting-rate floor and is labelled a floor rather than a quote.</p>
+      <div class="section-head"><div><h2>Dated official checkout totals</h2><p>Read straight off the venue's own booking engine. Newest first; nothing is overwritten.</p></div></div>
+      <div data-quotes></div>
+      <p class="toolbar-note">The engine priced the <strong>same</strong> November 17-19 stay twice on consecutive days:
+      $1,245.48 on 2026-11-16 and $1,015.89 on 2026-11-17. That is the whole reason this page keeps a log instead of one
+      number. Every total above reconciles exactly with (room rate + $55 resort fee) &times; 1.1338, which confirms the
+      true-cost formula three times over.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Check your own dates on the official engine</h2><p>One deep link per night of the recommended trip, plus the whole stay.</p></div></div>
+      <div class="card" data-booking-links></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Where the engine returned no price</h2><p>Every stay window opened on <span data-asof></span> inside the recommended trip dates.</p></div></div>
+      <div data-no-quote></div>
+      <p class="toolbar-note">No dated official price exists for the trip window itself, which is why the nightly budget
+      stays at the published starting-rate floor and is labelled a floor rather than a quote. Open the links above to get
+      a live figure before paying anything non-refundable.</p>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Why the booking calendar is not a price list</h2><p>The same calendar read twice on the same day, with two different stay windows open.</p></div></div>
+      <div class="card" data-calendar></div>
     </section>
 
     <section class="section">

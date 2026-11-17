@@ -20926,7 +20926,7 @@
     "suiteDetail": "Approximately 650 square feet, king bed, living room, Roman tub",
     "nightOne": {
      "date": "2026-11-17",
-     "rate": 824.25,
+     "rate": 621.75,
      "resortFee": 55.0
     },
     "nightTwo": {
@@ -20934,20 +20934,353 @@
      "rate": 164.25,
      "resortFee": 55.0
     },
-    "taxes": 146.98,
-    "total": 1245.48,
-    "averageRate": 549.25,
+    "taxes": 119.89,
+    "total": 1015.89,
+    "averageRate": 448.0,
     "derivedNightly": [
-     996.89,
+     767.3,
      248.59
     ],
-    "derivedTotal": 1245.48,
-    "note": "The two derived nightly figures, (rate + $55 resort fee) x 1.1338 rounded to cents, add to $1,245.48, the printed total exactly.",
+    "derivedTotal": 1015.89,
+    "note": "Re-read from the same official booking engine on 2026-11-17. The first night fell from $824.25 to $621.75 while the second night was unchanged at $164.25, so the checkout total fell from $1,245.48 to $1,015.89. The engine's own 'Average Rate' line prints $448.00, which equals the average of (rate + $55 resort fee) for the two nights, confirming that its average-rate figure includes the resort fee.",
     "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar",
-    "observedOn": "2026-11-16"
+    "observedOn": "2026-11-17"
    },
+   "quotes": [
+    {
+     "property": "The Venetian Resort - venetian Newly Remodeled Luxury King suite",
+     "checkIn": "2026-11-17",
+     "checkOut": "2026-11-19",
+     "guests": 2,
+     "nights": 2,
+     "offer": "Book Direct: Up to 25% Off",
+     "suiteDetail": "Approximately 650 square feet, king bed, living room, Roman tub",
+     "nightOne": {
+      "date": "2026-11-17",
+      "rate": 824.25,
+      "resortFee": 55.0
+     },
+     "nightTwo": {
+      "date": "2026-11-18",
+      "rate": 164.25,
+      "resortFee": 55.0
+     },
+     "taxes": 146.98,
+     "total": 1245.48,
+     "averageRate": 549.25,
+     "derivedNightly": [
+      996.89,
+      248.59
+     ],
+     "derivedTotal": 1245.48,
+     "note": "The two derived nightly figures, (rate + $55 resort fee) x 1.1338 rounded to cents, add to $1,245.48, the printed total exactly, so the 13.38% tax applies to the rate and to the resort fee together. This stay was quoted again on 2026-11-17 at a lower price; see the next log entry.",
+     "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar",
+     "observedOn": "2026-11-16"
+    },
+    {
+     "property": "The Venetian Resort - venetian Newly Remodeled Luxury King suite",
+     "checkIn": "2026-11-17",
+     "checkOut": "2026-11-19",
+     "guests": 2,
+     "nights": 2,
+     "offer": "Book Direct: Up to 25% Off",
+     "suiteDetail": "Approximately 650 square feet, king bed, living room, Roman tub",
+     "nightOne": {
+      "date": "2026-11-17",
+      "rate": 621.75,
+      "resortFee": 55.0
+     },
+     "nightTwo": {
+      "date": "2026-11-18",
+      "rate": 164.25,
+      "resortFee": 55.0
+     },
+     "taxes": 119.89,
+     "total": 1015.89,
+     "averageRate": 448.0,
+     "derivedNightly": [
+      767.3,
+      248.59
+     ],
+     "derivedTotal": 1015.89,
+     "note": "Re-read from the same official booking engine on 2026-11-17. The first night fell from $824.25 to $621.75 while the second night was unchanged at $164.25, so the checkout total fell from $1,245.48 to $1,015.89. The engine's own 'Average Rate' line prints $448.00, which equals the average of (rate + $55 resort fee) for the two nights, confirming that its average-rate figure includes the resort fee.",
+     "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar",
+     "observedOn": "2026-11-17"
+    },
+    {
+     "property": "The Venetian Resort - venetian Newly Remodeled Luxury Two Queen suite",
+     "checkIn": "2026-11-20",
+     "checkOut": "2026-11-22",
+     "guests": 2,
+     "nights": 2,
+     "offer": "Book Direct: Up to 25% Off",
+     "suiteDetail": "Approximately 750 square feet, two queen beds, living room, Roman tub",
+     "nightOne": {
+      "date": "2026-11-20",
+      "rate": 899.25,
+      "resortFee": 55.0
+     },
+     "nightTwo": {
+      "date": "2026-11-21",
+      "rate": 1199.25,
+      "resortFee": 55.0
+     },
+     "taxes": 295.5,
+     "total": 2504.0,
+     "averageRate": 1104.25,
+     "derivedNightly": [
+      1081.93,
+      1422.07
+     ],
+     "derivedTotal": 2504.0,
+     "note": "Quoted by the official booking engine on 2026-11-17 for the same party size. The derived nightly figures, (rate + $55) x 1.1338, add to $2,504.00 and match the printed total exactly. This is the third independent quote whose arithmetic confirms the true-cost formula; the engine picks the suite type, so the King and the Two Queen quotes are not directly comparable on price.",
+     "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-20&children[]=0&departure_date=2026-11-22&view=calendar",
+     "observedOn": "2026-11-17"
+    }
+   ],
    "bookingUrl": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar",
-   "calendarUrl": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-03&view=calendar",
+   "calendarUrl": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-02&view=calendar",
+   "calendarObservation": {
+    "observedOn": "2026-11-17",
+    "footnote": "Pricing shown is best available suite and rate, includes daily resort fee, excludes taxes.",
+    "windowA": {
+     "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar",
+     "label": "stay window Nov 17-19 open",
+     "cells": [
+      [
+       "2026-11-16",
+       555
+      ],
+      [
+       "2026-11-17",
+       "placeholder"
+      ],
+      [
+       "2026-11-18",
+       "placeholder"
+      ],
+      [
+       "2026-11-19",
+       405
+      ],
+      [
+       "2026-11-20",
+       655
+      ],
+      [
+       "2026-11-21",
+       855
+      ],
+      [
+       "2026-11-22",
+       165
+      ],
+      [
+       "2026-11-23",
+       165
+      ],
+      [
+       "2026-11-24",
+       165
+      ],
+      [
+       "2026-11-25",
+       190
+      ],
+      [
+       "2026-11-26",
+       210
+      ],
+      [
+       "2026-11-27",
+       905
+      ],
+      [
+       "2026-11-28",
+       340
+      ],
+      [
+       "2026-11-29",
+       165
+      ],
+      [
+       "2026-11-30",
+       ""
+      ],
+      [
+       "2026-12-01",
+       ""
+      ],
+      [
+       "2026-12-02",
+       1405
+      ],
+      [
+       "2026-12-03",
+       805
+      ],
+      [
+       "2026-12-04",
+       505
+      ],
+      [
+       "2026-12-05",
+       505
+      ]
+     ]
+    },
+    "windowB": {
+     "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-27&children[]=0&departure_date=2026-11-28&view=calendar",
+     "label": "stay window Nov 27-28 open",
+     "cells": [
+      [
+       "2026-11-16",
+       854
+      ],
+      [
+       "2026-11-17",
+       670
+      ],
+      [
+       "2026-11-18",
+       230
+      ],
+      [
+       "2026-11-19",
+       614
+      ],
+      [
+       "2026-11-20",
+       1014
+      ],
+      [
+       "2026-11-21",
+       855
+      ],
+      [
+       "2026-11-22",
+       230
+      ],
+      [
+       "2026-11-23",
+       230
+      ],
+      [
+       "2026-11-24",
+       230
+      ],
+      [
+       "2026-11-25",
+       270
+      ],
+      [
+       "2026-11-26",
+       302
+      ],
+      [
+       "2026-11-27",
+       1814
+      ],
+      [
+       "2026-11-28",
+       510
+      ],
+      [
+       "2026-11-29",
+       230
+      ],
+      [
+       "2026-11-30",
+       ""
+      ],
+      [
+       "2026-12-01",
+       ""
+      ],
+      [
+       "2026-12-02",
+       1405
+      ],
+      [
+       "2026-12-03",
+       805
+      ],
+      [
+       "2026-12-04",
+       774
+      ],
+      [
+       "2026-12-05",
+       774
+      ]
+     ]
+    }
+   },
+   "noQuoteWindows": [
+    {
+     "checkIn": "2026-11-25",
+     "checkOut": "2026-12-02",
+     "nights": 7,
+     "result": "No suite panel and no price. Every calendar cell rendered as the placeholder '$XXX', and the seven trip nights rendered with no figure at all.",
+     "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-02&view=calendar"
+    },
+    {
+     "checkIn": "2026-11-25",
+     "checkOut": "2026-11-27",
+     "nights": 2,
+     "result": "The booking page did not finish loading; no date selector, no calendar and no quote were returned.",
+     "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-11-27&view=calendar"
+    },
+    {
+     "checkIn": "2026-11-27",
+     "checkOut": "2026-11-28",
+     "nights": 1,
+     "result": "The calendar rendered but no suite panel was returned, so no rate and no total for that night.",
+     "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-27&children[]=0&departure_date=2026-11-28&view=calendar"
+    },
+    {
+     "checkIn": "2026-11-30",
+     "checkOut": "2026-12-01",
+     "nights": 1,
+     "result": "Every calendar cell rendered as the placeholder '$XXX' and no suite panel was returned.",
+     "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-30&children[]=0&departure_date=2026-12-01&view=calendar"
+    }
+   ],
+   "bookingLinks": [
+    {
+     "label": "2026-11-25 (1 night)",
+     "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-11-26&view=calendar"
+    },
+    {
+     "label": "2026-11-26 (1 night)",
+     "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-26&children[]=0&departure_date=2026-11-27&view=calendar"
+    },
+    {
+     "label": "2026-11-27 (1 night)",
+     "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-27&children[]=0&departure_date=2026-11-28&view=calendar"
+    },
+    {
+     "label": "2026-11-28 (1 night)",
+     "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-28&children[]=0&departure_date=2026-11-29&view=calendar"
+    },
+    {
+     "label": "2026-11-29 (1 night)",
+     "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-29&children[]=0&departure_date=2026-11-30&view=calendar"
+    },
+    {
+     "label": "2026-11-30 (1 night)",
+     "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-30&children[]=0&departure_date=2026-12-01&view=calendar"
+    },
+    {
+     "label": "2026-12-01 (1 night)",
+     "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-12-01&children[]=0&departure_date=2026-12-02&view=calendar"
+    },
+    {
+     "label": "whole trip, 7 nights",
+     "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-02&view=calendar"
+    }
+   ],
+   "bookingLinksNote": "Each link opens the official booking engine with that night's dates and two adults already filled in. On 2026-11-17 the engine returned an itemised quote for near-term stays and no suite at all for every stay inside the trip window, so these links are the way to check the live price rather than a price.",
    "qualityNote": "Not scored. No official quality metric was published for the suites in the reviewed material, so the quality ranking is left blank rather than inferred.",
    "status": "Best-value candidate for a Venetian-based trip: poker room on property, published starting rate, published fee and tax, and the only property with a dated official checkout total.",
    "walkNote": "The poker room is inside the resort that owns this hotel; the Google Maps walking route from The Palazzo to The Venetian measures 4 minutes.",
@@ -20987,6 +21320,41 @@
    "qualityNote": "Not scored. No official quality metric was published for the suites in the reviewed material.",
    "status": "Same resort as the Venetian poker room; walking route to The Venetian measured at 4 minutes.",
    "walkNote": "Google Maps walking estimate 4 minutes (0.2 mile) to The Venetian, where the poker room is located.",
+   "bookingLinks": [
+    {
+     "label": "2026-11-25 (1 night)",
+     "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-11-26&view=calendar"
+    },
+    {
+     "label": "2026-11-26 (1 night)",
+     "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-26&children[]=0&departure_date=2026-11-27&view=calendar"
+    },
+    {
+     "label": "2026-11-27 (1 night)",
+     "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-27&children[]=0&departure_date=2026-11-28&view=calendar"
+    },
+    {
+     "label": "2026-11-28 (1 night)",
+     "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-28&children[]=0&departure_date=2026-11-29&view=calendar"
+    },
+    {
+     "label": "2026-11-29 (1 night)",
+     "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-29&children[]=0&departure_date=2026-11-30&view=calendar"
+    },
+    {
+     "label": "2026-11-30 (1 night)",
+     "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-30&children[]=0&departure_date=2026-12-01&view=calendar"
+    },
+    {
+     "label": "2026-12-01 (1 night)",
+     "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-12-01&children[]=0&departure_date=2026-12-02&view=calendar"
+    },
+    {
+     "label": "whole trip, 7 nights",
+     "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-02&view=calendar"
+    }
+   ],
+   "bookingLinksNote": "The Palazzo is booked through the same official engine as The Venetian, so the same dated links apply. No per-property date-parameterised link was verified for The Palazzo specifically, so the engine's suite type for these links is whatever it offers, not a Palazzo-only quote.",
    "trueNightlyLow": 197.28,
    "trueNightlyHigh": 299.32,
    "lastChecked": "2026-11-17",
@@ -21374,6 +21742,81 @@
    "hotel": "venetian",
    "observedOn": "2026-11-17",
    "baseRate": "",
+   "publishedStartingRates": "621.75 (Nov 17) and 164.25 (Nov 18) per night",
+   "resortFee": "55.00 per night",
+   "tax": "119.89 printed",
+   "trueNightlyLow": "767.30",
+   "trueNightlyHigh": "248.59",
+   "quoteType": "Dated official checkout total (2 adults, 2 nights) - re-read",
+   "note": "The same booking engine, the same stay and the same two adults printed a lower price one day after the previous observation: Nov 17 fell from $824.25 to $621.75 while Nov 18 stayed at $164.25, taking the checkout total from $1,245.48 to $1,015.89. Derived nightly figures are (rate + $55) x 1.1338 and add to $1,015.89, matching the printed total. This is why the site keeps a log instead of one number.",
+   "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar",
+   "feeSource": "https://www.venetianlasvegas.com/resort/resort-fee.html",
+   "taxSource": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html"
+  },
+  {
+   "hotel": "venetian",
+   "observedOn": "2026-11-17",
+   "baseRate": "",
+   "publishedStartingRates": "899.25 (Nov 20) and 1,199.25 (Nov 21) per night",
+   "resortFee": "55.00 per night",
+   "tax": "295.50 printed",
+   "trueNightlyLow": "1081.93",
+   "trueNightlyHigh": "1422.07",
+   "quoteType": "Dated official checkout total (2 adults, 2 nights, second window)",
+   "note": "A second stay window quoted by the same engine on the same day, for a 750 sq ft Newly Remodeled Luxury Two Queen suite rather than the 650 sq ft King. Derived nightly figures are (rate + $55) x 1.1338 and add to $2,504.00, matching the printed total exactly. The engine chooses the suite, so this is not comparable with the King quote on price - only on arithmetic.",
+   "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-20&children[]=0&departure_date=2026-11-22&view=calendar",
+   "feeSource": "https://www.venetianlasvegas.com/resort/resort-fee.html",
+   "taxSource": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html"
+  },
+  {
+   "hotel": "venetian",
+   "observedOn": "2026-11-17",
+   "baseRate": "",
+   "publishedStartingRates": "",
+   "resortFee": "55.00 per night",
+   "tax": "13.38%",
+   "trueNightlyLow": "",
+   "trueNightlyHigh": "",
+   "quoteType": "No quote returned for the trip window",
+   "note": "The engine was opened four times on 2026-11-17 for stays inside the recommended trip window: Nov 25 to Dec 2 (7 nights) returned every calendar cell as the placeholder '$XXX' and no suite; Nov 25 to Nov 27 did not finish loading; Nov 27 to Nov 28 rendered the calendar but no suite; and Nov 30 to Dec 1 rendered every cell as '$XXX' and no suite. No rate, no tax and no total is published for the trip dates, so the trip budget stays at the published starting-rate floor.",
+   "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-02&view=calendar",
+   "feeSource": "https://www.venetianlasvegas.com/resort/resort-fee.html",
+   "taxSource": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html"
+  },
+  {
+   "hotel": "venetian",
+   "observedOn": "2026-11-17",
+   "baseRate": "",
+   "publishedStartingRates": "calendar cells with the Nov 17-19 window open: 11-16 $555, 11-17 $placeholder, 11-18 $placeholder, 11-19 $405, 11-20 $655, 11-21 $855, 11-22 $165, 11-23 $165, 11-24 $165, 11-25 $190, 11-26 $210, 11-27 $905, 11-28 $340, 11-29 $165, 11-30 no price, 12-01 no price, 12-02 $1405, 12-03 $805, 12-04 $505, 12-05 $505",
+   "resortFee": "included in the calendar cell",
+   "tax": "excluded from the calendar cell",
+   "trueNightlyLow": "",
+   "trueNightlyHigh": "",
+   "quoteType": "Booking calendar cells (context-dependent, not a price)",
+   "note": "The calendar's own footnote reads: 'Pricing shown is best available suite and rate, includes daily resort fee, excludes taxes.' The value printed for a date changes with the stay window that is open: read on the same day, Nov 16 showed $555 with the Nov 17-19 window open and $854 with the Nov 27-28 window open, Nov 22 showed $165 against $230, and Nov 27 showed $905 against $1,814. Because the cells move with the query, no calendar cell on this site is used as a nightly rate (F31).",
+   "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar",
+   "feeSource": "https://www.venetianlasvegas.com/resort/resort-fee.html",
+   "taxSource": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html"
+  },
+  {
+   "hotel": "venetian",
+   "observedOn": "2026-11-17",
+   "baseRate": "",
+   "publishedStartingRates": "calendar cells with the Nov 27-28 window open: 11-16 $854, 11-17 $670, 11-18 $230, 11-19 $614, 11-20 $1014, 11-21 $855, 11-22 $230, 11-23 $230, 11-24 $230, 11-25 $270, 11-26 $302, 11-27 $1814, 11-28 $510, 11-29 $230, 11-30 no price, 12-01 no price, 12-02 $1405, 12-03 $805, 12-04 $774, 12-05 $774",
+   "resortFee": "included in the calendar cell",
+   "tax": "excluded from the calendar cell",
+   "trueNightlyLow": "",
+   "trueNightlyHigh": "",
+   "quoteType": "Booking calendar cells (context-dependent, not a price) - second window",
+   "note": "Second reading of the same official calendar on 2026-11-17, kept beside the first reading so the two can be compared cell by cell. Nov 30 and Dec 1 printed no price in either reading.",
+   "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-27&children[]=0&departure_date=2026-11-28&view=calendar",
+   "feeSource": "https://www.venetianlasvegas.com/resort/resort-fee.html",
+   "taxSource": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html"
+  },
+  {
+   "hotel": "venetian",
+   "observedOn": "2026-11-17",
+   "baseRate": "",
    "publishedStartingRates": "",
    "resortFee": "55.00 per night plus tax (resort-fee page re-read 2026-11-17)",
    "tax": "13.38% Clark County room tax (hotel terms not re-read on 2026-11-17)",
@@ -21602,7 +22045,7 @@
    "name": "Venetian DeepStack Extravaganza IV schedule and structure sheets (Nov 16 - Dec 23, 2026)",
    "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "type": "official schedule",
-   "checked": "2026-11-16"
+   "checked": "2026-11-17"
   },
   {
    "id": "vl-dse-dec",
@@ -21630,7 +22073,7 @@
    "name": "Venetian poker-room suite rates and play requirements 2026",
    "url": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
    "type": "official rate page",
-   "checked": "2026-11-16"
+   "checked": "2026-11-17"
   },
   {
    "id": "vl-resort-fee",
@@ -21658,7 +22101,7 @@
    "name": "Wynn daily tournament poster",
    "url": "https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf",
    "type": "official schedule",
-   "checked": "2026-11-16"
+   "checked": "2026-11-17"
   },
   {
    "id": "wynn-daily-struct",
@@ -21983,9 +22426,33 @@
   {
    "id": "F28",
    "area": "Hotels",
-   "severity": "Medium",
-   "title": "The Venetian booking calendar disagrees with the quote, and the cells move within a day",
+   "severity": "High",
+   "title": "The Venetian booking calendar disagrees with the quote, and its cells change with the query",
    "detail": "The calendar cell for November 17 read $855 in the observation recorded on 2026-11-16, while the same page's quote for the same night printed a $824.25 room rate, and an earlier observation of the same calendar on the same day recorded $605. The calendar states that its prices are the best available suite and rate, include the daily resort fee and exclude taxes. Calendar cells are logged as observations and are never used in a total. On 2026-11-17 the same booking engine, fetched live for Nov 25 to Dec 2, showed no amount in any date cell, so the trip window is still unpriced and no cell was recorded.",
+   "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"
+  },
+  {
+   "id": "F29",
+   "area": "Sources",
+   "severity": "Low",
+   "title": "The official schedule PDF and the official schedule page print the event name differently",
+   "detail": "Both captures are official and they agree on date, time, event number and structure-sheet link for all 94 rows, but 83 of the 94 names are rendered differently: the PDF puts the guarantee in its own GUARANTEE column, while the HTML page inlines '$XXK GTD' into the event name. Example: the PDF prints '$200 NLH BOUNTY (1DAY)' with a separate $8,000 guarantee, and the page prints '$200 No Limit Hold'em Bounty $8K GTD (1Day)'. The site's names follow the HTML page, which is the page every row links to.",
+   "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
+  },
+  {
+   "id": "F30",
+   "area": "Sources",
+   "severity": "Medium",
+   "title": "The official schedule PDF prints decorative sponsor art in the DATE column on 20 rows",
+   "detail": "20 of the 94 rows on the official DeepStack Extravaganza IV schedule PDF carry no date at all: 6 read '@PokerAtlas* TOUR', 6 read 'LIPS CHAMPIONSHIP CHAMPIES CHAMPIES CHAMPIES', 5 read 'LIPS FRIDAY, DECEMBER 11', 2 read '@PokerAtlas PRO' and 1 reads '@PokerAtlas* PRO'. Those rows cover events 17, 18, 32-38, 41-46, 48, 50, 51 and 58. The dates on this site for those rows come from the official schedule page, not from the PDF, and the two were cross-checked row by row.",
+   "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
+  },
+  {
+   "id": "F31",
+   "area": "Hotels",
+   "severity": "High",
+   "title": "Booking-calendar cells are not prices: the same date prints a different figure per query",
+   "detail": "On 2026-11-17 the official Venetian booking calendar was read twice, with two different stay windows open. November 16 printed $555 with the November 17-19 window open and $854 with the November 27-28 window open; November 22 printed $165 against $230; November 27 printed $905 against $1,814. The page's own footnote says the figure is the best available suite and rate, includes the daily resort fee and excludes taxes, so the cell tracks the cheapest suite the engine can offer for that context rather than a fixed nightly rate. No calendar cell is used anywhere on this site as a price; only the engine's itemised quote panel is.",
    "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"
   },
   {
@@ -22518,7 +22985,7 @@
    "The Wynn WPT schedule runs from November 27 inside the window, so three days carry additional published rows, all clearly marked as series rows with unverified entry rules (F12)."
   ],
   "bankrollNote": "The eight recommended primary entries total $2,800 in buy-ins. With a 25% buffer for one rebuy or add-on where a room allows it, plan on $3,500.",
-  "lodgingEvidence": "The official Venetian booking engine publishes one dated checkout total, for November 17-19, 2026 with two adults: $824.25 + $55 on the 17th, $164.25 + $55 on the 18th, $146.98 tax, $1,245.48 total. For the recommended trip window of November 25 to December 2, 2026 the same booking engine publishes no price at all, so the trip budget stays at the published starting-rate floor and is labelled a floor, not a quote.",
+  "lodgingEvidence": "The official Venetian booking engine was opened on 2026-11-17 for four stay windows inside the recommended trip dates of November 25 to December 2, 2026, with two adults. None returned a suite or a price: the seven-night stay and the November 30 single night rendered every calendar cell as the placeholder '$XXX', the November 25-27 stay did not finish loading, and the November 27-28 stay rendered the calendar with no suite panel. The engine does quote near-term stays, and it priced the same November 17-19 stay twice on consecutive days: $1,245.48 on 2026-11-16 and $1,015.89 on 2026-11-17, because the first night fell from $824.25 to $621.75. A second stay, November 20-22, was quoted on 2026-11-17 at $2,504.00. All three quotes reconcile exactly with (rate + $55 resort fee) x 1.1338. No dated official price exists for the trip window itself, so the trip budget stays at the published starting-rate floor and is labelled a floor, not a quote.",
   "primaryBuyIns": 2800,
   "bankrollWithBuffer": 3500
  },

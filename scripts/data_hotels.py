@@ -40,10 +40,30 @@ VENETIAN_QUOTE_URL = ("https://www.venetianlasvegas.com/booking?adults[]=2&arriv
 VENETIAN_CALENDAR_NOV_URL = ("https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17"
                              "&children[]=0&departure_date=2026-11-19&view=calendar")
 VENETIAN_CALENDAR_TRIP_URL = ("https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25"
-                              "&children[]=0&departure_date=2026-12-03&view=calendar")
+                              "&children[]=0&departure_date=2026-12-02&view=calendar")
 
-# The one dated official checkout total found on 2026-11-16, read straight off the
-# official booking engine.  Every line is printed on the page.
+def next_day(iso_date: str) -> str:
+    """The following calendar day, used to turn a stay night into a one-night booking URL."""
+    from datetime import date, timedelta
+    y, m, d = (int(x) for x in iso_date.split("-"))
+    return (date(y, m, d) + timedelta(days=1)).isoformat()
+
+
+def venetian_stay_url(check_in: str, check_out: str, adults: int = 2) -> str:
+    """The official booking engine, opened with the stay dates and party size in the URL.
+
+    This URL pattern was opened successfully on 2026-11-17 for five different stay windows;
+    each returned the engine's own calendar and, where a suite was available, its own
+    itemised quote panel.
+    """
+    return (f"https://www.venetianlasvegas.com/booking?adults[]={adults}&arrival_date={check_in}"
+            f"&children[]=0&departure_date={check_out}&view=calendar")
+
+
+# The dated official checkout totals read straight off the official booking engine.
+# Every line below is printed on the page.  They are kept as a log, never overwritten:
+# the same stay printed a different price on two consecutive days.
+
 VENETIAN_QUOTE = dict(
     property="The Venetian Resort - venetian Newly Remodeled Luxury King suite",
     checkIn="2026-11-17", checkOut="2026-11-19", guests=2, nights=2,
@@ -56,10 +76,64 @@ VENETIAN_QUOTE = dict(
     # $996.89 + $248.59 = $1,245.48, which is the venue's printed total exactly.
     # An earlier version used 996.91 / 248.61 and a note excusing a 4-cent gap;
     # that gap was arithmetic error in this repository, not the venue's rounding.
+    # Two sessions found this independently; both agree on 996.89 / 248.59.
     derivedNightly=[996.89, 248.59], derivedTotal=1245.48,
-    note=("The two derived nightly figures, (rate + $55 resort fee) x 1.1338 rounded to cents, add to $1,245.48, "
-          "the printed total exactly."),
+    note=("The two derived nightly figures, (rate + $55 resort fee) x 1.1338 rounded to cents, add to $1,245.48, the "
+          "printed total exactly, so the 13.38% tax applies to the rate and to the resort fee together. This stay was "
+          "quoted again on 2026-11-17 at a lower price; see the next log entry."),
     source=VENETIAN_QUOTE_URL, observedOn="2026-11-16")
+
+# The same stay, re-read from the same official booking engine one day later.
+VENETIAN_QUOTE_2026_11_17 = dict(
+    property="The Venetian Resort - venetian Newly Remodeled Luxury King suite",
+    checkIn="2026-11-17", checkOut="2026-11-19", guests=2, nights=2,
+    offer="Book Direct: Up to 25% Off",
+    suiteDetail="Approximately 650 square feet, king bed, living room, Roman tub",
+    nightOne=dict(date="2026-11-17", rate=621.75, resortFee=55.00),
+    nightTwo=dict(date="2026-11-18", rate=164.25, resortFee=55.00),
+    taxes=119.89, total=1015.89, averageRate=448.00,
+    derivedNightly=[767.30, 248.59], derivedTotal=1015.89,
+    note=("Re-read from the same official booking engine on 2026-11-17. The first night fell from $824.25 to $621.75 "
+          "while the second night was unchanged at $164.25, so the checkout total fell from $1,245.48 to $1,015.89. "
+          "The engine's own 'Average Rate' line prints $448.00, which equals the average of (rate + $55 resort fee) "
+          "for the two nights, confirming that its average-rate figure includes the resort fee."),
+    source=VENETIAN_QUOTE_URL, observedOn="2026-11-17")
+
+# A second stay window quoted by the same engine on the same day, for a different suite type.
+VENETIAN_QUOTE_NOV_20 = dict(
+    property="The Venetian Resort - venetian Newly Remodeled Luxury Two Queen suite",
+    checkIn="2026-11-20", checkOut="2026-11-22", guests=2, nights=2,
+    offer="Book Direct: Up to 25% Off",
+    suiteDetail="Approximately 750 square feet, two queen beds, living room, Roman tub",
+    nightOne=dict(date="2026-11-20", rate=899.25, resortFee=55.00),
+    nightTwo=dict(date="2026-11-21", rate=1199.25, resortFee=55.00),
+    taxes=295.50, total=2504.00, averageRate=1104.25,
+    derivedNightly=[1081.93, 1422.07], derivedTotal=2504.00,
+    note=("Quoted by the official booking engine on 2026-11-17 for the same party size. The derived nightly figures, "
+          "(rate + $55) x 1.1338, add to $2,504.00 and match the printed total exactly. This is the third independent "
+          "quote whose arithmetic confirms the true-cost formula; the engine picks the suite type, so the King and the "
+          "Two Queen quotes are not directly comparable on price."),
+    source=venetian_stay_url("2026-11-20", "2026-11-22"), observedOn="2026-11-17")
+
+VENETIAN_QUOTES = [VENETIAN_QUOTE, VENETIAN_QUOTE_2026_11_17, VENETIAN_QUOTE_NOV_20]
+
+# Stay windows the engine was opened for on 2026-11-17 that returned no suite and no price.
+# Each is a dated observation of the official engine, not an inference.
+VENETIAN_NO_QUOTE_WINDOWS = [
+    dict(checkIn="2026-11-25", checkOut="2026-12-02", nights=7,
+         result="No suite panel and no price. Every calendar cell rendered as the placeholder '$XXX', and the seven "
+                "trip nights rendered with no figure at all.",
+         url=venetian_stay_url("2026-11-25", "2026-12-02")),
+    dict(checkIn="2026-11-25", checkOut="2026-11-27", nights=2,
+         result="The booking page did not finish loading; no date selector, no calendar and no quote were returned.",
+         url=venetian_stay_url("2026-11-25", "2026-11-27")),
+    dict(checkIn="2026-11-27", checkOut="2026-11-28", nights=1,
+         result="The calendar rendered but no suite panel was returned, so no rate and no total for that night.",
+         url=venetian_stay_url("2026-11-27", "2026-11-28")),
+    dict(checkIn="2026-11-30", checkOut="2026-12-01", nights=1,
+         result="Every calendar cell rendered as the placeholder '$XXX' and no suite panel was returned.",
+         url=venetian_stay_url("2026-11-30", "2026-12-01")),
+]
 
 # Calendar cells published by the same booking engine for November 2026.  The page
 # states: "Pricing shown is best available suite and rate, includes daily resort fee,
@@ -70,6 +144,37 @@ VENETIAN_CALENDAR_NOV = [
     ("2026-11-25", 185), ("2026-11-26", 190), ("2026-11-27", 210), ("2026-11-28", 905),
     ("2026-11-29", 340), ("2026-11-30", 165),
 ]
+
+# The same official calendar, re-read on 2026-11-17 with two different stay windows open.
+# The cells do NOT hold a fixed per-night price: the value printed for a given date changes
+# with the stay window that is selected.  Three examples, read on the same day:
+#
+#   date      | window Nov 17-19 open | window Nov 27-28 open
+#   Nov 16    | $555                  | $854
+#   Nov 22    | $165                  | $230
+#   Nov 27    | $905                  | $1,814
+#
+# Because of that, no calendar cell is used anywhere on this site as evidence of a nightly
+# rate.  Only the engine's itemised quote panel is treated as a price.  Recorded as F31.
+VENETIAN_CALENDAR_2026_11_17 = dict(
+    observedOn="2026-11-17",
+    footnote=("Pricing shown is best available suite and rate, includes daily resort fee, excludes taxes."),
+    windowA=dict(url=venetian_stay_url("2026-11-17", "2026-11-19"), label="stay window Nov 17-19 open",
+                 cells=[("2026-11-16", 555), ("2026-11-17", "placeholder"), ("2026-11-18", "placeholder"),
+                        ("2026-11-19", 405), ("2026-11-20", 655), ("2026-11-21", 855), ("2026-11-22", 165),
+                        ("2026-11-23", 165), ("2026-11-24", 165), ("2026-11-25", 190), ("2026-11-26", 210),
+                        ("2026-11-27", 905), ("2026-11-28", 340), ("2026-11-29", 165), ("2026-11-30", ""),
+                        ("2026-12-01", ""), ("2026-12-02", 1405), ("2026-12-03", 805), ("2026-12-04", 505),
+                        ("2026-12-05", 505)]),
+    windowB=dict(url=venetian_stay_url("2026-11-27", "2026-11-28"), label="stay window Nov 27-28 open",
+                 cells=[("2026-11-16", 854), ("2026-11-17", 670), ("2026-11-18", 230), ("2026-11-19", 614),
+                        ("2026-11-20", 1014), ("2026-11-21", 855), ("2026-11-22", 230), ("2026-11-23", 230),
+                        ("2026-11-24", 230), ("2026-11-25", 270), ("2026-11-26", 302), ("2026-11-27", 1814),
+                        ("2026-11-28", 510), ("2026-11-29", 230), ("2026-11-30", ""), ("2026-12-01", ""),
+                        ("2026-12-02", 1405), ("2026-12-03", 805), ("2026-12-04", 774), ("2026-12-05", 774)]))
+
+# The seven nights of the recommended trip, each with its own official booking deep link.
+TRIP_NIGHTS = ["2026-11-25", "2026-11-26", "2026-11-27", "2026-11-28", "2026-11-29", "2026-11-30", "2026-12-01"]
 
 HOTELS = [
     dict(
@@ -94,9 +199,18 @@ HOTELS = [
                         "tournament, for each night stayed, completed before 2 a.m. on the last night. Book with code "
                         "EPOKR25 on 866.255.8936. Failure to qualify means the prevailing rate is charged."),
         source=VENETIAN_SUITE_RATES, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS,
-        quote=VENETIAN_QUOTE,
+        quote=VENETIAN_QUOTE_2026_11_17,
+        quotes=VENETIAN_QUOTES,
         bookingUrl=VENETIAN_QUOTE_URL,
         calendarUrl=VENETIAN_CALENDAR_TRIP_URL,
+        calendarObservation=VENETIAN_CALENDAR_2026_11_17,
+        noQuoteWindows=VENETIAN_NO_QUOTE_WINDOWS,
+        bookingLinks=[dict(label=f"{d} (1 night)", url=venetian_stay_url(d, next_day(d))) for d in TRIP_NIGHTS]
+        + [dict(label="whole trip, 7 nights", url=VENETIAN_CALENDAR_TRIP_URL)],
+        bookingLinksNote=(
+            "Each link opens the official booking engine with that night's dates and two adults already filled in. "
+            "On 2026-11-17 the engine returned an itemised quote for near-term stays and no suite at all for every "
+            "stay inside the trip window, so these links are the way to check the live price rather than a price."),
         qualityNote=("Not scored. No official quality metric was published for the suites in the reviewed material, so the "
                      "quality ranking is left blank rather than inferred."),
         status=("Best-value candidate for a Venetian-based trip: poker room on property, published starting rate, published "
@@ -125,6 +239,12 @@ HOTELS = [
         qualityNote="Not scored. No official quality metric was published for the suites in the reviewed material.",
         status="Same resort as the Venetian poker room; walking route to The Venetian measured at 4 minutes.",
         walkNote="Google Maps walking estimate 4 minutes (0.2 mile) to The Venetian, where the poker room is located.",
+        bookingLinks=[dict(label=f"{d} (1 night)", url=venetian_stay_url(d, next_day(d))) for d in TRIP_NIGHTS]
+        + [dict(label="whole trip, 7 nights", url=VENETIAN_CALENDAR_TRIP_URL)],
+        bookingLinksNote=(
+            "The Palazzo is booked through the same official engine as The Venetian, so the same dated links apply. "
+            "No per-property date-parameterised link was verified for The Palazzo specifically, so the engine's suite "
+            "type for these links is whatever it offers, not a Palazzo-only quote."),
     ),
     dict(
         id="wynn", name="Wynn Las Vegas", venue="Wynn poker room (located in Encore at Wynn Las Vegas)",
@@ -260,6 +380,63 @@ HOTELS = [
 
 # Dated rate log. New observations are appended, never overwritten.
 RATE_LOG = [
+    dict(hotel="venetian", observedOn="2026-11-17", baseRate="",
+         publishedStartingRates="621.75 (Nov 17) and 164.25 (Nov 18) per night",
+         resortFee="55.00 per night", tax="119.89 printed",
+         trueNightlyLow="767.30", trueNightlyHigh="248.59",
+         quoteType="Dated official checkout total (2 adults, 2 nights) - re-read",
+         note=("The same booking engine, the same stay and the same two adults printed a lower price one day after the "
+               "previous observation: Nov 17 fell from $824.25 to $621.75 while Nov 18 stayed at $164.25, taking the "
+               "checkout total from $1,245.48 to $1,015.89. Derived nightly figures are (rate + $55) x 1.1338 and add "
+               "to $1,015.89, matching the printed total. This is why the site keeps a log instead of one number."),
+         source=VENETIAN_QUOTE_URL, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
+    dict(hotel="venetian", observedOn="2026-11-17", baseRate="",
+         publishedStartingRates="899.25 (Nov 20) and 1,199.25 (Nov 21) per night",
+         resortFee="55.00 per night", tax="295.50 printed",
+         trueNightlyLow="1081.93", trueNightlyHigh="1422.07",
+         quoteType="Dated official checkout total (2 adults, 2 nights, second window)",
+         note=("A second stay window quoted by the same engine on the same day, for a 750 sq ft Newly Remodeled Luxury "
+               "Two Queen suite rather than the 650 sq ft King. Derived nightly figures are (rate + $55) x 1.1338 and "
+               "add to $2,504.00, matching the printed total exactly. The engine chooses the suite, so this is not "
+               "comparable with the King quote on price - only on arithmetic."),
+         source=venetian_stay_url("2026-11-20", "2026-11-22"),
+         feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
+    dict(hotel="venetian", observedOn="2026-11-17", baseRate="",
+         publishedStartingRates="",
+         resortFee="55.00 per night", tax="13.38%",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType="No quote returned for the trip window",
+         note=("The engine was opened four times on 2026-11-17 for stays inside the recommended trip window: "
+               "Nov 25 to Dec 2 (7 nights) returned every calendar cell as the placeholder '$XXX' and no suite; "
+               "Nov 25 to Nov 27 did not finish loading; Nov 27 to Nov 28 rendered the calendar but no suite; and "
+               "Nov 30 to Dec 1 rendered every cell as '$XXX' and no suite. No rate, no tax and no total is published "
+               "for the trip dates, so the trip budget stays at the published starting-rate floor."),
+         source=VENETIAN_CALENDAR_TRIP_URL, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
+    dict(hotel="venetian", observedOn="2026-11-17", baseRate="",
+         publishedStartingRates=("calendar cells with the Nov 17-19 window open: "
+                                 + ", ".join(f"{d[5:]} ${v}" if v != "" else f"{d[5:]} no price"
+                                             for d, v in VENETIAN_CALENDAR_2026_11_17["windowA"]["cells"])),
+         resortFee="included in the calendar cell", tax="excluded from the calendar cell",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType="Booking calendar cells (context-dependent, not a price)",
+         note=("The calendar's own footnote reads: 'Pricing shown is best available suite and rate, includes daily "
+               "resort fee, excludes taxes.' The value printed for a date changes with the stay window that is open: "
+               "read on the same day, Nov 16 showed $555 with the Nov 17-19 window open and $854 with the Nov 27-28 "
+               "window open, Nov 22 showed $165 against $230, and Nov 27 showed $905 against $1,814. Because the cells "
+               "move with the query, no calendar cell on this site is used as a nightly rate (F31)."),
+         source=VENETIAN_CALENDAR_2026_11_17["windowA"]["url"],
+         feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
+    dict(hotel="venetian", observedOn="2026-11-17", baseRate="",
+         publishedStartingRates=("calendar cells with the Nov 27-28 window open: "
+                                 + ", ".join(f"{d[5:]} ${v}" if v != "" else f"{d[5:]} no price"
+                                             for d, v in VENETIAN_CALENDAR_2026_11_17["windowB"]["cells"])),
+         resortFee="included in the calendar cell", tax="excluded from the calendar cell",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType="Booking calendar cells (context-dependent, not a price) - second window",
+         note=("Second reading of the same official calendar on 2026-11-17, kept beside the first reading so the two "
+               "can be compared cell by cell. Nov 30 and Dec 1 printed no price in either reading."),
+         source=VENETIAN_CALENDAR_2026_11_17["windowB"]["url"],
+         feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
     dict(hotel="venetian", observedOn="2026-11-16", baseRate="",
          publishedStartingRates="824.25 and 164.25 per night for Nov. 17-19, 2026",
          resortFee="55.00 per night", tax="146.98 printed",
