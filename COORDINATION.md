@@ -3079,3 +3079,28 @@ kept. A per-session file under `handoff/<session>/` would remove this entirely; 
 `COORDINATION.md`. Keep it as a short index of session ids and task rows, and put each session's narrative in
 `handoff/<session-id>/log.md`. That makes every branch's changes disjoint and leaves the shared file small enough that a
 conflict is visible rather than routine.
+## Current session `arena/da83eca8-poker3` — final live re-verification and publication (2026-11-17 UTC)
+
+Branch: `arena/da83eca8-poker3` (platform-bound; the `session-<id>/<task>` naming cannot be applied). Branched from `main` @ `f8e4753` (PR #92 merged). No other session holds an active claim on the board when this claim was written. This session acts as the integration owner for the canonical `site/` dashboard, `scripts/**`, `tests/**`, `.github/workflows/**`, `README.md` and this section of `COORDINATION.md`. Prior artefacts (`docs/`, `verified/`, `planner/`, `single-entry/`, root legacy pages, `site/poker3/`, `handoff/`, `raw/`, `data/`) are read-only here.
+
+### Claim (recorded before any data edit, 2026-11-17 UTC)
+
+| Task | Status | Owner session | Files in scope | Notes |
+|---|---|---|---|---|
+| D1 Live re-verification of official sources behind published trip-window rows | in progress | arena/da83eca8-poker3 | `scripts/data_venetian.py`, `scripts/data_hotels.py`, `scripts/data_venues.py`, `raw/**` | Re-fetch official pages reachable from this session (Venetian schedule + booking engine, Wynn, Caesars, MGM Grand, ARIA, Bellagio); compare with `site/data.json`; record `lastChecked` only where actually re-read. |
+| D2 Close remaining hotel-rate gaps from official terms pages | in progress | arena/da83eca8-poker3 | `scripts/data_hotels.py`, regenerated `site/data.json` | Palazzo, MGM Grand, Caesars Palace, Horseshoe, ARIA fees/tax/parking/cancellation where the property's own page prints them; blanks stay blank and flagged. |
+| D3 Re-verify walking-route evidence; label non-venue sources honestly | in progress | arena/da83eca8-poker3 | `scripts/data_hotels.py` (`routes`), `site/data.json` | No venue publishes a walking time; every minute figure keeps its Google Maps estimate label. Re-read pairs where reachable. |
+| D4 Confirm which brief items are shipped vs flagged; publish traceability | in progress | arena/da83eca8-poker3 | `site/**`, `scripts/coverage.py` (new), `site/coverage.json` (new) | Map every numbered brief item to a shipped page or a published flag; nothing claimed without a location. |
+| D5 Verification suite, PR → `main`, merge, Pages confirmation, record here | pending | arena/da83eca8-poker3 | whole repo | `scripts/verify_site.py`, `tests/**`, `verify.yml`, `pages.yml`. Flagged irregularities do not block merge; they ship on `site/flagged.html`. |
+
+### Open items carried into this session (noted, not assumed resolved)
+
+- F31 no written one-entry-per-player cap on any sheet → strict-entry filter returns 0; nothing promoted.
+- F17 no official 8:00 AM start anywhere on the Strip → 8 AM all-day plan not buildable; earliest verified dated start 9:10 AM (Venetian satellite).
+- F16 no published finish times → overlap flags stay estimates under the disclosed session-length assumption.
+- F32 walking times are Google Maps estimates; no venue publishes a walking time.
+- F39 room-tax % unpublished at Wynn/Bellagio/Caesars/Horseshoe → `trueNightly` stays blank there.
+- F56 Wynn Signature structures unpublished → 38 rows stay not-verified.
+- Palazzo, MGM Grand, Caesars Palace, Horseshoe and ARIA dated rates not yet in the log.
+
+
