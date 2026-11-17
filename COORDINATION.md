@@ -767,5 +767,16 @@ Branch: `arena/a1091d95-poker3`, created from `origin/main` at b30841e (merge of
 - **Result:** every brief item is implemented and verified (trip-cost calculator entries × buy-ins + nights × true hotel cost; scheduled official-URL re-check with changed-source flags; all 37 structure sheets read; last-checked date on every row; rates kept as a dated log; one page per venue; global search box; date filter; single-entry/freezeout toggle; walking-route ≤30 min filter; day-plan overlap flags with primary + conditional fallback; descriptive guarantee÷fee ratio; executive summary/Q&A/suggestions; Flagged-for-review page).
 - **Irregularities:** 28 flagged items on `site/flagged.html` do not block the merge; each links its official source for manual review, including unresolved single-entry wording on sheets, blank date-specific hotel totals for Nov 25 → Dec 2, 2026, Google Maps walking estimates, and estimated finish times under the disclosed six-hour session assumption.
 
+---
 
+## Session `arena/b1fadb7e-poker3` — final integration session (deployed-site correctness)
 
+Branch: `arena/b1fadb7e-poker3` (platform-bound; `session-<id>/<task>` naming cannot be applied). Reb ranched onto `origin/main` @ `be90234` (PR #35) before any edit. This session acts as the **final integration session** for this round. Scope: `COORDINATION.md`, `README.md`, `scripts/data_venues.py`, `scripts/data_hotels.py`, `site/**` (regenerated data + any page that misstates a value), `site/data.json`, and the GitHub Pages publishing setting. It does **not** edit `docs/`, `planner/`, `single-entry/`, `verified/`, `handoff/`, or root legacy HTML pages.
+
+| Task | Status | Owner | Scope (files) | Notes |
+|---|---|---|---|---|
+| B1 Verify every Venetian DSE IV row against the verbatim official table | in progress (claimed 2026-11-17) | arena/b1fadb7e-poker3 | `scripts/`, `site/data.json`, `COORDINATION.md` | Claim committed before any other work. |
+| B2 Resolve the two competing Pages publishers (stale root vs canonical `site/`) | in progress | arena/b1fadb7e-poker3 | GitHub Pages setting, `site/**` | Root URL currently serves a stale legacy page that contradicts the live dashboard. |
+| B3 Prove the scheduled re-check actually operates (or report that it does not) | in progress | arena/b1fadb7e-poker3 | `.github/workflows/checks.yml`, `site/checks.json` | No scheduled run of `checks.yml`/`daily-check.yml`/`monitor.yml` has ever executed; `site/checks.json` (fetched by `app.js`) does not exist. |
+| B4 Fix verified generator defects | in progress | arena/b1fadb7e-poker3 | `scripts/data_venues.py`, `scripts/data_hotels.py` | Wynn daily names print their day range twice; rate-log night labels are swapped. |
+| B5 Re-verify, PR, merge, confirm Pages deploy | in progress | arena/b1fadb7e-poker3 | `COORDINATION.md` | Not done until the deployed site is confirmed. |
