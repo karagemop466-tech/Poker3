@@ -1,0 +1,1264 @@
+{
+ "generatedAt": "2026-11-17T00:59:12+00:00",
+ "mode": "offline (transcription re-check only)",
+ "summary": {
+  "urls": 88,
+  "fetched": 0,
+  "changed": 0,
+  "failed": 0,
+  "transcriptionRows": 44,
+  "transcriptionMatched": 44,
+  "transcriptionMismatches": 0
+ },
+ "changed": [],
+ "failed": [],
+ "transcription": {
+  "status": "checked",
+  "checked": "2026-11-17T01:06:17+00:00",
+  "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+  "sourceHash": "",
+  "range": "2026-11-16 → 2026-12-06",
+  "rowsTranscribed": 44,
+  "rowsMatched": 44,
+  "mismatches": [],
+  "missingInData": [],
+  "rowsInDataNotTranscribed": 0,
+  "note": "Only the window that overlaps the recommended trip is transcribed here, because that is the window the day plan acts on. Every row was read from the official PDF's REG CLOSES column, which is the only place the late-registration cut-off is published as a clock time. Blank cells in the PDF (Day 2 restarts, the RaceDay events with no guarantee) are blank here too; they are never inferred.",
+  "rows": [
+   {
+    "eventId": "vl-dse-2026-11-16-1-1110am",
+    "date": "2026-11-16",
+    "event": "1",
+    "name": "$300 No Limit Hold'em 1A $75K GTD",
+    "time": "11:10 AM",
+    "regCloses": "3:40 PM",
+    "guarantee": 75000,
+    "chips": 30000,
+    "levelMin": 40,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-16-1-510pm",
+    "date": "2026-11-16",
+    "event": "1",
+    "name": "$300 No Limit Hold'em 1B $75K GTD",
+    "time": "5:10 PM",
+    "regCloses": "8:40 PM",
+    "guarantee": 75000,
+    "chips": 30000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-17-1-1110am",
+    "date": "2026-11-17",
+    "event": "1",
+    "name": "$300 No Limit Hold'em 1C $75K GTD",
+    "time": "11:10 AM",
+    "regCloses": "3:40 PM",
+    "guarantee": 75000,
+    "chips": 30000,
+    "levelMin": 40,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-17-1-510pm",
+    "date": "2026-11-17",
+    "event": "1",
+    "name": "$300 No Limit Hold'em 1D $75K GTD",
+    "time": "5:10 PM",
+    "regCloses": "8:40 PM",
+    "guarantee": 75000,
+    "chips": 30000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-18-2-1110am",
+    "date": "2026-11-18",
+    "event": "2",
+    "name": "$300 No Limit Hold'em (1Day)",
+    "time": "11:10 AM",
+    "regCloses": "4:55 PM",
+    "guarantee": 10000,
+    "chips": 40000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-18-1-1200pm",
+    "date": "2026-11-18",
+    "event": "1",
+    "name": "$300 No Limit Hold'em Day 2 Restart",
+    "time": "12:00 PM",
+    "regCloses": "",
+    "guarantee": null,
+    "chips": null,
+    "levelMin": null,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-19-3-1010am",
+    "date": "2026-11-19",
+    "event": "3",
+    "name": "$200 NLH RaceDay Stack (1Day)",
+    "time": "10:10 AM",
+    "regCloses": "12:25 PM",
+    "guarantee": null,
+    "chips": 30000,
+    "levelMin": 20,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-20-4-1010am",
+    "date": "2026-11-20",
+    "event": "4",
+    "name": "$200 NLH RaceDay Stack (1Day)",
+    "time": "10:10 AM",
+    "regCloses": "12:25 PM",
+    "guarantee": null,
+    "chips": 30000,
+    "levelMin": 20,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-21-5-1010am",
+    "date": "2026-11-21",
+    "event": "5",
+    "name": "$200 NLH RaceDay Stack (1Day)",
+    "time": "10:10 AM",
+    "regCloses": "12:25 PM",
+    "guarantee": null,
+    "chips": 30000,
+    "levelMin": 20,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-22-6-1110am",
+    "date": "2026-11-22",
+    "event": "6",
+    "name": "$200 No Limit Hold'em (1Day)",
+    "time": "11:10 AM",
+    "regCloses": "3:40 PM",
+    "guarantee": null,
+    "chips": 30000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-23-7-1110am",
+    "date": "2026-11-23",
+    "event": "7",
+    "name": "$400 No Limit Hold'em 1A $75K GTD",
+    "time": "11:10 AM",
+    "regCloses": "5:55 PM",
+    "guarantee": 75000,
+    "chips": 40000,
+    "levelMin": 40,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-23-8-510pm",
+    "date": "2026-11-23",
+    "event": "8",
+    "name": "$200 NLH Progressive Knock-Out Bounty (PKO)",
+    "time": "5:10 PM",
+    "regCloses": "9:40 PM",
+    "guarantee": 8000,
+    "chips": 25000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-24-7-1110am",
+    "date": "2026-11-24",
+    "event": "7",
+    "name": "$400 No Limit Hold'em 1B $75K GTD",
+    "time": "11:10 AM",
+    "regCloses": "5:55 PM",
+    "guarantee": 75000,
+    "chips": 40000,
+    "levelMin": 40,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-24-9-510pm",
+    "date": "2026-11-24",
+    "event": "9",
+    "name": "$200 No Limit Hold'em Bounty (1Day)",
+    "time": "5:10 PM",
+    "regCloses": "9:40 PM",
+    "guarantee": 8000,
+    "chips": 25000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-25-7-1100am",
+    "date": "2026-11-25",
+    "event": "7",
+    "name": "$400 No Limit Hold'em Day 2 Restart",
+    "time": "11:00 AM",
+    "regCloses": "",
+    "guarantee": null,
+    "chips": null,
+    "levelMin": null,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-25-10-1110am",
+    "date": "2026-11-25",
+    "event": "10",
+    "name": "$400 No Limit Hold'em (1Day)",
+    "time": "11:10 AM",
+    "regCloses": "4:55 PM",
+    "guarantee": 15000,
+    "chips": 40000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-25-11-510pm",
+    "date": "2026-11-25",
+    "event": "11",
+    "name": "$200 No Limit Hold'em Bounty (1Day)",
+    "time": "5:10 PM",
+    "regCloses": "9:40 PM",
+    "guarantee": 8000,
+    "chips": 25000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-26-12-1110am",
+    "date": "2026-11-26",
+    "event": "12",
+    "name": "$300 No Limit Hold'em (1Day)",
+    "time": "11:10 AM",
+    "regCloses": "4:55 PM",
+    "guarantee": 10000,
+    "chips": 40000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-26-13-510pm",
+    "date": "2026-11-26",
+    "event": "13",
+    "name": "$200 No Limit Hold'em Bounty (1Day)",
+    "time": "5:10 PM",
+    "regCloses": "9:40 PM",
+    "guarantee": 8000,
+    "chips": 25000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-27-14-1110am",
+    "date": "2026-11-27",
+    "event": "14",
+    "name": "$600 No Limit Hold'em (1Day)",
+    "time": "11:10 AM",
+    "regCloses": "4:55 PM",
+    "guarantee": 30000,
+    "chips": 40000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-27-15-510pm",
+    "date": "2026-11-27",
+    "event": "15",
+    "name": "$200 No Limit Hold'em Bounty (1Day)",
+    "time": "5:10 PM",
+    "regCloses": "9:40 PM",
+    "guarantee": 8000,
+    "chips": 25000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-28-16-1110am",
+    "date": "2026-11-28",
+    "event": "16",
+    "name": "$600 No Limit Hold'em Bounty (1Day)",
+    "time": "11:10 AM",
+    "regCloses": "4:55 PM",
+    "guarantee": 30000,
+    "chips": 40000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-28-17-1210pm",
+    "date": "2026-11-28",
+    "event": "17",
+    "name": "$400 Pot Limit Omaha Bounty (1Day)",
+    "time": "12:10 PM",
+    "regCloses": "4:40 PM",
+    "guarantee": 15000,
+    "chips": 30000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-28-18-510pm",
+    "date": "2026-11-28",
+    "event": "18",
+    "name": "$200 NLH PokerAtlas Valuetown Bounty (1Day)",
+    "time": "5:10 PM",
+    "regCloses": "9:40 PM",
+    "guarantee": 20000,
+    "chips": 25000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-29-19-1110am",
+    "date": "2026-11-29",
+    "event": "19",
+    "name": "$400 No Limit Hold'em 1A $75K GTD",
+    "time": "11:10 AM",
+    "regCloses": "5:55 PM",
+    "guarantee": 75000,
+    "chips": 40000,
+    "levelMin": 40,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-29-20-1210pm",
+    "date": "2026-11-29",
+    "event": "20",
+    "name": "$300 Pot Limit Omaha Double Board Bomb Pot (1Day)",
+    "time": "12:10 PM",
+    "regCloses": "4:40 PM",
+    "guarantee": 10000,
+    "chips": 30000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-29-21-510pm",
+    "date": "2026-11-29",
+    "event": "21",
+    "name": "$200 No Limit Hold'em Bounty (1Day)",
+    "time": "5:10 PM",
+    "regCloses": "9:40 PM",
+    "guarantee": 8000,
+    "chips": 25000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-30-19-1110am",
+    "date": "2026-11-30",
+    "event": "19",
+    "name": "$400 No Limit Hold'em 1B $75K GTD",
+    "time": "11:10 AM",
+    "regCloses": "5:55 PM",
+    "guarantee": 75000,
+    "chips": 40000,
+    "levelMin": 40,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-11-30-22-510pm",
+    "date": "2026-11-30",
+    "event": "22",
+    "name": "$200 No Limit Hold'em Bounty (1Day)",
+    "time": "5:10 PM",
+    "regCloses": "9:40 PM",
+    "guarantee": 8000,
+    "chips": 25000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-12-01-19-1110am",
+    "date": "2026-12-01",
+    "event": "19",
+    "name": "$400 No Limit Hold'em 1C $75K GTD",
+    "time": "11:10 AM",
+    "regCloses": "5:55 PM",
+    "guarantee": 75000,
+    "chips": 40000,
+    "levelMin": 40,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-12-01-23-510pm",
+    "date": "2026-12-01",
+    "event": "23",
+    "name": "$200 No Limit Hold'em Bounty (1Day)",
+    "time": "5:10 PM",
+    "regCloses": "9:40 PM",
+    "guarantee": 8000,
+    "chips": 25000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-12-02-24-1010am",
+    "date": "2026-12-02",
+    "event": "24",
+    "name": "$600 No Limit Hold'em Seniors (1Day) — must be 50+",
+    "time": "10:10 AM",
+    "regCloses": "3:55 PM",
+    "guarantee": 40000,
+    "chips": 40000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-12-02-19-1100am",
+    "date": "2026-12-02",
+    "event": "19",
+    "name": "$400 No Limit Hold'em Day 2 Restart",
+    "time": "11:00 AM",
+    "regCloses": "",
+    "guarantee": null,
+    "chips": null,
+    "levelMin": null,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-12-02-25-510pm",
+    "date": "2026-12-02",
+    "event": "25",
+    "name": "$200 No Limit Hold'em Bounty (1Day)",
+    "time": "5:10 PM",
+    "regCloses": "9:40 PM",
+    "guarantee": 8000,
+    "chips": 25000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-12-03-26-1110am",
+    "date": "2026-12-03",
+    "event": "26",
+    "name": "$800 No Limit Hold'em 1A $500K GTD",
+    "time": "11:10 AM",
+    "regCloses": "3:40 PM",
+    "guarantee": 500000,
+    "chips": 40000,
+    "levelMin": 40,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-12-03-27-1210pm",
+    "date": "2026-12-03",
+    "event": "27",
+    "name": "$600 Big O (1Day)",
+    "time": "12:10 PM",
+    "regCloses": "4:40 PM",
+    "guarantee": 25000,
+    "chips": 30000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-12-03-26-510pm",
+    "date": "2026-12-03",
+    "event": "26",
+    "name": "$800 No Limit Hold'em 1B $500K GTD",
+    "time": "5:10 PM",
+    "regCloses": "8:40 PM",
+    "guarantee": 500000,
+    "chips": 40000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-12-04-26-1110am",
+    "date": "2026-12-04",
+    "event": "26",
+    "name": "$800 No Limit Hold'em 1C $500K GTD",
+    "time": "11:10 AM",
+    "regCloses": "3:40 PM",
+    "guarantee": 500000,
+    "chips": 40000,
+    "levelMin": 40,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-12-04-26-510pm",
+    "date": "2026-12-04",
+    "event": "26",
+    "name": "$800 No Limit Hold'em 1D $500K GTD",
+    "time": "5:10 PM",
+    "regCloses": "8:40 PM",
+    "guarantee": 500000,
+    "chips": 40000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-12-05-26-1110am",
+    "date": "2026-12-05",
+    "event": "26",
+    "name": "$800 No Limit Hold'em 1E $500K GTD",
+    "time": "11:10 AM",
+    "regCloses": "3:40 PM",
+    "guarantee": 500000,
+    "chips": 40000,
+    "levelMin": 40,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-12-05-26-510pm",
+    "date": "2026-12-05",
+    "event": "26",
+    "name": "$800 No Limit Hold'em 1F (Turbo) $500K GTD",
+    "time": "5:10 PM",
+    "regCloses": "7:25 PM",
+    "guarantee": 500000,
+    "chips": 40000,
+    "levelMin": 20,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-12-06-28-1110am",
+    "date": "2026-12-06",
+    "event": "28",
+    "name": "$600 No Limit Hold'em (1Day)",
+    "time": "11:10 AM",
+    "regCloses": "4:55 PM",
+    "guarantee": 40000,
+    "chips": 40000,
+    "levelMin": 30,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-12-06-26-1200pm",
+    "date": "2026-12-06",
+    "event": "26",
+    "name": "$800 No Limit Hold'em Day 2 Restart",
+    "time": "12:00 PM",
+    "regCloses": "",
+    "guarantee": null,
+    "chips": null,
+    "levelMin": null,
+    "inData": true
+   },
+   {
+    "eventId": "vl-dse-2026-12-06-29-510pm",
+    "date": "2026-12-06",
+    "event": "29",
+    "name": "$300 No Limit Hold'em Bounty (1Day)",
+    "time": "5:10 PM",
+    "regCloses": "9:40 PM",
+    "guarantee": 15000,
+    "chips": 25000,
+    "levelMin": 30,
+    "inData": true
+   }
+  ]
+ },
+ "urls": [
+  {
+   "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+   "label": "Venetian DeepStack Extravaganza IV schedule and structure sheets (Nov 16 - Dec 23, 2026)",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html",
+   "label": "Venetian DeepStack Extravaganza NYE schedule and structure sheets (Dec 24, 2026 - Jan 10, 2027)",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html",
+   "label": "Venetian DeepStack Poker Series index (current, next and future series)",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/resort/casino/poker.html",
+   "label": "Venetian poker room page",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
+   "label": "Venetian poker-room suite rates and play requirements 2026",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/resort/resort-fee.html",
+   "label": "Venetian resort fee page",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
+   "label": "Venetian hotel terms and conditions (tax, parking, cancellation)",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.wynnlasvegas.com/casino/poker",
+   "label": "Wynn Las Vegas poker room page",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf",
+   "label": "Wynn daily tournament poster",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://cdn.wynnresorts.com/image/upload/v1752011191/visitwynn_pdfs_files/Poker/Daily%20Tournaments/Poker-All_Daily_Structures.pdf",
+   "label": "Wynn daily tournament terms and structures",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
+   "label": "WPT World Championship schedule at Wynn Las Vegas (Nov 27 - Dec 21, 2026)",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
+   "label": "WPT World Championship structures at Wynn Las Vegas",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://cdn.wynnresorts.com/image/upload/v1753296112/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Schedule.pdf",
+   "label": "Wynn Signature Series schedule (Jan 11-24, 2027)",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.wynnlasvegas.com/rooms-and-suites",
+   "label": "Wynn Las Vegas rooms and suites",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.wynnlasvegas.com/terms-and-conditions/850070",
+   "label": "Wynn Las Vegas terms (resort fee, cancellation, parking)",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://bellagio.mgmresorts.com/en/casino/poker.html",
+   "label": "Bellagio poker room page",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf",
+   "label": "Bellagio Friday $600 No Limit Hold'em structure",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf",
+   "label": "Bellagio Saturday No Limit Hold'em structure (buy-in conflict)",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt07fcf1244a6da661/6af491a339e2b4f6b76a86ad/mgm-bellagio-poker-sundays-$400-horse.pdf",
+   "label": "Bellagio Sunday $400 H.O.R.S.E. structure",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://bellagio.mgmresorts.com/en/hotel.html",
+   "label": "Bellagio hotel rooms and suites",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://bellagio.mgmresorts.com/en/terms-and-conditions.html",
+   "label": "Bellagio hotel reservation terms (resort fee, cancellation, taxes)",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
+   "label": "MGM Grand poker room page",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
+   "label": "MGM Grand weekly tournament schedule sheet",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/bltb2a45da7e8ee5621/mgm-grand-casino-poker-120_nlh.pdf",
+   "label": "MGM Grand $120 No Limit Hold'em structure",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
+   "label": "Caesars Palace and Horseshoe poker tournament page",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://aria.mgmresorts.com/en/casino/poker.html",
+   "label": "ARIA poker room page",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
+   "label": "ARIA official poker guide (undated)",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+   "label": "DeepStack Extravaganza IV official series schedule PDF (Nov 16 - Dec 23, 2026)",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html",
+   "label": "MGM Grand hotel reservation terms ($50 resort fee, 72-hour cancellation)",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://aria.mgmresorts.com/en/terms-and-conditions.html",
+   "label": "ARIA hotel reservation terms ($55 resort fee, 72-hour cancellation)",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.wynnlasvegas.com/about-us/resort-information",
+   "label": "Wynn resort policies (live, non-offer page: $55 resort fee, check-in/out)",
+   "kind": "source",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 1",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_2.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 2",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 3",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 4",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 5",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_6.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 6",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 7",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 8",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_9.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 9",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_10.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 10",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 11",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 12",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_13.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 13",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_14.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 14",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 15",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_16.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 16",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_17.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 17",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_18.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 18",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_19.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 19",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_20.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 20",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_21.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 21",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_22.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 22",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_23.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 23",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_24.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 24",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 25",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_26.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 26",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_27.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 27",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_28.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 28",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_29.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 29",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_30.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 30",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_31.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 31",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_32.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 32",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_33.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 33",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_34.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 34",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 35",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_36.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 36",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_37.pdf",
+   "label": "DeepStack Extravaganza IV structure sheet 37",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_1.pdf",
+   "label": "DeepStack Extravaganza NYE structure sheet dse_dec_2026-structure_1.pdf",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_2.pdf",
+   "label": "DeepStack Extravaganza NYE structure sheet dse_dec_2026-structure_2.pdf",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_3.pdf",
+   "label": "DeepStack Extravaganza NYE structure sheet dse_dec_2026-structure_3.pdf",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_4.pdf",
+   "label": "DeepStack Extravaganza NYE structure sheet dse_dec_2026-structure_4.pdf",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_6.pdf",
+   "label": "DeepStack Extravaganza NYE structure sheet dse_dec_2026-structure_6.pdf",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_12.pdf",
+   "label": "DeepStack Extravaganza NYE structure sheet dse_dec_2026-structure_12.pdf",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_5.pdf",
+   "label": "DeepStack Extravaganza NYE structure sheet dse_dec_2026-structure_5.pdf",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_7.pdf",
+   "label": "DeepStack Extravaganza NYE structure sheet dse_dec_2026-structure_7.pdf",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_8.pdf",
+   "label": "DeepStack Extravaganza NYE structure sheet dse_dec_2026-structure_8.pdf",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_9.pdf",
+   "label": "DeepStack Extravaganza NYE structure sheet dse_dec_2026-structure_9.pdf",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_15.pdf",
+   "label": "DeepStack Extravaganza NYE structure sheet dse_dec_2026-structure_15.pdf",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_11.pdf",
+   "label": "DeepStack Extravaganza NYE structure sheet dse_dec_2026-structure_11.pdf",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_13.pdf",
+   "label": "DeepStack Extravaganza NYE structure sheet dse_dec_2026-structure_13.pdf",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_14.pdf",
+   "label": "DeepStack Extravaganza NYE structure sheet dse_dec_2026-structure_14.pdf",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_10.pdf",
+   "label": "DeepStack Extravaganza NYE structure sheet dse_dec_2026-structure_10.pdf",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://cdn.wynnresorts.com/image/upload/v1762299460/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Structures.pdf",
+   "label": "Structure sheet for No Limit Hold'em Day 1A",
+   "kind": "structure",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://mgmgrand.mgmresorts.com/en/hotel.html",
+   "label": "MGM Grand room source",
+   "kind": "hotel",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.caesars.com/caesars-palace/hotels",
+   "label": "Caesars Palace room source",
+   "kind": "hotel",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://www.caesars.com/horseshoe-las-vegas/hotels",
+   "label": "Horseshoe Las Vegas room source",
+   "kind": "hotel",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  },
+  {
+   "url": "https://aria.mgmresorts.com/en/hotel.html",
+   "label": "ARIA Resort & Casino room source",
+   "kind": "hotel",
+   "checked": "2026-11-17T00:59:12+00:00",
+   "status": "not fetched (offline run)",
+   "changed": false
+  }
+ ]
+}

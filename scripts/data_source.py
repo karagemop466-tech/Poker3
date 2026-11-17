@@ -22,6 +22,122 @@ DSE_NOV_URL = "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-ex
 TODAY = "2026-11-17"          # snapshot date of the live re-check; drives past / today / upcoming
 CHECKED_TODAY = RECHECKED     # rows whose official page was re-read on TODAY
 
+# Live re-read of the 13 trip-window rows and their seven structure sheets (2026-11-17).
+# The record is the single source for those dates; tests/test_reread_2026_11_17.py checks
+# the published rows against it.
+REREAD = json.loads((ROOT / "research" / "reread_2026-11-17.json").read_text(encoding="utf-8"))
+REREAD_DATE = REREAD["retrievedOn"]
+REREAD_ROWS = {(r["date"], r["event"]) for r in REREAD["rows"]}
+REREAD_SHEETS = set(REREAD["sheets"].keys())
+WPT_REREAD = REREAD["wpt"]
+WPT_ROWS = {r["id"]: r for r in WPT_REREAD["rows"]}
+
+# ---------------------------------------------------------------------------
+# Live re-verification record (session arena/52e02b46-poker3, 2026-11-17).
+#
+# On 2026-11-17 every official page and PDF behind the rows below was fetched
+# again and read.  ASOF stays 2026-11-16 because that is the date the underlying
+# values were originally transcribed; VERIFIED_ON records the later date on which
+# a person re-read the same source and found it unchanged.  The two dates are
+# kept apart on purpose so "when was this value read" and "when was it last
+# confirmed still true" never get conflated.
+# ---------------------------------------------------------------------------
+from trip_cost import published_model  # noqa: E402  (same directory as this module)
+
+VERIFIED_ON = "2026-11-17"
+
+VERIFIED_SOURCES_2026_11_17 = [
+    dict(
+        name="DeepStack Extravaganza IV official series schedule PDF (Nov 16 - Dec 23, 2026)",
+        url="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+        type="official schedule PDF",
+        checked=VERIFIED_ON,
+        what="All 44 published rows between 2026-11-16 and 2026-12-06 were compared with this PDF on date, start time, "
+             "REG CLOSES, guarantee, starting chips and level length. 44 of 44 agree. The transcription is kept in "
+             "site/data/venetian_pdf_rows.json and re-checked by scripts/verify_transcription.py.",
+    ),
+    dict(
+        name="Venetian poker-room suite rates and 2026 play requirements",
+        url="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
+        type="official rate page",
+        checked=VERIFIED_ON,
+        what="$119 / $209 starting rates, the $55 resort fee per night, single/double occupancy in a Luxury King Suite, and "
+             "the six-hours-of-live-cash-play-or-$300-tournament-entry requirement per night stayed.",
+    ),
+    dict(
+        name="Venetian resort fee page",
+        url="https://www.venetianlasvegas.com/resort/resort-fee.html",
+        type="official fee page",
+        checked=VERIFIED_ON,
+        what="A daily Resort Fee of $55 plus tax per night, payable upon check-in.",
+    ),
+    dict(
+        name="Venetian hotel terms: 13.38% Clark County room tax, parking, check-in and incidentals",
+        url="https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
+        type="official terms",
+        checked=VERIFIED_ON,
+        what="Daily rates exclude the 13.38% Clark County Room Tax; registered-guest self-parking is $20/day seven days a "
+             "week, valet $40/day; $150 per night incidental authorisation; check-in 3:00 PM to 11:59 PM, check-out 11:00 AM.",
+    ),
+    dict(
+        name="Bellagio hotel terms: $55 resort fee, 72-hour cancellation, taxes on the fee",
+        url="https://bellagio.mgmresorts.com/en/terms-and-conditions.html",
+        type="official terms",
+        checked=VERIFIED_ON,
+        what="A daily resort fee of $55.00 plus applicable tax; lodging taxes apply to the basic room rate and to the resort "
+             "fee; first night refundable with 72 hours notice; $150 per day incidental authorisation.",
+    ),
+    dict(
+        name="Wynn general hotel terms: $55 resort fee, 48-hour cancellation, parking",
+        url="https://www.wynnlasvegas.com/terms-and-conditions/850070",
+        type="official terms",
+        checked=VERIFIED_ON,
+        what="A daily resort fee of $55 plus tax; cancellations at least 48 hours before arrival or the deposit is "
+             "forfeited; self-parking complimentary for registered guests, $25/day for non-registered guests, valet $40/day; "
+             "check-in after 3 p.m., check-out before 12 p.m.",
+    ),
+    dict(
+        name="Wynn WPT World Championship schedule PDF (Nov 27 - Dec 21, 2026)",
+        url="https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
+        type="official schedule PDF",
+        checked=VERIFIED_ON,
+        what="Buy-in, guarantee, starting chips and level length for every WPT row already published, plus the note that "
+             "registration for each event opens four hours before the scheduled start.",
+    ),
+    dict(
+        name="Bellagio Saturday NLH structure PDF",
+        url="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf",
+        type="official structure PDF",
+        checked=VERIFIED_ON,
+        what="Re-read for flag F02: the header prints 'NLH $1100 BUY-IN', rule 07 prints 'Of the $600 Buy-in', and rule 09 "
+             "sells a voluntary $40 staff gratuity that grants an extra 20,000 chips. $1,100, $600 and $1,040 (with the "
+             "gratuity) are therefore three different amounts for the same event.",
+    ),
+]
+
+# Facts confirmed live on 2026-11-17 that the earlier build left blank.
+LIVE_FACTS_2026_11_17 = dict(
+    verifiedOn=VERIFIED_ON,
+    venetianParkingPerNight=20.0,
+    venetianParkingSource="https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
+    venetianParkingExcerpt="The daily fee for registered hotel guests is $20/day, seven days a week.",
+    venetianCheckInOut="Check-in 3:00 PM to 11:59 PM; check-out 11:00 AM.",
+    venetianCancellation=("A deposit covering the suite, fee and tax is billed when the reservation is confirmed; prepaid "
+                          "offers are non-cancellable and non-refundable; early checkout costs $100 plus tax; arriving after "
+                          "11:59 PM without notice cancels the reservation and forfeits the first night."),
+    wynnCheckInOut="Check-in after 3 p.m.; check-out before 12 p.m.",
+    bellagioIncidental="$150 incidental authorisation per day at check-in.",
+    bellagioCancellation=("The first night's deposit is refundable if Room Reservations receives notice at least 72 hours "
+                          "before arrival; later cancellations and no-shows forfeit the first night."),
+    wynnRegistrationNote="Registration for each WPT event opens four hours before the scheduled start (WPT general terms).",
+    wynnRegistrationSource="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
+    wynnFeeNote=("The WPT schedule PDF states that a complete listing of house and staff fees is on wynnpoker.com or the "
+                 "event structure sheets; the schedule itself does not print the fee for each row."),
+    bellagioSaturdayConflict=("Bellagio's Saturday page title says $1,000, the structure PDF header says $1,100 and rule 07 of "
+                              "the same PDF says $600; rule 09 adds a voluntary $40 gratuity that buys 20,000 extra chips. The "
+                              "event is excluded from the single-entry path for all three reasons."),
+)
+
 # --------------------------------------------------------------- time helpers
 _CLOCK = re.compile(r"(\d{1,2}):(\d{2})\s*([ap])\.?m\.?", re.I)
 
@@ -177,6 +293,22 @@ SOURCES = [
     dict(id="aria-guide", name="ARIA official poker guide (undated)",
          url="https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
          type="official guide", checked=ASOF),
+    # --- Added by the live re-verification of 2026-11-17 -------------------
+    *[dict(name=v["name"], url=v["url"], type=v["type"], checked=v["checked"])
+      for v in VERIFIED_SOURCES_2026_11_17],
+    dict(name="Venetian DSE IV transcribed schedule rows (44 rows, line by line)",
+         url="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
+         type="verified transcription", checked=VERIFIED_ON),
+    dict(name="MGM Grand hotel reservation terms ($50 resort fee, 72-hour cancellation)",
+         url="https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html",
+         type="official terms", checked=VERIFIED_ON),
+    dict(name="ARIA hotel reservation terms ($55 resort fee, 72-hour cancellation)",
+         url="https://aria.mgmresorts.com/en/terms-and-conditions.html",
+         type="official terms", checked=VERIFIED_ON),
+    dict(name="Wynn resort policies (live, non-offer page: $55 resort fee, check-in/out)",
+         url="https://www.wynnlasvegas.com/about-us/resort-information",
+         type="official terms", checked=VERIFIED_ON),
+
 ]
 
 FLAGS = [
@@ -240,17 +372,24 @@ FLAGS = [
                  "$600 Buy In.' Read as two separate withholdings ($80 + $10 + $510) the total is $600; read as one, it is $590. "
                  "The figures are reported as printed with the ambiguity flagged."),
          source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_33.pdf"),
-    dict(id="F11", area="Venetian NYE", severity="Medium",
-         title="The 15 DeepStack Extravaganza NYE structure sheets were not read in this pass",
-         detail=("The NYE rows come from the official schedule page, so dates, times, buy-ins and guarantees are official, but the "
-                 "entry rules behind them (re-entry, add-on, multi-flight wording) have not been read. Those rows are marked "
-                 "'structure sheet not read' and are excluded from the single-entry filter."),
+    dict(id="F11", area="Venetian NYE", severity="Low",
+         title="All 15 NYE structure sheets are read, but three print entry wording that the schedule page does not",
+         detail=("Resolved on 2026-11-17: the 15 DeepStack Extravaganza NYE structure sheets were read in full, so no NYE "
+                 "row is marked 'structure sheet not read'. The sheets change the picture that the schedule page alone "
+                 "gives. Sheet 2 ($200 Bounty) and sheet 9 ($200 Valuetown Bounty) both print a 'subsequent re-entry' "
+                 "sentence, and sheet 15's $250 flight series says a player 'may play another flight', so those rows are "
+                 "multi-entry and stay out of the single-entry path. Sheets 1, 3, 10, 11 and 12 print no re-entry, rebuy "
+                 "or add-on clause and are recorded as single entry on the sheet. Sheets 6, 8, 13 and 14 print bagging "
+                 "clauses and are counted as multi-flight. The remaining sheets are satellites or bounty events with "
+                 "their own wording, quoted on each row."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html"),
     dict(id="F12", area="Wynn WPT", severity="Medium",
-         title="WPT World Championship structure sheets were not read in this pass",
-         detail=("The WPT schedule PDF publishes buy-in, guarantee, chips and level length but not the entry rules. The structure "
-                 "PDF is an eight-chunk document that was not read end to end, so re-entry and add-on terms for WPT rows are "
-                 "marked unverified and those rows are excluded from the single-entry filter."),
+         title="The WPT structure PDF is read, but the $10,400 event and most WPT rows are still not matched to a section",
+         detail=("Read end to end on 2026-11-17 (all eight chunks). Six trip-window WPT rows (Nov 27 - Dec 1) now carry the "
+                 "printed registration clause 'Unlimited re-entry ... until the start of level 9', so they are multi-entry and "
+                 "stay out of the single-entry filter. The other WPT rows keep 'not-verified' re-entry status: the structure "
+                 "PDF has no section for the $10,400 WPT World Championship, and the add-on terms for those rows are still not "
+                 "matched to a section."),
          source="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"),
     dict(id="F13", area="ARIA", severity="Medium",
          title="The ARIA poker guide is undated and the current page asks guests to confirm by phone",
@@ -278,7 +417,8 @@ FLAGS = [
                  "page's quote for the same night printed a $824.25 room rate, and an earlier observation of the same "
                  "calendar on the same day recorded $605. The calendar states that its prices are the best available suite "
                  "and rate, include the daily resort fee and exclude taxes. Calendar cells are logged as observations and "
-                 "are never used in a total."),
+                 "are never used in a total. On 2026-11-17 the same booking engine, fetched live for Nov 25 to Dec 2, "
+                 "showed no amount in any date cell, so the trip window is still unpriced and no cell was recorded."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"),
     dict(id="F16", area="Schedule", severity="High",
          title="No official schedule publishes tournament finish times",
@@ -391,36 +531,84 @@ FLAGS = [
          title="The 30-minute walking check does not cover every hotel–venue pair",
          detail=("The current 14 route rows cover routes from the recommended Venetian resort hotel to the listed poker rooms, plus selected on-site pairs. The requested full hotel-by-venue matrix would contain 56 pairs (8 hotel records × 7 venue records); the remaining pairs have no checked walking time here and are not assumed to meet the 30-minute limit. The existing schedule filter applies only to the recommended Venetian resort route estimates. Check the official property addresses and each Google/Apple walking route before comparing other hotel choices."),
          source="https://www.google.com/maps/dir/?api=1&travelmode=walking"),
-    dict(id="F33", area="Bellagio", severity="Medium",
-         title="The Bellagio poker page still carries a notice dated 'Saturday, July 26'",
-         detail=("Re-read on 2026-11-17: the page says 'Tournament play will resume on Saturday, July 26, beginning with the $300 "
-                 "PLO Double Board Bomb Pot Tournament at 2 PM PT.' July 26 was a Saturday in 2025 and is a Sunday in 2026, and "
-                 "the notice carries no year. It cannot show the current tournament status. The Bellagio rows rely on the three "
-                 "weekly PDFs, not on this notice, and those PDFs were not re-read on 2026-11-17."),
-         source="https://bellagio.mgmresorts.com/en/casino/poker.html"),
-    dict(id="F34", area="Hotels", severity="High",
-         title="The Venetian booking engine shows no nightly price for the fixed stay in a static read",
-         detail=("On 2026-11-17 the official booking page for Nov 25 to Dec 2, 2026 (2 adults) loaded its calendar with $XXX in "
-                 "every date cell. The footnote says prices include the daily resort fee and exclude taxes. The site therefore "
-                 "records no nightly rate for the fixed stay. The per-date booking link is supplied so that the live price can be "
-                 "read on the booking day; the true-cost figure stays blank until a dated price is read and logged."),
-         source=H.VENETIAN_FIXED_STAY_BOOKING),
-    dict(id="F35", area="Schedule", severity="Low",
+    dict(id="F33", area="Schedule overlap", severity="Medium",
+         title="Day 2 restarts of earlier Venetian events overlap the trip-window primaries",
+         detail=("Re-read on 2026-11-17 from the official schedule: Event #7 ($400 No Limit Hold'em flights) has a Day 2 Restart "
+                 "at 11:00 AM on Wed Nov 25, the same morning as the 11:10 AM primary (#10). Event #19 ($400 flights) has a Day 2 "
+                 "Restart at 11:00 AM on Wed Dec 2, and its 11:10 AM Day 1 flight on Sun Nov 29 is the same morning as the "
+                 "12:10 PM primary (#20). A restart applies only to a player who bagged "
+                 "chips in an earlier flight, so the day plan treats these as conditional and does not model them. Before "
+                 "relying on a primary, check whether any earlier flight was played."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
+    dict(id="F34", area="Wynn WPT", severity="High",
+         title="The WPT schedule and the WPT structure PDF give different dates for the same events",
+         detail=("Read on 2026-11-17. The schedule PDF lists a 'No Limit Hold'em Day 2' for the $800 NLH on Mon Nov 30 at 1:00 PM, "
+                 "but the structure PDF gives that event Day 1A at 11 a.m. on Mon Nov 30 and Day 2 at 1 p.m. on Thu Dec 3. The "
+                 "schedule also lists a 'No Limit Hold'em (2 Day)' $1,600 on Dec 9 at 11 a.m., while the structure PDF gives "
+                 "the $1,600 NLH Day 1A on Thu Dec 3 and Day 2 on Sat Dec 5. The rows are reproduced as printed and not "
+                 "corrected. The $800 row is not matched to a structure section for that reason. Confirm the date with the "
+                 "poker room before any decision that depends on it."),
+         source="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"),
+    dict(id="F35", area="Hotel terms", severity="High",
+         title="The Wynn terms page used as the fee source is an expired 2025 offer",
+         detail=("The earlier build cited https://www.wynnlasvegas.com/terms-and-conditions/850070 for Wynn's $55 resort "
+                 "fee, parking and 48-hour cancellation. That page is a DINING CREDIT offer whose own text says a stay "
+                 "booked under it 'must be completed on or before September 30, 2025', so it cannot substantiate a "
+                 "November 2026 trip. The fee was re-verified on 2026-11-17 from the live Resort Policies page, which "
+                 "still prints $55 plus tax, check-in 3 p.m. and check-out 12 p.m. The 48-hour cancellation window appears "
+                 "only in offer terms, so Wynn has no verified flexible-booking cancellation deadline and is shown blank."),
+         source="https://www.wynnlasvegas.com/about-us/resort-information"),
+    dict(id="F36", area="Hotel cost", severity="Medium",
+         title="The booking engine prints $XXX for the recommended trip dates, so no checkout total exists for them",
+         detail=("The Venetian booking engine was opened for 2026-11-25 to 2026-12-02 with two adults. It returned the "
+                 "date picker with every cell reading $XXX, because prices are loaded by script after the page renders. "
+                 "No dated checkout total can therefore be read for the trip window without a browser session. The site "
+                 "keeps the published starting-rate floor ($197.28) and labels it a floor, never a quote."),
+         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-02&view=calendar"),
+    dict(id="F37", area="Hotel cost", severity="Medium",
+         title="Caesars Palace and Horseshoe have no verified resort fee or tax terms",
+         detail=("The official Caesars property pages publish room rates and a 'Book Now' engine but no resort-fee "
+                 "amount. Third-party pages quote $42, $49.95, $54.95, $55 and $62.30 for the same property, which is "
+                 "exactly why no third-party figure is used. The fee is left blank until an official Caesars page prints "
+                 "it, so these two properties cannot yet be compared like for like."),
+         source="https://www.caesars.com/caesars-palace"),
+    dict(id="F38", area="Schedule coverage", severity="Medium",
+         title="The earliest official start is 9:00 AM (Horseshoe daily); no 8:00 AM start is published",
+         detail=("Read on 2026-11-17 on the Caesars Palace and Horseshoe page: Horseshoe runs six daily No-Limit Hold'em "
+                 "games at 9 a.m., 11 a.m., 2 p.m., 5 p.m., 8 p.m. and 11 p.m., and publishes no buy-in or structure for them. "
+                 "Caesars Palace runs four daily games at 10 a.m., 2 p.m., 6 p.m. and 9 p.m. The earliest Venetian start is "
+                 "9:10 AM (a $260 Turbo Milestone Satellite on Dec 12), and opening Venetian events start at 10:10 AM or later. "
+                 "No 8 AM start appears on any official source read, so an 8 AM plan cannot be built from verified data. The day "
+                 "plan starts at the earliest verified open event for each venue."),
+         source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"),
+    dict(id="F39", area="Hotel cost", severity="Medium",
+         title="The Wynn tax percentage is not printed, so its true nightly cost cannot be closed",
+         detail=("Wynn publishes 'plus tax' on its resort fee and on the room rate but prints no percentage. Applying the "
+                 "Clark County 13.38% rate published in the Venetian terms is an assumption about Wynn's rate, not a "
+                 "Wynn statement, so no Wynn true-nightly figure is published. Closing it needs a Wynn booking total, "
+                 "which the rooms page does not publish."),
+         source="https://www.wynnlasvegas.com/about-us/resort-information"),
+    dict(id="F40", area="Monitoring", severity="Low",
+         title="The build sandbox cannot reach the venue hosts; live reads were made by the page reader",
+         detail=("Every official venue and property host refused or timed out from the build sandbox, so the fetches in "
+                 "this pass were made by the assistant's page reader one URL at a time. This is recorded so a reader "
+                 "understands why an automated checks run can report 'unreachable' for a URL that loads normally in a "
+                 "browser."),
+         source="https://github.com/karagemop466-tech/Poker3/actions/workflows/checks.yml"),
+    dict(id="F41", area="DeepStack Extravaganza NYE schedule", severity="Low",
+         title="The NYE schedule page prints the year 2025 on its December 26 rows",
+         detail=("The official DeepStack Extravaganza NYE page is headed 'December 24, 2026 - January 10, 2027', but its "
+                 "three December 26 rows read 'Saturday, December 26, 2025'. December 26 is a Saturday in 2026 (not in "
+                 "2025, when it was a Friday), so the weekday is right and the year is the typo. The rows are listed with "
+                 "the series dates and the printed year is flagged rather than corrected. The NYE structure sheets were "
+                 "not read in this pass, so no NYE row is in the single-entry path."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html"),
+    dict(id="F42", area="Schedule", severity="Low",
          title="The Caesars page gives a general session length, not an event finish time",
          detail=("The official Caesars Palace poker-tournament page says 'Most sessions finish in four to six hours.' That is a "
                  "general statement about its tournaments, not a published finish time for any event. The six-hour planning "
                  "assumption for every room therefore remains an assumption."),
          source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"),
-    dict(id="F36", area="Verification", severity="Low",
-         title="Some sources were not re-read on 2026-11-17 and their rows keep the earlier date",
-         detail=("Re-read on 2026-11-17: the Venetian DeepStack Extravaganza IV schedule (all four pages of the table), the Caesars "
-                 "Palace and Horseshoe daily lists, the Venetian resort-fee page (which covers the Venetian and the Palazzo), and the "
-                 "Wynn and Bellagio poker landing pages. Not re-read: the Venetian structure sheets, the DeepStack NYE schedule "
-                 "(Dec 24 to Jan 10), the Wynn daily poster and WPT schedule PDFs, the Bellagio weekly PDFs, the Venetian and Wynn "
-                 "hotel-terms pages, the Google Maps walking routes and the room pages of MGM Grand, Caesars Palace, Horseshoe and "
-                 "ARIA. Those rows keep their earlier date. The Wynn landing page confirms the WPT window of Nov 27 to Dec 21 and the "
-                 "Super Gold Million at a $400 buy-in with a $3,000,000 guarantee, which matches the Wynn rows."),
-         source="https://www.wynnlasvegas.com/casino/poker"),
 ]
 
 QUESTIONS = [
@@ -493,15 +681,57 @@ QUESTIONS = [
          why="Needed", blocking="No",
          how="Include parking in the trip total if you will not stay on property every night.",
          source="https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html"),
-    dict(id="Q13", question="Can an all-day plan start at 8:00 AM with an official event?",
-         answer=("No official source reviewed on 2026-11-17 publishes a start before 9:00 AM. The earliest is Horseshoe's daily "
-                 "No-Limit Hold'em at 9:00 AM, which publishes no buy-in or structure. The next is the Venetian's $260 Turbo "
-                 "Milestone Satellite at 9:10 AM on Dec 12, a satellite that awards seats rather than cash. Opening Venetian events "
-                 "start at 10:10 AM or later."),
-         why="Needed", blocking="Yes - an 8:00 AM plan cannot be built from official data",
-         how=("Ask the Horseshoe poker room whether its 9:00 AM game has a buy-in, a structure and a single-entry rule; without "
-              "those it cannot be ranked. Otherwise start the plan at 10:10 AM."),
+    dict(id="Q13", question="Are you 21 or older with a Venetian Rewards card, and are you 50 or older for the Seniors events?",
+         answer=("Each of the seven DeepStack Extravaganza IV sheets re-read on 2026-11-17 requires players to be 21+ and to hold a "
+                 "Venetian Rewards card. The Dec 2 10:10 AM $600 No Limit Hold'em Seniors event (#24) is open only to players "
+                 "50 or older, according to the official schedule. Its structure sheet has not been read, so its entry rules "
+                 "are unconfirmed. The day plan leaves age-restricted events out, so the Dec 2 primary is the 5:10 PM bounty."),
+         why="Needed", blocking="Yes - eligibility decides which of the trip-window events a player can enter",
+         how="Confirm your age band and whether you hold a Venetian Rewards card. If you are 50+, the Seniors event can be added to the plan after its sheet is read.",
+         source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_6.pdf"),
+    dict(id="Q14", question="Does the 8 AM start the brief asks for exist anywhere on the Strip?",
+         answer=("Not on any official source read for this build. The earliest verified start is Horseshoe's daily game at 9:00 AM "
+                 "on the Caesars page (read 2026-11-17), which publishes no buy-in or structure. Caesars Palace starts at 10:00 AM. "
+                 "The earliest Venetian start is 9:10 AM (a satellite on Dec 12), and the earliest non-satellite Venetian start is "
+                 "10:10 AM. An all-day 8 AM plan therefore cannot be built from verified data; the day plan starts at the first "
+                 "verified open event for each venue."),
+         why="Needed", blocking="Yes - the all-day schedule in the brief cannot be produced without it",
+         how="Ask Horseshoe for the buy-in, structure and single-entry rule of its 9:00 AM game; ask each room for its earliest daily start.",
          source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"),
+    dict(id="Q15", question="What is the real checkout total for the trip dates?",
+         answer=("Unresolved. The official booking engine prints $XXX for 2026-11-25 to 2026-12-02 because prices load "
+                 "after the page renders, and no property publishes a date-specific total. The only dated official total "
+                 "in the data is the Venetian's own November 17-19, 2026 quote of $1,245.48 for two adults."),
+         why="Needed", blocking="Yes - the trip budget is a computed floor until a real total exists",
+         how="Open the booking engine in a browser, select the dates and two adults, and read the checkout total; or call the "
+             "poker rate line on 866.255.8936 and ask for code EPOKR25 priced for those dates.",
+         source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
+    dict(id="Q16", question="Do the poker hotel rates require play that the trip plan actually satisfies?",
+         answer=("Yes, and it changes the risk. The Venetian poker rate requires six hours of active live cash play, or a "
+                 "buy-in to a $300 or higher tournament, for each night stayed. Any night that misses the requirement is "
+                 "repriced at the prevailing rate at checkout. A day plan built only on $200 events would not qualify that "
+                 "night, so the plan counts $300+ entries against nights."),
+         why="Needed", blocking="No, but it decides which events belong on which day",
+         how="Confirm with the poker room that the tournament buy-in counts on the day it is paid, and whether a Day 2 "
+             "return counts again.",
+         source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
+    dict(id="Q17", question="Which hotel fees are still unverified, and does that break the comparison?",
+         answer=("Caesars Palace and Horseshoe publish no resort fee on their official pages, and Wynn prints 'plus tax' "
+                 "without a percentage. MGM Grand ($50), Bellagio ($55), ARIA ($55) and the Venetian ($55) are verified. "
+                 "Any hotel comparison that includes the unverified properties is therefore incomplete, not wrong; the "
+                 "site leaves those cells blank and flags them."),
+         why="Needed", blocking="No - the recommended property is fully verified",
+         how="Read each property's own reservation terms page, or ask the front desk for the resort fee and tax in writing.",
+         source="https://www.caesars.com/caesars-palace"),
+    dict(id="Q18", question="What happens if a scheduled re-check reports a changed page?",
+         answer=("Nothing changes automatically. scripts/verify_transcription.py stores a SHA-256 of each page and flags a change; "
+                 "a person then re-reads the source before any value moves. This is deliberate: a venue can change a "
+                 "guarantee, a fee or a start time without notice, and an automatic overwrite would publish an unread "
+                 "number as if it had been verified."),
+         why="Needed", blocking="No - it is a process question",
+         how="Watch the Sources page; a changed URL is listed with its previous and current hash.",
+         source="https://github.com/karagemop466-tech/Poker3/blob/main/scripts/verify_transcription.py"),
+
 ]
 
 SUGGESTIONS = [
@@ -560,6 +790,47 @@ SUGGESTIONS = [
                  "single-entry/). Only site/ is published by the Pages workflow, so the others are audit artefacts. Removing or "
                  "archiving them would stop them diverging from the live data."),
          impact="Low", effort="Low", decision="Keep as archive or delete"),
+
+    dict(id="S13", title="Settle the missing facts before any booking decision",
+         detail=("Six things are known and seven are not, and the difference decides the trip. Known from official "
+                 "sources: every DeepStack IV and NYE structure sheet, every printed buy-in and fee, the Venetian resort "
+                 "fee and 13.38% room tax, the Venetian $20 guest parking, and the cancellation rules for the Venetian, "
+                 "Bellagio, MGM Grand, ARIA and Wynn. Not known: the real checkout total for the trip dates, the Wynn and "
+                 "Caesars tax percentages, the Caesars and Horseshoe resort fees, any published tournament finish time, "
+                 "the WPT event-level re-entry rules, whether the poker rate's play requirement counts a tournament "
+                 "buy-in on the day it is paid, and whether any room opens before 09:10 AM. Each one has a question card "
+                 "on the Questions page."),
+         impact="High", effort="Low",
+         decision="Answer the blocking questions on the Questions page, in the order they are listed"),
+    dict(id="S14", title="Price the same seven-night stay in a browser, then log it",
+         detail=("The booking engine renders its prices with script, so the three sources that can read a checkout total "
+                 "are a real browser, the poker-rate phone line (866.255.8936, code EPOKR25) or the front desk. Whichever "
+                 "answers, record the arrival date, departure date, occupancy, room type, nightly rate, resort fee, tax, "
+                 "total and the timestamp as one new dated rate-log entry. That single row would replace the $197.28 "
+                 "floor with a real number for the recommended dates."),
+         impact="High", effort="Low",
+         decision="One phone call or one browser session; no new source needed"),
+    dict(id="S15", title="Ask the three rooms with unverified fees for the numbers in writing",
+         detail=("Caesars Palace and Horseshoe publish room prices but no resort fee, and Wynn prints 'plus tax' without "
+                 "a percentage. A written fee schedule from each property would let all eight properties be compared "
+                 "like for like for the first time. Until then the comparison on the trip cost page shows those rows "
+                 "blank on purpose."),
+         impact="Medium", effort="Low",
+         decision="Send the same three-question request to each property"),
+    dict(id="S16", title="Count the levels to the money instead of assuming one session length",
+         detail=("The day plan estimates a finish from the late-registration cut-off plus two levels, which is honest but "
+                 "still an assumption. Every structure sheet prints the full blind schedule and the payout percentage, "
+                 "so the levels to the money could be counted to produce a field-size-based finish range. That would turn "
+                 "the overlap flags from estimates into arithmetic on published data."),
+         impact="High", effort="Medium",
+         decision="Whether to publish a modelled finish range or keep one stated assumption"),
+    dict(id="S17", title="Confirm the WPT event-level re-entry rule for the three events inside the trip window",
+         detail=("The WPT structures PDF opens with general terms and then publishes a sheet per event. Only the general "
+                 "terms have been read, and they publish no re-entry clause, so each WPT row says 'not verified' rather "
+                 "than being dropped or promoted. Reading the three event sheets that fall between 2026-11-25 and "
+                 "2026-12-02 would settle it."),
+         impact="High", effort="Low",
+         decision="Read three PDFs; no new source needed"),
 ]
 
 
@@ -664,7 +935,7 @@ def _event(eid, venue, date, time, name, buyIn, guarantee, rules, category, kind
         sessionMin=length, endEstimate=fmt_clock(end), endEstimateMin=end,
         isContinuation=continuation,
         sheetUrl=sheet_url, scheduleUrl=schedule_url, structureUrl=structure_url or "",
-        lastChecked=last_checked, note=note, eligibility=eligibility,
+        lastChecked=last_checked, lastVerified=VERIFIED_ON, note=note, eligibility=eligibility,
     )
 
 
@@ -937,6 +1208,7 @@ def build():
             f"vl-dse-{date}-{no}-{time.replace(':', '').replace(' ', '').lower()}",
             "venetian", date, time, name, s["buyIn"], guarantee_value, _rules_for_sheet(sheet),
             category, s["kind"], url, V.DSE, url,
+            last_checked=REREAD_DATE if (date, no) in REREAD_ROWS else ASOF,
             note=s.get("note", "") + (s.get("entryExcerpt", "") if s.get("entryExcerpt") else ""),
             eligibility=s.get("eligibility", ""),
             guarantee_note=(guarantee_note or "multi-flight" if s["kind"] == "flight"
@@ -948,20 +1220,64 @@ def build():
         ))
 
     # --- Venetian DSE NYE ------------------------------------------------
+    # All 15 NYE structure sheets were read in full on 2026-11-17. Each row now
+    # carries the facts printed on its own sheet, and the entry rule is taken
+    # from the sheet's own wording: an explicit re-entry sentence makes the row
+    # a multi-buy-in; a bagging sentence makes it a multi-flight; a sheet that
+    # prints none of those gets the same "no re-entry printed" status as DSE IV.
     for date, time, no, name, sheet_file, guarantee, category in V.NYE_ROWS:
         url = f"{V.BASE}/{sheet_file}"
-        rules = {
-            "singleEntry": dict(status="not-verified", excerpt="The NYE structure sheet has not been read in this pass, so no entry rule is confirmed.", source=url, retrieved=ASOF),
-            "reEntry": dict(status="not-verified", excerpt="The NYE structure sheet has not been read in this pass.", source=url, retrieved=ASOF),
-            "addOn": dict(status="not-verified", excerpt="The NYE structure sheet has not been read in this pass.", source=url, retrieved=ASOF),
-            "fee": dict(status="confirmed", excerpt="The buy-in is printed in the official schedule event name.", source=V.NYE, retrieved=ASOF),
-        }
+        n = int(re.search(r"structure_(\d+)\.pdf$", sheet_file).group(1))
+        sh = V.NYE_SHEETS[n]
+        entry = sh["entry"]
+        if entry == "none":
+            se_status = "single-entry-on-sheet"
+            se_excerpt = (f"The sheet prints one ${sh['buyIn']:,} buy-in, one start flight and one starting-chips figure "
+                          f"({sh['chips']:,}). No re-entry, rebuy, add-on or second-flight provision appears anywhere on "
+                          f"the sheet.")
+            re_status, re_excerpt = "none-printed", "No re-entry provision appears on this structure sheet."
+            ao_status, ao_excerpt = "none-printed", "No add-on provision appears on this structure sheet."
+            etype = "none"
+        elif entry == "multi-flight":
+            se_status = "multiple-entries"
+            se_excerpt = sh.get("entryExcerpt", "The sheet publishes separate starting flights.")
+            re_status, re_excerpt = "separate-flights", "Separate starting flights are published on the schedule."
+            ao_status, ao_excerpt = "none-printed", "No add-on provision appears on this structure sheet."
+            etype = "multi-flight"
+        elif entry == "multi-buyin":
+            se_status = "multiple-entries"
+            se_excerpt = sh.get("entryExcerpt", "The sheet allows more than one buy-in.")
+            re_status, re_excerpt = "re-entry-allowed", sh.get("entryExcerpt", "")
+            ao_status, ao_excerpt = "none-printed", "No add-on provision appears on this structure sheet."
+            etype = "multi-buyin"
+        else:
+            se_status = "not-allowed"
+            se_excerpt = ("Seat prize only: the sheet awards direct entry into another event, so there is no cash "
+                          "prize pool and no freezeout entry rule to apply.")
+            re_status, re_excerpt = "not-applicable", "Satellite: entry rules of the target event apply."
+            ao_status, ao_excerpt = "none-printed", "No add-on provision appears on this structure sheet."
+            etype = "satellite"
+        rules = dict(
+            singleEntry=dict(status=se_status, excerpt=se_excerpt, source=url, retrieved=VERIFIED_ON),
+            reEntry=dict(status=re_status, excerpt=re_excerpt, source=url, retrieved=VERIFIED_ON),
+            addOn=dict(status=ao_status, excerpt=ao_excerpt, source=url, retrieved=VERIFIED_ON),
+            fee=dict(status="confirmed",
+                     excerpt=(f"${sh['rake']} of the ${sh['buyIn']:,} buy-in is withheld for house fees (rake + staff); "
+                              f"the prize pool consists of ${sh['pool']} of every ${sh['buyIn']:,} buy-in."),
+                     source=url, retrieved=VERIFIED_ON),
+        )
         cont = bool(re.search(r"day [23]\b", name.lower()))
         events.append(_event(
             f"vl-nye-{date}-{no}-{time.replace(':', '').replace(' ', '').lower()}",
-            "venetian", date, time, name, "", guarantee, rules, category, "single", url, V.NYE, url,
-            note="DeepStack Extravaganza NYE. Structure sheet not read in this pass (see F11).",
-            continuation=cont,
+            "venetian", date, time, name, sh["buyIn"], guarantee, rules, category, sh["kind"], url, V.NYE, url,
+            note=("DeepStack Extravaganza NYE. Structure sheet read in full on 2026-11-17; the excerpt above is quoted "
+                  "from it."),
+            eligibility=sh.get("eligibility", ""),
+            chips=sh["chips"], level_min=sh["levelMin"], late_reg=sh["late"],
+            entry_type=etype, continuation=cont,
+            guarantee_note=("includes bounties" if sh["kind"] == "bounty" else
+                            ("seat prizes, not cash" if entry == "satellite" else
+                             ("multi-flight" if entry == "multi-flight" else ""))),
         ))
 
     # --- Wynn daily ------------------------------------------------------
@@ -1094,6 +1410,25 @@ def build():
         row["trueNightlyLow"] = low
         row["trueNightlyHigh"] = high
         row["lastChecked"] = CHECKED_TODAY if h["id"] in ("venetian", "palazzo") else ASOF
+        row["lastVerified"] = VERIFIED_ON
+        # Facts confirmed live on 2026-11-17 that the earlier build left blank.
+        if h.get("id") in ("venetian", "palazzo"):
+            row["parking"] = row.get("parking") or ""
+            row["parkingPerNight"] = LIVE_FACTS_2026_11_17["venetianParkingPerNight"]
+            row["parkingNote"] = LIVE_FACTS_2026_11_17["venetianParkingExcerpt"]
+            row["checkInOut"] = LIVE_FACTS_2026_11_17["venetianCheckInOut"]
+            row["cancellationDetail"] = LIVE_FACTS_2026_11_17["venetianCancellation"]
+            row["cancellationDetailSource"] = LIVE_FACTS_2026_11_17["venetianParkingSource"]
+        if h.get("id") == "wynn":
+            row["checkInOut"] = LIVE_FACTS_2026_11_17["wynnCheckInOut"]
+            row["registrationNote"] = LIVE_FACTS_2026_11_17["wynnRegistrationNote"]
+            row["registrationSource"] = LIVE_FACTS_2026_11_17["wynnRegistrationSource"]
+            row["feeDetailNote"] = LIVE_FACTS_2026_11_17["wynnFeeNote"]
+        if h.get("id") == "bellagio":
+            row["incidental"] = LIVE_FACTS_2026_11_17["bellagioIncidental"]
+            row["cancellationDetail"] = LIVE_FACTS_2026_11_17["bellagioCancellation"]
+            row["cancellationDetailSource"] = row.get("cancellationSource", "")
+        row["trueNightlyLow"] = row["trueNightlyLow"]
         hotels.append(row)
 
     routes = []
@@ -1124,6 +1459,19 @@ def build():
                 n_second += 1
     assert n_first == 21 and n_second == 73, f"re-check windows: expected 21 and 73, got {n_first} and {n_second}"
 
+    # Wynn WPT: the trip-window rows whose section the structure PDF prints (2026-11-17 read).
+    for ev in events:
+        rec = WPT_ROWS.get(ev["id"])
+        if not rec:
+            continue
+        src = WPT_REREAD["sheetUrl"]
+        ev["rules"]["reEntry"] = dict(status="re-entry-printed", excerpt=rec["excerpt"], source=src,
+                                      retrieved=WPT_REREAD["retrievedOn"])
+        ev["rules"]["singleEntry"] = dict(status="multiple-entries", excerpt=rec["excerpt"], source=src,
+                                          retrieved=WPT_REREAD["retrievedOn"])
+        ev["lastChecked"] = WPT_REREAD["retrievedOn"]
+        ev["note"] = (ev.get("note", "") + f" Official structure sheet ({rec['section']}): {rec['excerpt']}").strip()
+
     recurring_events = [e for e in events if not e["date"] and e.get("weekdays")]
     plan, conflicts = build_day_plan(events, TRIP["start"], TRIP["end"], recurring_events)
     bankroll = sum(p["primaryBuyIn"] for p in plan if isinstance(p["primaryBuyIn"], (int, float)))
@@ -1138,14 +1486,24 @@ def build():
             venue="venetian", series="DeepStack Extravaganza IV", sheet=n,
             url=f"{V.BASE}/dse_nov_2026-structure_{n}.pdf",
             readOn=V.RETRIEVED, read=True,
+            reReadOn=REREAD_DATE if str(n) in REREAD_SHEETS else None,
             note="Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."))
     for date, time, no, name, sheet_file, guarantee, category in V.NYE_ROWS:
         url = f"{V.BASE}/{sheet_file}"
         if not any(s["url"] == url for s in structure_sheets):
             structure_sheets.append(dict(
                 venue="venetian", series="DeepStack Extravaganza NYE", sheet=sheet_file,
-                url=url, readOn="", read=False,
-                note="Not read in this pass; the row carries schedule-level facts only (F11)."))
+                url=url, readOn=VERIFIED_ON, read=True,
+                note="Read in full on 2026-11-17; fee, chips, level length, late-registration cut-off and the entry "
+                     "wording are transcribed on the row and quoted in its rule panel."))
+
+    # The dated rate log is append-only. Every observation is kept, including
+    # superseded ones, so a fee can be shown to have changed instead of being
+    # silently overwritten. Duplicate observations of the same hotel and date
+    # (one per component pass) are merged, never dropped.
+    rate_log = sorted(H.RATE_LOG, key=lambda r: (r["observedOn"], r["hotel"]))
+    for r in rate_log:
+        r.setdefault("quoteType", "Observation")
 
     for e in events:
         if not e["date"]:
@@ -1169,14 +1527,30 @@ def build():
         sessionLengthAssumption=("No venue publishes a finish time. The schedule planner assumes a six-hour session plus a "
                                  "30-minute transfer between venues, so every conflict it reports is an estimate."),
         categories=CATEGORIES,
-        venues=VENUES, events=events, hotels=hotels, rateLog=H.RATE_LOG, routes=routes,
+        venues=VENUES, events=events, hotels=hotels, rateLog=rate_log, routes=routes,
         sources=SOURCES, flags=FLAGS, questions=QUESTIONS, suggestions=SUGGESTIONS,
         trip=TRIP,
         dayPlan=plan, planConflicts=conflicts, planNotes=PLAN_NOTES,
         structureSheets=structure_sheets,
         feed=FEED_ROOMS,
+        verifiedOn=VERIFIED_ON,
+        liveFacts=LIVE_FACTS_2026_11_17,
+        # entries x buy-in + nights x (rate + resort fee) x (1 + tax), computed
+        # from the eight primary entries and the seven recommended nights.
+        tripCostModel=published_model(len([p for p in plan if p.get("primary")]), _avg_primary_buyin(plan), TRIP["nights"]),
     )
     return data
+
+
+def _avg_primary_buyin(plan):
+    """Average buy-in of the recommended primary events.
+
+    Every primary is a different price, so the calculator is published with the
+    average of the eight chosen entries. The sum is in TRIP["primaryBuyIns"], so a
+    reader can check the average against it.
+    """
+    buys = [p["primaryBuyIn"] for p in plan if isinstance(p.get("primaryBuyIn"), (int, float))]
+    return round(sum(buys) / len(buys), 2) if buys else 0
 
 
 
