@@ -45,6 +45,8 @@ OFFICIAL_HOSTS = (
     "clarkcountynv.gov",
     # MGM Resorts' own content delivery host, linked from the official resort pages.
     "assets.contentstack.io",
+    # Resorts World Las Vegas, the property's own site (poker-room page reference, flag F78).
+    "rwlasvegas.com",
 )
 
 PAGES = (

@@ -1065,6 +1065,26 @@ FLAGS = [
                  "build_addendum.py now reads site/data.json and the two data modules only, so it cannot drift again. "
                  "site/data.json is the only current data file. Kept on the register as the record of the defect."),
          source="https://github.com/karagemop466-tech/Poker3/blob/main/scripts/build_addendum.py"),
+    dict(id="F77", area="Strip poker rooms", severity="Medium",
+         title="Planet Hollywood's poker room is no longer open (closed 31 January 2026), so it has no rows on this site",
+         detail=("Re-read 2026-11-17 (session arena/5b8ce14d-poker3). The official Caesars poker-tournaments page (dated 17 July 2026) "
+                 "names only Caesars Palace and Horseshoe Las Vegas as Caesars poker rooms with daily tournament schedules, and "
+                 "Planet Hollywood's own poker page could not be read (HTTP 500 on 2026-11-17). The closure is a Caesars Entertainment "
+                 "statement reported by the Las Vegas Review-Journal on 28 January 2026 (https://www.reviewjournal.com/business/casinos-gaming/"
+                 "inside-gaming-strip-casino-to-close-poker-room-3612434/): the room would not operate after 31 January, and its operations "
+                 "were consolidated into Caesars Palace and Horseshoe. Planet Hollywood schedules still circulating online (10 AM, 1 PM, 4 PM, "
+                 "7 PM and 10 PM rows with $80 to $135 buy-ins) are therefore not used. Flamingo is also absent from the official Caesars page; "
+                 "a third-party room list records its poker room closing in September 2021, which this site does not treat as verified."),
+         source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"),
+    dict(id="F78", area="Strip poker rooms", severity="Medium",
+         title="Resorts World Las Vegas: the official poker page could not be read, and third-party sources disagree on its tournaments",
+         detail=("Checked 2026-11-17 (session arena/5b8ce14d-poker3). Official rwlasvegas.com pages read: the poker-invite e-mail "
+                 "page (no schedule); /gaming/poker-room/poker-room-dining/ (poker-room dining only, no tournament); /gaming/casino-events/ "
+                 "(promotions, no poker tournament). /poker, /casino/poker/ and /poker-room/ returned no page. Third-party pages disagree: one says two $160 NLH tournaments "
+                 "at 12:05 PM and 7:05 PM with $3,000 guarantees; another says a $200 noon event and a $160 7 PM event; a third says "
+                 "$200 at noon. Those sites are not official, so no Resorts World row is published. The room is on the Strip at 3000 S Las "
+                 "Vegas Blvd and is the candidate to add first once its official poker page is reachable."),
+         source="https://www.rwlasvegas.com/eblast/poker-invite/"),
 
 ]
 

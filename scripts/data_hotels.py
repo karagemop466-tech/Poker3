@@ -76,7 +76,7 @@ BELLAGIO_COUNTY_REF = county_reference("\"Bellagio\", 3600 Las Vegas Blvd S, lic
 MGM_COUNTY_REF = county_reference("\"MGM Grand Hotel/Casino\", 3799 Las Vegas Blvd S, licence 1003821.RES-001")
 ARIA_COUNTY_REF = county_reference("\"Aria Resort & Casino\", 3730 Las Vegas Blvd S, licence 2000035.RES-001")
 CAESARS_COUNTY_REF = county_reference(
-    "\"Caesars Palace\", licence 1136233.RES-001 (the table prints its address as \"35/0 Las Vegas Blvd S\")",
+    "\"Caesars Palace\", licence 1136233.RES-001 (the county table misprints its address as \"35/0\"; caesars.com prints 3570 Las Vegas Blvd South)",
     "Caesars' own fee block prints $7.35 tax on its $54.95 fee; 13.38% of $54.95 is $7.35 to the cent, which "
     "agrees with the county figure but is not itself a printed percentage.")
 HORSESHOE_COUNTY_REF = county_reference(
