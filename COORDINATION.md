@@ -688,3 +688,11 @@ Claim recorded 2026-11-16 UTC before any file edits in this session.
 - **Pages:** "pages build and deployment" run 43950193086 → success; "Publish integrated Vegas Poker Planner to GitHub Pages" run 43950194425 → success, both at `f5013e4`. GitHub Pages API: `status: built` → https://karagemop466-tech.github.io/Poker3/ (github.io not reachable from this sandbox; confirmed via `gh api .../pages`).
 - **Merge result:** no site file changed by this session's PR — the deployed canonical site remains the richer merged build (62cea180/ef37b79e/e58b73b1/ed88c788). Flagged items from this session's research (decorative DATE cells, `(IDAY)` typo, expired-offer sources, unpublished tax rates) are logged above as requests; none blocks the merge.
 - This record itself ships in follow-up PR [#34](https://github.com/karagemop466-tech/Poker3/pull/34).
+
+## Session arena/cd17e91c-poker3 — audit of canonical `site/` on `main` (2026-11-17 UTC)
+
+Scope: `COORDINATION.md` only. No `site/**`, `scripts/**`, or workflow file is edited by this session, because those are shared outputs owned by the integration session. Base: `main` at `b30841e`.
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| Re-verify the shipped canonical site (verify, smoke, reproducible build, Pages status) and log irregularities | in progress (claimed 2026-11-17) | arena/cd17e91c-poker3 | `COORDINATION.md` | Claim committed before any other work. |
