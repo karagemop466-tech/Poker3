@@ -2649,6 +2649,7 @@ F15/F36/F57 no dated checkout total for the poker rate; F31 no written one-entry
 walking time for every hotel–venue pair; F39 no published room-tax percentage at Wynn/Bellagio/Caesars/Horseshoe;
 F16 no published finish time; F17 no 8:00 AM start at any Strip room; F56 Wynn Signature structures unpublished.
 None blocks merging; all are on the Flagged for review page with their source links.
+
 ## Session `arena/8689ef6e-poker3` — Venetian trip-window quote, stale hotel window, live re-read (2026-11-17 UTC)
 
 Branch: `arena/8689ef6e-poker3` (platform-bound; the `session-<id>/<task>` naming cannot be applied). Branched from `main` @ `2bdcc0d`, no other branch touched. No other session holds an active claim on the board when this claim was written.
@@ -2708,6 +2709,7 @@ Branch: `arena/8689ef6e-poker3` (platform-bound; the `session-<id>/<task>` namin
 - **Force-push of this session's own branch.** The branch was pushed as `28ee9bd` before the rebase onto `main` (`c86803a`). The rebase replaced that commit with `a8c2c78`. Only this session's commits were replaced; no one else's commit was on the remote branch. The push uses `--force-with-lease` pinned to `28ee9bd`, so it cannot overwrite anything that is not that commit.
 - **CI `verify` failure on PR #92 and fix.** The job failed at `scripts/verify_live_official.py` (`KeyError: 'nightOne'`). Step 7 of that script read only the two-night quote shape; the seven-night 23-30 Nov quote stores its nights as a `nightly` list with one `resortFeePerNight`. The script now reads both shapes and reconciles the seven-night total to the printed $4,010.55. Every other `verify.yml` step was reproduced locally and passes. The GitHub log could not be downloaded from the sandbox, so the failing step was identified by running each step in turn.
 
+<<<<<<< HEAD
 ### V2 (same session, after the live-site check): the root URL was serving 2026-11-16 templates
 
 Found while checking the deployment, not while reading data. The canonical dashboard at **/Poker3/site/** is current:
@@ -3079,3 +3081,75 @@ kept. A per-session file under `handoff/<session>/` would remove this entirely; 
 `COORDINATION.md`. Keep it as a short index of session ids and task rows, and put each session's narrative in
 `handoff/<session-id>/log.md`. That makes every branch's changes disjoint and leaves the shared file small enough that a
 conflict is visible rather than routine.
+=======
+---
+
+## Session `arena/57416062-poker3` — claim: Wynn WPT structure read + integration (2026-11-17 UTC)
+
+Branch `arena/57416062-poker3`, from `main` @ `d97e9e3`. Single-branch session (the platform binds one branch per
+session, so the `session-<id>/<task>` naming cannot be used — same constraint recorded by earlier sessions above).
+No other session branch is touched.
+
+**Claimed before starting any work, as the protocol requires.** The canonical `site/` dashboard already implements
+every structural feature in the brief (trip-cost calculator, one page per venue, global search, date and strict-entry
+filters, dated rate log, overlap and walking checks, scheduled source re-check, questions, suggestions, flag register,
+Pages deploy). This session therefore does not rebuild the site. It claims the one substantive data gap that is still
+open and verifiable from an official source.
+
+| Task | Status | Owner session | Files in scope | Notes |
+|---|---|---|---|---|
+| V2 Read the WPT World Championship structure PDF in full and resolve the Wynn WPT rows still labelled "not-verified" | done | arena/57416062-poker3 | `scripts/data_venues.py`, `tests/` (new test), `research/` notes | 118 Wynn rows carry `entryType: not-verified`; 112 of them say "this event's structure section has not been matched" while the same PDF is cited in their own `fee` rule. |
+| V3 Confirm the published dated Venetian quote for the fixed trip window and the trip-cost arithmetic | done (quote was merged on `main` by PR #92; this session verified it and did not duplicate it) | arena/57416062-poker3 | `scripts/data_hotels.py` (verify only), `scripts/data_source.py` (verify only) | Read-only verification against the live booking engine; no figure is changed without a printed source. |
+| V4 Integration, PR and merge | done | arena/57416062-poker3 | `site/**` (regenerated only), `COORDINATION.md`, `README.md` | Runs after V2/V3. |
+
+Nothing in this table overlaps a scope another session has claimed; `main` is a MERGED state and no branch in this
+clone is owned by a live session. If another session claims these files while this pass runs, this session stops and
+logs the handoff here rather than editing them.
+
+### Result (session `arena/57416062-poker3`)
+
+**What was actually wrong, and what changed.** The WPT structures PDF had been summarised, not read. The rows were
+carrying quoted "printed" fee splits and a "one starting flight" clause that appear nowhere in the document. That is
+the failure mode this repo exists to prevent, so it was fixed at the source rather than patched in prose.
+
+| Row / surface | Before | After |
+|---|---|---|
+| WPT `fee`, `reEntry`, `singleEntry`, `addOn` rules | 3,849 characters of paraphrased "printed" splits and an invented per-event override | read from the event's own PDF section; 35 of 136 rows now quote their own section; the other 101 say the document does not cover them |
+| WPT `lateRegEnd` | leaked between rows (three 7:00 PM satellites showed 4:30/6:45 PM cut-offs before their own start) | reset per row; 0 failures in `scripts/audit_951cd431.py` |
+| WPT footnote-marker column (`scripts/data_venues.py`) | drifted from the PDF on 18 of 136 rows — 9 markers invented, 9 real ones dropped, including all six `****` high-roller rows | realigned row by row against the raw capture; census recorded in `raw/wynn_wpt_world_championship_schedule_2026-11-17.md` |
+| F12 | "structures PDF not read" | thirteen named sections covered, 101 rows named as not covered |
+| F77 (new) | — | records the paraphrases that were published and the verbatim text that replaced them |
+| F25 | marker count given from memory | all five footnotes quoted; the one described row and the six undescribed `****` rows named |
+| F51 | "two pages disagree, unresolved" | quotes the Hotel Terms sentence that governs the tax, narrows the open question to the phone-only poker rate |
+| F36, F64, S20, Q15 | implied no checkout total exists | carry the dated $4,010.55 engine total and say what is still missing (the poker rate, F66) |
+| S03, S17 | "read the sheets" | closed with the answer, including the fact that the answer is "these events allow unlimited re-entry" |
+| Venetian `taxNote` (both suites) | paraphrased | the Hotel Terms sentences quoted verbatim, with the contradicting Resort Fee wording on the record |
+| Wynn parking | paraphrased from the terms page | quoted from the official Parking page, which is now its own source row |
+
+**Nothing was promoted.** Reading the structures PDF did not move a single event into the single-entry list, because
+every published section prints re-entry. The strict-entry count stays at zero confirmed rows (F31). **No figure was
+inferred.** Where a value could not be confirmed, the cell is blank and the row says why.
+
+**Sources read this pass (all official).** The WPT structures PDF (8 chunks) and the WPT schedule PDF (2 chunks, for
+the footnote census); the Venetian hotel terms, resort-fee page and poker suite-rate page; the Wynn resort-policies
+page and the Wynn parking page. The Wynn Signature Series structures URL still returns "LAS VEGAS POKER - COMING
+SOON"; the ARIA poker page still publishes no tournament schedule. Both were re-read rather than assumed.
+
+**Verification run.** `scripts/data_source.py` → 341 events, 8 hotels, 15 routes, 45 sources (2 added), 73 flags,
+7 plan days, 16 pages. `scripts/verify_site.py` passed. **128 unit tests OK** (119 before this pass, plus the new
+`tests/test_wpt_footnotes_2026_11_17.py` with 9). `scripts/audit_951cd431.py` → 0 failures, 0 warnings.
+`verify_wpt_full` → 136/136 rows, 0 mismatches; `verify_dse_full` → 94/94 rows, 0 mismatches; `verify_transcription`
+44/44; `verify_live_official` OK; `check_sources` 99 URLs, 0 changed; `node --check site/assets/app.js`; 
+`tests/canonical_smoke.py` → 11 main pages, 5 detail pages.
+
+**Still open, and why.** F66: the phone-only poker rate has no published checkout total, so the budget keeps the
+$197.28 floor and shows the $4,010.55 engine quote beside it. F12: 101 WPT rows cover events the structures PDF does
+not publish. F25: six high-roller prices carry a discount marker the footnote does not describe. F61: the PDF dates
+one block "Dec. 18 Wednesday" where Dec 18 is a Friday, and Dec 16 is missing. Every one is published on
+`flagged.html`; none of them blocks a merge, and none of them was guessed at.
+
+**Housekeeping.** This session found and removed a duplicated block of five flags it had itself introduced
+(`F23`-`F27` written twice, caught by `test_flag_ids_are_unique`), and a self-inflicted inaccuracy in F25 ("four
+high-roller rows" where the PDF prints six). Both are recorded here because a silent correction would hide the fact
+that the flag register is machine-checked.
+>>>>>>> e967004 (feat(wpt): read the WPT structures PDF in full, quote every published section verbatim and withdraw the paraphrased ones)

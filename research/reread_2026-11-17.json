@@ -1,290 +1,297 @@
 {
-  "_about": "Live re-read on 2026-11-17 (UTC) of the official Venetian DeepStack Extravaganza IV schedule and the seven structure sheets behind the 13 trip-window rows that the day plan uses as a primary or a conditional fallback (Nov 25 - Dec 2, 2026). Values are transcribed from the official pages as printed. Each row is compared with site/data.json by tests/test_reread_2026_11_17.py. Clause wording was checked for re-entry, rebuy and add-on text; none was printed on any of the seven sheets.",
-  "retrievedOn": "2026-11-17",
-  "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-  "sheets": {
-    "1": {
-      "title": "$200 No Limit Hold'em Bounty (1Day)",
-      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
-      "eventNumbers": [
-        "09",
-        "11",
-        "13",
-        "15",
-        "21",
-        "22",
-        "23",
-        "25",
-        "60",
-        "61",
-        "62",
-        "64"
-      ],
-      "startTime": "5:10 PM",
-      "startingChips": 25000,
-      "lateRegistration": "8 levels + Break (9:40 PM)",
-      "lateRegistrationClock": "9:40 PM",
-      "guarantee": "$8,000 (prize pool + total bounties)",
-      "feeLine": "$40 of the $200 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $160 of every $200 Buy In.",
-      "clauses": "Bounty of $50 per elimination. No re-entry, rebuy or add-on clause printed."
-    },
-    "5": {
-      "title": "$300 No Limit Hold'em (1Day)",
-      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf",
-      "eventNumbers": [
-        "02",
-        "12"
-      ],
-      "startTime": "11:10 AM",
-      "startingChips": 40000,
-      "lateRegistration": "10 levels + Break (~ 4:55 PM)",
-      "lateRegistrationClock": "4:55 PM",
-      "guarantee": "$10,000",
-      "feeLine": "$58 of the $300 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $242 of every $300 Buy In.",
-      "clauses": "No re-entry, rebuy or add-on clause printed."
-    },
-    "6": {
-      "title": "$400 No Limit Hold'em (1Day)",
-      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_6.pdf",
-      "eventNumbers": [
-        "10"
-      ],
-      "startTime": "11:10 AM",
-      "startingChips": 40000,
-      "lateRegistration": "10 levels + Break (~ 4:55 PM)",
-      "lateRegistrationClock": "4:55 PM",
-      "guarantee": "$15,000",
-      "feeLine": "$65 of the $400 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $335 of every $400 Buy In.",
-      "clauses": "No re-entry, rebuy or add-on clause printed."
-    },
-    "7": {
-      "title": "$600 No Limit Hold'em (1Day)",
-      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
-      "eventNumbers": [
-        "14",
-        "28",
-        "63"
-      ],
-      "startTime": "11:10 AM",
-      "startingChips": 40000,
-      "lateRegistration": "10 levels + Break (~ 4:55 PM)",
-      "lateRegistrationClock": "4:55 PM",
-      "guarantee": "$30,000 for Event #14 and #63; $40,000 for Event #28",
-      "feeLine": "$90 of the $600 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $510 of every $600 Buy In.",
-      "clauses": "No re-entry, rebuy or add-on clause printed."
-    },
-    "11": {
-      "title": "$600 No Limit Hold'em Bounty (1Day)",
-      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf",
-      "eventNumbers": [
-        "16",
-        "30",
-        "54"
-      ],
-      "startTime": "11:10 AM",
-      "startingChips": 40000,
-      "lateRegistration": "10 levels + Break (4:55 PM)",
-      "lateRegistrationClock": "4:55 PM",
-      "guarantee": "$30,000 (prize pool + total bounties) Event #16; $40,000 Event #30; $50,000 Event #54",
-      "feeLine": "$90 of the $600 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $510 of every $600 Buy In.",
-      "clauses": "Bounty of $200 per elimination, $500 once in the money. No re-entry, rebuy or add-on clause printed."
-    },
-    "22": {
-      "title": "$300 Pot Limit Omaha Double Board Bomb Pot (1Day)",
-      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_22.pdf",
-      "eventNumbers": [
-        "20"
-      ],
-      "startTime": "12:10 PM",
-      "startingChips": 30000,
-      "lateRegistration": "8 levels + break (~ 4:40 PM)",
-      "lateRegistrationClock": "4:40 PM",
-      "guarantee": "$10,000",
-      "feeLine": "$58 of the $300 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $242 of every $300 Buy In.",
-      "clauses": "No re-entry, rebuy or add-on clause printed."
-    },
-    "26": {
-      "title": "$400 Pot Limit Omaha Bounty (1Day)",
-      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_26.pdf",
-      "eventNumbers": [
-        "17"
-      ],
-      "startTime": "12:10 PM",
-      "startingChips": 30000,
-      "lateRegistration": "8 levels + break (~ 4:40 PM)",
-      "lateRegistrationClock": "4:40 PM",
-      "guarantee": "$15,000 (prize pool + total bounties)",
-      "feeLine": "$60 of the $400 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $340 of every $400 Buy In.",
-      "clauses": "Bounty of $100 per elimination. No re-entry, rebuy or add-on clause printed."
-    }
+ "_about": "Live re-read on 2026-11-17 (UTC) of the official Venetian DeepStack Extravaganza IV schedule and the seven structure sheets behind the 13 trip-window rows that the day plan uses as a primary or a conditional fallback (Nov 25 - Dec 2, 2026). Values are transcribed from the official pages as printed. Each row is compared with site/data.json by tests/test_reread_2026_11_17.py. Clause wording was checked for re-entry, rebuy and add-on text; none was printed on any of the seven sheets.",
+ "retrievedOn": "2026-11-17",
+ "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+ "sheets": {
+  "1": {
+   "title": "$200 No Limit Hold'em Bounty (1Day)",
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+   "eventNumbers": [
+    "09",
+    "11",
+    "13",
+    "15",
+    "21",
+    "22",
+    "23",
+    "25",
+    "60",
+    "61",
+    "62",
+    "64"
+   ],
+   "startTime": "5:10 PM",
+   "startingChips": 25000,
+   "lateRegistration": "8 levels + Break (9:40 PM)",
+   "lateRegistrationClock": "9:40 PM",
+   "guarantee": "$8,000 (prize pool + total bounties)",
+   "feeLine": "$40 of the $200 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $160 of every $200 Buy In.",
+   "clauses": "Bounty of $50 per elimination. No re-entry, rebuy or add-on clause printed."
   },
-  "rows": [
-    {
-      "date": "2026-11-25",
-      "time": "11:10 AM",
-      "event": "10",
-      "name": "$400 No LImit Hold'em $15K GTD (1Day)",
-      "buyIn": 400,
-      "guarantee": 15000,
-      "sheet": "6",
-      "role": "primary"
-    },
-    {
-      "date": "2026-11-25",
-      "time": "5:10 PM",
-      "event": "11",
-      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
-      "buyIn": 200,
-      "guarantee": 8000,
-      "sheet": "1",
-      "role": "fallback"
-    },
-    {
-      "date": "2026-11-26",
-      "time": "11:10 AM",
-      "event": "12",
-      "name": "$300 No LImit Hold'em $10K GTD (1Day)",
-      "buyIn": 300,
-      "guarantee": 10000,
-      "sheet": "5",
-      "role": "primary"
-    },
-    {
-      "date": "2026-11-26",
-      "time": "5:10 PM",
-      "event": "13",
-      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
-      "buyIn": 200,
-      "guarantee": 8000,
-      "sheet": "1",
-      "role": "fallback"
-    },
-    {
-      "date": "2026-11-27",
-      "time": "11:10 AM",
-      "event": "14",
-      "name": "$600 No Limit Hold'em $30K GTD (1Day)",
-      "buyIn": 600,
-      "guarantee": 30000,
-      "sheet": "7",
-      "role": "primary"
-    },
-    {
-      "date": "2026-11-27",
-      "time": "5:10 PM",
-      "event": "15",
-      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
-      "buyIn": 200,
-      "guarantee": 8000,
-      "sheet": "1",
-      "role": "fallback"
-    },
-    {
-      "date": "2026-11-28",
-      "time": "11:10 AM",
-      "event": "16",
-      "name": "$600 No Limit Hold'em Bounty $30K GTD (1Day)",
-      "buyIn": 600,
-      "guarantee": 30000,
-      "sheet": "11",
-      "role": "primary"
-    },
-    {
-      "date": "2026-11-28",
-      "time": "12:10 PM",
-      "event": "17",
-      "name": "$400 Pot Limit Omaha Bounty $15K GTD (1Day)",
-      "buyIn": 400,
-      "guarantee": 15000,
-      "sheet": "26",
-      "role": "fallback"
-    },
-    {
-      "date": "2026-11-29",
-      "time": "12:10 PM",
-      "event": "20",
-      "name": "$300 Pot Limit Omaha $10K GTD (1Day) - Double Board Bomb Pot",
-      "buyIn": 300,
-      "guarantee": 10000,
-      "sheet": "22",
-      "role": "primary"
-    },
-    {
-      "date": "2026-11-29",
-      "time": "5:10 PM",
-      "event": "21",
-      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
-      "buyIn": 200,
-      "guarantee": 8000,
-      "sheet": "1",
-      "role": "fallback"
-    },
-    {
-      "date": "2026-11-30",
-      "time": "5:10 PM",
-      "event": "22",
-      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
-      "buyIn": 200,
-      "guarantee": 8000,
-      "sheet": "1",
-      "role": "primary"
-    },
-    {
-      "date": "2026-12-01",
-      "time": "5:10 PM",
-      "event": "23",
-      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
-      "buyIn": 200,
-      "guarantee": 8000,
-      "sheet": "1",
-      "role": "primary"
-    },
-    {
-      "date": "2026-12-02",
-      "time": "5:10 PM",
-      "event": "25",
-      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
-      "buyIn": 200,
-      "guarantee": 8000,
-      "sheet": "1",
-      "role": "primary"
-    }
-  ],
-  "wpt": {
-    "_about": "Live read on 2026-11-17 of the official Wynn WPT World Championship structures PDF (all 8 chunks). Six trip-window WPT rows (Nov 25 - Dec 2, 2026) are matched to their section by date, start time and event name. Only the registration clause for each section is recorded. The $800 No Limit Hold'em 'Day 2' row listed on the schedule for Nov 30 at 1:00 PM is NOT matched: the structure sheet lists that event's Day 1A at 11 a.m. on Nov 30 and its Day 2 at 1 p.m. on Dec 3, so the schedule row does not match the sheet (flag F34).",
-    "retrievedOn": "2026-11-17",
-    "sheetUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-    "rows": [
-      {
-        "id": "wynn-wpt-2026-11-27-001-1200pm",
-        "section": "$600 TORSE, Friday Nov 27 at 12 p.m.",
-        "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9."
-      },
-      {
-        "id": "wynn-wpt-2026-11-27-002-100pm",
-        "section": "$400 PLO, Friday Nov 27 at 1 p.m.",
-        "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.)."
-      },
-      {
-        "id": "wynn-wpt-2026-11-28-005-1200pm",
-        "section": "$600 Mixed Triple Draw (A-5, 2-7, Badugi), Saturday Nov 28 at 12 p.m.",
-        "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9."
-      },
-      {
-        "id": "wynn-wpt-2026-11-30-010-1200pm",
-        "section": "$600 Limit Omaha 8, Monday Nov 30 at 12 p.m.",
-        "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9."
-      },
-      {
-        "id": "wynn-wpt-2026-12-01-014-1200pm",
-        "section": "$600 Limit Omaha 8/Stud 8, Tuesday Dec 1 at 12 p.m.",
-        "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9."
-      },
-      {
-        "id": "wynn-wpt-2026-12-01-015-100pm",
-        "section": "$1,100 PLO, Tuesday Dec 1 at 1 p.m.",
-        "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.)."
-      }
-    ]
+  "5": {
+   "title": "$300 No Limit Hold'em (1Day)",
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf",
+   "eventNumbers": [
+    "02",
+    "12"
+   ],
+   "startTime": "11:10 AM",
+   "startingChips": 40000,
+   "lateRegistration": "10 levels + Break (~ 4:55 PM)",
+   "lateRegistrationClock": "4:55 PM",
+   "guarantee": "$10,000",
+   "feeLine": "$58 of the $300 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $242 of every $300 Buy In.",
+   "clauses": "No re-entry, rebuy or add-on clause printed."
+  },
+  "6": {
+   "title": "$400 No Limit Hold'em (1Day)",
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_6.pdf",
+   "eventNumbers": [
+    "10"
+   ],
+   "startTime": "11:10 AM",
+   "startingChips": 40000,
+   "lateRegistration": "10 levels + Break (~ 4:55 PM)",
+   "lateRegistrationClock": "4:55 PM",
+   "guarantee": "$15,000",
+   "feeLine": "$65 of the $400 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $335 of every $400 Buy In.",
+   "clauses": "No re-entry, rebuy or add-on clause printed."
+  },
+  "7": {
+   "title": "$600 No Limit Hold'em (1Day)",
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
+   "eventNumbers": [
+    "14",
+    "28",
+    "63"
+   ],
+   "startTime": "11:10 AM",
+   "startingChips": 40000,
+   "lateRegistration": "10 levels + Break (~ 4:55 PM)",
+   "lateRegistrationClock": "4:55 PM",
+   "guarantee": "$30,000 for Event #14 and #63; $40,000 for Event #28",
+   "feeLine": "$90 of the $600 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $510 of every $600 Buy In.",
+   "clauses": "No re-entry, rebuy or add-on clause printed."
+  },
+  "11": {
+   "title": "$600 No Limit Hold'em Bounty (1Day)",
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf",
+   "eventNumbers": [
+    "16",
+    "30",
+    "54"
+   ],
+   "startTime": "11:10 AM",
+   "startingChips": 40000,
+   "lateRegistration": "10 levels + Break (4:55 PM)",
+   "lateRegistrationClock": "4:55 PM",
+   "guarantee": "$30,000 (prize pool + total bounties) Event #16; $40,000 Event #30; $50,000 Event #54",
+   "feeLine": "$90 of the $600 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $510 of every $600 Buy In.",
+   "clauses": "Bounty of $200 per elimination, $500 once in the money. No re-entry, rebuy or add-on clause printed."
+  },
+  "22": {
+   "title": "$300 Pot Limit Omaha Double Board Bomb Pot (1Day)",
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_22.pdf",
+   "eventNumbers": [
+    "20"
+   ],
+   "startTime": "12:10 PM",
+   "startingChips": 30000,
+   "lateRegistration": "8 levels + break (~ 4:40 PM)",
+   "lateRegistrationClock": "4:40 PM",
+   "guarantee": "$10,000",
+   "feeLine": "$58 of the $300 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $242 of every $300 Buy In.",
+   "clauses": "No re-entry, rebuy or add-on clause printed."
+  },
+  "26": {
+   "title": "$400 Pot Limit Omaha Bounty (1Day)",
+   "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_26.pdf",
+   "eventNumbers": [
+    "17"
+   ],
+   "startTime": "12:10 PM",
+   "startingChips": 30000,
+   "lateRegistration": "8 levels + break (~ 4:40 PM)",
+   "lateRegistrationClock": "4:40 PM",
+   "guarantee": "$15,000 (prize pool + total bounties)",
+   "feeLine": "$60 of the $400 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $340 of every $400 Buy In.",
+   "clauses": "Bounty of $100 per elimination. No re-entry, rebuy or add-on clause printed."
   }
+ },
+ "rows": [
+  {
+   "date": "2026-11-25",
+   "time": "11:10 AM",
+   "event": "10",
+   "name": "$400 No LImit Hold'em $15K GTD (1Day)",
+   "buyIn": 400,
+   "guarantee": 15000,
+   "sheet": "6",
+   "role": "primary"
+  },
+  {
+   "date": "2026-11-25",
+   "time": "5:10 PM",
+   "event": "11",
+   "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+   "buyIn": 200,
+   "guarantee": 8000,
+   "sheet": "1",
+   "role": "fallback"
+  },
+  {
+   "date": "2026-11-26",
+   "time": "11:10 AM",
+   "event": "12",
+   "name": "$300 No LImit Hold'em $10K GTD (1Day)",
+   "buyIn": 300,
+   "guarantee": 10000,
+   "sheet": "5",
+   "role": "primary"
+  },
+  {
+   "date": "2026-11-26",
+   "time": "5:10 PM",
+   "event": "13",
+   "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+   "buyIn": 200,
+   "guarantee": 8000,
+   "sheet": "1",
+   "role": "fallback"
+  },
+  {
+   "date": "2026-11-27",
+   "time": "11:10 AM",
+   "event": "14",
+   "name": "$600 No Limit Hold'em $30K GTD (1Day)",
+   "buyIn": 600,
+   "guarantee": 30000,
+   "sheet": "7",
+   "role": "primary"
+  },
+  {
+   "date": "2026-11-27",
+   "time": "5:10 PM",
+   "event": "15",
+   "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+   "buyIn": 200,
+   "guarantee": 8000,
+   "sheet": "1",
+   "role": "fallback"
+  },
+  {
+   "date": "2026-11-28",
+   "time": "11:10 AM",
+   "event": "16",
+   "name": "$600 No Limit Hold'em Bounty $30K GTD (1Day)",
+   "buyIn": 600,
+   "guarantee": 30000,
+   "sheet": "11",
+   "role": "primary"
+  },
+  {
+   "date": "2026-11-28",
+   "time": "12:10 PM",
+   "event": "17",
+   "name": "$400 Pot Limit Omaha Bounty $15K GTD (1Day)",
+   "buyIn": 400,
+   "guarantee": 15000,
+   "sheet": "26",
+   "role": "fallback"
+  },
+  {
+   "date": "2026-11-29",
+   "time": "12:10 PM",
+   "event": "20",
+   "name": "$300 Pot Limit Omaha $10K GTD (1Day) - Double Board Bomb Pot",
+   "buyIn": 300,
+   "guarantee": 10000,
+   "sheet": "22",
+   "role": "primary"
+  },
+  {
+   "date": "2026-11-29",
+   "time": "5:10 PM",
+   "event": "21",
+   "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+   "buyIn": 200,
+   "guarantee": 8000,
+   "sheet": "1",
+   "role": "fallback"
+  },
+  {
+   "date": "2026-11-30",
+   "time": "5:10 PM",
+   "event": "22",
+   "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+   "buyIn": 200,
+   "guarantee": 8000,
+   "sheet": "1",
+   "role": "primary"
+  },
+  {
+   "date": "2026-12-01",
+   "time": "5:10 PM",
+   "event": "23",
+   "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+   "buyIn": 200,
+   "guarantee": 8000,
+   "sheet": "1",
+   "role": "primary"
+  },
+  {
+   "date": "2026-12-02",
+   "time": "5:10 PM",
+   "event": "25",
+   "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+   "buyIn": 200,
+   "guarantee": 8000,
+   "sheet": "1",
+   "role": "primary"
+  }
+ ],
+ "wpt": {
+  "_about": "Live read on 2026-11-17 of the official Wynn WPT World Championship structures PDF (all 8 chunks). Every row below is matched to its own printed section by date, start time, buy-in and event name, and only the registration clause printed in that section is recorded. The fee split is recorded separately in WPT_SHEET_SECTIONS (scripts/data_venues.py) and transcribed in raw/wynn_wpt_world_championship_structures_2026-11-17.md. The $800 No Limit Hold'em 'Day 2' row listed on the schedule for Nov 30 at 1:00 PM is NOT matched: the structures PDF lists that event's Day 1A at 11 a.m. on Nov 30 and its Day 2 at 1 p.m. on Dec 3, so the schedule row does not match the PDF (flag F34).",
+  "retrievedOn": "2026-11-17",
+  "sheetUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
+  "rows": [
+   {
+    "id": "wynn-wpt-2026-11-27-001-1200pm",
+    "section": "$600 TORSE, Friday Nov 27 at 12 p.m.",
+    "excerpt": "Unlimited re-entry will be available until the start of level 9",
+    "feeExcerpt": "The structure document prints only a $600 entry-fee table for the TORSE on Friday, November 27, 2026 at 12 p.m.; it publishes no TORSE-specific fee split."
+   },
+   {
+    "id": "wynn-wpt-2026-11-27-002-100pm",
+    "section": "$400 PLO, Friday Nov 27 at 1 p.m.",
+    "excerpt": "Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).",
+    "feeExcerpt": "$400 Buy-in = $337 (Tournament Prize Pool) + $45 (Tournament Fee) + $18 (Poker Staff Service Charge)"
+   },
+   {
+    "id": "wynn-wpt-2026-11-28-005-1200pm",
+    "section": "$600 Mixed Triple Draw (A-5, 2-7, Badugi), Saturday Nov 28 at 12 p.m.",
+    "excerpt": "Unlimited re-entry will be available until the start of level 9.",
+    "feeExcerpt": "$600 Buy-in = $510 (Tournament Prize Pool) + $65 (Tournament Fee) + $25 (Poker Staff Service Charge)"
+   },
+   {
+    "id": "wynn-wpt-2026-11-30-010-1200pm",
+    "section": "$600 Limit Omaha 8, Monday Nov 30 at 12 p.m.",
+    "excerpt": "Unlimited re-entry will be available until the start of level 9",
+    "feeExcerpt": "$600 Buy-in = $510 (Tournament Prize Pool) + $65 (Tournament Fee) + $25 (Poker Staff Service Charge)"
+   },
+   {
+    "id": "wynn-wpt-2026-12-01-014-1200pm",
+    "section": "$600 Limit Omaha 8/Stud 8, Tuesday Dec 1 at 12 p.m.",
+    "excerpt": "Unlimited re-entry will be available until the start of level 9",
+    "feeExcerpt": "$600 Buy-in = $510 (Tournament Prize Pool) + $65 (Tournament Fee) + $25 (Poker Staff Service Charge)"
+   },
+   {
+    "id": "wynn-wpt-2026-12-01-015-100pm",
+    "section": "$1,100 PLO, Tuesday Dec 1 at 1 p.m.",
+    "excerpt": "Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).",
+    "feeExcerpt": "$1,100 Buy-in = $975 (Tournament Prize Pool) + $85 (Tournament Fee) + $45 (Poker Staff Service Charge)"
+   }
+  ],
+  "paragraphNote": "Corrected 2026-11-17 (session arena/57416062-poker3): the excerpts here were previously checked-in paraphrases ('$525 of every $600 buy-in is the prize pool and $75 is withheld in fees') that do NOT appear in the official PDF. The document prints the buy-in split as a single line, '$600 Buy-in = $510 (Tournament Prize Pool) + $65 (Tournament Fee) + $25 (Poker Staff Service Charge)', for these four events, and a plain 'Registration:' sentence. Both are now quoted as printed (flag F77)."
+ }
 }
