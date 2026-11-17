@@ -46,19 +46,6 @@ on:
     # and captures each room's daily schedule. GitHub Actions cron is UTC-only.
     - cron: "10 12 * * *"
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      # A change to this file itself gives the job a real run through the normal
-      # push path, so site/checks.json and site/feed/ exist and are exercised
-      # immediately instead of waiting for the cron. GitHub runs the *new*
-      # version of a workflow whose own file changes in the push. The Actions
-      # token available to a session cannot dispatch a workflow (HTTP 403), so
-      # this path trigger is the only way a session can prove the job runs.
-      - '.github/workflows/checks.yml'
-      - 'scripts/check_sources.py'
-      - 'scripts/daily_feed.py'
-      - 'scripts/verify_transcription.py'
 
 permissions:
   contents: write
@@ -78,6 +65,9 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
+      - name: Install the workflow schema check
+        run: python3 -m pip install --quiet pyyaml
 
       - name: Re-check every official URL behind the dashboard
         # Writes site/checks.json itself, including URLs it could not reach, so the

@@ -1559,3 +1559,35 @@ This branch was rebased onto `19906c0`. Conflicts and how they were resolved, wi
 19 new ones · `canonical_smoke.py` and `canonical_render.js` pass · `smoke.py` OK · `node --check` and `json.tool` clean
 · 0 broken local links · every `F##` citation on every page resolves to a published flag.
 
+
+### Root cause found after the merge: `checks.yml` never parsed (flag F30 closed)
+
+**Observed, not inferred.** The first real attempt to run the scheduled re-check (push run
+`43995214819` on merge commit `fc48a82`) concluded **failure with zero jobs and no log**. Its name is printed as
+`.github/workflows/checks.yml` rather than the workflow's `name:` field, which is what GitHub does when it cannot
+parse the file. `git show origin/main:.github/workflows/checks.yml` shows the cause: the merge of PR #62 put a
+`push:` block under `on:` from this branch **and** kept the `push:` block that PR #63 added in the same merge, so the
+file had **two `push:` keys under `on:`**. A YAML parser that rejects duplicate keys proves it directly:
+
+```
+python3 - <<'EOF'
+import yaml; yaml.load(open('.github/workflows/checks.yml'), Loader=yaml.SafeLoader)
+EOF
+# strict loader -> ValueError: duplicate key: 'push' at line 49
+```
+
+Bundled PyYAML's default loader keeps the last duplicate silently, which is why every earlier local `yaml.safe_load`,
+the `verify.yml` suite and three sessions' reviews all passed while GitHub rejected the file. That is the real reason
+the scheduled job had never produced a run (F30 said "the first scheduled time had not arrived"; the deeper truth is
+that no version of the file could be scheduled at all).
+
+**Fix, pushed forward.** On `arena/ed1d2489-poker3` the duplicate is removed: `on:` now carries `push` (with the union
+of both path lists, including `site/data.json` and the data modules so the record is never older than the content it
+describes), `schedule` (12:10 UTC) and `workflow_dispatch`. `tests/test_workflows.py` (5 tests, strict loader) parses
+every workflow file, requires a trigger and at least one job, checks every cron has five fields, and asserts the
+scheduled job is dispatchable and push-triggerable. `verify.yml` installs PyYAML and runs that test, so a duplicate key
+can never merge again. The test also runs inside `checks.yml` itself.
+
+**Still true, stated honestly.** Until the fix is on `main`, `site/checks.json` on `main` remains the offline record
+(`mode: "offline (transcription re-check only)"`). The first run of the repaired job will replace it with a live record;
+a changed hash is a review signal, never an automatic value change.
