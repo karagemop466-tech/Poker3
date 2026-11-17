@@ -1626,3 +1626,117 @@ Claim recorded 2026-11-17 UTC before any other file edits in this session. Commi
 - **PR [#54](https://github.com/karagemop466-tech/Poker3/pull/54)** (`arena/196dc009-poker3` → `main`): merged with `gh pr merge 54 --merge` as merge commit **`ef5b8ad`** at 2026-11-17T01:29:37Z. Pre-merge suite on the rebased branch: verify_site, audit_data, canonical_smoke (16 pages), smoke.py, `verify_live_official.py` (line-by-line DSE match), **73 unittest cases**, node --check, json.tool, reproducible build, `git diff --check` — all green.
 - **CI on the merge:** "Verify static research site" run 43995990893 → **success**; "Publish the canonical Vegas Poker Planner to GitHub Pages" run 43995990950 → **success**; GitHub Pages API `status: built` → https://karagemop466-tech.github.io/Poker3/ . PR #68 (another session) merged on top minutes later with its own verify/publish green, so the live site includes this work plus theirs.
 - **Open for the user:** trip-window dates (Nov 25–Dec 2, 2026) still need confirmation before any booking (Q01); foreign PRs #7/#27/#31 remain untouched; flagged items F01–F53 do not block anything.
+
+---
+
+---
+
+---
+
+---
+
+## Session `arena/191afa75-poker3` — hotel-cost gap closure, route coverage, cross-reference audit (2026-11-17 UTC)
+
+Branch `arena/191afa75-poker3`, based on `main` at `2625d5b`. Claimed 2026-11-17 01:20 UTC.
+
+| Task | Status | Owner | Files I may edit | Notes |
+|---|---|---|---|---|
+| T-1 Close F37 (Caesars Palace / Horseshoe have no verified resort fee) and F39 (Wynn tax % not printed) from official sources | in progress | 191afa75 | `scripts/data_hotels.py` (hotel fee/tax fields + rateLog only), `site/data.json` (regenerated) | Reads only; a value goes in only if the property's own page or the county/treasury page prints it |
+| T-2 F32: extend the walking-route table to the hotel–venue pairs still missing | in progress | 191afa75 | `scripts/data_hotels.py` (ROUTES), `site/data.json` | No invented minutes: either a Maps estimate that resolves, or the pair is recorded as not measured |
+| T-3 Audit every flag/question cross-reference shown in the UI for pointers at the wrong ID, and fix the pointers | in progress | 191afa75 | `site/assets/app.js` (badge text only), `scripts/data_source.py` (flag text only) | Found: `app.js` tournament empty-state cites "flagged item F29" for the single-entry gap; that gap is F31, F29 is the stale-root-page flag |
+| T-4 Live re-check of the rows I touch, recorded per row with retrieval date | in progress | 191afa75 | this section | |
+
+**Not claimed by me (to avoid duplicate work):** dated hotel quotes / booking-engine prices and the trip-window move
+(PR #56, PR #57), the 118-row live re-verification and the single search box (PR #50), the scheduled re-check
+trigger repair (PR #55), the WPT structure-sheet matching (F12) and the structure-sheet reads (done by 52e02b46).
+
+**Environment note:** this sandbox cannot reach any venue host over the network (`curl` returns HTTP 000), which is
+flag F40; all live reads in this session are made with the platform page reader, and each is cited with the exact URL.
+
+### Results (session `arena/191afa75-poker3`, 2026-11-17 UTC)
+
+**T-1 Hotel cost gaps — closed as far as the official pages allow.**
+
+| Item | What the official page prints | Where it is published |
+|---|---|---|
+| Caesars Palace resort fee | "Resort fees: $62.30 ($54.95 plus $7.35 tax)"; "Resort fees are not assessed for Diamond and Seven Stars guests."; "Deposit: $100 per day"; check-in 4 PM, check-out 11 AM, minimum age 21 | `https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=December&propCode=clv` (Hotel Policies → Fees) |
+| Horseshoe resort fee + terms | "Resort fees: $56.63 ($49.95 plus $6.68 tax)"; "Pet fee: $75"; "Deposit: $50 per day"; "Rollaway bed fee: $30 per day"; check-in 4 PM, check-out 11 AM, minimum age 21 | `https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=November&propCode=blv` |
+| Dated room rates | Horseshoe published a full dated grid for Nov and Dec 2026 (Nov 25 $55, 26 $55, 27 $181, 28 $115, 29 $272, 30 $470; Dec 1 $379 — the seven trip nights sum to $1,527.00, resort-fee-inclusive, tax excluded). Caesars Palace printed no cells at all, twice. | appended to `RATE_LOG` as observations, never as a quote |
+| Room-tax percentage | Still not printed by Wynn, Bellagio, Caesars Palace or Horseshoe. The City of Las Vegas room-tax packet prints 13.38% inside the Primary Gaming Corridor and 13.00% outside, but that schedule governs city-licensed establishments while these resorts sit in unincorporated Clark County, so the county figure is shown as a labelled **reference** beside a blank property figure — never substituted into it. | `taxReference` on the two Caesars rows; F39 rewritten |
+
+The third-party spread that blocked F37 ($42, $49.95, $54.95, $55, $62.30) is resolved rather than guessed: the
+pre-tax fee figures are $54.95 and $49.95, and $62.30 and $56.63 are the same fees with their own tax added.
+
+**New irregularities found in this pass (all published on `site/flagged.html` with their sources; none blocks a merge).**
+
+- **F43 (High) — the nightly floor may double-count the resort fee.** The Venetian booking engine footnote reads
+  "Pricing shown is best available suite and rate, includes daily resort fee, excludes taxes", and the Horseshoe page
+  says the same about its own cells. The poker-suite page does not say whether $119 is before or after the $55 fee, so
+  ($119 + $55) × 1.1338 = $197.28 may overstate the floor by about $43 a night (~$300 over seven nights). A like-for-like
+  comparison must not mix a fee-inclusive figure with a fee-exclusive one.
+- **F44 (Medium) — the Horseshoe calendar printed two different grids five minutes apart** (01:26 UTC vs 01:31 UTC:
+  Dec 1 $449 → $379, Dec 4 $219 → $189, Dec 11 $479 → $404, Dec 31 $529 → $445 and eleven more). Both readings are in
+  the rate log; nothing was averaged or chosen.
+- **F45 (Medium) — the Wynn Signature Series structures file is a placeholder.** The URL cited as its source now returns
+  only "LAS VEGAS POKER / COMING SOON", and the schedule PDF (series dated January 11–24, 2027) says "Scan the QR code
+  for event structures". The 38 Signature rows therefore stay `not-verified` honestly, and their row text now says why
+  instead of claiming a sheet that "has not been read in this pass".
+- **F46 (High) — the published plan does not satisfy the published hotel-rate condition.** The suite-rate page requires
+  "six hours of active live cash gameplay or buy in to a $300 or higher tournament for each night stayed". Five of the
+  seven nights carry a $300+ primary (Nov 25 $400, 26 $300, 27 $600, 28 $600, 29 $300); Nov 30 and Dec 1 carry $200 and
+  do not. The $600 option on Dec 2 is age-restricted to 50+, and the only $300+ options on Nov 30 / Dec 1 are the $400
+  multi-flights, which sit outside the single-entry screen. Each day of the plan now prints its own result
+  (`pokerRateSatisfied`, `pokerRateBasis`, `pokerRateCondition`), shown on the day-plan card, so the trade-off is visible
+  instead of being decided for the reader.
+
+**T-3 Cross-reference audit.** `site/assets/app.js` pointed readers at "flagged item F29" for the single-entry gap twice
+(the tournaments empty state and the home-page stat caption); that gap is **F31**, and F29 is the stale-root-page flag.
+Both corrected. `site/index.html` and the trip rationale also still claimed the 15 NYE structure sheets "were not read",
+contradicting the 52/52 statement on the same page and the sheet-sourced rules already published for every NYE row; both
+now state that the sheets were read on 2026-11-17 and that the series simply falls outside the trip window. A regression
+test now fails if **any** F/Q/S id mentioned in the data, the page scripts or the static pages does not exist.
+Also fixed: the rate-log column prefixed "$" onto descriptive text, rendering "$calendar cells for Nov. 17-30 …".
+
+**Checks run on this branch (all green).** `scripts/data_source.py` twice with byte-identical output; `scripts/verify_site.py`
+(341 events, 8 hotels, 14 routes, 42 sources, 46 flags, 8 plan days, 16 pages); `python3 -m unittest discover -s tests`
+(61 tests, was 45 — 16 added); `tests/canonical_smoke.py`; `tests/canonical_render.js` (extended with four assertions
+that the new fee, reference, rate-log and per-night qualification rows actually render); `tests/smoke.py`;
+`scripts/verify_transcription.py` (44/44); `node --check` on the three scripts; local-reference scan of `site/` (0 real
+breakage). `site/checks.json` was deliberately **not** rewritten: it belongs to the 12:10 UTC scheduled job, and a sandbox
+run would publish a record of URLs this environment cannot reach (F40).
+
+**Scope discipline.** No file was edited that an open PR is not also touching except `site/assets/app.js` (three small,
+additive render fixes) and `site/data.json` (regenerated). `scripts/check_sources.py` was read but not modified, so
+PR #55's trigger repair stays intact. Dated booking prices for the Venetian, the WPT per-event sheets and the single
+search box were left to PRs #56, #50 and #57 respectively.
+
+**Conflict log (this session, 2026-11-17 UTC).** Two `git pull --rebase origin main` rounds were needed because `main`
+advanced during the work (PR #55 → `3775920`, PR #66 → `f3d7406`, and the arena/169bf42c record). Nothing from another
+session was discarded; every conflict was resolved by keeping both sides and renumbering **this session's** new records:
+
+- `COORDINATION.md`: two append conflicts, both resolved by keeping main's sections and this session's section in order.
+- `scripts/data_source.py` SOURCES: main's `checked=LAST_PASS` re-dating kept; this session's three monitored pages added
+  below it.
+- `F37`: this session's closed version replaced main's older "no verified fee" text — the text was pointing at a gap the
+  property page now fills, and the old wording is preserved in this log and in git history.
+- `S18`/`S19`: main's two suggestions are kept untouched; this session's three were renumbered **S20, S21, S22**.
+- flags: this session's F43/F44/F45/F46 collided with ids main had already used (main holds no F38/F42/F44 and renumbered
+  its own), so they are published as **F51, F52, F53, F54**, and every reference was repointed — including one that had
+  pointed at main's calendar flag, which main had itself moved from F46 to **F47**.
+- day plan: main's `primaryGuaranteeNote` / `fallbackGuaranteeNote` and this session's three `pokerRate*` fields coexist.
+- `site/index.html`: main's new dated-total sentence ($1,245.48 then $1,015.89, no suite for the trip dates) is kept, and
+  this session's two cautions are added under it. The stale "NYE sheets were not read" bullet that main had already
+  corrected is dropped in favour of main's wording.
+- `tests/`: main's `test_checks_schema.FlagReferences` guard and `test_workflows.py` (needs PyYAML, present on the CI
+  runner) both pass alongside this session's 16 new tests; the local run was 89 tests, all green.
+
+**Second re-numbering (same session).** After the rebase, `tests/test_recheck_ed1d2489.py` (from PR #54) caught that
+session 196dc009 had taken **F52** and **F53** for a Bellagio sheet and a NYE flight header. Both of their flags are
+kept exactly as written; this session's two records moved again, to **F55** (Horseshoe calendar instability) and
+**F56** (Wynn Signature structures placeholder), with every reference repointed. The published register is 53 flags,
+53 unique ids, and the duplicate-id guard is green.
+
+**Milestone recorded here:** the scheduled re-check produced its first real run on 2026-11-17 (`ccb092d`,
+`mode: "live fetch"`): 92 official URLs known, 79 fetched, **0 content changes**, 13 unreachable from the runner
+(the MGM Resorts hosts, consistent with flag F40). The change monitor this project asked for is therefore live, not
+merely written, and `site/feed/` now carries the morning room feed beside it.

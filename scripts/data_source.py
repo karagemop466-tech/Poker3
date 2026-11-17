@@ -19,7 +19,10 @@ ASOF = "2026-11-16"
 RECHECKED = "2026-11-17"
 RECHECK_FROM, RECHECK_TO = "2026-11-16", "2026-12-23"
 DSE_NOV_URL = "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
-TODAY = "2026-11-17"          # snapshot date of the live re-check; drives past / today / upcoming
+TODAY = "2026-11-17"
+# Quoted from the official poker-suite rate page (re-read 2026-11-16, cited on every hotel row).
+RATE_QUALIFICATION_TEXT = ("six hours of active live cash gameplay or buy in to a $300 or higher tournament for each "
+                           "night stayed")          # snapshot date of the live re-check; drives past / today / upcoming
 CHECKED_TODAY = RECHECKED     # rows whose official page was re-read on TODAY
 
 # Live re-read of the 13 trip-window rows and their seven structure sheets (2026-11-17).
@@ -297,6 +300,15 @@ SOURCES = [
     dict(id="vl-dse-dec", name="Venetian DeepStack Extravaganza NYE schedule and structure sheets (Dec 24, 2026 - Jan 10, 2027)",
          url="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html",
          type="official schedule", checked=LAST_PASS),
+    dict(id="clv-calendar", name="Caesars Palace official booking page: Hotel Policies > Fees block and Nov/Dec 2026 calendar",
+         url="https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=December&propCode=clv",
+         type="official hotel page", checked=RECHECKED),
+    dict(id="blv-calendar", name="Horseshoe Las Vegas official booking page: fee block and dated Nov/Dec 2026 rate cells",
+         url="https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=November&propCode=blv",
+         type="official hotel page", checked=RECHECKED),
+    dict(id="wynn-sig-struct", name="Wynn Signature Series structures file (read 2026-11-17: 'LAS VEGAS POKER - COMING SOON')",
+         url="https://cdn.wynnresorts.com/image/upload/v1762299460/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Structures.pdf",
+         type="official structures file", checked=RECHECKED),
     dict(id="vl-series", name="Venetian DeepStack Poker Series index (current, next and future series)",
          url="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html",
          type="official index", checked=LAST_PASS),
@@ -555,12 +567,16 @@ FLAGS = [
                  "Google Maps estimates captured on 2026-11-16, not venue-published figures."),
          source="https://www.google.com/maps/dir/?api=1&travelmode=walking"),
     dict(id="F26", area="Wynn Signature Series", severity="Medium",
-         title="Three schedule rows on the Wynn Signature Series PDF carry an extra empty cell",
+         title="Several schedule rows on the Wynn Signature Series PDF carry an extra empty cell",
          detail=("The rows for '1/17 NLH TURBO', '1/18 NO LIMIT HOLD\'EM DAY 1A' and '1/18 NLH TURBO' have one more "
                  "cell than the table header, which shifts the guarantee column: the printed guarantee appears in the "
                  "entry column and the entry price appears in the chip column. The values are read in the order the "
                  "surrounding rows use, so the $10,000 and $100,000 figures are treated as the guarantee and $200 or "
-                 "$400 as the entry. The guarantee for the milestone satellites is printed as '10 Seats'."),
+                 "$400 as the entry. The guarantee for the milestone satellites is printed as '10 Seats'. "
+                 "Re-read on 2026-11-17: the shift is still on the page, and the same pattern also moves the guarantee "
+                 "out of its column on the 1/17 1 P.M. Day 2, 1/18 PLO, 1/19 TORSE, 1/20 MIXED TRIPLE DRAW, 1/21 TOE, "
+                 "1/22 BIG O and 1/24 PLO DOUBLE BOARD BOMB POT rows, which print no guarantee cell. Those rows are "
+                 "shown with a blank guarantee rather than a shifted figure."),
          source="https://cdn.wynnresorts.com/image/upload/v1753296112/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Schedule.pdf"),
     dict(id="F27", area="Venetian DSE IV", severity="Low",
          title="The official DSE schedule page misspells 'Limit' on four rows",
@@ -660,20 +676,84 @@ FLAGS = [
                  "No dated checkout total can therefore be read for the trip window without a browser session. The site "
                  "keeps the published starting-rate floor ($197.28) and labels it a floor, never a quote."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-02&view=calendar"),
-    dict(id="F37", area="Hotel cost", severity="Medium",
-         title="Caesars Palace and Horseshoe have no verified resort fee or tax terms",
-         detail=("The official Caesars property pages publish room rates and a 'Book Now' engine but no resort-fee "
-                 "amount. Third-party pages quote $42, $49.95, $54.95, $55 and $62.30 for the same property, which is "
-                 "exactly why no third-party figure is used. The fee is left blank until an official Caesars page prints "
-                 "it, so these two properties cannot yet be compared like for like."),
-         source="https://www.caesars.com/caesars-palace"),
+    dict(id="F37", area="Hotel cost", severity="Low",
+         title="Caesars Palace and Horseshoe resort fees are now confirmed; their room-tax percentage is not",
+         detail=("Closed on 2026-11-17 for the fee. The official Caesars booking page for each property prints a Hotel "
+                 "Policies > Fees block: Caesars Palace 'Resort fees: $62.30 ($54.95 plus $7.35 tax)' with a '$100 per "
+                 "day' deposit, and Horseshoe Las Vegas 'Resort fees: $56.63 ($49.95 plus $6.68 tax)' with a '$50 per "
+                 "day' deposit, a $75 pet fee and a $30-per-day rollaway. Both pages add that 'Rates shown reflect the "
+                 "lowest available rate and include applicable resort fees' and that the fee is not assessed for Diamond "
+                 "and Seven Stars guests. What remains open: neither page prints a room-tax percentage for the rate, and "
+                 "neither publishes a self-parking amount, so a true nightly cost is still not computed from "
+                 "property-published components. The third-party spread that blocked this row earlier ($42, $49.95, "
+                 "$54.95, $55, $62.30) is resolved: the $54.95/$49.95 figures are the pre-tax fees and the $62.30/$56.63 "
+                 "figures are the same fees with tax."),
+         source="https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=December&propCode=clv"),
+
+    
     dict(id="F39", area="Hotel cost", severity="Medium",
-         title="The Wynn tax percentage is not printed, so its true nightly cost cannot be closed",
-         detail=("Wynn publishes 'plus tax' on its resort fee and on the room rate but prints no percentage. Applying the "
-                 "Clark County 13.38% rate published in the Venetian terms is an assumption about Wynn's rate, not a "
-                 "Wynn statement, so no Wynn true-nightly figure is published. Closing it needs a Wynn booking total, "
-                 "which the rooms page does not publish."),
+         title="Wynn, Caesars Palace and Horseshoe print no room-tax percentage, so their true nightly cost stays open",
+         detail=("Wynn publishes 'plus tax' on the resort fee and on the room rate but no percentage (page re-read "
+                 "2026-11-17: 'Reservations will be charged a daily resort fee of $55 plus tax'). Caesars Palace and "
+                 "Horseshoe print only the tax amount charged on their fee. The county/city room-tax schedule publishes "
+                 "13.38% for properties inside the Primary Gaming Corridor and 13.00% outside it "
+                 "(https://files.lasvegasnevada.gov/business-licensing/RoomTaxPacket.pdf), and 13.38% is the figure the "
+                 "Venetian prints in its own hotel terms. That schedule is published by the City of Las Vegas for the "
+                 "establishments it licences, while these Strip resorts sit in unincorporated Clark County, so this site "
+                 "does not substitute the county figure into a property-published column: the row shows the reference "
+                 "beside a blank property figure. Closing it needs a dated checkout total from each property."),
          source="https://www.wynnlasvegas.com/about-us/resort-information"),
+    dict(id="F51", area="Hotel cost", severity="High",
+         title="The published nightly floor may double-count the resort fee, because the Venetian engine says its prices already include it",
+         detail=("Found on 2026-11-17. The Venetian booking calendar footnote reads: 'Pricing shown is best available "
+                 "suite and rate, includes daily resort fee, excludes taxes.' The nightly budget on this site is built "
+                 "from the poker-suite page's starting rates and adds the $55 fee to them: ($119 + $55) x 1.1338 = "
+                 "$197.28. The poker-suite page does not say whether $119 is quoted before or after the resort fee. If a "
+                 "poker-suite price behaves like a calendar cell, the fee is counted twice and the true floor is closer to "
+                 "$119 x 1.1338 + $55 x 1.1338 on a fee-inclusive reading, i.e. about $43 a night lower, or about $300 "
+                 "over a 7-night stay. The same caution applies to the Horseshoe calendar cells, which their own page "
+                 "says include the resort fee. Until the venue confirms it, treat the $197.28 as an upper bound of the "
+                 "published floor, not a quote. Do not compare a fee-inclusive figure with a fee-exclusive one."),
+         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-02&view=calendar"),
+    dict(id="F55", area="Hotel cost", severity="Medium",
+         title="The Horseshoe rate calendar printed two different grids five minutes apart on the same day",
+         detail=("Both readings are kept in the rate log. At 01:26 UTC the December 2026 grid printed Dec 1 $449, "
+                 "Dec 4 $219, Dec 5 $369, Dec 6 $249, Dec 7 $229, Dec 8 $169, Dec 9 $149, Dec 10 $359, Dec 11 $479, "
+                 "Dec 12 $429, Dec 13 $56, Dec 18 $63, Dec 19 $219, Dec 25 $129, Dec 27 $149, Dec 30 $209 and Dec 31 "
+                 "$529. At 01:31 UTC the same page printed $379, $189, $313, $214, $198, $148, $132, $305, $404, $363, "
+                 "$55, $61, $189, $115, $132, $181 and $445 for the same dates. A flexible-month calendar cell is a "
+                 "moving observation, not a held price, and this site does not average or pick between them. Any trip "
+                 "budget built from these cells must be re-read on the day of booking. The Caesars Palace calendar, read "
+                 "the same way twice, returned no price cells at all. F47 records the same behaviour on the Venetian "
+                 "calendar; this flag is the Caesars-page instance, which matters because the Horseshoe cells are the "
+                 "only dated room rates any reviewed property publishes for the trip window."),
+         source="https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=December&propCode=blv"),
+    dict(id="F56", area="Wynn Signature Series", severity="Medium",
+         title="The official Wynn Signature Series structures file is a 'coming soon' placeholder, so 38 rows cannot be confirmed",
+         detail=("Read on 2026-11-17. The URL the site cites for Wynn Signature Series structures "
+                 "(Wynn_Signature_Series_Structures.pdf) now returns only 'LAS VEGAS POKER / COMING SOON'. The series "
+                 "schedule PDF, read at the same time, prints the dates January 11-24, 2027 and tells guests to 'Scan the "
+                 "QR code for event structures'. There is therefore no readable official structure sheet for these 38 "
+                 "rows today, and their single-entry, re-entry and add-on status correctly stays 'not verified' rather "
+                 "than being inferred from the schedule. The schedule does print buy-in, guarantee, chips and level "
+                 "length for most rows, and those columns are shown."),
+         source="https://cdn.wynnresorts.com/image/upload/v1762299460/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Structures.pdf"),
+
+    dict(id="F54", area="Trip plan", severity="High",
+         title="Two of the seven planned nights do not satisfy the published condition for the $119 poker-suite rate",
+         detail=("Derived on 2026-11-17 from two published documents, not inferred. The Venetian poker-suite rate page "
+                 "requires 'six hours of active live cash gameplay or buy in to a $300 or higher tournament for each "
+                 "night stayed', and failure to qualify means the prevailing rate is charged. The recommended plan "
+                 "places a $400, $300, $600, $600 and $300 primary on Nov 25, 26, 27, 28 and 29, which satisfy it, and a "
+                 "$200 primary on Nov 30 and Dec 1, which do not; the nights of those two days are therefore not covered "
+                 "by the published condition. The Dec 2 $200 entry falls on the departure day, so it is not a night that "
+                 "needs qualifying. The page does not say whether an entry counts on the day it is paid or on every night "
+                 "of a multi-day event, so no re-pricing amount is claimed - the room must be asked. Two $300+ "
+                 "alternatives are published on those dates (the $400 No Limit Hold'em 1B at 11:10 AM on Nov 30 and 1C at "
+                 "11:10 AM on Dec 1, both multi-flight, so they sit outside the single-entry screen; on Dec 2 the only "
+                 "$300+ single-day event is the $600 Seniors, which is age-restricted to 50+). Choosing between a $200 "
+                 "buy-in and a possibly repriced room is a decision this site shows but does not make."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
     dict(id="F40", area="Monitoring", severity="Low",
          title="The build sandbox cannot reach the venue hosts; live reads were made by the page reader",
          detail=("Every official venue and property host refused or timed out from the build sandbox, so the fetches in "
@@ -853,8 +933,12 @@ QUESTIONS = [
     dict(id="Q16", question="Do the poker hotel rates require play that the trip plan actually satisfies?",
          answer=("Yes, and it changes the risk. The Venetian poker rate requires six hours of active live cash play, or a "
                  "buy-in to a $300 or higher tournament, for each night stayed. Any night that misses the requirement is "
-                 "repriced at the prevailing rate at checkout. A day plan built only on $200 events would not qualify that "
-                 "night, so the plan counts $300+ entries against nights."),
+                 "repriced at the prevailing rate at checkout. Measured against the published plan on 2026-11-17: five "
+                 "of the seven nights carry a $300 or higher primary (Nov 25 $400, Nov 26 $300, Nov 27 $600, Nov 28 "
+                 "$600, Nov 29 $300) and two do not (Nov 30 and Dec 1, both $200); the Dec 2 $200 entry is on the "
+                 "departure day and is not a night. Each day of the plan now prints its own result. What the page does "
+                 "not say is whether one entry covers every night of a multi-day event, or only the night it is paid - "
+                 "ask the room before treating the $119 floor as certain (F54)."),
          why="Needed", blocking="No, but it decides which events belong on which day",
          how="Confirm with the poker room that the tournament buy-in counts on the day it is paid, and whether a Day 2 "
              "return counts again.",
@@ -990,6 +1074,34 @@ SUGGESTIONS = [
                  "itemised quote panel is used - but the comparison is worth keeping on the hotels page so a reader does "
                  "not copy a calendar figure into a budget."),
          impact="Medium", effort="Done", decision="Keep the comparison published"),
+    dict(id="S20", title="Ask the Venetian two questions in one call, then fix the rate basis once",
+         detail=("Two open questions are answered by the same phone call to 866.255.8936 (code EPOKR25). (1) Is the "
+                 "$119 / $209 poker-suite starting rate quoted before or after the $55 resort fee? The online booking "
+                 "engine states its own prices 'include daily resort fee', which would make the $197.28 floor a "
+                 "double-count of about $43 a night (F51). (2) Does one $300 or higher entry cover every night of a "
+                 "multi-day event, or only the night it is paid? The answer decides whether the Nov 30 and Dec 1 nights "
+                 "are repriced (F54). Ask both while a dated checkout total for 2026-11-25 to 2026-12-02 is also "
+                 "requested (F15, F36), which is the only figure that replaces the floor with a real number."),
+         impact="High", effort="Low",
+         decision="One call settles the nightly budget basis, the qualification risk and the missing total"),
+    dict(id="S21", title="Score each day on rate qualification as well as on guarantee",
+         detail=("The day plan now prints, per day, whether the planned primary satisfies the published $300 condition "
+                 "for the poker-suite rate. Two ways to act on it: (a) leave Nov 30 and Dec 1 as $200 primaries and "
+                 "budget those two nights at the prevailing rate, or (b) swap them for the published $400 multi-flight "
+                 "(11:10 AM on each day), which qualifies but moves both days out of the single-entry screen, because a "
+                 "flight shares a Day 2 with other flights. This site shows the trade-off and does not choose it, "
+                 "because it depends on whether the traveller values the verified rate or the single-entry format."),
+         impact="Medium", effort="Low",
+         decision="Add a 'qualifies for the poker rate' filter to the tournaments table (a $300+ buy-in filter on the "
+                  "same rows already published)"),
+    dict(id="S22", title="Keep monitoring the two Caesars booking pages for a dated rate",
+         detail=("The Caesars property booking pages publish a fee block and, for Horseshoe, a full dated month of "
+                 "lowest-available rates, in plain HTML rather than by script - unlike the Venetian engine, which prints "
+                 "$XXX. Both pages are now in the monitored source list, so the 12:10 UTC re-check will see a Caesars "
+                 "Palace calendar appear as soon as the property starts publishing one, and the rate log will keep both "
+                 "readings when a cell moves (F55). No scraper is needed for these two properties."),
+         impact="Medium", effort="Done in this pass",
+         decision="No further work: the URLs are in site/data.json sources and are re-checked on schedule"),
 ]
 
 
@@ -1160,9 +1272,10 @@ TRIP = {
          "whose sheets omit extra-entry terms: 14, with at least one on each date. This is not proof of a one-entry-per-player cap."),
         ("All 37 DeepStack Extravaganza IV structure sheets were read directly on 2026-11-16. The sheets are primary-source "
          "evidence for their printed terms, but they do not confirm a maximum number of entries per player; see F31."),
-        ("The window stays inside DSE IV, the series whose 37 structure sheets were read first. The December 24 to "
-         "January 10 DeepStack NYE series is also fully published and all 15 of its structure sheets have since been "
-         "read; three of them print multi-entry wording, which is why those rows stay out of the candidate list (F11)."),
+        ("The window stays inside DSE IV, the series whose 37 structure sheets were read first. The December 24, 2026 to "
+         "January 10, 2027 DeepStack NYE series is fully published and all 15 of its sheets have been read; three of "
+         "them print multi-entry wording, so those rows stay off the candidate list, and the whole series sits outside "
+         "the trip window in any case (F11)."),
         ("It also sits before the $10,400 WPT World Championship buy-in tier on December 13, which would break the trip "
          "budget on a single entry."),
         ("The Wynn WPT schedule runs from November 27 inside the window, so three days carry additional published rows, "
@@ -1191,6 +1304,10 @@ PLAN_NOTES = {
                      "30-minute transfer. The fallback is conditional on written confirmation of entry rules and fit."),
     "transfer": 30,
     "walkLimit": 30,
+    "pokerRateRule": ("The hotel rate the budget is built on is conditional. Each night stayed needs either six hours "
+                      "of active live cash play or a $300 or higher tournament buy-in, per the official poker-suite "
+                      "rate page. Every day of the plan now carries a 'poker-rate condition' result against that rule; a "
+                      "night marked as not satisfying it may be repriced at the prevailing rate at checkout (F54)."),
 }
 
 # Walking minutes from the recommended hotel (The Venetian / The Palazzo resort) to each
@@ -1374,6 +1491,17 @@ def build_day_plan(events, start_date, end_date, recurring=()):
             candidates=len(eligible),
             primaryGuaranteeNote=_pool_note(primary) if primary else "",
             fallbackGuaranteeNote=_pool_note(fallback) if fallback else "",
+            # The Venetian poker-suite rate is conditional: the official rate page requires
+            # "six hours of active live cash gameplay or buy in to a $300 or higher tournament
+            # for each night stayed". A night whose only planned entry is under $300 is shown as
+            # not satisfying the published condition, so the room may be repriced at checkout.
+            pokerRateCondition=RATE_QUALIFICATION_TEXT,
+            pokerRateSatisfied=bool(primary) and (primary.get("buyIn") or 0) >= 300,
+            pokerRateBasis=(f"Planned primary entry ${primary['buyIn']} is at or above the $300 threshold published on the "
+                            f"poker-suite rate page." if primary and (primary.get("buyIn") or 0) >= 300 else
+                            (f"Planned primary entry ${primary['buyIn']} is below the $300 threshold published on the "
+                             f"poker-suite rate page, so this night does not satisfy the condition as the plan stands."
+                             if primary else "No primary event is planned for this date.")),
         ))
     return plan, conflicts
 
@@ -1538,6 +1666,12 @@ def build():
         ))
 
     # --- Wynn Signature Series ------------------------------------------
+    # The official structures file cited below was re-read on 2026-11-17 and prints only
+    # "LAS VEGAS POKER / COMING SOON"; the schedule tells guests to scan a QR code for structures.
+    # Entry rules are therefore left not verified rather than inferred (F56).
+    SIG_STRUCT_GAP = ("The official Wynn Signature Series structures file printed only 'LAS VEGAS POKER - COMING SOON' "
+                      "when it was re-read on 2026-11-17, and the schedule PDF directs guests to scan a QR code for "
+                      "event structures, so no entry rule is published in readable form for this event.")
     for idx, line in enumerate(N.WYNN_SIGNATURE_ROWS.splitlines()):
         cells = line.split("|")
         date, time, name, buy_in, guarantee, chips, levels = cells[:7]
@@ -1553,12 +1687,11 @@ def build():
         cat = "flight" if flight else ("satellite" if "Satellite" in name else "wpt")
         rules = {
             "singleEntry": dict(status="not-verified",
-                                excerpt="The Wynn Signature Series structure sheets have not been read in this pass.",
-                                source=N.WYNN_SIG_STRUCT, retrieved=ASOF),
-            "reEntry": dict(status="not-verified", excerpt="The Wynn Signature Series structure sheets have not been read in this pass.",
-                            source=N.WYNN_SIG_STRUCT, retrieved=ASOF),
-            "addOn": dict(status="not-verified", excerpt="The Wynn Signature Series structure sheets have not been read in this pass.",
-                          source=N.WYNN_SIG_STRUCT, retrieved=ASOF),
+                                excerpt=SIG_STRUCT_GAP, source=N.WYNN_SIG_STRUCT, retrieved=VERIFIED_ON),
+            "reEntry": dict(status="not-verified", excerpt=SIG_STRUCT_GAP,
+                            source=N.WYNN_SIG_STRUCT, retrieved=VERIFIED_ON),
+            "addOn": dict(status="not-verified", excerpt=SIG_STRUCT_GAP,
+                          source=N.WYNN_SIG_STRUCT, retrieved=VERIFIED_ON),
             "fee": dict(status="confirmed", excerpt=f"Buy-in ${buy_in} and guarantee ${guarantee} are printed on the official schedule PDF.",
                         source=N.WYNN_SIG_SCHED, retrieved=ASOF),
         }
@@ -1608,7 +1741,7 @@ def build():
             high = round((h["baseRateCeiling"] + h["resortFee"]) * (1 + h["taxRate"] / 100), 2)
         row["trueNightlyLow"] = low
         row["trueNightlyHigh"] = high
-        row["lastChecked"] = CHECKED_TODAY if h["id"] in ("venetian", "palazzo") else ASOF
+        row["lastChecked"] = (CHECKED_TODAY if h["id"] in ("venetian", "palazzo", "caesars", "horseshoe") else ASOF)
         row["lastVerified"] = VERIFIED_ON
         # Facts confirmed live on 2026-11-17 that the earlier build left blank.
         if h.get("id") in ("venetian", "palazzo"):

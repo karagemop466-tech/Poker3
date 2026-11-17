@@ -393,7 +393,9 @@ function renderHotels() {
         <td>${esc(h.venue)}</td>
         <td>${h.baseRateFloor ? '$' + h.baseRateFloor + ' – $' + h.baseRateCeiling + '<span class="muted">published starting rates, not date-specific</span>' : blank}</td>
         <td>${h.resortFee ? '$' + h.resortFee + ' plus tax' : blank}</td>
-        <td>${h.taxRate ? h.taxRate + '%' : 'percentage not published'}</td>
+        <td>${h.taxRate ? h.taxRate + '%' : (h.taxReference
+          ? `percentage not published<span class="muted">${esc(h.taxReference)} Reference: <a href="${esc(h.taxReferenceSource)}" target="_blank" rel="noopener">room-tax schedule</a></span>`
+          : 'percentage not published')}</td>
         <td>${h.trueNightlyLow ? '$' + h.trueNightlyLow.toFixed(2) + ' – $' + h.trueNightlyHigh.toFixed(2) + '<span class="muted">floor computed from published components</span>' : blank}</td>
         <td>${esc(h.parking || 'Not published')}</td>
         <td>${esc(h.cancellation || 'Not published')}${h.cancellationDetail ? `<span class="muted">${esc(h.cancellationDetail)}</span>` : ''}${h.checkInOut ? `<span class="muted">${esc(h.checkInOut)}</span>` : ''}</td>
@@ -427,7 +429,9 @@ function renderHotels() {
   if (log) {
     const body = (db.rateLog || []).map((r) => `<tr>
       <td>${esc(r.hotel)}</td><td>${esc(r.observedOn)}</td>
-      <td>${r.publishedStartingRates ? '$' + r.publishedStartingRates : blank}</td>
+      <td>${r.publishedStartingRates
+        ? (/^[\d,.$]/.test(String(r.publishedStartingRates)) ? '$' + r.publishedStartingRates : esc(r.publishedStartingRates))
+        : blank}</td>
       <td>${esc(r.resortFee || 'not published')}</td><td>${esc(r.tax || 'not published')}</td>
       <td>${r.quoteType && r.quoteType.indexOf('Dated official checkout total') === 0
         ? `observed nights: $${r.trueNightlyLow} and $${r.trueNightlyHigh}<span class="muted">one dated quote, two nights; not a price range and not a floor</span>`
@@ -598,6 +602,9 @@ function renderSchedule() {
             <p class="day-meta">Starting chips ${primary.chips ? primary.chips.toLocaleString('en-US') : 'not published'}
               · late registration: ${primary.lateReg ? esc(primary.lateReg) : 'not published'}</p>
             ${primary.eligibility ? `<p class="day-meta warn">Restricted: ${esc(primary.eligibility)}</p>` : ''}
+            <p class="day-meta ${p.pokerRateSatisfied ? '' : 'warn'}">Poker-rate condition for the night stayed:
+              <strong>${p.pokerRateSatisfied ? 'satisfied' : 'not satisfied as planned'}</strong> — ${esc(p.pokerRateBasis || '')}
+              <span class="muted">Published condition: ${esc(p.pokerRateCondition || '')}</span></p>
             <p class="day-meta warn">Provisional candidate only: the reviewed sheet does not establish the maximum entries per player. Confirm in writing before registration.</p>
             <p>${sourceLinks(primary)}</p>` : '<p class="muted">No sheet-screened candidate with a published fee and guarantee on this date.</p>'}
         </div>
