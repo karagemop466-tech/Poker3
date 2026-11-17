@@ -4035,6 +4035,33 @@ are never hand-merged, so the tree can always be reproduced from the modules.
 
 ---
 
+## 2026-11-18 00:00 UTC - session `4fbf8168` - **PR #133 opened and merged; Pages live**
+
+- **PR:** https://github.com/karagemop466-tech/Poker3/pull/133
+- **Merge commit on `main`:** `d1a90df` (`gh pr merge 133 --merge`, merged by this session without
+  waiting for approval, as the integration rule requires).
+- **CI on the merge commit:** `Verify static research site` **success** on `main` — that run includes
+  the new `scripts/verify_entry_labels.py` step, so the label/citation guard is now enforced on every
+  push, not just locally. `Official table transcription check` success. The `Scheduled source
+  re-check and daily room feed` workflow was still queued/running at the time of writing; it is a
+  scheduled job and does not gate the deploy.
+- **Pages:** `GET /repos/karagemop466-tech/Poker3/pages/builds` returned `status: "built"` for
+  commit `d1a90df6c158191c3cc0f7f77d47d0620b063413` with `error.message: null`. Published at
+  https://karagemop466-tech.github.io/Poker3/ .
+
+**Shipped:** flags **F86** (the Venetian and Palazzo rows carry the venue's printed poker-room parking
+waiver as a dated `parkingWaiver` field, with `appliedToTotals: false` and the reason it is not netted
+off) and **F87** (three November/December/NYE event names re-cased against the schedule page's capital
+sub-line, disclosed rather than renamed). Plus `scripts/verify_entry_labels.py`, its 152-test
+neighbourhood including the 14 new tests in
+`tests/test_parking_waiver_and_candidate_disclosure_4fbf8168.py`, and the corrected
+`tripCostModel.parkingSource` / Palazzo `parkingSource` citations. Register size after the merge:
+**82 flags**, `site/data.json` reproducible from the modules.
+
+**Three flags were renumbered in this session** (F79/F80 → F84/F85 → **F86/F87**) because `main` took
+each id first. Earlier entries above name the older ids; the findings and their sources did not change.
+Any session that cites "F79 parking" or "F80 re-casing" from this branch should read F86 and F87.
+
 ## Session arena/4b9d6340-poker3 — post-merge record (2026-11-17)
 
 **PR #132 merged into `main` as `c89270c`** at 22:55:10Z (`gh pr merge 132 --merge`, no review awaited, per
