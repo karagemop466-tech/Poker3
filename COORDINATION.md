@@ -2989,6 +2989,35 @@ sole active editor.
   `origin/main`, then `data_source.py` → `verify_site.py` passed (341 events, 8 hotels, 15 routes, 43 sources, 72 flags,
   7 plan days, 16 pages); **125 tests OK**; `build_addendum.py` regenerates `site/sheets.html` byte-identically
   (`git status` clean); `canonical_render.js` all pages rendered; 0 broken internal links across 25 pages.
+- **Follow-up PRs from the same branch.** #105 recorded this log (merged `efc8980`). #106 fixed two defects that
+  were only visible on the **deployed** page and not in any test: guarantees stored as integers in
+  `data/sheet_extracts.jsonl` rendered as bare `75000`, and a "Published as" column that unioned the categories of
+  every row a sheet backs and printed nonsense such as `extra / flight / satellite / single / special`. Guarantees
+  now render as money and the column is gone; a test fails on any bare integer in that column. #106 merged as
+  `ef5d1f7`; 126 tests OK.
+- **Live-site confirmation, and one publishing hazard for whoever integrates next.** Verified through the page
+  reader against the deployed site, not only the repository:
+  - `/Poker3/sheets.html` now serves the corrected page (`$8,000` / `$75,000` guarantees, no "Published as" column).
+  - `/Poker3/flagged.html` serves this session's corrected F15 and F28.
+  - `/Poker3/site/data.json` carries `asOf: 2026-11-17` and the `$4,010.55` booking text, so the curated `site/`
+    artifact is the one being served for the dashboard.
+  - **Hazard, unchanged from flags F29/F30:** the repository root also publishes redirect stubs (`hotels.html`,
+    `flagged.html`, `tournaments.html`, …) that forward to `site/<page>`, while `pages.yml` publishes `site/` as the
+    site root. Depending on which publisher wins, `/Poker3/tournaments.html` can therefore resolve to a stub that
+    forwards to `/Poker3/site/tournaments.html`. During this session a page reader loaded the stub path and the
+    vanilla `data.json` fetch did not resolve, so a reader saw the page's own "The data file did not load" notice
+    even though `/Poker3/site/data.json` served the right file. This is a publishing-path ambiguity, not a data
+    defect: the canonical URL is `/Poker3/site/<page>.html`, which serves every page correctly. It is recorded here
+    rather than silently worked around, because fixing it means changing the Pages source setting, which the token
+    available to these sessions cannot do (`PUT /pages` returns 403). **Recommendation for the integration session:
+    make one publisher authoritative and retire the root stubs**, otherwise stale/ambiguous paths will keep
+    appearing between merges.
+  - Because several sessions merged to `main` while this one ran, a deploy occasionally served an older artifact
+    for a few minutes. Re-reading after the in-flight runs finished always showed the corrected page; no action was
+    needed beyond waiting.
+- **Final re-verification on `main` @ `6a40bca`:** `verify_site.py` passed (341 events, 8 hotels, 15 routes,
+  43 sources, 72 flags, 7 plan days, 16 pages); **129 tests OK**; 0 broken internal links across 25 pages;
+  `build_addendum.py` regenerates `site/sheets.html` with a clean `git status`.
 - **Still open after this pass (published as flags, not filled in):** F56 (Wynn Signature structures still
   "COMING SOON"), F16 (no venue publishes a finish time, so the overlap check stays an estimate), F37/F39 (no published
   room-tax percentage at Caesars, Horseshoe, Wynn or Bellagio), F66 (the phone-only poker rate cannot be observed from
