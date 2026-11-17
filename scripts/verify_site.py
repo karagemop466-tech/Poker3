@@ -151,8 +151,17 @@ def main() -> int:
             fail(f"hotel {h.get('id')}: no true nightly cost and no status note", errors)
 
     for f in data["flags"]:
-        if not f.get("source") or not official(f["source"]):
-            fail(f"flag {f.get('id')}: missing or non-official source", errors)
+        if not f.get("source"):
+            fail(f"flag {f.get('id')}: no source", errors)
+        elif not official(f["source"]):
+            # A flag about this site's own publishing or its own automation cannot
+            # cite a casino page: the evidence is the repository or its Actions
+            # runs. Those flags must say so explicitly with area "Publishing" or
+            # "Monitoring" and cite a GitHub URL, so an uncited data flag can
+            # never slip through this exemption.
+            repo_hosted = str(f["source"]).startswith("https://github.com/karagemop466-tech/Poker3")
+            if not (f.get("area") in {"Publishing", "Monitoring"} and repo_hosted):
+                fail(f"flag {f.get('id')}: non-official source outside the publishing/monitoring exemption", errors)
         if not f.get("detail"):
             fail(f"flag {f.get('id')}: no detail", errors)
 

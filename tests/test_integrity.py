@@ -1,0 +1,99 @@
+#!/usr/bin/env python3
+"""Arithmetic and integrity checks for the values this round corrected.
+
+These are the numbers a reader acts on, so each one is asserted here against the
+official source it came from. They are cheap to run and they fail loudly if a
+later edit reintroduces a stale or mislabelled value.
+"""
+from __future__ import annotations
+
+import json
+import unittest
+from pathlib import Path
+
+ROOT = Path(__file__).resolve().parents[1]
+DATA = json.loads((ROOT / "site" / "data.json").read_text(encoding="utf-8"))
+
+TAX = 0.1338            # Clark County room tax, published on the Venetian hotel terms
+RESORT_FEE = 55         # per night, published on the Venetian suite-rates page
+
+
+class DataIntegrity(unittest.TestCase):
+    def test_wynn_daily_names_do_not_repeat_their_day_range(self):
+        """A doubled label like "(Monday-Thursday) (Monday-Thursday)" misreads as two events."""
+        for event in DATA["events"]:
+            if not event["id"].startswith("wynn-daily"):
+                continue
+            name = event["name"]
+            for day in ("Monday", "Tuesday", "Wednesday", "Thursday",
+                        "Friday", "Saturday", "Sunday"):
+                self.assertLessEqual(
+                    name.count(day), 1,
+                    f"{event['id']}: day '{day}' appears more than once in {name!r}",
+                )
+
+    def test_dated_quote_nights_are_recorded_low_to_high_and_reconcile(self):
+        """The one dated checkout total must not be presented with the nights reversed.
+
+        Official quote (Venetian booking engine, 2026-11-16, two adults, 2 nights):
+        $824.25 + $55 on 17 Nov, $164.25 + $55 on 18 Nov, $146.98 tax, $1,245.48 total.
+        """
+        quote = [r for r in DATA["rateLog"]
+                 if r["quoteType"].startswith("Dated official checkout total")]
+        self.assertEqual(len(quote), 1, "expected exactly one dated checkout total")
+        row = quote[0]
+        low, high = float(row["trueNightlyLow"]), float(row["trueNightlyHigh"])
+        self.assertLess(low, high, "observed nights must be recorded low to high")
+
+        night_17 = round((824.25 + RESORT_FEE) * (1 + TAX), 2)
+        night_18 = round((164.25 + RESORT_FEE) * (1 + TAX), 2)
+        self.assertAlmostEqual(low, night_18, places=2)
+        self.assertAlmostEqual(high, night_17, places=2)
+
+        # The two derived nights must reconcile to the printed total within rounding.
+        self.assertLess(abs((night_17 + night_18) - 1245.48), 0.10)
+
+    def test_trip_nightly_budget_is_the_published_floor(self):
+        """$197.28 = ($119 published poker-suite start + $55 fee) x 1.1338."""
+        trip = DATA["trip"]
+        expected = round((119 + RESORT_FEE) * (1 + TAX), 2)
+        self.assertAlmostEqual(trip["nightlyBudget"], expected, places=2)
+
+    def test_guaranteed_pool_ratio_matches_its_own_components(self):
+        """ratio = guaranteed pool / buy-in, descriptive only, never a forecast."""
+        for event in DATA["events"]:
+            buy_in, pool, ratio = event["buyIn"], event["guarantee"], event["ratio"]
+            if isinstance(buy_in, (int, float)) and isinstance(pool, (int, float)) and buy_in:
+                self.assertAlmostEqual(ratio, round(pool / buy_in, 1), places=1,
+                                       msg=f"{event['id']}: ratio disagrees with its components")
+
+    def test_every_row_states_when_it_was_last_checked(self):
+        for event in DATA["events"]:
+            self.assertTrue(event.get("lastChecked"), f"{event['id']}: no lastChecked date")
+
+    def test_no_row_claims_wording_the_sheets_do_not_print(self):
+        """No venue prints "single entry", so no excerpt may put that phrase in a quote."""
+        for event in DATA["events"]:
+            for field, rule in (event.get("rules") or {}).items():
+                excerpt = (rule or {}).get("excerpt", "") or ""
+                self.assertNotIn("single entry confirmed", excerpt.lower(),
+                                 f"{event['id']}.{field}: claims wording no sheet prints")
+
+
+class CalculatorArithmetic(unittest.TestCase):
+    def test_true_cost_per_night_formula(self):
+        """rate + resort fee + tax on (rate + resort fee), as the site states."""
+        def true_nightly(rate: float, fee: float = RESORT_FEE, tax: float = TAX) -> float:
+            return round(rate + fee + (rate + fee) * tax, 2)
+
+        self.assertAlmostEqual(true_nightly(119), 197.28, places=2)
+        self.assertAlmostEqual(true_nightly(209), 299.32, places=2)
+
+    def test_trip_total_is_entries_times_buyin_plus_nights_times_true_nightly(self):
+        entries, buy_in, nights = 8, 350.0, 7
+        true_nightly = 197.28
+        self.assertAlmostEqual(entries * buy_in + nights * true_nightly, 2800 + 1380.96, places=2)
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

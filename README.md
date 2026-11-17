@@ -3,6 +3,13 @@
 Source-first Las Vegas Strip poker trip planner. The canonical GitHub Pages dashboard is in [`site/`](site/) and is
 the only directory published by the Pages workflow.
 
+**Published URL.** `https://karagemop466-tech.github.io/Poker3/` serves `site/`. The repository root's
+`index.html` is a redirect into `site/`, because the Pages source is still the legacy `main /` setting
+(the token used by the integration session cannot change it: `PUT /pages` returns 403) and GitHub's own
+branch build would otherwise republish whatever sits at the root after every push. `.github/workflows/pages.yml`
+re-deploys the `site/` artifact after that branch build finishes, so the serving copy is the verified
+dashboard either way. See flag F29 on the Flagged for review page.
+
 | Page | What it does |
 |---|---|
 | `site/index.html` | Executive summary: the fixed trip, the primary event per day, and what is and is not confirmed. |
@@ -42,13 +49,25 @@ python3 scripts/data_source.py        # rebuilds site/data.json from the source 
 
 ## Scheduled checks
 
-`.github/workflows/checks.yml` runs every morning at 05:00 Pacific:
+`.github/workflows/checks.yml` is the single scheduled job that reviews the official sources; it runs every
+morning at 05:00 Pacific (12:13 UTC in winter) and can be dispatched by hand:
 
 - `scripts/check_sources.py` fetches every official URL behind the dashboard, stores a SHA-256 of the response and
   flags any source whose body changed. It never changes a tournament value on its own: a changed page is re-read by a
   human first. Results are published as `site/checks.json` and shown on the sources page.
 - `scripts/daily_feed.py` pulls the schedule page of each Strip poker room and writes a dated snapshot under
   `site/feed/`, so a morning run can be compared with the previous morning instead of replacing it.
+- The job then rebases onto `origin/main` and pushes, retrying up to five times, so a race with another scheduled
+  run cannot lose the record.
+
+It replaces three overlapping committers (`monitor.yml`, `daily-check.yml` and an earlier version of this one) that
+ran on separate crons under separate concurrency groups and overwrote each other; none of the three had ever produced
+a run. `source-monitor.yml` shares the same concurrency group so the two jobs are serialised. Flag F30 records this.
+
+Unit tests in `tests/test_integrity.py` assert the arithmetic a reader acts on — the dated quote's two nights
+reconciling to the printed total, the `$197.28` nightly floor, `ratio = guarantee / buy-in` on every row, a
+`lastChecked` date on every row — and `verify.yml` runs them, so a later edit cannot quietly reintroduce a wrong
+number.
 
 ## Run locally
 
