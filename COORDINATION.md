@@ -3604,6 +3604,7 @@ Branch: `arena/d3a4c0f8-poker3` (platform-bound; the `session-<id>/<task>` namin
 - **Pages:** `pages build and deployment` success on `927b5aa`. `Publish the canonical Vegas Poker Planner to GitHub Pages`, `Verify static research site` and `Official table transcription check` also success on that commit.
 - **Not complete:** the scheduled `Scheduled source re-check and daily room feed` run was still pending on `927b5aa`. It is a separate job and was not blocked by this merge.
 - **Carried forward:** Resorts World (F80) and Planet Hollywood (F79) closures are press reports and remain unverified. Mandalay Bay (F85) has no printed schedule. The walk captures (F84) are Google Maps measurements and not official.
+---
 
 
 | T3 Integration, PR, merge, Pages check | in progress | arena/5b8ce14d-poker3 | whole repo | PR and merge result recorded below |
@@ -3620,4 +3621,43 @@ Branch: `arena/d3a4c0f8-poker3` (platform-bound; the `session-<id>/<task>` namin
 - **Open items this session did not close (all already flagged, none blocking):** F31 (no written per-player entry cap), F17 (no verified 8:00 AM start), F21/F32 (walking times are Maps estimates; pair coverage incomplete), F66 (phone-only $119 poker rate), F15/F36/F47/F69 (booking-engine pricing behaviour — now also F78), and finish-time estimates under the disclosed six-hour session assumption.
 - **PR #99 merged** (`arena/8689ef6e-poker3` into `main`) as `58c702d` at 2026-11-17 22:29:54 UTC, with `gh pr merge 99 --merge`. Checks on the merged head: `verify` and `transcription` both `success`. The Pages deploy from `main` ("Publish the canonical Vegas Poker Planner to GitHub Pages") succeeded; the legacy "pages build and deployment" run for the superseded commit shows `cancelled`, which is expected under concurrency. The live Flagged and Executive summary pages serve the current data.
 - **Session `arena/8689ef6e-poker3` is complete.** Open, non-blocking items are unchanged: F66, F67, F31, and the 8 AM gap, all published on the Flagged for Review page.
+## Session `arena/4fbf8168-poker3` — claim: written entry-rule confirmation for the 52 sheet-screened Venetian rows (F31), plus the stale-claim board cleanup (2026-11-17 UTC)
 
+Branch: `arena/4fbf8168-poker3`, from `main` @ `b9c8d77` (PR #100 merged). The `session-<id>/<task>` naming in the
+brief cannot be applied — the platform binds this session to one Arena branch — so all work happens here.
+
+**Board hygiene first.** The previous session (`arena/da83eca8-poker3`) left its D1–D5 rows as `in progress`/`pending`
+and never appended a result section, but its branch reached `main` through **PR #100** (merged 2026-11-17 22:11:42Z).
+Those claims are therefore stale, not active. This session records their final state below so no other session waits on
+them or re-does them.
+
+**Conflict check before claiming.** `gh pr list --state open` at claim time:
+
+| Open PR | Branch | Files it touches | Effect on this claim |
+|---|---|---|---|
+| #108 | `arena/57416062-poker3` (updated 2026-11-17T22:24Z, active) | `scripts/data_hotels.py`, `scripts/data_source.py`, `scripts/data_venues.py`, `site/assets/app.js`, `site/index.html`, `site/sheets.html`, `site/hotels.html`, `site/checks.json`, `site/data.json`, `raw/wynn_wpt_*`, `research/reread_2026-11-17.json`, `tests/test_reread_2026_11_17.py`, two new WPT tests, `COORDINATION.md` | **Hard scope exclusion.** This session does not edit any of those files. The WPT structures question (F77 and the WPT/`data_venues.py` rows) is theirs. |
+| #99 | `arena/8689ef6e-poker3` (updated 2026-11-17T22:11Z) | `COORDINATION.md`, `scripts/data_source.py` | Not edited here beyond the appends this file requires. |
+
+| Task | Status | Owner session | Files in scope | Notes |
+|---|---|---|---|---|
+| E1 Hunt a **written** maximum-entry / no-rebuy / no-add-on rule for the Venetian DSE IV and NYE series, on venue-controlled pages only (series landing page, FAQ/terms, the two schedule pages, the poker-room page, and a full re-read of every structure-sheet text already captured in `raw/`); record each excerpt verbatim with its URL and retrieval date | in progress | arena/4fbf8168-poker3 | `raw/venetian_entry_rules_2026-11-17_4fbf8168.md` (new), `scripts/data_venetian.py` | `scripts/data_venetian.py` is **not** in PR #108's file list. Nothing is promoted to "confirmed" without a printed venue statement; absence of wording stays a screen, not a confirmation. |
+| E2 Independent re-derivation check that no row's entry-rule label can outrun its own excerpt (guard against the F75/F76 class of defect recurring) | in progress | arena/4fbf8168-poker3 | `scripts/verify_entry_labels.py` (new), `tests/test_entry_labels_4fbf8168.py` (new) | New files only; no shared verifier edited. |
+| E3 Live re-read of the two official DSE schedule pages and the NYE page on 2026-11-18 (next day) to catch a schedule or price change, compared field by field with `site/data.json` | in progress | arena/4fbf8168-poker3 | `raw/dse_schedule_2026-11-18_4fbf8168.md` (new) | A changed value updates `lastChecked`/`recheck` only, in `scripts/data_venetian.py`. |
+| E4 Board cleanup: record the true final state of the stale `da83eca8` D1–D5 claims and of the unmerged-but-superseded PR #99 | done | arena/4fbf8168-poker3 | this section only | See "Stale claims reconciled" below. |
+| E5 Integration: rebase onto `main` (keeping #108's work intact), rebuild, run the whole suite, PR, merge, confirm Pages, record here | pending | arena/4fbf8168-poker3 | rebuild of generated files only | Regenerating `site/data.json` is unavoidable if E1 changes a label; the file is generated, so it is rebuilt after the rebase rather than merged by hand. |
+
+**Files this session will not touch** (owned by #108 or by earlier sessions): `scripts/data_source.py`,
+`scripts/data_hotels.py`, `scripts/data_venues.py`, `scripts/build*.py`, `site/assets/*`, `site/index.html`,
+`site/sheets.html`, `site/hotels.html`, `site/checks.json`, `docs/**`, `verified/**`, `planner/**`,
+`single-entry/**`, `handoff/**`.
+
+### Stale claims reconciled (E4)
+
+| Prior claim | Recorded as | Actual state on `main` |
+|---|---|---|
+| `da83eca8` D1 Live re-verification of official sources behind trip-window rows | in progress | Delivered through PR #100 (the `raw/` captures and `recheck` fields on the Venetian rows are on `main`). Closed. |
+| `da83eca8` D2 Close remaining hotel-rate gaps (Palazzo, MGM Grand, Caesars, Horseshoe, ARIA) | in progress | **Not closed.** `rateLog` is still empty for all eight hotels; only the Venetian has a dated checkout quote. Remains open, and it belongs to `scripts/data_hotels.py`, which PR #108 owns — logged as a request, not edited here. |
+| `da83eca8` D3 Walking-route evidence labels | in progress | Partially shipped: 14–15 Google Maps estimates labelled as estimates; the 56-pair matrix is not built. C14 stays `partial` in `site/coverage.json`. Route data also lives in `scripts/data_hotels.py` (#108's file). |
+| `da83eca8` D4 Brief-coverage traceability | in progress | Shipped: `scripts/coverage.py` + `site/coverage.json` (25 requirements, 21 shipped / 3 partial / 1 not-resolvable). Closed. |
+| `da83eca8` D5 Verification suite, PR, merge, Pages | pending | PR #100 merged at `b9c8d77`. Closed. |
+| PR #99 (`arena/8689ef6e-poker3`) | open since 22:11Z | Docs/coord-only; its data_source.py change predates PRs #100–#107. Left open for its owner or the integration owner to close — not this session's file. |
