@@ -40,6 +40,9 @@ OFFICIAL_HOSTS = (
     "caesars.com",
     "aria.mgmresorts.com",
     "google.com",
+    # Clark County government schedule of combined transient lodging rates (Appendix III),
+    # the governing tax schedule for the unincorporated Strip properties.
+    "clarkcountynv.gov",
     # MGM Resorts' own content delivery host, linked from the official resort pages.
     "assets.contentstack.io",
 )

@@ -2299,7 +2299,6 @@ duplicates, and `main`'s F43 (Schedule/Caesars), F45 (Sources), F46 and F47 are 
 - The remaining 42 hotel-venue walking pairs still have no recorded route time (F32). All eight hotels do have a route
   to the Venetian, which is what the Venetian-based plan needs; the gap only bites if you stay at one property and
   play at another.
-
 ### Merge record — session `arena/6118f42d-poker3` (2026-11-17 UTC)
 
 - **PR:** [#78](https://github.com/karagemop466-tech/Poker3/pull/78) (`arena/6118f42d-poker3` → `main`), merged with
@@ -2320,7 +2319,6 @@ duplicates, and `main`'s F43 (Schedule/Caesars), F45 (Sources), F46 and F47 are 
   image does not provide. `pip install --break-system-packages pyyaml` makes the full suite (92 tests) pass locally.
   The GitHub runner image ships PyYAML, so CI is unaffected — `verify` passed on the PR head without any change.
 
-
 ### The live record's first comparison was noise; the hash now tracks visible text
 
 The live record written at 2026-11-17T01:30Z was the **baseline**: 92 URLs known, 79 fetched, 0 changed. The next run at
@@ -2340,3 +2338,85 @@ still raises the flag.
 value change must, two PDFs differing only in binary stream must agree, and `compare_check` must use the text hash it is
 given. The comparison also falls back to the old raw hash when a record predates the switch, so the first run after
 this change does not report 79 false changes.
+
+
+---
+
+
+---
+
+
+---
+
+
+---
+
+## Session `arena/688eb797-poker3` — final integration of the open PR queue, live official re-checks, publish
+
+Branch: `arena/688eb797-poker3`. The platform snapshot this session started from (`88d32b1`) carries a single
+commit whose patch is already present on `main` (confirmed with `git cherry`); the branch was rebased onto
+`origin/main` @ `19906c0` (PRs #60 + #61 merged), losing nothing.
+
+### Claim (recorded before any file edit, 2026-11-17)
+
+| Task | Status | Owner session | Files in scope | Notes |
+|---|---|---|---|---|
+| I1 Assess every open PR (#7, #27, #31, #39, #50, #54, #55, #56) against current `main` | in progress | arena/688eb797-poker3 | whole repo (integration-owner scope, shared outputs) | Chronological review; stale rebuilds are not merged wholesale; each PR's session records are preserved on `main`. |
+| I2 Preserve the session records of unmerged PRs in this file and close those PRs with the reason recorded | pending | arena/688eb797-poker3 | `COORDINATION.md` | A superseded rebuild must not replace the verified canonical dashboard. |
+| I3 Semantic integration of still-valid verified facts from #50/#54/#55/#56 that `main` lacks, with flag renumbering | pending | arena/688eb797-poker3 | `site/**`, `scripts/**`, `tests/**`, `.github/workflows/**` | Every imported fact re-checked against the official source or the PR's dated official capture; flag/question/suggestion ids kept unique. |
+| I4 Live re-check of the key official pages from this sandbox (which CAN reach venue hosts, unlike every prior session) | in progress | arena/688eb797-poker3 | verification only; writes go through the data modules | Establishes an independent 2026-11-17 read of the sources behind the published rows. |
+| I5 Scheduled-job first-run trigger — closed; superseded by `main` | closed | arena/688eb797-poker3 | none | The duplicate-`push:`-key YAML defect this session diagnosed independently (0-second run failures, no job started) was fixed forward by `arena/ed1d2489-poker3` with `tests/test_workflows.py`; this session's equivalent repair is dropped as redundant and its own capture of the diagnosis is kept in the session log. |
+| I6 Full verification suite, PR to `main`, merge, Pages confirmation, record results here | pending | arena/688eb797-poker3 | whole repo | No blocking wait for review; flagged items do not block merge. |
+
+**Concurrency note.** PRs #50, #54, #55 and #56 are complete submissions (bodies, verification records and
+result sections written at 01:07–01:08 UTC). This session treats their heads as final and will re-read each
+head immediately before merging. If any of those branches moves after this claim, this session will re-fetch
+and re-assess before integrating.
+
+**Commit discipline:** small frequent commits; `git pull --rebase origin arena/688eb797-poker3` before every push.
+### Closing the superseded open PRs (I1/I2, session 688eb797, 2026-11-17)
+
+Four open PRs are superseded rebuilds or fully-covered fix sets. Their canonical-site rewrites must not be
+merged over the verified dashboard (three earlier sessions recorded the same conclusion: PR #50's body,
+PR #56's body and PR #77's body). Their session records are preserved below so the verification work is not
+lost; the full text stays on each branch. Each PR is closed with a comment pointing here.
+
+**PR #7 — session `arena/92941c56-poker3` (2026-11-16).** Built a separate dashboard at `pages/`
+(tournaments with a separate rebuy/add-on section, hotels with a true-cost table, 8 AM schedule,
+executive summary, questions, suggestions, flagged-for-review). Data compiled 2026-11-16 from
+venetianlasvegas.com, worldpokertour.com, wynnlasvegas.com, aria.com, bellagio.mgmresorts.com and
+caesars.com, with third-party calendars listed as flags. Key flags it raised first: single-entry status
+unverified on every event, Nov-Dec 2026 room rates unpublished, ARIA/Horseshoe buy-in conflicts,
+Wynn/Encore resort-fee conflict, Bellagio schedule uncertainty, stale MGM rebuy listing. Every one of
+those findings is now carried, with official sources, on the canonical site. **Closed as superseded by
+the canonical `site/` dashboard.**
+
+**PR #27 — session `arena/701f2252-poker3` (2026-11-16).** Rebuilt `site/` from its own verified
+dataset: all 37 DSE IV structure sheets read in full; the 48 "single-entry confirmed" labels inferred
+from silence replaced with honest verdicts (silence is not proof); `reconcile_dse_iv.py` comparing all
+94 rows against two official transcriptions; global search, strict-entry toggle, one page per venue,
+trip-cost calculator, day plan with overlap check, dated hotel-rate logs, `check_hotel_rates.py`,
+`scrape_venetian_schedule.py` and a change-monitor page. **The stricter entry-label model and the
+reconciliation approach survive on `main`** — later merged sessions adopted them. The wholesale
+`site/data.json` rewrite itself is superseded by the verified build. **Closed as superseded.**
+
+**PR #31 — session `arena/ea188b20-poker3` (2026-11-16).** Reconciled the canonical data to all 83
+listed Venetian starts across 64 event numbers (Nov 16 - Dec 23); added date/venue/strict-entry filters,
+global search, CSV export, venue pages, schedule start-gap checks and an itemized hotel-cost estimator;
+added a dated hotel-rate search log and a source-change dashboard; added a weekly official-source
+monitor writing only `site/data/source-monitor.json`. Verified: `verify_site.py` PASS (102 rows), 7 unit
+tests, `node --check`, JSON validation, HTTP 200 page checks. Its monitoring concept was later
+consolidated into the single scheduled job (`checks.yml`) that deliberately replaced the overlapping
+committers. **Closed as superseded.**
+
+**PR #39 — session `arena/d81a0934-poker3` (2026-11-17).** Four defect fixes, each verified present on
+`main` today before closing: (B1) clean Wynn daily names — `main`'s four `wynn-daily` names carry no
+duplicated suffix; (B2) rate-log nightly low/high swap — `main` carries the later exact-reconciliation
+figures $248.59/$996.89 (superseding this PR's $248.61/$996.91); (B3) executive-summary flag count —
+`main` renders counts from the data (commit `b0728d5`); (B4) root `index.html` as a redirect to the
+canonical dashboard — on `main`. Its B5 re-verification (DSE schedule, Wynn poster, Venetian fee and
+suite-rate pages) matches today's records. **Closed as fully superseded.**
+
+These closures do not discard work: the superseding verified data, the monitoring consolidation and the
+verification suite on `main` implement (or improve on) everything each of these PRs introduced, and the
+branches remain reachable for audit.

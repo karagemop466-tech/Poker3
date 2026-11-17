@@ -49,9 +49,13 @@ CAESARS_BOOKING_HOMEPAGE = "https://www.caesars.com/caesars-palace/hotel"
 # "plus tax" without a percentage.  It is published by the City of Las Vegas for establishments
 # it licences; the Strip resorts sit in unincorporated Clark County, so this repository does NOT
 # substitute the figure into a property-published column.
-ROOM_TAX_REFERENCE = "https://files.lasvegasnevada.gov/business-licensing/RoomTaxPacket.pdf"
+ROOM_TAX_REFERENCE = "https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf"
 ROOM_TAX_REFERENCE_NOTE = ("13.38% is the combined transient lodging tax rate published for properties inside the "
-                           "Primary Gaming Corridor (13.00% outside it).")
+                           "Primary Gaming Corridor (13.00% outside it). Government sources read 2026-11-17: the Clark "
+                           "County Department of Business License schedule (Appendix III) lists the corridor resort "
+                           "hotels at 13.38% line by line; the City of Las Vegas room-tax packet "
+                           "(https://files.lasvegasnevada.gov/business-licensing/RoomTaxPacket.pdf) prints the same "
+                           "split. The rate is a reference beside the property's own figure, never a substitute for it.")
 
 # Dated calendar cells read off the official Horseshoe booking page at 01:26 UTC and again at
 # 01:31 UTC on 2026-11-17.  The page states: "Rates shown reflect the lowest available rate and
@@ -660,6 +664,19 @@ RATE_LOG = [
                "2026-11-17 and both times showed 'Searching Rates' with a reservation-system error and no price cells. "
                "The fee block on the same page did print, and is recorded on the hotel row."),
          source=CAESARS_CALENDAR, feeSource=CAESARS_CALENDAR, taxSource=CAESARS_CALENDAR),
+    dict(hotel="venetian", observedOn="2026-11-17", baseRate="",
+         publishedStartingRates="",
+         resortFee="55.00 per night (resort-fee page re-read 2026-11-17, session 688eb797)",
+         tax="13.38% Clark County room tax (hotel terms re-read 2026-11-17, session 688eb797)",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType="Booking-engine calendar, stay unavailable (fifth independent read)",
+         note=("Read with the 25 November - 2 December 2026 window open (2 adults) on 2026-11-17 ~01:40 UTC by session "
+               "688eb797. The calendar rendered 25, 26, 27, 28, 29 and 30 November and 1 December as 'Date Unavailable' "
+               "with no price cell at all, and '$XXX' placeholders from 2 December onward. This is the strongest form "
+               "of the no-availability finding (F57) and the reason the recommended trip is 23 - 30 November. The "
+               "footnote was re-confirmed verbatim: 'Pricing shown is best available suite and rate, includes daily "
+               "resort fee, excludes taxes.' No rate was inferred from any cell."),
+         source=VENETIAN_QUOTE_URL, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
 ]
 
 MAPS = "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin={o}&destination={d}"
