@@ -3661,3 +3661,85 @@ them or re-does them.
 | `da83eca8` D4 Brief-coverage traceability | in progress | Shipped: `scripts/coverage.py` + `site/coverage.json` (25 requirements, 21 shipped / 3 partial / 1 not-resolvable). Closed. |
 | `da83eca8` D5 Verification suite, PR, merge, Pages | pending | PR #100 merged at `b9c8d77`. Closed. |
 | PR #99 (`arena/8689ef6e-poker3`) | open since 22:11Z | Docs/coord-only; its data_source.py change predates PRs #100–#107. Left open for its owner or the integration owner to close — not this session's file. |
+
+### Result (session `arena/4fbf8168-poker3`, recorded 2026-11-17 UTC)
+
+**E1 — the written entry-rule hunt (F31).** Read live from venue-controlled pages, in this order:
+
+| Read | Time (UTC) | What it prints about entries |
+|---|---|---|
+| `…/deepstack-extravaganza-poker-tournament/dse-nov-2026.html` (chunk 0 of 4) | 22:29 | Schedule table only. No maximum-entry, rebuy or add-on text anywhere on the page. |
+| `…/resort/casino/poker.html` | 22:29 | Room location, 24-hour hours, promotions, suite rates, parking. No tournament entry rule. |
+| `…/casino/poker/deepstack-extravaganza-poker-tournament.html` (series landing page) | 22:30 | Series blurbs, dates, guarantees and links to the schedule PDF and structure pages. No entry rule. |
+| `…/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf` | 22:30 | The full table with a printed `REG CLOSES` column. No prose, no rules, no footnotes. |
+| `…/resort/casino/poker/player-parking.html` | 22:31 | Parking rates and the player waiver (see F79 below). |
+
+**F31 therefore stays open.** No official page read by any session prints a one-entry-per-player cap, a no-rebuy
+clause or a no-add-on clause for the DeepStack events, so **no row was promoted to `confirmed`** and the strict
+single-entry filter still returns zero rows, which is what the site already says in its empty-state text. The 52
+sheet-screened rows remain a document screen, not an eligibility finding.
+
+**E3 — live re-read against the published rows.** The 24 complete rows in chunk 0 (16–28 November) were compared
+field by field with `site/data.json` — date, start time, event number, printed name, structure-sheet link:
+**19 rows match character for character; 4 differ only in the page's own `No LImit` typo, already disclosed as F27;
+1 differs in letter case only** (event #18's sub-line `POKERATLAS PRO MEMBER $20 RAKE DISCOUNT` is published in title
+case, and events #58 and NYE #25 share it). That re-casing was not disclosed anywhere, so it is published as
+**F80 (Low)** and left as a user decision rather than silently churned. No money, date, time or sheet link differs on
+any of the 24 rows. Capture: `raw/dse_schedule_recheck_2026-11-17_4fbf8168.md`.
+
+**F79 — the material finding (Hotels, Medium).** The Venetian and Palazzo rows published only their paid self-parking
+figures, while the Wynn row in the same table carried its poker-room benefit — not like-for-like. The resort's own
+poker-room parking page prints both the rates and the waiver: *"Players in the poker room who play three hours or more
+in tournament or cash games will receive complimentary self-parking for the day. Players must visit a supervisor at
+the end of their session to confirm qualifications for complimentary self-parking."* Both rows now state the whole
+printed policy, with a dated `parkingWaiver` block quoting it, and the calculator states it beside the parking field.
+**No dollar total changed** — the paid $20 a night is still what every published total adds up, because no official
+source publishes a finish time (F16) so the three-hour condition cannot be confirmed from a schedule, the waiver needs
+a supervisor at the table, and the page warns that event-parking rates may apply and rates are "subject to change".
+What the page does *not* say — whether the waiver reaches an overnight folio charge — is left blank, not guessed.
+The property rows keep the hotel-terms page as the source of the paid figures (the existing test `test_every_hotel_fact_links_the_recorded_source`
+pins that citation) and the waiver carries the poker-room page as its own source.
+
+**A second label defect, found by the new check rather than by hand.** 7 of the 52 screened rows (the DeepStack NYE
+ones) carried the screen *without* the sentence saying the per-player cap is unconfirmed, so they read as a stronger
+claim than the other 45 — the F74/F75 family again. Every screened row now carries the identical disclosure. The
+sentence was checked against the recorded reading of each sheet (`entry="none"`, and no `entryExcerpt` anywhere states
+a maximum-entry count), not merely copied: a scan of `scripts/data_venetian.py` finds no cap wording on any of the 23
+`entry="none"` sheets in `SHEETS` and `NYE_SHEETS`.
+
+**E2 — the guard.** New `scripts/verify_entry_labels.py`, wired into `verify.yml`, plus
+`tests/test_parking_waiver_and_candidate_disclosure_4fbf8168.py` (14 tests, two of which mutate the data to prove the
+guard trips). It rejects: a `confirmed` single-entry label whose excerpt states no cap; a screened candidate carrying
+an excerpt that grants a re-entry, rebuy, add-on or bag; a candidate flag that disagrees with its own status; a hotel
+publishing a waiver outside its row; a waiver netted into a total; and any quoted parking condition that is not a
+verbatim substring of the raw capture in `raw/`.
+
+**Suite on this branch (all local):** `verify_site.py` pass — 341 events, 8 hotels, 15 routes, 43 sources, **75 flags**,
+7 plan days, 16 pages · `verify_entry_labels.py` pass — 52 screened candidates, **0 written-cap confirmations** ·
+`audit_951cd431.py` 0 failures, 0 warnings · `verify_live_official.py` OK · `audit_data.py` pass ·
+`verify_transcription.py --dry-run` 44/44 · `tests/canonical_smoke.py` 11 main + 5 detail pages · `tests/smoke.py` OK ·
+`unittest discover` **143 tests OK** (129 before this session) · `node --check` clean on the three JS files ·
+`python3 -m json.tool` clean · **reproducibility clean**: `site/data.json` after a fresh build shows no diff, and
+`site/sheets.html` and `site/coverage.json` were regenerated so F79/F80 render on the sheet page and the coverage
+matrix names the parking source.
+
+**Not done here, and why.**
+- The NYE schedule page re-read and the structure-sheet spot re-reads (E1's second half) could not be completed: after
+  22:31Z the platform's page reader began failing every new request with an upstream storage signature error
+  (`SignatureDoesNotMatch`), and direct egress from the sandbox is blocked to non-allowlisted hosts. Recorded as
+  **not read**, not as unchanged. The scheduled monitor in `checks.yml` covers these URLs and is the mechanism that
+  will re-check them.
+- `da83eca8` D2 (dated room quotes for Palazzo, MGM Grand, Caesars, Horseshoe, ARIA) is **still open**: `rateLog` is
+  empty for all eight hotels except the Venetian. It lives in `scripts/data_hotels.py`, which PR #108 also edits, so it
+  is left as a request rather than edited under their claim.
+- F31 cannot be closed from published pages at all. Closing it needs a written answer from the room; the poker-room
+  contact route is already on the questions page. Nothing here pretends otherwise.
+
+**Files changed by this session:** `scripts/data_hotels.py`, `scripts/trip_cost.py`, `scripts/data_source.py`
+(F79, F80, Q12 and the 7 NYE excerpts), `scripts/coverage.py`, `site/calculator.html`, `scripts/verify_entry_labels.py`
+(new), `tests/test_parking_waiver_and_candidate_disclosure_4fbf8168.py` (new), `.github/workflows/verify.yml`,
+`raw/venetian_player_parking_2026-11-17_4fbf8168.md` (new), `raw/dse_schedule_recheck_2026-11-17_4fbf8168.md` (new),
+and the regenerated `site/data.json`, `site/sheets.html`, `site/coverage.json`. **No file in PR #108's list was
+edited by hand**: `site/assets/app.js`, `site/index.html`, `site/hotels.html`, `site/sheets.html` (regenerated only),
+`site/checks.json`, `scripts/data_venues.py` and the WPT tests are untouched here; the overlap with #108 is limited to
+`scripts/data_hotels.py` and `scripts/data_source.py`, where both sides append in different regions.
