@@ -1005,3 +1005,10 @@ Branch: `arena/c2b95024-poker3` (platform-bound; the `session-<id>/<task>` namin
 - Structure sheets for the other rooms (MGM Grand, Caesars Palace, Horseshoe, ARIA, Bellagio) and the 15 NYE sheets were not re-read in this session. The Seniors sheet (17) was not read either.
 - Open PRs #39 (`arena/d81a0934-poker3`), #27, #31 and #7 belong to other sessions and were not edited.
 
+### Conflict log (arena/c2b95024-poker3, 2026-11-17)
+
+- **Flag ID collision (F31–F34).** Main already defines F31 (Venetian DSE IV) and F32 (walking routes). This session adds F33 (schedule overlap) and F34 (Wynn WPT dates). Open PR #46 (`arena/741b3a8e-poker3`) also defines F31 (Bellagio), F32 (Hotels), F33 (Schedule) and F34 (Verification) with different meanings. PR #46 is DIRTY against main. This session did not renumber or edit #46. Whichever of the two merges second must renumber its own flags and update any references. Left to that session's owner.
+- **Suggestion S-re-read (site change, not implemented).** Show "Re-read live <date>" under the sheets table's "Read on" column when a sheet has `reReadOn`. The `app.js` edit was reverted on this branch because site renderer changes need a user choice first. The `reReadOn` data stays in `site/data.json` and is inert until the user picks this option.
+- **Other open PRs seen during this session (not edited):** #46, #47 (`arena/f0351b8d-poker3`, DIRTY), #48 (`arena/b1fadb7e-poker3`, CLEAN).
+- **Branch history.** `origin/arena/c2b95024-poker3` held the original claim commit `0848649`. The branch was rebased onto `origin/main` (`a6ba599`) and merged with `0848649` (no content lost; the claim table rows are updated to done/in progress). No force push was used.
+
