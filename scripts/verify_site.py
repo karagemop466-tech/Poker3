@@ -42,6 +42,13 @@ OFFICIAL_HOSTS = (
     "google.com",
     # MGM Resorts' own content delivery host, linked from the official resort pages.
     "assets.contentstack.io",
+    # Clark County, Nevada, Department of Business License. The government body that
+    # administers the combined transient lodging tax publishes the per-property rate
+    # schedule (Appendix III). This is the only official source for a room-tax rate
+    # that a hotel does not itself print, so it is allowlisted as a government
+    # authority rather than as a venue page. Only the clarkcountynv.gov host is
+    # accepted; no third-party tax aggregator is.
+    "clarkcountynv.gov",
 )
 
 PAGES = (

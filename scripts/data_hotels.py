@@ -31,8 +31,33 @@ MGM_HOTEL = "https://mgmgrand.mgmresorts.com/en/hotel.html"
 CAESARS_HOTEL = "https://www.caesars.com/caesars-palace/hotels"
 HORSESHOE_HOTEL = "https://www.caesars.com/horseshoe-las-vegas/hotels"
 ARIA_HOTEL = "https://aria.mgmresorts.com/en/hotel.html"
+# Read live on 2026-11-17.  Caesars publishes no per-property fee page (the
+# /resort-fees and /hotel-policies paths both redirect to the property home
+# page), but its corporate disclaimers page prints the range that applies to
+# Las Vegas room reservations.  A range is not a per-property amount, so the
+# Caesars Palace and Horseshoe fee cells stay blank and the range is published
+# as the only official statement.
+CAESARS_DISCLAIMERS = "https://www.caesars.com/corporate/disclaimer"
+CAESARS_FEE_EXCERPT = ("Room reservations are subject to a daily resort fee between $45-$60 plus "
+                       "applicable tax. Resort fees are waived for Diamond and Seven Stars.")
+# Clark County Department of Business License, General Information Guide for
+# Transient Lodging Establishments, Appendix III - Combined Transient Lodging
+# Tax Rates and Components.  A government schedule, not a hotel marketing page.
+CLARK_COUNTY_TLE_GUIDE = ("https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:"
+                          "689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf")
 
 TAX_RATE = 13.38  # Clark County room tax, printed in the Venetian hotel terms
+# The same 13.38% is listed for every Strip property reviewed here in the Clark
+# County schedule: Bellagio, Caesars Palace, MGM Grand, Venetian/Palazzo, Wynn/
+# Encore and ARIA's neighbour Vdara all carry "13.38% ... Resort Hotel (PGC)".
+# That makes 13.38% a county schedule figure, not a hotel-by-hotel guess.  It
+# still does not make it a *Wynn* statement, so flag F39 keeps its "plus tax but
+# no printed percentage" record and the Wynn true-nightly cell stays blank.
+COUNTY_SCHEDULE_TAX_EXCERPT = ("1003760.RES-001 Bellagio | 13.38% | RES | Transient Lodging Tax - Resort Hotel (PGC); "
+                               "1136233.RES-001 Caesars Palace | 13.38% | RES ...; "
+                               "1003821.RES-001 MGM Grand Hotel/Casino | 13.38% | RES ...; "
+                               "1000389.RES-001 Venetian Resort Hotel Casino / Palazzo Resort Hotel Casino | 13.38% | RES ...; "
+                               "2000013.RES-001 Wynn Las Vegas / Encore at Wynn Las Vegas | 13.38% | RES ...")
 
 # The official booking engine, opened with the dates and party size in the URL.
 VENETIAN_QUOTE_URL = ("https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17"
@@ -197,7 +222,15 @@ HOTELS = [
         checkInOut="Check-in 3:00 PM to 11:59 PM; check-out 11:00 AM.",
         qualification=("Poker-suite rates require six hours of active live cash play, or a buy-in to a $300 or higher "
                         "tournament, for each night stayed, completed before 2 a.m. on the last night. Book with code "
-                        "EPOKR25 on 866.255.8936. Failure to qualify means the prevailing rate is charged."),
+                        "EPOKR25 on 866.255.8936. Failure to qualify means the prevailing rate is charged. Two further "
+                        "official conditions change what this rate can be combined with: the poker rate 'cannot be "
+                        "combined with any other promotional rates', and 'future rates are only provided out to a maximum "
+                        "of 150 days from the current date', so no rate exists to quote beyond that horizon."),
+        pokerRewards=("Venetian Rewards card earns $2 in rewards per hour played; the page states poker rewards can be "
+                      "used toward tournament buy-ins, in-room poker merchandise and massage services, which is a credit "
+                      "against the tournament side of the trip cost model. No cash value is stated."),
+        pokerRewardsSource=VENETIAN_SUITE_RATES,
+        qualificationSource=VENETIAN_SUITE_RATES,
         source=VENETIAN_SUITE_RATES, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS,
         quote=VENETIAN_QUOTE_2026_11_17,
         quotes=VENETIAN_QUOTES,
@@ -330,28 +363,48 @@ HOTELS = [
         id="caesars", name="Caesars Palace", venue="Caesars Palace poker room (Appian Way)", property="Caesars Palace",
         rooms="", baseRate="", baseRateFloor="", baseRateCeiling="",
         baseRateNote="No room price is published on the official pages reviewed.",
-        resortFee="", resortFeeNote="Not verified: the Caesars Palace hotel fee and tax terms were not captured in this pass.",
-        taxRate="", taxNote="Not verified in this pass.",
+        resortFee="",
+        resortFeeNote=("Official Caesars corporate disclaimers print a daily resort fee 'between $45-$60 plus applicable "
+                       "tax' for Las Vegas room reservations, waived for Diamond and Seven Stars. No Caesars page prints "
+                       "the Caesars Palace figure, so the cell is left blank rather than filled with the midpoint of the range."),
+        taxRate=TAX_RATE,
+        taxNote=("Clark County's own Appendix III schedule lists Caesars Palace (licence 1136233.RES-001) at 13.38% "
+                 "'Resort Hotel (PGC)'. Caesars prints no percentage of its own."),
         parking="", parkingSource="",
         cancellation="", cancellationSource="",
         incidental="", checkInOut="", qualification="",
-        source=CAESARS_HOTEL, feeSource="", taxSource="",
+        source=CAESARS_HOTEL, feeSource=CAESARS_DISCLAIMERS, taxSource=CLARK_COUNTY_TLE_GUIDE,
         qualityNote="Not scored.",
-        status="Open item: hotel cost components are not yet verified for this property.",
+        status=("Open item: an official Caesars page prints the resort fee only as a $45-$60 range, so this property "
+                "cannot yet be compared like for like. The 13.38% county room tax is confirmed for this property by the "
+                "Clark County licence schedule."),
         walkNote="Poker room is inside the property; Google Maps walking route to The Venetian measures 12 minutes.",
     ),
     dict(
         id="horseshoe", name="Horseshoe Las Vegas", venue="Horseshoe Hall of Fame poker room", property="Horseshoe Las Vegas",
         rooms="", baseRate="", baseRateFloor="", baseRateCeiling="",
         baseRateNote="No room price is published on the official pages reviewed.",
-        resortFee="", resortFeeNote="Not verified: the Horseshoe hotel fee and tax terms were not captured in this pass.",
-        taxRate="", taxNote="Not verified in this pass.",
+        resortFee="",
+        resortFeeNote=("Official Caesars corporate disclaimers print a daily resort fee 'between $45-$60 plus applicable "
+                       "tax' for Las Vegas room reservations, waived for Diamond and Seven Stars. No Caesars page prints "
+                       "the Horseshoe figure. The property page does confirm the fitness centre is 'part of the inclusion "
+                       "in the Daily Resort Fee', but names no amount."),
+        taxRate=TAX_RATE,
+        taxNote=("The Clark County Appendix III schedule reviewed lists Strip resort hotels, including the Caesars "
+                 "Palace licence, at 13.38%. The schedule extract read this session does not carry a separate Horseshoe "
+                 "line, so this cell is the county rate for a Strip resort hotel, not a Horseshoe-printed figure."),
         parking="", parkingSource="",
-        cancellation="", cancellationSource="",
-        incidental="", checkInOut="", qualification="",
-        source=HORSESHOE_HOTEL, feeSource="", taxSource="",
+        cancellation=("Free cancellation when completed at least 48 hours before check-in on reservations made through "
+                      "Caesars directly; third-party bookings follow that site's policy, and special events are excluded."),
+        cancellationSource=HORSESHOE_HOTEL,
+        incidental=("A credit card is authorised at check-in for the remaining balance plus an additional $50 per night "
+                    "for anticipated charges."),
+        checkInOut="Check-in from 4:00 PM; check-out by 11:00 AM.",
+        qualification="",
+        source=HORSESHOE_HOTEL, feeSource=CAESARS_DISCLAIMERS, taxSource=CLARK_COUNTY_TLE_GUIDE,
         qualityNote="Not scored.",
-        status="Open item: hotel cost components are not yet verified for this property.",
+        status=("Open item: an official Caesars page prints the resort fee only as a $45-$60 range. Cancellation, "
+                "incidental hold and check-in/out times are now verified from the property page."),
         walkNote="Poker room is inside the property; Google Maps walking route to The Venetian measures 16 minutes.",
     ),
     dict(
@@ -523,6 +576,66 @@ RATE_LOG = [
                "No nightly rate is recorded for these dates. The page says its prices include the daily resort fee and "
                "exclude taxes."),
          source=VENETIAN_FIXED_STAY_BOOKING, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
+    # --- Appended 2026-11-17 by session arena/bd515425-poker3. The log is append-only:
+    # the 2026-11-16 "not verified" rows above are kept unchanged, and the
+    # later observations sit beside them so the change over time is visible.
+    dict(hotel="caesars", observedOn="2026-11-17", baseRate="", publishedStartingRates="",
+         resortFee="", tax="13.38%", trueNightlyLow="", trueNightlyHigh="",
+         quoteType="Official fee range published; no per-property amount and no room price",
+         note=("The Caesars Palace fee page does not exist: /resort-fees and /hotel-policies both redirect to the "
+               "property home page. The corporate disclaimers page prints 'a daily resort fee between $45-$60 plus "
+               "applicable tax ... waived for Diamond and Seven Stars'. The Clark County Appendix III schedule lists "
+               "Caesars Palace at 13.38%. The resort-fee cell stays blank because a range is not this property's "
+               "figure, and no true nightly cost can be closed without it."),
+         source=CAESARS_HOTEL, feeSource=CAESARS_DISCLAIMERS, taxSource=CLARK_COUNTY_TLE_GUIDE),
+    dict(hotel="horseshoe", observedOn="2026-11-17", baseRate="", publishedStartingRates="",
+         resortFee="", tax="13.38%", trueNightlyLow="", trueNightlyHigh="",
+         quoteType="Official fee range published; no per-property amount and no room price",
+         note=("Same Caesars corporate range of $45-$60 plus applicable tax applies to Las Vegas room reservations. "
+               "The Horseshoe property page confirms the fitness centre is part of the Daily Resort Fee but names no "
+               "amount, and publishes a free 48-hour cancellation, a 4 PM check-in, an 11 AM check-out and a $50 per "
+               "night incidental hold. The tax cell uses the county rate for a Strip resort hotel."),
+         source=HORSESHOE_HOTEL, feeSource=CAESARS_DISCLAIMERS, taxSource=CLARK_COUNTY_TLE_GUIDE),
+    dict(hotel="venetian", observedOn="2026-11-17", baseRate="", publishedStartingRates="119 and 209",
+         resortFee="55 plus tax", tax="13.38%", trueNightlyLow="197.28", trueNightlyHigh="299.32",
+         quoteType="Published starting rate, re-confirmed line by line",
+         note=("The whole poker-suite rate page was re-read on 2026-11-17 and every published figure already recorded "
+               "was confirmed unchanged. Two conditions were captured that the earlier build did not carry: the poker "
+               "rate 'cannot be combined with any other promotional rates', and 'future rates are only provided out to "
+               "a maximum of 150 days from the current date'. The page also states that poker rewards can be used "
+               "toward tournament buy-ins. The floor stays $197.28; no dated total exists for the trip window (F36)."),
+         source=VENETIAN_SUITE_RATES, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
+    dict(hotel="bellagio", observedOn="2026-11-17", baseRate="", publishedStartingRates="",
+         resortFee="55 plus tax", tax="13.38%", trueNightlyLow="", trueNightlyHigh="",
+         quoteType="Fee re-confirmed on the live terms; tax from the county schedule",
+         note=("The Bellagio hotel reservation terms were re-read on 2026-11-17 and still print a $55.00 daily resort "
+               "fee plus applicable tax, taxes on the fee and the basic room rate, a 72-hour cancellation and a $150 "
+               "per day incidental authorisation. The Clark County schedule lists Bellagio at 13.38%. No room price is "
+               "published, so no true nightly cost can be closed for this property."),
+         source=BELLAGIO_HOTEL, feeSource=BELLAGIO_TERMS, taxSource=CLARK_COUNTY_TLE_GUIDE),
+    dict(hotel="wynn", observedOn="2026-11-17", baseRate="", publishedStartingRates="",
+         resortFee="55 plus tax", tax="", trueNightlyLow="", trueNightlyHigh="",
+         quoteType="Fee re-confirmed on the live policy page; tax percentage still not printed by Wynn",
+         note=("The live Resort Policies page was re-read on 2026-11-17 and still prints a daily resort fee of $55 plus "
+               "tax for standard rooms and Tower Suites, with complimentary self-parking for up to two vehicles, "
+               "check-in 3 p.m. and check-out 12 p.m. The Clark County schedule independently lists Wynn Las Vegas / "
+               "Encore at 13.38%, but Wynn itself prints no percentage, so the Wynn tax cell stays blank (F39)."),
+         source=WYNN_ROOMS, feeSource=WYNN_TERMS, taxSource=CLARK_COUNTY_TLE_GUIDE),
+    dict(hotel="mgm", observedOn="2026-11-17", baseRate="", publishedStartingRates="",
+         resortFee="50.00 per night plus applicable tax", tax="13.38%", trueNightlyLow="", trueNightlyHigh="",
+         quoteType="Fee re-confirmed on the live terms; tax from the county schedule",
+         note=("The MGM Grand terms were re-read on 2026-11-17: $50.00 daily resort fee plus applicable tax, 3 PM "
+               "check-in, 11 AM check-out, 72-hour cancellation and a $100 per day incidental authorisation. The Clark "
+               "County schedule lists the MGM Grand at 13.38%. No room price is published."),
+         source=MGM_HOTEL, feeSource=MGM_TERMS, taxSource=CLARK_COUNTY_TLE_GUIDE),
+    dict(hotel="aria", observedOn="2026-11-17", baseRate="", publishedStartingRates="",
+         resortFee="55.00 per night plus applicable tax", tax="13.38%", trueNightlyLow="", trueNightlyHigh="",
+         quoteType="Fee re-confirmed on the live terms; tax from the county schedule",
+         note=("The ARIA terms were re-read on 2026-11-17: $55.00 daily resort fee plus applicable tax, 3 PM check-in, "
+               "11 AM check-out, 72-hour cancellation, and a $150/$250/$350/$500 per day incidental authorisation by "
+               "room class. The county schedule lists the neighbouring Vdara at 13.38%; ARIA's own line was not in the "
+               "extract read, so this cell is the county Strip rate, not an ARIA-printed figure."),
+         source=ARIA_HOTEL, feeSource=ARIA_TERMS, taxSource=CLARK_COUNTY_TLE_GUIDE),
 ]
 
 MAPS = "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin={o}&destination={d}"

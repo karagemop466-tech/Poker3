@@ -375,6 +375,10 @@ function hotelCards(hotels) {
     <p><strong>Mandatory resort fee:</strong> ${h.resortFee ? '$' + h.resortFee + ' plus tax' : 'not verified'}</p>
     <p><strong>True cost per night:</strong> ${h.trueNightlyLow ? '$' + h.trueNightlyLow.toFixed(2) + ' – $' + h.trueNightlyHigh.toFixed(2) : 'cannot be computed without a published rate'}</p>
     <p><strong>Cancellation deadline:</strong> ${esc(h.cancellation || 'not published')}</p>
+    ${h.qualification ? `<p><strong>Rate conditions:</strong> ${esc(h.qualification)}${h.qualificationSource ? ` <a href="${esc(h.qualificationSource)}" target="_blank" rel="noopener">Official terms →</a>` : ''}</p>` : ''}
+    ${h.pokerRewards ? `<p><strong>Poker rewards credit:</strong> ${esc(h.pokerRewards)}</p>` : ''}
+    ${h.resortFeeNote ? `<p class="muted"><strong>Resort fee detail:</strong> ${esc(h.resortFeeNote)}</p>` : ''}
+    ${h.taxNote ? `<p class="muted"><strong>Tax detail:</strong> ${esc(h.taxNote)}</p>` : ''}
     <p><strong>Last checked:</strong> ${esc(h.lastChecked || 'Not recorded')}</p>
     <p class="muted">${esc(h.status || '')}</p>
     <p><a class="card-link" href="${esc(h.source)}" target="_blank" rel="noopener">Official source →</a> ${sourceStatusBadges([h.source, h.feeSource, h.taxSource])}</p>
@@ -808,6 +812,7 @@ function renderSearchResults(query) {
   });
   (db.hotels || []).forEach((h) => {
     const detail = [h.rooms, h.baseRateNote, h.resortFeeNote, h.taxNote, h.parking, h.cancellation, h.status,
+      h.qualification, h.pokerRewards,
       h.trueNightlyLow && `True nightly floor ${money(h.trueNightlyLow)}`].filter(Boolean).join(' · ');
     const links = `<a href="${esc(h.source)}" target="_blank" rel="noopener">Hotel source</a> ${sourceStatusBadges([h.source, h.feeSource, h.taxSource])}`;
     add('Hotel', h.name, '', detail, h.lastChecked || db.asOf, `${h.venue} ${h.property || ''}`, links);

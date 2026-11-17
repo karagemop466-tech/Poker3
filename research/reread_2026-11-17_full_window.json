@@ -1,0 +1,188 @@
+{
+  "_about": "A second, wider live re-read on 2026-11-17 (UTC) of the official Venetian DeepStack Extravaganza IV page, covering EVERY row the canonical data publishes inside the trip window (2026-11-25 to 2026-12-02), not only the 13 day-plan rows in research/reread_2026-11-17.json. All 20 rows were read on the live page and compared on date, start time, event number, printed name, buy-in and guarantee. All 20 agree with site/data.json. The four Day 1A/1B/1C flight rows and the two Day 2 Restart rows are included here precisely because they are the rows a reader is most likely to mis-plan around; they are flight/continuation rows and are not single-entry candidates. No value was corrected, added or inferred by this read.",
+  "retrievedOn": "2026-11-17",
+  "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+  "result": "20 of 20 published trip-window rows matched the live official page on every compared field",
+  "rows": [
+    {
+      "date": "2026-11-25",
+      "time": "11:00 AM",
+      "event": "7",
+      "printedName": "$400 No Limit Hold'em Day 2 Restart",
+      "buyIn": 400,
+      "guarantee": 75000,
+      "continuation": true
+    },
+    {
+      "date": "2026-11-25",
+      "time": "11:10 AM",
+      "event": "10",
+      "printedName": "$400 No LImit Hold'em $15K GTD (1Day)",
+      "buyIn": 400,
+      "guarantee": 15000,
+      "continuation": false
+    },
+    {
+      "date": "2026-11-25",
+      "time": "5:10 PM",
+      "event": "11",
+      "printedName": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "buyIn": 200,
+      "guarantee": 8000,
+      "continuation": false
+    },
+    {
+      "date": "2026-11-26",
+      "time": "11:10 AM",
+      "event": "12",
+      "printedName": "$300 No LImit Hold'em $10K GTD (1Day)",
+      "buyIn": 300,
+      "guarantee": 10000,
+      "continuation": false
+    },
+    {
+      "date": "2026-11-26",
+      "time": "5:10 PM",
+      "event": "13",
+      "printedName": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "buyIn": 200,
+      "guarantee": 8000,
+      "continuation": false
+    },
+    {
+      "date": "2026-11-27",
+      "time": "11:10 AM",
+      "event": "14",
+      "printedName": "$600 No Limit Hold'em $30K GTD (1Day)",
+      "buyIn": 600,
+      "guarantee": 30000,
+      "continuation": false
+    },
+    {
+      "date": "2026-11-27",
+      "time": "5:10 PM",
+      "event": "15",
+      "printedName": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "buyIn": 200,
+      "guarantee": 8000,
+      "continuation": false
+    },
+    {
+      "date": "2026-11-28",
+      "time": "11:10 AM",
+      "event": "16",
+      "printedName": "$600 No Limit Hold'em Bounty $30K GTD (1Day) - $200 bounties to start & $500 bounties in the money",
+      "buyIn": 600,
+      "guarantee": 30000,
+      "continuation": false
+    },
+    {
+      "date": "2026-11-28",
+      "time": "12:10 PM",
+      "event": "17",
+      "printedName": "$400 Pot Limit Omaha Bounty $15K GTD (1Day)",
+      "buyIn": 400,
+      "guarantee": 15000,
+      "continuation": false
+    },
+    {
+      "date": "2026-11-28",
+      "time": "5:10 PM",
+      "event": "18",
+      "printedName": "$200 NLH PokerAtlas Valuetown Bounty $20K GTD (1Day) - POKERATLAS PRO MEMBER $20 RAKE DISCOUNT",
+      "buyIn": 200,
+      "guarantee": 20000,
+      "continuation": false
+    },
+    {
+      "date": "2026-11-29",
+      "time": "11:10 AM",
+      "event": "19",
+      "printedName": "$400 No Limit Hold'em 1A $75K GTD",
+      "buyIn": 400,
+      "guarantee": 75000,
+      "continuation": true
+    },
+    {
+      "date": "2026-11-29",
+      "time": "12:10 PM",
+      "event": "20",
+      "printedName": "$300 Pot Limit Omaha $10K GTD (1Day) - Double Board Bomb Pot",
+      "buyIn": 300,
+      "guarantee": 10000,
+      "continuation": false
+    },
+    {
+      "date": "2026-11-29",
+      "time": "5:10 PM",
+      "event": "21",
+      "printedName": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "buyIn": 200,
+      "guarantee": 8000,
+      "continuation": false
+    },
+    {
+      "date": "2026-11-30",
+      "time": "11:10 AM",
+      "event": "19",
+      "printedName": "$400 No Limit Hold'em 1B $75K GTD",
+      "buyIn": 400,
+      "guarantee": 75000,
+      "continuation": true
+    },
+    {
+      "date": "2026-11-30",
+      "time": "5:10 PM",
+      "event": "22",
+      "printedName": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "buyIn": 200,
+      "guarantee": 8000,
+      "continuation": false
+    },
+    {
+      "date": "2026-12-01",
+      "time": "11:10 AM",
+      "event": "19",
+      "printedName": "$400 No Limit Hold'em 1C $75K GTD",
+      "buyIn": 400,
+      "guarantee": 75000,
+      "continuation": true
+    },
+    {
+      "date": "2026-12-01",
+      "time": "5:10 PM",
+      "event": "23",
+      "printedName": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "buyIn": 200,
+      "guarantee": 8000,
+      "continuation": false
+    },
+    {
+      "date": "2026-12-02",
+      "time": "10:10 AM",
+      "event": "24",
+      "printedName": "$600 No Limit Hold'em Seniors $40K GTD (1Day) - Must be 50+ years of age to participate",
+      "buyIn": 600,
+      "guarantee": 40000,
+      "continuation": false
+    },
+    {
+      "date": "2026-12-02",
+      "time": "11:00 AM",
+      "event": "19",
+      "printedName": "$400 No Limit Hold'em Day 2 Restart",
+      "buyIn": 400,
+      "guarantee": 75000,
+      "continuation": true
+    },
+    {
+      "date": "2026-12-02",
+      "time": "5:10 PM",
+      "event": "25",
+      "printedName": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "buyIn": 200,
+      "guarantee": 8000,
+      "continuation": false
+    }
+  ]
+}

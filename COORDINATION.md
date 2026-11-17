@@ -1626,3 +1626,85 @@ Claim recorded 2026-11-17 UTC before any other file edits in this session. Commi
 - **PR [#54](https://github.com/karagemop466-tech/Poker3/pull/54)** (`arena/196dc009-poker3` → `main`): merged with `gh pr merge 54 --merge` as merge commit **`ef5b8ad`** at 2026-11-17T01:29:37Z. Pre-merge suite on the rebased branch: verify_site, audit_data, canonical_smoke (16 pages), smoke.py, `verify_live_official.py` (line-by-line DSE match), **73 unittest cases**, node --check, json.tool, reproducible build, `git diff --check` — all green.
 - **CI on the merge:** "Verify static research site" run 43995990893 → **success**; "Publish the canonical Vegas Poker Planner to GitHub Pages" run 43995990950 → **success**; GitHub Pages API `status: built` → https://karagemop466-tech.github.io/Poker3/ . PR #68 (another session) merged on top minutes later with its own verify/publish green, so the live site includes this work plus theirs.
 - **Open for the user:** trip-window dates (Nov 25–Dec 2, 2026) still need confirmation before any booking (Q01); foreign PRs #7/#27/#31 remain untouched; flagged items F01–F53 do not block anything.
+## Session arena/bd515425-poker3 — live re-verification of hotel terms and trip-window rows
+
+Branch: `arena/bd515425-poker3`, started from `88d32b1`. This session edits `scripts/data_hotels.py`,
+`scripts/data_source.py`, `site/data.json`, `tests/` and this section only; it does not restructure the canonical
+`site/` pages, whose renderers read `data.json`.
+
+**Why this session exists.** Prior sessions recorded (flag F40) that the build sandbox could not reach any venue host,
+so hotel terms were captured by a page reader one URL at a time and several cells stayed blank. This session has
+working outbound access from the agent's page reader and re-read the official hotel and schedule sources directly.
+The gap is a capability gap, not a research gap: the sources exist and were fetched.
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Re-read every trip-window Venetian schedule row against the live official page | done | arena/bd515425-poker3 | `site/data.json` (no value changed; agreement recorded) |
+| Close the Caesars Palace / Horseshoe resort-fee gap (F37) from an official Caesars page | done — range recorded, per-property figure still blank | arena/bd515425-poker3 | `scripts/data_hotels.py`, `scripts/data_source.py` |
+| Close the Clark County room-tax gap used for F39 with a government rate schedule | done — 13.38% confirmed for every reviewed Strip property | arena/bd515425-poker3 | `scripts/data_hotels.py`, `scripts/data_source.py` |
+| Record the poker-rate qualification conditions that change the hotel's true cost | done | arena/bd515425-poker3 | `scripts/data_hotels.py`, `site/data.json` |
+| Publish the above on the Flagged for review and Hotels pages | done | arena/bd515425-poker3 | `site/data.json` renderers |
+
+### Verification performed (session arena/bd515425-poker3, 2026-11-17)
+
+Official pages were read directly with the agent's page reader, which — unlike the build sandbox — does reach the venue
+hosts. `curl` from the shell still fails every venue host with `SSL_ERROR_SYSCALL`, so this is recorded as a
+page-reader read, not an automated fetch, and F40 was rewritten to say so.
+
+| Source read live | What was confirmed |
+|---|---|
+| `dse-nov-2026.html` (official series page) | All 20 published trip-window rows (2026-11-25 → 2026-12-02) matched on date, start time, event number, printed name, buy-in and guarantee: **20 of 20 agree** with `site/data.json`. Recorded in `research/reread_2026-11-17_full_window.json` and pinned by `tests/test_full_window_reread.py`. |
+| `suite-rates.html` | $119 / $209, $55 resort fee, single/double occupancy, code EPOKR25, and the six-hours-or-$300-entry rule per night — all unchanged. Two conditions the earlier build did not carry: the rate "cannot be combined with any other promotional rates", and rates are published only "out to a maximum of 150 days". Poker rewards usable "toward tournament buy-ins". |
+| `resort-fee.html` | $55 plus tax per night, payable on check-in. Unchanged. |
+| `hotel-terms-and-conditions.html` | 13.38% Clark County Room Tax, $20/day registered-guest parking, $150/night incidentals, 3 PM–11:59 PM check-in, 11 AM check-out, $100 early-checkout fee. Unchanged. |
+| Clark County Dept. of Business License, Appendix III | 13.38% for Bellagio, Caesars Palace, MGM Grand, Venetian/Palazzo and Wynn/Encore (Resort Hotel, Primary Gaming Corridor); 13.00% outside it. This is the government schedule the county itself publishes. |
+| `caesars.com/corporate/disclaimer` | Las Vegas room reservations carry "a daily resort fee between $45-$60 plus applicable tax", waived for Diamond/Seven Stars. No per-property figure exists: `/caesars-palace/resort-fees` and `/hotel-policies` both redirect to the property home page. |
+| `caesars.com/horseshoe-las-vegas/hotel` | Free 48-hour cancellation on direct bookings (special events excluded), 4 PM check-in, 11 AM check-out, $50/night incidental hold, fitness centre "part of the inclusion in the Daily Resort Fee". |
+| Bellagio, MGM Grand, ARIA, Wynn terms | Bellagio $55, MGM Grand $50, ARIA $55 resort fees; 72-hour cancellation at Bellagio/MGM/ARIA; Wynn $55 plus tax, 3 PM/12 PM, free self-parking for two vehicles. All unchanged. |
+| WPT World Championship **structures** PDF | Every event inside the trip window matched to its own section. **All print "Unlimited re-entry"**, so no WPT event is single-entry. Fee breakdowns reconcile for $600/$400/$800; the $1,100 PLO line ($975 + $85 + $45 = $1,105) does not. |
+
+### What changed, and what did not
+
+- **No tournament value was corrected.** The 20-row read agreed with every published value; the only event-data
+  changes are rule fields that were previously `not-verified` and now quote the official clause.
+- **Two hotel facts moved out of "unknown"**: the county tax rate is now sourced per property from the county, and
+  Horseshoe's cancellation/incidental/check-in terms are now verified.
+- **One hotel cell deliberately stayed blank**: the Caesars Palace and Horseshoe resort fee. An official range of
+  $45-$60 is not a per-property amount, and filling it with a midpoint would be invention.
+
+### New flags raised this session
+
+- **F54 (High)** — the $119 poker rate is conditional; failing the condition reprices the night, it cannot be combined
+  with other promotions, and it is only quoted 150 days out.
+- **F55 (Medium)** — the $1,100 PLO entry-fee breakdown sums to $1,105.
+- **F56 (High)** — two of the seven stay nights (Mon 30 Nov, Tue 1 Dec) have no $300+ single-entry event, so the poker
+  rate cannot be earned those nights; Q16 had claimed the plan counted $300+ entries against nights, which was not
+  true, and has been corrected.
+
+**Numbering after the rebase.** `main` advanced several times while this PR was open, reaching F53 (PRs #62, #63, #66,
+#55 and #54 each added flags). This session's three new flags were therefore renumbered twice and finally settled on
+**F54 (conditional poker rate), F55 ($1,100 PLO fee breakdown) and F56 (nights without a qualifying event)**. No other
+session's flag was renumbered, renamed or removed: main's F51-F53 were kept exactly as merged. The two rate-log
+observations `main` had already appended for the Venetian stay were kept alongside this session's.
+
+Two merge conflicts were resolved in this PR and are worth recording, because both could have silently lost data:
+`COORDINATION.md` (additive on both sides, so both sections were kept) and `scripts/data_source.py` (both sides added
+flags at the same point in the list, so main's blocks were kept and this session's were appended after them and then
+renumbered). `site/data.json` is generated, so it was regenerated from the resolved source rather than hand-merged.
+One intermediate rebase step committed an unresolved conflict marker in `scripts/data_source.py`; the syntax check
+caught it, it was resolved, and the final tree parses and passes all 89 tests.
+
+F37, F39 and F40 were rewritten rather than closed: the fee range, the missing Wynn room price and the sandbox
+limitation are all still real, but they are now described precisely. F12 was narrowed and F34 strengthened.
+
+### Verification run
+
+`scripts/verify_site.py` passes (341 events, 8 hotels, 14 routes, 43 sources, 44 flags, 8 plan days, 16 pages).
+`python3 -m unittest discover -s tests` — **56 tests pass**, including the new `test_full_window_reread.py` (5),
+`test_wpt_sheets.py` (7) and `test_rate_qualification.py` (4). `tests/canonical_smoke.py` renders all 16 pages.
+`node --check` passes on both scripts and `data.json` parses. `scripts/data_source.py` rebuilds `site/data.json`
+deterministically.
+
+One irregularity found in this session's own work, and fixed: the first version of F56 said "two of seven nights"
+and the first correction said "one night"; the test recomputed the seven nights (25–30 Nov, 1 Dec) and showed two,
+so the two-night statement is the published one. The test now asserts it, so the arithmetic cannot drift again.
