@@ -2299,7 +2299,6 @@ duplicates, and `main`'s F43 (Schedule/Caesars), F45 (Sources), F46 and F47 are 
 - The remaining 42 hotel-venue walking pairs still have no recorded route time (F32). All eight hotels do have a route
   to the Venetian, which is what the Venetian-based plan needs; the gap only bites if you stay at one property and
   play at another.
-
 ### Merge record — session `arena/6118f42d-poker3` (2026-11-17 UTC)
 
 - **PR:** [#78](https://github.com/karagemop466-tech/Poker3/pull/78) (`arena/6118f42d-poker3` → `main`), merged with
@@ -2319,6 +2318,7 @@ duplicates, and `main`'s F43 (Schedule/Caesars), F45 (Sources), F46 and F47 are 
 - **Environment note for whoever runs the tests next:** `tests/test_workflows.py` imports `yaml`, which the sandbox
   image does not provide. `pip install --break-system-packages pyyaml` makes the full suite (92 tests) pass locally.
   The GitHub runner image ships PyYAML, so CI is unaffected — `verify` passed on the PR head without any change.
+<<<<<<< HEAD
 
 
 ### The live record's first comparison was noise; the hash now tracks visible text
@@ -2340,3 +2340,40 @@ still raises the flag.
 value change must, two PDFs differing only in binary stream must agree, and `compare_check` must use the text hash it is
 given. The comparison also falls back to the old raw hash when a record predates the switch, so the first run after
 this change does not report 79 false changes.
+=======
+· 0 broken local links · every `F##` citation on every page resolves to a published flag.
+---
+
+
+---
+
+
+---
+
+
+---
+
+## Session `arena/688eb797-poker3` — final integration of the open PR queue, live official re-checks, publish
+
+Branch: `arena/688eb797-poker3`. The platform snapshot this session started from (`88d32b1`) carries a single
+commit whose patch is already present on `main` (confirmed with `git cherry`); the branch was rebased onto
+`origin/main` @ `19906c0` (PRs #60 + #61 merged), losing nothing.
+
+### Claim (recorded before any file edit, 2026-11-17)
+
+| Task | Status | Owner session | Files in scope | Notes |
+|---|---|---|---|---|
+| I1 Assess every open PR (#7, #27, #31, #39, #50, #54, #55, #56) against current `main` | in progress | arena/688eb797-poker3 | whole repo (integration-owner scope, shared outputs) | Chronological review; stale rebuilds are not merged wholesale; each PR's session records are preserved on `main`. |
+| I2 Preserve the session records of unmerged PRs in this file and close those PRs with the reason recorded | pending | arena/688eb797-poker3 | `COORDINATION.md` | A superseded rebuild must not replace the verified canonical dashboard. |
+| I3 Semantic integration of still-valid verified facts from #50/#54/#55/#56 that `main` lacks, with flag renumbering | pending | arena/688eb797-poker3 | `site/**`, `scripts/**`, `tests/**`, `.github/workflows/**` | Every imported fact re-checked against the official source or the PR's dated official capture; flag/question/suggestion ids kept unique. |
+| I4 Live re-check of the key official pages from this sandbox (which CAN reach venue hosts, unlike every prior session) | in progress | arena/688eb797-poker3 | verification only; writes go through the data modules | Establishes an independent 2026-11-17 read of the sources behind the published rows. |
+| I5 Scheduled-job first-run trigger — closed; superseded by `main` | closed | arena/688eb797-poker3 | none | The duplicate-`push:`-key YAML defect this session diagnosed independently (0-second run failures, no job started) was fixed forward by `arena/ed1d2489-poker3` with `tests/test_workflows.py`; this session's equivalent repair is dropped as redundant and its own capture of the diagnosis is kept in the session log. |
+| I6 Full verification suite, PR to `main`, merge, Pages confirmation, record results here | pending | arena/688eb797-poker3 | whole repo | No blocking wait for review; flagged items do not block merge. |
+
+**Concurrency note.** PRs #50, #54, #55 and #56 are complete submissions (bodies, verification records and
+result sections written at 01:07–01:08 UTC). This session treats their heads as final and will re-read each
+head immediately before merging. If any of those branches moves after this claim, this session will re-fetch
+and re-assess before integrating.
+
+**Commit discipline:** small frequent commits; `git pull --rebase origin arena/688eb797-poker3` before every push.
+>>>>>>> 816cff9 (COORDINATION: claim final-integration scope for session arena/688eb797-poker3)
