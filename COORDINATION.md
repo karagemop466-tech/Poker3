@@ -1427,3 +1427,76 @@ root-level legacy HTML pages, `site/poker3/**`. They are prior-session artefacts
 
 ### Work log
 
+
+### Work log (session arena/b573f10a-poker3, 2026-11-17)
+
+**C1 — Line-by-line re-verification of the canonical tournament rows.**
+
+- Re-fetched the official DeepStack Extravaganza IV schedule page (4 chunks) and transcribed it verbatim to
+  `raw/dse_nov_2026_schedule_html_2026-11-17.md` (94 rows).
+- Wrote `scripts/verify_live_official.py`, which compares the canonical rows against **both** official captures — the
+  HTML schedule page and the schedule PDF — on date, time, event number, event name, structure-sheet link, printed
+  buy-in and printed guarantee. It exits non-zero on any disagreement, so CI fails loudly.
+- Result: all 94 rows agree on every field. Eleven canonical names were truncated relative to the official page
+  ("Must be 50+ years of age" was missing "to participate"; "Event #39/#47" were missing the space the page prints)
+  and were corrected in `scripts/data_venetian.py`.
+- `raw/official_excerpts_2026-11-17.md` records the verbatim official text read today for the Venetian poker-suite
+  rate page and the Wynn daily tournament poster. The verifier asserts the canonical values against them:
+  119/209, $55, six hours, $300, 2 a.m., code EPOKR25, and the four recurring Wynn rows
+  ($200/$10,000/12:00 PM Mon-Thu; $240 rebuy/$40,000/12:00 PM Fri; $200/$25,000/12:00 PM Sat-Sun;
+  $160/$10,000/6:00 PM nightly). All match.
+- `lastChecked` is now per row rather than per build: the DSE rows carry 2026-11-17, everything else keeps
+  2026-11-16. Source check-dates were corrected the same way — only the three pages re-read today
+  (`vl-dse-nov`, `vl-suite-rates`, `wynn-daily-poster`) carry 2026-11-17; the other 24 keep 2026-11-16.
+  Previously all 27 sources claimed 2026-11-17 because the date came from the build constant.
+
+**C2 — Dated official quotes for the trip window (and the finding that none exists).**
+
+- The official booking engine was opened five times on 2026-11-17.
+- It re-priced the **same** November 17-19 stay at **$1,015.89** ($621.75 + $55, $164.25 + $55, $119.89 tax),
+  against **$1,245.48** recorded on 2026-11-16. The first night fell from $824.25 to $621.75.
+- It quoted **November 20-22** at **$2,504.00** for a 750 sq ft Newly Remodeled Luxury Two Queen
+  ($899.25 + $55, $1,199.25 + $55, $295.50 tax).
+- All three totals reconcile exactly with `(rate + $55 resort fee) x 1.1338`, which confirms from three independent
+  official quotes that the 13.38% Clark County room tax applies to the rate and to the resort fee together.
+- **Arithmetic error found and fixed in the existing data.** The stored 2026-11-16 quote carried derived nightly
+  figures of $996.91 and $248.61 (total $1,245.52) with a note blaming a 4-cent venue rounding. The correct figures
+  are $996.89 and $248.59, which reconcile **exactly** to the printed $1,245.48. The note was rewritten.
+- Four stay windows inside the trip window returned no suite and no price, and each is published with its URL so a
+  reader can reproduce it: Nov 25-Dec 2 (all cells "$XXX"), Nov 25-27 (page did not finish loading),
+  Nov 27-28 (calendar but no suite), Nov 30-Dec 1 (all cells "$XXX").
+- Added one official booking deep link per trip night (seven nights plus the whole stay) for The Venetian and The
+  Palazzo, closing the "live hotel rate lookup with official booking links per date" item. No date-parameterised
+  link was verified for Wynn, Bellagio, MGM, Caesars, Horseshoe or ARIA, so none is published for them.
+
+**New irregularity: the booking calendar is not a price list (F31).** The same official calendar was read twice on
+2026-11-17 with two different stay windows open. November 16 printed $555 against $854; November 22 printed $165
+against $230; November 27 printed $905 against $1,814. The cell tracks the cheapest suite the engine can offer for
+that query, not a nightly rate. No calendar cell on the site has ever been used in a total, and the comparison is now
+published on the hotels page. F28 was raised from Medium to High and rewritten to record this.
+
+**Two more official-source irregularities (F29, F30).** The schedule PDF and the schedule page render 83 of 94 event
+names differently, because the PDF puts the guarantee in its own column while the page inlines "$XXK GTD" into the
+name; the site follows the page, which is what every row links to. And the PDF prints decorative sponsor art instead
+of a date on 20 rows ("@PokerAtlas* TOUR" x6, "LIPS CHAMPIONSHIP CHAMPIES CHAMPIES CHAMPIES" x6,
+"LIPS FRIDAY, DECEMBER 11" x5, "@PokerAtlas PRO" x2, "@PokerAtlas* PRO" x1) — those dates come from the page and the
+two were cross-checked row by row.
+
+**Earlier-session request honoured.** Session `arena/4fa30832-poker3` asked the integration owner to consider a flag
+for the PDF's decorative DATE cells and the "(IDAY)" typo. The decorative cells are now F30 with the exact counts.
+
+**C4 — Site changes.** New sections on `site/hotels.html`: all dated official checkout totals as cards (newest first),
+per-night official booking links, a table of the stay windows that returned no price, and the two-reading calendar
+comparison. `index.html`, the F15/Q01/Q05 text and the README were corrected where they still said that no property
+publishes a dated total. Two suggestions added: S13 (re-quote the trip window every morning) and S14 (never treat a
+calendar cell as a price).
+
+**Verification before merge.** `verify_live_official.py` (94 DSE rows against two official captures, hotel values
+against the official excerpts, quote arithmetic), `audit_data.py` (37 structure sheets against the read log),
+`verify_site.py` (341 events, 8 hotels, 14 routes, 27 sources, 31 flags, 8 plan days, 15 pages, all links resolve),
+`canonical_smoke.py` (10 main pages and 5 detail pages render), `smoke.py` (the Poker3 companion), `node --check` on
+both client scripts, and a reproducible `data_source.py` build. All pass.
+
+### Result (session arena/b573f10a-poker3)
+
+Recorded after the merge in the section below.
