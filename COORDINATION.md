@@ -3789,3 +3789,16 @@ Branch: `arena/d3a4c0f8-poker3` (platform-bound; the `session-<id>/<task>` namin
 - **Not complete:** the scheduled `Scheduled source re-check and daily room feed` run was still pending on `927b5aa`. It is a separate job and was not blocked by this merge.
 - **Carried forward:** Resorts World (F80) and Planet Hollywood (F79) closures are press reports and remain unverified. Mandalay Bay (F85) has no printed schedule. The walk captures (F84) are Google Maps measurements and not official.
 
+
+| T3 Integration, PR, merge, Pages check | in progress | arena/5b8ce14d-poker3 | whole repo | PR and merge result recorded below |
+
+### Result (session `arena/7529044d-poker3`, 2026-11-17 UTC)
+
+- **PR:** [#114](https://github.com/karagemop466-tech/Poker3/pull/114) (`arena/7529044d-poker3` → `main`), **merged** with `gh pr merge 114 --merge` at 2026-11-17T22:32:09Z; merge commit `18d5d8d3d87b568810129643c9aabd3b53f43885`.
+- **Checks on the PR head:** `verify` pass (run 44190886635), `transcription` pass (run 44190886838).
+- **CI on the merge commit `18d5d8d`:** "Verify static research site" → success (run 44190999612); "Official table transcription check" → success (run 44190999594); "Publish the canonical Vegas Poker Planner to GitHub Pages" → success (run 44190999839); legacy "pages build and deployment" → success (run 44190999036).
+- **GitHub Pages:** API reported `status: built` immediately after the merge runs; the live site https://karagemop466-tech.github.io/Poker3/ was fetched directly this session — the executive summary (snapshot 2026-11-17, the $4,010.55 dated quote, the 23–30 Nov trip) and the flag register both serve current content, and `site/sheets.html` on `main` carries the new `fl-F78` register row. Later merges by other sessions re-triggered the deploy (status `building` at the time of writing), which is the normal cadence on this repository.
+- **Post-merge confirmation of the flag namespace:** `main` carries **F78** (this session, Venetian booking engine) and does **not** carry F77; open PR #108 still holds F77 for its WPT-structures finding, so either order of merge stays collision-free. `main`'s flag register after later session merges: 75 flags, all unique.
+- **Content merged:** second dated trip-window quote ($3,823.46 palazzo read) in the rate log, flag F78, the two-read test update, the regenerated `site/sheets.html` register, and this session's claim and work log.
+- **Nothing else touched:** `docs/`, `verified/`, `planner/`, `single-entry/`, `pages/`, `handoff/`, `raw/`, root legacy pages and `site/poker3/**` remain as prior sessions left them.
+- **Open items this session did not close (all already flagged, none blocking):** F31 (no written per-player entry cap), F17 (no verified 8:00 AM start), F21/F32 (walking times are Maps estimates; pair coverage incomplete), F66 (phone-only $119 poker rate), F15/F36/F47/F69 (booking-engine pricing behaviour — now also F78), and finish-time estimates under the disclosed six-hour session assumption.
