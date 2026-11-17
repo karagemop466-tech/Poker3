@@ -8,6 +8,11 @@ on:
   push:
     branches: [main]
     paths:
+      # A change to the consolidated re-check job gives it a real first run
+      # through the normal push path, so site/checks.json exists immediately
+      # instead of waiting for the cron. The Actions token used by the
+      # integration session cannot dispatch a workflow (403).
+      - '.github/workflows/checks.yml'
       - 'site/poker3/data/research.json'
       - 'scripts/check_sources_poker3.py'
       - '.github/workflows/source-monitor.yml'
