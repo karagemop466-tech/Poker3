@@ -130,11 +130,14 @@ class RouteMatrixClaims(unittest.TestCase):
         for r in DATA["routes"]:
             self.assertTrue(re.fullmatch(r"\d{4}-\d{2}-\d{2}", r.get("lastChecked") or ""),
                             f"route {r['hotel']}->{r['venue']} has no last checked date")
-        # The coverage note and F32 both date the two passes, so the split has to be what the rows say.
+        # Dates must be real capture dates, and the coverage note's own split has to be the data's split.
         from collections import Counter
         by = Counter(r["lastChecked"] for r in DATA["routes"])
-        self.assertEqual(by["2026-11-17"], 44, "44 rows must carry the 2026-11-17 pass date")
-        self.assertEqual(by["2026-11-16"], 12, "12 base-pass rows must still carry the 2026-11-16 date")
+        self.assertTrue(set(by) <= {"2026-11-16", "2026-11-17"},
+                        f"a route row carries a measurement date outside the two capture passes: {dict(by)}")
+        item = next(i for i in COVERAGE["items"] if i["id"] == "C14")
+        stated = {d: int(n) for n, d in re.findall(r"(\d+) rows are dated (\d{4}-\d{2}-\d{2})", item["note"])}
+        self.assertEqual(stated, dict(by), "C14's dated-row split is not the split on the rows")
 
 
 class VenuePageMarks(unittest.TestCase):
@@ -165,7 +168,7 @@ class VerificationFlags(unittest.TestCase):
                       "bellagio.mgmresorts.com", "mgmgrand.mgmresorts.com", "aria.mgmresorts.com")
 
     def test_session_flags_exist_and_cite_official_property_hosts(self):
-        for fid in ("F84", "F85"):
+        for fid in ("F86", "F87"):
             flag = next((f for f in DATA["flags"] if f["id"] == fid), None)
             self.assertIsNotNone(flag, f"{fid} is missing from the flag register")
             self.assertTrue(flag["source"].startswith("https://"), f"{fid} has no https source")
@@ -175,8 +178,8 @@ class VerificationFlags(unittest.TestCase):
     def test_flag_ids_are_unique_and_this_sessions_are_at_the_end(self):
         ids = [f["id"] for f in DATA["flags"]]
         self.assertEqual(len(ids), len(set(ids)), "duplicate flag ids in the register")
-        self.assertIn("F84", ids)
-        self.assertIn("F85", ids)
+        self.assertIn("F86", ids)
+        self.assertIn("F87", ids)
 
     def test_calculator_warns_against_a_fee_inclusive_figure(self):
         self.assertIn("Do not paste a booking-calendar figure", CALCULATOR)
