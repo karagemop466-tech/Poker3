@@ -229,9 +229,17 @@ class FreshnessAndBookingTests(unittest.TestCase):
         nightly = round((m["roomRatePerNight"] + m["resortFeePerNight"]) * (1 + m["taxPct"] / 100), 2)
         self.assertAlmostEqual(m["trueCostPerNight"], nightly, places=2)
         self.assertAlmostEqual(m["trueCostPerNight"], 197.28, places=2)
+        # The tournament total is the exact sum of the chosen buy-ins. Seven primaries
+        # ($200, $200, $400, $300, $600, $600, $300) sum to $2,600; their mean is
+        # $371.428571..., so entries x the rounded mean would print a phantom cent.
+        entry_basis = m.get("primaryBuyInSum")
+        if not isinstance(entry_basis, (int, float)):
+            entry_basis = m["entries"] * m["buyIn"]
+        self.assertAlmostEqual(m["tournamentTotal"], entry_basis, places=2)
+        self.assertEqual(m["tournamentTotal"], 2600.0)
         self.assertAlmostEqual(
             m["tripTotal"],
-            round(m["entries"] * m["buyIn"] + m["nights"] * m["trueCostPerNight"] + m["parkingTotal"], 2),
+            round(entry_basis + m["nights"] * m["trueCostPerNight"] + m["parkingTotal"], 2),
             places=2)
         # The published starting rate is a floor, so the model must say so.
         self.assertIn("floor", m["basis"].lower())

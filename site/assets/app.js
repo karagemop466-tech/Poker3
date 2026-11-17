@@ -784,14 +784,14 @@ function renderSources() {
         <div class="stat-caption">HTTP status recorded for each</div></div>
       <div class="stat"><div class="stat-label">Content changed</div><div class="stat-value">${sum.changed || 0}</div>
         <div class="stat-caption">Hash differs from the previous run</div></div>
-      <div class="stat"><div class="stat-label">Unreachable</div><div class="stat-value">${sum.failed || 0}</div>
-        <div class="stat-caption">No value is changed by a failure</div></div>
+      <div class="stat"><div class="stat-label">Blocked or unreachable</div><div class="stat-value">${(sum.blocked || 0) + (sum.unavailable || 0)}</div>
+        <div class="stat-caption">${sum.blocked ? sum.blocked + ' blocked by bot protection, ' : ''}${sum.unavailable || 0} unreachable; no value is changed by either</div></div>
     </div>`;
     const body = rows.map((u) => `<tr>
       <td class="event-name">${esc(u.url)}<span class="muted">${esc(u.label || '')}</span></td>
       <td>${esc(u.status || '')}</td>
       <td>${esc(u.checked || '')}</td>
-      <td>${u.changed ? '<span class="badge bad">Content changed · manual review</span>' : u.unavailable ? '<span class="badge warn">Unavailable · not verified</span>' : u.basisReset ? '<span class="badge info">Baseline re-seeded (text comparison began)</span>' : u.baseline ? '<span class="badge info">Baseline recorded</span>' : u.rawOnly ? '<span class="badge info">Raw body differs, visible text identical · noise</span>' : '<span class="badge ok">Unchanged</span>'}</td>
+      <td>${u.changed ? '<span class="badge bad">Content changed · manual review</span>' : (u.botBlocked || u.outcome === 'blocked' || u.outcome === 'redirected') ? '<span class="badge info">Blocked for the robot, not missing · read by hand</span>' : u.unavailable ? '<span class="badge warn">Unavailable · not verified</span>' : u.basisReset ? '<span class="badge info">Baseline re-seeded (text comparison began)</span>' : u.baseline ? '<span class="badge info">Baseline recorded</span>' : u.rawOnly ? '<span class="badge info">Raw body differs, visible text identical · noise</span>' : '<span class="badge ok">Unchanged</span>'}</td>
       <td>${u.changed ? esc(u.previousTextHash ? u.previousTextHash.slice(0, 12) + ' → ' : '') + esc((u.textHash || '').slice(0, 12)) : (u.textHash || u.hash || '').slice(0, 12)}</td>
     </tr>`).join('');
     auto.innerHTML = summaryHtml + `<div class="table-wrap"><table><thead><tr><th>Official URL</th><th>Status</th><th>Checked</th>

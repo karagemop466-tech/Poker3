@@ -29,7 +29,7 @@ def true_nightly(rate, resort_fee, tax_pct):
 
 
 def trip_cost(entries, buy_in, nights, rate, resort_fee, tax_pct,
-              parking_per_night=0, extra_nights_at=None):
+              parking_per_night=0, extra_nights_at=None, buy_in_exact=None):
     """Return the published-parts trip total with its breakdown.
 
     ``extra_nights_at`` lets a caller price the same stay at a second published
@@ -42,7 +42,15 @@ def trip_cost(entries, buy_in, nights, rate, resort_fee, tax_pct,
     nights = int(nights or 0)
     parking = float(parking_per_night or 0)
 
-    tournament_total = round(entries * buy_in, 2)
+    # The seven chosen primaries are $200, $200, $400, $300, $600, $600 and $300, which
+    # sum to exactly $2,600. Their mean is $371.428571..., so multiplying the rounded
+    # mean by seven prints a phantom cent ($2,600.01). When the caller can supply the
+    # exact sum, use it, and publish the integer average beside it so a reader checking
+    # 7 x $371.43 is not left thinking the page made an arithmetic error.
+    if buy_in_exact not in (None, ""):
+        tournament_total = round(float(buy_in_exact), 2)
+    else:
+        tournament_total = round(entries * buy_in, 2)
     nightly = true_nightly(rate, resort_fee, tax_pct)
     if nightly is None:
         lodging_total = None
@@ -104,11 +112,17 @@ VERIFIED_INPUTS = {
 }
 
 
-def published_model(entries, buy_in, nights):
+def published_model(entries, buy_in, nights, buy_in_exact=None):
     """The model the dashboard publishes, built only from VERIFIED_INPUTS."""
     v = VERIFIED_INPUTS
     low = trip_cost(entries, buy_in, nights, v["startingRateLow"], v["resortFeePerNight"],
-                    v["taxPct"], v["parkingPerNight"], extra_nights_at=v["startingRateHigh"])
+                    v["taxPct"], v["parkingPerNight"], extra_nights_at=v["startingRateHigh"],
+                    buy_in_exact=buy_in_exact)
+    if buy_in_exact not in (None, ""):
+        low["primaryBuyInSum"] = round(float(buy_in_exact), 2)
+        low["buyInNote"] = ("The published average is the exact mean of the chosen primaries, rounded to the cent "
+                            "(sum $2,600.00 / 7 = $371.428571...). The tournament total uses the exact sum, so "
+                            "7 x $371.43 lists as $2,600.00 rather than as a phantom $2,600.01.")
     low.update({
         "basis": "Published starting rate (a floor, not a quote)",
         "hotel": v["hotel"],

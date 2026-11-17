@@ -3570,3 +3570,45 @@ Branch: `arena/1bbee97f-poker3`. Platform-bound (the `session-<id>/<task>` namin
 - Pages: publish run [44192659523](https://github.com/karagemop466-tech/Poker3/actions/runs/44192659523) for the merge commit completed `success`; the Pages API reports `status: built`, source `main` `/`. Live site: https://karagemop466-tech.github.io/Poker3/ (the sandbox cannot reach github.io directly, so the deployment is confirmed via the Actions run and the Pages API, as in prior sessions).
 - Checks on the merge commit: "Verify static research site" `success`, "Official table transcription check" `success`; "Scheduled source re-check and daily room feed" was still running at record time (it is the scheduled monitor that writes `site/checks.json`; it records observations only and never rewrites values).
 - Published state of this session: flags F82 and F83 on the register (78 items), the 20-URL recheck record in `research/recheck_2026-11-17_arena-1bbee97f.json`, and no value changed by a read anywhere in the dashboard.
+
+
+### Defect fixes after PR #120 (session `arena/58e42dbd-poker3`, 2026-11-17)
+
+Both defects named as open after PR #120 are now fixed, each with a regression test.
+
+**1. Calculator "Nights"/"Entries" columns printed money, not counts.**
+`site/calculator.html` rendered `nights × true nightly` and `entries × buy-in` inside columns
+headed "Nights" and "Entries". A reader scanning the like-for-like table saw dollars where a
+quantity belonged. Each cell now leads with the count ("7 nights", "7 entries") and shows the
+subtotal only as a muted annotation beside it. Guarded by
+`tests/test_calculator_page.py::test_nights_and_entries_columns_print_counts_not_money`,
+which asserts both the new cell text and the absence of the old templates.
+
+**2. A phantom cent in the tournament total.**
+The seven recommended primaries are $200, $200, $400, $300, $600, $600 and $300 — exactly $2,600.
+Their mean is $371.428571..., so the published model multiplied *the rounded mean* by seven and printed
+**$2,600.01**, moving `tripTotal` from $4,120.96 to $4,120.97 and the dated quote's all-in from $6,750.55
+to $6,750.56. Fixed at the source: `scripts/trip_cost.py` gained `buy_in_exact`, which publishes
+`primaryBuyInSum` and uses the exact sum for `tournamentTotal`; the average stays published (rounded) with a
+`buyInNote` explaining the difference; the calculator page reads `model.primaryBuyInSum`; and
+`scripts/verify_site.py` now checks the identity against the exact sum when present. Guarded by
+`test_entry_total_uses_the_exact_sum_not_a_rounded_mean` plus the existing
+`test_trip_cost_model_is_entries_buyin_plus_nights_true_cost`, which caught the inconsistency when the
+first attempt fixed only half of it.
+
+**3. Bot blocks are no longer published as "failures".**
+`site/checks.json` summarised 17 runner-blocked URLs as `failed: 17`. They are not dead: PR #118 re-read all
+17 by hand and corroborated every published value behind them. `scripts/check_sources.py` now classifies each
+request (`fetched` / `blocked` / `redirected` / `unreachable` / `error`), sets `botBlocked` for the two
+bot-protecting hosts, and publishes `blocked` and `unavailable` separately, keeping `failed` as the legacy
+alias equal to `unavailable` so no existing reader silently changes meaning. The Sources page gained a
+"Blocked for the robot, not missing · read by hand" badge, tested to appear before the "Unavailable" badge so
+a block can never fall through to the worse label. The current record reconciles: **98 URLs = 81 fetched +
+7 blocked + 10 unreachable**. Guarded by the new `tests/test_checks_labelling.py` (7 tests).
+
+**Verification after all three fixes:** `verify_site.py` passed · `audit_951cd431.py` 0 failures/0 warnings ·
+`audit_data.py`, `verify_live_official.py`, `verify_sheets.py` pass · **139 unit tests OK** ·
+`canonical_smoke.py` 11 main + 5 detail pages · `node --check` clean on `app.js` and the calculator's inline
+script · the calculator's row template was executed under a DOM shim and prints
+"7 nights = $1,380.97" / "7 entries = $2,600.00" for the Venetian rows and leaves the subtotal blank where a
+rate is unpublished.

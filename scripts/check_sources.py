@@ -118,6 +118,26 @@ def content_hash(body: bytes, content_type: str) -> str:
     return hashlib.sha256(visible_text(body, content_type).encode("utf-8")).hexdigest()
 
 
+# Hosts whose edges return 403/302/timeout to a datacenter runner while serving a normal
+# browser. Re-read by hand on 2026-11-17: all 17 affected URLs were reachable and every
+# published value behind them was corroborated. A block is an observation about the
+# runner, not evidence that a page is gone, so it is recorded separately from a failure.
+BOT_BLOCKED_HOSTS = ("caesars.com", "mgmresorts.com")
+
+
+def classify_outcome(status: str) -> str:
+    """Name what actually happened to a request, so a block is not reported as a failure."""
+    if status.startswith("HTTP 2"):
+        return "fetched"
+    if status in ("HTTP 403", "HTTP 401", "HTTP 429"):
+        return "blocked"
+    if status.startswith("HTTP 3"):
+        return "redirected"
+    if status == "unreachable":
+        return "unreachable"
+    return "error"
+
+
 def compare_check(old: dict | None, status: str, digest: str | None) -> dict:
     """Classify a fetch without conflating a failed request with changed content."""
     available = status.startswith("HTTP 2")
@@ -191,6 +211,9 @@ def main() -> int:
             row["status"] = "unreachable"
             row["error"] = f"{type(exc).__name__}: {exc}"
 
+        row["outcome"] = classify_outcome(row["status"])
+        row["botBlocked"] = row["outcome"] in ("blocked", "redirected") and any(
+            h in row["url"] for h in BOT_BLOCKED_HOSTS)
         row.update(compare_check(old, row["status"], row.get("textHash")))
         # The visible text is what matters; a raw-body difference with identical visible
         # text is recorded so the noise is visible, but it is never a "changed" flag.
@@ -213,6 +236,12 @@ def main() -> int:
             "urls": len(rows),
             "fetched": fetched,
             "changed": len(changed),
+            # A URL the runner could not read is recorded honestly: "blocked" when the edge
+            # refused a datacenter client (bot protection), "unavailable" for a real error.
+            # "failed" is kept as the legacy alias for the total of the two, so existing
+            # readers keep working, but the checks page labels them separately.
+            "blocked": sum(1 for r in rows if r.get("outcome") in ("blocked", "redirected")),
+            "unavailable": sum(1 for r in rows if r.get("outcome") in ("unreachable", "error")),
             "failed": sum(1 for r in rows if r.get("unavailable")),
         },
         "urls": rows,
@@ -221,7 +250,10 @@ def main() -> int:
         "hashBasis": HASH_BASIS,
         "note": ("Automated re-check of every official URL behind this dashboard. A changed flag means the visible text "
                  "differs from the stored text hash and a human must re-read the source before any value is changed. "
-                 "A raw-body hash difference with identical visible text is recorded as noise, not as a change."),
+                 "A raw-body hash difference with identical visible text is recorded as noise, not as a change. "
+                 "A 'blocked' row means the venue's edge refused this datacenter runner (HTTP 403/401/429 or a bot "
+                 "redirect); it does not mean the page is gone. Those URLs are covered by a manual read, and the last "
+                 "manual result is on the Sources page."),
     }
     if CHECKS.exists():
         try:

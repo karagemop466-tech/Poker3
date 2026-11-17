@@ -193,7 +193,12 @@
       const entries = model.entries || 8;
       const buyIn = model.buyIn || 350;
       const nights = model.nights || 7;
-      const tournament = entries * buyIn;
+      // Use the published exact sum of the chosen buy-ins when it is available. The mean
+      // of $2,600 across 7 entries is $371.428571..., so entries x the rounded mean would
+      // print $2,600.01 and look like an arithmetic error on a page about avoiding them.
+      const tournament = (typeof model.primaryBuyInSum === 'number')
+        ? model.primaryBuyInSum
+        : entries * buyIn;
       const rows = [];
       const money = (n) => (typeof n === 'number' && isFinite(n)) ? n.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) : '—';
       rows.push({ hotel: 'The Venetian / The Palazzo — published starting rate (low)', rate: 119, fee: 55, tax: 13.38,
@@ -219,12 +224,15 @@
           '<td>' + money(r.fee) + '</td>' +
           '<td>' + (typeof taxPct === 'number' ? taxPct + '%' : '<span class="muted">Not published</span>') + '</td>' +
           '<td>' + (nightly ? money(nightly) : '<span class="muted">Blank</span>') + '</td>' +
-          '<td>' + (lodging ? money(lodging) : '<span class="muted">Blank</span>') + '</td>' +
-          '<td>' + money(tournament) + '</td>' +
+          '<td>' + nights + ' nights' +
+          '<span class="muted">' + (lodging ? ' = ' + money(lodging) : '; nightly blank, so no subtotal') + '</span></td>' +
+          '<td>' + entries + ' entries' +
+          '<span class="muted"> = ' + money(tournament) + '</span></td>' +
           '<td>' + (total ? money(total) : '<span class="muted">Blank</span>') + '</td>' +
           '<td><a href="' + r.sources + '" target="_blank" rel="noopener">Official</a></td></tr>';
       }).join('');
-      note.textContent = 'Entry total is ' + entries + ' entries × ' + money(buyIn) + ' published average = ' + money(tournament) +
+      note.textContent = 'Entry total is the exact sum of the ' + entries + ' chosen buy-ins (' + money(tournament) +
+        '), whose mean is ' + money(buyIn) + '; the average is shown rounded, the total is not' +
         '. A row is left blank rather than estimated when the property does not publish both a room rate and a tax rate. ' +
         'Both Venetian rows are published starting rates, not quotes. The official booking engine quoted a dated checkout total for 23-30 Nov 2026 on 2026-11-17 ' +
         '(see the hotels page and tripCostModel.liveQuote in data.json).';

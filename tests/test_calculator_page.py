@@ -29,6 +29,36 @@ class CalculatorPageTests(unittest.TestCase):
         self.assertNotIn("verified single-entry entries", PAGE)
         self.assertEqual(sum(event.get("entryType") == "single-entry-confirmed" for event in DATA["events"]), 0)
 
+    def test_nights_and_entries_columns_print_counts_not_money(self):
+        """A 'Nights' cell must say a number of nights, an 'Entries' cell a number of entries.
+
+        Regression: both columns used to render a dollar subtotal (nights x true nightly,
+        entries x buy-in) under a header that names a count, so a reader scanning the
+        like-for-like table saw money where a quantity belonged.
+        """
+        body = PAGE[PAGE.index("function buildCompare"):]
+        cells = re.findall(r"'<td>' \+ ([^+]+?) \+", body)
+        self.assertIn("nights + ' nights'", body)
+        self.assertIn("entries + ' entries'", body)
+        # The raw subtotals must still be shown, but only as a muted annotation.
+        self.assertNotIn("'<td>' + (lodging ? money(lodging)", body)
+        self.assertNotIn("'<td>' + money(tournament)", body)
+
+    def test_entry_total_uses_the_exact_sum_not_a_rounded_mean(self):
+        """Seven buy-ins sum to $2,600; their mean is $371.428571...
+
+        Multiplying the published (rounded) mean by seven prints $2,600.01, a phantom cent
+        on a page whose whole point is arithmetic a reader can check.
+        """
+        model = DATA["tripCostModel"]
+        self.assertAlmostEqual(model["buyIn"], 371.43, places=2)
+        self.assertEqual(model["tournamentTotal"], 2600.0)
+        self.assertEqual(model["primaryBuyInSum"], 2600.0)
+        self.assertAlmostEqual(model["entries"] * model["buyIn"], 2600.01, places=2)
+        # both the page and the generator must consult the exact sum
+        self.assertIn("model.primaryBuyInSum", PAGE)
+        self.assertIn("buy_in_exact", (ROOT / "scripts" / "trip_cost.py").read_text(encoding="utf-8"))
+
     def test_parking_is_itemized_outside_the_core_formula(self):
         self.assertIn("entries × average buy-in + nights × true hotel cost", PAGE)
         self.assertIn("const coreEstimate = tournament + lodging;", PAGE)

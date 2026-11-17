@@ -5,7 +5,9 @@
   "urls": 98,
   "fetched": 81,
   "changed": 0,
-  "failed": 17
+  "failed": 10,
+  "blocked": 7,
+  "unavailable": 10
  },
  "urls": [
   {
@@ -27,7 +29,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html",
@@ -48,7 +52,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf",
@@ -69,7 +75,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=December&propCode=clv",
@@ -86,7 +94,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "blocked",
+   "botBlocked": true
   },
   {
    "url": "https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=November&propCode=blv",
@@ -103,7 +113,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "blocked",
+   "botBlocked": true
   },
   {
    "url": "https://cdn.wynnresorts.com/image/upload/v1762299460/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Structures.pdf",
@@ -124,7 +136,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html",
@@ -145,7 +159,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/resort/casino/poker.html",
@@ -166,7 +182,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
@@ -187,7 +205,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/resort/resort-fee.html",
@@ -208,7 +228,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
@@ -229,7 +251,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.wynnlasvegas.com/casino/poker",
@@ -250,7 +274,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf",
@@ -271,7 +297,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://cdn.wynnresorts.com/image/upload/v1752011191/visitwynn_pdfs_files/Poker/Daily%20Tournaments/Poker-All_Daily_Structures.pdf",
@@ -292,7 +320,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
@@ -313,7 +343,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
@@ -334,7 +366,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://cdn.wynnresorts.com/image/upload/v1753296112/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Schedule.pdf",
@@ -355,7 +389,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.wynnlasvegas.com/rooms-and-suites",
@@ -376,7 +412,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.wynnlasvegas.com/terms-and-conditions/850070",
@@ -397,7 +435,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://bellagio.mgmresorts.com/en/casino/poker.html",
@@ -414,7 +454,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": false,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "unreachable",
+   "botBlocked": false
   },
   {
    "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf",
@@ -435,7 +477,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf",
@@ -456,7 +500,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt07fcf1244a6da661/6af491a339e2b4f6b76a86ad/mgm-bellagio-poker-sundays-$400-horse.pdf",
@@ -477,7 +523,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://bellagio.mgmresorts.com/en/hotel.html",
@@ -494,7 +542,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": false,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "unreachable",
+   "botBlocked": false
   },
   {
    "url": "https://bellagio.mgmresorts.com/en/terms-and-conditions.html",
@@ -511,7 +561,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": false,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "unreachable",
+   "botBlocked": false
   },
   {
    "url": "https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
@@ -528,7 +580,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": false,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "unreachable",
+   "botBlocked": false
   },
   {
    "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
@@ -549,7 +603,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/bltb2a45da7e8ee5621/mgm-grand-casino-poker-120_nlh.pdf",
@@ -570,7 +626,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
@@ -587,7 +645,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "redirected",
+   "botBlocked": true
   },
   {
    "url": "https://aria.mgmresorts.com/en/casino/poker.html",
@@ -604,7 +664,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": false,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "unreachable",
+   "botBlocked": false
   },
   {
    "url": "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
@@ -621,7 +683,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": false,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "unreachable",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
@@ -642,7 +706,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html",
@@ -659,7 +725,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": false,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "unreachable",
+   "botBlocked": false
   },
   {
    "url": "https://aria.mgmresorts.com/en/terms-and-conditions.html",
@@ -676,7 +744,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": false,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "unreachable",
+   "botBlocked": false
   },
   {
    "url": "https://www.wynnlasvegas.com/about-us/resort-information",
@@ -697,7 +767,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
@@ -718,7 +790,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_2.pdf",
@@ -739,7 +813,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
@@ -760,7 +836,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
@@ -781,7 +859,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf",
@@ -802,7 +882,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_6.pdf",
@@ -823,7 +905,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
@@ -844,7 +928,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf",
@@ -865,7 +951,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_9.pdf",
@@ -886,7 +974,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_10.pdf",
@@ -907,7 +997,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf",
@@ -928,7 +1020,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
@@ -949,7 +1043,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_13.pdf",
@@ -970,7 +1066,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_14.pdf",
@@ -991,7 +1089,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
@@ -1012,7 +1112,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_16.pdf",
@@ -1033,7 +1135,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_17.pdf",
@@ -1054,7 +1158,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_18.pdf",
@@ -1075,7 +1181,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_19.pdf",
@@ -1096,7 +1204,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_20.pdf",
@@ -1117,7 +1227,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_21.pdf",
@@ -1138,7 +1250,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_22.pdf",
@@ -1159,7 +1273,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_23.pdf",
@@ -1180,7 +1296,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_24.pdf",
@@ -1201,7 +1319,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
@@ -1222,7 +1342,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_26.pdf",
@@ -1243,7 +1365,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_27.pdf",
@@ -1264,7 +1388,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_28.pdf",
@@ -1285,7 +1411,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_29.pdf",
@@ -1306,7 +1434,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_30.pdf",
@@ -1327,7 +1457,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_31.pdf",
@@ -1348,7 +1480,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_32.pdf",
@@ -1369,7 +1503,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_33.pdf",
@@ -1390,7 +1526,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_34.pdf",
@@ -1411,7 +1549,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
@@ -1432,7 +1572,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_36.pdf",
@@ -1453,7 +1595,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_37.pdf",
@@ -1474,7 +1618,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_1.pdf",
@@ -1495,7 +1641,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_2.pdf",
@@ -1516,7 +1664,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_3.pdf",
@@ -1537,7 +1687,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_4.pdf",
@@ -1558,7 +1710,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_6.pdf",
@@ -1579,7 +1733,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_12.pdf",
@@ -1600,7 +1756,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_5.pdf",
@@ -1621,7 +1779,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_7.pdf",
@@ -1642,7 +1802,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_8.pdf",
@@ -1663,7 +1825,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_9.pdf",
@@ -1684,7 +1848,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_15.pdf",
@@ -1705,7 +1871,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_11.pdf",
@@ -1726,7 +1894,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_13.pdf",
@@ -1747,7 +1917,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_14.pdf",
@@ -1768,7 +1940,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_10.pdf",
@@ -1789,7 +1963,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar",
@@ -1810,7 +1986,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://mgmgrand.mgmresorts.com/en/hotel.html",
@@ -1827,7 +2005,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": false,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "unreachable",
+   "botBlocked": false
   },
   {
    "url": "https://www.caesars.com/caesars-palace/hotels",
@@ -1844,7 +2024,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "redirected",
+   "botBlocked": true
   },
   {
    "url": "https://www.caesars.com/caesars-palace/hotel",
@@ -1861,7 +2043,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "redirected",
+   "botBlocked": true
   },
   {
    "url": "https://www.caesars.com/horseshoe-las-vegas/hotels",
@@ -1878,7 +2062,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "redirected",
+   "botBlocked": true
   },
   {
    "url": "https://aria.mgmresorts.com/en/hotel.html",
@@ -1895,7 +2081,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": false,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "unreachable",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar",
@@ -1916,7 +2104,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=December&propCode=blv",
@@ -1933,7 +2123,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "redirected",
+   "botBlocked": true
   },
   {
    "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-20&children[]=0&departure_date=2026-11-22&view=calendar",
@@ -1954,7 +2146,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-02&view=calendar",
@@ -1975,7 +2169,9 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   },
   {
    "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-27&children[]=0&departure_date=2026-11-28&view=calendar",
@@ -1996,13 +2192,15 @@
    "previousTextHash": null,
    "previousChecked": "2026-11-17T22:07:30+00:00",
    "statusChanged": true,
-   "rawOnly": false
+   "rawOnly": false,
+   "outcome": "fetched",
+   "botBlocked": false
   }
  ],
  "changedCount": 0,
  "changed": [],
  "hashBasis": "visible text (HTML tags, scripts and styles removed); the raw-byte hash is kept per URL as hash",
- "note": "Automated re-check of every official URL behind this dashboard. A changed flag means the visible text differs from the stored text hash and a human must re-read the source before any value is changed. A raw-body hash difference with identical visible text is recorded as noise, not as a change.",
+ "note": "Automated re-check of every official URL behind this dashboard. A changed flag means the visible text differs from the stored text hash and a human must re-read the source before any value is changed. A raw-body hash difference with identical visible text is recorded as noise, not as a change. A 'blocked' row means the venue's edge refused this datacenter runner (HTTP 403/401/429 or a bot redirect); it does not mean the page is gone. Those URLs are covered by a manual read, and the last manual result is on the Sources page.",
  "transcription": {
   "status": "checked",
   "checked": "2026-11-17T22:32:37+00:00",

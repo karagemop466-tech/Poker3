@@ -2471,7 +2471,12 @@ def build():
         liveFacts=LIVE_FACTS_2026_11_17,
         # entries x buy-in + nights x (rate + resort fee) x (1 + tax), computed
         # from the eight primary entries and the seven recommended nights.
-        tripCostModel=with_live_quote(published_model(len([p for p in plan if p.get("primary")]), _avg_primary_buyin(plan), TRIP["nights"])),
+        tripCostModel=with_live_quote(published_model(
+            len([p for p in plan if p.get("primary")]),
+            _avg_primary_buyin(plan),
+            TRIP["nights"],
+            buy_in_exact=_primary_buyin_sum(plan),
+        )),
     )
     return data
 
@@ -2525,6 +2530,16 @@ def with_live_quote(model):
               "reads, and the poker-suite rate page adds a play-qualification condition and the EPOKR25 code."),
     )
     return model
+
+
+def _primary_buyin_sum(plan):
+    """Exact sum of the recommended primaries' buy-ins.
+
+    Published beside the rounded average so the tournament total can be the true sum
+    ($2,600) rather than seven times a rounded mean ($2,600.01).
+    """
+    buys = [p["primaryBuyIn"] for p in plan if isinstance(p.get("primaryBuyIn"), (int, float))]
+    return round(sum(buys), 2) if buys else 0
 
 
 def _avg_primary_buyin(plan):
