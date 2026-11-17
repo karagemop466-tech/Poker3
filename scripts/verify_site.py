@@ -11,13 +11,15 @@ Checks, in order:
   5. Every hotel row carries a source, and a computed true nightly cost matches
      the published components it claims to use.
   6. Every flag carries a source link.
-  7. The day plan only recommends rows that are verified single entry with a
-     published fee and guarantee, and every plan row points at a real event.
+  7. Day-plan rows are explicitly provisional sheet-screened candidates with
+     confirmed fees/guarantees; they are not treated as strict-entry eligible
+     without a written max-one-entry rule.
   8. Every local link in every published HTML page resolves to a file that
      exists, and every page loads the shared script.
 """
 from __future__ import annotations
 
+from collections import Counter
 import json
 import re
 import sys
@@ -38,8 +40,9 @@ OFFICIAL_HOSTS = (
     "mgmresorts.com",
     "caesars.com",
     "aria.mgmresorts.com",
-    # Other venue-controlled property hosts. Listed so a flag can link the page
-    # it could not read; no value is published from them in this build.
+    # Other venue-controlled property hosts. They are listed so that a flag can link
+    # the very page this build tried and could not read; no value is published from
+    # them in this build.
     "goldennugget.com",
     "circalasvegas.com",
     "resortsworldlasvegas.com",
@@ -50,8 +53,7 @@ OFFICIAL_HOSTS = (
 
 PAGES = (
     "index.html", "tournaments.html", "venues.html", "browse.html", "schedule.html",
-    "hotels.html", "questions.html", "suggestions.html", "flagged.html", "sources.html",
-    "search.html",
+    "hotels.html", "questions.html", "suggestions.html", "flagged.html", "sources.html", "search.html",
 )
 
 # Detailed pages that carry their own data attributes instead of data-page.
@@ -107,6 +109,13 @@ def main() -> int:
     events = data["events"]
     if not events:
         fail("data.json has no tournament rows", errors)
+    for collection in ("events", "hotels", "routes"):
+        for index, row in enumerate(data.get(collection, []), start=1):
+            if not row.get("lastChecked"):
+                fail(f"{collection} row {index} has no lastChecked date", errors)
+    for index, row in enumerate(data.get("rateLog", []), start=1):
+        if not row.get("observedOn"):
+            fail(f"rateLog row {index} has no observation date", errors)
 
     ids = set()
     for e in events:
@@ -159,8 +168,17 @@ def main() -> int:
             fail(f"hotel {h.get('id')}: no true nightly cost and no status note", errors)
 
     for f in data["flags"]:
-        if not f.get("source") or not official(f["source"]):
-            fail(f"flag {f.get('id')}: missing or non-official source", errors)
+        if not f.get("source"):
+            fail(f"flag {f.get('id')}: no source", errors)
+        elif not official(f["source"]):
+            # A flag about this site's own publishing or its own automation cannot
+            # cite a casino page: the evidence is the repository or its Actions
+            # runs. Those flags must say so explicitly with area "Publishing" or
+            # "Monitoring" and cite a GitHub URL, so an uncited data flag can
+            # never slip through this exemption.
+            repo_hosted = str(f["source"]).startswith("https://github.com/karagemop466-tech/Poker3")
+            if not (f.get("area") in {"Publishing", "Monitoring"} and repo_hosted):
+                fail(f"flag {f.get('id')}: non-official source outside the publishing/monitoring exemption", errors)
         if not f.get("detail"):
             fail(f"flag {f.get('id')}: no detail", errors)
 
@@ -172,29 +190,29 @@ def main() -> int:
         if s.get("firstRead") and s["firstRead"] > s["checked"]:
             fail(f"source {s.get('id')}: first read {s['firstRead']} is later than its check date {s['checked']}", errors)
 
+    # "Last checked" is a claim about a date, so it is checked as one. asOf is the
+    # snapshot every row was read from; recheckedOn is the latest day a source was
+    # opened again. No row may claim a check later than that, and a dated re-check
+    # entry may not claim to have re-stamped more rows than the data really holds.
     as_of = data.get("asOf") or ""
+    rechecked = data.get("recheckedOn") or as_of
     if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", as_of):
         fail(f"data.json: asOf is not an ISO date: {as_of!r}", errors)
-
-    # A dated re-check must point at an official page and must not claim a row
-    # count that the published data cannot back.
-    stamped = 0
+    if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", rechecked):
+        fail(f"data.json: recheckedOn is not an ISO date: {rechecked!r}", errors)
+    stamped = Counter(e.get("lastChecked") for e in events)
     for e in events:
         checked = e.get("lastChecked") or ""
         if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", checked):
             fail(f"{e.get('id')}: lastChecked is not an ISO date: {checked!r}", errors)
-        elif as_of and checked > as_of:
-            fail(f"{e.get('id')}: lastChecked {checked} is later than the site's as-of date {as_of}", errors)
-        elif checked == as_of:
-            stamped += 1
+        elif checked > rechecked:
+            fail(f"{e.get('id')}: lastChecked {checked} is later than the last re-check date {rechecked}", errors)
     for h in data["hotels"]:
         checked = h.get("lastChecked") or ""
         if not re.fullmatch(r"\d{4}-\d{2}-\d{2}", checked):
             fail(f"hotel {h.get('id')}: lastChecked is not an ISO date: {checked!r}", errors)
-        elif as_of and checked > as_of:
-            fail(f"hotel {h.get('id')}: lastChecked {checked} is later than the as-of date {as_of}", errors)
-        elif checked == as_of:
-            stamped += 1
+        elif rechecked and checked > rechecked:
+            fail(f"hotel {h.get('id')}: lastChecked {checked} is later than the last re-check date {rechecked}", errors)
     for r in data.get("rechecks", []):
         if not official(r.get("url", "")):
             fail(f"recheck {r.get('id')}: not an official URL", errors)
@@ -202,11 +220,13 @@ def main() -> int:
             fail(f"recheck {r.get('id')}: no valid re-check date", errors)
         if not r.get("what") or not r.get("result"):
             fail(f"recheck {r.get('id')}: missing what was compared or the result", errors)
-        if as_of and (r.get("on") or "") > as_of:
-            fail(f"recheck {r.get('id')}: dated {r.get('on')}, later than the as-of date {as_of}", errors)
+        if rechecked and (r.get("on") or "") > rechecked:
+            fail(f"recheck {r.get('id')}: dated {r.get('on')}, later than the last re-check {rechecked}", errors)
         claimed = r.get("affected") or 0
-        if claimed > stamped:
-            fail(f"recheck {r.get('id')}: claims {claimed} re-stamped rows but only {stamped} exist", errors)
+        real = stamped.get(r.get("on"), 0) + sum(
+            1 for h in data["hotels"] if h.get("lastChecked") == r.get("on"))
+        if claimed > real:
+            fail(f"recheck {r.get('id')}: claims {claimed} re-stamped rows but only {real} carry that date", errors)
 
     by_id = {e["id"]: e for e in events}
     for day in data["dayPlan"]:
@@ -216,7 +236,10 @@ def main() -> int:
                 fail(f"plan {day['date']}: primary id not in events", errors)
             else:
                 if e["entryType"] != "none":
-                    fail(f"plan {day['date']}: primary is not a verified single-entry row", errors)
+                    fail(f"plan {day['date']}: primary candidate has printed extra-entry terms", errors)
+                single_rule = (e.get("rules") or {}).get("singleEntry") or {}
+                if single_rule.get("status") != "single-entry-on-sheet":
+                    fail(f"plan {day['date']}: primary candidate has no sheet-screening evidence", errors)
                 if not e.get("buyIn") or not e.get("guarantee"):
                     fail(f"plan {day['date']}: primary has no confirmed fee and guarantee", errors)
                 if e.get("eligibility"):

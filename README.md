@@ -3,30 +3,38 @@
 Source-first Las Vegas Strip poker trip planner. The canonical GitHub Pages dashboard is in [`site/`](site/) and is
 the only directory published by the Pages workflow.
 
+**Published URL.** `https://karagemop466-tech.github.io/Poker3/` serves `site/`. The repository root's
+`index.html` is a redirect into `site/`, because the Pages source is still the legacy `main /` setting
+(the token used by the integration session cannot change it: `PUT /pages` returns 403) and GitHub's own
+branch build would otherwise republish whatever sits at the root after every push. `.github/workflows/pages.yml`
+re-deploys the `site/` artifact after that branch build finishes, so the serving copy is the verified
+dashboard either way. See flag F29 on the Flagged for review page.
+
 | Page | What it does |
 |---|---|
 | `site/index.html` | Executive summary: the fixed trip, the primary event per day, and what is and is not confirmed. |
-| `site/tournaments.html` | Every published tournament row, with date, venue, category and single-entry filters, a search box and a per-row rule panel. |
+| `site/tournaments.html` | Every published tournament row, with date, venue, category, written single-entry confirmation and sheet-candidate filters, plus per-row rules. |
+| `site/search.html` | One search box across **every** published table: tournaments, hotels, the dated rate log, walking routes, flags, questions, suggestions, sources, the dated re-check log, structure sheets, the day plan and the poker rooms. The top-bar box on every page opens it, and every result links its table page and its official source. |
 | `site/venues.html` | One page per Strip poker room, each with its events and its hotels (`browse.html?view=venue&key=…`). |
 | `site/browse.html` | Venue and category subpages, so a bounty event is never mixed in with a plain freezeout. |
-| `site/schedule.html` | One realistic primary event per day, a conditional fallback, the recurring room events, and the flagged impossible sequences. |
+| `site/schedule.html` | A provisional sheet-screened candidate per day, conditional fallback, recurring room events and estimated overlap flags; none is strict-entry confirmed. |
 | `site/hotels.html` | Published rate components, the mandatory resort fee, tax, true cost per night, parking, cancellation deadlines, walking times and the dated rate log. |
 | `site/questions.html` | The information still needed before booking, each with the official source behind the answer. |
 | `site/suggestions.html` | Proposed improvements with impact, effort and the decision each one needs. |
 | `site/flagged.html` | Every irregularity and unverified value, each with a link for manual review. |
-| `site/sources.html` | The official source log with each source's last-checked date, the dated manual re-check log, every structure sheet with its read status, the morning feed sources and the automated hash-check results. |
-| `site/search.html` | One search box across every table: tournaments, hotels, the dated rate log, walking routes, flags, questions, suggestions, sources, structure sheets, re-checks and the day plan. The top-bar box on every page opens it. |
+| `site/sources.html` | The official source log with each source's last-checked and first-read dates, the dated manual re-check log, every structure sheet with its read status, the morning feed sources and the automated hash-check results. |
 
 ## Evidence policy
 
 Only official venue and property pages and official PDFs substantiate a value. A structure sheet that prints one buy-in,
-one start flight and no re-entry, rebuy, add-on or second-flight clause is recorded as **single entry on the sheet**,
-with the excerpt and the retrieval date attached; the site never claims a sheet uses the words “single entry”.
-A row with a blank fee or guarantee is always explained by a note or a flag. The guaranteed-pool ÷ entry-fee figure is
-a descriptive ratio, never a forecast. Walking minutes are Google Maps walking estimates, because no venue publishes a
-walking time. Every row carries a `lastChecked` date, and a row only moves to a newer date when its own official page was opened
-again and compared line by line on that date; the dated re-check log on the sources page records what each re-read
-covered and what it found. Snapshot: **2026-11-16 UTC**, re-checked against the official pages on **2026-11-17 UTC**.
+one start flight and no re-entry, rebuy, add-on or second-flight clause is **sheet-screened only**; it does not prove a
+maximum number of entries per player. No candidate is treated as strictly eligible until the venue confirms the one-entry,
+no-rebuy and no-add-on rules in writing (flag F31). Each row carries the exact excerpt, source and retrieval date. A row
+with a blank fee or guarantee is explained by a note or flag. Guaranteed-pool ÷ entry-fee is descriptive, never a forecast.
+Walking minutes are Google Maps estimates because no venue publishes a walking time.
+Every row carries a `lastChecked` date, and a row only moves to a newer date when its own official page was opened again
+and compared line by line on that date; the dated re-check log on the sources page records what each re-read covered and
+what it found. Snapshot: **2026-11-16 UTC**, re-checked against the official pages on **2026-11-17 UTC**.
 
 ## Data pipeline
 
@@ -45,13 +53,25 @@ python3 scripts/data_source.py        # rebuilds site/data.json from the source 
 
 ## Scheduled checks
 
-`.github/workflows/checks.yml` runs every morning at 05:00 Pacific:
+`.github/workflows/checks.yml` is the single scheduled job that reviews official sources at 13:00 UTC
+(05:00 PST / 06:00 PDT) and can be dispatched by hand:
 
 - `scripts/check_sources.py` fetches every official URL behind the dashboard, stores a SHA-256 of the response and
   flags any source whose body changed. It never changes a tournament value on its own: a changed page is re-read by a
   human first. Results are published as `site/checks.json` and shown on the sources page.
 - `scripts/daily_feed.py` pulls the schedule page of each Strip poker room and writes a dated snapshot under
   `site/feed/`, so a morning run can be compared with the previous morning instead of replacing it.
+- The job then rebases onto `origin/main` and pushes, retrying up to five times, so a race with another scheduled
+  run cannot lose the record.
+
+It replaces three overlapping committers (`monitor.yml`, `daily-check.yml` and an earlier version of this one) that
+ran on separate crons under separate concurrency groups and overwrote each other; none of the three had ever produced
+a run. `source-monitor.yml` shares the same concurrency group so the two jobs are serialised. Flag F30 records this.
+
+Unit tests in `tests/test_integrity.py` assert the arithmetic a reader acts on — the dated quote's two nights
+reconciling to the printed total, the `$197.28` nightly floor, `ratio = guarantee / buy-in` on every row, a
+`lastChecked` date on every row — and `verify.yml` runs them, so a later edit cannot quietly reintroduce a wrong
+number.
 
 ## Run locally
 
@@ -69,15 +89,15 @@ python3 scripts/audit_data.py         # every DSE IV row against the read log fo
 python3 tests/canonical_smoke.py       # page structure plus a headless render check of every page
 node --check site/assets/app.js
 python3 -m json.tool site/data.json
-python3 scripts/data_source.py && git diff --exit-code -- site/data.json   # the published data reproduces from its modules
+python3 scripts/data_source.py && git diff --exit-code -- site/data.json   # the data rebuilds from its modules
 ```
 
-.github/workflows/verify.yml` runs all of these on every pull request and push to `main`.
+`.github/workflows/verify.yml` runs all of these on every pull request and push to `main`.
 
-The hash check is only half of the re-check story. A scheduled job can say *this page changed*; it cannot say what the new
-value means. The dated re-check log on the sources page is the other half: a person re-reads the official page, compares the
-published rows field by field, moves the `lastChecked` date on exactly the rows it re-read, and records the result. A changed
-page is never allowed to edit a value on its own.
+A hash check can only say *this page changed*; it cannot say what the new text means for a published row. The dated
+re-check log is the other half of the freshness story: someone re-opens the official page, compares the published rows
+field by field, moves `lastChecked` on exactly the rows it re-read, and records the result. A changed page never edits a
+value by itself.
 
 ## Prior-session artefacts
 

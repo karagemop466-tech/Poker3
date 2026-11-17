@@ -13,6 +13,28 @@ const vm = require('vm');
 
 const ROOT = path.resolve(__dirname, '..');
 const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'site', 'data.json'), 'utf8'));
+const fixtureEvent = data.events.find((event) => event.venue === 'venetian' && event.scheduleUrl);
+const checksFixture = {
+  lastRun: '2026-11-17T13:00:00+00:00',
+  note: 'Test fixture only: a changed source is shown for UI verification.',
+  urls: [{
+    url: fixtureEvent.scheduleUrl,
+    label: 'Fixture schedule',
+    checked: '2026-11-17T13:00:00+00:00',
+    status: 'HTTP 200',
+    hash: 'new-hash',
+    previousHash: 'old-hash',
+    changed: true,
+    unavailable: false,
+  }, {
+    url: fixtureEvent.structureUrl,
+    label: 'Fixture structure',
+    checked: '2026-11-17T13:00:00+00:00',
+    status: 'HTTP 403',
+    changed: false,
+    unavailable: true,
+  }],
+};
 
 function makeElement(selector) {
   const el = {
@@ -66,6 +88,9 @@ function runPage(page, search) {
       if (String(url).endsWith('data.json')) {
         return Promise.resolve({ ok: true, json: () => Promise.resolve(data) });
       }
+      if (String(url).endsWith('checks.json')) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(checksFixture) });
+      }
       return Promise.resolve({ ok: false, json: () => Promise.resolve(null) });
     },
   };
@@ -88,9 +113,12 @@ const PAGES = [
   ['suggestions', ''],
   ['flagged', ''],
   ['sources', ''],
+  /* Three search states: no query, a money query that must match both a buy-in and
+     a resort fee, and a flag id, which has to reach the flag register. */
+  ['search', '?q=venetian'],
   ['search', ''],
   ['search', '?q=%24400'],
-  ['search', '?q=F02'],
+  ['search', '?q=F37'],
 ];
 
 /* The detailed venue pages use their own script and their own data attributes. */
@@ -144,6 +172,46 @@ function runVenuePage(venueAttr) {
     const label = page + (search ? search : '');
     const table = reg.get('[data-tournament-table]');
     const rows = table ? (table.html.match(/row-click/g) || []).length : 0;
+    if (page === 'tournaments' && (!table.html.includes('Last checked') || !table.html.includes('Source changed · review') || !table.html.includes('Source unavailable · recheck') || !reg.get('[data-filters]').html.includes('Single-entry / freezeout confirmed'))) {
+      console.log(`FAIL  ${label}: row-level dates, source status badges or strict-entry filter are missing`);
+      failures++;
+    }
+    if (page === 'sources') {
+      const auto = reg.get('[data-autochecks]');
+      if (!auto || !auto.html.includes('Content changed · manual review')) {
+        console.log(`FAIL  ${label}: automated source-check status did not render`);
+        failures++;
+      }
+    }
+    if (page === 'search') {
+      const results = reg.get('[data-search-results]');
+      if (search === '?q=venetian' && (!results || !results.html.includes('Tournament')
+          || !results.html.includes('Hotel') || !results.html.includes('Last checked'))) {
+        console.log(`FAIL  ${label}: cross-table search did not render tournament and hotel rows`);
+        failures++;
+      }
+      if (search === '' && !(reg.get('[data-search-summary]') || {}).text) {
+        console.log(`FAIL  ${label}: an empty query rendered no guidance`);
+        failures++;
+      }
+      /* A query that hits more than one table must highlight the term and say how
+         many rows were searched, or the box looks like a tournament-only filter. */
+      if (search === '?q=%24400' && !results.html.includes('<mark>')) {
+        console.log(`FAIL  ${label}: search did not highlight the matched term`);
+        failures++;
+      }
+      if (search === '?q=F37' && !results.html.includes('Flag')) {
+        console.log(`FAIL  ${label}: a flag id did not reach the flag register`);
+        failures++;
+      }
+    }
+    if (page === 'sources') {
+      const log = reg.get('[data-rechecks]');
+      if (!log || !log.html.includes('re-check') || !log.html.includes('No change')) {
+        console.log(`FAIL  ${label}: the dated re-check log did not render`);
+        failures++;
+      }
+    }
     if (total < 500) {
       console.log(`FAIL  ${label}: rendered only ${total} characters`);
       failures++;

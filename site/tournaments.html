@@ -3,15 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Every published Las Vegas Strip poker tournament row with date filters, venue and category filters, a single-entry filter, the official source excerpt and the retrieval date.">
+<meta name="description" content="Official Las Vegas tournament rows with date, venue and category filters, a written single-entry confirmation filter, candidate screening, source excerpts and retrieval dates.">
 <title>Vegas Poker Planner · Tournaments</title>
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body data-page="tournaments">
 <header class="topbar">
   <a class="brand" href="index.html"><span class="brand-mark">♠</span><span>Vegas Poker Planner</span></a>
-  <form class="top-search" data-search-form><input type="search" placeholder="Search every tournament, venue and rule…" aria-label="Search tournaments"><button class="btn" type="submit">Search</button></form>
-  <span class="top-tag">Official sources only · last checked <span data-asof></span></span>
+  <form class="top-search" data-search-form><input type="search" placeholder="Search every table…" aria-label="Search all tables"><button class="btn" type="submit">Search</button></form>
+  <span class="top-tag">Official sources only · verified <span data-asof></span></span>
 </header>
 <nav class="mobile-nav" data-mobile-nav></nav>
 <div class="layout">
@@ -20,8 +20,9 @@
     <nav class="nav" data-nav></nav>
     <div class="side-note">
       <strong>How to read a row</strong>
-      “Single entry on the sheet” means the official structure sheet prints one buy-in, one start flight and no
-      re-entry, rebuy or add-on clause. Click any row to see the exact wording, its link and the date it was retrieved.
+      “Sheet-screened candidate” means the official structure sheet prints one buy-in and no re-entry, rebuy or add-on
+      clause. It does not establish the maximum number of entries per player. Click any row for its exact excerpt, source,
+      retrieval date and the written-policy gap (F31).
     </div>
   </aside>
   <main class="main">
@@ -33,8 +34,8 @@
         Extravaganza IV and New Year’s Eve schedules, the Wynn daily poster, the Wynn WPT World Championship schedule,
         the Wynn Signature Series schedule, the Bellagio weekly structures, the MGM Grand $120 structure, and the
         Caesars Palace and Horseshoe daily tournaments. Filter by date, venue, category or format, or switch on the
-        single-entry filter to see only the rows whose official sheet prints one buy-in and no re-entry, rebuy, add-on or
-        second flight.
+        sheet-screened filter to see rows whose official sheet prints one buy-in and no re-entry, rebuy, add-on or
+        second flight. This screening is not written confirmation of a one-entry-per-player maximum.
       </p>
     </section>
 
@@ -43,8 +44,10 @@
       file path, so that <code>data.json</code> can be fetched.
     </div>
 
+    <div class="notice"><strong>Strict-entry status: zero confirmed rows.</strong> The 45 sheet-screened Venetian candidates have no extra-entry term printed, but the reviewed sheets do not state a maximum number of entries per player. The “Single-entry / freezeout confirmed” toggle will therefore show no rows until a written one-entry rule is sourced (F31).</div>
+
     <section class="section">
-      <div class="section-head"><div><h2>Filters</h2><p>Everything below updates as you type.</p></div></div>
+      <div class="section-head"><div><h2>Filters</h2><p>These controls filter tournament rows; the header search searches across all published tables.</p></div></div>
       <div data-filters></div>
     </section>
 
@@ -52,7 +55,7 @@
       <div class="section-head">
         <div><h2>Published rows</h2><p>Click a row for the entry-rule excerpts, the source link and the retrieval date.</p></div>
         <div class="pill-row">
-          <a class="pill" href="browse.html?view=category&key=single">Single entry</a>
+          <a class="pill" href="browse.html?view=category&key=single">Sheet-screened candidates</a>
           <a class="pill" href="browse.html?view=category&key=flight">Multi-flight</a>
           <a class="pill" href="browse.html?view=category&key=satellite">Satellites</a>
           <a class="pill" href="browse.html?view=category&key=extra">Extra-spend formats</a>

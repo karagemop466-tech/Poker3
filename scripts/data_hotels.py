@@ -41,9 +41,13 @@ VENETIAN_QUOTE = dict(
     nightOne=dict(date="2026-11-17", rate=824.25, resortFee=55.00),
     nightTwo=dict(date="2026-11-18", rate=164.25, resortFee=55.00),
     taxes=146.98, total=1245.48, averageRate=549.25,
-    derivedNightly=[996.91, 248.61], derivedTotal=1245.52,
-    note=("The two derived nightly figures, (rate + $55 resort fee) x 1.1338, add to $1,245.52 against the printed "
-          "total of $1,245.48; the 4 cents are the venue's own rounding of the tax line."),
+    # (rate + $55 resort fee) x 1.1338, rounded to cents per night, as printed.
+    # $996.89 + $248.59 = $1,245.48, which is the venue's printed total exactly.
+    # An earlier version used 996.91 / 248.61 and a note excusing a 4-cent gap;
+    # that gap was arithmetic error in this repository, not the venue's rounding.
+    derivedNightly=[996.89, 248.59], derivedTotal=1245.48,
+    note=("The two derived nightly figures, (rate + $55 resort fee) x 1.1338 rounded to cents, add to $1,245.48, "
+          "the printed total exactly."),
     source=VENETIAN_QUOTE_URL, observedOn="2026-11-16")
 
 # Calendar cells published by the same booking engine for November 2026.  The page
@@ -91,8 +95,11 @@ HOTELS = [
         recheckNote=("Rate page re-read 2026-11-17: 'These rates will start as low as $119 and $209 and can be higher', "
                      "'There is a $55 resort fee per night stayed', the six-hours-or-$300-tournament play requirement, "
                      "the 2 a.m. qualification deadline, the 150-day forward window and the EPOKR25 booking code are all "
-                     "printed as before. The booking calendar for the planned window (Nov 25 - Dec 2) published no price "
-                     "on that date either, so the dated total on this row remains the only official checkout figure."),
+                     "printed as before. The booking calendar opened on the planned window itself (arrival 2026-11-25, "
+                     "departure 2026-12-03, two adults) rendered every date cell as a placeholder on that date, so no "
+                     "checkout total exists for the trip; the one-night cells observed on 2026-11-16 for part of the "
+                     "window remain observations, not quotes. The dated total on this row is still the only official "
+                     "checkout figure published by the venue."),
     ),
     dict(
         id="palazzo", name="The Palazzo (poker suite rate)", venue="Venetian poker room",
@@ -118,7 +125,8 @@ HOTELS = [
         walkNote="Google Maps walking estimate 4 minutes (0.2 mile) to The Venetian, where the poker room is located.",
         recheckedOn="2026-11-17",
         recheckNote=("Rate page re-read 2026-11-17: starting rates, the $55 resort fee and the play requirement are "
-                     "printed as before. The booking calendar for the planned window published no price on that date."),
+                     "printed as before. The booking calendar opened on the planned window rendered every cell as a "
+                     "placeholder on that date, so no dated total exists for either Venetian property."),
     ),
     dict(
         id="wynn", name="Wynn Las Vegas", venue="Wynn poker room (located in Encore at Wynn Las Vegas)",
@@ -234,11 +242,13 @@ RATE_LOG = [
     dict(hotel="venetian", observedOn="2026-11-16", baseRate="",
          publishedStartingRates="824.25 and 164.25 per night for Nov. 17-19, 2026",
          resortFee="55.00 per night", tax="146.98 printed",
-         trueNightlyLow="996.91", trueNightlyHigh="248.61",
+         # Low/high are the two observed NIGHTS in this one dated quote, not a
+         # price range: 17 Nov came to $996.89 all-in and 18 Nov to $248.59.
+         trueNightlyLow="248.59", trueNightlyHigh="996.89",
          quoteType="Dated official checkout total (2 adults, 2 nights)",
          note=("The official booking engine printed $824.25 + $55 and $164.25 + $55, taxes $146.98 and a total of "
                "$1,245.48 for a 650 sq ft Newly Remodeled Luxury King suite. Derived nightly figures are "
-               "(rate + $55) x 1.1338 and reconcile to $1,245.52 against the printed $1,245.48."),
+               "(rate + $55) x 1.1338 and add to $1,245.48, the printed total exactly."),
          source=VENETIAN_QUOTE_URL, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
     dict(hotel="venetian", observedOn="2026-11-16", baseRate="",
          publishedStartingRates="calendar cells for Nov. 17-30: " + ", ".join(
@@ -248,7 +258,9 @@ RATE_LOG = [
          quoteType="Booking calendar cells (not quotes)",
          note=("The calendar states: 'Pricing shown is best available suite and rate, includes daily resort fee, excludes "
                "taxes.' An earlier observation of the same calendar on the same day recorded $605 for Nov. 17, so these "
-               "cells move within a day. The recommended trip window, Nov. 25 to Dec. 2, published no price at all."),
+               "cells move within a day. The view published cells for part of the recommended trip window (Nov. 25 to "
+               "Nov. 30) and nothing for Nov. 31 to Dec. 2, and a calendar cell is a one-night observation rather than a "
+               "quote for a stay: no checkout total, cancellation deadline or room type is attached to it."),
          source=VENETIAN_CALENDAR_NOV_URL, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
     dict(hotel="venetian", observedOn="2026-11-16", baseRate="", publishedStartingRates="119 and 209",
          resortFee="55 plus tax", tax="13.38%", trueNightlyLow="197.28", trueNightlyHigh="299.32",
@@ -297,7 +309,9 @@ RATE_LOG = [
          quoteType="Booking calendar, planned trip window (not a quote)",
          note=("The official booking calendar was opened for November 25 to December 2, 2026 with two adults. Every date "
                "cell on the calendar rendered as a price placeholder rather than a figure, so no dated total exists for "
-               "the trip window; the nightly budget therefore stays at the published starting-rate floor above. The page "
+               "the trip window; the nightly budget therefore stays at the published starting-rate floor above. This "
+               "does not contradict the one-night cells observed on 2026-11-16 for part of the window, which came from a "
+               "calendar view opened on other dates and carry no room type, cancellation deadline or tax. The page "
                "states: 'Pricing shown is best available suite and rate, includes daily resort fee, excludes taxes.'"),
          source=VENETIAN_CALENDAR_TRIP_URL, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
 ]

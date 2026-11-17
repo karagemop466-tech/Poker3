@@ -51,8 +51,8 @@ REQUIRED_HOOKS = {
     "questions.html": ["data-questions"],
     "suggestions.html": ["data-suggestions"],
     "flagged.html": ["data-flags"],
-    "sources.html": ["data-sources", "data-rechecks", "data-sheets", "data-feed", "data-autochecks"],
-    "search.html": ["data-search-results", "data-search-summary", "data-search-input"],
+    "sources.html": ["data-sources", "data-sheets", "data-feed", "data-autochecks", "data-rechecks"],
+    "search.html": ["data-search-summary", "data-search-results", "data-scope-count", "data-search-clear"],
 }
 
 
@@ -143,16 +143,53 @@ def main() -> int:
             errors.append(f"venues/index.html: does not link {target}")
 
     data = json.loads((SITE / "data.json").read_text(encoding="utf-8"))
-    if data.get("asOf") != "2026-11-17":
-        errors.append(f"data.json: unexpected as-of date {data.get('asOf')!r}")
-    if data.get("snapshot") != "2026-11-16":
-        errors.append(f"data.json: unexpected source snapshot date {data.get('snapshot')!r}")
-    if not data.get("rechecks"):
-        errors.append("data.json: no dated source re-check log")
+    if data.get("asOf") != "2026-11-16":
+        errors.append("data.json: unexpected as-of date")
     if not data.get("trip", {}).get("start") or not data.get("trip", {}).get("end"):
         errors.append("data.json: no fixed trip dates")
     if len(data.get("dayPlan", [])) != 8:
         errors.append("data.json: the day plan does not cover eight days")
+    for collection in ("events", "hotels", "routes"):
+        for index, row in enumerate(data.get(collection, []), start=1):
+            if not row.get("lastChecked"):
+                errors.append(f"data.json: {collection} row {index} has no lastChecked date")
+    for index, row in enumerate(data.get("rateLog", []), start=1):
+        if not row.get("observedOn"):
+            errors.append(f"data.json: rate log row {index} has no observation date")
+    flag_ids = {flag.get("id") for flag in data.get("flags", [])}
+    if not {"F31", "F32"}.issubset(flag_ids):
+        errors.append("data.json: entry-cap and route-coverage evidence gaps must remain flagged")
+    if not {"F35", "F36", "F37"}.issubset(flag_ids):
+        errors.append("data.json: the cross-document WPT conflict, the unpriced trip window and the unread rooms must stay flagged")
+    if len(flag_ids) != len(data.get("flags", [])):
+        errors.append("data.json: flag ids are not unique")
+    # The dated re-check log is what makes "last checked" mean something, so both
+    # halves have to stay in step: a re-check date, and rows that carry it.
+    # (The as-of date itself is asserted above.)
+    if data.get("recheckedOn") != "2026-11-17":
+        errors.append(f"data.json: recheckedOn should name the re-read date, got {data.get('recheckedOn')}")
+    rechecks = data.get("rechecks") or []
+    if not rechecks:
+        errors.append("data.json: the dated re-check log is empty, so 'last checked' has no evidence behind it")
+    stamped = [e for e in data.get("events", []) if e.get("lastChecked") == data.get("recheckedOn")]
+    if not stamped:
+        errors.append("data.json: no row carries the re-check date, so the re-check log and the rows disagree")
+    for rec in rechecks:
+        if rec.get("affected") and rec["affected"] > len(stamped):
+            errors.append(f"data.json: recheck {rec.get('id')} claims {rec['affected']} rows but only "
+                          f"{len(stamped)} carry its date")
+    strict = [event for event in data.get("events", [])
+              if (event.get("rules") or {}).get("singleEntry", {}).get("status") == "confirmed"
+              and (event.get("rules") or {}).get("singleEntry", {}).get("maxEntries") == 1]
+    if strict:
+        errors.append("data.json: an event was marked strict single-entry without new written confirmation review")
+    app = (SITE / "assets" / "app.js").read_text(encoding="utf-8")
+    if "rule.maxEntries === 1" not in app:
+        errors.append("app.js: strict-entry filter does not require an explicit maxEntries=1 rule")
+    if "'search.html', 'Search all tables'" not in app:
+        errors.append("app.js: the search page is not in the navigation")
+    if "[data-rechecks]" not in app:
+        errors.append("app.js: the dated re-check log is not rendered anywhere")
 
     if shutil.which("node"):
         result = subprocess.run(["node", str(ROOT / "tests" / "canonical_render.js")],

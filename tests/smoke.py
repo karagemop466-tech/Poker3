@@ -84,7 +84,13 @@ def main() -> None:
     assert not re.search(r"https?://(?:localhost|127\.0\.0\.1)", js), "browser code must not call localhost"
     assert (SITE / "assets/app.css").is_file()
     assert (SITE / "index.html").is_file()
-    assert 'href="site/poker3/"' in (ROOT / "index.html").read_text(encoding="utf-8"), "legacy root homepage must link to the companion"
+    # The repository root is now a redirect to the canonical dashboard (it used to
+    # be a separate, stale research page). It must still reach the companion, either
+    # by linking it directly or by redirecting into site/, which links it below.
+    root_home = (ROOT / "index.html").read_text(encoding="utf-8")
+    assert 'href="site/poker3/"' in root_home or 'url=site/index.html' in root_home, (
+        "root homepage must either link the companion or redirect to the canonical site")
+
     assert 'href="poker3/"' in (ROOT / "site/index.html").read_text(encoding="utf-8"), "Actions-published homepage must link to the companion"
     print(
         f"OK · {len(pages)} pages · {len(data['events'])} selected event starts · "

@@ -1,17 +1,28 @@
 name: Scheduled source re-check and daily room feed
 
+# This is the single scheduled job that re-checks every official URL behind the
+# dashboard. It replaces three overlapping committers (this file plus
+# monitor.yml and daily-check.yml, which were deleting each other on a shared
+# branch race) with one serialised job, so the published change record always
+# reflects the newest run.
+#
+# It only records observations. It never rewrites a tournament, fee, hotel or
+# guarantee value: a changed page is flagged for a human to re-read.
+
 on:
   schedule:
-    # 05:00 Pacific every morning: re-read every official URL, then pull the
-    # morning schedule feed for each Strip poker room.
-    - cron: "13 12 * * *"
+    # 13:00 UTC daily (05:00 PST / 06:00 PDT): re-read official URLs and
+    # capture each room's schedule. GitHub Actions cron is UTC-only.
+    - cron: "0 13 * * *"
   workflow_dispatch:
 
 permissions:
   contents: write
 
 concurrency:
-  group: source-checks
+  # Serialise with itself and with the daily feed; never cancel a run halfway
+  # through a commit.
+  group: scheduled-source-review
   cancel-in-progress: false
 
 jobs:
@@ -19,8 +30,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
 
       - name: Re-check every official URL behind the dashboard
+        # First real run is triggered by the merge that consolidated this job, so
+        # site/checks.json exists from day one instead of being created by a cron
+        # nobody has seen fire.
         run: python3 scripts/check_sources.py
 
       - name: Fetch the morning daily schedule feed for each Strip poker room
@@ -28,21 +48,36 @@ jobs:
 
       - name: Verify the dashboard still passes its own checks
         run: |
+          python3 -m unittest discover -s tests -p 'test_*.py'
           python3 scripts/verify_site.py
           node --check site/assets/app.js
           python3 -m json.tool site/data.json > /dev/null
           python3 -m json.tool site/checks.json > /dev/null
           python3 -m json.tool site/feed/index.json > /dev/null
 
-      - name: Publish the check results and the feed when they changed
-        continue-on-error: true
+      - name: Commit the check record and the feed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add site/checks.json site/feed
           if git diff --cached --quiet; then
-            echo "No change in the checked sources."
+            echo "No change in the checked sources; nothing to publish."
             exit 0
           fi
-          git commit -m "chore: record official source re-check and daily room feed ($(date -u +%Y-%m-%d))"
-          git push
+          git commit -m "chore: record official source re-check and daily room feed ($(date -u +%F))"
+
+      - name: Push to main, rebasing if another commit landed first
+        run: |
+          # Rebase before every push, per the coordination rule. Retry a few
+          # times so a race with another scheduled run does not lose the record.
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            if git rebase origin/main && git push origin HEAD:main; then
+              echo "pushed on attempt ${attempt}"
+              exit 0
+            fi
+            git rebase --abort || true
+            sleep $((attempt * 10))
+          done
+          echo "::error::could not publish the source check record after 5 attempts"
+          exit 1

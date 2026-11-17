@@ -11,7 +11,7 @@
 <header class="topbar">
   <a class="brand" href="index.html"><span class="brand-mark">♠</span><span>Vegas Poker Planner</span></a>
   <form class="top-search" data-search-form><input type="search" placeholder="Search every table…" aria-label="Search all tables"><button class="btn" type="submit">Search</button></form>
-  <span class="top-tag">Official sources only · last checked <span data-asof></span></span>
+  <span class="top-tag">Official sources only · verified <span data-asof></span></span>
 </header>
 <nav class="mobile-nav" data-mobile-nav></nav>
 <div class="layout">
@@ -32,7 +32,8 @@
         The list below is the complete set of official sources read for this build, with the date each was checked. The
         structure-sheet register records which of the 52 official PDFs were opened and read line by line, and which were
         not. The automated re-check section below is written by a scheduled job that fetches each URL, stores a content
-        hash and flags any source whose content has changed since the last run.
+        hash and flags any source whose content has changed since the last run. A failed request is marked unavailable,
+        never falsely reported as a content change; changed-source badges appear on every affected event or hotel row.
       </p>
     </section>
 
@@ -42,13 +43,11 @@
     </section>
 
     <section class="section">
-      <div class="section-head"><div><h2>Dated re-check log</h2><p>Which official pages were opened again, what was compared, and what it changed.</p></div></div>
+      <div class="section-head"><div><h2>Dated re-check log</h2><p>Every official page that was opened a second time, and what that re-read found.</p></div></div>
       <div data-rechecks></div>
-      <p class="toolbar-note">Two kinds of check exist on this site. The log above and the tables here are
-      <strong>manual re-reads</strong>: a person opened the official page and compared the published rows line by line,
-      and the rows that were re-read move their “last checked” date. The automated section further down is a
-      <strong>hash check</strong>: a scheduled job fetches each URL, compares the content hash with the previous run and
-      flags a page whose body changed. A hash change never edits a value by itself — it sends the row back to a human.</p>
+      <p class="toolbar-note">The table below is a <strong>manual</strong> record: a scheduled job can prove a page
+      changed, but only a reading can say what the new text means for a published row. Nothing in this log was produced
+      by the hash check alone.</p>
     </section>
 
     <section class="section">

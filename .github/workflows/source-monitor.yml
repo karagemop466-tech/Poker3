@@ -16,7 +16,8 @@ permissions:
   contents: write
 
 concurrency:
-  group: source-monitor
+  # Serialised with the main source re-check so the two jobs never race on main.
+  group: scheduled-source-review
   cancel-in-progress: false
 
 jobs:
