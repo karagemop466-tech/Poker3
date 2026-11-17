@@ -1808,6 +1808,12 @@ def build():
         n = int(re.search(r"structure_(\d+)\.pdf$", sheet_file).group(1))
         sh = V.NYE_SHEETS[n]
         entry = sh["entry"]
+        # All 15 NYE sheets were read in full on 2026-11-17, so no NYE row is left
+        # "unverified". The category answers the entry question and is derived from
+        # the sheet's own wording below, so a stale literal can never disagree with
+        # the rule text it is paired with.
+        category = {"none": "single", "multi-flight": "flight",
+                    "multi-buyin": "extra", "satellite": "satellite"}[entry]
         if entry == "none":
             se_status = "single-entry-on-sheet"
             se_excerpt = (f"The sheet prints one ${sh['buyIn']:,} buy-in, one start flight and one starting-chips figure "

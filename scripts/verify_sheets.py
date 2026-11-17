@@ -57,8 +57,11 @@ def main() -> int:
     confirmed_single = 0
 
     for short, sheet in facts["sheets"].items():
-        name = "dse_nov_2026-" + short
+        # The series is taken from the sheet URL itself, so DSE IV (dse_nov_2026)
+        # and NYE (dse_dec_2026) sheets are both covered by this loop; the key
+        # short name is only a label.
         url = sheet["url"]
+        name = sheet_key(url)
         rows = [e for e in events if sheet_key(e.get("structureUrl")) == name]
         if not rows:
             problems.append(f"{name}: no published row links this sheet")
