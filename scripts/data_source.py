@@ -629,7 +629,9 @@ FLAGS = [
                  "the series dates and the printed year is flagged rather than corrected. All 15 NYE structure sheets "
                  "have since been read (see F11), so the printed year is the only open point on these rows."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html"),
-    dict(id="F42", area="Schedule", severity="Low",
+    # F43 rather than F38: main already defines F38 (and F17) for this exact finding.
+    # Reusing the number would give two flags in one register the same id.
+    dict(id="F43", area="Schedule", severity="Low",
          title="The Caesars page gives a general session length, not an event finish time",
          detail=("The official Caesars Palace poker-tournament page says 'Most sessions finish in four to six hours.' That is a "
                  "general statement about its tournaments, not a published finish time for any event. The six-hour planning "

@@ -1595,10 +1595,28 @@ $100 early-checkout fee, code EPOKR25, and the six-hours-or-$300-tournament qual
 | D8 | F31's detail and the `tournaments.html` notice said "45 sheet-screened" rows; the data has 52. | Both say 52. |
 | D9 | `questions.html` said "four questions marked as blocking" and "Seventeen questions"; `suggestions.html` said "Twelve items" and described a fixed 3/2/1 split. Data: 18 questions (8 blocking) and 17 suggestions. | All replaced by render-time counts from `site/data.json`; a test forbids the hard-coded numbers returning. |
 | D10 | README claimed "every official page and PDF was re-read and re-confirmed on 2026-11-17". No pass did that; Q10 itself lists what was not re-read. | README now names what was re-read and points at Q10 for the rest. |
-| D11 | No way to prove the scheduled re-check runs: `checks.yml` had only `schedule` + `workflow_dispatch`, and this session's token cannot dispatch (HTTP 403). | Added a path-filtered `push` trigger on `main` for `checks.yml` itself and the scripts it runs, so the first real run happens on merge. This was the same repair PR #55 proposes; it is applied here rather than in a competing branch. |
+| D11 | No way to prove the scheduled re-check runs: `checks.yml` had only `schedule` + `workflow_dispatch`, and this session's token cannot dispatch (HTTP 403). | Added a path-filtered `push` trigger on `main` for `checks.yml` itself and the scripts it runs, so the first real run happens on merge. This is the same repair PR #55 proposes; it is applied here rather than in a competing branch. |
 | D12 | The day plan printed a bounty-inclusive guarantee ("$8,000 (prize pool + total bounties)") as a plain pool figure. | Each primary and fallback now carries a `*GuaranteeNote` taken from the sheet wording ("Includes total bounties, not a cash-only prize pool"), rendered beside the ratio. |
 
 **Not changed, and why.** No tournament, fee, guarantee, hotel or route value was altered: the re-read found no
 discrepancy. The competing PRs (#56, #55, #54, #50, #46, #39, #31, #27, #7) were read for unique findings and left
 unmerged so no other session's work is discarded; the one repair they shared that this session needed (D11) is applied
 here on top of `main`.
+
+**Rebase onto `main` at `19906c0`.** `main` advanced three times while this session worked (PRs #58, #59, #60, #61:
+session `arena/b573f10a-poker3` added dated hotel quotes and a live verifier, and renumbered its flags to F45–F47).
+This branch was rebased onto `19906c0`. Conflicts and how they were resolved, with nothing discarded:
+
+- `COORDINATION.md`: both records kept, `main`'s block first, this session's section appended.
+- `README.md`: `main`'s new "2026-11-17 re-verification pass" section kept in full, and this session's re-read record
+  paragraph appended after it. Both describe the same day from two independently verified vantage points.
+- `scripts/data_source.py`, `site/*`: no conflict, but the merge exposed one ID collision. `main` already defines **F38**
+  for the identical 9 a.m.-start finding, so this session's new flag (the Caesars "four to six hours" note, which was
+  F42 on the pre-rebase tree) is renumbered to **F43**. `git show origin/main:site/data.json` had no F43, so no id is
+  reused. The register now runs F01–F47 minus F38, F42 and F44: F38 is deliberately absent on this branch because its
+  content lives in F17 and F38 on `main`, and F44 is another session's number.
+
+**Verification on the rebased tree.** `data_source.py` rebuild byte-identical · `verify_site.py` passed (341 events,
+8 hotels, 14 routes, 39 sources, **44 flags, all unique**, 8 plan days, 16 pages) · **68 unit tests OK**, including the
+19 new ones · `canonical_smoke.py` and `canonical_render.js` pass · `smoke.py` OK · `node --check` and `json.tool` clean
+· 0 broken local links · every `F##` citation on every page resolves to a published flag.
