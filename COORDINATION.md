@@ -3134,12 +3134,17 @@ Branch: `arena/da83eca8-poker3` (platform-bound; the `session-<id>/<task>` namin
 
 ### Integration record (session `arena/da83eca8-poker3`)
 
-### Integration record (session `arena/da83eca8-poker3`)
-
-## Current session `arena/4c7b94ab-poker3` — integration, verification and publication (2026-11-17 UTC)
 ## Current session `arena/4c7b94ab-poker3` — integration, verification and publication (2026-11-17 UTC)
 
 Branch: `arena/4c7b94ab-poker3` (platform-bound; platform-assigned, status `active`). Branched from `main` @ `b9c8d77` (PR #100, session arena/da83eca8-poker3, merged 2026-11-18 07:23:52 UTC). No other session holds an active claim when this claim is written. This session adopts the pending integration task D5 from the da83eca8 board section and acts as integration owner for the canonical `site/` dashboard, `scripts/**`, `tests/**`, `.github/workflows/**`, `README.md` and this section of `COORDINATION.md`, until the PR to `main` is merged and Pages is confirmed live. Prior artefacts (`docs/`, `verified/`, `planner/`, `single-entry/`, root legacy pages, `site/poker3/`, `handoff/`, `raw/`, `data/`) are read-only here.
+
+---
+
+## Current session `arena/58e42dbd-poker3` — independent live re-verification and publication (2026-11-17 UTC)
+
+Branch: `arena/58e42dbd-poker3`, branched from `main` @ `b9c8d77` (PR #100 merged). No other session holds an open claim on this board at the time of writing (the last recorded task table is D1–D5 of `arena/da83eca8-poker3`, D5 marked pending but PR #100 is merged and `main` is green). This session therefore acts as the integration owner for the canonical outputs: `site/**`, `scripts/**`, `tests/**`, `raw/**`, `.github/workflows/**`, `README.md` and this section.
+
+**Tooling note (affects what "verified" means here).** The sandbox network allowlist permits only github.com, codeload.github.com, api.github.com, registry.npmjs.org, pypi.org and files.pythonhosted.org, so `curl` cannot reach any venue host (SSL_ERROR_SYSCALL on every attempt, reproduced). Official pages were therefore re-read live through the platform's page-retrieval tool, which returns the rendered page text rather than raw bytes. Consequence: this session can re-confirm **values** (dates, times, buy-ins, guarantees, fees, percentages) line by line, but it cannot recompute the SHA-256 bodies that `scripts/check_sources.py` stores in CI. Every value re-read this session is logged below with the exact text it was read from.
 
 ### Claim (recorded before any data edit, 2026-11-17 UTC)
 
@@ -3252,6 +3257,165 @@ Branch: `arena/7529044d-poker3` (platform-bound; the `session-<id>/<task>` namin
 | T2 Strip room coverage and earliest-start check (F17, F21) | done (F17 stands; F79 and F80 added) | arena/5b8ce14d-poker3 | `scripts/data_source.py` (F79, F80), `raw/official_excerpts_5b8ce14d_2026-11-17.md` | commit `da255ae`; Paris and Flamingo unresolved |
 | T3 Integration, PR, merge, Pages check | in progress | arena/5b8ce14d-poker3 | whole repo | PR and merge result recorded below |
 
+## Session arena/37292d23-poker3 — live re-check, gap closure and final integration (2026-11-17 UTC)
+
+Branch `arena/37292d23-poker3`, based on `main` at `2bdcc0d`. Claim recorded 2026-11-17 UTC **before any other
+file edit**, per the coordination brief. The PR queue was empty at claim time and no other session branch had
+moved since `main`'s last commit (21:31 UTC), so this session acts as the integration owner for shared outputs,
+following the pattern of the previous integration sessions.
+
+| Task | Status | Owner | Files this session may edit | Notes |
+|---|---|---|---|---|
+| R1 Re-read the official URLs the runner could not reach (17 unavailable on the last monitor run) using the platform page reader; record each result with its retrieval date | **done** | arena/37292d23 | `research/`, this section | Page reader only — sandbox `curl` cannot reach venue hosts (F40) |
+| R2 F32: extend the walking-route table for hotel–venue pairs still missing a measurement; no invented minutes | **done — 56/56 pairs** | arena/37292d23 | `scripts/data_hotels.py` (ROUTES only), `site/data.json` (regenerated) | A pair gets a value only if a maps/official reading resolves; otherwise it stays recorded as not measured |
+| R3 Live re-check of trip-window hotel readings (rate log freshness) and of any row this session touches | **done — narrowed, no new row** | arena/37292d23 | `scripts/data_hotels.py` (RATE_LOG append), `site/data.json` | Observations appended, never averaged or chosen |
+| R4 Full verification suite, PR to `main`, merge, Pages confirmation, record result here | **done — PR #118 merged (`88e709f`), Pages run `44191709464` success** | arena/37292d23 | this section, `COORDINATION.md` | Flagged items do not block the merge |
+
+**Claim push:** this commit.
+
+### Merge record (R4) — 2026-11-17 UTC
+
+- **R4 DONE — merged:** PR #118 <https://github.com/karagemop466-tech/Poker3/pull/118>
+  merged into `main` with `gh pr merge 118 --merge` at 2026-11-17T22:36:33Z
+  (merge commit `88e709f1dec995c49b9480a20f7a074adc71ba5a`).
+- PR checks before merge (final head): **verify** run `44191561929` pass (19s),
+  **transcription** run `44191561591` pass (4s).
+- Post-merge on `88e709f`: **Pages deployment run `44191709464` success**
+  (site https://karagemop466-tech.github.io/Poker3/), publish run `44191711175`
+  success, verify `44191710864` success, transcription `44191711645` success;
+  scheduled re-check run `44191711123` was still pending (non-blocking).
+- Final re-verification of the merged tree (detached checkout of `88e709f`):
+  **129 tests OK**, `verify_site` passed (341 events, 8 hotels, 56 routes,
+  43 sources, 75 flags, 7 plan days, 16 pages), `verify_nye_live` 49/49 exit 0,
+  `verify_dse_full` exit 0, `verify_live_official` exit 0, audits OK,
+  canonical smoke OK. F32/F67 present, 44 route rows dated `2026-11-17`.
+- Two merge-rebuild cycles were needed because parallel PRs (#109, #114, #116,
+  #119, #121) landed mid-flight; COORDINATION was resolved each time as
+  main's full file plus this session's section (append-vs-append, both kept).
+
+
+### Progress record (2026-11-17 UTC, session arena/37292d23-poker3)
+
+**R1 — DONE (changed pages + the 17 unreachable URLs).** Full record:
+`research/live_reread_2026-11-17_session37292d23.md`; captures in
+`raw/dse_dec_2026_schedule_2026-11-17_37292d23.md` (49 rows) and
+`raw/suite_rates_2026-11-17_37292d23.md` (verbatim body).
+
+- Monitor run 2026-11-17T20:48:34Z flagged 2 changed + 17 unavailable URLs. All 19 were
+  re-read with the platform page reader (sandbox curl cannot reach venue hosts, F40).
+- `dse-dec-2026.html` (changed): new comparator `scripts/verify_nye_live.py` proves
+  **49/49 printed rows agree** with the published rows (date, time, event number, buy-in,
+  printed guarantee, structure sheet, normalized name); 0 orphans; 5 restart rows carry
+  guarantees the printout omits and all 5 are disclosed by F63; the script asserts F04/F41
+  exist for the printed year/typo rows. One genuine drift found and fixed: the Seniors row
+  name in `scripts/data_venetian.py` was missing the printed words "to participate";
+  `site/data.json` regenerated (byte-identical rebuild verified).
+- `suite-rates.html` (changed): verbatim capture stored; every published claim citing the
+  page ($119/$209 start, six-hours-or-$300 qualification, before-2-a.m. last night, $55 fee,
+  EPOKR25, 866.255.8936, no-combine, 150-day horizon, prevailing-rate clause) matches the
+  live text. **No published value changed.** The exact hash delta is not reconstructable —
+  the monitor stores hashes, never a snapshot (recorded below as a suggestion).
+- The 17 runner-unreachable URLs: 17/17 re-read, every published fee/cancellation/schedule
+  value corroborated. Two cosmetic observations logged only: Caesars property pages now
+  print Cyber-Monday hero lead-in prices ("Rooms from $186 $139" Caesars Palace,
+  "Rooms from $61 $56" Horseshoe) — promotional, not date-specific, never added as rates.
+
+**R2 — DONE (F32 route matrix).** `research/routes_2026-11-17_session37292d23.md`.
+
+- 42 missing hotel–venue pairs measured with Google Maps walking directions via the page
+  reader on 2026-11-17; the matrix is now **56 of 56 pairs** (8 hotels × 7 venues),
+  published in `scripts/data_hotels.py` (ROUTES) → `site/data.json` (42 rows carry
+  `measuredOn=2026-11-17`; base rows keep 2026-11-16; the concurrent pass's
+  `lastReadOn` rows also resolve to their own date in `data_source.py`).
+- Every resort-to-resort reading agrees with its already-published reverse direction
+  within one minute. Wynn-venue rows point at Encore (where the poker room is); the
+  stored wynn-origin rows start at Wynn Las Vegas — endpoint difference, documented.
+- **Coordination with the concurrent pass:** main already carried a Venetian→Bellagio row
+  (27 min / 1.1 mi to the Bellagio Poker Room address, F67). That row was kept and this
+  session's duplicate (21 min resort-to-resort) was dropped; F67 already explains the
+  six-minute endpoint gap. F32 re-scoped from "coverage missing" to "estimates are
+  point-in-time readings" (the flag must remain — `tests/canonical_smoke.py` requires F31+F32).
+- 13 of 56 rows exceed the 30-minute limit; all are published with their minutes, none inferred.
+
+**R3 — NARROWED, DONE (no new rate-log row).** The dated Venetian trip-window quote
+already landed via PR #87 (session arena/fe903bcb) while this session ran, so there is no
+gap left for this session to fill. The only rate-reading observations from this session are
+the two Caesars hero lead-in prices above — recorded as observations only, never as dated
+rate-log rows (a promo "from" price is not a reading of a specific night).
+
+**R4 — local verification green; PR next.** On the tree rebased onto `main` `ef5d1f7`:
+`python3 -m unittest discover -s tests` → **126 tests OK**; `verify_site.py` → passed
+(341 events, 8 hotels, **56 routes**, 43 sources, **72 flags**, 7 plan days, 16 pages);
+`verify_nye_live.py` → exit 0 (49/49); `verify_dse_full.py` → exit 0;
+`verify_transcription.py` → 44/44; `tests/smoke.py` and `tests/canonical_smoke.py` → pass.
+PR + merge + Pages confirmation will be recorded here after the merge.
+
+**Process notes for reviewers.**
+- Suggestion (not a flag): the URL monitor stores only `previousTextHash`, so a `changed`
+  event can never be diffed against what actually changed. Storing a text snapshot on
+  change would make future changed-page investigations one step instead of a re-read.
+- The repo was rebased onto a `main` that moved three times mid-session (PRs #104, #106,
+  #109). COORDINATION conflicts were resolved by keeping both sides; when the sequencer
+  stalled, the branch was rebuilt by hand as main + the three session commits + this
+  section, so the published history sits directly on `6a40bca`.
+
+| E1 Re-read the official Venetian DeepStack IV schedule page and series PDF; compare every trip-window row against `site/data.json` | in progress | arena/58e42dbd-poker3 | `raw/**`, `scripts/data_venetian.py` | Full 94-row comparison on date, time, event number, name, buy-in, guarantee. |
+| E2 Re-read the official hotel sources (suite rates, resort fee, hotel terms, booking engine) and re-check the dated quote arithmetic | in progress | arena/58e42dbd-poker3 | `scripts/data_hotels.py`, `site/data.json` rateLog | Confirm $4,010.55 / 23–30 Nov and the 13.38% application to rate + fee. |
+| E3 Re-read the other rooms' official tournament pages (Wynn, Bellagio, MGM Grand, Caesars, Horseshoe, ARIA) and any Strip-area room not yet covered | in progress | arena/58e42dbd-poker3 | `scripts/data_venues.py`, `raw/**` | Add only what the venue's own page prints; blanks stay blank. |
+| E4 Confirm the open flags that block the brief (F17 no 8 AM start, F31 no written one-entry rule, F16 no finish times) still stand against the current official pages | in progress | arena/58e42dbd-poker3 | `site/data/flags.json` (via builder), README | A flag is only kept if the source still does not print the value. |
+| E5 Verification suite, PR → `main`, merge, Pages confirmation, record here | pending | arena/58e42dbd-poker3 | whole repo | Flagged irregularities do not block merge; they ship on `site/flagged.html`. |
+
+### Progress record (session `arena/58e42dbd-poker3`, 2026-11-17 UTC)
+
+**Claim status:** E1 done · E2 done · E3 done · E4 done · E5 in progress (PR + merge pending).
+
+**E1 — Venetian DeepStack IV, 94 rows, live re-read.** All four chunks of the official schedule page
+(`dse-nov-2026.html`) were read this session and transcribed to an independent 94-row capture. Compared
+row by row against the 94 published rows: **zero disagreements** on date, start time, event number, name,
+printed buy-in, printed guarantee and structure-sheet link. Four rows differ only in case/punctuation
+("Women in Poker - Main Event" vs "Women in Poker Main Event"; "Play Down to Final 7 - Streamed Final Table" vs
+"Play down to Final 7, streamed final table"; "KINGS and QUEENS Bounty - Open to all players" vs "Kings and
+Queens Bounty, open to all players"). 18 apparent guarantee differences were checked one by one and all are the
+documented inheritance cases: 11 Day 2/3 restart rows whose sheet prints the guarantee their restart row leaves
+blank (F63), and 7 milestone satellites whose "guarantee" is a seat award ("2 seats to Event #39/#47"). No value
+changed.
+
+**E2 — hotel sources, live re-read.** Poker-suite rate page ($119/$209, $55 fee, six hours or a $300+ entry per
+night, 2 a.m. deadline, code EPOKR25, 150-day horizon), resort-fee page ("daily Resort Fee of $55 plus tax per
+night"), hotel terms (13.38% Clark County room tax, $55 plus applicable tax, $20/$25/$40 parking, 11:00 a.m.
+checkout, $100 early checkout, $150 incidental) all match the published rows verbatim.
+
+**E3 — other rooms, live re-read.** Wynn poker hub + Resort Policies + Terms; Bellagio poker page, Friday
+$600 sheet, Saturday $1,000/$1,100 sheet, Sunday $400 H.O.R.S.E. sheet; MGM Grand poker page, weekly schedule
+PDF and $120 structure PDF; Caesars/Horseshoe tournament article; ARIA poker page and Gentleman's Guide
+("TOURNAMENTS Daily 1 p.m. Nightly 7 p.m."). Published rows match on every field checked.
+
+**Defects found and fixed (E4):**
+1. **Wynn cancellation (row + F35).** The site said no Wynn cancellation deadline was verified and that the
+   48-hour window "appears only in offer terms". The live Terms page body prints it. Corrected, with the URL.
+2. **Venetian poker parking.** The poker room's own parking page prints a waiver the hotel terms page does not:
+   three hours or more of tournament or cash play earns complimentary self-parking for that day. Added.
+3. **Question Q05** still said the trip window "returned no suite at all"; a later 2026-11-17 read priced it
+   ($4,010.55, and $3,823.46 for a Palazzo suite twenty minutes later — F78). Corrected.
+4. **Question Q17** said Caesars Palace and Horseshoe "publish no resort fee"; both print one, and all eight
+   property fees are now verified. Corrected to say the open gap is the room-tax percentage (F39).
+5. **Question Q11/Q12** widened to the terms actually read this session.
+
+**New evidence logged (E2/E3):** two dated rate-log records. MGM Grand's own booking page printed MGM King
+calendar cells for Nov/Dec 2026 under its printed legend ("includes avg. daily resort fee, excludes taxes");
+logged as calendar cells, never as a quote. The Bellagio booking URL rendered a grid carrying the same 22-28 Nov
+figures as MGM Grand's, so **flag F79** records that an MGM Resorts booking URL can serve another property's grid
+and the Bellagio rate stays blank. F79 is not F77 because F77 is already used on `main`.
+
+**Verification run after the changes:** `verify_site.py` passed · `audit_951cd431.py` 0 failures · `verify_live.py`,
+`verify_live_official.py`, `audit_data.py`, `verify_sheets.py`, `verify_transcription.py --dry-run` pass ·
+**130 unit tests OK** · `canonical_smoke.py` renders all 11 main + 5 detail pages · `node --check` clean ·
+`scripts/data_source.py` rebuild is reproducible.
+
+**Flag-id collisions handled:** this session's flag began as F77 (taken on `main` by another session) → F78
+(taken by the `4c7b94ab` session) → **F79**. `COORDINATION.md` took a conflicting append on the first rebase;
+both sides were kept, no other file conflicted.
+
 ---
 
 ## Session `arena/d3a4c0f8-poker3` — Strip room census, Google Maps walk captures, morning-feed coverage (2026-11-17 UTC)
@@ -3264,16 +3428,17 @@ Branch: `arena/d3a4c0f8-poker3` (platform-bound; the `session-<id>/<task>` namin
 |---|---|---|---|---|
 | E1 Strip poker room census and closures | done | arena/d3a4c0f8-poker3 | `scripts/data_source.py` (`STRIP_ROOMS`, `FEED_ROOMS`), `site/data.json`, `site/venues.html`, `site/assets/app.js` (`renderStripRooms` only) | Resorts World and Planet Hollywood closures; Mandalay Bay added as a status row and to the morning feed. |
 | E2 Google Maps walking captures (walking mode) hotel → Venetian poker room | done | arena/d3a4c0f8-poker3 | `raw/google_maps_walk_2026-11-17.json` (new), `scripts/data_hotels.py` (`ROUTES` hotel → venetian rows), `tests/test_walk_captures_2026_11_17.py` (new) | All 8 hotels read on 2026-11-17; driving control read for one pair. Other venue pairs stay estimates. |
-| E3 Flags and answers that cite the above | done | arena/d3a4c0f8-poker3 | `scripts/data_source.py` (`FLAGS`, `QUESTIONS` Q08/Q09 text), `site/venues.html` static text | New flags F81+ only; no existing flag id is renumbered (main already held F77–F80 for other sessions). |
+| E3 Flags and answers that cite the above | done | arena/d3a4c0f8-poker3 | `scripts/data_source.py` (`FLAGS`, `QUESTIONS` Q08/Q09 text), `site/venues.html` static text | New flags F82+ only; no existing flag id is renumbered (main already holds F78–F81 for other sessions; F79/F80 closures are folded into main’s rows). |
 | E4 Verification, PR → `main`, merge, Pages confirmation, record here | pending | arena/d3a4c0f8-poker3 | whole repo, this section | Flagged items do not block merge; they ship on `site/flagged.html`. |
 
 ### Status and scope log (E1–E3 status update, 2026-11-17 UTC)
 
-- **Shipped (this session, inside the claim):** `raw/google_maps_walk_2026-11-17.json` (new); `tests/test_walk_captures_2026_11_17.py` (new, 6 tests, all pass); `scripts/data_source.py` (`STRIP_ROOMS`, `FEED_ROOMS` + Mandalay Bay, flags F81–F82; closures folded into main’s F79/F80, Q08/Q09, S04, FEED text); `scripts/data_hotels.py` ROUTES (hotel→Venetian walking rows, `walkCapture` keys); `site/data.json` (regenerated); `site/venues.html` (Strip-room status table, text); `site/assets/app.js` (`renderStripRooms`, one dispatch line in `boot()`).
+- **Shipped (this session, inside the claim):** `raw/google_maps_walk_2026-11-17.json` (new); `tests/test_walk_captures_2026_11_17.py` (new, 6 tests, all pass); `scripts/data_source.py` (`STRIP_ROOMS`, `FEED_ROOMS` + Mandalay Bay, flags F82–F83; closures folded into main’s F79/F80, Q08/Q09, S04, FEED text); `scripts/data_hotels.py` ROUTES (hotel→Venetian walking rows, `walkCapture` keys); `site/data.json` (regenerated); `site/venues.html` (Strip-room status table, text); `site/assets/app.js` (`renderStripRooms`, one dispatch line in `boot()`).
 - **Shared-output edits outside the written claim.** Logged for the integration owner to confirm:
-  - `site/sheets.html` regenerated by `scripts/build_addendum.py` with no content change by hand. `tests/test_sheet_page_not_stale.py::test_every_flag_is_rendered` fails without it, because F81–F82 are new.
+  - `site/sheets.html` regenerated by `scripts/build_addendum.py` with no content change by hand. `tests/test_sheet_page_not_stale.py::test_every_flag_is_rendered` fails without it, because F82–F83 are new.
   - `rwlasvegas.com` (Resorts World's own domain) is already on the official-host lists on `main` (added by `arena/5b8ce14d-poker3`). This branch does not change those lists.
 - **Reverted (owned by another in-progress session, not shipped by this session):** the coverage matrix rows (`scripts/coverage.py`, `site/coverage.json`, claimed by `arena/13439072-poker3` under L7) and the README counts. Request for the L7 owner: add a coverage row for the morning Strip-room feed (`scripts/daily_feed.py`), and describe C14 as the 2026-11-17 hotel→Venetian walking-mode captures. Also `site/hotels.html` (walking caption under `site/**`): its line "Google Maps walking estimates captured on <date>" should be reworded to say the eight hotel→Venetian pairs were read in walking mode on 2026-11-17.
+- **Main moved during this session.** `arena/37292d23-poker3` (R2) completed a 56-pair walking matrix on main; this branch keeps its rows and adds `walkCapture` keys to the eight hotel→Venetian rows (values match the 2026-11-17 captures) and sets Venetian→Bellagio to 21 min (main still reads 27 there). Flags: this branch’s walk flag is F82 and Mandalay is F83.
 - **Overlap with L5/L6 (`arena/13439072-poker3`, in progress, `scripts/data_hotels.py` routes and `site/data.json` routes):** this session changed the stored walking values only as follows. Venetian→Bellagio 27 → 21 min (0.9 mi), with a 25-min alternative. The seven hotel→Venetian rows keep their minutes and miles, matched against the 2026-11-17 captures, and gained `walkCapture` and `lastReadOn`. L6 owner: please reconcile on rebase.
 - **Corrections made before commit:** removed the "Appian Way" Caesars room name and the "quieter section" Horseshoe claim, which had no logged source (the Appian Way name was in `data_hotels.py` and `data_source.py` (`VENUES`/`FEED_ROOMS`) and is removed in this branch; the Caesars room name is now unconfirmed). Horseshoe "Hall of Fame" keeps its prior-session source (the Horseshoe casino page used in `build_data.py`). The Resorts World and Planet Hollywood closure dates and the Resorts World quote are marked as press search results, not fetched. The closures are folded into main's F80 (Resorts World) and F79 (Planet Hollywood) rather than given new flags. The `STRIP_ROOMS` status for both reads "Reported closed (press; unverified)".
 - **Open, not resolved this pass:** Resorts World and Planet Hollywood closures have no official confirmation (F80, F79). Caesars Palace and Horseshoe: no tournament schedule was read on 2026-11-17 (the Caesars page is a marketing article). Mandalay Bay: official page prints no schedule (F82).

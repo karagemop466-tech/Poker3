@@ -369,7 +369,7 @@ NYE_ROWS = [
     ("2027-01-08", "5:10 PM", "30", "$300 No Limit Hold'em 1D $100K GTD (1Day) - Show your CES badge, $10 rake discount", "dse_dec_2026-structure_14.pdf", 100000, "flight"),
     ("2027-01-09", "11:10 AM", "30", "$300 No Limit Hold'em 1E $100K GTD (1Day)", "dse_dec_2026-structure_13.pdf", 100000, "flight"),
     ("2027-01-09", "5:10 PM", "30", "$300 No Limit Hold'em 1F $100K GTD (1Day)", "dse_dec_2026-structure_14.pdf", 100000, "flight"),
-    ("2027-01-10", "10:10 AM", "31", "$400 No Limit Hold'em Seniors $20K GTD (1Day) - Must be 50+ years of age", "dse_dec_2026-structure_10.pdf", 20000, "single"),
+    ("2027-01-10", "10:10 AM", "31", "$400 No Limit Hold'em Seniors $20K GTD (1Day) - Must be 50+ years of age to participate", "dse_dec_2026-structure_10.pdf", 20000, "single"),
     ("2027-01-10", "12:00 PM", "30", "$300 No Limit Hold'em Day 2 Restart", "dse_dec_2026-structure_13.pdf", 100000, "flight"),
     ("2027-01-10", "5:10 PM", "32", "$200 No Limit Hold'em Bounty $8K GTD (1Day)", "dse_dec_2026-structure_2.pdf", 8000, "extra"),
 ]

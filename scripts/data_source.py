@@ -731,8 +731,8 @@ FLAGS = [
                  "either figure. Per-night true costs are derived as (rate + $55) x 1.1338 and sum to the printed total."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar"),
     dict(id="F32", area="Walking routes", severity="Medium",
-         title="The 30-minute walking check does not cover every hotel–venue pair",
-         detail=("The current 15 route rows cover every hotel to the Venetian poker room (read 2026-11-17, see F81), the Venetian-to-Bellagio reverse pair and selected on-site pairs. The requested full hotel-by-venue matrix would contain 56 pairs (8 hotel records × 7 venue records); the remaining pairs, including every pair that involves Mandalay Bay, have no checked walking time here and are not assumed to meet the 30-minute limit. The schedule filter applies to the first route card of each Venetian route. Check the official property addresses and each Google/Apple walking route before comparing other hotel choices."),
+         title="Walking-route estimates are point-in-time Google Maps readings",
+         detail=("The hotel-by-venue matrix now holds all 56 pairs (8 hotel records × 7 venue records): 14 rows from the 2026-11-16 base pass plus 42 rows read on 2026-11-17 — 41 resort-to-resort readings added by this pass and the Venetian-to-Bellagio row added by a concurrent pass with poker-room endpoints (27 min, see F67). Cross-checks: every resort-to-resort pair this pass measured agrees with its already-published reverse direction within one minute, except Wynn-venue rows, where this pass walked to Encore (where the poker room actually is) while the stored wynn-origin rows start at Wynn Las Vegas. What remains flagged: every figure is a reading of one moment — sidewalks, crossings and route recommendations change — endpoint choice alone moves the answer by several minutes (F67), and no unofficial path is used. Re-measure the specific pair on Google or Apple Maps before relying on it, and confirm the official property addresses."),
          source="https://www.google.com/maps/dir/?api=1&travelmode=walking"),
     dict(id="F33", area="Schedule overlap", severity="Medium",
          title="Day 2 restarts of earlier Venetian events overlap the trip-window primaries",
@@ -753,14 +753,20 @@ FLAGS = [
                  "poker room before any decision that depends on it."),
          source="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"),
     dict(id="F35", area="Hotel terms", severity="High",
-         title="The Wynn terms page used as the fee source is an expired 2025 offer",
+         title="The Wynn terms page cited for the resort fee is an expired 2025 offer; the cancellation term lives elsewhere",
          detail=("The earlier build cited https://www.wynnlasvegas.com/terms-and-conditions/850070 for Wynn's $55 resort "
                  "fee, parking and 48-hour cancellation. That page is a DINING CREDIT offer whose own text says a stay "
                  "booked under it 'must be completed on or before September 30, 2025', so it cannot substantiate a "
                  "November 2026 trip. The fee was re-verified on 2026-11-17 from the live Resort Policies page, which "
-                 "still prints $55 plus tax, check-in 3 p.m. and check-out 12 p.m. The 48-hour cancellation window appears "
-                 "only in offer terms, so Wynn has no verified flexible-booking cancellation deadline and is shown blank."),
-         source="https://www.wynnlasvegas.com/about-us/resort-information"),
+                 "still prints $55 plus tax, check-in 3 p.m. and check-out 12 p.m.; that page does not print a "
+                 "cancellation window. Corrected 2026-11-17 on a second live read: the 48-hour window is NOT confined "
+                 "to offer terms. The live Terms page (the same /terms-and-conditions/850070 URL) carries a "
+                 "'CANCELLATION POLICY' section whose body reads 'cancellations must be received at least 48 hours "
+                 "prior to arrival date or deposit (if applicable) will be forfeited', plus an early-departure penalty "
+                 "of the departing night's rate and tax. The hotel row now records that general 48-hour term with the "
+                 "Terms URL as its source, and notes that the same page also prints offer-specific date exceptions "
+                 "that were not read one by one."),
+         source="https://www.wynnlasvegas.com/terms-and-conditions/850070"),
     dict(id="F36", area="Hotel cost", severity="Medium",
          title="RESOLVED 2026-11-17: the booking engine does print an itemised total for the trip window; the $XXX cells were a rendering artefact",
          detail=("Superseded on the evening of 2026-11-17. This flag was written against the superseded 25 November - "
@@ -1063,7 +1069,7 @@ FLAGS = [
                  "total would be, then record the answer as a dated rate-log entry."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
     dict(id="F67", area="Walking routes", severity="Medium",
-         title="Venetian to Bellagio: an earlier 27-minute read conflicts with a second read of 21 minutes on the same day (see F81)",
+         title="Venetian to Bellagio: an earlier 27-minute read conflicts with a second read of 21 minutes on the same day (see F82)",
          detail=("On 2026-11-17 the Google Maps walking card from 3355 S Las Vegas Blvd (The Venetian) to the Bellagio Poker Room, "
                  "3600 S Las Vegas Blvd, read 27 minutes for 1.1 miles via Las Vegas Blvd S. The driving card for the same pair read "
                  "8 minutes. The walking card does not print its mode label; the link requested travelmode=walking. The reverse pair, "
@@ -1072,7 +1078,7 @@ FLAGS = [
                  "minutes. The 30-minute limit is still met (27 minutes). Re-read the pair on a second day before relying on either figure. "
                  "UPDATE 2026-11-17 (session d3a4c0f8): a second walking-mode read of the same pair returned 21 minutes (0.9 mile) via Las Vegas Blvd S "
                  "and 25 minutes (1.1 miles) via Las Vegas Blvd S and Bellagio Dr, and the stored value is now 21. The 27-minute card has no saved capture, "
-                 "so the conflict stays open; see F81 for the raw record."),
+                 "so the conflict stays open; see F82 for the raw record."),
          source="https://www.google.com/maps/dir/?api=1&origin=3355+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&destination=Bellagio+Poker+Room,+3600+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&travelmode=walking"),
     dict(id="F68", area="Publishing", severity="Low",
          title="RESOLVED 2026-11-17: stale hotel, rate and route files were feeding the sheet-verification page",
@@ -1105,7 +1111,24 @@ FLAGS = [
                  "once its official poker page is reached. A press search result (casino.org / Vital Vegas, March 2026; article not fetched) reports "
                  "the resort saying the poker room will close on 30 March 2026. No official statement was retrieved in this pass, so the closure is unverified."),
          source="https://www.rwlasvegas.com/gaming/casino-events/"),
-    dict(id="F81", area="Walking routes", severity="Medium",
+    dict(id="F81", area="Hotel cost", severity="Medium",
+         title="MGM Resorts booking pages served the same price grid on two different property URLs",
+         detail=("Read live on 2026-11-17 by session 58e42dbd. The MGM Grand room booking page, opened with the MGM King "
+                 "picker and 2 guests, printed a November 2026 calendar: 22 Nov $84, 23 Nov $84, 24 Nov $84, 25 Nov "
+                 "$84, 26 Nov $149, 27 Nov $349, 28 Nov $149, 29 Nov unavailable, 30 Nov $649. The Bellagio booking "
+                 "page, opened in the same session on its own URL, printed a grid containing the same run of figures "
+                 "(22-25 Nov $84, 26 Nov $149, 27 Nov $349, 28 Nov $149, 30 Nov $649) alongside Bellagio-only values "
+                 "on other nights (17 Nov $309, 19 Nov $249). Both pages carry a resort picker and a shared cart, so "
+                 "the most likely explanation is that the grid renders whichever property the booking session has "
+                 "selected, not necessarily the URL's property. Consequence for this project: a cell from an MGM "
+                 "Resorts booking URL cannot be attributed to a property without the property name printed beside it. "
+                 "The MGM Grand cells are logged with the room type the page names in its own picker ('Price on "
+                 "calendar for MGM King'); the Bellagio cells are deliberately NOT logged as a Bellagio rate and its "
+                 "room rate stays blank. Anyone re-reading either page must confirm the selected property first. This "
+                 "was renumbered twice as other sessions published their own flags on main while this branch was open, and "
+                 "is now F81; flag ids are kept unique across the whole repository, not per session."),
+         source="https://bellagio.mgmresorts.com/book-room?property=bellagio&resort=66964e2b-2550-4476-84c3-1a4c0c5c067f"),
+    dict(id="F82", area="Walking routes", severity="Medium",
          title="Walking minutes are Google Maps directions read 2026-11-17 in walking mode; no venue publishes them",
          detail=("All eight hotels were read to the Venetian poker room. Records, exact queries, every route card and the mode marker are in "
                  "raw/google_maps_walk_2026-11-17.json, and tests/test_walk_captures_2026_11_17.py asserts each stored minute figure against it. "
@@ -1114,7 +1137,7 @@ FLAGS = [
                  "browser locale. Google Maps is a non-official measurement source and is labelled as such. The earlier 27-minute Venetian-to-Bellagio "
                  "card (F67) has no saved capture and is not reproduced."),
          source="https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=The+Palazzo+Las+Vegas+NV&destination=The+Venetian+Resort+Las+Vegas+NV"),
-    dict(id="F82", area="Mandalay Bay", severity="Medium",
+    dict(id="F83", area="Mandalay Bay", severity="Medium",
          title="Mandalay Bay is open on its official page, which prints no tournament schedule",
          detail=("The official poker page (read 2026-11-17) prints Wednesday to Monday, 10 AM to 4 AM, closed Tuesdays, a $60–$1,000 price range, and "
                  "'Please Visit or Call Poker Room for Details' with reservations at 702.632.7790. Third-party listings show a $60 daily at 1 PM and a "
@@ -1158,8 +1181,16 @@ QUESTIONS = [
                  "same stay the day before, plus $2,504.00 for November 20-22. For the trip window itself it "
                  "returned no suite at all. The engine's calendar cells are not prices: read twice on the same day, "
                  "November 16 printed $555 with one stay window open and $854 with another, and November 27 printed "
-                 "$905 against $1,814 (F47). The rate page publishes only starting rates of $119 and $209, which are "
-                 "explicitly not date-specific, and states that rates are provided up to 150 days out."),
+                 "$905 against $1,814 (F47). The last sentence of this answer was superseded later on 2026-11-17: the "
+                 "engine DID price the trip window (23-30 Nov 2026, $4,010.55 checkout total, logged in the rate log) "
+                 "and, on a second read about 20 minutes later, a Palazzo Luxury King at $3,823.46 (F78). The rate page "
+                 "still publishes only starting rates of $119 and $209, which are explicitly not date-specific, and "
+                 "states that rates are provided up to 150 days out. Two other properties now have dated figures too, "
+                 "both from their own booking pages on 2026-11-17: MGM Grand printed MGM King calendar cells (22-28 Nov "
+                 "$84, $84, $84, $84, $149, $349, $149; 30 Nov $649) under a legend that says the cells include the "
+                 "average daily resort fee and exclude taxes, and Horseshoe printed its own November and December "
+                 "grids. A calendar cell is not a checkout total; only the Venetian has a printed, itemised checkout "
+                 "total for the trip stay."),
          why="Needed", blocking="Yes for a confirmed total",
          how="Open the booking link with the exact dates, then log the printed total in the rate log with its timestamp.",
          source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
@@ -1174,12 +1205,12 @@ QUESTIONS = [
          how="Ask the poker room for expected finish times, or treat the plan as a template and confirm on the day.",
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
     dict(id="Q08", question="What is the real walking time between each hotel and each poker room?",
-         answer="The venues publish no walking times. On 2026-11-17 every hotel was read to the Venetian poker room in Google Maps walking mode (first route card): The Palazzo 4 minutes, Wynn 13, Bellagio 21, Caesars Palace 12, Horseshoe 16, MGM Grand 35 and ARIA 31 (ARIA's other shown routes run to 38). The Venetian itself is in-property. These are Google Maps measurements, not official venue times (F81). Other hotel-to-room pairs, and every pair that includes Mandalay Bay, are not checked (F32).",
+         answer="The venues publish no walking times. On 2026-11-17 every hotel was read to the Venetian poker room in Google Maps walking mode (first route card): The Palazzo 4 minutes, Wynn 13, Bellagio 21, Caesars Palace 12, Horseshoe 16, MGM Grand 35 and ARIA 31 (ARIA's other shown routes run to 38). The Venetian itself is in-property. These are Google Maps measurements, not official venue times (F82). Other hotel-to-room pairs, and every pair that includes Mandalay Bay, are not checked (F32).",
          why="Needed", blocking="Yes - hotel-to-room pairs other than the Venetian are not checked",
          how="Use official property addresses to verify each hotel-to-room Google or Apple walking route; do not assume missing pairs are under 30 minutes.",
          source="https://www.google.com/maps/dir/?api=1&travelmode=walking"),
     dict(id="Q09", question="Which other Strip rooms should be added to the plan?",
-         answer="Mandalay Bay was added on 2026-11-17: its official page is open Wednesday to Monday but prints no tournament schedule (F82). Resorts World and Planet Hollywood are reported closed in press only (F79, F80; unverified) and are listed on the Strip-room status table, not as candidates. Not checked: South Point, Golden Nugget, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate, Tropicana, Bally's, Flamingo, LINQ, Rio and M Resort.",
+         answer="Mandalay Bay was added on 2026-11-17: its official page is open Wednesday to Monday but prints no tournament schedule (F83). Resorts World and Planet Hollywood are reported closed in press only (F79, F80; unverified) and are listed on the Strip-room status table, not as candidates. Not checked: South Point, Golden Nugget, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate, Tropicana, Bally's, Flamingo, LINQ, Rio and M Resort.",
          why="Useful", blocking="No",
          how="Say which properties to add; each needs its own official page and structure sheets.",
          source="https://www.venetianlasvegas.com/resort/casino/poker.html"),
@@ -1189,12 +1220,27 @@ QUESTIONS = [
          how="Re-check the Flagged for review page and the change log before booking and again 48 hours before you travel.",
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
     dict(id="Q11", question="What is the cancellation deadline at each property?",
-         answer="Published and different: Wynn requires 48 hours before arrival, Bellagio 72 hours before arrival, and the Venetian bills a deposit on confirmation with blackout dates and non-refundable prepaid offers; an early checkout costs $100 plus tax.",
+         answer=("Published and different, all re-read live on 2026-11-17. Wynn: 'cancellations must be received at least "
+                 "48 hours prior to arrival date or deposit (if applicable) will be forfeited', plus an early-departure "
+                 "penalty, with offer-specific date exceptions on the same page (F35 corrected). Bellagio, MGM Grand and "
+                 "ARIA: the first night's deposit is refundable if Room Reservations receives notice at least 72 hours "
+                 "before arrival; later cancellations and no-shows forfeit it. Caesars Palace and Horseshoe: the property "
+                 "pages advertise 'FREE 48-Hour Cancellation*' but do not print the terms behind the asterisk. Venetian: "
+                 "a deposit is billed on confirmation, blackout dates apply, prepaid offers are non-refundable, and an "
+                 "early checkout costs $100 plus tax."),
          why="Needed", blocking="No",
          how="Use the cancellation column in the hotel table when choosing where to hold the booking.",
          source="https://www.wynnlasvegas.com/terms-and-conditions/850070"),
     dict(id="Q12", question="What does parking cost, and does it change the true cost per night?",
-         answer="Venetian: $20 per day for registered hotel guests, $20 Monday-Thursday and $25 Friday-Sunday for non-hotel guests, valet $40. Wynn: self-parking is free for registered guests and $25 per day for others, valet $40, and complimentary self-parking extends to Wynn poker-room guests. Bellagio parking was not captured in this pass.",
+         answer=("Venetian: $20 per day for registered hotel guests, $20 Monday-Thursday and $25 Friday-Sunday for non-hotel "
+                 "guests, valet $40. The poker room's own parking page adds a waiver the hotel terms page does not print: "
+                 "players who play three hours or more in tournament or cash games receive complimentary self-parking for "
+                 "that day, confirmed with a supervisor at the end of the session (re-read 2026-11-17). A registered guest "
+                 "staying on property and playing a six-hour session therefore may pay nothing for parking, which is why "
+                 "the trip calculator keeps parking out of the core formula and shows it separately. Wynn: self-parking is "
+                 "free for registered guests and $25 per day for others, valet $40, and complimentary self-parking extends "
+                 "to Wynn poker-room guests. Bellagio, MGM Grand and ARIA publish no parking figure on their reservation "
+                 "terms pages, so those cells stay blank rather than guessed."),
          why="Needed", blocking="No",
          how="Include parking in the trip total if you will not stay on property every night.",
          source="https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html"),
@@ -1241,10 +1287,12 @@ QUESTIONS = [
              "return counts again.",
          source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
     dict(id="Q17", question="Which hotel fees are still unverified, and does that break the comparison?",
-         answer=("Caesars Palace and Horseshoe publish no resort fee on their official pages, and Wynn prints 'plus tax' "
-                 "without a percentage. MGM Grand ($50), Bellagio ($55), ARIA ($55) and the Venetian ($55) are verified. "
-                 "Any hotel comparison that includes the unverified properties is therefore incomplete, not wrong; the "
-                 "site leaves those cells blank and flags them."),
+         answer=("Corrected 2026-11-17: every one of the eight properties now has a verified resort fee. Caesars Palace "
+                 "prints $54.95 plus $7.35 tax ($62.30 tax inclusive) and Horseshoe $49.95 plus $6.68 ($56.63), both on "
+                 "their own booking pages; MGM Grand $50, Bellagio $55, ARIA $55, Wynn $55 and the Venetian $55 come from "
+                 "each property's own reservation terms. What remains unverified is the ROOM-TAX PERCENTAGE: only the "
+                 "Venetian prints 13.38%, so true-nightly figures stay blank at the other properties and the comparison is "
+                 "incomplete rather than wrong (F39). The site leaves those cells blank and flags them."),
          why="Needed", blocking="No - the recommended property is fully verified",
          how="Read each property's own reservation terms page, or ask the front desk for the resort fee and tax in writing.",
          source="https://www.caesars.com/caesars-palace"),
@@ -1275,7 +1323,7 @@ SUGGESTIONS = [
                  "into the single-entry filter."),
          impact="High", effort="Medium", decision="Straightforward research, no new source needed"),
     dict(id="S04", title="Add the missing Strip poker rooms",
-         detail=("Mandalay Bay was added on 2026-11-17 (F82). Resorts World and Planet Hollywood are reported closed in press only (F79, F80; unverified). South Point, Golden Nugget, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate, Tropicana, "
+         detail=("Mandalay Bay was added on 2026-11-17 (F83). Resorts World and Planet Hollywood are reported closed in press only (F79, F80; unverified). South Point, Golden Nugget, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate, Tropicana, "
                  "Bally's, Flamingo, LINQ, Rio and M Resort are all unverified. For a trip that aims to enter as many "
                  "tournaments as possible, the daily rooms in walking range are worth more than another marquee series."),
          impact="Medium", effort="Medium", decision="Which properties to prioritise"),
@@ -1688,7 +1736,7 @@ STRIP_ROOMS = [
          evidence="aria.mgmresorts.com poker page (base read)"),
     dict(id="mandalay", name="Mandalay Bay", status="Open Wed–Mon, 10 AM–4 AM; closed Tuesdays",
          statusBasis="Official poker page read 2026-11-17 prints these hours and a $60–$1,000 price range, and says 'Please Visit or Call Poker Room for Details'. No tournament schedule is printed.",
-         read=STRIP_ROOMS_READ, official="https://mandalaybay.mgmresorts.com/en/casino/poker-tables.html", inFeed=True, flag="F82",
+         read=STRIP_ROOMS_READ, official="https://mandalaybay.mgmresorts.com/en/casino/poker-tables.html", inFeed=True, flag="F83",
          evidence="mandalaybay.mgmresorts.com/en/casino/poker-tables.html"),
     dict(id="planet_hollywood", name="Planet Hollywood", status="Reported closed after 31 Jan 2026 (press; unverified)",
          statusBasis=("Press search result (Review-Journal; article not fetched) reports a Caesars Entertainment statement that the room closes after 31 January 2026. "
@@ -2170,7 +2218,13 @@ def build():
             high = round((h["baseRateCeiling"] + h["resortFee"]) * (1 + h["taxRate"] / 100), 2)
         row["trueNightlyLow"] = low
         row["trueNightlyHigh"] = high
-        row["lastChecked"] = (CHECKED_TODAY if h["id"] in ("venetian", "palazzo", "caesars", "horseshoe") else ASOF)
+        # lastChecked is per row and records only properties whose page this build actually re-read.
+        # 2026-11-17 re-reads (session 58e42dbd, live): Venetian + Palazzo poker-suite rates, resort fee and
+        # hotel terms; Wynn Resort Policies + Terms; Bellagio poker page and hotel reservation terms;
+        # MGM Grand poker page, hotel page and hotel reservation terms; ARIA poker page and reservation terms;
+        # Caesars Palace / Horseshoe tournament page. 2026-11-16 is the earlier capture date.
+        _reread_today = ("venetian", "palazzo", "caesars", "horseshoe", "wynn", "bellagio", "mgm", "aria")
+        row["lastChecked"] = (CHECKED_TODAY if h["id"] in _reread_today else ASOF)
         row["lastVerified"] = VERIFIED_ON
         # Facts confirmed live on 2026-11-17 that the earlier build left blank.
         if h.get("id") in ("venetian", "palazzo"):
@@ -2201,8 +2255,10 @@ def build():
     for r in H.ROUTES:
         row = dict(r)
         row["mapsUrl"] = H.MAPS.format(o=r["mapsOrigin"], d=r["mapsDestination"])
-        # Walking times were measured on the base pass and were not re-measured today.
-        row["lastChecked"] = r.get("lastReadOn", ASOF)
+        # Each route row carries its own measurement date: the 2026-11-17 full-matrix pass
+        # writes measuredOn, the poker-room-endpoint read writes lastReadOn, and base-pass
+        # rows keep the base snapshot date.
+        row["lastChecked"] = r.get("measuredOn") or r.get("lastReadOn") or ASOF
         row["walkSourceType"] = (f"Google Maps walking directions (walking mode), read {r['lastReadOn']}"
                                  if r.get("walkCapture") else "Google Maps walking estimate, not re-read 2026-11-17")
         routes.append(row)

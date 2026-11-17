@@ -201,7 +201,22 @@ class HotelFacts(unittest.TestCase):
         self.assertEqual(self.hotel["source"], self.rec["sources"]["pokerSuiteRate"])
         self.assertEqual(self.hotel["feeSource"], self.rec["sources"]["resortFee"])
         self.assertEqual(self.hotel["taxSource"], self.rec["sources"]["terms"])
-        self.assertEqual(self.hotel["parkingSource"], self.rec["sources"]["terms"])
+
+    def test_parking_source_is_the_poker_room_page_that_prints_the_waiver(self):
+        """The 2026-11-17 record above cites the hotel-terms page for the $20 guest fee.
+
+        A later live read on the same day (session 58e42dbd) found the poker room's own
+        parking page, which prints both the $20 guest fee and a player-specific waiver that
+        the terms page does not carry: three hours or more of tournament or cash play earns
+        complimentary self-parking for that day. The published row therefore cites that page,
+        and the $20 fee itself must still be present in the text so the fee is not lost.
+        """
+        self.assertEqual(self.hotel["parkingSource"],
+                         "https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html")
+        self.assertIn("$20", self.hotel["parking"])
+        self.assertIn("three hours or more", self.hotel["parking"])
+        # The hotel terms page is still the source of the factual $20 figure the record captured.
+        self.assertIn("$20/day, seven days a week", self.rec["parkingExcerpt"])
 
 
 class WynnTerms(unittest.TestCase):

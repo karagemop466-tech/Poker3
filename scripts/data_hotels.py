@@ -19,12 +19,22 @@ VENETIAN_FIXED_STAY_BOOKING = ("https://www.venetianlasvegas.com/booking?adults[
 VENETIAN_OLD_WINDOW_BOOKING = ("https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25"
                                "&children[]=0&departure_date=2026-12-02&view=calendar")
 VENETIAN_HOTEL_TERMS = "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html"
+# The poker room publishes its own parking page (read live 2026-11-17). It adds a player-specific waiver the
+# hotel terms page does not print: three hours or more of tournament or cash play earns complimentary
+# self-parking for that day. Used as the Venetian hotel row's parking source so the trip-cost parking
+# assumption is not overstated.
+VENETIAN_POKER_PARKING = "https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html"
 WYNN_ROOMS = "https://www.wynnlasvegas.com/rooms-and-suites"
 # The page the earlier build cited (terms-and-conditions/850070) is an expired
 # 2025 DINING CREDIT offer: its own text says a stay "must be completed on or
 # before September 30, 2025".  The live, non-offer policy page below is therefore
 # used instead; the expired page is kept only as a cross-check and is flagged.
 WYNN_TERMS = "https://www.wynnlasvegas.com/about-us/resort-information"
+# Cancellation policy. Re-read live on 2026-11-17 (after the last build): this
+# page prints a CANCELLATION POLICY section headed by a deposit statement, and the
+# 48-hour window is in that section's own body text, not only in a promotional
+# offer's terms.  Flag F35 is corrected accordingly (see data_source.py).
+WYNN_TERMS_CANCELLATION = "https://www.wynnlasvegas.com/terms-and-conditions/850070"
 WYNN_EXPIRED_OFFER = "https://www.wynnlasvegas.com/terms-and-conditions/850070"
 MGM_TERMS = "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html"
 ARIA_TERMS = "https://aria.mgmresorts.com/en/terms-and-conditions.html"
@@ -314,8 +324,12 @@ HOTELS = [
         resortFee=55, resortFeeNote="$55 resort fee per night stayed, plus tax, payable upon check-in.",
         taxRate=TAX_RATE,
         taxNote="Clark County Room Tax of 13.38% applies to the daily rate; the resort fee is 'plus applicable tax'.",
-        parking="$20 per day for registered hotel guests (seven days a week); $20 Monday-Thursday and $25 Friday-Sunday for non-hotel guests; valet $40 per day.",
-        parkingSource=VENETIAN_HOTEL_TERMS,
+        parking=("$20 per day for registered hotel guests (seven days a week); $20 Monday-Thursday and $25 "
+                 "Friday-Sunday for non-hotel guests; valet $40 per day. Separately, the poker room's own parking page "
+                 "states that players in the poker room who play three hours or more in tournament or cash games "
+                 "receive complimentary self-parking for the day, confirmed with a supervisor at the end of the "
+                 "session; Venetian Rewards Sapphire members and above also self-park free."),
+        parkingSource=VENETIAN_POKER_PARKING,
         cancellation=("A deposit for the stay including suite, fee and tax is billed on reservation confirmation. Blackout "
                       "dates apply. Prepaid offers are non-cancellable and non-refundable. Early checkout before the "
                       "scheduled departure date costs $100 plus tax."),
@@ -391,10 +405,13 @@ HOTELS = [
         parking=("Self parking is complimentary for registered guests. Non-registered guests pay $25 per day with the first "
                  "three hours free; valet $40 per day. Complimentary self-parking is extended to Wynn Poker Room guests."),
         parkingSource=WYNN_TERMS,
-        cancellation=("A deposit of one night's room rate and tax is charged at booking. The live policy page does not "
-                      "print a cancellation window; the 48-hour window appears only in offer terms, so no Wynn "
-                      "cancellation deadline is marked verified for a flexible 2026 booking."),
-        cancellationSource=WYNN_TERMS,
+        cancellation=("A deposit of the first night's room rate and tax is charged at booking. The property's live "
+                      "terms page prints a CANCELLATION POLICY section: \"cancellations must be received at least 48 "
+                      "hours prior to arrival date or deposit (if applicable) will be forfeited\", and early departures "
+                      "without notice cost \"the room rate and tax for the night on which the guest departed early\". "
+                      "The same page carries offer-specific date exceptions, which were not read individually, so the "
+                      "48-hour window is recorded as the general term only (re-read 2026-11-17, flag F35)."),
+        cancellationSource=WYNN_TERMS_CANCELLATION,
         incidental=("A credit card authorised to cover room, resort fees and tax plus $150 a night for incidentals is "
                     "required at check-in."),
         checkInOut="Check-in 3 p.m.; check-out 12 p.m. (official resort policies page).",
@@ -428,7 +445,13 @@ HOTELS = [
                       "$165 mid-week or $200 weekend cancellation fee."),
         cancellationSource=BELLAGIO_TERMS,
         incidental="$150 incidental amount per day authorised at check-in.",
+        # The Bellagio hotel reservation terms page was read live on 2026-11-17 (2 chunks) and prints
+        # the resort fee, taxes, deposit, incidental hold and cancellation window, but no check-in or
+        # check-out clock time. Left as an explicit blank rather than copied from another MGM property.
         checkInOut="",
+        checkInOutNote=("Not published on the Bellagio hotel reservation terms page, which was read in full on "
+                        "2026-11-17: it prints the deposit, cancellation, tax and incidental terms but no check-in or "
+                        "check-out time. Not inferred from MGM Grand or ARIA, which both print 3:00 pm / 11:00 am."),
         qualification="",
         source=BELLAGIO_HOTEL, feeSource=BELLAGIO_TERMS, taxSource=BELLAGIO_TERMS,
         qualityNote="Not scored. No official, comparable quality metric was published in the reviewed material.",
@@ -781,6 +804,47 @@ RATE_LOG = [
                "footnote was re-confirmed verbatim: 'Pricing shown is best available suite and rate, includes daily "
                "resort fee, excludes taxes.' No rate was inferred from any cell."),
          source=VENETIAN_QUOTE_URL, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
+    # --- MGM Resorts property booking calendars, read live 2026-11-17 (session 58e42dbd) ---
+    # Both reads are the *calendar* grid, not a checkout quote: the page prints, verbatim,
+    # "Calendar pricing includes avg. daily resort fee (if applicable), excludes taxes.
+    # Rates are based on the lowest rate available."  So a cell is a resort-fee-inclusive,
+    # tax-exclusive nightly figure for the room type selected in the picker.  Nothing here is
+    # converted into a quote and no tax is added, because the property prints no percentage.
+    dict(hotel="mgm", observedOn="2026-11-17", baseRate="",
+         publishedStartingRates=("MGM King calendar cells, November 2026: 11-18 $219; 11-22 $84, 11-23 $84, "
+                                 "11-24 $84, 11-25 $84, 11-26 $149, 11-27 $349, 11-28 $149; 11-30 $649. "
+                                 "December 2026: 12-01 $649, 12-02 $1,049, 12-03 $1,149, 12-04 $299, 12-05 $349, "
+                                 "12-06 $429, 12-07 $210, 12-08 $210, 12-09 $91, 12-10 $229, 12-11 $579, "
+                                 "12-12 $409"),
+         resortFee="50.00 per night plus applicable tax (MGM Grand hotel reservation terms), already inside the calendar cell",
+         tax="not printed: the calendar states it excludes taxes and the terms print no percentage",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType=("Official booking-calendar cells (lowest available, resort-fee inclusive, tax exclusive; "
+                    "not a quote)"),
+         note=("Read on the MGM Grand room booking page with the MGM King picker selected and 2 guests. The page's own "
+               "legend reads: 'Calendar pricing includes avg. daily resort fee (if applicable), excludes taxes. "
+               "Rates are based on the lowest rate available. Rates and room availability may vary based on the "
+               "actual length of your stay.' Six of the seven trip nights (23-29 Nov) printed a cell; 29 Nov printed "
+               "as unavailable. No checkout total is printed for a dated stay without completing a reservation, so "
+               "no true-nightly figure is derived. Tax stays blank because MGM Grand prints no room-tax percentage."),
+         source="https://mgmgrand.mgmresorts.com/book-room?property=mgmgrand&room=23f5bef8-63ea-4ba9-a290-13b5a3056595"
+                "&resort=66964e2b-2550-4476-84c3-1a4c0c5c067f",
+         feeSource=MGM_TERMS, taxSource=MGM_TERMS),
+    dict(hotel="bellagio", observedOn="2026-11-17", baseRate="",
+         publishedStartingRates="",
+         resortFee="55.00 per night plus applicable tax (Bellagio hotel reservation terms)",
+         tax="not printed: Bellagio's terms print no room-tax percentage",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType="No property-identified price captured; grid did not identify Bellagio in this read",
+         note=("The Bellagio booking page was opened for 2 guests on 2026-11-17 and rendered a calendar grid, but the "
+               "grid is NOT recorded as a Bellagio price. The identical grid appeared on the MGM Grand booking page "
+               "in the same session (see flag F81 in the register): 22-28 November printed $84, $84, $84, $84, $149, $349, $149 and "
+               "30 November printed $649, with 17 November $309 and 19 November $249 on the Bellagio URL. A page that "
+               "can serve another property's grid is not evidence of this property's rate, so the Bellagio room rate "
+               "stays blank and no nightly figure is derived from these cells."),
+         source="https://bellagio.mgmresorts.com/book-room?property=bellagio"
+                "&resort=66964e2b-2550-4476-84c3-1a4c0c5c067f",
+         feeSource=BELLAGIO_TERMS, taxSource=BELLAGIO_TERMS),
 ]
 
 MAPS = "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin={o}&destination={d}"
@@ -789,7 +853,7 @@ ROUTES = [
     # Walking routes to the Venetian poker room were re-read on 2026-11-17 in Google Maps walking mode.
     # Each row with a walkCapture key is asserted against raw/google_maps_walk_2026-11-17.json by
     # tests/test_walk_captures_2026_11_17.py. `minutes` is the first (recommended) route card; the
-    # other shown routes are in `note`. Google Maps is not an official venue source (flag F81).
+    # other shown routes are in `note`. Google Maps is not an official venue source (flag F77).
     dict(hotel="venetian", venue="venetian", minutes=0, miles="",
          note="Poker room is inside the hotel's own resort; indoor walk, no street crossing.",
          via="", source="https://www.venetianlasvegas.com/resort/casino/poker.html",
@@ -825,7 +889,7 @@ ROUTES = [
          note="Poker room is inside the hotel.",
          via="", source="https://aria.mgmresorts.com/en/casino/poker.html",
          mapsOrigin="ARIA+Resort+%26+Casino,+Las+Vegas,+NV", mapsDestination="ARIA+Resort+%26+Casino,+Las+Vegas,+NV"),
-    # Hotel -> Venetian poker room, every hotel in the dataset, read 2026-11-17 (walking mode).
+    # cross-property routes to the Venetian poker room (the main venue)
     dict(hotel="caesars", venue="venetian", minutes=12, miles="0.5", lastReadOn="2026-11-17", walkCapture="caesars-to-venetian",
          note="Google Maps walking directions read 2026-11-17: 12 min (0.5 mile) via Las Vegas Blvd S; a 12-minute alternative (0.6 mile) via S Siegfried And Roy Dr is also shown.",
          via="Las Vegas Blvd S", source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
@@ -838,23 +902,145 @@ ROUTES = [
          note="Google Maps walking directions read 2026-11-17: 16 min (0.7 mile) via Linq Ln; a 16-minute route via Krueger Dr and a 17-minute route (0.8 mile) via Las Vegas Blvd S are also shown.",
          via="Linq Ln", source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
          mapsOrigin="Horseshoe+Las+Vegas+NV", mapsDestination="The+Venetian+Resort+Las+Vegas+NV"),
-    dict(hotel="aria", venue="venetian", minutes=31, miles="1.4", lastReadOn="2026-11-17", walkCapture="aria-to-venetian",
-         note="Google Maps walking directions read 2026-11-17: 31 min (1.4 miles) via Las Vegas Blvd S; 32 min via The Cosmopolitan Service Rd and 38 min (1.7 miles) via Frank Sinatra Dr are also shown. Outside the 30-minute limit on every route shown.",
-         via="Las Vegas Blvd S", source="https://aria.mgmresorts.com/en/casino/poker.html",
-         mapsOrigin="ARIA+Resort+%26+Casino+Las+Vegas+NV", mapsDestination="The+Venetian+Resort+Las+Vegas+NV"),
-    dict(hotel="mgm", venue="venetian", minutes=35, miles="1.6", lastReadOn="2026-11-17", walkCapture="mgm-to-venetian",
-         note="Google Maps walking directions read 2026-11-17: 35 min (1.6 miles) via Las Vegas Blvd S. Outside the 30-minute limit.",
-         via="Las Vegas Blvd S", source="https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
-         mapsOrigin="MGM+Grand+Hotel+%26+Casino+Las+Vegas+NV", mapsDestination="The+Venetian+Resort+Las+Vegas+NV"),
     dict(hotel="bellagio", venue="venetian", minutes=21, miles="0.9", lastReadOn="2026-11-17", walkCapture="bellagio-to-venetian",
          note="Google Maps walking directions read 2026-11-17: 21 min (0.9 mile) via Las Vegas Blvd S; a 24-minute route (1.1 miles) via Bellagio Dr is also shown.",
          via="Las Vegas Blvd S", source="https://bellagio.mgmresorts.com/en/casino/poker.html",
          mapsOrigin="Bellagio+Hotel+%26+Casino+Las+Vegas+NV", mapsDestination="The+Venetian+Resort+Las+Vegas+NV"),
-    # Venetian hotel -> Bellagio Poker Room (reverse direction), read 2026-11-17. Replaces the earlier
-    # 27-minute single read, which has no saved capture (flag F81).
+    dict(hotel="mgm", venue="venetian", minutes=35, miles="1.6", lastReadOn="2026-11-17", walkCapture="mgm-to-venetian",
+         note="Google Maps walking directions read 2026-11-17: 35 min (1.6 miles) via Las Vegas Blvd S. Outside the 30-minute limit.",
+         via="Las Vegas Blvd S", source="https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
+         mapsOrigin="MGM+Grand+Hotel+%26+Casino+Las+Vegas+NV", mapsDestination="The+Venetian+Resort+Las+Vegas+NV"),
+    dict(hotel="aria", venue="venetian", minutes=31, miles="1.4", lastReadOn="2026-11-17", walkCapture="aria-to-venetian",
+         note="Google Maps walking directions read 2026-11-17: 31 min (1.4 miles) via Las Vegas Blvd S; 32 min via The Cosmopolitan Service Rd and 38 min (1.7 miles) via Frank Sinatra Dr are also shown. Outside the 30-minute limit on every route shown.",
+         via="Las Vegas Blvd S", source="https://aria.mgmresorts.com/en/casino/poker.html",
+         mapsOrigin="ARIA+Resort+%26+Casino+Las+Vegas+NV", mapsDestination="The+Venetian+Resort+Las+Vegas+NV"),
+    # Venetian hotel -> Bellagio Poker Room, the reverse direction is not in the day plan (see F67).
     dict(hotel="venetian", venue="bellagio", minutes=21, miles="0.9", lastReadOn="2026-11-17", walkCapture="venetian-to-bellagio",
          note=("Google Maps walking directions read 2026-11-17: 21 min (0.9 mile) via Las Vegas Blvd S; a 25-minute route "
                "(1.1 miles) via Las Vegas Blvd S and Bellagio Dr is also shown. The same pair is 10 minutes by car on the control read."),
          via="Las Vegas Blvd S", source="https://bellagio.mgmresorts.com/en/casino/poker.html",
          mapsOrigin="The+Venetian+Resort+Las+Vegas+NV", mapsDestination="Bellagio+Hotel+%26+Casino+Las+Vegas+NV"),
+    dict(hotel="venetian", venue="wynn", minutes=19, miles="0.9",
+         note="Maps walking estimate to Encore, where the Wynn poker room is located, via Las Vegas Blvd S.", via="Las Vegas Blvd S", source="https://www.venetianlasvegas.com/resort/casino/poker.html",
+         mapsOrigin="The+Venetian+Resort,+Las+Vegas,+NV", mapsDestination="Encore+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109", measuredOn="2026-11-17"),
+    dict(hotel="venetian", venue="mgm", minutes=36, miles="1.6",
+         note="Maps walking estimate, Las Vegas Blvd S.", via="Las Vegas Blvd S", source="https://www.venetianlasvegas.com/resort/casino/poker.html",
+         mapsOrigin="The+Venetian+Resort,+Las+Vegas,+NV", mapsDestination="MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="venetian", venue="aria", minutes=32, miles="1.4",
+         note="Maps walking estimate, Las Vegas Blvd S.", via="Las Vegas Blvd S", source="https://www.venetianlasvegas.com/resort/casino/poker.html",
+         mapsOrigin="The+Venetian+Resort,+Las+Vegas,+NV", mapsDestination="ARIA+Resort+%26+Casino,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="venetian", venue="caesars", minutes=13, miles="0.5",
+         note="Maps walking estimate, Las Vegas Blvd S.", via="Las Vegas Blvd S", source="https://www.venetianlasvegas.com/resort/casino/poker.html",
+         mapsOrigin="The+Venetian+Resort,+Las+Vegas,+NV", mapsDestination="Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="venetian", venue="horseshoe", minutes=16, miles="0.7",
+         note="Maps walking estimate, Krueger Dr.", via="Krueger Dr", source="https://www.venetianlasvegas.com/resort/casino/poker.html",
+         mapsOrigin="The+Venetian+Resort,+Las+Vegas,+NV", mapsDestination="Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169", measuredOn="2026-11-17"),
+    dict(hotel="palazzo", venue="wynn", minutes=13, miles="0.6",
+         note="Maps walking estimate to Encore, where the Wynn poker room is located, via Las Vegas Blvd S.", via="Las Vegas Blvd S", source="https://www.venetianlasvegas.com/resort/casino/poker.html",
+         mapsOrigin="The+Palazzo+Las+Vegas,+Las+Vegas,+NV", mapsDestination="Encore+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109", measuredOn="2026-11-17"),
+    dict(hotel="palazzo", venue="bellagio", minutes=25, miles="1.1",
+         note="Maps walking estimate, Las Vegas Blvd S.", via="Las Vegas Blvd S", source="https://www.venetianlasvegas.com/resort/casino/poker.html",
+         mapsOrigin="The+Palazzo+Las+Vegas,+Las+Vegas,+NV", mapsDestination="Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="palazzo", venue="mgm", minutes=39, miles="1.7",
+         note="Maps walking estimate, Las Vegas Blvd S.", via="Las Vegas Blvd S", source="https://www.venetianlasvegas.com/resort/casino/poker.html",
+         mapsOrigin="The+Palazzo+Las+Vegas,+Las+Vegas,+NV", mapsDestination="MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="palazzo", venue="aria", minutes=35, miles="1.5",
+         note="Maps walking estimate, Las Vegas Blvd S.", via="Las Vegas Blvd S", source="https://www.venetianlasvegas.com/resort/casino/poker.html",
+         mapsOrigin="The+Palazzo+Las+Vegas,+Las+Vegas,+NV", mapsDestination="ARIA+Resort+%26+Casino,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="palazzo", venue="caesars", minutes=16, miles="0.7",
+         note="Maps walking estimate, Las Vegas Blvd S.", via="Las Vegas Blvd S", source="https://www.venetianlasvegas.com/resort/casino/poker.html",
+         mapsOrigin="The+Palazzo+Las+Vegas,+Las+Vegas,+NV", mapsDestination="Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="palazzo", venue="horseshoe", minutes=21, miles="0.9",
+         note="Maps walking estimate, Las Vegas Blvd S.", via="Las Vegas Blvd S", source="https://www.venetianlasvegas.com/resort/casino/poker.html",
+         mapsOrigin="The+Palazzo+Las+Vegas,+Las+Vegas,+NV", mapsDestination="Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169", measuredOn="2026-11-17"),
+    dict(hotel="wynn", venue="bellagio", minutes=32, miles="1.4",
+         note="Maps walking estimate, Las Vegas Blvd S.", via="Las Vegas Blvd S", source="https://www.wynnlasvegas.com/casino/poker",
+         mapsOrigin="Wynn+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109", mapsDestination="Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="wynn", venue="mgm", minutes=48, miles="2.1",
+         note="Maps walking estimate, Las Vegas Blvd S.", via="Las Vegas Blvd S", source="https://www.wynnlasvegas.com/casino/poker",
+         mapsOrigin="Wynn+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109", mapsDestination="MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="wynn", venue="aria", minutes=44, miles="1.9",
+         note="Maps walking estimate, Las Vegas Blvd S.", via="Las Vegas Blvd S", source="https://www.wynnlasvegas.com/casino/poker",
+         mapsOrigin="Wynn+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109", mapsDestination="ARIA+Resort+%26+Casino,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="wynn", venue="caesars", minutes=23, miles="1.0",
+         note="Maps walking estimate, Las Vegas Blvd S.", via="Las Vegas Blvd S", source="https://www.wynnlasvegas.com/casino/poker",
+         mapsOrigin="Wynn+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109", mapsDestination="Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="wynn", venue="horseshoe", minutes=29, miles="1.3",
+         note="Maps walking estimate, Las Vegas Blvd S.", via="Las Vegas Blvd S", source="https://www.wynnlasvegas.com/casino/poker",
+         mapsOrigin="Wynn+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109", mapsDestination="Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169", measuredOn="2026-11-17"),
+    dict(hotel="bellagio", venue="wynn", minutes=38, miles="1.7",
+         note="Maps walking estimate to Encore, where the Wynn poker room is located, via Las Vegas Blvd S.", via="Las Vegas Blvd S", source="https://bellagio.mgmresorts.com/en/casino/poker.html",
+         mapsOrigin="Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV", mapsDestination="Encore+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109", measuredOn="2026-11-17"),
+    dict(hotel="bellagio", venue="mgm", minutes=20, miles="0.9",
+         note="Maps walking estimate, Bellagio Dr.", via="Bellagio Dr", source="https://bellagio.mgmresorts.com/en/casino/poker.html",
+         mapsOrigin="Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV", mapsDestination="MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="bellagio", venue="aria", minutes=12, miles="0.5",
+         note="Maps walking estimate, The Cosmopolitan Service Rd.", via="The Cosmopolitan Service Rd", source="https://bellagio.mgmresorts.com/en/casino/poker.html",
+         mapsOrigin="Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV", mapsDestination="ARIA+Resort+%26+Casino,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="bellagio", venue="caesars", minutes=12, miles="0.5",
+         note="Maps walking estimate, Las Vegas Blvd Overpass.", via="Las Vegas Blvd Overpass", source="https://bellagio.mgmresorts.com/en/casino/poker.html",
+         mapsOrigin="Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV", mapsDestination="Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="bellagio", venue="horseshoe", minutes=11, miles="0.5",
+         note="Maps walking estimate, Bellagio Dr.", via="Bellagio Dr", source="https://bellagio.mgmresorts.com/en/casino/poker.html",
+         mapsOrigin="Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV", mapsDestination="Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169", measuredOn="2026-11-17"),
+    dict(hotel="mgm", venue="wynn", minutes=53, miles="2.3",
+         note="Maps walking estimate to Encore, where the Wynn poker room is located, via Las Vegas Blvd S.", via="Las Vegas Blvd S", source="https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
+         mapsOrigin="MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV", mapsDestination="Encore+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109", measuredOn="2026-11-17"),
+    dict(hotel="mgm", venue="bellagio", minutes=20, miles="0.9",
+         note="Maps walking estimate, Bellagio Dr.", via="Bellagio Dr", source="https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
+         mapsOrigin="MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV", mapsDestination="Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="mgm", venue="aria", minutes=16, miles="0.7",
+         note="Maps walking estimate, W Aria Pl.", via="W Aria Pl", source="https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
+         mapsOrigin="MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV", mapsDestination="ARIA+Resort+%26+Casino,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="mgm", venue="caesars", minutes=28, miles="1.2",
+         note="Maps walking estimate, Las Vegas Blvd Overpass.", via="Las Vegas Blvd Overpass", source="https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
+         mapsOrigin="MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV", mapsDestination="Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="mgm", venue="horseshoe", minutes=22, miles="1.0",
+         note="Maps walking estimate, Ballys Dr.", via="Ballys Dr", source="https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
+         mapsOrigin="MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV", mapsDestination="Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169", measuredOn="2026-11-17"),
+    dict(hotel="caesars", venue="wynn", minutes=29, miles="1.3",
+         note="Maps walking estimate to Encore, where the Wynn poker room is located, via Las Vegas Blvd S.", via="Las Vegas Blvd S", source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
+         mapsOrigin="Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV", mapsDestination="Encore+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109", measuredOn="2026-11-17"),
+    dict(hotel="caesars", venue="bellagio", minutes=12, miles="0.5",
+         note="Maps walking estimate, Las Vegas Blvd Overpass.", via="Las Vegas Blvd Overpass", source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
+         mapsOrigin="Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV", mapsDestination="Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="caesars", venue="mgm", minutes=28, miles="1.2",
+         note="Maps walking estimate, Las Vegas Blvd Overpass.", via="Las Vegas Blvd Overpass", source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
+         mapsOrigin="Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV", mapsDestination="MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="caesars", venue="aria", minutes=24, miles="1.0",
+         note="Maps walking estimate, Las Vegas Blvd Overpass.", via="Las Vegas Blvd Overpass", source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
+         mapsOrigin="Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV", mapsDestination="ARIA+Resort+%26+Casino,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="caesars", venue="horseshoe", minutes=10, miles="0.4",
+         note="Maps walking estimate, Las Vegas Blvd Overpass.", via="Las Vegas Blvd Overpass", source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
+         mapsOrigin="Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV", mapsDestination="Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169", measuredOn="2026-11-17"),
+    dict(hotel="horseshoe", venue="wynn", minutes=35, miles="1.5",
+         note="Maps walking estimate to Encore, where the Wynn poker room is located, via Las Vegas Blvd S.", via="Las Vegas Blvd S", source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
+         mapsOrigin="Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169", mapsDestination="Encore+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109", measuredOn="2026-11-17"),
+    dict(hotel="horseshoe", venue="bellagio", minutes=11, miles="0.5",
+         note="Maps walking estimate, Bellagio Dr.", via="Bellagio Dr", source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
+         mapsOrigin="Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169", mapsDestination="Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="horseshoe", venue="mgm", minutes=23, miles="1.0",
+         note="Maps walking estimate, Ballys Dr.", via="Ballys Dr", source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
+         mapsOrigin="Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169", mapsDestination="MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="horseshoe", venue="aria", minutes=18, miles="0.8",
+         note="Maps walking estimate, Ballys Dr.", via="Ballys Dr", source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
+         mapsOrigin="Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169", mapsDestination="ARIA+Resort+%26+Casino,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="horseshoe", venue="caesars", minutes=10, miles="0.4",
+         note="Maps walking estimate, Las Vegas Blvd Overpass.", via="Las Vegas Blvd Overpass", source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
+         mapsOrigin="Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169", mapsDestination="Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="aria", venue="wynn", minutes=48, miles="2.1",
+         note="Maps walking estimate to Encore, where the Wynn poker room is located, via Las Vegas Blvd S.", via="Las Vegas Blvd S", source="https://aria.mgmresorts.com/en/casino/poker.html",
+         mapsOrigin="ARIA+Resort+%26+Casino,+Las+Vegas,+NV", mapsDestination="Encore+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109", measuredOn="2026-11-17"),
+    dict(hotel="aria", venue="bellagio", minutes=12, miles="0.5",
+         note="Maps walking estimate, The Cosmopolitan Service Rd.", via="The Cosmopolitan Service Rd", source="https://aria.mgmresorts.com/en/casino/poker.html",
+         mapsOrigin="ARIA+Resort+%26+Casino,+Las+Vegas,+NV", mapsDestination="Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="aria", venue="mgm", minutes=15, miles="0.7",
+         note="Maps walking estimate, W Aria Pl.", via="W Aria Pl", source="https://aria.mgmresorts.com/en/casino/poker.html",
+         mapsOrigin="ARIA+Resort+%26+Casino,+Las+Vegas,+NV", mapsDestination="MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="aria", venue="caesars", minutes=24, miles="1.0",
+         note="Maps walking estimate, Las Vegas Blvd Overpass.", via="Las Vegas Blvd Overpass", source="https://aria.mgmresorts.com/en/casino/poker.html",
+         mapsOrigin="ARIA+Resort+%26+Casino,+Las+Vegas,+NV", mapsDestination="Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV", measuredOn="2026-11-17"),
+    dict(hotel="aria", venue="horseshoe", minutes=18, miles="0.8",
+         note="Maps walking estimate, Ballys Dr.", via="Ballys Dr", source="https://aria.mgmresorts.com/en/casino/poker.html",
+         mapsOrigin="ARIA+Resort+%26+Casino,+Las+Vegas,+NV", mapsDestination="Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169", measuredOn="2026-11-17"),
 ]

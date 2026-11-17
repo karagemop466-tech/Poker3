@@ -85,10 +85,10 @@ class WalkCaptureIntegrity(unittest.TestCase):
     def test_flags_point_to_the_capture_and_no_press_source_is_official(self):
         import data_source as D
         ids = {f["id"] for f in D.FLAGS}
-        for needed in ("F79", "F80", "F81", "F82"):
+        for needed in ("F79", "F80", "F82", "F83"):
             self.assertIn(needed, ids)
         for f in D.FLAGS:
-            if f["id"] in ("F81", "F82"):
+            if f["id"] in ("F82", "F83"):
                 self.assertTrue(f["source"].startswith("https://"), f["id"])
 
 
