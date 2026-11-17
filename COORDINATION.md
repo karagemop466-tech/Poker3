@@ -2872,3 +2872,19 @@ Bellagio/ARIA/MGM hosts timing out from the runner) - published as unavailable, 
 `audit_data.py` 37 sheets vs 94 rows, 0 failures; `audit_951cd431.py` 0 failures, 0 warnings;
 `verify_live_official.py` OK - canonical rows match both official captures line by line; `canonical_smoke.py` and
 `smoke.py` render clean; `node --check site/assets/app.js` clean; `json.tool` clean.0472662 (docs: record live verification results for arena/b13ca4cb-poker3)44efdf8 (docs: record live verification results for arena/b13ca4cb-poker3)6f8db65 (docs: record live verification results for arena/b13ca4cb-poker3)987225f (docs: record live verification results for arena/b13ca4cb-poker3)
+## Session `arena/271f1c70-poker3` — claim: official re-read of the DeepStack IV schedule and the single-entry question (F31) (2026-11-17 UTC)
+
+Branch `arena/271f1c70-poker3`, from `main` @ `f8e4753` (PR #92). Most items in the brief are already on `main` (calculator, venue pages, search, date and strict-entry filters, dated rate log, overlap and walking checks, scheduled re-check, questions, suggestions, flags), so this session claims one narrow task rather than rebuilding them.
+
+| Task | Status | Owner | Files in scope | Notes |
+|---|---|---|---|---|
+| V2 Re-read the official DeepStack Extravaganza IV schedule page and try to confirm a written one-entry / no-re-entry rule (F31); spot-check rows against `site/data.json` | done | arena/271f1c70-poker3 | this section only (`COORDINATION.md`); no data file changed unless a discrepancy is found and flagged | Other open PRs (#93, #94, #95) touch other scopes and were not edited. |
+
+### Result (session `arena/271f1c70-poker3`, 2026-11-17 UTC)
+
+- **Official sources read live:** `https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html`, chunks 0 and 3 of 4 (chunks 1 and 2 were not re-read this session). Chunk 0 covers 16–28 Nov; chunk 3 covers 20–23 Dec. The page carries the schedule table only; it prints no entry, re-entry or add-on rule.
+- **Row check (15 rows):** event number, date, start time, name, buy-in, guarantee and structure-sheet number for events 2, 7, 8, 10, 14, 16, 18, 59, 60, 63 and 64 were compared with the live page and with `raw/dse_nov_2026_schedule_html_2026-11-17.md`. All agree. `site/data.json` agrees for the rows checked (event 2 on 18 Nov, event 7 on 23 Nov, event 10 on 25 Nov, event 14 on 27 Nov, event 16 on 28 Nov, event 59 on 20 Dec). No data value changed.
+- **F31 (single-entry) — still open.** No official page read this session prints a maximum-entry, no-rebuy or no-add-on rule. The only written rule found on the official structure sheet for event 1 is multi-flight (`dse_nov_2026-structure_10.pdf`). Search results for WPT and older Venetian pages were third-party or dated 2017–2023 and were not used as evidence.
+- **Checks run:** `python3 scripts/verify_site.py` passed (341 events, 8 hotels, 15 routes, 43 sources, 66 flags, 7 plan days, 16 pages). `python3 -m unittest discover -s tests -p 'test_*.py'` — 108 tests OK after installing PyYAML in the sandbox (sandbox-only; no repo change). `python3 scripts/data_source.py` regenerated `site/data.json` with no diff.
+- **Irregularities:** none new. The source's own typo "No LImit" in the event names is ignored (the data uses the corrected wording).
+- **Not touched:** open PRs #93, #94, #95 and the scheduled re-check run in progress on `main`.
