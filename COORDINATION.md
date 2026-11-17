@@ -1626,3 +1626,29 @@ Claim recorded 2026-11-17 UTC before any other file edits in this session. Commi
 - **PR [#54](https://github.com/karagemop466-tech/Poker3/pull/54)** (`arena/196dc009-poker3` → `main`): merged with `gh pr merge 54 --merge` as merge commit **`ef5b8ad`** at 2026-11-17T01:29:37Z. Pre-merge suite on the rebased branch: verify_site, audit_data, canonical_smoke (16 pages), smoke.py, `verify_live_official.py` (line-by-line DSE match), **73 unittest cases**, node --check, json.tool, reproducible build, `git diff --check` — all green.
 - **CI on the merge:** "Verify static research site" run 43995990893 → **success**; "Publish the canonical Vegas Poker Planner to GitHub Pages" run 43995990950 → **success**; GitHub Pages API `status: built` → https://karagemop466-tech.github.io/Poker3/ . PR #68 (another session) merged on top minutes later with its own verify/publish green, so the live site includes this work plus theirs.
 - **Open for the user:** trip-window dates (Nov 25–Dec 2, 2026) still need confirmation before any booking (Q01); foreign PRs #7/#27/#31 remain untouched; flagged items F01–F53 do not block anything.
+
+---
+
+---
+
+---
+
+---
+
+## Session `arena/191afa75-poker3` — hotel-cost gap closure, route coverage, cross-reference audit (2026-11-17 UTC)
+
+Branch `arena/191afa75-poker3`, based on `main` at `2625d5b`. Claimed 2026-11-17 01:20 UTC.
+
+| Task | Status | Owner | Files I may edit | Notes |
+|---|---|---|---|---|
+| T-1 Close F37 (Caesars Palace / Horseshoe have no verified resort fee) and F39 (Wynn tax % not printed) from official sources | in progress | 191afa75 | `scripts/data_hotels.py` (hotel fee/tax fields + rateLog only), `site/data.json` (regenerated) | Reads only; a value goes in only if the property's own page or the county/treasury page prints it |
+| T-2 F32: extend the walking-route table to the hotel–venue pairs still missing | in progress | 191afa75 | `scripts/data_hotels.py` (ROUTES), `site/data.json` | No invented minutes: either a Maps estimate that resolves, or the pair is recorded as not measured |
+| T-3 Audit every flag/question cross-reference shown in the UI for pointers at the wrong ID, and fix the pointers | in progress | 191afa75 | `site/assets/app.js` (badge text only), `scripts/data_source.py` (flag text only) | Found: `app.js` tournament empty-state cites "flagged item F29" for the single-entry gap; that gap is F31, F29 is the stale-root-page flag |
+| T-4 Live re-check of the rows I touch, recorded per row with retrieval date | in progress | 191afa75 | this section | |
+
+**Not claimed by me (to avoid duplicate work):** dated hotel quotes / booking-engine prices and the trip-window move
+(PR #56, PR #57), the 118-row live re-verification and the single search box (PR #50), the scheduled re-check
+trigger repair (PR #55), the WPT structure-sheet matching (F12) and the structure-sheet reads (done by 52e02b46).
+
+**Environment note:** this sandbox cannot reach any venue host over the network (`curl` returns HTTP 000), which is
+flag F40; all live reads in this session are made with the platform page reader, and each is cited with the exact URL.
