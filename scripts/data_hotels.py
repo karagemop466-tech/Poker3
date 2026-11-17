@@ -545,6 +545,31 @@ RATE_LOG = [
                "day for other windows differed (see the rows below), so this quote is one dated observation."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar",
          feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
+    # Second read of the SAME trip window on the same day (session 7529044d, 2026-11-17 about 22:15 UTC,
+    # about 20 minutes after the read above). The engine returned a different suite tower and a different
+    # total for an identical query. Both are kept as dated observations; neither replaces the other (flag F78).
+    dict(hotel="palazzo", observedOn="2026-11-17", baseRate="",
+         publishedStartingRates="204.25 (Nov 23), 204.25 (Nov 24), 286.75 (Nov 25), 406.75 (Nov 26), "
+                                "1,119.25 (Nov 27), 561.75 (Nov 28), 204.25 (Nov 29) per night, rate before resort fee",
+         resortFee="55.00 per night",
+         tax="451.21 printed (7 nights)",
+         trueNightlyLow="293.94", trueNightlyHigh="1331.36",
+         nightlyRates=[204.25, 204.25, 286.75, 406.75, 1119.25, 561.75, 204.25],
+         nightlyTrueCost=[293.94, 293.94, 387.48, 523.53, 1331.36, 699.27, 293.94],
+         quoteType=("Dated official checkout total (2 adults, 7 nights, 23-30 Nov 2026, best available "
+                    "palazzo Luxury King suite) - read 2026-11-17 about 22:15 UTC"),
+         note=("Second read of the identical query (2 adults, arrival 23 Nov, departure 30 Nov) about 20 minutes "
+               "after the earlier read the same day: the engine returned a different suite tower - a palazzo "
+               "Luxury King (about 720 sq ft) instead of the venetian Newly Remodeled Luxury King - and a lower "
+               "total, $3,823.46 against $4,010.55, a difference of $187.09 with no change to dates or party size "
+               "(flag F78). Printed on the page: estimated cost of stay $3,823.46, average rate $481.75, taxes "
+               "$451.21, $55.00 resort fee on each of the seven nights. The seven derived per-night true costs "
+               "(rate + $55) x 1.1338 are 293.94, 293.94, 387.48, 523.53, 1331.36, 699.27 and 293.94, which add "
+               "to the printed $3,823.46 exactly, and 13.38% of the printed pre-tax subtotal of $3,372.25 is the "
+               "printed $451.21. This is a dated observation of the engine's best-available offer, not a booking "
+               "price; compare like-for-like by suite name and read time before budgeting (see the rate log and "
+               "flag F78)."),
+         source=VENETIAN_CALENDAR_TRIP_URL, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
     dict(hotel="venetian", observedOn="2026-11-17", baseRate="",
          publishedStartingRates="621.75 (Nov 17) and 164.25 (Nov 18) per night",
          resortFee="55.00 per night", tax="119.89 printed",
