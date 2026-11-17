@@ -52,7 +52,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: scheduled-source-review
+  group: scheduled-source-checks
   cancel-in-progress: false
 
 jobs:
