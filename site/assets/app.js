@@ -464,13 +464,20 @@ function renderHotels() {
   if (quotesHost) {
     const all = [];
     (db.hotels || []).forEach((h) => (h.quotes || (h.quote ? [h.quote] : [])).forEach((q) => all.push(q)));
-    all.sort((a, b) => (a.observedOn < b.observedOn ? 1 : a.observedOn > b.observedOn ? -1 : 0));
+    // Newest first. The read timestamp breaks the tie when two readings share a day, so the current
+    // figure is never buried under the one it superseded.
+    all.sort((a, b) => {
+      if (a.observedOn !== b.observedOn) return a.observedOn < b.observedOn ? 1 : -1;
+      const ta = a.readAt || '', tb = b.readAt || '';
+      return ta === tb ? 0 : (ta < tb ? 1 : -1);
+    });
     if (!all.length) {
       quotesHost.innerHTML = '<div class="empty"><strong>No dated checkout total.</strong> No property publishes one for the reviewed dates.</div>';
     } else {
       quotesHost.innerHTML = `<div class="cards">${all.map((q) => `
         <article class="card">
           <span class="pill ${q.observedOn === db.asOf ? 'ok' : ''}">Observed ${esc(q.observedOn)}</span>
+          ${q.isCurrent ? '<span class="pill ok">Current published figure</span>' : '<span class="pill">Later reading supersedes this one</span>'}
           <h3>$${q.total.toFixed(2)} for ${esc(q.nights)} nights</h3>
           <div class="detail-grid">
             <div><span class="label">Property and room</span><span class="value">${esc(q.property)}</span></div>
@@ -480,6 +487,7 @@ function renderHotels() {
             ${nightRows(q)}
             <div><span class="label">Taxes printed</span><span class="value">$${q.taxes.toFixed(2)}</span></div>
             <div><span class="label">Average rate printed</span><span class="value">$${q.averageRate.toFixed(2)}</span></div>
+            <div><span class="label">Read at</span><span class="value">${esc(q.readAt || q.observedOn)}</span></div>
           </div>
           <p class="detail-note">${esc(q.note)}</p>
           <p class="detail-note">Derived nightly cost ${q.derivedNightly.map((v) => '$' + v.toFixed(2)).join(', ')}, from (rate + $55) × 1.1338 — total $${q.derivedTotal.toFixed(2)} against the printed $${q.total.toFixed(2)}.</p>
@@ -786,12 +794,14 @@ function renderSources() {
         <div class="stat-caption">Hash differs from the previous run</div></div>
       <div class="stat"><div class="stat-label">Unreachable</div><div class="stat-value">${sum.failed || 0}</div>
         <div class="stat-caption">No value is changed by a failure</div></div>
+      <div class="stat"><div class="stat-label">Blind to changes</div><div class="stat-value">${sum.queryBlind || 0}</div>
+        <div class="stat-caption">Same page for every query · price not fetched (F77)</div></div>
     </div>`;
     const body = rows.map((u) => `<tr>
       <td class="event-name">${esc(u.url)}<span class="muted">${esc(u.label || '')}</span></td>
       <td>${esc(u.status || '')}</td>
       <td>${esc(u.checked || '')}</td>
-      <td>${u.changed ? '<span class="badge bad">Content changed · manual review</span>' : u.unavailable ? '<span class="badge warn">Unavailable · not verified</span>' : u.basisReset ? '<span class="badge info">Baseline re-seeded (text comparison began)</span>' : u.baseline ? '<span class="badge info">Baseline recorded</span>' : u.rawOnly ? '<span class="badge info">Raw body differs, visible text identical · noise</span>' : '<span class="badge ok">Unchanged</span>'}</td>
+      <td>${u.changed ? '<span class="badge bad">Content changed · manual review</span>' : u.unavailable ? '<span class="badge warn">Unavailable · not verified</span>' : u.queryBlind ? '<span class="badge warn" title="' + esc(u.queryBlindReason || '') + '">Change not detectable here · read by hand</span>' : u.basisReset ? '<span class="badge info">Baseline re-seeded (text comparison began)</span>' : u.baseline ? '<span class="badge info">Baseline recorded</span>' : u.rawOnly ? '<span class="badge info">Raw body differs, visible text identical · noise</span>' : '<span class="badge ok">Unchanged</span>'}</td>
       <td>${u.changed ? esc(u.previousTextHash ? u.previousTextHash.slice(0, 12) + ' → ' : '') + esc((u.textHash || '').slice(0, 12)) : (u.textHash || u.hash || '').slice(0, 12)}</td>
     </tr>`).join('');
     auto.innerHTML = summaryHtml + `<div class="table-wrap"><table><thead><tr><th>Official URL</th><th>Status</th><th>Checked</th>
@@ -869,7 +879,7 @@ function costLine() {
   const m = db.tripCostModel;
   if (!m || typeof m.tripTotal !== 'number') return '';
   const usd = (n) => '$' + Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-  const live = m.liveQuote ? ` <span class="muted">Dated official quote, ${m.liveQuote.nights} nights ${m.liveQuote.checkIn} to ${m.liveQuote.checkOut} (Venetian booking engine, ${m.liveQuote.quoteDate}): ${usd(m.liveQuote.checkoutTotal)} checkout total including the resort fee and tax, so the trip total is ${usd(m.liveQuote.tripTotal)}.</span>` : '';
+  const live = m.liveQuote ? ` <span class="muted">Dated official quote, ${m.liveQuote.nights} nights ${m.liveQuote.checkIn} to ${m.liveQuote.checkOut} (Venetian booking engine, ${m.liveQuote.quoteDate}): ${usd(m.liveQuote.checkoutTotal)} checkout total including the resort fee and tax, so the trip total is ${usd(m.liveQuote.tripTotal)}.${m.liveQuote.earlierSameDayReading ? ` An earlier reading of the identical official query the same day printed ${usd(m.liveQuote.earlierSameDayReading.checkoutTotal)}; both are kept in the dated rate log, because a single reading is not a rate (F78).` : ''}</span>` : '';
   return `<p class="muted"><strong>Estimated cost of the trip, from published parts:</strong>
     ${m.entries} entries × ${usd(m.buyIn)} buy-in (${usd(m.tournamentTotal)})
     + ${m.nights} nights × ${usd(m.trueCostPerNight)} true hotel cost (${usd(m.lodgingTotal)})
@@ -908,7 +918,7 @@ function renderHome() {
          $119 before the $55 mandatory resort fee and 13.38% Clark County room tax, and the walk to any other
          Strip room on the list is inside 30 minutes.</p>
       <p class="muted">Nightly budget fixed at $${(t.nightlyBudget || 0).toFixed(2)} (the published floor).
-         The eight recommended entries total ${money(t.primaryBuyIns)} in buy-ins; with a 25% buffer, plan on
+         The seven recommended entries total ${money(t.primaryBuyIns)} in buy-ins; with a 25% buffer, plan on
          ${money(t.bankrollWithBuffer)}.</p>
       ${costLine()}
       <p><a class="card-link" href="schedule.html">Open the day plan →</a> · <a class="card-link" href="hotels.html">Open the hotel comparison →</a> · <a class="card-link" href="calculator.html">Change the numbers in the trip cost calculator →</a></p>`;

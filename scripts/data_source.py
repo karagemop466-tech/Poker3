@@ -509,14 +509,17 @@ FLAGS = [
                  "is flagged rather than resolved."),
          source="https://www.wynnlasvegas.com/terms-and-conditions/850070"),
     dict(id="F15", area="Hotels", severity="High",
-         title="Dated checkout totals exist for near-term stays, but none for the recommended trip window",
-         detail=("The Venetian booking engine has now printed three dated totals. November 17-19, 2026 with two adults: "
-                 "$824.25 + $55, $164.25 + $55, $146.98 tax, $1,245.48 total on 2026-11-16, and the same stay at "
+         title="Dated checkout totals exist for several stays, but none could be read for the superseded 25 Nov - 2 Dec window",
+         detail=("The Venetian booking engine has printed dated totals for several stays. November 17-19, 2026 with two "
+                 "adults: $824.25 + $55, $164.25 + $55, $146.98 tax, $1,245.48 total on 2026-11-16, and the same stay at "
                  "$621.75 + $55, $164.25 + $55, $119.89 tax, $1,015.89 total on 2026-11-17. November 20-22, 2026: "
-                 "$899.25 + $55, $1,199.25 + $55, $295.50 tax, $2,504.00 total. On 2026-11-17 four stay windows inside "
-                 "the recommended trip window of November 25 to December 2, 2026 were opened and none returned a suite or "
-                 "a price, so the nightly budget stays at the floor computed from the published starting rates of $119 "
-                 "and $209 and is labelled a floor, not a quote."),
+                 "$899.25 + $55, $1,199.25 + $55, $295.50 tax, $2,504.00 total. The 23-30 November 2026 trip window was "
+                 "priced twice on 2026-11-17: $4,010.55 at 21:54 UTC and $3,823.46 at about 22:07 UTC (F78). "
+                 "What could NOT be read is any total for the 25 November - 2 December 2026 window that the trip was "
+                 "first recommended for: on 2026-11-17 four stay windows inside it were opened and none returned a suite "
+                 "or a price. That is why the trip was moved to 23-30 November. The nightly budget is still published as "
+                 "both a floor computed from the published starting rates of $119 and $209 and a dated reading of the "
+                 "engine's own quote, and the two are never merged into a single number."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"),
     dict(id="F28", area="Hotels", severity="High",
          title="The Venetian booking calendar disagrees with the quote, and its cells change with the query",
@@ -701,17 +704,18 @@ FLAGS = [
                  "all on Day 2 restart rows, and no other disagreement anywhere in the series."),
          source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf"),
     dict(id="F64", area="Hotels", severity="Low",
-         title="Two different official booking requests gave two different answers for the trip window",
-         detail=("Asking the official Venetian booking engine for the trip window itself (arrival 2026-11-25, departure "
-                 "2026-12-02) returns $XXX in every cell, so no checkout total exists for those nights. Asking the same "
-                 "engine for a calendar view (arrival 2026-11-17) prints per-night cells for 17-30 November, including "
-                 "$185 on 25 November, $190 on 26 November, $210 on 27 November, $905 on 28 November, $340 on "
-                 "29 November and $165 on 30 November, and the calendar states those cells include the daily resort fee "
-                 "and exclude taxes. A note carried by an earlier build of this site said the trip window published no "
-                 "price at all, which those cells contradict; a later live re-read rewrote that note, and this flag keeps "
-                 "the two requests distinct so the claim cannot return. The calendar cells are still not a quote, and "
-                 "nothing here converts them into one: they are recorded so a reader can see that part of the window "
-                 "does have published figures."),
+         title="Two different official booking requests gave two different answers for the superseded 25 Nov - 2 Dec window",
+         detail=("Asking the official Venetian booking engine for the window that was then recommended (arrival "
+                 "2026-11-25, departure 2026-12-02) returns $XXX in every cell, so no checkout total exists for those "
+                 "nights. Asking the same engine for a calendar view (arrival 2026-11-17) prints per-night cells for "
+                 "17-30 November, including $185 on 25 November, $190 on 26 November, $210 on 27 November, $905 on "
+                 "28 November, $340 on 29 November and $165 on 30 November, and the calendar states those cells include "
+                 "the daily resort fee and exclude taxes. A note carried by an earlier build of this site said the trip "
+                 "window published no price at all, which those cells contradict; a later live re-read rewrote that note, "
+                 "and this flag keeps the two requests distinct so the claim cannot return. The calendar cells are still "
+                 "not a quote, and nothing here converts them into one: they are recorded so a reader can see that part "
+                 "of the window does have published figures. The recommended window has since moved to 23-30 November "
+                 "and is priced (F78), so this flag now describes the superseded window only."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"),
     dict(id="F65", area="Hotels", severity="Low",
          title="Printed Venetian tax for the 23-30 Nov quote is $0.02 above 13.38% of its pre-tax subtotal",
@@ -755,11 +759,13 @@ FLAGS = [
                  "only in offer terms, so Wynn has no verified flexible-booking cancellation deadline and is shown blank."),
          source="https://www.wynnlasvegas.com/about-us/resort-information"),
     dict(id="F36", area="Hotel cost", severity="Medium",
-         title="The booking engine prints $XXX for the recommended trip dates, so no checkout total exists for them",
+         title="The booking engine prints $XXX for the superseded 25 Nov - 2 Dec window, so no checkout total exists for it",
          detail=("The Venetian booking engine was opened for 2026-11-25 to 2026-12-02 with two adults. It returned the "
                  "date picker with every cell reading $XXX, because prices are loaded by script after the page renders. "
-                 "No dated checkout total can therefore be read for the trip window without a browser session. The site "
-                 "keeps the published starting-rate floor ($197.28) and labels it a floor, never a quote."),
+                 "No dated checkout total can therefore be read for that window without a browser session. "
+                 "The window itself is no longer the recommended one: the trip was moved to 23-30 November, which the "
+                 "engine prices in full (F15, F57, F78), so this flag now describes the superseded window only. "
+                 "The site keeps the published starting-rate floor ($197.28) and labels it a floor, never a quote."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-02&view=calendar"),
     dict(id="F37", area="Hotel cost", severity="Low",
          title="Caesars Palace and Horseshoe resort fees are now confirmed; their room-tax percentage is not",
@@ -1050,14 +1056,18 @@ FLAGS = [
          title="The automated re-check cannot see a price change on the booking pages, because it never fetches the price",
          detail=("Found on 2026-11-17. The scheduled recorder fetches each official URL and compares the visible text of the "
                  "response with the stored text hash. The five Venetian booking-engine URLs (17-19 Nov, 20-22 Nov, 23-30 Nov, "
-                 "25 Nov-2 Dec and 27-28 Nov) all return a byte-identical response of 142,771 bytes whose visible text is 1,779 "
-                 "characters, and all five carry the same text hash. The page renders its prices client-side, so the response body "
-                 "does not depend on the dates in the query at all. The recorder therefore reports 'changed: false' for these URLs "
-                 "forever, whether the price moved or not, and it also recorded one of them as a first-time baseline rather than a "
-                 "comparison. A price change on the page that carries the hotel budget is therefore invisible to the monitor. "
-                 "The fix is to compare a rendered read of each booking URL against a stored rendered read, not a raw fetch. Until "
-                 "that is built, the dated rate log is the only record of what the engine actually printed, and every price on this "
-                 "site must be read by hand and logged with its timestamp."),
+                 "25 Nov-2 Dec and 27-28 Nov) each return a response of 142,771 bytes whose visible text is 1,779 characters, "
+                 "and all five carry the same visible-text hash; their raw bytes differ only in material the page reader never "
+                 "shows. The page renders its prices client-side, so the visible text does not depend on the dates in the query "
+                 "at all. The recorder therefore reports 'changed: false' for these URLs however much the price moved, and it "
+                 "also recorded one of them as a first-time baseline rather than a comparison. On the same day the identical "
+                 "query printed $4,010.55 and then $3,823.46 (F78) while the monitor reported no change. "
+                 "The recorder now detects the situation and marks each affected URL 'queryBlind' in the published record, so "
+                 "the sources page says 'change not detectable here' instead of a green 'unchanged'. "
+                 "The remaining gap is that the recorder still cannot detect a change on these pages; closing it needs a "
+                 "rendered read of each booking URL compared with a stored rendered read, not a raw fetch. Until that is built, "
+                 "the dated rate log is the only record of what the engine actually printed, and every price on this site must "
+                 "be read by hand and logged with its timestamp."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar"),
     dict(id="F78", area="Hotels", severity="Medium",
          title="The same official booking query returned two different prices thirteen minutes apart",
@@ -2375,7 +2385,7 @@ def build():
         verifiedOn=VERIFIED_ON,
         liveFacts=LIVE_FACTS_2026_11_17,
         # entries x buy-in + nights x (rate + resort fee) x (1 + tax), computed
-        # from the eight primary entries and the seven recommended nights.
+        # from the seven primary entries and the seven recommended nights.
         tripCostModel=with_live_quote(published_model(len([p for p in plan if p.get("primary")]), _avg_primary_buyin(plan), TRIP["nights"])),
     )
     return data
@@ -2426,7 +2436,7 @@ def _avg_primary_buyin(plan):
     """Average buy-in of the recommended primary events.
 
     Every primary is a different price, so the calculator is published with the
-    average of the eight chosen entries. The sum is in TRIP["primaryBuyIns"], so a
+    average of the seven chosen entries. The sum is in TRIP["primaryBuyIns"], so a
     reader can check the average against it.
     """
     buys = [p["primaryBuyIn"] for p in plan if isinstance(p.get("primaryBuyIn"), (int, float))]

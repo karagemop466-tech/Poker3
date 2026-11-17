@@ -92,12 +92,33 @@ class FlagReferences(unittest.TestCase):
             self.assertIn(fid, flags, f"a published page cites {fid}, which does not exist")
 
     def test_the_booking_engine_citation_points_at_the_booking_engine_flag(self):
+        """The index's claim about the trip-window checkout total must cite the flag that backs it.
+
+        This test used to require the index to cite F36, which was correct while the
+        recommended window was 25 Nov - 2 Dec and the engine returned $XXX for it. The
+        window has since moved to 23-30 November and the engine prices it, so the index
+        now cites F78 for the same-day re-quote. The protection is kept: the index must
+        not carry the old "no checkout total exists" claim without a flag behind it, and
+        the flag it cites must exist.
+        """
         doc = json.loads((ROOT / "site" / "data.json").read_text(encoding="utf-8"))
         flags = {f["id"]: f["title"] for f in doc["flags"]}
         index = (ROOT / "site" / "index.html").read_text(encoding="utf-8")
         self.assertIn("checkout total", index)
-        self.assertIn("$XXX", flags["F36"], "F36 is no longer the booking-engine flag")
-        self.assertIn("F36", index, "the trip-window checkout gap must cite the booking-engine flag")
+        # F36 still describes the $XXX window it was raised for; it must not be widened
+        # into a claim about the current trip window.
+        self.assertIn("$XXX", flags["F36"], "F36 must still describe the $XXX window")
+        self.assertIn("superseded", flags["F36"], "F36 must name the window it describes")
+        self.assertIn("superseded", flags["F15"], "F15 must name the window it describes")
+        self.assertIn("superseded", flags["F64"], "F64 must name the window it describes")
+        # The index must cite a real flag for what it now says about the checkout total.
+        cited = set(re.findall(r"\b(F\d{2})\b", index))
+        self.assertIn("F78", cited, "the index must cite F78 for the dated trip-window quote")
+        self.assertNotIn(
+            "no date-specific checkout total exists",
+            index,
+            "the index must not still claim there is no checkout total for the trip window",
+        )
 
 
 if __name__ == "__main__":

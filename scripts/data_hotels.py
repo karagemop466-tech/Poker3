@@ -136,7 +136,7 @@ VENETIAN_QUOTE = dict(
           "printed total exactly. The same rounding reconciles the 2026-11-16 observation of this stay to its printed "
           "total as well, so the 13.38% Clark County room tax is confirmed from an official source to be charged on "
           "the rate and the resort fee together."),
-    source=VENETIAN_QUOTE_URL, observedOn="2026-11-17")
+    source=VENETIAN_QUOTE_URL, observedOn="2026-11-17", readAt="2026-11-17T00:00Z")
 
 # The same quote one day earlier, kept because a rate log is a dated series, not a single value.
 # The night of Nov 17 fell from $824.25 to $621.75 in under 24 hours while the Nov 18 night did not move.
@@ -156,7 +156,7 @@ VENETIAN_QUOTE_PRIOR = dict(
     note=("The two derived nightly figures, (rate + $55 resort fee) x 1.1338 rounded to cents, add to $1,245.48, the "
           "printed total exactly, so the 13.38% tax applies to the rate and to the resort fee together. This stay was "
           "quoted again on 2026-11-17 at a lower price; see the next log entry."),
-    source=VENETIAN_QUOTE_URL, observedOn="2026-11-16")
+    source=VENETIAN_QUOTE_URL, observedOn="2026-11-16", readAt="2026-11-16T00:00Z")
 
 # The same stay, re-read from the same official booking engine one day later.
 VENETIAN_QUOTE_2026_11_17 = dict(
@@ -172,7 +172,7 @@ VENETIAN_QUOTE_2026_11_17 = dict(
           "while the second night was unchanged at $164.25, so the checkout total fell from $1,245.48 to $1,015.89. "
           "The engine's own 'Average Rate' line prints $448.00, which equals the average of (rate + $55 resort fee) "
           "for the two nights, confirming that its average-rate figure includes the resort fee."),
-    source=VENETIAN_QUOTE_URL, observedOn="2026-11-17")
+    source=VENETIAN_QUOTE_URL, observedOn="2026-11-17", readAt="2026-11-17T00:00Z")
 
 # A second stay window quoted by the same engine on the same day, for a different suite type.
 VENETIAN_QUOTE_NOV_20 = dict(
@@ -188,7 +188,7 @@ VENETIAN_QUOTE_NOV_20 = dict(
           "(rate + $55) x 1.1338, add to $2,504.00 and match the printed total exactly. This is the third independent "
           "quote whose arithmetic confirms the true-cost formula; the engine picks the suite type, so the King and the "
           "Two Queen quotes are not directly comparable on price."),
-    source=venetian_stay_url("2026-11-20", "2026-11-22"), observedOn="2026-11-17")
+    source=venetian_stay_url("2026-11-20", "2026-11-22"), observedOn="2026-11-17", readAt="2026-11-17T00:00Z")
 
 # The trip stay, 23 to 30 November 2026 (seven nights, check-out 11:00 a.m. on 30 November), quoted by the official
 # booking engine on 2026-11-17 after 21:54 UTC (sandbox clock). Every figure is printed on the page. The per-night
@@ -213,7 +213,7 @@ VENETIAN_QUOTE_TRIP_PRIOR = dict(
           "rate for a Luxury King suite. It is not the phone-only poker rate (code EPOKR25; see F66). SUPERSEDED as the "
           "current figure by a later reading of the same query on the same day, which printed $3,823.46; the two "
           "readings are both kept in the dated log and the difference is flagged (F78)."),
-    source=VENETIAN_CALENDAR_TRIP_URL, observedOn="2026-11-17")
+    source=VENETIAN_CALENDAR_TRIP_URL, observedOn="2026-11-17", readAt="2026-11-17T21:54Z")
 
 # The same official query, read again later on 2026-11-17 (about 22:07 UTC, sandbox clock). Two independent reads
 # minutes apart agreed on every printed figure. The engine returned the palazzo Luxury King rather than the venetian
@@ -240,7 +240,7 @@ VENETIAN_QUOTE_TRIP = dict(
           "palazzo Luxury King this time and the venetian Newly Remodeled Luxury King at 21:54 UTC, so this is the "
           "best available rate for a Luxury King suite on the resort, not a fixed price for one tower. It is not the "
           "phone-only poker rate (code EPOKR25; see F66)."),
-    source=VENETIAN_CALENDAR_TRIP_URL, observedOn="2026-11-17")
+    source=VENETIAN_CALENDAR_TRIP_URL, observedOn="2026-11-17", readAt="2026-11-17T22:07Z", isCurrent=True)
 
 VENETIAN_QUOTES = [VENETIAN_QUOTE, VENETIAN_QUOTE_2026_11_17, VENETIAN_QUOTE_NOV_20,
                    VENETIAN_QUOTE_TRIP_PRIOR, VENETIAN_QUOTE_TRIP]

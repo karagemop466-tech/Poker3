@@ -27,6 +27,7 @@ import re
 import ssl
 import sys
 import urllib.error
+import urllib.parse
 import urllib.request
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -149,11 +150,84 @@ def compare_check(old: dict | None, status: str, digest: str | None) -> dict:
     }
 
 
+def mark_query_blind(rows: list[dict]) -> list[str]:
+    """Flag URLs whose response does not vary with the query parameters.
+
+    Some official pages render their content in the browser: the server returns the same
+    shell whatever the dates or the room in the URL ask for, and the price only appears
+    after the page runs its scripts. A plain fetch of those URLs therefore returns an
+    identical body for every query, and the monitor can never report a change on them,
+    however much the value moved.
+
+    The test is exact and needs no guesswork: when two URLs differ only in their query
+    string and the response bodies are byte-identical, the response cannot depend on the
+    query. Every such URL is marked `queryBlind`, and the page that shows the monitor
+    says so, so a reader never reads "unchanged" as "the price did not move".
+
+    Returns the list of marked URLs.
+    """
+    groups: dict[str, list[dict]] = {}
+    for row in rows:
+        parts = urllib.parse.urlsplit(row["url"])
+        key = f"{parts.scheme}://{parts.netloc}{parts.path}"
+        groups.setdefault(key, []).append(row)
+
+    marked: list[str] = []
+    for key, members in groups.items():
+        if len(members) < 2:
+            continue
+        queries = {urllib.parse.urlsplit(m["url"]).query for m in members}
+        if len(queries) < 2:
+            continue  # same query, so an identical body is expected
+        # The monitor compares visible text, so the blind spot is visible here: URLs on the same
+        # path with different queries whose visible text is identical cannot be told apart by
+        # this check, and therefore cannot be reported as having changed.
+        bodies = {m.get("textHash") for m in members if m.get("textHash")}
+        if len(bodies) != 1:
+            continue
+        for m in members:
+            m["queryBlind"] = True
+            m["queryBlindReason"] = (
+                f"{len(members)} checked URLs share the path {key} and differ only in the query string, but the "
+                "server returned identical visible text for every one of them. The page renders its values in the "
+                "browser, so this check cannot see a change in them. Read the page and log the value by hand "
+                "(flag F77)."
+            )
+            marked.append(m["url"])
+    return sorted(set(marked))
+
+
 def main() -> int:
     parser = argparse.ArgumentParser(description="Re-check every official URL used by the dashboard.")
     parser.add_argument("--only", default="", help="only check URLs whose label contains this text")
     parser.add_argument("--dry-run", action="store_true", help="do not write site/checks.json")
+    parser.add_argument("--annotate-only", action="store_true",
+                        help="do not fetch anything; re-apply the change-detection labels to the stored record")
     args = parser.parse_args()
+
+    if args.annotate_only:
+        # The query-blind detection needs only the stored response hashes, so it can be applied
+        # to an existing record without reaching the venue hosts. This is how the published
+        # record is kept honest when the run happens somewhere that cannot fetch them.
+        if not CHECKS.exists():
+            print(f"no record at {CHECKS}")
+            return 1
+        payload = json.loads(CHECKS.read_text(encoding="utf-8"))
+        rows = payload.get("urls", [])
+        marked = mark_query_blind(rows)
+        payload.setdefault("summary", {})["queryBlind"] = len(marked)
+        payload["queryBlind"] = marked
+        base_note = ("Automated re-check of every official URL behind this dashboard. A changed flag means the visible text "
+                     "differs from the stored text hash and a human must re-read the source before any value is changed. "
+                     "A raw-body hash difference with identical visible text is recorded as noise, not as a change.")
+        blind_note = (" A URL listed under queryBlind returns identical visible text for every query on its path, so the "
+                      "page renders its values in the browser and this check cannot see them change; those pages must be "
+                      "read by hand and logged with their timestamp (flag F77).")
+        if "queryBlind" not in base_note:
+            payload["note"] = base_note + blind_note
+        CHECKS.write_text(json.dumps(payload, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+        print(f"annotated {CHECKS}: {len(marked)} URLs cannot be change-checked")
+        return 0
 
     data = json.loads(DATA.read_text(encoding="utf-8"))
     previous = {}
@@ -205,6 +279,7 @@ def main() -> int:
     # The sources page reads summary.generatedAt/mode, so publish the same shape the
     # page renders. A later verify_transcription.py run adds the "transcription" key
     # to this same file instead of replacing it.
+    query_blind = mark_query_blind(rows)
     fetched = sum(1 for r in rows if str(r.get("status", "")).startswith("HTTP 2"))
     payload = {
         "generatedAt": now,
@@ -214,14 +289,19 @@ def main() -> int:
             "fetched": fetched,
             "changed": len(changed),
             "failed": sum(1 for r in rows if r.get("unavailable")),
+            "queryBlind": len(query_blind),
         },
         "urls": rows,
         "changedCount": len(changed),
         "changed": [r["url"] for r in changed],
+        "queryBlind": query_blind,
         "hashBasis": HASH_BASIS,
         "note": ("Automated re-check of every official URL behind this dashboard. A changed flag means the visible text "
                  "differs from the stored text hash and a human must re-read the source before any value is changed. "
-                 "A raw-body hash difference with identical visible text is recorded as noise, not as a change."),
+                 "A raw-body hash difference with identical visible text is recorded as noise, not as a change. "
+                 "A URL listed under queryBlind returns a byte-identical body for every query on its path, so the page "
+                 "renders its values in the browser and this check cannot see them change; those pages must be read by "
+                 "hand and logged with their timestamp (flag F77)."),
     }
     if CHECKS.exists():
         try:

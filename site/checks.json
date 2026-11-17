@@ -5,7 +5,8 @@
   "urls": 98,
   "fetched": 81,
   "changed": 0,
-  "failed": 17
+  "failed": 17,
+  "queryBlind": 5
  },
  "urls": [
   {
@@ -1810,7 +1811,9 @@
    "previousTextHash": "6fed709796443926b6adae355072ee97d3e13b98472c75d23ff7591f7dbbc438",
    "previousChecked": "2026-11-17T20:48:34+00:00",
    "statusChanged": false,
-   "rawOnly": true
+   "rawOnly": true,
+   "queryBlind": true,
+   "queryBlindReason": "5 checked URLs share the path https://www.venetianlasvegas.com/booking and differ only in the query string, but the server returned identical visible text for every one of them. The page renders its values in the browser, so this check cannot see a change in them. Read the page and log the value by hand (flag F77)."
   },
   {
    "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-02&view=calendar",
@@ -1831,7 +1834,9 @@
    "previousTextHash": "6fed709796443926b6adae355072ee97d3e13b98472c75d23ff7591f7dbbc438",
    "previousChecked": "2026-11-17T20:48:34+00:00",
    "statusChanged": false,
-   "rawOnly": true
+   "rawOnly": true,
+   "queryBlind": true,
+   "queryBlindReason": "5 checked URLs share the path https://www.venetianlasvegas.com/booking and differ only in the query string, but the server returned identical visible text for every one of them. The page renders its values in the browser, so this check cannot see a change in them. Read the page and log the value by hand (flag F77)."
   },
   {
    "url": "https://mgmgrand.mgmresorts.com/en/hotel.html",
@@ -1954,7 +1959,9 @@
    "previousTextHash": null,
    "previousChecked": null,
    "statusChanged": false,
-   "rawOnly": false
+   "rawOnly": false,
+   "queryBlind": true,
+   "queryBlindReason": "5 checked URLs share the path https://www.venetianlasvegas.com/booking and differ only in the query string, but the server returned identical visible text for every one of them. The page renders its values in the browser, so this check cannot see a change in them. Read the page and log the value by hand (flag F77)."
   },
   {
    "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-20&children[]=0&departure_date=2026-11-22&view=calendar",
@@ -1975,7 +1982,9 @@
    "previousTextHash": "6fed709796443926b6adae355072ee97d3e13b98472c75d23ff7591f7dbbc438",
    "previousChecked": "2026-11-17T20:48:34+00:00",
    "statusChanged": false,
-   "rawOnly": true
+   "rawOnly": true,
+   "queryBlind": true,
+   "queryBlindReason": "5 checked URLs share the path https://www.venetianlasvegas.com/booking and differ only in the query string, but the server returned identical visible text for every one of them. The page renders its values in the browser, so this check cannot see a change in them. Read the page and log the value by hand (flag F77)."
   },
   {
    "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-27&children[]=0&departure_date=2026-11-28&view=calendar",
@@ -1996,13 +2005,15 @@
    "previousTextHash": "6fed709796443926b6adae355072ee97d3e13b98472c75d23ff7591f7dbbc438",
    "previousChecked": "2026-11-17T20:48:34+00:00",
    "statusChanged": false,
-   "rawOnly": true
+   "rawOnly": true,
+   "queryBlind": true,
+   "queryBlindReason": "5 checked URLs share the path https://www.venetianlasvegas.com/booking and differ only in the query string, but the server returned identical visible text for every one of them. The page renders its values in the browser, so this check cannot see a change in them. Read the page and log the value by hand (flag F77)."
   }
  ],
  "changedCount": 0,
  "changed": [],
  "hashBasis": "visible text (HTML tags, scripts and styles removed); the raw-byte hash is kept per URL as hash",
- "note": "Automated re-check of every official URL behind this dashboard. A changed flag means the visible text differs from the stored text hash and a human must re-read the source before any value is changed. A raw-body hash difference with identical visible text is recorded as noise, not as a change.",
+ "note": "Automated re-check of every official URL behind this dashboard. A changed flag means the visible text differs from the stored text hash and a human must re-read the source before any value is changed. A raw-body hash difference with identical visible text is recorded as noise, not as a change. A URL listed under queryBlind returns identical visible text for every query on its path, so the page renders its values in the browser and this check cannot see them change; those pages must be read by hand and logged with their timestamp (flag F77).",
  "transcription": {
   "status": "checked",
   "checked": "2026-11-17T22:01:43+00:00",
@@ -2545,5 +2556,12 @@
     "inData": true
    }
   ]
- }
+ },
+ "queryBlind": [
+  "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar",
+  "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-20&children[]=0&departure_date=2026-11-22&view=calendar",
+  "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar",
+  "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-02&view=calendar",
+  "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-27&children[]=0&departure_date=2026-11-28&view=calendar"
+ ]
 }

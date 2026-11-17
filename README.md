@@ -22,7 +22,7 @@ dashboard either way. See flag F29 on the Flagged for review page.
 | `site/hotels.html` | Published rate components, the mandatory resort fee, tax, true cost per night, parking, cancellation deadlines, walking times, one official booking deep link per trip night, the dated quote log and the dated rate log. |
 | `site/questions.html` | The information still needed before booking, each with the official source behind the answer. |
 | `site/suggestions.html` | Proposed improvements with impact, effort and the decision each one needs. |
-| `site/flagged.html` | Every irregularity and unverified value, each with a link for manual review (68 items, rendered from `site/data.json`). |
+| `site/flagged.html` | Every irregularity and unverified value, each with a link for manual review (74 items, rendered from `site/data.json`). |
 | `site/sources.html` | The official source log, every structure sheet with its read status, the morning feed sources and the automated re-check results. |
 
 ## Evidence policy
@@ -207,23 +207,29 @@ integration session; the rest of the handoff is kept for audit.
 Trip fixed to **2026-11-23 → 2026-11-30**, seven nights at The Venetian / Palazzo, seven playable days (23–29
 November). It is the only seven-night window in the captured range where the official booking calendar publishes a
 price for every night; the previously recommended 25 November → 2 December window is not bookable online because
-30 November and 1 December publish no price (F38).
+30 November and 1 December publish no price (F57).
 
 | Lodging figure | Value | Basis |
 |---|---|---|
-| Dated checkout total, 23–30 Nov, 2 adults, Luxury King | $4,010.55 | Official Venetian booking engine, read 2026-11-17 after 21:54 UTC (rate log, F65) |
-| Room rates + $55 resort fee, seven nights | $3,537.25 | Itemised on the same quote: rates $3,152.25 + resort fees $385.00 |
-| Clark County room tax 13.38% | $473.30 | Printed on the same quote; equals the per-night tax on (rate + fee) |
-| Average per night, all-in | $572.94 | $4,010.55 / 7 |
-| Largest night | Fri 27 Nov: $1,932.28 all-in | $1,649.25 rate + $55 fee + tax (the night after Thanksgiving) |
+| Dated checkout total, 23–30 Nov, 2 adults, palazzo Luxury King | $3,823.46 | Official Venetian booking engine, read 2026-11-17 at about 22:07 UTC (rate log) |
+| Earlier reading of the identical query, same day | $4,010.55 | Read at 21:54 UTC; the engine re-priced the same stay $187.09 lower thirteen minutes later (F78). Both readings are kept. |
+| Room rates + $55 resort fee, seven nights | $3,372.25 | Itemised on the later quote: rates $2,987.25 + resort fees $385.00 |
+| Clark County room tax 13.38% | $451.21 | Printed on the same quote; equals the sum of the per-night tax on (rate + fee) |
+| Average per night, all-in | $546.21 | $3,823.46 / 7 |
+| Largest night | Fri 27 Nov: $1,331.36 all-in | $1,119.25 rate + $55 fee + tax (the night after Thanksgiving) |
 | Poker-rate floor | $197.28 | ($119 + $55) x 1.1338, phone-only under code EPOKR25, not a quote (F66) |
 
 The calendar cells on the same page ($165 … $905) are **not** prices: they sit below rate plus fee on the same nights and
 change with the stay window selected (F69). The earlier $2,140 and $346.62 figures were sums and averages of those cells
 for the superseded 25 Nov – 2 Dec window, so they are withdrawn.
 
-The most expensive night on the trip is **Friday 27 November 2026 at $1,932.28 all-in**, the night after Thanksgiving —
-48% of the stay total on its own, against $248.59 all-in on 23 and 24 November. Sheet-screened candidate events: **52**, each
+The engine's price for a stay is a reading, not a rate: the identical official query printed $4,010.55 at 21:54 UTC and
+$3,823.46 at about 22:07 UTC on 2026-11-17, both reconciling exactly against (rate + $55) x 1.1338. That is why the
+rates are kept as a dated log, and why the scheduled re-check cannot be trusted to catch a price change on its own
+(F77: the booking pages render their prices client-side, so a plain fetch of the URL returns the same shell whatever
+the dates). The most expensive night on the trip is **Friday 27 November 2026 at $1,331.36 all-in**, the night after
+Thanksgiving — 35% of the stay total on its own, against $293.94 all-in on 23, 24 and 29 November. Sheet-screened
+candidate events: **52**, each
 re-checked against its official structure sheet on 2026-11-17. None of those sheets states a maximum number of
 entries per player, so none is a confirmed one-entry event (F31). Every structure sheet behind every published row
 has now been read in full — all 37 DeepStack Extravaganza IV and all 15 DeepStack Extravaganza NYE sheets — so no
