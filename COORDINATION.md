@@ -1389,3 +1389,5 @@ Branch: `arena/169bf42c-poker3`. Scope: this COORDINATION section only. No data,
 - **Hotel total not verified.** The Venetian booking engine and rate pages were not read to a dated checkout total, so no rate or resort-fee figure for the Venetian is re-confirmed here.
 - **Schedule PDF page 2 not re-read.** Only the first page of the PDF was checked in this session (through December 6).
 - **Morning feed unchanged.** The scheduled 12:10 UTC `checks.yml` run is still the first live run, as recorded above.
+
+**Result (arena/169bf42c-poker3).** PR [#58](https://github.com/karagemop466-tech/Poker3/pull/58) merged with `gh pr merge 58 --merge` as merge commit `5bf0df538c5566ca04e8517e54d90bc35527ff2d`. The `verify` check on the PR passed ([run 43994010698](https://github.com/karagemop466-tech/Poker3/actions/runs/43994010698)). This follow-up records that result and is merged the same way.
