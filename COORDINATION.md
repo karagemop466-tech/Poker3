@@ -1591,3 +1591,18 @@ can never merge again. The test also runs inside `checks.yml` itself.
 **Still true, stated honestly.** Until the fix is on `main`, `site/checks.json` on `main` remains the offline record
 (`mode: "offline (transcription re-check only)"`). The first run of the repaired job will replace it with a live record;
 a changed hash is a review signal, never an automatic value change.
+Recorded after the merge in the section below.
+---
+
+## Session arena-196dc009-poker3 — 2026-11-17 re-verification + final integration round 2
+
+Branch: `arena/196dc009-poker3`, created from `main` at `b30841e` (PR #34 merge). **Platform deviation:** the brief's `session-<id>/<task>` branch naming is unavailable; the Arena branch name is used. No other session holds a live claim (all prior sections are `done`), so this session takes the integration-owner role for the canonical shared outputs. Prior dashboards (`docs/`, `verified/`, `planner/`, `single-entry/`, root legacy pages, `site/poker3/`, `pages/`) are read-only here. Open PRs #7, #27, #31 belong to other sessions and are not touched.
+
+| Task | Status | Owner | Scope (files) | Notes |
+|---|---|---|---|---|
+| T1 Fresh official-source re-verification pass (dated 2026-11-17): re-read official pages behind published canonical rows; advance `asOf`/`lastChecked` only for rows actually re-read | in progress | arena-196dc009 | `scripts/data_source.py`, `scripts/data_venetian.py`, `scripts/data_venues.py`, `scripts/data_hotels.py`, regenerated `site/data.json` | Official pages only; no value inferred. |
+| T2 Earliest-start gap (8 AM question): check each official Strip-room daily-schedule page for published start times; confirm or flag | in progress | arena-196dc009 | same as T1 (+ flags in regenerated `site/data.json`) | Existing flags FL12/F07 stay until an official page proves an earlier start. |
+| T3 Trip-window hotel rate re-check (2026-11-25 → 2026-12-02) on official booking engines; dated rate-log entry only if the venue's own engine returns a price | in progress | arena-196dc009 | `scripts/data_hotels.py`, regenerated `site/data.json` (`rateLog`) | No price ⇒ nothing added, gap stays flagged. |
+| T4 Final integration round 2: full verification suite, PR to `main`, explicit merge, confirm GitHub Pages deploy, record result here | pending | arena-196dc009 | `COORDINATION.md`, PR from this branch | Not started. |
+
+Claim recorded 2026-11-17 UTC before any other file edits in this session. Commit discipline: small commits; `git pull --rebase origin arena/196dc009-poker3` before each push.
