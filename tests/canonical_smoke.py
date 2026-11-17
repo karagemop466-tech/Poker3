@@ -160,7 +160,7 @@ def main() -> int:
     if not {"F31", "F32"}.issubset(flag_ids):
         errors.append("data.json: entry-cap and route-coverage evidence gaps must remain flagged")
     if not {"F35", "F36", "F37"}.issubset(flag_ids):
-        errors.append("data.json: the cross-document WPT conflict, the unpriced trip window and the unread rooms must stay flagged")
+        errors.append("data.json: the two schedule-PDF typography gaps and the unread rooms must stay flagged")
     if len(flag_ids) != len(data.get("flags", [])):
         errors.append("data.json: flag ids are not unique")
     # The dated re-check log is what makes "last checked" mean something, so both

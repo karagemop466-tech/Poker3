@@ -4,6 +4,8 @@ Format for the compact table rows: date|time|name|buyIn|guarantee|chips|levels
 `buyIn` and `guarantee` are plain numbers, "-" means the value is not printed.
 """
 
+import re
+
 RETRIEVED = "2026-11-16"
 
 WYNN_POKER = "https://www.wynnlasvegas.com/casino/poker"
@@ -570,7 +572,53 @@ WPT_EVENTS_READ = [
 ]
 
 
-def wpt_event_read(buy_in, name, date):
+_FLIGHT_SLOT = re.compile(r"([A-Za-z]+),\s*([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4}),?\s*at\s*(\d{1,2})(?::(\d{2}))?\s*([ap])\.?m\.?", re.I)
+_TITLE_SLOT = re.compile(r"\(\s*[A-Za-z]+,\s*([A-Za-z]+)\s+(\d{1,2}),\s*(\d{4}),?\s*at\s*(\d{1,2})(?::(\d{2}))?\s*([ap])\.?m\.?", re.I)
+
+
+def wpt_slots(rec):
+    """The (date, minutes-past-midnight) starts the sheet itself prints.
+
+    Multi-flight sheets list every flight under the event; single-day sheets print
+    one date and time in the title.  A schedule row may only borrow a clause from a
+    sheet when the sheet prints that same start, because the WPT schedule and the
+    structures PDF disagree on at least two start times in the trip window (F34).
+    """
+    from datetime import datetime
+
+    slots = set()
+    for text in (rec.get("flights") or "", rec.get("sheetTitle") or ""):
+        for m in _FLIGHT_SLOT.finditer(text):
+            _, month, day, year, hh, mm, ap = m.groups()
+            mm = mm or "0"
+            try:
+                when = datetime.strptime(f"{month} {day} {year}", "%B %d %Y")
+            except ValueError:
+                continue
+            minutes = (int(hh) % 12) * 60 + int(mm) + (12 * 60 if ap.lower() == "p" else 0)
+            slots.add((when.strftime("%Y-%m-%d"), minutes))
+        for m in _TITLE_SLOT.finditer(text):
+            month, day, year, hh, mm, ap = m.groups()
+            mm = mm or "0"
+            try:
+                when = datetime.strptime(f"{month} {day} {year}", "%B %d %Y")
+            except ValueError:
+                continue
+            slots.add((when.strftime("%Y-%m-%d"), (int(hh) % 12) * 60 + int(mm)
+                       + (12 * 60 if ap.lower() == "p" else 0)))
+    return slots
+
+
+def wpt_time_minutes(time_text):
+    """'11:00 AM' -> 660.  Returns None when the schedule row prints no clock time."""
+    m = re.search(r"(\d{1,2}):(\d{2})\s*([ap])\.?m\.?", str(time_text or ""), re.I)
+    if not m:
+        return None
+    hh, mm, ap = m.groups()
+    return (int(hh) % 12) * 60 + int(mm) + (12 * 60 if ap.lower() == "p" else 0)
+
+
+def wpt_event_read(buy_in, name, date, time_text=None):
     """Return the structures-sheet record for a WPT schedule row, or None.
 
     Matching is deliberately narrow: the printed buy-in must be equal, the
@@ -594,5 +642,11 @@ def wpt_event_read(buy_in, name, date):
         if date and date not in rec["scheduleDates"]:
             continue
         if key == rec["game"] or key.startswith(rec["game"] + " ("):
+            slots = wpt_slots(rec)
+            minutes = wpt_time_minutes(time_text)
+            # A printed start the sheet does not print is a conflict, not a match:
+            # the row keeps its unverified rules and the disagreement is flagged.
+            if slots and date and minutes is not None and (date, minutes) not in slots:
+                return None
             return rec
     return None

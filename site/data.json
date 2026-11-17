@@ -9055,8 +9055,8 @@
      "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight.",
+     "status": "re-entry-printed",
+     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
@@ -9112,13 +9112,13 @@
    "rules": {
     "singleEntry": {
      "status": "multiple-entries",
-     "excerpt": "The official structure sheet prints more than one paid entry: “Unlimited re-entry will be available until the start of level 9” More than one entry is therefore possible, so this row is not a one-buy-in candidate.",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry will be available until the start of level 9",
+     "status": "re-entry-printed",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
@@ -9153,7 +9153,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-17",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules read from the official structure sheet on 2026-11-17. Entry rules read from the official structure sheet on 2026-11-17: “Unlimited re-entry will be available until the start of level 9” $600 TORSE (Friday, November 27, 2026, at 12 p.m.)",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules read from the official structure sheet on 2026-11-17. Entry rules read from the official structure sheet on 2026-11-17: “Unlimited re-entry will be available until the start of level 9” $600 TORSE (Friday, November 27, 2026, at 12 p.m.) Official structure sheet ($600 TORSE, Friday Nov 27 at 12 p.m.): Registration: Unlimited re-entry will be available until the start of level 9.",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-17",
@@ -9174,13 +9174,13 @@
    "rules": {
     "singleEntry": {
      "status": "multiple-entries",
-     "excerpt": "The official structure sheet prints more than one paid entry: “Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.)” More than one entry is therefore possible, so this row is not a one-buy-in candidate.",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).",
+     "status": "re-entry-printed",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
@@ -9215,7 +9215,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-17",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules read from the official structure sheet on 2026-11-17. Entry rules read from the official structure sheet on 2026-11-17: “Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.)” $400 PLO (Friday, November 27, 2026, at 1 p.m.)",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules read from the official structure sheet on 2026-11-17. Entry rules read from the official structure sheet on 2026-11-17: “Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.)” $400 PLO (Friday, November 27, 2026, at 1 p.m.) Official structure sheet ($400 PLO, Friday Nov 27 at 1 p.m.): Registration: Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-17",
@@ -9241,8 +9241,8 @@
      "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight.",
+     "status": "re-entry-printed",
+     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
@@ -9303,8 +9303,8 @@
      "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight.",
+     "status": "re-entry-printed",
+     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
@@ -9360,13 +9360,13 @@
    "rules": {
     "singleEntry": {
      "status": "multiple-entries",
-     "excerpt": "The official structure sheet prints more than one paid entry: “Unlimited re-entry will be available until the start of level 9” More than one entry is therefore possible, so this row is not a one-buy-in candidate.",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry will be available until the start of level 9.",
+     "status": "re-entry-printed",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
@@ -9401,7 +9401,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-17",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules read from the official structure sheet on 2026-11-17. Entry rules read from the official structure sheet on 2026-11-17: “Unlimited re-entry will be available until the start of level 9” $600 Mixed Triple Draw (A-5, 2-7, Badugi) (Saturday, November 28, 2026, at 12 p.m.)",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules read from the official structure sheet on 2026-11-17. Entry rules read from the official structure sheet on 2026-11-17: “Unlimited re-entry will be available until the start of level 9” $600 Mixed Triple Draw (A-5, 2-7, Badugi) (Saturday, November 28, 2026, at 12 p.m.) Official structure sheet ($600 Mixed Triple Draw (A-5, 2-7, Badugi), Saturday Nov 28 at 12 p.m.): Registration: Unlimited re-entry will be available until the start of level 9.",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-17",
@@ -9427,8 +9427,8 @@
      "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight.",
+     "status": "re-entry-printed",
+     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
@@ -9489,8 +9489,8 @@
      "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight.",
+     "status": "re-entry-printed",
+     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
@@ -9551,8 +9551,8 @@
      "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight.",
+     "status": "re-entry-printed",
+     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
@@ -9613,8 +9613,8 @@
      "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight.",
+     "status": "re-entry-printed",
+     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
@@ -9670,13 +9670,13 @@
    "rules": {
     "singleEntry": {
      "status": "multiple-entries",
-     "excerpt": "The official structure sheet prints more than one paid entry: “Unlimited re-entry will be available until the start of level 9” More than one entry is therefore possible, so this row is not a one-buy-in candidate.",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry will be available until the start of level 9",
+     "status": "re-entry-printed",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
@@ -9711,7 +9711,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-17",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules read from the official structure sheet on 2026-11-17. Entry rules read from the official structure sheet on 2026-11-17: “Unlimited re-entry will be available until the start of level 9” $600 Limit Omaha 8 (Monday, November 30, 2026, at 12 p.m.)",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules read from the official structure sheet on 2026-11-17. Entry rules read from the official structure sheet on 2026-11-17: “Unlimited re-entry will be available until the start of level 9” $600 Limit Omaha 8 (Monday, November 30, 2026, at 12 p.m.) Official structure sheet ($600 Limit Omaha 8, Monday Nov 30 at 12 p.m.): Registration: Unlimited re-entry will be available until the start of level 9.",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-17",
@@ -9731,37 +9731,37 @@
    "guaranteeNote": "",
    "rules": {
     "singleEntry": {
-     "status": "multiple-entries",
-     "excerpt": "The official structure sheet prints more than one paid entry: “Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight” More than one entry is therefore possible, so this row is not a one-buy-in candidate.",
+     "status": "not-verified",
+     "excerpt": "The WPT structure sheets have not been read in this pass, so no entry rule is confirmed for this event.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-16"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight.",
+     "status": "not-verified",
+     "excerpt": "The WPT structure sheets have not been read in this pass.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-16"
     },
     "addOn": {
-     "status": "none-printed",
-     "excerpt": "No add-on provision is printed on this structure sheet; unlimited re-entry is the printed extra-entry route.",
+     "status": "not-verified",
+     "excerpt": "The WPT structure sheets have not been read in this pass.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-16"
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "$800 Buy-in = $695 (Tournament Prize Pool) + $72 (Tournament Fee) + $33 (Poker Staff Service Charge)",
-     "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-17"
+     "excerpt": "Buy-in $800 and guarantee $1000000 are printed on the official schedule PDF.",
+     "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
+     "retrieved": "2026-11-16"
     }
    },
    "category": "wpt",
    "kind": "wpt",
-   "entryType": "multi-buyin",
+   "entryType": "not-verified",
    "singleEntry": false,
-   "format": "multi-buyin",
+   "format": "other",
    "chips": 40000,
-   "levelMin": 30,
+   "levelMin": "",
    "lateReg": "",
    "weekdays": [],
    "lateRegEnd": "",
@@ -9772,14 +9772,9 @@
    "sheetUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-   "lastChecked": "2026-11-17",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules read from the official structure sheet on 2026-11-17. Entry rules read from the official structure sheet on 2026-11-17: “Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight” $800 No Limit Hold'em - $1,000,000 GUARANTEE (November 30 - December 4, 2026) Flights as printed on the sheet: Day 1A Monday, November 30, 2026 at 11 a.m.; Day 1B Monday, November 30, 2026 at 5 p.m.; Day 1C Tuesday, December 1, 2026 at 11 a.m.; Day 1D Tuesday, December 1, 2026 at 5 p.m.; Day 1E Wednesday, December 2, 2026 at 11 a.m.; Day 1F Wednesday, December 2, 2026 at 6 p.m.; Day 2 Thursday, December 3, 2026 at 1 p.m.; Final Table Friday, December 4, 2026 at 1 p.m.",
-   "eligibility": "",
-   "recheck": {
-    "date": "2026-11-17",
-    "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-    "result": "structure sheet read; entry rules, fee split, stack and flight dates attached"
-   }
+   "lastChecked": "2026-11-16",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "eligibility": ""
   },
   {
    "id": "wynn-wpt-2026-11-30-012-500pm",
@@ -9799,8 +9794,8 @@
      "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight.",
+     "status": "re-entry-printed",
+     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
@@ -9861,8 +9856,8 @@
      "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight.",
+     "status": "re-entry-printed",
+     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
@@ -9918,13 +9913,13 @@
    "rules": {
     "singleEntry": {
      "status": "multiple-entries",
-     "excerpt": "The official structure sheet prints more than one paid entry: “Unlimited re-entry will be available until the start of level 9” More than one entry is therefore possible, so this row is not a one-buy-in candidate.",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry will be available until the start of level 9",
+     "status": "re-entry-printed",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
@@ -9959,7 +9954,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-17",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules read from the official structure sheet on 2026-11-17. Entry rules read from the official structure sheet on 2026-11-17: “Unlimited re-entry will be available until the start of level 9” $600 Limit Omaha 8/Stud 8 (Tuesday, December 1, 2026, at 12 p.m.) The structures sheet titles this event '$600 Limit Omaha 8/Stud 8'; the schedule PDF prints 'Limit Omaha 8/5/stud 8'. Both names refer to the same single-day mixed event at 12 p.m. on December 1, 2026.",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules read from the official structure sheet on 2026-11-17. Entry rules read from the official structure sheet on 2026-11-17: “Unlimited re-entry will be available until the start of level 9” $600 Limit Omaha 8/Stud 8 (Tuesday, December 1, 2026, at 12 p.m.) The structures sheet titles this event '$600 Limit Omaha 8/Stud 8'; the schedule PDF prints 'Limit Omaha 8/5/stud 8'. Both names refer to the same single-day mixed event at 12 p.m. on December 1, 2026. Official structure sheet ($600 Limit Omaha 8/Stud 8, Tuesday Dec 1 at 12 p.m.): Registration: Unlimited re-entry will be available until the start of level 9.",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-17",
@@ -9980,13 +9975,13 @@
    "rules": {
     "singleEntry": {
      "status": "multiple-entries",
-     "excerpt": "The official structure sheet prints more than one paid entry: “Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.)” More than one entry is therefore possible, so this row is not a one-buy-in candidate.",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).",
+     "status": "re-entry-printed",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
@@ -10021,7 +10016,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-17",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules read from the official structure sheet on 2026-11-17. Entry rules read from the official structure sheet on 2026-11-17: “Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.)” $1,100 PLO (Tuesday, December 1, 2026, at 1 p.m.)",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules read from the official structure sheet on 2026-11-17. Entry rules read from the official structure sheet on 2026-11-17: “Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.)” $1,100 PLO (Tuesday, December 1, 2026, at 1 p.m.) Official structure sheet ($1,100 PLO, Tuesday Dec 1 at 1 p.m.): Registration: Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-17",
@@ -10047,8 +10042,8 @@
      "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight.",
+     "status": "re-entry-printed",
+     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
@@ -10109,8 +10104,8 @@
      "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight.",
+     "status": "re-entry-printed",
+     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
@@ -10171,8 +10166,8 @@
      "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight.",
+     "status": "re-entry-printed",
+     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent starting flight",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
@@ -10233,8 +10228,8 @@
      "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 10. A player who advances to Day 2 is prohibited from entering a subsequent starting flight.",
+     "status": "re-entry-printed",
+     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 10. A player who advances to Day 2 is prohibited from entering a subsequent starting flight",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
@@ -10269,7 +10264,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-17",
-   "note": "Multiple start flights are published for this event, so more than one entry is possible. Entry rules read from the official structure sheet on 2026-11-17: “Unlimited re-entry for each starting flight will be available until the start of level 10. A player who advances to Day 2 is prohibited from entering a subsequent starting flight” $1,600 No Limit Hold'em - $1,000,000 GUARANTEE (December 3-5, 2026) Flights as printed on the sheet: Day 1A Thursday, December 3, 2026 at 11 a.m.; Day 1B Friday, December 4, 2026 at 11 a.m.; Day 2 Saturday, December 5, 2026 at 11 a.m. The structures sheet places this event's Day 2 on Saturday, December 5, 2026 at 11 a.m. and prints no December 3 afternoon restart; the schedule PDF prints a '$1,600 No Limit Hold'em Day 2' row at 1 p.m. on December 3 and no December 5 row for this event. The schedule row is reproduced as printed and the disagreement is flagged (F31). (F35)",
+   "note": "Multiple start flights are published for this event, so more than one entry is possible. Entry rules read from the official structure sheet on 2026-11-17: “Unlimited re-entry for each starting flight will be available until the start of level 10. A player who advances to Day 2 is prohibited from entering a subsequent starting flight” $1,600 No Limit Hold'em - $1,000,000 GUARANTEE (December 3-5, 2026) Flights as printed on the sheet: Day 1A Thursday, December 3, 2026 at 11 a.m.; Day 1B Friday, December 4, 2026 at 11 a.m.; Day 2 Saturday, December 5, 2026 at 11 a.m. The structures sheet places this event's Day 2 on Saturday, December 5, 2026 at 11 a.m. and prints no December 3 afternoon restart; the schedule PDF prints a '$1,600 No Limit Hold'em Day 2' row at 1 p.m. on December 3 and no December 5 row for this event. The schedule row is reproduced as printed and the disagreement is flagged (F31). (F34)",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-17",
@@ -10289,37 +10284,37 @@
    "guaranteeNote": "",
    "rules": {
     "singleEntry": {
-     "status": "multiple-entries",
-     "excerpt": "The official structure sheet prints more than one paid entry: “Unlimited re-entry for each starting flight will be available until the start of level 10. A player who advances to Day 2 is prohibited from entering a subsequent starting flight” More than one entry is therefore possible, so this row is not a one-buy-in candidate.",
+     "status": "not-verified",
+     "excerpt": "The WPT structure sheets have not been read in this pass, so no entry rule is confirmed for this event.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-16"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 10. A player who advances to Day 2 is prohibited from entering a subsequent starting flight.",
+     "status": "not-verified",
+     "excerpt": "The WPT structure sheets have not been read in this pass.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-16"
     },
     "addOn": {
-     "status": "none-printed",
-     "excerpt": "No add-on provision is printed on this structure sheet; unlimited re-entry is the printed extra-entry route.",
+     "status": "not-verified",
+     "excerpt": "The WPT structure sheets have not been read in this pass.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-16"
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "$1,600 Buy-in = $1,430 (Tournament Prize Pool) + $120 (Tournament Fee) + $50 (Poker Staff Service Charge)",
-     "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-17"
+     "excerpt": "Buy-in $1600 and guarantee $1000000 are printed on the official schedule PDF.",
+     "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
+     "retrieved": "2026-11-16"
     }
    },
    "category": "wpt",
    "kind": "wpt",
-   "entryType": "multi-buyin",
+   "entryType": "not-verified",
    "singleEntry": false,
-   "format": "multi-buyin",
+   "format": "other",
    "chips": 40000,
-   "levelMin": 40,
+   "levelMin": "",
    "lateReg": "",
    "weekdays": [],
    "lateRegEnd": "",
@@ -10330,14 +10325,9 @@
    "sheetUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-   "lastChecked": "2026-11-17",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules read from the official structure sheet on 2026-11-17. Entry rules read from the official structure sheet on 2026-11-17: “Unlimited re-entry for each starting flight will be available until the start of level 10. A player who advances to Day 2 is prohibited from entering a subsequent starting flight” $1,600 No Limit Hold'em - $1,000,000 GUARANTEE (December 3-5, 2026) Flights as printed on the sheet: Day 1A Thursday, December 3, 2026 at 11 a.m.; Day 1B Friday, December 4, 2026 at 11 a.m.; Day 2 Saturday, December 5, 2026 at 11 a.m. The structures sheet places this event's Day 2 on Saturday, December 5, 2026 at 11 a.m. and prints no December 3 afternoon restart; the schedule PDF prints a '$1,600 No Limit Hold'em Day 2' row at 1 p.m. on December 3 and no December 5 row for this event. The schedule row is reproduced as printed and the disagreement is flagged (F31). (F35)",
-   "eligibility": "",
-   "recheck": {
-    "date": "2026-11-17",
-    "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-    "result": "structure sheet read; entry rules, fee split, stack and flight dates attached"
-   }
+   "lastChecked": "2026-11-16",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "eligibility": ""
   },
   {
    "id": "wynn-wpt-2026-12-03-021-700pm",
@@ -10414,8 +10404,8 @@
      "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 10. A player who advances to Day 2 is prohibited from entering a subsequent starting flight.",
+     "status": "re-entry-printed",
+     "excerpt": "Unlimited re-entry for each starting flight will be available until the start of level 10. A player who advances to Day 2 is prohibited from entering a subsequent starting flight",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
      "retrieved": "2026-11-17"
     },
@@ -10450,7 +10440,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "lastChecked": "2026-11-17",
-   "note": "Multiple start flights are published for this event, so more than one entry is possible. Entry rules read from the official structure sheet on 2026-11-17: “Unlimited re-entry for each starting flight will be available until the start of level 10. A player who advances to Day 2 is prohibited from entering a subsequent starting flight” $1,600 No Limit Hold'em - $1,000,000 GUARANTEE (December 3-5, 2026) Flights as printed on the sheet: Day 1A Thursday, December 3, 2026 at 11 a.m.; Day 1B Friday, December 4, 2026 at 11 a.m.; Day 2 Saturday, December 5, 2026 at 11 a.m. The structures sheet places this event's Day 2 on Saturday, December 5, 2026 at 11 a.m. and prints no December 3 afternoon restart; the schedule PDF prints a '$1,600 No Limit Hold'em Day 2' row at 1 p.m. on December 3 and no December 5 row for this event. The schedule row is reproduced as printed and the disagreement is flagged (F31). (F35)",
+   "note": "Multiple start flights are published for this event, so more than one entry is possible. Entry rules read from the official structure sheet on 2026-11-17: “Unlimited re-entry for each starting flight will be available until the start of level 10. A player who advances to Day 2 is prohibited from entering a subsequent starting flight” $1,600 No Limit Hold'em - $1,000,000 GUARANTEE (December 3-5, 2026) Flights as printed on the sheet: Day 1A Thursday, December 3, 2026 at 11 a.m.; Day 1B Friday, December 4, 2026 at 11 a.m.; Day 2 Saturday, December 5, 2026 at 11 a.m. The structures sheet places this event's Day 2 on Saturday, December 5, 2026 at 11 a.m. and prints no December 3 afternoon restart; the schedule PDF prints a '$1,600 No Limit Hold'em Day 2' row at 1 p.m. on December 3 and no December 5 row for this event. The schedule row is reproduced as printed and the disagreement is flagged (F31). (F34)",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-17",
@@ -16512,37 +16502,37 @@
    "guaranteeNote": "",
    "rules": {
     "singleEntry": {
-     "status": "multiple-entries",
-     "excerpt": "The official structure sheet prints more than one paid entry: “Unlimited re-entry will be available until the start of level 9” More than one entry is therefore possible, so this row is not a one-buy-in candidate.",
+     "status": "not-verified",
+     "excerpt": "The WPT structure sheets have not been read in this pass, so no entry rule is confirmed for this event.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-16"
     },
     "reEntry": {
-     "status": "allowed",
-     "excerpt": "Unlimited re-entry will be available until the start of level 9.",
+     "status": "not-verified",
+     "excerpt": "The WPT structure sheets have not been read in this pass.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-16"
     },
     "addOn": {
-     "status": "none-printed",
-     "excerpt": "No add-on provision is printed on this structure sheet; unlimited re-entry is the printed extra-entry route.",
+     "status": "not-verified",
+     "excerpt": "The WPT structure sheets have not been read in this pass.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-16"
     },
     "fee": {
      "status": "confirmed",
-     "excerpt": "$600 Buy-in = $510 (Tournament Prize Pool) + $65 (Tournament Fee) + $25 (Poker Staff Service Charge)",
-     "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-17"
+     "excerpt": "Buy-in $600 and guarantee $- are printed on the official schedule PDF.",
+     "source": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
+     "retrieved": "2026-11-16"
     }
    },
    "category": "wpt",
    "kind": "wpt",
-   "entryType": "multi-buyin",
+   "entryType": "not-verified",
    "singleEntry": false,
-   "format": "multi-buyin",
+   "format": "other",
    "chips": 35000,
-   "levelMin": 30,
+   "levelMin": "",
    "lateReg": "",
    "weekdays": [],
    "lateRegEnd": "",
@@ -16553,14 +16543,9 @@
    "sheetUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-   "lastChecked": "2026-11-17",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules read from the official structure sheet on 2026-11-17. The schedule prints a discounted-entry marker on this row: \"The Tournament Entry for the Ladies Championship is $11,100. Ladies will receive a discounted entry.\" and \"Players registered prior to the start of the event will receive a discounted entry.\" The marker on this row does not resolve cleanly against the footnote list, so the printed entry is shown and nothing is adjusted. Entry rules read from the official structure sheet on 2026-11-17: “Unlimited re-entry will be available until the start of level 9” $600 Mixed Triple Draw (A-5, 2-7, Badugi) (Saturday, November 28, 2026, at 12 p.m.)",
-   "eligibility": "",
-   "recheck": {
-    "date": "2026-11-17",
-    "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-    "result": "structure sheet read; entry rules, fee split, stack and flight dates attached"
-   }
+   "lastChecked": "2026-11-16",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. The schedule prints a discounted-entry marker on this row: \"The Tournament Entry for the Ladies Championship is $11,100. Ladies will receive a discounted entry.\" and \"Players registered prior to the start of the event will receive a discounted entry.\" The marker on this row does not resolve cleanly against the footnote list, so the printed entry is shown and nothing is adjusted.",
+   "eligibility": ""
   },
   {
    "id": "wynn-wpt-2026-12-20-130-200pm",
@@ -21307,8 +21292,8 @@
    "id": "F12",
    "area": "Wynn WPT",
    "severity": "Medium",
-   "title": "WPT structure sheets are read for the trip window only",
-   "detail": "The WPT schedule PDF publishes buy-in, guarantee, chips and level length but not the entry rules, and the structures PDF is an eight-chunk document. It was read on 2026-11-17 for every event starting inside the planned trip window plus the December 3-5 $1,600 event: each of those sheets prints an unlimited re-entry clause, so those rows are recorded as multi-entry candidates with the printed clause, the printed fee split and the flight dates attached. WPT and Wynn series events on other dates were not read, so those rows stay marked 'entry rules not verified' and are excluded from the sheet-screened candidate list.",
+   "title": "The WPT structure PDF is read, but the $10,400 event and most WPT rows are still not matched to a section",
+   "detail": "Read end to end on 2026-11-17 (all eight chunks). Twenty trip-window WPT rows now carry the printed registration clause 'Unlimited re-entry ... until the start of level 9' with the sheet's own fee split, stack, level length and flight dates attached, so they are multi-entry and stay out of the single-entry filter. Six of them (Nov 27 - Dec 1) are the subset pinned row by row in research/reread_2026-11-17.json and checked by tests/test_reread_2026_11_17.py; the rest are matched by buy-in, game name and a start the sheet itself prints. The other WPT rows keep 'not-verified' re-entry status: the structure PDF has no section for the $10,400 WPT World Championship, satellites and the two rows whose start the sheet contradicts are left unverified (F34), and the add-on terms for those rows are still not matched to a section.",
    "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"
   },
   {
@@ -21436,7 +21421,7 @@
    "area": "Hotels",
    "severity": "Medium",
    "title": "The Venetian booking calendar disagrees with the quote, and the cells move within a day",
-   "detail": "The calendar cell for November 17 read $855 in the observation recorded on 2026-11-16, while the same page's quote for the same night printed a $824.25 room rate, and an earlier observation of the same calendar on the same day recorded $605. The calendar states that its prices are the best available suite and rate, include the daily resort fee and exclude taxes. Calendar cells are logged as observations and are never used in a total.",
+   "detail": "The calendar cell for November 17 read $855 in the observation recorded on 2026-11-16, while the same page's quote for the same night printed a $824.25 room rate, and an earlier observation of the same calendar on the same day recorded $605. The calendar states that its prices are the best available suite and rate, include the daily resort fee and exclude taxes. Calendar cells are logged as observations and are never used in a total. On 2026-11-17 the same booking engine, fetched live for Nov 25 to Dec 2, showed no amount in any date cell, so the trip window is still unpriced and no cell was recorded.",
    "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"
   },
   {
@@ -21473,6 +21458,22 @@
   },
   {
    "id": "F33",
+   "area": "Schedule overlap",
+   "severity": "Medium",
+   "title": "Day 2 restarts of earlier Venetian events overlap the trip-window primaries",
+   "detail": "Re-read on 2026-11-17 from the official schedule: Event #7 ($400 No Limit Hold'em flights) has a Day 2 Restart at 11:00 AM on Wed Nov 25, the same morning as the 11:10 AM primary (#10). Event #19 ($400 flights) has a Day 2 Restart at 11:00 AM on Wed Dec 2, and its 11:10 AM Day 1 flight on Sun Nov 29 is the same morning as the 12:10 PM primary (#20). A restart applies only to a player who bagged chips in an earlier flight, so the day plan treats these as conditional and does not model them. Before relying on a primary, check whether any earlier flight was played.",
+   "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
+  },
+  {
+   "id": "F34",
+   "area": "Wynn WPT",
+   "severity": "High",
+   "title": "The WPT schedule and the WPT structure PDF give different dates for the same events",
+   "detail": "Read on 2026-11-17. The schedule PDF lists a 'No Limit Hold'em Day 2' for the $800 NLH on Mon Nov 30 at 1:00 PM, but the structure PDF gives that event Day 1A at 11 a.m. on Mon Nov 30 and Day 2 at 1 p.m. on Thu Dec 3. The schedule also lists a 'No Limit Hold'em (2 Day)' $1,600 on Dec 9 at 11 a.m., while the structure PDF gives the $1,600 NLH Day 1A on Thu Dec 3 and Day 2 on Sat Dec 5. The rows are reproduced as printed and not corrected. The $800 row is not matched to a structure section for that reason. The same reading found a second shape of the problem: the schedule also prints a '$1,600 No Limit Hold'em Day 2' at 1 p.m. on Thu Dec 3, the morning of its own Day 1A, and prints no Dec 5 row at all, while the structure sheet for that event prints Day 1A Thu Dec 3 at 11 a.m., Day 1B Fri Dec 4 at 11 a.m. and Day 2 Sat Dec 5 at 11 a.m. A schedule row is therefore only allowed to borrow a clause from a sheet when that sheet prints the same start; two of them do not, so they keep their unverified rules. Confirm the date with the poker room before any decision that depends on it.",
+   "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"
+  },
+  {
+   "id": "F35",
    "area": "Venetian DSE IV",
    "severity": "Low",
    "title": "The official DSE IV schedule PDF prints decorative text in the DATE column on 14 rows",
@@ -21480,28 +21481,12 @@
    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
   },
   {
-   "id": "F34",
+   "id": "F36",
    "area": "Venetian DSE IV",
    "severity": "Low",
    "title": "The official DSE IV schedule PDF prints '(IDAY)' where the HTML page prints '(1Day)'",
    "detail": "Several event names in the printable schedule PDF read '(IDAY)', which is the same one-day marker the HTML page prints as '(1Day)', with the numeral rendered as a capital I. The canonical rows use the HTML page's spelling. Nothing is inferred from the marker beyond the label the venue itself prints: the sheet-screened status on those rows comes from the structure sheet, not from the marker.",
    "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf"
-  },
-  {
-   "id": "F35",
-   "area": "Wynn WPT",
-   "severity": "High",
-   "title": "The WPT schedule and the WPT structures sheet disagree on the $1,600 event's Day 2",
-   "detail": "The official WPT World Championship schedule PDF prints the $1,600 NLH (Nov 28 - Dec 5) with a '$1,600 Day 2' row at 1:00 PM on Friday, December 3, 2026, and no row at all on December 5. The structure sheet for that same event prints Day 1A on Thursday, December 3 at 11:00 AM, Day 1B on Friday, December 4 at 11:00 AM and Day 2 on Saturday, December 5 at 11:00 AM, with no 1:00 PM start and no December 3 restart. The two official documents cannot both be right. The published row reproduces the schedule PDF exactly as printed and links both documents; nothing on the schedule page relies on either reading.",
-   "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"
-  },
-  {
-   "id": "F36",
-   "area": "Hotel rates",
-   "severity": "Medium",
-   "title": "The booking calendar publishes no price for the recommended trip window when opened on those dates",
-   "detail": "The official Venetian booking calendar was opened on 2026-11-17 for November 25 to December 2, 2026 with two adults, the recommended trip. Every date cell rendered as a price placeholder, so no dated checkout total, cancellation deadline or room type exists for the trip dates, and the nightly budget stays at the published starting-rate floor of $197.28. A calendar view observed on 2026-11-16 did publish one-night cells for part of that window (Nov. 25 to Nov. 30); those are kept as dated observations on the hotel page and are not used as a quote, because a cell carries no room type, no cancellation deadline and no tax.",
-   "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-03&view=calendar"
   },
   {
    "id": "F37",
@@ -21623,6 +21608,15 @@
   },
   {
    "id": "Q13",
+   "question": "Are you 21 or older with a Venetian Rewards card, and are you 50 or older for the Seniors events?",
+   "answer": "Each of the seven DeepStack Extravaganza IV sheets re-read on 2026-11-17 requires players to be 21+ and to hold a Venetian Rewards card. The Dec 2 10:10 AM $600 No Limit Hold'em Seniors event (#24) is open only to players 50 or older, according to the official schedule. Its structure sheet has not been read, so its entry rules are unconfirmed. The day plan leaves age-restricted events out, so the Dec 2 primary is the 5:10 PM bounty.",
+   "why": "Needed",
+   "blocking": "Yes - eligibility decides which of the trip-window events a player can enter",
+   "how": "Confirm your age band and whether you hold a Venetian Rewards card. If you are 50+, the Seniors event can be added to the plan after its sheet is read.",
+   "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_6.pdf"
+  },
+  {
+   "id": "Q14",
    "question": "Should rooms with no readable official schedule page be listed at all?",
    "answer": "Golden Nugget, Circa and Resorts World were attempted on 2026-11-17 and publish no readable tournament schedule page: the Golden Nugget poker page returns an empty body through this build's fetch path and its casino poker host returns HTTP 500, while the Circa and Resorts World poker paths return not-found pages. Nothing is inferred for them, so they have no event rows and appear only on the flagged page (F37). Circa and Golden Nugget are downtown, outside the 30-minute walking limit from a Venetian stay anyway.",
    "why": "Optional",
@@ -21776,7 +21770,7 @@
    "url": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
    "what": "The WPT World Championship structures PDF was read for every event starting inside the planned trip window plus the December 3-5 $1,600 event: $600 NLH ($400,000 guarantee), $600 TORSE, $400 PLO, $600 Mixed Triple Draw, $800 NLH ($1,000,000), $600 Limit Omaha 8, $600 Limit Omaha 8/Stud 8, $1,100 PLO and $1,600 NLH ($1,000,000). Each sheet prints an unlimited re-entry clause, so those rows are confirmed extra-spend events with the printed clause and fee split attached.",
    "result": "newly verified",
-   "affected": 23
+   "affected": 20
   },
   {
    "id": "vl-suite-rates",
@@ -24358,6 +24352,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": "2026-11-17",
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24367,6 +24362,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_2.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24376,6 +24372,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24385,6 +24382,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24394,6 +24392,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": "2026-11-17",
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24403,6 +24402,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_6.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": "2026-11-17",
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24412,6 +24412,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": "2026-11-17",
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24421,6 +24422,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24430,6 +24432,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_9.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24439,6 +24442,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_10.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24448,6 +24452,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": "2026-11-17",
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24457,6 +24462,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24466,6 +24472,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_13.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24475,6 +24482,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_14.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24484,6 +24492,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24493,6 +24502,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_16.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24502,6 +24512,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_17.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24511,6 +24522,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_18.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24520,6 +24532,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_19.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24529,6 +24542,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_20.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24538,6 +24552,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_21.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24547,6 +24562,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_22.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": "2026-11-17",
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24556,6 +24572,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_23.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24565,6 +24582,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_24.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24574,6 +24592,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24583,6 +24602,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_26.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": "2026-11-17",
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24592,6 +24612,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_27.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24601,6 +24622,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_28.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24610,6 +24632,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_29.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24619,6 +24642,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_30.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24628,6 +24652,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_31.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24637,6 +24662,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_32.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24646,6 +24672,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_33.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24655,6 +24682,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_34.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24664,6 +24692,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24673,6 +24702,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_36.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
@@ -24682,6 +24712,7 @@
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_37.pdf",
    "readOn": "2026-11-16",
    "read": true,
+   "reReadOn": null,
    "note": "Read directly; excerpt recorded on the tournament row and in research/structure_notes.md."
   },
   {
