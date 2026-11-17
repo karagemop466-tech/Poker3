@@ -314,6 +314,10 @@ SOURCES = [
     dict(id="vl-dse-dec", name="Venetian DeepStack Extravaganza NYE schedule and structure sheets (Dec 24, 2026 - Jan 10, 2027)",
          url="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html",
          type="official schedule", checked=LAST_PASS),
+    dict(id="clark-county-lodging-tax",
+         name="Clark County Department of Business License - Combined Transient Lodging Tax rate schedule (Appendix III, General Information Guide for Transient Lodging Establishments)",
+         url="https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf",
+         type="government tax schedule", checked=RECHECKED),
     dict(id="clv-calendar", name="Caesars Palace official booking page: Hotel Policies > Fees block and Nov/Dec 2026 calendar",
          url="https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=December&propCode=clv",
          type="official hotel page", checked=RECHECKED),
@@ -480,12 +484,17 @@ FLAGS = [
                  "their own wording, quoted on each row."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html"),
     dict(id="F12", area="Wynn WPT", severity="Medium",
-         title="The WPT structure PDF is read, but the $10,400 event and most WPT rows are still not matched to a section",
-         detail=("Read end to end on 2026-11-17 (all eight chunks). Six trip-window WPT rows (Nov 27 - Dec 1) now carry the "
-                 "printed registration clause 'Unlimited re-entry ... until the start of level 9', so they are multi-entry and "
-                 "stay out of the single-entry filter. The other WPT rows keep 'not-verified' re-entry status: the structure "
-                 "PDF has no section for the $10,400 WPT World Championship, and the add-on terms for those rows are still not "
-                 "matched to a section."),
+         title="The WPT structure PDF's trip-window NLH sections are read; later-series sections and the $10,400 event are still unmatched",
+         detail=("Read end to end on 2026-11-17 (all eight chunks). Twelve trip-window flight rows now carry verified "
+                 "rules quoted from the PDF: the six $600 NLH $400K flights (Nov 27-29) and the six $800 NLH $1M "
+                 "flights (Nov 30-Dec 2). Both sections print 'Unlimited re-entry for each starting flight will be "
+                 "available until the start of level 9', so those events are multi-entry and stay out of the "
+                 "single-entry filter; neither section prints an add-on provision. The Day 2 rows stay "
+                 "'not-verified' on purpose: the schedule PDF prints them with the FOLLOWING event's buy-in columns "
+                 "(Nov 30 1 p.m. 'Day 2' of the $600 event carries $800/$1M, and Dec 3 1 p.m. 'Day 2' of the $800 "
+                 "event carries $1,600/$1M), so rules are not attached across conflicting evidence. The $10,400 WPT "
+                 "World Championship has no section in the structures PDF. Non-NLH WPT rows outside the read "
+                 "sections keep 'not-verified' status."),
          source="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"),
     dict(id="F13", area="ARIA", severity="Medium",
          title="The ARIA poker guide is undated and the current page asks guests to confirm by phone",
@@ -761,13 +770,15 @@ FLAGS = [
          title="Wynn, Caesars Palace and Horseshoe print no room-tax percentage, so their true nightly cost stays open",
          detail=("Wynn publishes 'plus tax' on the resort fee and on the room rate but no percentage (page re-read "
                  "2026-11-17: 'Reservations will be charged a daily resort fee of $55 plus tax'). Caesars Palace and "
-                 "Horseshoe print only the tax amount charged on their fee. The county/city room-tax schedule publishes "
-                 "13.38% for properties inside the Primary Gaming Corridor and 13.00% outside it "
-                 "(https://files.lasvegasnevada.gov/business-licensing/RoomTaxPacket.pdf), and 13.38% is the figure the "
-                 "Venetian prints in its own hotel terms. That schedule is published by the City of Las Vegas for the "
-                 "establishments it licences, while these Strip resorts sit in unincorporated Clark County, so this site "
-                 "does not substitute the county figure into a property-published column: the row shows the reference "
-                 "beside a blank property figure. Closing it needs a dated checkout total from each property."),
+                 "Horseshoe print only the tax amount charged on their fee. The Clark County Department of Business "
+                 "License Combined Transient Lodging Tax schedule (Appendix III of the General Information Guide for "
+                 "Transient Lodging Establishments) lists every resort hotel in the Primary Gaming Corridor at 13.38% "
+                 "- MGM Grand, Luxor, Paris, New York-New York, Sahara and Rio were read line by line on 2026-11-17 "
+                 "(session 688eb797) - and the City of Las Vegas room-tax packet prints the same 13.38%/13.00% split "
+                 "(https://files.lasvegasnevada.gov/business-licensing/RoomTaxPacket.pdf); 13.38% is also the figure "
+                 "the Venetian prints in its own hotel terms. This site does not substitute a government schedule into "
+                 "a property-published column: the row shows the reference beside a blank property figure. Closing it "
+                 "needs a dated checkout total from each property."),
          source="https://www.wynnlasvegas.com/about-us/resort-information"),
     dict(id="F51", area="Hotel cost", severity="High",
          title="The published nightly floor may double-count the resort fee, because the Venetian engine says its prices already include it",
@@ -1388,8 +1399,10 @@ TRIP = {
         "publish its own poker-room rate, keep the poker room on site, and publish its resort fee, tax and cancellation "
         "terms. No comparable official quality score exists for these rooms, so the quality column stays blank (F19)."),
     "rationale": [
-        ("2026-11-25 to 2026-12-02 (7 nights, 8 days) holds the largest number of structure-screened candidates "
-         "whose sheets omit extra-entry terms: 14, with at least one on each date. This is not proof of a one-entry-per-player cap."),
+        ("2026-11-23 to 2026-11-30 (7 nights, 7 playable days - 30 November is an 11 a.m. checkout day) holds 12 "
+         "sheet-screened candidates whose sheets omit extra-entry terms, at least one on each playable date. This is "
+         "not proof of a one-entry-per-player cap. The window moved here from 25 November - 2 December because the "
+         "official booking engine will not price a stay spanning 30 November and 1 December (F57)."),
         ("All 37 DeepStack Extravaganza IV structure sheets were read directly on 2026-11-16. The sheets are primary-source "
          "evidence for their printed terms, but they do not confirm a maximum number of entries per player; see F31."),
         ("The window stays inside DSE IV, the series whose 37 structure sheets were read first. The December 24, 2026 to "
@@ -1411,15 +1424,21 @@ TRIP = {
                      "one-entry event until the venue confirms the written rules (F31). It is a planning number, not "
                      "a forecast."),
     "lodgingEvidence": (
-        "The official Venetian booking engine was opened on 2026-11-17 for four stay windows inside the recommended trip "
-        "dates of November 25 to December 2, 2026, with two adults. None returned a suite or a price: the seven-night stay "
-        "and the November 30 single night rendered every calendar cell as the placeholder '$XXX', the November 25-27 stay "
-        "did not finish loading, and the November 27-28 stay rendered the calendar with no suite panel. The engine does "
-        "quote near-term stays, and it priced the same November 17-19 stay twice on consecutive days: $1,245.48 on "
-        "2026-11-16 and $1,015.89 on 2026-11-17, because the first night fell from $824.25 to $621.75. A second stay, "
-        "November 20-22, was quoted on 2026-11-17 at $2,504.00. All three quotes reconcile exactly with "
-        "(rate + $55 resort fee) x 1.1338. No dated official price exists for the trip window itself, so the trip budget "
-        "stays at the published starting-rate floor and is labelled a floor, not a quote."),
+        "The official Venetian booking engine was opened on 2026-11-17 for four stay windows inside the originally "
+        "considered 25 November - 2 December dates, with two adults, and none returned a suite or a price: the "
+        "seven-night stay and the November 30 single night rendered every calendar cell as the placeholder '$XXX', "
+        "the November 25-27 stay did not finish loading, and the November 27-28 stay rendered the calendar with no "
+        "suite panel. A fifth independent read the same day (session 688eb797, with the 25 November - 2 December "
+        "window open) rendered 25 November through 1 December as 'Date Unavailable' with no price cell at all and "
+        "'$XXX' placeholders from 2 December onward - the strongest form of the finding that became F57, and the "
+        "reason the recommended trip is 23 - 30 November, the seven-night window the engine prices on every night. "
+        "The engine does quote near-term stays, and it priced the same November 17-19 stay twice on consecutive days: "
+        "$1,245.48 on 2026-11-16 and $1,015.89 on 2026-11-17, because the first night fell from $824.25 to $621.75. "
+        "A second stay, November 20-22, was quoted on 2026-11-17 at $2,504.00. All three quotes reconcile exactly "
+        "with (rate + $55 resort fee) x 1.1338. The seven nights of the 23-30 November stay (23-29 November) carry "
+        "a dated calendar reading of $165, $165, $190, $210, $905, $340, $165 = $2,140 before tax and $2,426.33 "
+        "all-in (recorded in the rate log), so the trip budget carries both the published starting-rate floor and "
+        "that dated reading."),
 }
 
 PLAN_NOTES = {
@@ -1756,6 +1775,41 @@ def build():
         ))
 
     # --- Wynn WPT --------------------------------------------------------
+    # The two multi-flight NLH events whose flights fall inside the trip window were matched to
+    # their own sections of the official structures PDF on 2026-11-17 (session 688eb797, chunks 1
+    # and 3). Both sections print the same registration clause, so their flight rows and Day 2 rows
+    # carry verified rules instead of the generic "not read" text. Everything else stays not-verified.
+    WPT_NLH_SECTIONS = {
+        # $600 NLH $400,000 GTD, November 27-30, 2026 (1A-1F on Nov 27-29; Day 2 Mon Nov 30 1 p.m.)
+        "600": dict(
+            fee_excerpt=("Entry Fee: $600 Buy-in = $510 (Tournament Prize Pool) + $65 (Tournament Fee) "
+                         "+ $25 (Poker Staff Service Charge)"),
+            re_excerpt=("Registration: Unlimited re-entry for each starting flight will be available until the "
+                        "start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent "
+                        "starting flight."),
+            flight=lambda date, name: ("2026-11-27" <= date <= "2026-11-29"
+                                       and name.startswith("No Limit Hold'em Day 1")),
+            day2=None,
+        ),
+        # $800 NLH $1,000,000 GTD, November 30 - December 4, 2026 (1A-1F on Nov 30 - Dec 2; Day 2 Thu Dec 3 1 p.m.)
+        "800": dict(
+            fee_excerpt=("Entry Fee: $800 Buy-in = $695 (Tournament Prize Pool) + $72 (Tournament Fee) "
+                         "+ $33 (Poker Staff Service Charge)"),
+            re_excerpt=("Registration: Unlimited re-entry for each starting flight will be available until the "
+                        "start of level 9. A player who advances to Day 2 is prohibited from entering a subsequent "
+                        "starting flight."),
+            flight=lambda date, name: ("2026-11-30" <= date <= "2026-12-02"
+                                       and name.startswith("No Limit Hold'em Day 1")),
+            day2=None,
+        ),
+    }
+
+    def _wpt_section_for(date, name, buy):
+        for key, sec in WPT_NLH_SECTIONS.items():
+            if sec["flight"](date, name):
+                return sec
+        return None
+
     for idx, line in enumerate(N.WYNN_WPT_ROWS.splitlines()):
         cells = line.split("|")
         date, time, name, buy_in, guarantee, chips, levels = cells[:7]
@@ -1769,25 +1823,43 @@ def build():
             gua = guarantee
         flight = bool(re.search(r"Day 1[A-F]\b", name))
         cat = "flight" if flight else ("satellite" if "Satellite" in name else "wpt")
-        rules = {
-            "singleEntry": dict(status="not-verified",
-                                excerpt="The WPT structure sheets have not been read in this pass, so no entry rule is confirmed for this event.",
+        sec = _wpt_section_for(date, name, buy)
+        if sec:
+            re_note = ("Structure section for this event read in the official structures PDF on 2026-11-17 "
+                       "(session 688eb797); the registration clause above is quoted from it.")
+            rules = {
+                "singleEntry": dict(status="multiple-entries", excerpt=sec["re_excerpt"],
+                                    source=N.WYNN_WPT_STRUCT, retrieved=RECHECKED),
+                "reEntry": dict(status="confirmed", excerpt=sec["re_excerpt"],
+                                source=N.WYNN_WPT_STRUCT, retrieved=RECHECKED),
+                "addOn": dict(status="none-printed",
+                              excerpt="No add-on provision appears in this event's structure section.",
+                              source=N.WYNN_WPT_STRUCT, retrieved=RECHECKED),
+                "fee": dict(status="confirmed", excerpt=sec["fee_excerpt"],
+                            source=N.WYNN_WPT_STRUCT, retrieved=RECHECKED),
+            }
+        else:
+            re_note = ""
+            rules = {
+                "singleEntry": dict(status="not-verified",
+                                    excerpt="This event's structure section has not been matched, so no entry rule is confirmed for this event.",
+                                    source=N.WYNN_WPT_STRUCT, retrieved=ASOF),
+                "reEntry": dict(status="not-verified", excerpt="This event's structure section has not been matched.",
                                 source=N.WYNN_WPT_STRUCT, retrieved=ASOF),
-            "reEntry": dict(status="not-verified", excerpt="The WPT structure sheets have not been read in this pass.",
-                            source=N.WYNN_WPT_STRUCT, retrieved=ASOF),
-            "addOn": dict(status="not-verified", excerpt="The WPT structure sheets have not been read in this pass.",
-                          source=N.WYNN_WPT_STRUCT, retrieved=ASOF),
-            "fee": dict(status="confirmed", excerpt=f"Buy-in ${buy_in} and guarantee ${guarantee} are printed on the official schedule PDF.",
-                        source=N.WYNN_WPT_SCHED, retrieved=ASOF),
-        }
+                "addOn": dict(status="not-verified", excerpt="This event's structure section has not been matched.",
+                              source=N.WYNN_WPT_STRUCT, retrieved=ASOF),
+                "fee": dict(status="confirmed", excerpt=f"Buy-in ${buy_in} and guarantee ${guarantee} are printed on the official schedule PDF.",
+                            source=N.WYNN_WPT_SCHED, retrieved=ASOF),
+            }
         events.append(_event(
             f"wynn-wpt-{date}-{idx:03d}-{time.replace(':', '').replace(' ', '').lower()}",
             "wynn", date, time, name, buy, gua, rules, cat, "wpt",
             N.WYNN_WPT_SCHED, N.WYNN_WPT_SCHED, N.WYNN_WPT_STRUCT,
             note=" ".join(x for x in [
                 ("Multiple start flights are published for this event, so more than one entry is possible." if flight else
-                 "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read."),
-                WPT_MARK_NOTES.get(marks, "")] if x).strip(),
+                 ("Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read." if not sec
+                  else "Schedule row from the official WPT World Championship schedule PDF.")),
+                re_note, WPT_MARK_NOTES.get(marks, "")] if x).strip(),
             chips=int(chips) if chips not in ("-", "") else "", entry_type=("multi-flight" if flight else "not-verified"),
             continuation=is_continuation(name),
         ))
