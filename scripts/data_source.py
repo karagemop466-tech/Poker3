@@ -352,6 +352,24 @@ FLAGS = [
          detail=("Sheets 18 and 29 print the buy-in, rake and blind structure but no guarantee line, so events 3, 4, 5 and 6 carry "
                  "a blank guarantee and are not ranked by the guaranteed-pool-to-fee ratio."),
          source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_18.pdf"),
+    dict(id="F29", area="Publishing", severity="High",
+         title="The site root served a stale page that contradicted the dashboard, because two publishers wrote to the same URL",
+         detail=("GitHub Pages was configured to deploy from the main branch root while pages.yml also deployed the site/ "
+                 "artifact, so the URL /Poker3/ served whichever deployment finished last. At the time this was found the "
+                 "root served an earlier-round page (46 Venetian rows, no verified hotel cost, 'no hotel ranking is shown'), "
+                 "while /Poker3/site/ served the canonical 341-row dashboard. A visitor landing on the site root therefore saw "
+                 "conclusions the live data contradicts. The root page is now a redirect and pages.yml redeploys after the "
+                 "branch build; the underlying setting (Pages source = 'deploy from a branch') could not be changed by this "
+                 "session's token, which is why the redirect exists as a second guarantee."),
+         source="https://github.com/karagemop466-tech/Poker3/blob/main/site/poker3/index.html"),
+    dict(id="F30", area="Monitoring", severity="High",
+         title="No scheduled source re-check had ever run, so nothing on the site was being monitored",
+         detail=("Three workflows (checks.yml, monitor.yml, daily-check.yml) were scheduled to commit source re-checks to "
+                 "main on daily crons under three different concurrency groups, so they deleted each other's work, and none "
+                 "of the three had ever produced a run. site/checks.json, which the sources page fetches, did not exist, so "
+                 "the page reported 'No automated check file yet'. The three are now one serialised job. The first real run "
+                 "is triggered by the merge of this change; its result is recorded on the sources page when it lands."),
+         source="https://github.com/karagemop466-tech/Poker3/actions"),
 ]
 
 QUESTIONS = [
