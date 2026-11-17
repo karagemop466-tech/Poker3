@@ -4181,3 +4181,15 @@ PASSED with **56 routes**; 110 tests OK; `node --check` OK.
 **Next:** T4 (coverage matrix: `scripts/coverage.py` → `site/coverage.json` + `site/coverage.html` + nav entry),
 then T5 (final verification, PR → `main`, merge, Pages confirm, record here). Three local commits
 (`ad53ab8`, `44630a4`, `957b3b4`) pending `git pull --rebase` + push with the T4/T5 work.
+
+**2026-11-17 — T4 COMPLETE, T5 IN PROGRESS.** T4 (commit `83b0acc`): brief-coverage traceability matrix shipped —
+`scripts/coverage.py` validates and emits `site/coverage.json` (25 items: 11 shipped, 12 shipped-with-flags,
+1 flagged-gap for the no-8 AM/no-finish-times requirement, 1 in-progress), rendered by `site/coverage.html`,
+nav entry added, `verify_site.py` now checks 17 pages, `tests/test_coverage.py` pins resolution (114 tests OK).
+**T5:** full local gate green (rebuild → coverage → verify: 341 events / 8 hotels / 56 routes / 43 sources /
+61 flags / 7 plan days / 17 pages → JSON ×3 → `node --check` → `py_compile` → 114 tests OK → `git diff --check`),
+branch rebased and pushed.
+
+**PR:** https://github.com/karagemop466-tech/Poker3/pull/112 (`arena/d1a97472-poker3` → `main`) — opened with the
+change summary, live sources table, flagged-irregularity list and verification record in the body. Merge result,
+CI runs and Pages confirmation to be recorded below after checks pass.
