@@ -1414,11 +1414,11 @@ session is the only active editor, so it takes the integration-owner role for ev
 
 | Task | Status | Owner session | Files in scope | Notes |
 |---|---|---|---|---|
-| C1 Line-by-line re-verification of all canonical tournament rows against the official pages fetched today | in progress | arena/b573f10a-poker3 | `site/data.json`, `scripts/data_*.py`, `scripts/verify_site.py` | Snapshot moves 2026-11-16 → 2026-11-17; every row's `lastChecked` follows. |
-| C2 Dated official hotel quote for the actual trip window (2026-11-25 → 2026-12-02) | in progress | arena/b573f10a-poker3 | `scripts/data_hotels.py`, `site/hotels.html`, flag F15/F28 | Closes the highest-severity money gap if the official booking engine publishes a price. |
-| C3 Read the unread official structure-sheet sets (DSE NYE, WPT World Championship) | claimed | arena/b573f10a-poker3 | `scripts/data_venetian.py`, `scripts/data_venues.py`, `site/data.json` | Clears F11 and F12 where the official PDF is reachable. |
-| C4 Remaining brief items on the canonical site (past-date handling, per-date booking links, feed publication) | claimed | arena/b573f10a-poker3 | `site/**`, `site/assets/app.js` | Only where a published gap exists. |
-| C5 Verification, PR to `main`, merge, Pages confirmation, record here | pending | arena/b573f10a-poker3 | whole repo | No blocking wait for review. |
+| C1 Line-by-line re-verification of all canonical tournament rows against the official pages fetched today | done | arena/b573f10a-poker3 | `site/data.json`, `scripts/data_*.py`, `scripts/verify_site.py` | Snapshot moves 2026-11-16 → 2026-11-17; every row's `lastChecked` follows. |
+| C2 Dated official hotel quote for the actual trip window (2026-11-25 → 2026-12-02) | done (no official price exists for the window; four stay windows recorded) | arena/b573f10a-poker3 | `scripts/data_hotels.py`, `site/hotels.html`, flag F15/F28 | Closes the highest-severity money gap if the official booking engine publishes a price. |
+| C3 Read the unread official structure-sheet sets (DSE NYE, WPT World Championship) | done by another session on `main` (all 52 sheets now read) | arena/b573f10a-poker3 | `scripts/data_venetian.py`, `scripts/data_venues.py`, `site/data.json` | Clears F11 and F12 where the official PDF is reachable. |
+| C4 Remaining brief items on the canonical site (past-date handling, per-date booking links, feed publication) | done: one official booking deep link per trip night | arena/b573f10a-poker3 | `site/**`, `site/assets/app.js` | Only where a published gap exists. |
+| C5 Verification, PR to `main`, merge, Pages confirmation, record here | done: PR [#57](https://github.com/karagemop466-tech/Poker3/pull/57) | arena/b573f10a-poker3 | whole repo | No blocking wait for review. |
 
 **Not claimed, not edited:** `docs/`, `verified/`, `planner/`, `single-entry/`, `pages/`, `handoff/`, `raw/`, the
 root-level legacy HTML pages, `site/poker3/**`. They are prior-session artefacts and stay as they are.
@@ -1499,4 +1499,42 @@ both client scripts, and a reproducible `data_source.py` build. All pass.
 
 ### Result (session arena/b573f10a-poker3)
 
-Recorded after the merge in the section below.
+- **PR [#57](https://github.com/karagemop466-tech/Poker3/pull/57)** (`arena/b573f10a-poker3` → `main`), merged
+  2026-11-17 01:16:35 UTC with `gh pr merge 57 --merge`, merge commit `234d2d7`.
+- **CI on the merge commit:** "Verify static research site" run [43994327923](https://github.com/karagemop466-tech/Poker3/actions/runs/43994327923)
+  → **success**; "Publish the canonical Vegas Poker Planner to GitHub Pages" run
+  [43994327873](https://github.com/karagemop466-tech/Poker3/actions/runs/43994327873) → **success**.
+- **Pages:** the API reports `status: built`. The live dashboard at
+  https://karagemop466-tech.github.io/Poker3/ was fetched and read back after the deployment: the executive summary
+  carries the 2026-11-17 snapshot, 341 published rows, 52/52 structure sheets read, and the eight-day
+  2026-11-25 → 2026-12-02 plan. The hotels page carries the new dated-quote, booking-link, no-price and
+  calendar-comparison sections.
+- **Branch checks before the merge:** `verify_live_official.py` (94 DSE rows against two official captures, the
+  hotel values against the official excerpts, the quote arithmetic), `audit_data.py` (37 structure sheets),
+  `verify_site.py` (341 events, 8 hotels, 14 routes, 39 sources, 45 flags, 8 plan days, 16 pages, all links
+  resolve), 47 unit tests, `canonical_smoke.py` (11 main + 5 detail pages), `smoke.py`, `node --check` on both
+  client scripts, and a reproducible `data_source.py` build. All pass.
+- **Merge history.** `main` advanced five times while this branch was being rebased, from sessions
+  `arena/cd17e91c-poker3`, `arena/c2b95024-poker3`, `arena/52e02b46-poker3`, `arena/169bf42c-poker3` and the
+  automated daily source check. Every conflict was resolved by keeping both sessions' work: `COORDINATION.md`
+  keeps main's full text with this session's section appended; `site/data.json` is a generated artefact and was
+  rebuilt from the resolved sources. Where another session had already implemented the same idea better, this
+  session's version was dropped rather than duplicated — their stricter evidence policy (sheet-screened
+  candidates, entry cap unconfirmed in writing), their `lastChecked` / `lastVerified` split, their live hotel
+  facts block, and their `bookingLinks` entry on the trip object.
+- **Flag and suggestion ids moved three times.** This session's findings were filed as F29/F30/F31, then
+  F35/F36/F37, then F42/F43/F44, and finally **F45/F46/F47**, because other sessions reached F41 on `main` in
+  between. The two new suggestions went from S13/S14 to **S18/S19** for the same reason. All 45 flags and 19
+  suggestions on `main` are unique.
+
+### Cross-session corroboration worth recording
+
+Three sessions independently re-read the same official pages on 2026-11-17 and reached the same numbers:
+
+- The Venetian poker-suite rate page: $119/$209 starting rates, $55 resort fee, six hours of live cash play or a
+  $300-or-higher tournament entry per night, 2 a.m. deadline, code EPOKR25 (this session, and session
+  `arena/52e02b46-poker3`).
+- The arithmetic error in the 2026-11-16 dated quote ($996.91/$248.61 against a printed $1,245.48) was found
+  independently by this session and by session `arena/c2b95024-poker3`; both corrected it to $996.89/$248.59.
+- The booking engine returning no suite for the trip window is recorded three times over, as F15, F36 (another
+  session) and in this session's four recorded stay windows.
