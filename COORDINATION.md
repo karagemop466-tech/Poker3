@@ -3105,6 +3105,36 @@ Branch: `arena/da83eca8-poker3` (platform-bound; the `session-<id>/<task>` namin
 
 ### Integration record (session `arena/da83eca8-poker3`)
 
+### Integration record (session `arena/da83eca8-poker3`)
+
+## Current session `arena/4c7b94ab-poker3` — integration, verification and publication (2026-11-17 UTC)
+## Current session `arena/4c7b94ab-poker3` — integration, verification and publication (2026-11-17 UTC)
+
+Branch: `arena/4c7b94ab-poker3` (platform-bound; platform-assigned, status `active`). Branched from `main` @ `b9c8d77` (PR #100, session arena/da83eca8-poker3, merged 2026-11-18 07:23:52 UTC). No other session holds an active claim when this claim is written. This session adopts the pending integration task D5 from the da83eca8 board section and acts as integration owner for the canonical `site/` dashboard, `scripts/**`, `tests/**`, `.github/workflows/**`, `README.md` and this section of `COORDINATION.md`, until the PR to `main` is merged and Pages is confirmed live. Prior artefacts (`docs/`, `verified/`, `planner/`, `single-entry/`, root legacy pages, `site/poker3/`, `handoff/`, `raw/`, `data/`) are read-only here.
+
+### Claim (recorded before any data edit, 2026-11-17 UTC)
+
+| Task | Status | Owner session | Files in scope | Notes |
+|---|---|---|---|---|
+| D5 Verification suite, PR → `main`, merge, Pages confirmation, record here | in progress | arena/4c7b94ab-poker3 | `COORDINATION.md`, `site/**`, `scripts/**`, `tests/**`, `.github/workflows/**`, `README.md` | `verify_site.py`, full `unittest discover`, audit/transcription/live-recheck scripts, canonical smoke, JS lint, JSON validation, broken-link check across all pages. Flagged irregularities ship on `site/flagged.html` and do not block merge. |
+
+### Handoff from session arena/da83eca8-poker3 (merged as PR #100, commit b9c8d77)
+
+D1–D4 board rows are carried forward as follows:
+- D1 live re-verification: done for the reachable official sources; dated captures in `raw/` (2026-11-16/17); `tests/test_reread_2026_11_17.py` and `tests/test_recheck_ed1d2489.py` pass. The build sandbox cannot reach venue hosts (flag F40); unreachable official URLs are recorded as `unavailable`, never as changed, and no value is silently rewritten.
+- D2 hotel-rate gaps: Venetian dated checkout quote logged; Palazzo, MGM Grand, Caesars Palace, Horseshoe and ARIA dated rates remain blank + flagged (F15, F36, F37, F55, F57, F69). No live booking access from this sandbox; blanks stay blank per the evidence policy.
+- D3 walking routes: Google Maps estimates on all 15 hotel–venue pairs, labelled as estimates (F32, F67); no venue publishes a walking time.
+- D4 coverage traceability: `site/coverage.json` plus the README traceability table; 25 brief items: 21 shipped, 3 partial, 1 not-resolvable (no official 8:00 AM start).
+
+### Integration log
+
+- (pending) Commit this claim on `arena/4c7b94ab-poker3`; `git pull --rebase` and push immediately.
+- (pending) Run full verification suite locally before the PR.
+- (pending) Open PR `arena/4c7b94ab-poker3` → `main`; merge with `gh pr merge <n> --merge`.
+- (pending) Confirm GitHub Pages deployment via the Pages API / workflow runs.
+- (pending) Record PR link and merge result in this section; commit to `main`.
+
+
 - **PR:** [#100](https://github.com/karagemop466-tech/Poker3/pull/100) (`arena/da83eca8-poker3` → `main`), merged with `gh pr merge 100 --merge` as merge commit `b9c8d77a1f17a6000dc5aa29fff5ab9a2ceec50e` on 2026-11-17 UTC.
 - **Checks on the PR head:** `verify` (verify_site.py + unit tests + node + JSON) success; `transcription` (Official table transcription check) success; "Publish the canonical Vegas Poker Planner to GitHub Pages" success; "pages build and deployment" success.
 - **Pages:** API reports `status: built`, source `main` `/`, https://karagemop466-tech.github.io/Poker3/ . The canonical dashboard serves the coverage matrix, the dated 23-30 Nov Venetian quote ($4,010.55 all-in) and the 72-flag register.
