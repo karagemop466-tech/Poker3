@@ -3251,3 +3251,84 @@ Branch: `arena/7529044d-poker3` (platform-bound; the `session-<id>/<task>` namin
 | T1 Resolve F39 room-tax % (Wynn, Caesars, Horseshoe) | done (reference only; `taxRate` stays blank) | arena/5b8ce14d-poker3 | `scripts/data_hotels.py`, `scripts/data_source.py` (F39), `site/data.json` | commits `39ea638`, `b3477cc`; unread values removed (see log) |
 | T2 Strip room coverage and earliest-start check (F17, F21) | done (F17 stands; F79 and F80 added) | arena/5b8ce14d-poker3 | `scripts/data_source.py` (F79, F80), `raw/official_excerpts_5b8ce14d_2026-11-17.md` | commit `da255ae`; Paris and Flamingo unresolved |
 | T3 Integration, PR, merge, Pages check | in progress | arena/5b8ce14d-poker3 | whole repo | PR and merge result recorded below |
+
+## Session arena/37292d23-poker3 — live re-check, gap closure and final integration (2026-11-17 UTC)
+
+Branch `arena/37292d23-poker3`, based on `main` at `2bdcc0d`. Claim recorded 2026-11-17 UTC **before any other
+file edit**, per the coordination brief. The PR queue was empty at claim time and no other session branch had
+moved since `main`'s last commit (21:31 UTC), so this session acts as the integration owner for shared outputs,
+following the pattern of the previous integration sessions.
+
+| Task | Status | Owner | Files this session may edit | Notes |
+|---|---|---|---|---|
+| R1 Re-read the official URLs the runner could not reach (17 unavailable on the last monitor run) using the platform page reader; record each result with its retrieval date | **done** | arena/37292d23 | `research/`, this section | Page reader only — sandbox `curl` cannot reach venue hosts (F40) |
+| R2 F32: extend the walking-route table for hotel–venue pairs still missing a measurement; no invented minutes | **done — 56/56 pairs** | arena/37292d23 | `scripts/data_hotels.py` (ROUTES only), `site/data.json` (regenerated) | A pair gets a value only if a maps/official reading resolves; otherwise it stays recorded as not measured |
+| R3 Live re-check of trip-window hotel readings (rate log freshness) and of any row this session touches | **done — narrowed, no new row** | arena/37292d23 | `scripts/data_hotels.py` (RATE_LOG append), `site/data.json` | Observations appended, never averaged or chosen |
+| R4 Full verification suite, PR to `main`, merge, Pages confirmation, record result here | local suite green; PR opened after this commit | arena/37292d23 | this section, `COORDINATION.md` | Flagged items do not block the merge |
+
+**Claim push:** this commit.
+
+### Progress record (2026-11-17 UTC, session arena/37292d23-poker3)
+
+**R1 — DONE (changed pages + the 17 unreachable URLs).** Full record:
+`research/live_reread_2026-11-17_session37292d23.md`; captures in
+`raw/dse_dec_2026_schedule_2026-11-17_37292d23.md` (49 rows) and
+`raw/suite_rates_2026-11-17_37292d23.md` (verbatim body).
+
+- Monitor run 2026-11-17T20:48:34Z flagged 2 changed + 17 unavailable URLs. All 19 were
+  re-read with the platform page reader (sandbox curl cannot reach venue hosts, F40).
+- `dse-dec-2026.html` (changed): new comparator `scripts/verify_nye_live.py` proves
+  **49/49 printed rows agree** with the published rows (date, time, event number, buy-in,
+  printed guarantee, structure sheet, normalized name); 0 orphans; 5 restart rows carry
+  guarantees the printout omits and all 5 are disclosed by F63; the script asserts F04/F41
+  exist for the printed year/typo rows. One genuine drift found and fixed: the Seniors row
+  name in `scripts/data_venetian.py` was missing the printed words "to participate";
+  `site/data.json` regenerated (byte-identical rebuild verified).
+- `suite-rates.html` (changed): verbatim capture stored; every published claim citing the
+  page ($119/$209 start, six-hours-or-$300 qualification, before-2-a.m. last night, $55 fee,
+  EPOKR25, 866.255.8936, no-combine, 150-day horizon, prevailing-rate clause) matches the
+  live text. **No published value changed.** The exact hash delta is not reconstructable —
+  the monitor stores hashes, never a snapshot (recorded below as a suggestion).
+- The 17 runner-unreachable URLs: 17/17 re-read, every published fee/cancellation/schedule
+  value corroborated. Two cosmetic observations logged only: Caesars property pages now
+  print Cyber-Monday hero lead-in prices ("Rooms from $186 $139" Caesars Palace,
+  "Rooms from $61 $56" Horseshoe) — promotional, not date-specific, never added as rates.
+
+**R2 — DONE (F32 route matrix).** `research/routes_2026-11-17_session37292d23.md`.
+
+- 42 missing hotel–venue pairs measured with Google Maps walking directions via the page
+  reader on 2026-11-17; the matrix is now **56 of 56 pairs** (8 hotels × 7 venues),
+  published in `scripts/data_hotels.py` (ROUTES) → `site/data.json` (42 rows carry
+  `measuredOn=2026-11-17`; base rows keep 2026-11-16; the concurrent pass's
+  `lastReadOn` rows also resolve to their own date in `data_source.py`).
+- Every resort-to-resort reading agrees with its already-published reverse direction
+  within one minute. Wynn-venue rows point at Encore (where the poker room is); the
+  stored wynn-origin rows start at Wynn Las Vegas — endpoint difference, documented.
+- **Coordination with the concurrent pass:** main already carried a Venetian→Bellagio row
+  (27 min / 1.1 mi to the Bellagio Poker Room address, F67). That row was kept and this
+  session's duplicate (21 min resort-to-resort) was dropped; F67 already explains the
+  six-minute endpoint gap. F32 re-scoped from "coverage missing" to "estimates are
+  point-in-time readings" (the flag must remain — `tests/canonical_smoke.py` requires F31+F32).
+- 13 of 56 rows exceed the 30-minute limit; all are published with their minutes, none inferred.
+
+**R3 — NARROWED, DONE (no new rate-log row).** The dated Venetian trip-window quote
+already landed via PR #87 (session arena/fe903bcb) while this session ran, so there is no
+gap left for this session to fill. The only rate-reading observations from this session are
+the two Caesars hero lead-in prices above — recorded as observations only, never as dated
+rate-log rows (a promo "from" price is not a reading of a specific night).
+
+**R4 — local verification green; PR next.** On the tree rebased onto `main` `ef5d1f7`:
+`python3 -m unittest discover -s tests` → **126 tests OK**; `verify_site.py` → passed
+(341 events, 8 hotels, **56 routes**, 43 sources, **72 flags**, 7 plan days, 16 pages);
+`verify_nye_live.py` → exit 0 (49/49); `verify_dse_full.py` → exit 0;
+`verify_transcription.py` → 44/44; `tests/smoke.py` and `tests/canonical_smoke.py` → pass.
+PR + merge + Pages confirmation will be recorded here after the merge.
+
+**Process notes for reviewers.**
+- Suggestion (not a flag): the URL monitor stores only `previousTextHash`, so a `changed`
+  event can never be diffed against what actually changed. Storing a text snapshot on
+  change would make future changed-page investigations one step instead of a re-read.
+- The repo was rebased onto a `main` that moved three times mid-session (PRs #104, #106,
+  #109). COORDINATION conflicts were resolved by keeping both sides; when the sequencer
+  stalled, the branch was rebuilt by hand as main + the three session commits + this
+  section, so the published history sits directly on `6a40bca`.
