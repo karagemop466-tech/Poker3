@@ -1356,8 +1356,17 @@ QUESTIONS = [
          how="Ask the poker room for expected finish times, or treat the plan as a template and confirm on the day.",
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
     dict(id="Q08", question="What is the real walking time between each hotel and each poker room?",
-         answer="The venues publish no walking times. On 2026-11-17 every hotel was read to the Venetian poker room in Google Maps walking mode (first route card): The Palazzo 4 minutes, Wynn 13, Bellagio 21, Caesars Palace 12, Horseshoe 16, MGM Grand 35 and ARIA 31 (ARIA's other shown routes run to 38). The Venetian itself is in-property. These are Google Maps measurements, not official venue times (F84). Other hotel-to-room pairs, and every pair that includes Mandalay Bay, are not checked (F32).",
-         why="Needed", blocking="Yes - hotel-to-room pairs other than the Venetian are not checked",
+         answer="The venues publish no walking times; every figure is a Google Maps walking estimate between "
+                "property-level endpoints, measured in walking mode on 2026-11-17 (F32, F84; captures in "
+                "raw/google_maps_walk_2026-11-17.json and research/walk_matrix_2026-11-17_d1a97472.json). Day-plan "
+                "direction, from the recommended Venetian resort hotel to each room: Caesars Palace 13 minutes, "
+                "Horseshoe 16, Wynn/Encore 19, Bellagio 21, ARIA 32 (outside the 30-minute limit) and MGM Grand 36 "
+                "(outside the limit). Reverse direction, each hotel to the Venetian poker room: The Palazzo 4, Wynn 13, "
+                "Bellagio 21, Caesars Palace 12, Horseshoe 16, MGM Grand 35 and ARIA 31 (ARIA's other shown routes run "
+                "to 38); the Venetian itself is in-property. Directions can differ (F67: an earlier Venetian-to-Bellagio "
+                "card the same day read 27), so re-check the pair you plan to walk. These are Maps measurements, not "
+                "official venue times.",
+         why="Needed", blocking="Yes - all figures are Maps estimates, not official venue times; re-check before relying on one",
          how="Use official property addresses to verify each hotel-to-room Google or Apple walking route; do not assume missing pairs are under 30 minutes.",
          source="https://www.google.com/maps/dir/?api=1&travelmode=walking"),
     dict(id="Q09", question="Which other Strip rooms should be added to the plan?",
@@ -2477,12 +2486,10 @@ def build():
     for r in H.ROUTES:
         row = dict(r)
         row["mapsUrl"] = H.MAPS.format(o=r["mapsOrigin"], d=r["mapsDestination"])
-        # Each route row carries its own measurement date: the 2026-11-17 full-matrix pass
-        # writes measuredOn, the poker-room-endpoint read writes lastReadOn, and base-pass
-        # rows keep the base snapshot date.
-        row["lastChecked"] = r.get("measuredOn") or r.get("lastReadOn") or ASOF
-        row["walkSourceType"] = (f"Google Maps walking directions (walking mode), read {r['lastReadOn']}"
-                                 if r.get("walkCapture") else "Google Maps walking estimate, not re-read 2026-11-17")
+        # Each route row carries its own measurement date: the full-matrix pass writes
+        # measuredOn (or lastChecked in earlier rows), the poker-room-endpoint read writes
+        # lastReadOn, and base-pass rows keep the base snapshot date.
+        row["lastChecked"] = r.get("measuredOn") or r.get("lastChecked") or r.get("lastReadOn") or ASOF
         routes.append(row)
 
     # Live re-check of the official DeepStack Extravaganza IV page, 2026-11-17. Two windows, because the two

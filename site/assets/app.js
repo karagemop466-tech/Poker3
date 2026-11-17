@@ -204,7 +204,10 @@ function walkCell(hotelId, venueId) {
 }
 
 function walkToVenetian(venue) {
-  const r = (db.routes || []).find((x) => x.hotel === 'venetian' && x.venue === venue);
+  // Walking FROM this venue's property TO the Venetian poker room (hotel=venue, venue=venetian).
+  // Do not match hotel='venetian' rows: those run the opposite direction and read differently
+  // (e.g. Venetian->Encore 19 vs Encore->Venetian 13).
+  const r = (db.routes || []).find((x) => x.hotel === venue && x.venue === 'venetian');
   return r ? r.minutes : null;
 }
 function applyTournamentFilters() {
