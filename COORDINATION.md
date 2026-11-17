@@ -2566,4 +2566,10 @@ No other session's scope is touched. Shared outputs (`site/data.json`) are regen
 | Audit and correct the trip-cost calculator's defaults and labels against the canonical model | done | arena/fbb67630-poker3 | `site/calculator.html`, `tests/test_calculator_page.py`, this section | Defaults now match `tripCostModel` (7 entries, $371.43 average, 7 nights); entry status is clearly provisional under F31; parking is itemized outside the core estimate and added to a separate all-in figure. |
 
 Claim recorded before edits. Verification: canonical `site/data.json` sets 7 entries, $371.43 average buy-in, 7 nights, $197.28 true nightly floor, and $140 parking; all 7 planned primary rows total $2,600 in printed buy-ins. `site/tournaments.html` states that zero rows have written one-entry-per-player confirmation (F31). No source values were changed. `python3 -m unittest discover -s tests -p 'test_*.py'` passed (102 tests; PyYAML installed in the sandbox to run the existing workflow parser test); `scripts/verify_site.py`, `scripts/audit_951cd431.py`, `scripts/verify_live_official.py`, `scripts/audit_data.py`, `tests/canonical_smoke.py`, JS syntax checks, and `git diff --check` passed. Official row data remains at the 2026-11-17 snapshot; current trip rates and written max-entry rules remain flagged rather than inferred. During rebases onto `origin/main` @ `8e6686b`, `6a4b06e` and `2a25820`, `COORDINATION.md` had append/append conflicts with contemporaneous integration/session records; both sides, including the newer hotel-quote work from `arena/fe903bcb-poker3`, were retained each time, and no other files conflicted.
+
+### Merge and deployment result
+
+- PR [#88](https://github.com/karagemop466-tech/Poker3/pull/88) merged to `main` with merge commit `9c0a8c9c4e1488333af684e58ea07c742b6ebccd` at 2026-11-17 21:57:12 UTC.
+- PR checks: `verify` and `transcription` passed.
+- GitHub Pages workflow run [44185129035](https://github.com/karagemop466-tech/Poker3/actions/runs/44185129035) succeeded. Pages API reports `status: built` from `main /`; site: https://karagemop466-tech.github.io/Poker3/.
 >
