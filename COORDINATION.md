@@ -3584,7 +3584,7 @@ Branch: `arena/d3a4c0f8-poker3` (platform-bound; the `session-<id>/<task>` namin
 | E1 Strip poker room census and closures | done | arena/d3a4c0f8-poker3 | `scripts/data_source.py` (`STRIP_ROOMS`, `FEED_ROOMS`), `site/data.json`, `site/venues.html`, `site/assets/app.js` (`renderStripRooms` only) | Resorts World and Planet Hollywood closures; Mandalay Bay added as a status row and to the morning feed. |
 | E2 Google Maps walking captures (walking mode) hotel → Venetian poker room | done | arena/d3a4c0f8-poker3 | `raw/google_maps_walk_2026-11-17.json` (new), `scripts/data_hotels.py` (`ROUTES` hotel → venetian rows), `tests/test_walk_captures_2026_11_17.py` (new) | All 8 hotels read on 2026-11-17; driving control read for one pair. Other venue pairs stay estimates. |
 | E3 Flags and answers that cite the above | done | arena/d3a4c0f8-poker3 | `scripts/data_source.py` (`FLAGS`, `QUESTIONS` Q08/Q09 text), `site/venues.html` static text | New flags F84+ only; no existing flag id is renumbered (main now holds F78–F83 for other sessions; the F79/F80 closures are folded into main’s rows). |
-| E4 Verification, PR → `main`, merge, Pages confirmation, record here | pending | arena/d3a4c0f8-poker3 | whole repo, this section | Flagged items do not block merge; they ship on `site/flagged.html`. |
+| E4 Verification, PR → `main`, merge, Pages confirmation, record here | done | arena/d3a4c0f8-poker3 | whole repo, this section | Flagged items do not block merge; they ship on `site/flagged.html`. |
 
 ### Status and scope log (E1–E3 status update, 2026-11-17 UTC)
 
@@ -3597,3 +3597,11 @@ Branch: `arena/d3a4c0f8-poker3` (platform-bound; the `session-<id>/<task>` namin
 - **Overlap with L5/L6 (`arena/13439072-poker3`, in progress, `scripts/data_hotels.py` routes and `site/data.json` routes):** this session changed the stored walking values only as follows. Venetian→Bellagio 27 → 21 min (0.9 mi), with a 25-min alternative. The seven hotel→Venetian rows keep their minutes and miles, matched against the 2026-11-17 captures, and gained `walkCapture` and `lastReadOn`. L6 owner: please reconcile on rebase.
 - **Corrections made before commit:** removed the "Appian Way" Caesars room name and the "quieter section" Horseshoe claim, which had no logged source (the Appian Way name was in `data_hotels.py` and `data_source.py` (`VENUES`/`FEED_ROOMS`) and is removed in this branch; the Caesars room name is now unconfirmed). Horseshoe "Hall of Fame" keeps its prior-session source (the Horseshoe casino page used in `build_data.py`). The Resorts World and Planet Hollywood closure dates and the Resorts World quote are marked as press search results, not fetched. The closures are folded into main's F80 (Resorts World) and F79 (Planet Hollywood) rather than given new flags. The `STRIP_ROOMS` status for both reads "Reported closed (press; unverified)".
 - **Open, not resolved this pass:** Resorts World and Planet Hollywood closures have no official confirmation (F80, F79). Caesars Palace and Horseshoe: no tournament schedule was read on 2026-11-17 (the Caesars page is a marketing article). Mandalay Bay: official page prints no schedule (F82).
+
+### Result (E4)
+
+- **PR:** https://github.com/karagemop466-tech/Poker3/pull/127 — merged to `main` with a merge commit (`--merge`) at 2026-11-17 22:44:30 UTC as `927b5aa`.
+- **Pages:** `pages build and deployment` success on `927b5aa`. `Publish the canonical Vegas Poker Planner to GitHub Pages`, `Verify static research site` and `Official table transcription check` also success on that commit.
+- **Not complete:** the scheduled `Scheduled source re-check and daily room feed` run was still pending on `927b5aa`. It is a separate job and was not blocked by this merge.
+- **Carried forward:** Resorts World (F80) and Planet Hollywood (F79) closures are press reports and remain unverified. Mandalay Bay (F85) has no printed schedule. The walk captures (F84) are Google Maps measurements and not official.
+
