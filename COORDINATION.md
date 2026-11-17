@@ -2529,3 +2529,18 @@ Commit discipline: small commits; `git pull --rebase origin arena/f3c88848-poker
 - CI on `8e6686b`: "Official table transcription check" success; "Verify static research site" success; "Publish the canonical Vegas Poker Planner to GitHub Pages" success; "pages build and deployment" success. Pages API `status: built`.
 - Tests before the PR: 99 OK (PyYAML installed for the test environment; the base commit fails the same way without it).
 - Follow-up PR for this record only, opened from the same branch.
+
+---
+
+## Session `arena/fe903bcb-poker3` — dated Venetian quote for the fixed trip window (2026-11-17 UTC)
+
+Branch: `arena/fe903bcb-poker3` (the only branch this session may touch; the `session-<id>/<task>` naming cannot be applied on this platform).
+
+### Claim (recorded before any data edit, 2026-11-17 21:55 UTC)
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| H1 Dated official checkout quote for the recommended 23–30 Nov 2026 stay at The Venetian (2 adults, 7 nights), with per-night rate, resort fee, tax, total and read timestamp | in progress (claimed 2026-11-17) | arena/fe903bcb-poker3 | `scripts/data_hotels.py` (`RATE_LOG` only), regenerated `site/data.json` | Only values printed on the official booking page are recorded; per-night true cost is arithmetic on those printed values and is labelled as derived. |
+| H2 Re-read the official Venetian poker suite-rate and resort-fee pages | in progress (claimed 2026-11-17) | arena/fe903bcb-poker3 | verification only | Read on 2026-11-17; $55 resort fee confirmed on both pages. |
+
+No other session's scope is touched. Shared outputs (`site/data.json`) are regenerated only from `scripts/data_source.py`.
