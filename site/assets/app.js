@@ -640,6 +640,10 @@ function renderSchedule() {
 
 /* --------------------------------------------------------------- Q & flags */
 function renderQuestions() {
+  const blocking = (db.questions || []).filter((q) => /^yes/i.test(q.blocking || '')).length;
+  const qCount = (db.questions || []).length;
+  document.querySelectorAll('[data-question-count]').forEach((el) => { el.textContent = String(qCount); });
+  document.querySelectorAll('[data-blocking-count]').forEach((el) => { el.textContent = String(blocking); });
   const host = document.querySelector('[data-questions]');
   if (!host) return;
   host.innerHTML = (db.questions || []).map((q) => `
@@ -652,6 +656,9 @@ function renderQuestions() {
     </article>`).join('');
 }
 function renderSuggestions() {
+  document.querySelectorAll('[data-suggestion-count]').forEach((el) => {
+    el.textContent = String((db.suggestions || []).length);
+  });
   const host = document.querySelector('[data-suggestions]');
   if (!host) return;
   host.innerHTML = (db.suggestions || []).map((s) => `

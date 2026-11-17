@@ -237,6 +237,26 @@ class PublishedClaims(unittest.TestCase):
                 if e["kind"] == "bounty":
                     self.assertIn("bounties", note, f"{eid} prints a bounty-inclusive guarantee with no pool note")
 
+    def test_page_counts_are_render_time_not_hand_typed(self):
+        """A count written into the HTML drifts the moment a row is added; these are data-driven."""
+        for rel, token in (("site/questions.html", "Seventeen"),
+                           ("site/questions.html", "four questions"),
+                           ("site/suggestions.html", "Twelve"),
+                           ("site/suggestions.html", "Three of them")):
+            with self.subTest(page=rel, token=token):
+                self.assertNotIn(token, self.text(rel))
+        self.assertIn("data-question-count", self.text("site/questions.html"))
+        self.assertIn("data-suggestion-count", self.text("site/suggestions.html"))
+        self.assertIn("data-blocking-count", self.text("site/questions.html"))
+        self.assertGreater(len(DATA["questions"]), 0)
+        self.assertGreater(len(DATA["suggestions"]), 0)
+
+    def test_checks_workflow_can_actually_run_outside_the_cron(self):
+        wf = self.text(".github/workflows/checks.yml")
+        self.assertIn("workflow_dispatch:", wf)
+        self.assertIn("push:", wf, "a cron-only job cannot be proven to run; a path-filtered push gives it a real run")
+        self.assertIn("scripts/check_sources.py", wf)
+
 
 if __name__ == "__main__":
     unittest.main()
