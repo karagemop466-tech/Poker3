@@ -3134,12 +3134,17 @@ Branch: `arena/da83eca8-poker3` (platform-bound; the `session-<id>/<task>` namin
 
 ### Integration record (session `arena/da83eca8-poker3`)
 
-### Integration record (session `arena/da83eca8-poker3`)
-
-## Current session `arena/4c7b94ab-poker3` — integration, verification and publication (2026-11-17 UTC)
 ## Current session `arena/4c7b94ab-poker3` — integration, verification and publication (2026-11-17 UTC)
 
 Branch: `arena/4c7b94ab-poker3` (platform-bound; platform-assigned, status `active`). Branched from `main` @ `b9c8d77` (PR #100, session arena/da83eca8-poker3, merged 2026-11-18 07:23:52 UTC). No other session holds an active claim when this claim is written. This session adopts the pending integration task D5 from the da83eca8 board section and acts as integration owner for the canonical `site/` dashboard, `scripts/**`, `tests/**`, `.github/workflows/**`, `README.md` and this section of `COORDINATION.md`, until the PR to `main` is merged and Pages is confirmed live. Prior artefacts (`docs/`, `verified/`, `planner/`, `single-entry/`, root legacy pages, `site/poker3/`, `handoff/`, `raw/`, `data/`) are read-only here.
+
+---
+
+## Current session `arena/58e42dbd-poker3` — independent live re-verification and publication (2026-11-17 UTC)
+
+Branch: `arena/58e42dbd-poker3`, branched from `main` @ `b9c8d77` (PR #100 merged). No other session holds an open claim on this board at the time of writing (the last recorded task table is D1–D5 of `arena/da83eca8-poker3`, D5 marked pending but PR #100 is merged and `main` is green). This session therefore acts as the integration owner for the canonical outputs: `site/**`, `scripts/**`, `tests/**`, `raw/**`, `.github/workflows/**`, `README.md` and this section.
+
+**Tooling note (affects what "verified" means here).** The sandbox network allowlist permits only github.com, codeload.github.com, api.github.com, registry.npmjs.org, pypi.org and files.pythonhosted.org, so `curl` cannot reach any venue host (SSL_ERROR_SYSCALL on every attempt, reproduced). Official pages were therefore re-read live through the platform's page-retrieval tool, which returns the rendered page text rather than raw bytes. Consequence: this session can re-confirm **values** (dates, times, buy-ins, guarantees, fees, percentages) line by line, but it cannot recompute the SHA-256 bodies that `scripts/check_sources.py` stores in CI. Every value re-read this session is logged below with the exact text it was read from.
 
 ### Claim (recorded before any data edit, 2026-11-17 UTC)
 
@@ -3353,3 +3358,60 @@ PR + merge + Pages confirmation will be recorded here after the merge.
   #109). COORDINATION conflicts were resolved by keeping both sides; when the sequencer
   stalled, the branch was rebuilt by hand as main + the three session commits + this
   section, so the published history sits directly on `6a40bca`.
+
+| E1 Re-read the official Venetian DeepStack IV schedule page and series PDF; compare every trip-window row against `site/data.json` | in progress | arena/58e42dbd-poker3 | `raw/**`, `scripts/data_venetian.py` | Full 94-row comparison on date, time, event number, name, buy-in, guarantee. |
+| E2 Re-read the official hotel sources (suite rates, resort fee, hotel terms, booking engine) and re-check the dated quote arithmetic | in progress | arena/58e42dbd-poker3 | `scripts/data_hotels.py`, `site/data.json` rateLog | Confirm $4,010.55 / 23–30 Nov and the 13.38% application to rate + fee. |
+| E3 Re-read the other rooms' official tournament pages (Wynn, Bellagio, MGM Grand, Caesars, Horseshoe, ARIA) and any Strip-area room not yet covered | in progress | arena/58e42dbd-poker3 | `scripts/data_venues.py`, `raw/**` | Add only what the venue's own page prints; blanks stay blank. |
+| E4 Confirm the open flags that block the brief (F17 no 8 AM start, F31 no written one-entry rule, F16 no finish times) still stand against the current official pages | in progress | arena/58e42dbd-poker3 | `site/data/flags.json` (via builder), README | A flag is only kept if the source still does not print the value. |
+| E5 Verification suite, PR → `main`, merge, Pages confirmation, record here | pending | arena/58e42dbd-poker3 | whole repo | Flagged irregularities do not block merge; they ship on `site/flagged.html`. |
+
+### Progress record (session `arena/58e42dbd-poker3`, 2026-11-17 UTC)
+
+**Claim status:** E1 done · E2 done · E3 done · E4 done · E5 in progress (PR + merge pending).
+
+**E1 — Venetian DeepStack IV, 94 rows, live re-read.** All four chunks of the official schedule page
+(`dse-nov-2026.html`) were read this session and transcribed to an independent 94-row capture. Compared
+row by row against the 94 published rows: **zero disagreements** on date, start time, event number, name,
+printed buy-in, printed guarantee and structure-sheet link. Four rows differ only in case/punctuation
+("Women in Poker - Main Event" vs "Women in Poker Main Event"; "Play Down to Final 7 - Streamed Final Table" vs
+"Play down to Final 7, streamed final table"; "KINGS and QUEENS Bounty - Open to all players" vs "Kings and
+Queens Bounty, open to all players"). 18 apparent guarantee differences were checked one by one and all are the
+documented inheritance cases: 11 Day 2/3 restart rows whose sheet prints the guarantee their restart row leaves
+blank (F63), and 7 milestone satellites whose "guarantee" is a seat award ("2 seats to Event #39/#47"). No value
+changed.
+
+**E2 — hotel sources, live re-read.** Poker-suite rate page ($119/$209, $55 fee, six hours or a $300+ entry per
+night, 2 a.m. deadline, code EPOKR25, 150-day horizon), resort-fee page ("daily Resort Fee of $55 plus tax per
+night"), hotel terms (13.38% Clark County room tax, $55 plus applicable tax, $20/$25/$40 parking, 11:00 a.m.
+checkout, $100 early checkout, $150 incidental) all match the published rows verbatim.
+
+**E3 — other rooms, live re-read.** Wynn poker hub + Resort Policies + Terms; Bellagio poker page, Friday
+$600 sheet, Saturday $1,000/$1,100 sheet, Sunday $400 H.O.R.S.E. sheet; MGM Grand poker page, weekly schedule
+PDF and $120 structure PDF; Caesars/Horseshoe tournament article; ARIA poker page and Gentleman's Guide
+("TOURNAMENTS Daily 1 p.m. Nightly 7 p.m."). Published rows match on every field checked.
+
+**Defects found and fixed (E4):**
+1. **Wynn cancellation (row + F35).** The site said no Wynn cancellation deadline was verified and that the
+   48-hour window "appears only in offer terms". The live Terms page body prints it. Corrected, with the URL.
+2. **Venetian poker parking.** The poker room's own parking page prints a waiver the hotel terms page does not:
+   three hours or more of tournament or cash play earns complimentary self-parking for that day. Added.
+3. **Question Q05** still said the trip window "returned no suite at all"; a later 2026-11-17 read priced it
+   ($4,010.55, and $3,823.46 for a Palazzo suite twenty minutes later — F78). Corrected.
+4. **Question Q17** said Caesars Palace and Horseshoe "publish no resort fee"; both print one, and all eight
+   property fees are now verified. Corrected to say the open gap is the room-tax percentage (F39).
+5. **Question Q11/Q12** widened to the terms actually read this session.
+
+**New evidence logged (E2/E3):** two dated rate-log records. MGM Grand's own booking page printed MGM King
+calendar cells for Nov/Dec 2026 under its printed legend ("includes avg. daily resort fee, excludes taxes");
+logged as calendar cells, never as a quote. The Bellagio booking URL rendered a grid carrying the same 22-28 Nov
+figures as MGM Grand's, so **flag F79** records that an MGM Resorts booking URL can serve another property's grid
+and the Bellagio rate stays blank. F79 is not F77 because F77 is already used on `main`.
+
+**Verification run after the changes:** `verify_site.py` passed · `audit_951cd431.py` 0 failures · `verify_live.py`,
+`verify_live_official.py`, `audit_data.py`, `verify_sheets.py`, `verify_transcription.py --dry-run` pass ·
+**130 unit tests OK** · `canonical_smoke.py` renders all 11 main + 5 detail pages · `node --check` clean ·
+`scripts/data_source.py` rebuild is reproducible.
+
+**Flag-id collisions handled:** this session's flag began as F77 (taken on `main` by another session) → F78
+(taken by the `4c7b94ab` session) → **F79**. `COORDINATION.md` took a conflicting append on the first rebase;
+both sides were kept, no other file conflicted.

@@ -751,14 +751,20 @@ FLAGS = [
                  "poker room before any decision that depends on it."),
          source="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"),
     dict(id="F35", area="Hotel terms", severity="High",
-         title="The Wynn terms page used as the fee source is an expired 2025 offer",
+         title="The Wynn terms page cited for the resort fee is an expired 2025 offer; the cancellation term lives elsewhere",
          detail=("The earlier build cited https://www.wynnlasvegas.com/terms-and-conditions/850070 for Wynn's $55 resort "
                  "fee, parking and 48-hour cancellation. That page is a DINING CREDIT offer whose own text says a stay "
                  "booked under it 'must be completed on or before September 30, 2025', so it cannot substantiate a "
                  "November 2026 trip. The fee was re-verified on 2026-11-17 from the live Resort Policies page, which "
-                 "still prints $55 plus tax, check-in 3 p.m. and check-out 12 p.m. The 48-hour cancellation window appears "
-                 "only in offer terms, so Wynn has no verified flexible-booking cancellation deadline and is shown blank."),
-         source="https://www.wynnlasvegas.com/about-us/resort-information"),
+                 "still prints $55 plus tax, check-in 3 p.m. and check-out 12 p.m.; that page does not print a "
+                 "cancellation window. Corrected 2026-11-17 on a second live read: the 48-hour window is NOT confined "
+                 "to offer terms. The live Terms page (the same /terms-and-conditions/850070 URL) carries a "
+                 "'CANCELLATION POLICY' section whose body reads 'cancellations must be received at least 48 hours "
+                 "prior to arrival date or deposit (if applicable) will be forfeited', plus an early-departure penalty "
+                 "of the departing night's rate and tax. The hotel row now records that general 48-hour term with the "
+                 "Terms URL as its source, and notes that the same page also prints offer-specific date exceptions "
+                 "that were not read one by one."),
+         source="https://www.wynnlasvegas.com/terms-and-conditions/850070"),
     dict(id="F36", area="Hotel cost", severity="Medium",
          title="RESOLVED 2026-11-17: the booking engine does print an itemised total for the trip window; the $XXX cells were a rendering artefact",
          detail=("Superseded on the evening of 2026-11-17. This flag was written against the superseded 25 November - "
@@ -1099,6 +1105,23 @@ FLAGS = [
                  "Somuchpoker), and none is official, so no Resorts World row is published. Its poker room is a candidate to add "
                  "once its official poker page is reached."),
          source="https://www.rwlasvegas.com/gaming/casino-events/"),
+    dict(id="F81", area="Hotel cost", severity="Medium",
+         title="MGM Resorts booking pages served the same price grid on two different property URLs",
+         detail=("Read live on 2026-11-17 by session 58e42dbd. The MGM Grand room booking page, opened with the MGM King "
+                 "picker and 2 guests, printed a November 2026 calendar: 22 Nov $84, 23 Nov $84, 24 Nov $84, 25 Nov "
+                 "$84, 26 Nov $149, 27 Nov $349, 28 Nov $149, 29 Nov unavailable, 30 Nov $649. The Bellagio booking "
+                 "page, opened in the same session on its own URL, printed a grid containing the same run of figures "
+                 "(22-25 Nov $84, 26 Nov $149, 27 Nov $349, 28 Nov $149, 30 Nov $649) alongside Bellagio-only values "
+                 "on other nights (17 Nov $309, 19 Nov $249). Both pages carry a resort picker and a shared cart, so "
+                 "the most likely explanation is that the grid renders whichever property the booking session has "
+                 "selected, not necessarily the URL's property. Consequence for this project: a cell from an MGM "
+                 "Resorts booking URL cannot be attributed to a property without the property name printed beside it. "
+                 "The MGM Grand cells are logged with the room type the page names in its own picker ('Price on "
+                 "calendar for MGM King'); the Bellagio cells are deliberately NOT logged as a Bellagio rate and its "
+                 "room rate stays blank. Anyone re-reading either page must confirm the selected property first. This "
+                 "was renumbered twice as other sessions published their own flags on main while this branch was open, and "
+                 "is now F81; flag ids are kept unique across the whole repository, not per session."),
+         source="https://bellagio.mgmresorts.com/book-room?property=bellagio&resort=66964e2b-2550-4476-84c3-1a4c0c5c067f"),
 
 ]
 
@@ -1137,8 +1160,16 @@ QUESTIONS = [
                  "same stay the day before, plus $2,504.00 for November 20-22. For the trip window itself it "
                  "returned no suite at all. The engine's calendar cells are not prices: read twice on the same day, "
                  "November 16 printed $555 with one stay window open and $854 with another, and November 27 printed "
-                 "$905 against $1,814 (F47). The rate page publishes only starting rates of $119 and $209, which are "
-                 "explicitly not date-specific, and states that rates are provided up to 150 days out."),
+                 "$905 against $1,814 (F47). The last sentence of this answer was superseded later on 2026-11-17: the "
+                 "engine DID price the trip window (23-30 Nov 2026, $4,010.55 checkout total, logged in the rate log) "
+                 "and, on a second read about 20 minutes later, a Palazzo Luxury King at $3,823.46 (F78). The rate page "
+                 "still publishes only starting rates of $119 and $209, which are explicitly not date-specific, and "
+                 "states that rates are provided up to 150 days out. Two other properties now have dated figures too, "
+                 "both from their own booking pages on 2026-11-17: MGM Grand printed MGM King calendar cells (22-28 Nov "
+                 "$84, $84, $84, $84, $149, $349, $149; 30 Nov $649) under a legend that says the cells include the "
+                 "average daily resort fee and exclude taxes, and Horseshoe printed its own November and December "
+                 "grids. A calendar cell is not a checkout total; only the Venetian has a printed, itemised checkout "
+                 "total for the trip stay."),
          why="Needed", blocking="Yes for a confirmed total",
          how="Open the booking link with the exact dates, then log the printed total in the rate log with its timestamp.",
          source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
@@ -1168,12 +1199,27 @@ QUESTIONS = [
          how="Re-check the Flagged for review page and the change log before booking and again 48 hours before you travel.",
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
     dict(id="Q11", question="What is the cancellation deadline at each property?",
-         answer="Published and different: Wynn requires 48 hours before arrival, Bellagio 72 hours before arrival, and the Venetian bills a deposit on confirmation with blackout dates and non-refundable prepaid offers; an early checkout costs $100 plus tax.",
+         answer=("Published and different, all re-read live on 2026-11-17. Wynn: 'cancellations must be received at least "
+                 "48 hours prior to arrival date or deposit (if applicable) will be forfeited', plus an early-departure "
+                 "penalty, with offer-specific date exceptions on the same page (F35 corrected). Bellagio, MGM Grand and "
+                 "ARIA: the first night's deposit is refundable if Room Reservations receives notice at least 72 hours "
+                 "before arrival; later cancellations and no-shows forfeit it. Caesars Palace and Horseshoe: the property "
+                 "pages advertise 'FREE 48-Hour Cancellation*' but do not print the terms behind the asterisk. Venetian: "
+                 "a deposit is billed on confirmation, blackout dates apply, prepaid offers are non-refundable, and an "
+                 "early checkout costs $100 plus tax."),
          why="Needed", blocking="No",
          how="Use the cancellation column in the hotel table when choosing where to hold the booking.",
          source="https://www.wynnlasvegas.com/terms-and-conditions/850070"),
     dict(id="Q12", question="What does parking cost, and does it change the true cost per night?",
-         answer="Venetian: $20 per day for registered hotel guests, $20 Monday-Thursday and $25 Friday-Sunday for non-hotel guests, valet $40. Wynn: self-parking is free for registered guests and $25 per day for others, valet $40, and complimentary self-parking extends to Wynn poker-room guests. Bellagio parking was not captured in this pass.",
+         answer=("Venetian: $20 per day for registered hotel guests, $20 Monday-Thursday and $25 Friday-Sunday for non-hotel "
+                 "guests, valet $40. The poker room's own parking page adds a waiver the hotel terms page does not print: "
+                 "players who play three hours or more in tournament or cash games receive complimentary self-parking for "
+                 "that day, confirmed with a supervisor at the end of the session (re-read 2026-11-17). A registered guest "
+                 "staying on property and playing a six-hour session therefore may pay nothing for parking, which is why "
+                 "the trip calculator keeps parking out of the core formula and shows it separately. Wynn: self-parking is "
+                 "free for registered guests and $25 per day for others, valet $40, and complimentary self-parking extends "
+                 "to Wynn poker-room guests. Bellagio, MGM Grand and ARIA publish no parking figure on their reservation "
+                 "terms pages, so those cells stay blank rather than guessed."),
          why="Needed", blocking="No",
          how="Include parking in the trip total if you will not stay on property every night.",
          source="https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html"),
@@ -1220,10 +1266,12 @@ QUESTIONS = [
              "return counts again.",
          source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
     dict(id="Q17", question="Which hotel fees are still unverified, and does that break the comparison?",
-         answer=("Caesars Palace and Horseshoe publish no resort fee on their official pages, and Wynn prints 'plus tax' "
-                 "without a percentage. MGM Grand ($50), Bellagio ($55), ARIA ($55) and the Venetian ($55) are verified. "
-                 "Any hotel comparison that includes the unverified properties is therefore incomplete, not wrong; the "
-                 "site leaves those cells blank and flags them."),
+         answer=("Corrected 2026-11-17: every one of the eight properties now has a verified resort fee. Caesars Palace "
+                 "prints $54.95 plus $7.35 tax ($62.30 tax inclusive) and Horseshoe $49.95 plus $6.68 ($56.63), both on "
+                 "their own booking pages; MGM Grand $50, Bellagio $55, ARIA $55, Wynn $55 and the Venetian $55 come from "
+                 "each property's own reservation terms. What remains unverified is the ROOM-TAX PERCENTAGE: only the "
+                 "Venetian prints 13.38%, so true-nightly figures stay blank at the other properties and the comparison is "
+                 "incomplete rather than wrong (F39). The site leaves those cells blank and flags them."),
          why="Needed", blocking="No - the recommended property is fully verified",
          how="Read each property's own reservation terms page, or ask the front desk for the resort fee and tax in writing.",
          source="https://www.caesars.com/caesars-palace"),
@@ -2106,7 +2154,13 @@ def build():
             high = round((h["baseRateCeiling"] + h["resortFee"]) * (1 + h["taxRate"] / 100), 2)
         row["trueNightlyLow"] = low
         row["trueNightlyHigh"] = high
-        row["lastChecked"] = (CHECKED_TODAY if h["id"] in ("venetian", "palazzo", "caesars", "horseshoe") else ASOF)
+        # lastChecked is per row and records only properties whose page this build actually re-read.
+        # 2026-11-17 re-reads (session 58e42dbd, live): Venetian + Palazzo poker-suite rates, resort fee and
+        # hotel terms; Wynn Resort Policies + Terms; Bellagio poker page and hotel reservation terms;
+        # MGM Grand poker page, hotel page and hotel reservation terms; ARIA poker page and reservation terms;
+        # Caesars Palace / Horseshoe tournament page. 2026-11-16 is the earlier capture date.
+        _reread_today = ("venetian", "palazzo", "caesars", "horseshoe", "wynn", "bellagio", "mgm", "aria")
+        row["lastChecked"] = (CHECKED_TODAY if h["id"] in _reread_today else ASOF)
         row["lastVerified"] = VERIFIED_ON
         # Facts confirmed live on 2026-11-17 that the earlier build left blank.
         if h.get("id") in ("venetian", "palazzo"):

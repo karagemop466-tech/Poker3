@@ -19,12 +19,22 @@ VENETIAN_FIXED_STAY_BOOKING = ("https://www.venetianlasvegas.com/booking?adults[
 VENETIAN_OLD_WINDOW_BOOKING = ("https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25"
                                "&children[]=0&departure_date=2026-12-02&view=calendar")
 VENETIAN_HOTEL_TERMS = "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html"
+# The poker room publishes its own parking page (read live 2026-11-17). It adds a player-specific waiver the
+# hotel terms page does not print: three hours or more of tournament or cash play earns complimentary
+# self-parking for that day. Used as the Venetian hotel row's parking source so the trip-cost parking
+# assumption is not overstated.
+VENETIAN_POKER_PARKING = "https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html"
 WYNN_ROOMS = "https://www.wynnlasvegas.com/rooms-and-suites"
 # The page the earlier build cited (terms-and-conditions/850070) is an expired
 # 2025 DINING CREDIT offer: its own text says a stay "must be completed on or
 # before September 30, 2025".  The live, non-offer policy page below is therefore
 # used instead; the expired page is kept only as a cross-check and is flagged.
 WYNN_TERMS = "https://www.wynnlasvegas.com/about-us/resort-information"
+# Cancellation policy. Re-read live on 2026-11-17 (after the last build): this
+# page prints a CANCELLATION POLICY section headed by a deposit statement, and the
+# 48-hour window is in that section's own body text, not only in a promotional
+# offer's terms.  Flag F35 is corrected accordingly (see data_source.py).
+WYNN_TERMS_CANCELLATION = "https://www.wynnlasvegas.com/terms-and-conditions/850070"
 WYNN_EXPIRED_OFFER = "https://www.wynnlasvegas.com/terms-and-conditions/850070"
 MGM_TERMS = "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html"
 ARIA_TERMS = "https://aria.mgmresorts.com/en/terms-and-conditions.html"
@@ -314,8 +324,12 @@ HOTELS = [
         resortFee=55, resortFeeNote="$55 resort fee per night stayed, plus tax, payable upon check-in.",
         taxRate=TAX_RATE,
         taxNote="Clark County Room Tax of 13.38% applies to the daily rate; the resort fee is 'plus applicable tax'.",
-        parking="$20 per day for registered hotel guests (seven days a week); $20 Monday-Thursday and $25 Friday-Sunday for non-hotel guests; valet $40 per day.",
-        parkingSource=VENETIAN_HOTEL_TERMS,
+        parking=("$20 per day for registered hotel guests (seven days a week); $20 Monday-Thursday and $25 "
+                 "Friday-Sunday for non-hotel guests; valet $40 per day. Separately, the poker room's own parking page "
+                 "states that players in the poker room who play three hours or more in tournament or cash games "
+                 "receive complimentary self-parking for the day, confirmed with a supervisor at the end of the "
+                 "session; Venetian Rewards Sapphire members and above also self-park free."),
+        parkingSource=VENETIAN_POKER_PARKING,
         cancellation=("A deposit for the stay including suite, fee and tax is billed on reservation confirmation. Blackout "
                       "dates apply. Prepaid offers are non-cancellable and non-refundable. Early checkout before the "
                       "scheduled departure date costs $100 plus tax."),
@@ -391,10 +405,13 @@ HOTELS = [
         parking=("Self parking is complimentary for registered guests. Non-registered guests pay $25 per day with the first "
                  "three hours free; valet $40 per day. Complimentary self-parking is extended to Wynn Poker Room guests."),
         parkingSource=WYNN_TERMS,
-        cancellation=("A deposit of one night's room rate and tax is charged at booking. The live policy page does not "
-                      "print a cancellation window; the 48-hour window appears only in offer terms, so no Wynn "
-                      "cancellation deadline is marked verified for a flexible 2026 booking."),
-        cancellationSource=WYNN_TERMS,
+        cancellation=("A deposit of the first night's room rate and tax is charged at booking. The property's live "
+                      "terms page prints a CANCELLATION POLICY section: \"cancellations must be received at least 48 "
+                      "hours prior to arrival date or deposit (if applicable) will be forfeited\", and early departures "
+                      "without notice cost \"the room rate and tax for the night on which the guest departed early\". "
+                      "The same page carries offer-specific date exceptions, which were not read individually, so the "
+                      "48-hour window is recorded as the general term only (re-read 2026-11-17, flag F35)."),
+        cancellationSource=WYNN_TERMS_CANCELLATION,
         incidental=("A credit card authorised to cover room, resort fees and tax plus $150 a night for incidentals is "
                     "required at check-in."),
         checkInOut="Check-in 3 p.m.; check-out 12 p.m. (official resort policies page).",
@@ -428,7 +445,13 @@ HOTELS = [
                       "$165 mid-week or $200 weekend cancellation fee."),
         cancellationSource=BELLAGIO_TERMS,
         incidental="$150 incidental amount per day authorised at check-in.",
+        # The Bellagio hotel reservation terms page was read live on 2026-11-17 (2 chunks) and prints
+        # the resort fee, taxes, deposit, incidental hold and cancellation window, but no check-in or
+        # check-out clock time. Left as an explicit blank rather than copied from another MGM property.
         checkInOut="",
+        checkInOutNote=("Not published on the Bellagio hotel reservation terms page, which was read in full on "
+                        "2026-11-17: it prints the deposit, cancellation, tax and incidental terms but no check-in or "
+                        "check-out time. Not inferred from MGM Grand or ARIA, which both print 3:00 pm / 11:00 am."),
         qualification="",
         source=BELLAGIO_HOTEL, feeSource=BELLAGIO_TERMS, taxSource=BELLAGIO_TERMS,
         qualityNote="Not scored. No official, comparable quality metric was published in the reviewed material.",
@@ -781,6 +804,47 @@ RATE_LOG = [
                "footnote was re-confirmed verbatim: 'Pricing shown is best available suite and rate, includes daily "
                "resort fee, excludes taxes.' No rate was inferred from any cell."),
          source=VENETIAN_QUOTE_URL, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
+    # --- MGM Resorts property booking calendars, read live 2026-11-17 (session 58e42dbd) ---
+    # Both reads are the *calendar* grid, not a checkout quote: the page prints, verbatim,
+    # "Calendar pricing includes avg. daily resort fee (if applicable), excludes taxes.
+    # Rates are based on the lowest rate available."  So a cell is a resort-fee-inclusive,
+    # tax-exclusive nightly figure for the room type selected in the picker.  Nothing here is
+    # converted into a quote and no tax is added, because the property prints no percentage.
+    dict(hotel="mgm", observedOn="2026-11-17", baseRate="",
+         publishedStartingRates=("MGM King calendar cells, November 2026: 11-18 $219; 11-22 $84, 11-23 $84, "
+                                 "11-24 $84, 11-25 $84, 11-26 $149, 11-27 $349, 11-28 $149; 11-30 $649. "
+                                 "December 2026: 12-01 $649, 12-02 $1,049, 12-03 $1,149, 12-04 $299, 12-05 $349, "
+                                 "12-06 $429, 12-07 $210, 12-08 $210, 12-09 $91, 12-10 $229, 12-11 $579, "
+                                 "12-12 $409"),
+         resortFee="50.00 per night plus applicable tax (MGM Grand hotel reservation terms), already inside the calendar cell",
+         tax="not printed: the calendar states it excludes taxes and the terms print no percentage",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType=("Official booking-calendar cells (lowest available, resort-fee inclusive, tax exclusive; "
+                    "not a quote)"),
+         note=("Read on the MGM Grand room booking page with the MGM King picker selected and 2 guests. The page's own "
+               "legend reads: 'Calendar pricing includes avg. daily resort fee (if applicable), excludes taxes. "
+               "Rates are based on the lowest rate available. Rates and room availability may vary based on the "
+               "actual length of your stay.' Six of the seven trip nights (23-29 Nov) printed a cell; 29 Nov printed "
+               "as unavailable. No checkout total is printed for a dated stay without completing a reservation, so "
+               "no true-nightly figure is derived. Tax stays blank because MGM Grand prints no room-tax percentage."),
+         source="https://mgmgrand.mgmresorts.com/book-room?property=mgmgrand&room=23f5bef8-63ea-4ba9-a290-13b5a3056595"
+                "&resort=66964e2b-2550-4476-84c3-1a4c0c5c067f",
+         feeSource=MGM_TERMS, taxSource=MGM_TERMS),
+    dict(hotel="bellagio", observedOn="2026-11-17", baseRate="",
+         publishedStartingRates="",
+         resortFee="55.00 per night plus applicable tax (Bellagio hotel reservation terms)",
+         tax="not printed: Bellagio's terms print no room-tax percentage",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType="No property-identified price captured; grid did not identify Bellagio in this read",
+         note=("The Bellagio booking page was opened for 2 guests on 2026-11-17 and rendered a calendar grid, but the "
+               "grid is NOT recorded as a Bellagio price. The identical grid appeared on the MGM Grand booking page "
+               "in the same session (see flag F81 in the register): 22-28 November printed $84, $84, $84, $84, $149, $349, $149 and "
+               "30 November printed $649, with 17 November $309 and 19 November $249 on the Bellagio URL. A page that "
+               "can serve another property's grid is not evidence of this property's rate, so the Bellagio room rate "
+               "stays blank and no nightly figure is derived from these cells."),
+         source="https://bellagio.mgmresorts.com/book-room?property=bellagio"
+                "&resort=66964e2b-2550-4476-84c3-1a4c0c5c067f",
+         feeSource=BELLAGIO_TERMS, taxSource=BELLAGIO_TERMS),
 ]
 
 MAPS = "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin={o}&destination={d}"
