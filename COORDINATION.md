@@ -2374,6 +2374,26 @@ head immediately before merging. If any of those branches moves after this claim
 and re-assess before integrating.
 
 **Commit discipline:** small frequent commits; `git pull --rebase origin arena/688eb797-poker3` before every push.
+
+### Integration result (I6, recorded after the merge, 2026-11-17 UTC)
+
+- **PR [#80](https://github.com/karagemop466-tech/Poker3/pull/80)** (`arena/688eb797-poker3` -> `main`): merged with
+  `gh pr merge 80 --merge` as merge commit **`5dd045d`** at ~02:09 UTC. The queue of open PRs is now empty:
+  #7, #27, #31, #39, #50, #64 closed as superseded with per-PR preservation records (section above), #79 and
+  every other session PR merged by their own sessions.
+- **CI on the merge commit `5dd045d`:** "Verify static research site" 44000727873 success - "Official table
+  transcription check" 44000728152 success - "Daily official-source monitor and site refresh" 44000728371
+  success - "Publish the canonical Vegas Poker Planner to GitHub Pages" 44000728022 success - "Scheduled
+  source re-check and daily room feed" 44000727906 pending at record time (it re-reads every official URL
+  live and is the slowest job; no failure observed on any earlier run of it).
+- **GitHub Pages:** API reports `status: built`, latest build commit `0b4b1680...`, no error. The live site was
+  spot-checked with the page reader: the executive summary serves the corrected 2026-11-23 -> 2026-11-30 trip
+  with the rewritten rationale (12 candidates, F57 citation), and the calculator serves the new conditional
+  poker-rate terms (EPOKR25, repricing, no combining, 150-day horizon) with the official link. A brief
+  "unicorn" error page from github.io during the rebuild was a cached transient, not a site fault.
+- **Claim table final state:** I1 done - I2 done - I3 done - I4 done - I5 closed (superseded by #62's fix; this
+  branch's additive delta kept) - I6 done (this record).
+
 ### Closing the superseded open PRs (I1/I2, session 688eb797, 2026-11-17)
 
 Four open PRs are superseded rebuilds or fully-covered fix sets. Their canonical-site rewrites must not be
