@@ -99,14 +99,19 @@ class PokerRateQualificationOfThePlan(unittest.TestCase):
         nights = [d for d in PLAN if d["date"] < DATA["trip"]["end"]]
         self.assertEqual(len(nights), 7, "the trip is seven nights")
         failing = [d["date"] for d in nights if not d["pokerRateSatisfied"]]
-        self.assertEqual(failing, ["2026-11-30", "2026-12-01"])
+        # The two $200 primaries sit at the start of the window now that the trip is 23-30 November:
+        # the window moved so that it no longer spans 30 November and 1 December, which print no
+        # figure on the official booking calendar in any reading (F57).
+        self.assertEqual(failing, ["2026-11-23", "2026-11-24"])
 
     def test_the_gap_is_flagged_and_answered(self):
         self.assertIn("F54", FLAGS)
         self.assertEqual(FLAGS["F54"]["severity"], "High")
         q = [q for q in DATA["questions"] if q["id"] == "Q16"][0]
         self.assertIn("five", q["answer"].lower())
-        self.assertIn("Nov 30 and Dec 1", q["answer"])
+        # The two nights that miss the $300 test are the window's first two, not its last two.
+        self.assertIn("Nov 23 and Nov 24", q["answer"])
+        self.assertNotIn("Nov 30 and Dec 1", q["answer"], "stale trip window in the Q16 answer")
 
 
 class CrossReferencesResolve(unittest.TestCase):

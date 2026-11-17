@@ -33,10 +33,18 @@ class DataIntegrity(unittest.TestCase):
                 )
 
     def test_dated_quote_nights_are_recorded_low_to_high_and_reconcile(self):
-        """The one dated checkout total must not be presented with the nights reversed.
+        """Every dated checkout total must record its nights low to high and reconcile exactly.
 
-        Official quote (Venetian booking engine, 2026-11-16, two adults, 2 nights):
-        $824.25 + $55 on 17 Nov, $164.25 + $55 on 18 Nov, $146.98 tax, $1,245.48 total.
+        The rate log is a dated series, not a single value, so the same stay may appear more than
+        once. Two observations exist for the Venetian booking engine, 17-19 November 2026, two
+        adults, Newly Remodeled Luxury King, "Book Direct: Up to 25% Off":
+
+          2026-11-16: $824.25 + $55, $164.25 + $55, $146.98 tax, $1,245.48 total
+          2026-11-17: $621.75 + $55, $164.25 + $55, $119.89 tax, $1,015.89 total
+
+        Each night is (rate + $55) x 1.1338 rounded to the cent. Both quotes reconcile to their
+        printed total to the cent, which is what confirms the tax is charged on rate and fee
+        together.
         """
         quote = [r for r in DATA["rateLog"]
                  if r["quoteType"].startswith("Dated official checkout total")
@@ -46,13 +54,44 @@ class DataIntegrity(unittest.TestCase):
         low, high = float(row["trueNightlyLow"]), float(row["trueNightlyHigh"])
         self.assertLess(low, high, "observed nights must be recorded low to high")
 
-        night_17 = round((824.25 + RESORT_FEE) * (1 + TAX), 2)
-        night_18 = round((164.25 + RESORT_FEE) * (1 + TAX), 2)
-        self.assertAlmostEqual(low, night_18, places=2)
-        self.assertAlmostEqual(high, night_17, places=2)
+    def test_the_two_dated_observations_are_kept_as_a_series_not_overwritten(self):
+        """A rate that moves must leave both readings behind, dated, so the move is visible."""
+        obs = sorted({r["observedOn"] for r in DATA["rateLog"]
+                      if r["hotel"] == "venetian" and r["quoteType"].startswith("Dated official checkout total")})
+        self.assertIn("2026-11-16", obs, "the earlier observation was overwritten")
+        self.assertIn("2026-11-17", obs, "the later observation was not recorded")
 
-        # The two derived nights must reconcile to the printed total within rounding.
-        self.assertLess(abs((night_17 + night_18) - 1245.48), 0.10)
+
+        expected = {
+            "2026-11-16": dict(nights=(824.25, 164.25), total=1245.48),
+            "2026-11-17": dict(nights=(621.75, 164.25), total=1015.89),
+        }
+        seen = set()
+        for row in quotes:
+            day = row["observedOn"]
+            if day not in expected:
+                continue
+            seen.add(day)
+            spec = expected[day]
+            low, high = float(row["trueNightlyLow"]), float(row["trueNightlyHigh"])
+            self.assertLess(low, high, f"{day}: observed nights must be recorded low to high")
+
+            dear = round((max(spec["nights"]) + RESORT_FEE) * (1 + TAX), 2)
+            cheap = round((min(spec["nights"]) + RESORT_FEE) * (1 + TAX), 2)
+            self.assertAlmostEqual(low, cheap, places=2, msg=f"{day}: low night")
+            self.assertAlmostEqual(high, dear, places=2, msg=f"{day}: high night")
+
+            # reconcile to the printed total, to the cent: the rounding is per night, not on the sum
+            self.assertAlmostEqual(cheap + dear, spec["total"], places=2,
+                                   msg=f"{day}: derived nights do not reconcile to the printed total")
+        self.assertEqual(seen, set(expected),
+                         "both dated observations of this stay must be present in the rate log")
+
+    def test_the_two_dated_observations_are_kept_as_a_series_not_overwritten(self):
+        """A rate that moves must leave both readings behind, dated, so the move is visible."""
+        obs = sorted({r["observedOn"] for r in DATA["rateLog"] if r["hotel"] == "venetian"})
+        self.assertIn("2026-11-16", obs, "the earlier observation was overwritten")
+        self.assertIn("2026-11-17", obs, "the later observation was not recorded")
 
     def test_every_dated_quote_is_ordered_and_reconciles(self):
         """Every official quote: night one is the earlier night, and (rate + $55) x 1.1338 hits the printed total.

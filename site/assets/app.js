@@ -537,6 +537,11 @@ function renderHotels() {
         <a href="${esc(c.windowB.url)}" target="_blank" rel="noopener">Second reading</a></p>`;
     }
   }
+  const pr = document.querySelector('[data-poker-rate]');
+  if (pr && db.trip && db.trip.pokerRateQualification) {
+    pr.innerHTML = '<span class="pill">Play requirement</span><p>' + esc(db.trip.pokerRateQualification) + '</p>';
+  }
+
   const calc = document.querySelector('[data-calculator]');
   if (calc) {
     calc.innerHTML = `
