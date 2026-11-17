@@ -2042,3 +2042,14 @@ This session acts as the **final integration session** for this round once its v
 - **#71 merged** (documentation-only coordination record).
 - **#39, #31, #27, #7 closed as superseded**, each with a closing note listing where its verified content lives in the canonical build; every branch is preserved.
 - **#50 and #64 left open with comments**: both are wholesale rewrites based on older mains; #64 carries possible unique content (trip-cost calculator page, full-window re-read record) and should be rebased and re-verified by its session or a later integration before merge.
+
+
+### Second integration round (session arena/ed1d2489-poker3, after rebase onto `main` at the PR-63 merge)
+
+`main` advanced again while the workflow fix was being prepared (PR #63 from `arena/951cd431-poker3`, which added
+F48–F50). This branch was rebased onto it and the full gate was re-run on the merged tree: `data_source.py` rebuild
+byte-identical · `verify_site.py` passed (341 events, 8 hotels, 14 routes, 39 sources, **47 flags, all unique**, 8 plan
+days, 16 pages) · **73 unit tests OK** · `canonical_smoke.py`, `canonical_render.js` and `smoke.py` pass · `node --check`
+and `json.tool` clean · `git diff --check` clean · `README.md`, `COORDINATION.md` and `checks.yml` merged with both
+sides kept and nothing discarded. The duplicate-`push` repair is the only change to another session's file, and it is
+a fix to a file that could not run at all.
