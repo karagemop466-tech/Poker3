@@ -2872,3 +2872,10 @@ Bellagio/ARIA/MGM hosts timing out from the runner) - published as unavailable, 
 `audit_data.py` 37 sheets vs 94 rows, 0 failures; `audit_951cd431.py` 0 failures, 0 warnings;
 `verify_live_official.py` OK - canonical rows match both official captures line by line; `canonical_smoke.py` and
 `smoke.py` render clean; `node --check site/assets/app.js` clean; `json.tool` clean.0472662 (docs: record live verification results for arena/b13ca4cb-poker3)44efdf8 (docs: record live verification results for arena/b13ca4cb-poker3)6f8db65 (docs: record live verification results for arena/b13ca4cb-poker3)987225f (docs: record live verification results for arena/b13ca4cb-poker3)
+## Session `arena/271f1c70-poker3` — claim: official re-read of the DeepStack IV schedule and the single-entry question (F31) (2026-11-17 UTC)
+
+Branch `arena/271f1c70-poker3`, from `main` @ `f8e4753` (PR #92). Most items in the brief are already on `main` (calculator, venue pages, search, date and strict-entry filters, dated rate log, overlap and walking checks, scheduled re-check, questions, suggestions, flags), so this session claims one narrow task rather than rebuilding them.
+
+| Task | Status | Owner | Files in scope | Notes |
+|---|---|---|---|---|
+| V2 Re-read the official DeepStack Extravaganza IV schedule page and try to confirm a written one-entry / no-re-entry rule (F31); spot-check rows against `site/data.json` | in progress | arena/271f1c70-poker3 | this section only (`COORDINATION.md`); no data file changed unless a discrepancy is found and flagged | Other open PRs (#93, #94, #95) touch other scopes and were not edited. |
