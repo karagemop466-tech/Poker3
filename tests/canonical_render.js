@@ -168,6 +168,21 @@ function runVenuePage(venueAttr) {
     let total = 0;
     reg.forEach((el) => { total += el.html.length + el.text.length; });
     const label = page + (search ? search : '');
+    // Content assertions: a page that renders but omits a card is still a failure.
+    if (page === 'hotels') {
+      const pr = reg.get('[data-poker-rate]');
+      if (!pr || !/poker-suite rate is held only if/.test(pr.html)) {
+        console.log('FAIL  hotels: the poker-rate requirement card did not render');
+        failures++;
+      }
+    }
+    if (page === 'schedule') {
+      const dp = reg.get('[data-plan]') || reg.get('[data-plan-summary]');
+      if (!dp || !/2026-11-23/.test(dp.html + (reg.get('[data-plan-summary]') || {}).html)) {
+        console.log('FAIL  schedule: the day plan does not start on the recommended trip date');
+        failures++;
+      }
+    }
     const table = reg.get('[data-tournament-table]');
     const rows = table ? (table.html.match(/row-click/g) || []).length : 0;
     if (page === 'tournaments' && (!table.html.includes('Last checked / verified') || !table.html.includes('Source changed · review') || !table.html.includes('Source unavailable · recheck') || !reg.get('[data-filters]').html.includes('Single-entry / freezeout confirmed'))) {

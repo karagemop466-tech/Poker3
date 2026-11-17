@@ -1901,8 +1901,34 @@ def build():
     bankroll = sum(p["primaryBuyIn"] for p in plan if isinstance(p["primaryBuyIn"], (int, float)))
     TRIP["primaryBuyIns"] = bankroll
     TRIP["bankrollWithBuffer"] = round(bankroll * 1.25)
-    TRIP["bankrollNote"] = (f"The eight recommended primary entries total ${bankroll:,} in buy-ins. With a 25% buffer "
-                            f"for one rebuy or add-on where a room allows it, plan on ${round(bankroll * 1.25):,}.")
+    n_days = len(plan)
+    TRIP["bankrollNote"] = (f"The {n_days} recommended primary entries total ${bankroll:,} in buy-ins. With a 25% "
+                            f"buffer for one rebuy or an add-on where a room allows it, plan on "
+                            f"${round(bankroll * 1.25):,}. It is a planning number, not a forecast.")
+
+    # The poker-suite rate holds only if a daily requirement is met. Say which nights the recommended
+    # entries already satisfy, so the gap is visible rather than discovered at check-out.
+    _qual, _gap = [], []
+    for day in plan:
+        pr = day.get("primary")
+        pid = pr if isinstance(pr, str) else (pr or {}).get("id")
+        e = next((x for x in events if x["id"] == pid), None)
+        if not e:
+            continue
+        fee = e.get("buyIn")
+        if isinstance(fee, (int, float)) and fee >= 300:
+            _qual.append(f"{day['date']} (${fee:,})")
+        else:
+            _gap.append(f"{day['date']} (${fee:,})" if fee else f"{day['date']} (no fee printed)")
+    TRIP["pokerRateQualification"] = (
+        "The Venetian poker-suite rate is held only if, for each night stayed, the player completes six hours of "
+        "active live cash play or buys in to a $300 or higher tournament, before 2 a.m. on the last night. "
+        + (f"The recommended entries already meet the tournament test on {len(_qual)} of the {n_days} nights: "
+           f"{', '.join(_qual)}. " if _qual else "")
+        + (f"They do not meet it on {', '.join(_gap)}, where the primary event is under $300, so those nights depend "
+           f"on the six-hour cash-play test or on paying the prevailing rate. " if _gap else "")
+        + "For every night the requirement is missed the rate is adjusted to the prevailing rate, which the booking "
+          "calendar prices at $165 to $905 across these dates.")
 
     structure_sheets = []
     for n in sorted(V.SHEETS):
