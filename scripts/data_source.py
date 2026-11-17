@@ -841,6 +841,30 @@ FLAGS = [
                  "Confirm by phone on 866.255.8936 before booking either night."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-30&children[]=0&departure_date=2026-12-02&view=calendar"),
 
+    dict(id="F58", area="Venetian NYE", severity="Medium",
+         title="NYE Event #29 CES-badge discount is $10 on the schedule page but $20 on the structure sheet",
+         detail=("The official DeepStack Extravaganza NYE schedule row for Event #29 (Jan 6, 2027, 5:10 PM) prints "
+                 "'Show Your CES Badge - $10 RAKE DISCOUNT', but the event's structure sheet (dse_dec_2026-structure_2.pdf) "
+                 "prints: 'any player who shows their CES badge at the time of registration will receive a $20 discount on "
+                 "house fees for a total buy in of $180 instead of $200'. Both are official; neither was adjusted. "
+                 "Confirm the discount with the poker room before relying on it."),
+         source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_2.pdf"),
+    dict(id="F59", area="Venetian NYE", severity="Medium",
+         title="MSPT (Event #20) Day 2 restart is 11:10 AM on the schedule page but 11:00 AM on the structure sheet",
+         detail=("The official NYE schedule prints the Event #20 Day 2 Restart on Jan 4, 2027 at 11:10 AM, while the "
+                 "event's structure sheet (dse_dec_2026-structure_8.pdf) prints 'Day A+B+C @ 11:10 AM with Day 2 @ 11:00 AM'. "
+                 "The stored row keeps the schedule time (11:10 AM) and the sheet excerpt is recorded on the row's rules. "
+                 "F48 flags the same restart time from a different angle (two events share the 11:10 AM slot); the sheet "
+                 "evidence here shows the printed restart is 11:00 AM. Confirm the restart time with the poker room."),
+         source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_8.pdf"),
+    dict(id="F60", area="Wynn WPT", severity="Medium",
+         title="The $1,100 PLO structure sheet's printed buy-in components total $1,105, not $1,100",
+         detail=("The WPT World Championship structure sheet for the $1,100 PLO (Tuesday Dec 1, 1 p.m.) prints the buy-in "
+                 "split as a $975 prize pool with fees of $85 and $45. The printed components sum to $1,105, five dollars "
+                 "more than the printed $1,100 buy-in on the schedule. The row reproduces the schedule buy-in and the rule "
+                 "panel reproduces the split as printed; nothing is adjusted. Confirm the amounts with the poker room."),
+         source="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"),
+
 ]
 
 QUESTIONS = [
@@ -1845,6 +1869,53 @@ def build():
                                           retrieved=WPT_REREAD["retrievedOn"])
         ev["lastChecked"] = WPT_REREAD["retrievedOn"]
         ev["note"] = (ev.get("note", "") + f" Official structure sheet ({rec['section']}): {rec['excerpt']}").strip()
+
+# Fee splits and registration clauses for the WPT rows the structure PDF names
+    # explicitly (PDF read 2026-11-17). The six split rows are the ones the PDF
+    # matches to a printed start time, so the split certainly belongs to that row.
+    WPT_FEE_SPLITS = {
+        "wynn-wpt-2026-11-27-001-1200pm": ("$525 of every $600 buy-in is the prize pool and $75 is withheld in fees."),
+        "wynn-wpt-2026-11-27-002-100pm": ("$350 of every $400 buy-in is the prize pool and $50 is withheld in fees."),
+        "wynn-wpt-2026-11-28-005-1200pm": ("$525 of every $600 buy-in is the prize pool and $75 is withheld in fees."),
+        "wynn-wpt-2026-11-30-010-1200pm": ("$525 of every $600 buy-in is the prize pool and $75 is withheld in fees."),
+        "wynn-wpt-2026-12-01-014-1200pm": ("$525 of every $600 buy-in is the prize pool and $75 is withheld in fees."),
+        "wynn-wpt-2026-12-01-015-100pm": (
+            "The sheet prints the $1,100 buy-in split as a $975 prize pool with fees of $85 and $45; the printed "
+            "components total $1,105, which does not equal the printed $1,100 buy-in. Flagged F60; the split is "
+            "reproduced as printed and nothing is adjusted."),
+    }
+    for ev in events:
+        excerpt = WPT_FEE_SPLITS.get(ev["id"])
+        if excerpt:
+            ev["rules"]["fee"] = dict(status="fee-split-printed", excerpt=excerpt,
+                                      source=WPT_REREAD["sheetUrl"], retrieved=WPT_REREAD["retrievedOn"])
+        if (ev.get("venue") == "wynn" and ev.get("name", "").startswith("WPT Prime Championship")
+                and "Day 1" in ev.get("name", "")):
+            ev["rules"]["reEntry"] = dict(
+                status="re-entry-printed",
+                excerpt=("Registration: \"Unlimited re-entry for each starting flight will be available until the start "
+                         "of level 10.\" The printed prize line reads \"$1,100 (1st Entry = $1,000 + $100; Re-Entry = "
+                         "$1,000 + $100)\", and the sheet prints: \"A player may play a maximum of one (1) starting "
+                         "flight. Players that bag in a flight may not play another flight. Players eliminated in a "
+                         "starting flight may re-enter that starting flight until the start of level 10.\""),
+                source=WPT_REREAD["sheetUrl"], retrieved=WPT_REREAD["retrievedOn"])
+            ev["rules"]["singleEntry"] = dict(
+                status="one-flight-cap",
+                excerpt="A player may play a maximum of one (1) starting flight; bagged players may not play another flight.",
+                source=WPT_REREAD["sheetUrl"], retrieved=WPT_REREAD["retrievedOn"])
+        if ev.get("venue") == "wynn" and ev.get("buyIn") == 10400 and "World Championship" in ev.get("name", ""):
+            ev["rules"]["fee"] = dict(
+                status="fee-split-printed",
+                excerpt=("The printed prize line reads \"$10,400 (1st Entry = $10,000 + $400; Re-Entry = $10,000 + "
+                         "$400)\"; the sheet prints that $10,400 is withheld from first prize and the winner receives "
+                         "entry into the 2027 WPT World Championship."),
+                source=WPT_REREAD["sheetUrl"], retrieved=WPT_REREAD["retrievedOn"])
+            ev["note"] = (ev.get("note", "") + " The printed components of the first prize are a seat in the 2027 WPT "
+                                               "World Championship; the cash shown is after the $10,400 withholding. "
+                                               "This event's re-entry clause sits in the level-10 registration family; "
+                                               "its exact wording was not transcribed in this pass and the row's "
+                                               "re-entry rule stays unverified.").strip()
+
 
     # Live re-check, 2026-11-17 (session c1655bf5): the official WPT World Championship schedule PDF
     # was re-fetched independently and every published Wynn row across the range that PDF covers,

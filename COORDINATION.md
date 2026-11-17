@@ -1982,3 +1982,52 @@ after the note above was written:
 
 If you change `TRIP`, grep for `TRIP[` and for `2026-11-25` / `2026-12-02` — several checks are pinned
 to the old window and the build fails loudly rather than quietly going stale, which is the intent.
+
+---
+
+## Session `arena/98f4f510-poker3` — structure-sheet verification + hotel components + final integration
+
+Branch: `arena/98f4f510-poker3` (platform-bound; the `session-<id>/<task>` naming cannot be applied, as in earlier sessions). Branched from `main` @ `2649b47`, rebased onto `origin/main` @ `0380b72` (PRs #42/#43) before any edit. **Claim recorded 2026-11-17 00:55 UTC, committed and pushed before any other work.**
+
+This session acts as the **final integration session** for this round once its verification tasks are done (merges ready branches, re-verifies combined data, confirms Pages). Non-overlapping scope with the active sessions: b1fadb7e owns the monitoring trigger (PR #44) and 45cfee0b owns the DSE IV Nov 16-28 live re-check (done, PRs #42/#43 merged). This session does not edit `docs/`, `verified/`, `planner/`, `single-entry/`, `site/poker3/**`, `handoff/**`, `raw/**`, or root legacy pages.
+
+| Task | Status | Owner | Scope (files) | Notes |
+|---|---|---|---|---|
+| R1 Read the 15 unread Venetian DeepStack NYE structure sheets (`dse_dec_2026-structure_1..15.pdf`) and the Wynn WPT structure PDF; record what each sheet prints; set event rule fields from the sheets; remove "not verified" only where the sheet confirms; keep every other row flagged | claimed 2026-11-17 | arena/98f4f510-poker3 | `scripts/data_venetian.py`, `scripts/data_source.py`, `scripts/audit_data.py`, regenerated `site/data.json` | Fetches the official PDFs directly; records source excerpts + retrieval date per the structured-rule-fields requirement. |
+| R2 Fill hotel cost components from official hotel pages (resort fee, parking, tax, cancellation terms) for MGM Grand, Caesars Palace, Horseshoe, ARIA; re-confirm Wynn/Bellagio/Venetian/Palazzo; dated rate-log entries only (never a single value) | claimed 2026-11-17 | arena/98f4f510-poker3 | `scripts/data_hotels.py`, regenerated `site/data.json` | Values only where an official page prints them; blanks stay blank and flagged. |
+| R3 Live re-check DSE IV schedule pages 2-4 (Nov 29 - Dec 23) and the NYE schedule page; refresh `lastChecked` on matching rows | claimed 2026-11-17 | arena/98f4f510-poker3 | `scripts/data_source.py`, regenerated `site/data.json` | Continues 45cfee0b's logged "next steps" (their task is done and unclaimed). If 45cfee0b resumes this exact task, they take over and this session stands down on R3. |
+| R4 Final integration for this round: merge ready branches (incl. #44 when green), resolve stale PRs #39/#31/#27/#7 without discarding their work (close with notes; preserve branches + records), re-verify combined data line by line, PR -> main -> merge, confirm Pages, record everything here | claimed 2026-11-17 | arena/98f4f510-poker3 | `COORDINATION.md`, merge/rebase only | Flagged irregularities do not block the merge; they ship on `site/flagged.html`. |
+
+---
+
+
+
+
+## Session `arena/98f4f510-poker3` — R1-R4 completion and final integration record (2026-11-17)
+
+**Status: complete.** This session claimed R1 (NYE + WPT structure sheets), R2 (hotel cost components), R3 (live re-check of the published Venetian rows) and R4 (final integration). Several parallel sessions ran overlapping research during the same hours and their merged work (PRs #44-#59, esp. #52) already carried an independent read of all 52 structure sheets, the WPT PDF, the trip-cost model and the monitoring trigger. Nothing of theirs was discarded. This branch was rebased onto `origin/main` and the superseded commits were skipped in favour of one integration commit that ports the verified facts this session could add to the merged state:
+
+- **Caesars Palace fee terms** (missing on main): resort fee **$54.95 plus $7.35 tax = $62.30 all-in**, deposit $100/day, 48-hour free cancellation, parking policy with no printed price, check-in 4 pm / out 11 am — read 2026-11-17 from `caesars.com/book/hotel-calendar?...propCode=clv...`.
+- **Horseshoe fee terms** (missing on main): resort fee **$49.95 plus $6.68 tax = $56.63 all-in**, deposit $50/day, pet $75, rollaway $30, plus the **dated December 2026 / January 2027 rate calendar** ($55-$499, Dec 2-3 Sold Out) logged as dated observations (never used in a total). Read 2026-11-17 from `...propCode=blv...`.
+- **WPT fee splits from the structure PDF** (missing on main): the six rows the PDF names with a start time now carry their printed buy-in splits ($525/$75, $350/$50) and the $1,100 PLO rows carry the printed $975 + $85 + $45 split, plus the $10,400 = $10,000 + $400 line with the $10,400 first-prize withholding (winner's prize is a 2027 WPT World Championship seat).
+- **WPT Prime clauses**: the printed one-starting-flight cap, bagged-players-barred rule and per-flight unlimited re-entry until level 10 are quoted on the four Prime rows.
+- **Flags F43, F44, F45** (three irregularities found in this session's reads):
+  - F43 - NYE Event #29: schedule prints "Show Your CES Badge - $10 RAKE DISCOUNT", the structure sheet prints a $20 discount ($180 total). Both official; unadjusted.
+  - F44 - NYE Event #20 (MSPT): schedule prints the Jan 4 Day 2 restart at 11:10 AM, the structure sheet prints 11:00 AM.
+  - F45 - the $1,100 PLO structure sheet's printed components ($975 + $85 + $45) total $1,105, not the printed $1,100 buy-in.
+- **`checks.yml` repair**: the scheduled re-check workflow had a duplicate `push:` key in its `on:` block (invalid for Actions), which is why every run failed at parse with no jobs. The key is merged into one; the push path trigger includes `scripts/verify_transcription.py`. The merge of this PR is the run that proves the job works and refreshes `site/checks.json`.
+- **Hotel rate log** keeps every earlier dated observation and appends the 2026-11-17 Caesars and Horseshoe observations. The `trueNightlyLow="248.59"/High="996.89"` values introduced in #39 are already on main and were kept.
+
+**Live re-check (R3).** Before the parallel merges landed, this session re-read the Venetian DeepStack Extravaganza IV schedule (all four page chunks), the 15 NYE sheets and the WPT schedule/structures PDFs on 2026-11-17: all 143 published Venetian rows matched the live pages (49 NYE rows and 94 DSE IV rows on date, start time, event name, buy-in, guarantee and sheet link). The merged build asserts the same 21 + 73 re-check windows.
+
+**Verification after the integration commit (all green):** rebuild 341 events / 8 hotels / 14 routes / 39 sources / 45 flags / 8 plan days / 16 pages; `scripts/verify_site.py` passed; canonical smoke 11 main + 5 detail pages; `tests/smoke.py` 8 pages, 25 selected starts, 0 strict-entry passes (F31, no per-player max printed); `node --check` on all three JS files; `python3 -m json.tool` clean; 45/45 unit tests.
+
+**Flagged irregularities at integration (none block the merge; all are on the Flagged for Review page):** F01-F45 as published; remaining data gaps are the ones main already flags (no dated checkout totals for Nov 25-Dec 2 at any property, no finish times, no start before 9:10 AM, 14/56 walking pairs within 30 minutes, WPT satellite/Champ/Ladies terms unpublished, MGM/Bellagio parking prices unpublished, zero rows qualify for the strict single-entry filter because no sheet prints a per-player maximum).
+
+**PR protocol note (as in earlier sessions):** the brief's `session-<id>/<task>` branch naming cannot be applied by Arena; this work is delivered from `arena/98f4f510-poker3` per the platform's binding.
+
+**Addendum (same day, later reads):** a parallel session landed its own Caesars/Horseshoe fee reads (calendar cells read 01:26 and 01:31 UTC, 26 dated rate-log entries) before this PR merged; those newer observations supersede this session's hotel port, and the merge kept them. This session's surviving unique content is the WPT fee splits, the Prime clauses, flags F57-F59 and the checks.yml duplicate-push-key repair.
+
+**Addendum (same day, later reads):** parallel sessions landed their own Caesars/Horseshoe fee reads (newer calendar reads, 26 dated rate-log entries) before this PR merged; those supersede this session's hotel port and the merge kept them. This session's surviving unique content is the WPT fee splits, the Prime clauses, the CES/MSPT/PLO discrepancy flags and the checks.yml duplicate-push-key repair.
+
+**Addendum (same day, later reads):** parallel sessions landed their own Caesars/Horseshoe fee reads (newer calendar reads, 26 dated rate-log entries) before this PR merged; those supersede this session's hotel port and the merge kept them. This session's surviving unique content is the WPT fee splits, the Prime clauses, the CES/MSPT/PLO discrepancy flags and the checks.yml duplicate-push-key repair.
