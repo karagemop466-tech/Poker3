@@ -3110,3 +3110,31 @@ Branch: `arena/da83eca8-poker3` (platform-bound; the `session-<id>/<task>` namin
 - **Pages:** API reports `status: built`, source `main` `/`, https://karagemop466-tech.github.io/Poker3/ . The canonical dashboard serves the coverage matrix, the dated 23-30 Nov Venetian quote ($4,010.55 all-in) and the 72-flag register.
 - **Changes merged:** `scripts/coverage.py` + `site/coverage.json` (brief-coverage traceability matrix: 25 items, 21 shipped / 3 partial / 1 not-resolvable), `README.md` (coverage section), `COORDINATION.md` (this session's claim + result records). All other shared outputs (`site/**`, `scripts/**`, tests, workflows) unchanged from the verified `main` state.
 - **Open items (do not block merge; published on site/flagged.html):** F31 (no one-entry-per-player cap → strict-entry filter returns 0), F17 (no official 8 AM start), F16 (no published finish times), F32 (walking times are Google Maps estimates; not all pairs), F39 (room-tax % unpublished at Wynn/Caesars/Horseshoe), F56 (Wynn Signature structures unpublished), F15/F36/F57 (no date-specific hotel quotes for non-Venetian / trip dates).
+
+---
+
+## Current session `arena/4b9d6340-poker3` — final integration of the open PR queue, live re-verification, gap closure (2026-11-17 UTC)
+
+Branch: `arena/4b9d6340-poker3` (platform-bound; the `session-<id>/<task>` naming cannot be applied). Branched from
+`main` @ `b9c8d77` (PR #100 merged), rebased onto `6a40bca` (PR #109) before this claim. This session acts as the
+integration owner for the shared outputs: canonical `site/**`, `scripts/**`, `tests/**`, `.github/workflows/**`,
+`README.md` and this file. Prior artefacts (`docs/`, `verified/`, `planner/`, `single-entry/`, root legacy pages,
+`site/poker3/`, `handoff/`) are read-only here.
+
+| Task | Status | Owner session | Files in scope | Notes |
+|---|---|---|---|---|
+| E1 Integrate the open PR queue (#108 WPT structures read, #99 coordination record + perNight builder fix) | in progress | arena/4b9d6340-poker3 | merge of `origin/arena/57416062-poker3`, `origin/arena/8689ef6e-poker3` into this branch; conflicts resolved keeping both sides | Both PRs' own sessions reported their work finished; merging as integration owner, not editing their scopes. |
+| E2 Live re-verification of the combined tree against official sources (Venetian DSE schedule + sheets, Wynn WPT, hotel terms, routes) | in progress | arena/4b9d6340-poker3 | verification only; writes only through `scripts/data_*.py` if a defect is found | Row-by-row compare of `site/data.json` with the official pages read from this session. `lastChecked` recorded only for pages actually re-read. |
+| E3 Close the dated-rate-log gap: date-specific quotes for Palazzo, MGM Grand, Caesars Palace, Horseshoe, ARIA | in progress | arena/4b9d6340-poker3 | `scripts/data_hotels.py` (`rateLog`), regenerated `site/data.json` | Only values the property's own booking engine publishes for the trip window; anything not published stays blank and flagged (F15/F36/F57). |
+| E4 Confirm every interactive brief item works on the built pages (search, date filter, strict-entry toggle, ≤30-min walk filter, calculator, schedule re-check) | in progress | arena/4b9d6340-poker3 | `tests/**` (new coverage test), `site/**` read-only | DOM smoke test of each control; no feature claimed without a passing check. |
+| E5 Verification suite, PR → `main`, merge, Pages confirmation, record here | pending | arena/4b9d6340-poker3 | whole repo | `verify_site.py`, unit suite, transcription check, link check, reproducibility check. Flagged items do not block merge. |
+
+### Open items inherited (not assumed resolved)
+
+- F31 no official sheet states a one-entry-per-player cap → strict-entry filter returns 0 rows; nothing promoted.
+- F17 no official 8:00 AM start anywhere on the Strip → the 8 AM all-day plan is not buildable from official data.
+- F16 no venue publishes finish times → overlap flags stay estimates under the disclosed six-hour assumption.
+- F32 no venue publishes a walking time → every minute figure carries its Google Maps estimate label.
+- F39 room-tax % unpublished at Wynn / Caesars / Horseshoe → `trueNightly` stays blank there.
+- F56 Wynn Signature structures unpublished → those rows stay not-verified.
+- F15 / F36 / F57 no date-specific hotel quotes outside the Venetian (E3 attempts this).
