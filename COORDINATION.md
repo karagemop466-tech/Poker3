@@ -2788,3 +2788,27 @@ literal — `none` → `single`, `multi-flight` → `flight`, `multi-buyin` → 
 
 ### Result
 - Committed and pushed on `arena/ab5d9d7d-poker3`; PR opened to `main` and merged (recorded below).
+
+### V2 (same session, after the live-site check): the root URL was serving 2026-11-16 templates
+
+Found while checking the deployment, not while reading data. The canonical dashboard at **/Poker3/site/** is current:
+the live flagged page serves F71–F76 and "68 items". But the repository **root** still published nine research pages
+from 2026-11-16 whose tables were blank by design — `/Poker3/hotels.html` opened with "No hotel ranking yet ... Nightly
+room rate ... unverified ... nightly total: blank", which directly contradicts the dashboard's eight priced properties.
+This is flag F29's two-publisher problem in its remaining form: the repository's Pages source is the legacy
+`main / (root)` setting, so every push republishes the root, and a visitor who shortens a dashboard URL to a root page
+gets stale conclusions.
+
+**Fixed:** all nine root pages (`hotels`, `tournaments`, `schedule`, `questions`, `flagged`, `flagged-for-review`,
+`suggestions`, `q-and-a`, `executive-summary`) are now redirects into the matching `site/` page, using the pattern the
+root `index.html` already used. Nothing was deleted — every old page remains in version control, and each redirect names
+the canonical successor. `tests/test_root_redirects.py` (3 tests) now fails if any root page stops redirecting, if a
+redirect target is missing, or if the 2026-11-16 snapshot reappears as content.
+
+**Verified after the change:** `verify_site.py` PASS · `canonical_smoke.py` 11 main + 5 detail pages · `tests/smoke.py`
+OK · `unittest discover` **111 tests OK**.
+
+**Still open and not fixable from this session:** the Pages source setting itself. `PUT /pages` returned 403 in an
+earlier session, so the legacy publisher keeps running beside `.github/workflows/pages.yml`. The redirects make the root
+safe, but changing the Pages source to "GitHub Actions" is the real fix and needs a repo-owner token. Recorded on the
+flag register under F29; a later session found the same 403.
