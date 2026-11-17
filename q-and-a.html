@@ -1,107 +1,45 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Q&amp;A — Poker3 Las Vegas Strip Planner</title>
-<link rel="stylesheet" href="css/style.css">
-<meta name="description" content="Questions, information needed, and answers that must be addressed before decisions can be made.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vegas Poker Planner — moving to Questions and answers</title>
+<!--
+  This root-level page is a redirect, not content.
+
+  It was a 2026-11-16 template whose tables were intentionally blank ("Nightly room
+  rate ... unverified"). The canonical dashboard in site/ now publishes Questions and answers
+  with a source link on every row, and it is served at /Poker3/site/.
+
+  The repository's Pages source is still the legacy "deploy from a branch: main /"
+  setting, so GitHub publishes the whole repository root after every push and these
+  stale templates were reachable at the root URL, contradicting the dashboard at the
+  same host. Redirecting removes that possibility whichever publisher wins the race
+  (flag F29). Nothing is lost: the old page is in version control and the canonical
+  page is the successor.
+-->
+<link rel="canonical" href="site/questions.html">
+<meta http-equiv="refresh" content="0; url=site/questions.html">
+<style>
+  :root{color-scheme:dark light}
+  body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0d1117;color:#e6edf3;
+       font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding:24px}
+  main{max-width:34rem;text-align:center}
+  h1{font-size:1.25rem;margin:0 0 .5rem;font-weight:650}
+  p{margin:.5rem 0;color:#9aa7b4}
+  a{color:#6ea8fe}
+  .note{font-size:.85rem;margin-top:1.5rem;color:#7d8896}
+</style>
 </head>
 <body>
-
-<header class="site-header">
-  <div class="container">
-    <a href="index.html" class="brand"><span class="dot"></span> Poker3</a>
-    <nav>
-      <a href="tournaments.html">Tournaments</a>
-      <a href="hotels.html">Hotels</a>
-      <a href="schedule.html">Schedule</a>
-      <a href="executive-summary.html">Executive Summary</a>
-      <a href="suggestions.html">Suggestions</a>
-      <a href="q-and-a.html" class="active">Q&amp;A</a>
-      <a href="flagged-for-review.html">Flagged for Review</a>
-    </nav>
-  </div>
-</header>
-
-<section class="hero">
-  <div class="container">
-    <h1>Questions, Information &amp; Answers</h1>
-    <p>Items that must be addressed before any decision can reasonably be made based on the information we have — and do not have.</p>
-    <div class="meta">Research date: 2026-11-16</div>
-  </div>
-</section>
-
-<section>
-  <div class="container">
-    <h2>Questions and answers</h2>
-    <table>
-      <thead>
-        <tr><th>#</th><th>Question</th><th>Information needed</th><th>Answer / status</th><th>Source</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Q1</td><td>Which live single-entry tournaments are available near the Strip right now?</td><td>Tournament schedules + entry rules</td><td class="verified">Answered</td><td>Venetian official structure sheets; WPT press release</td></tr>
-        <tr><td>Q2</td><td>Which tournaments give an advantage to players who spend more (re-entry/add-ons)?</td><td>Entry rules per event</td><td class="verified">Answered</td><td>Venetian structure sheets (rule 08 / "subsequent buy-ins"); WPT press release</td></tr>
-        <tr><td>Q3</td><td>What does each tournament cost to enter and what is the prize pool?</td><td>Buy-in + guarantee per event</td><td class="partial">Answered for 44 Venetian single-entry events (verified); partial for WPT/ARIA</td><td>Venetian structure sheets; WPT press release</td></tr>
-        <tr><td>Q4</td><td>Which tournaments are best value (low buy-in vs high guarantee)?</td><td>Buy-in vs guarantee</td><td class="verified">Answered</td><td>Venetian structure sheets</td></tr>
-        <tr><td>Q5</td><td>Can I play starting at 8 AM all day?</td><td>Earliest tournament start times</td><td class="unverified">No — no series reviewed starts at 8 AM; earliest is 10:10 AM at Venetian</td><td>Venetian schedule; WPT schedule; ARIA calendar</td></tr>
-        <tr><td>Q6</td><td>Which hotels are within a 30-minute walk of the tournaments?</td><td>Hotel addresses + venue addresses</td><td class="partial">Partially answered — venue hotels are on-site (0 min); others estimated within ~30 min (walk times are estimates, not official)</td><td>Hotel addresses (third-party sources); venue addresses</td></tr>
-        <tr><td>Q7</td><td>What is the true cost per night for each hotel (room + resort fee + tax + parking)?</td><td>Room rates + fees + tax</td><td class="unverified">Unanswered — room rates dynamic, not confirmed from official sources for Nov–Dec 2026</td><td>Third-party listings; no official rate source obtained</td></tr>
-        <tr><td>Q8</td><td>What are the resort fees, and are they mandatory?</td><td>Hotel fee policies</td><td class="partial">Partially answered — $55+tax at Venetian/Wynn (third-party), $49.95 at TI/Harrah's/LINQ, $28 at Polo Towers, none advertised at Casino Royale — all third-party, unverified</td><td>Third-party listings</td></tr>
-        <tr><td>Q9</td><td>Are ARIA Poker Open events single entry or re-entry?</td><td>ARIA event structure sheets</td><td class="unverified">Unanswered — dates/venue confirmed (Nov 29 – Dec 20, 2026); event details NOT confirmed (official ARIA page returned HTTP 500)</td><td>ARIA X post; Hendon Mob</td></tr>
-        <tr><td>Q10</td><td>Are WPT non-marquee events single entry?</td><td>WPT/Wynn per-event structure sheets</td><td class="unverified">Unanswered — only marquee events confirmed ($10,400 Main = single entry per flight; Super Gold Million = unlimited re-entry)</td><td>WPT press release; WPT schedule PDF</td></tr>
-        <tr><td>Q11</td><td>Are Venetian 1Day events true freezeouts (no re-entry at all)?</td><td>Venetian tournament rules confirmation</td><td class="partial">Partially answered — 1Day sheets contain no re-entry clause, but don't explicitly state "no re-entry"; multi-flight sheets explicitly allow re-entry</td><td>Venetian structure sheets</td></tr>
-      </tbody>
-    </table>
-
-    <h2>Information we DO have (verified)</h2>
-    <ul>
-      <li>Venetian DSE IV full schedule, buy-ins, guarantees, start times, structure sheets — official Venetian source</li>
-      <li>Venetian re-entry rules on multi-flight events — official structure sheets (rule 08)</li>
-      <li>WPT World Championship dates, venue, guarantees, marquee event buy-ins/entry rules — official WPT press release + schedule PDF</li>
-      <li>ARIA Poker Open dates and venue — ARIA X post + Hendon Mob</li>
-    </ul>
-
-    <h2>Information we DO NOT have (must be discovered)</h2>
-    <ul>
-      <li>ARIA Poker Open event-by-event buy-ins, guarantees, start times, entry rules</li>
-      <li>WPT non-marquee event entry rules</li>
-      <li>Hotel room rates for specific Nov–Dec 2026 dates</li>
-      <li>Confirmed mandatory resort fees (official hotel sources)</li>
-      <li>Clark County lodging tax rate (official source)</li>
-      <li>Confirmed walking times between hotels and venues</li>
-      <li>Confirmation that Venetian 1Day events prohibit re-entry</li>
-    </ul>
-
-    <div class="callout">
-      <p><strong>Suggested discovery actions (see Suggestions page):</strong> retry arialasvegas.com/casino/poker; call ARIA Poker Room (702) 590-7111; check wynnpoker.com / WPT.com structure sheets; get direct quotes from hotel websites for target dates; use a mapping tool for walking routes/times; ask the Venetian poker room tournament director about the 1Day re-entry policy.</p>
-    </div>
-  </div>
-</section>
-
-<footer class="site-footer">
-  <div class="container">
-    <div>
-      <h4>Poker3</h4>
-      <p style="margin:0; font-size:0.9rem;">Pre-decision questions, information, and answers.</p>
-    </div>
-    <div style="flex:1; min-width:200px;">
-      <h4>Pages</h4>
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="tournaments.html">Tournaments</a></li>
-        <li><a href="hotels.html">Hotels</a></li>
-        <li><a href="schedule.html">Schedule</a></li>
-        <li><a href="executive-summary.html">Executive Summary</a></li>
-        <li><a href="suggestions.html">Suggestions</a></li>
-        <li><a href="flagged-for-review.html">Flagged for Review</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="container">
-    <div class="small">Research date: 2026-11-16. Schedules and fees change — confirm before booking.</div>
-  </div>
-</footer>
-
+<main>
+  <h1>Opening Questions and answers</h1>
+  <p>The current page is loading. If nothing happens,
+     <a href="site/questions.html">open Questions and answers</a>.</p>
+  <p class="note">Every value there links the official venue page it was read from.
+     Blank cells are values no official source published, and they are listed on the
+     Flagged for review page.</p>
+</main>
+<script>location.replace('site/questions.html' + location.hash);</script>
 </body>
 </html>
