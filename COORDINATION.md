@@ -1619,3 +1619,38 @@ Claim recorded 2026-11-17 UTC before any other file edits in this session. Commi
 - **Date advancement:** `RECHECKED=2026-11-17` + `RECHECKED_URLS` in `scripts/data_source.py` advance `sources[].checked`, event `lastChecked`, rule `retrieved` and hotel `lastChecked` only where the URL behind them was re-read — in the merged tree 30/39 sources and 301/341 events carry 2026-11-17 (this pass's re-reads plus the parallel session's `VERIFIED_ON` records), the four re-read hotels (venetian, palazzo, wynn, bellagio) advanced, everything else stays 2026-11-16. Data `asOf` remains 2026-11-16.
 - **Rate log:** this session's own trip-window entry was dropped on rebase because the merged tree already carries the parallel session's dated 2026-11-17 trip-window "no quote" observation (append-only log, no duplicate needed). Final verification on the rebased branch: verify_site, audit_data, canonical_smoke (16 pages incl. search), smoke.py, `verify_live_official.py` (line-by-line DSE match), 47 unittest cases, node --check, json.tool, reproducible build — all green. Branch commits: claim, T1 data pass, COORDINATION log (rebased onto main `234d2d7`).
 - **cd17e91c requests:** (1) Wynn duplicate suffix — done this pass; (2) trip dates still need user confirmation before any booking — remains open for the user; (3) foreign PRs #7/#27/#31 untouched, user decides; (4) Horseshoe 9:00 AM is published on caesars.com (F17 records it); Golden Nugget unreachable (SSL) earlier — not re-verified today.
+
+---
+
+## Session `arena/c1655bf5-poker3` — merge result and deployment confirmation (follow-up, 2026-11-17 UTC)
+
+**PR: [#55](https://github.com/karagemop466-tech/Poker3/pull/55)** (`arena/c1655bf5-poker3` → `main`), merged with
+`gh pr merge 55 --merge` at 2026-11-17T01:25:43Z, merge commit `3775920`. The PR verification run
+[43995397061](https://github.com/karagemop466-tech/Poker3/actions/runs/43995397061) passed before merge
+(the branch carried three rebase/merge rounds over PRs #52, #46/#58, #60/#61 and #62/#63, each re-verified locally
+and by CI).
+
+**Deployment confirmation:**
+- Pages deploy at the merge commit: "Publish the canonical Vegas Poker Planner to GitHub Pages" run
+  [43995509383](https://github.com/karagemop466-tech/Poker3/actions/runs/43995509383) — **success**; Pages API
+  reports `status: built`, https://karagemop466-tech.github.io/Poker3/ . Later merges from the concurrent sessions
+  redeployed green as well (runs 43995990950, 43996034386, legacy dynamic runs 43996075635).
+- **The consolidated scheduled re-check ran for real for the first time.** The push trigger on `checks.yml` itself
+  (this session's design, adopted and extended by sessions ed1d2489/951cd431) fired on the merges; after the
+  concurrent-merge defect described below was repaired, a run committed
+  `ccb092d "chore: record official source re-check and daily room feed (2026-11-17)"` — creating `site/checks.json`
+  and the first dated morning-feed snapshots (`site/feed/index.json`, `site/feed/venetian-2026-11-17.txt`,
+  `site/feed/wynn-2026-11-17.txt`). Subsequent runs of the job are executing normally.
+
+**Incident handled during this window (logged for the audit trail):** the concurrent merges of this session's
+trigger fix (PR #55) and sessions ed1d2489/951cd431 produced a `checks.yml` with **two `push:` keys**, which GitHub
+rejects at the workflow level — several branch pushes failed instantly with 0 jobs until PR
+[#66](https://github.com/karagemop466-tech/Poker3/pull/66) (ed1d2489) removed the duplicate key and added a strict
+workflow-schema unit test; it merged at `f3d7406`. This session verified every `.github/workflows/*.yml` now parses
+with a single `push` key and the whole suite passes on the merged tree. PRs #65/#67 (the overlapping repairs from
+sessions 951cd431/98f4f510) remain open; their checks.yml edits are superseded by #66 and need a rebase if they
+carry further content.
+
+**Checks run for this follow-up:** `python3 -m unittest discover -s tests` (all pass, including the new workflow
+schema test), `python3 scripts/verify_site.py` (341 events / 8 hotels / 14 routes / 39 sources / 45+ flags on the
+rebased tree), `canonical_smoke.py`, `node --check`, reproducible `data_source.py` rebuild.
