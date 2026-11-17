@@ -180,9 +180,22 @@ class HotelFacts(unittest.TestCase):
         self.assertIn("$4,010.55", booking["priceInStaticPage"])
         self.assertIn("arrival_date=2026-11-23", booking["url"])
         logged = [r for r in DATA["rateLog"] if r.get("quoteType", "").startswith("Dated official checkout total (2 adults, 7 nights")]
-        self.assertEqual(len(logged), 1, "exactly one dated 7-night trip quote is logged")
-        self.assertEqual(logged[0]["observedOn"], "2026-11-17")
-        self.assertIn("4010.55", logged[0]["note"].replace(",", ""))
+        # Two distinct official reads of the identical window are logged on 2026-11-17: the ~21:54 UTC
+        # venetian-suite read ($4,010.55) and the ~22:15 UTC palazzo-suite read ($3,823.46, flag F78).
+        # Both must be present, each with its own printed total; neither may duplicate or replace the other.
+        self.assertEqual(len(logged), 2, "two distinct dated 7-night trip reads are logged")
+        # Identify each read by its suite label, not by a dollar figure: each note cites the other's total
+        # for comparison, so a money filter would match both rows.
+        first = next((r for r in logged if "palazzo" not in r.get("quoteType", "").lower()), None)
+        second = next((r for r in logged if "palazzo" in r.get("quoteType", "").lower()), None)
+        self.assertIsNotNone(first, "the 21:54 UTC read ($4,010.55) must stay in the log")
+        self.assertIsNotNone(second, "the 22:15 UTC read ($3,823.46) must be logged beside it")
+        self.assertIn("4010.55", first["note"].replace(",", ""))
+        self.assertIn("3823.46", second["note"].replace(",", ""))
+        self.assertEqual(first["observedOn"], "2026-11-17")
+        self.assertEqual(second["observedOn"], "2026-11-17")
+        self.assertNotEqual(first.get("nightlyRates"), second.get("nightlyRates"),
+                            "the two reads printed different nightly rates and must stay distinct")
 
     def test_every_hotel_fact_links_the_recorded_source(self):
         self.assertEqual(self.hotel["source"], self.rec["sources"]["pokerSuiteRate"])

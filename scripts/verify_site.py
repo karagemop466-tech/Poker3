@@ -38,7 +38,6 @@ OFFICIAL_HOSTS = (
     "mgmgrand.mgmresorts.com",
     "mgmresorts.com",
     "caesars.com",
-    "rwlasvegas.com",  # Resorts World Las Vegas own domain (poker page used for manual review of F78)
     "aria.mgmresorts.com",
     "google.com",
     # Clark County government schedule of combined transient lodging rates (Appendix III),
@@ -46,6 +45,8 @@ OFFICIAL_HOSTS = (
     "clarkcountynv.gov",
     # MGM Resorts' own content delivery host, linked from the official resort pages.
     "assets.contentstack.io",
+    # Resorts World Las Vegas, the property's own site (poker-room page reference, flag F80).
+    "rwlasvegas.com",
 )
 
 PAGES = (

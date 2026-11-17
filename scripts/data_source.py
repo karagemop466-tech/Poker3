@@ -732,7 +732,7 @@ FLAGS = [
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar"),
     dict(id="F32", area="Walking routes", severity="Medium",
          title="The 30-minute walking check does not cover every hotel–venue pair",
-         detail=("The current 15 route rows cover every hotel to the Venetian poker room (read 2026-11-17, see F77), the Venetian-to-Bellagio reverse pair and selected on-site pairs. The requested full hotel-by-venue matrix would contain 56 pairs (8 hotel records × 7 venue records); the remaining pairs, including every pair that involves Mandalay Bay, have no checked walking time here and are not assumed to meet the 30-minute limit. The schedule filter applies to the first route card of each Venetian route. Check the official property addresses and each Google/Apple walking route before comparing other hotel choices."),
+         detail=("The current 15 route rows cover every hotel to the Venetian poker room (read 2026-11-17, see F81), the Venetian-to-Bellagio reverse pair and selected on-site pairs. The requested full hotel-by-venue matrix would contain 56 pairs (8 hotel records × 7 venue records); the remaining pairs, including every pair that involves Mandalay Bay, have no checked walking time here and are not assumed to meet the 30-minute limit. The schedule filter applies to the first route card of each Venetian route. Check the official property addresses and each Google/Apple walking route before comparing other hotel choices."),
          source="https://www.google.com/maps/dir/?api=1&travelmode=walking"),
     dict(id="F33", area="Schedule overlap", severity="Medium",
          title="Day 2 restarts of earlier Venetian events overlap the trip-window primaries",
@@ -788,19 +788,22 @@ FLAGS = [
 
     
     dict(id="F39", area="Hotel cost", severity="Medium",
-         title="Wynn, Caesars Palace and Horseshoe print no room-tax percentage, so their true nightly cost stays open",
-         detail=("Wynn publishes 'plus tax' on the resort fee and on the room rate but no percentage (page re-read "
-                 "2026-11-17: 'Reservations will be charged a daily resort fee of $55 plus tax'). Caesars Palace and "
-                 "Horseshoe print only the tax amount charged on their fee. The Clark County Department of Business "
-                 "License Combined Transient Lodging Tax schedule (Appendix III of the General Information Guide for "
-                 "Transient Lodging Establishments) lists every resort hotel in the Primary Gaming Corridor at 13.38% "
-                 "- MGM Grand, Luxor, Paris, New York-New York, Sahara and Rio were read line by line on 2026-11-17 "
-                 "(session 688eb797) - and the City of Las Vegas room-tax packet prints the same 13.38%/13.00% split "
-                 "(https://files.lasvegasnevada.gov/business-licensing/RoomTaxPacket.pdf); 13.38% is also the figure "
-                 "the Venetian prints in its own hotel terms. This site does not substitute a government schedule into "
-                 "a property-published column: the row shows the reference beside a blank property figure. Closing it "
-                 "needs a dated checkout total from each property."),
-         source="https://www.wynnlasvegas.com/about-us/resort-information"),
+         title="Room-tax % is still blank in the property-published column for Wynn, Caesars, Horseshoe, Bellagio, MGM Grand and ARIA; a county per-property reference now sits beside each",
+         detail=("Checked 2026-11-17 (session arena/5b8ce14d-poker3). No property page read this session prints a room-tax percentage "
+                 "for its room rate. Wynn's terms page prints a $55 resort fee 'plus tax' with no percentage. Caesars and Horseshoe "
+                 "print only the tax amount on their resort fee ($7.35 on $54.95; $6.68 on $49.95; both 13.38% to the cent). "
+                 "The Clark County General Information Guide for Transient Lodging (July 2021 edition) lists per-property rows "
+                 "that include Wynn/Encore, Caesars Palace, Bellagio, MGM Grand, ARIA and Bally's at 13.38% (Primary Gaming "
+                 "Corridor), and its Appendix III chart prints 13.38% for a resort hotel in SD & PGC. Horseshoe is not listed under "
+                 "its own name; Bally's, at the same street address (3645 Las Vegas Blvd S), appears at 13.38%, but the former name "
+                 "is not treated as Horseshoe's own licence, so Horseshoe stays open. Only part of the guide was read (chunks 0 and "
+                 "3-11 of 12); the rows for Wynn, Bellagio, MGM Grand and Venetian were not all read to their licence numbers and are "
+                 "not quoted here. The guide is dated July 2021; the county's guidance page lists an April 2021 rate table as "
+                 "'Updated', and no 2026 rate table was found, so the listing must be re-confirmed. DECISION NEEDED: the taxRate "
+                 "column is blank by policy (tests enforce 'a figure the property printed'); the county figure is shown only as a "
+                 "reference beside it. Whether a government per-property listing may fill that column is a user decision (see "
+                 "suggestions). True nightly cost still needs a dated base rate from each property, which none of these six has published."),
+         source="https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf"),
     dict(id="F51", area="Hotel cost", severity="High",
          title="Two official Venetian pages disagree on whether the resort fee is added to the rate or included in it",
          detail=("Partly resolved on 2026-11-17 by reading the resort-fee page itself, which the earlier pass had not "
@@ -1017,6 +1020,21 @@ FLAGS = [
                  "'entry rules not yet read'. The note now states that the rules were read from the structure sheet. "
                  "No value changed; the contradiction was in the prose only."),
          source="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"),
+    dict(id="F78", area="Venetian booking engine", severity="Medium",
+         title="The same trip-window query returned two different suites and totals within about 20 minutes",
+         detail=("Observed on 2026-11-17, not inferred. The official booking engine was opened twice for the "
+                 "identical query - 2 adults, arrival 2026-11-23, departure 2026-11-30, seven nights. The read at "
+                 "about 21:54 UTC returned a venetian Newly Remodeled Luxury King suite with an estimated cost of "
+                 "stay of $4,010.55 (nightly rates 164.25/164.25/201.75/231.75/1,649.25/554.25/186.75, taxes "
+                 "$473.30). The read at about 22:15 UTC returned a palazzo Luxury King suite with an estimated "
+                 "cost of stay of $3,823.46 (nightly rates 204.25/204.25/286.75/406.75/1,119.25/561.75/204.25, "
+                 "taxes $451.21) - $187.09 less, with no change to the dates or the party size. Both quotes "
+                 "reconcile exactly to (rate + $55 resort fee) x 1.1338, so neither is arithmetic error: the "
+                 "engine's best-available offer moved between requests. Both are logged as dated observations in "
+                 "the rate log and neither replaces the other. For a like-for-like comparison, record the suite "
+                 "name, the read time and the itemised breakdown, and re-read the engine immediately before any "
+                 "nonrefundable payment."),
+         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar"),
     dict(id="F60", area="Wynn WPT", severity="Medium",
          title="The $1,100 PLO structure sheet's printed buy-in components total $1,105, not $1,100",
          detail=("The WPT World Championship structure sheet for the $1,100 PLO (Tuesday Dec 1, 1 p.m.) prints the buy-in "
@@ -1045,7 +1063,7 @@ FLAGS = [
                  "total would be, then record the answer as a dated rate-log entry."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
     dict(id="F67", area="Walking routes", severity="Medium",
-         title="Venetian to Bellagio: an earlier 27-minute read conflicts with a second read of 21 minutes on the same day (see F77)",
+         title="Venetian to Bellagio: an earlier 27-minute read conflicts with a second read of 21 minutes on the same day (see F81)",
          detail=("On 2026-11-17 the Google Maps walking card from 3355 S Las Vegas Blvd (The Venetian) to the Bellagio Poker Room, "
                  "3600 S Las Vegas Blvd, read 27 minutes for 1.1 miles via Las Vegas Blvd S. The driving card for the same pair read "
                  "8 minutes. The walking card does not print its mode label; the link requested travelmode=walking. The reverse pair, "
@@ -1054,7 +1072,7 @@ FLAGS = [
                  "minutes. The 30-minute limit is still met (27 minutes). Re-read the pair on a second day before relying on either figure. "
                  "UPDATE 2026-11-17 (session d3a4c0f8): a second walking-mode read of the same pair returned 21 minutes (0.9 mile) via Las Vegas Blvd S "
                  "and 25 minutes (1.1 miles) via Las Vegas Blvd S and Bellagio Dr, and the stored value is now 21. The 27-minute card has no saved capture, "
-                 "so the conflict stays open; see F77 for the raw record."),
+                 "so the conflict stays open; see F81 for the raw record."),
          source="https://www.google.com/maps/dir/?api=1&origin=3355+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&destination=Bellagio+Poker+Room,+3600+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&travelmode=walking"),
     dict(id="F68", area="Publishing", severity="Low",
          title="RESOLVED 2026-11-17: stale hotel, rate and route files were feeding the sheet-verification page",
@@ -1066,8 +1084,28 @@ FLAGS = [
                  "build_addendum.py now reads site/data.json and the two data modules only, so it cannot drift again. "
                  "site/data.json is the only current data file. Kept on the register as the record of the defect."),
          source="https://github.com/karagemop466-tech/Poker3/blob/main/scripts/build_addendum.py"),
-
-    dict(id="F77", area="Walking routes", severity="Medium",
+    dict(id="F79", area="Strip poker rooms", severity="Medium",
+         title="Planet Hollywood's poker room is no longer open (closed 31 January 2026), so it has no rows on this site",
+         detail=("Re-read 2026-11-17 (session arena/5b8ce14d-poker3). The official Caesars poker-tournaments page (dated 17 July 2026) "
+                 "names only Caesars Palace and Horseshoe Las Vegas as Caesars poker rooms with daily tournament schedules, and "
+                 "Planet Hollywood's own poker page could not be read (HTTP 500 on 2026-11-17). The closure is a Caesars Entertainment "
+                 "statement reported by the Las Vegas Review-Journal on 28 January 2026 (https://www.reviewjournal.com/business/casinos-gaming/"
+                 "inside-gaming-strip-casino-to-close-poker-room-3612434/): the room would not operate after 31 January, and its operations "
+                 "were consolidated into Caesars Palace and Horseshoe. Any Planet Hollywood tournament listing found online is therefore not used. "
+                 "Flamingo is also absent from the official Caesars article; a third-party closure list dates its poker-room closure to "
+                 "September 2021, which this site does not treat as verified."),
+         source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"),
+    dict(id="F80", area="Strip poker rooms", severity="Medium",
+         title="Resorts World Las Vegas: no official poker schedule could be read, and third-party sources disagree on its tournaments",
+         detail=("Checked 2026-11-17 (session arena/5b8ce14d-poker3). Official rwlasvegas.com pages read: the poker-invite e-mail page "
+                 "(no schedule); /gaming/poker-room/poker-room-dining/ (dining only); /gaming/casino-events/ (promotions, no poker "
+                 "tournament). /poker, /casino/poker/ and /poker-room/ returned no page. Third-party pages disagree on times and buy-ins "
+                 "for Resorts World's tournaments (PokerNews 2024, Vegas Advantage 2025, CardPlayer, Bet-NV 2023, PokerAtlas, "
+                 "Somuchpoker), and none is official, so no Resorts World row is published. Its poker room is a candidate to add "
+                 "once its official poker page is reached. A press search result (casino.org / Vital Vegas, March 2026; article not fetched) reports "
+                 "the resort saying the poker room will close on 30 March 2026. No official statement was retrieved in this pass, so the closure is unverified."),
+         source="https://www.rwlasvegas.com/gaming/casino-events/"),
+    dict(id="F81", area="Walking routes", severity="Medium",
          title="Walking minutes are Google Maps directions read 2026-11-17 in walking mode; no venue publishes them",
          detail=("All eight hotels were read to the Venetian poker room. Records, exact queries, every route card and the mode marker are in "
                  "raw/google_maps_walk_2026-11-17.json, and tests/test_walk_captures_2026_11_17.py asserts each stored minute figure against it. "
@@ -1076,21 +1114,7 @@ FLAGS = [
                  "browser locale. Google Maps is a non-official measurement source and is labelled as such. The earlier 27-minute Venetian-to-Bellagio "
                  "card (F67) has no saved capture and is not reproduced."),
          source="https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=The+Palazzo+Las+Vegas+NV&destination=The+Venetian+Resort+Las+Vegas+NV"),
-    dict(id="F78", area="Strip poker rooms", severity="High",
-         title="Resorts World Las Vegas poker room: reported closure from 30 March 2026 (press only; official page not retrieved)",
-         detail=("The dashboard had listed Resorts World as an unchecked candidate. A press search result (casino.org / Vital Vegas, March 2026; article not fetched) "
-                 "quotes the resort as saying the poker room will close on March 30. No official Resorts World statement was retrieved in this pass: the rwlasvegas.com "
-                 "poker address (https://www.rwlasvegas.com/poker/) returned a marketing e-mail page. The closure therefore rests on press reporting and is unverified. "
-                 "Manual review: confirm on the resort's own site or with the poker room. No event is shown for this room."),
-         source="https://www.rwlasvegas.com/poker/"),
-    dict(id="F79", area="Strip poker rooms", severity="High",
-         title="Planet Hollywood poker room: reported closure after January 2026 (press only; official page not retrieved)",
-         detail=("The dashboard had listed Planet Hollywood as an unchecked candidate. A press search result (Review-Journal, January 2026; article not fetched) "
-                 "reports that Caesars Entertainment will end poker at Planet Hollywood after 31 January. The official Caesars statement and the Planet Hollywood poker "
-                 "page were not retrieved in this pass. The Caesars poker page linked here was fetched on 2026-11-17 and contained no schedule or fee data. The closure is "
-                 "therefore unverified. Manual review: confirm on the Caesars or Planet Hollywood site. No event is shown for this room."),
-         source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"),
-    dict(id="F80", area="Mandalay Bay", severity="Medium",
+    dict(id="F82", area="Mandalay Bay", severity="Medium",
          title="Mandalay Bay is open on its official page, which prints no tournament schedule",
          detail=("The official poker page (read 2026-11-17) prints Wednesday to Monday, 10 AM to 4 AM, closed Tuesdays, a $60–$1,000 price range, and "
                  "'Please Visit or Call Poker Room for Details' with reservations at 702.632.7790. Third-party listings show a $60 daily at 1 PM and a "
@@ -1150,12 +1174,12 @@ QUESTIONS = [
          how="Ask the poker room for expected finish times, or treat the plan as a template and confirm on the day.",
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
     dict(id="Q08", question="What is the real walking time between each hotel and each poker room?",
-         answer="The venues publish no walking times. On 2026-11-17 every hotel was read to the Venetian poker room in Google Maps walking mode (first route card): The Palazzo 4 minutes, Wynn 13, Bellagio 21, Caesars Palace 12, Horseshoe 16, MGM Grand 35 and ARIA 31 (ARIA's other shown routes run to 38). The Venetian itself is in-property. These are Google Maps measurements, not official venue times (F77). Other hotel-to-room pairs, and every pair that includes Mandalay Bay, are not checked (F32).",
+         answer="The venues publish no walking times. On 2026-11-17 every hotel was read to the Venetian poker room in Google Maps walking mode (first route card): The Palazzo 4 minutes, Wynn 13, Bellagio 21, Caesars Palace 12, Horseshoe 16, MGM Grand 35 and ARIA 31 (ARIA's other shown routes run to 38). The Venetian itself is in-property. These are Google Maps measurements, not official venue times (F81). Other hotel-to-room pairs, and every pair that includes Mandalay Bay, are not checked (F32).",
          why="Needed", blocking="Yes - hotel-to-room pairs other than the Venetian are not checked",
          how="Use official property addresses to verify each hotel-to-room Google or Apple walking route; do not assume missing pairs are under 30 minutes.",
          source="https://www.google.com/maps/dir/?api=1&travelmode=walking"),
     dict(id="Q09", question="Which other Strip rooms should be added to the plan?",
-         answer="Mandalay Bay was added on 2026-11-17: its official page is open Wednesday to Monday but prints no tournament schedule (F80). Resorts World and Planet Hollywood are reported closed in press only (F78, F79; unverified) and are listed on the Strip-room status table, not as candidates. Not checked: South Point, Golden Nugget, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate, Tropicana, Bally's, Flamingo, LINQ, Rio and M Resort.",
+         answer="Mandalay Bay was added on 2026-11-17: its official page is open Wednesday to Monday but prints no tournament schedule (F82). Resorts World and Planet Hollywood are reported closed in press only (F79, F80; unverified) and are listed on the Strip-room status table, not as candidates. Not checked: South Point, Golden Nugget, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate, Tropicana, Bally's, Flamingo, LINQ, Rio and M Resort.",
          why="Useful", blocking="No",
          how="Say which properties to add; each needs its own official page and structure sheets.",
          source="https://www.venetianlasvegas.com/resort/casino/poker.html"),
@@ -1251,7 +1275,7 @@ SUGGESTIONS = [
                  "into the single-entry filter."),
          impact="High", effort="Medium", decision="Straightforward research, no new source needed"),
     dict(id="S04", title="Add the missing Strip poker rooms",
-         detail=("Mandalay Bay was added on 2026-11-17 (F80). Resorts World and Planet Hollywood are reported closed in press only (F78, F79; unverified). South Point, Golden Nugget, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate, Tropicana, "
+         detail=("Mandalay Bay was added on 2026-11-17 (F82). Resorts World and Planet Hollywood are reported closed in press only (F79, F80; unverified). South Point, Golden Nugget, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate, Tropicana, "
                  "Bally's, Flamingo, LINQ, Rio and M Resort are all unverified. For a trip that aims to enter as many "
                  "tournaments as possible, the daily rooms in walking range are worth more than another marquee series."),
          impact="Medium", effort="Medium", decision="Which properties to prioritise"),
@@ -1664,7 +1688,7 @@ STRIP_ROOMS = [
          evidence="aria.mgmresorts.com poker page (base read)"),
     dict(id="mandalay", name="Mandalay Bay", status="Open Wed–Mon, 10 AM–4 AM; closed Tuesdays",
          statusBasis="Official poker page read 2026-11-17 prints these hours and a $60–$1,000 price range, and says 'Please Visit or Call Poker Room for Details'. No tournament schedule is printed.",
-         read=STRIP_ROOMS_READ, official="https://mandalaybay.mgmresorts.com/en/casino/poker-tables.html", inFeed=True, flag="F80",
+         read=STRIP_ROOMS_READ, official="https://mandalaybay.mgmresorts.com/en/casino/poker-tables.html", inFeed=True, flag="F82",
          evidence="mandalaybay.mgmresorts.com/en/casino/poker-tables.html"),
     dict(id="planet_hollywood", name="Planet Hollywood", status="Reported closed after 31 Jan 2026 (press; unverified)",
          statusBasis=("Press search result (Review-Journal; article not fetched) reports a Caesars Entertainment statement that the room closes after 31 January 2026. "
@@ -1674,7 +1698,7 @@ STRIP_ROOMS = [
     dict(id="resorts_world", name="Resorts World Las Vegas", status="Reported closed 30 Mar 2026 (press; unverified)",
          statusBasis=("Press search result (casino.org / Vital Vegas; article not fetched) reports a resort statement that the room closes on March 30. "
                       "The official rwlasvegas poker page was not retrieved (the address that resolved is a marketing e-mail)."),
-         read=STRIP_ROOMS_READ, official="", inFeed=False, flag="F78",
+         read=STRIP_ROOMS_READ, official="", inFeed=False, flag="F80",
          evidence="Press search result only (casino.org / Vital Vegas; article not fetched); no official page retrieved"),
 ]
 
@@ -2472,6 +2496,22 @@ def with_live_quote(model):
             printedAverageRate=q["averageRate"], observedOn=q["observedOn"], source=q["source"],
             note=PER_NIGHT_NOTE,
         ),
+    )
+    # Per-night breakdown of the same quote. Every value is read from the quote record; the per-night true
+    # cost is derived as (rate + resort fee) x 1.1338 and rounded to the cent.
+    model["liveQuote"]["perNight"] = dict(
+        property=q["property"], guests=q["guests"], offer=q["offer"],
+        nightlyRates=rates, resortFeePerNight=q["resortFeePerNight"],
+        nightlyTrueCostDerived=[round((r + q["resortFeePerNight"]) * 1.1338, 2) for r in rates],
+        printedTaxes=q["taxes"], printedTotal=q["total"], printedAverageRate=q["averageRate"],
+        observedOn=q["observedOn"], source=q["source"],
+        note=("Re-read live from the official Venetian booking engine on 2026-11-17 for the exact trip window (2 adults, "
+              "7 nights). The per-night true costs are derived as (rate + $55) x 1.1338 and sum to the printed total. "
+              "The engine's own 'Average Rate' line prints $505.32, which equals the average of (rate + $55 resort fee), "
+              "confirming that its average-rate figure includes the resort fee. Printed tax is $0.02 above 13.38% of the "
+              "printed pre-tax subtotal; the page does not explain the difference and the printed figures are kept as "
+              "printed (flag F65). This is a dated observation, not a booking price: the engine's rates move between "
+              "reads, and the poker-suite rate page adds a play-qualification condition and the EPOKR25 code."),
     )
     return model
 

@@ -21560,6 +21560,8 @@
    "resortFeeNote": "Reservations are charged a daily resort fee of $55 plus tax for each room night, on both standard rooms and Tower Suites.",
    "taxRate": "",
    "taxNote": "Wynn prints 'plus tax' without a percentage. The 13.38% Clark County room tax is the rate printed in the Venetian hotel terms; applying it to Wynn's own total is an assumption and is labelled as one.",
+   "taxReference": "County per-property table, \"Wynn Las Vegas / Encore at Wynn Las Vegas\": 13.38% for a resort hotel in the Primary Gaming Corridor (PGC). The guide's Appendix III chart prints 13.38% for 'Resort Hotel in SD & PGC'. Shown as a reference only; the property's own page prints no room-tax percentage.",
+   "taxReferenceSource": "https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf",
    "parking": "Self parking is complimentary for registered guests. Non-registered guests pay $25 per day with the first three hours free; valet $40 per day. Complimentary self-parking is extended to Wynn Poker Room guests.",
    "parkingSource": "https://www.wynnlasvegas.com/about-us/resort-information",
    "cancellation": "A deposit of one night's room rate and tax is charged at booking. The live policy page does not print a cancellation window; the 48-hour window appears only in offer terms, so no Wynn cancellation deadline is marked verified for a flexible 2026 booking.",
@@ -21596,6 +21598,8 @@
    "resortFeeNote": "A daily resort fee of $55.00 plus applicable tax applies to all reservations.",
    "taxRate": "",
    "taxNote": "'Lodging taxes apply to the basic room rate, any resort fee, additional per occupant charges, upgrades, as well as any other charges as required by applicable law.' The percentage is not printed on the page; the Clark County rate of 13.38% is published in the Venetian hotel terms.",
+   "taxReference": "County per-property table, \"Bellagio\": 13.38% for a resort hotel in the Primary Gaming Corridor (PGC). The guide's Appendix III chart prints 13.38% for 'Resort Hotel in SD & PGC'. Shown as a reference only; the property's own page prints no room-tax percentage.",
+   "taxReferenceSource": "https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf",
    "parking": "",
    "parkingSource": "https://bellagio.mgmresorts.com/en/terms-and-conditions.html",
    "cancellation": "The first night's deposit is fully refundable if cancellation is received at least 72 hours prior to arrival. Cancelling later, or failing to show, forfeits the first night. Complimentary stays incur a $165 mid-week or $200 weekend cancellation fee.",
@@ -21630,6 +21634,8 @@
    "resortFeeNote": "A daily resort fee of $50.00 plus applicable tax applies to all reservations; waived for eligible MGM Rewards Gold+ members.",
    "taxRate": "",
    "taxNote": "'Lodging taxes apply to the basic room rate, any resort fee...' The percentage is not printed; the Clark County 13.38% rate is printed in the Venetian hotel terms.",
+   "taxReference": "County per-property table, \"MGM Grand Hotel/Casino\": 13.38% for a resort hotel in the Primary Gaming Corridor (PGC). The guide's Appendix III chart prints 13.38% for 'Resort Hotel in SD & PGC'. Shown as a reference only; the property's own page prints no room-tax percentage.",
+   "taxReferenceSource": "https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf",
    "parking": "",
    "parkingSource": "",
    "cancellation": "The first night's deposit is fully refundable with notice at least 72 hours before arrival; later cancellations and no-shows forfeit the first night.",
@@ -21672,7 +21678,7 @@
    "source": "https://www.caesars.com/caesars-palace/hotels",
    "feeSource": "https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=December&propCode=clv",
    "taxSource": "https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=December&propCode=clv",
-   "taxReference": "13.38% is the combined transient lodging tax rate published for properties inside the Primary Gaming Corridor (13.00% outside it). Government sources read 2026-11-17: the Clark County Department of Business License schedule (Appendix III) lists the corridor resort hotels at 13.38% line by line; the City of Las Vegas room-tax packet (https://files.lasvegasnevada.gov/business-licensing/RoomTaxPacket.pdf) prints the same split. The rate is a reference beside the property's own figure, never a substitute for it.",
+   "taxReference": "County per-property table, \"Caesars Palace\", licence 1136233.RES-001 (the county table prints its address as \"35/0\"; not used): 13.38% for a resort hotel in the Primary Gaming Corridor (PGC). The guide's Appendix III chart prints 13.38% for 'Resort Hotel in SD & PGC'. Shown as a reference only; the property's own page prints no room-tax percentage. Caesars' own fee block prints $7.35 tax on its $54.95 fee; 13.38% of $54.95 is $7.35 to the cent, which agrees with the county figure but is not itself a printed percentage.",
    "taxReferenceSource": "https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf",
    "qualityNote": "Not scored. No official quality metric is published. Facts published by the property for 2026 stays: 3,976 rooms, 11 restaurants, full-service spa, pool complex; 21+ check-in.",
    "status": "Resort fee, deposit, parking policy and check-in/check-out are confirmed from the property's own booking page on 2026-11-17. The room rate and the room-tax percentage are still not published, so no true nightly cost can be computed from property-published components.",
@@ -21706,7 +21712,7 @@
    "source": "https://www.caesars.com/horseshoe-las-vegas/hotels",
    "feeSource": "https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=November&propCode=blv",
    "taxSource": "https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=November&propCode=blv",
-   "taxReference": "13.38% is the combined transient lodging tax rate published for properties inside the Primary Gaming Corridor (13.00% outside it). Government sources read 2026-11-17: the Clark County Department of Business License schedule (Appendix III) lists the corridor resort hotels at 13.38% line by line; the City of Las Vegas room-tax packet (https://files.lasvegasnevada.gov/business-licensing/RoomTaxPacket.pdf) prints the same split. The rate is a reference beside the property's own figure, never a substitute for it.",
+   "taxReference": "County per-property table, \"Bally's Las Vegas\", 3645 Las Vegas Blvd S (the Horseshoe page prints the same street address; the county table uses the former name, so this entry is not treated as Horseshoe's own licence): 13.38% for a resort hotel in the Primary Gaming Corridor (PGC). The guide's Appendix III chart prints 13.38% for 'Resort Hotel in SD & PGC'. Shown as a reference only; the property's own page prints no room-tax percentage. Horseshoe's own fee block prints $6.68 tax on its $49.95 fee; 13.38% of $49.95 is $6.68 to the cent.",
    "taxReferenceSource": "https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf",
    "qualityNote": "Not scored. No official quality metric is published. Facts published by the property for 2026 stays: 2,056 rooms, 10 restaurants, outdoor seasonal pool, 21+ check-in.",
    "status": "The only reviewed property whose official calendar publishes a dated lowest-available rate per night for the trip window (see the rate log, 2026-11-17). Those cells already include the $49.95 resort fee, so the fee must not be added again; the room tax is not printed, so no true nightly cost is computed.",
@@ -21730,6 +21736,8 @@
    "resortFeeNote": "A daily resort fee of $55.00 plus applicable tax applies to all reservations; waived for eligible MGM Rewards Gold+ members.",
    "taxRate": "",
    "taxNote": "Lodging taxes apply to the basic room rate and to any resort fee. The percentage is not printed; the 13.38% Clark County rate is printed in the Venetian hotel terms.",
+   "taxReference": "County per-property table, \"Aria Resort & Casino\", 3730 Las Vegas Blvd S: 13.38% for a resort hotel in the Primary Gaming Corridor (PGC). The guide's Appendix III chart prints 13.38% for 'Resort Hotel in SD & PGC'. Shown as a reference only; the property's own page prints no room-tax percentage.",
+   "taxReferenceSource": "https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf",
    "parking": "",
    "parkingSource": "",
    "cancellation": "The first night's deposit is fully refundable with notice at least 72 hours before arrival; later cancellations and no-shows forfeit the first night.",
@@ -21953,6 +21961,39 @@
    "source": "https://mgmgrand.mgmresorts.com/en/hotel.html",
    "feeSource": "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html",
    "taxSource": "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html"
+  },
+  {
+   "hotel": "palazzo",
+   "observedOn": "2026-11-17",
+   "baseRate": "",
+   "publishedStartingRates": "204.25 (Nov 23), 204.25 (Nov 24), 286.75 (Nov 25), 406.75 (Nov 26), 1,119.25 (Nov 27), 561.75 (Nov 28), 204.25 (Nov 29) per night, rate before resort fee",
+   "resortFee": "55.00 per night",
+   "tax": "451.21 printed (7 nights)",
+   "trueNightlyLow": "293.94",
+   "trueNightlyHigh": "1331.36",
+   "nightlyRates": [
+    204.25,
+    204.25,
+    286.75,
+    406.75,
+    1119.25,
+    561.75,
+    204.25
+   ],
+   "nightlyTrueCost": [
+    293.94,
+    293.94,
+    387.48,
+    523.53,
+    1331.36,
+    699.27,
+    293.94
+   ],
+   "quoteType": "Dated official checkout total (2 adults, 7 nights, 23-30 Nov 2026, best available palazzo Luxury King suite) - read 2026-11-17 about 22:15 UTC",
+   "note": "Second read of the identical query (2 adults, arrival 23 Nov, departure 30 Nov) about 20 minutes after the earlier read the same day: the engine returned a different suite tower - a palazzo Luxury King (about 720 sq ft) instead of the venetian Newly Remodeled Luxury King - and a lower total, $3,823.46 against $4,010.55, a difference of $187.09 with no change to dates or party size (flag F78). Printed on the page: estimated cost of stay $3,823.46, average rate $481.75, taxes $451.21, $55.00 resort fee on each of the seven nights. The seven derived per-night true costs (rate + $55) x 1.1338 are 293.94, 293.94, 387.48, 523.53, 1331.36, 699.27 and 293.94, which add to the printed $3,823.46 exactly, and 13.38% of the printed pre-tax subtotal of $3,372.25 is the printed $451.21. This is a dated observation of the engine's best-available offer, not a booking price; compare like-for-like by suite name and read time before budgeting (see the rate log and flag F78).",
+   "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar",
+   "feeSource": "https://www.venetianlasvegas.com/resort/resort-fee.html",
+   "taxSource": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html"
   },
   {
    "hotel": "venetian",
@@ -22949,7 +22990,7 @@
    "area": "Walking routes",
    "severity": "Medium",
    "title": "The 30-minute walking check does not cover every hotel–venue pair",
-   "detail": "The current 15 route rows cover every hotel to the Venetian poker room (read 2026-11-17, see F77), the Venetian-to-Bellagio reverse pair and selected on-site pairs. The requested full hotel-by-venue matrix would contain 56 pairs (8 hotel records × 7 venue records); the remaining pairs, including every pair that involves Mandalay Bay, have no checked walking time here and are not assumed to meet the 30-minute limit. The schedule filter applies to the first route card of each Venetian route. Check the official property addresses and each Google/Apple walking route before comparing other hotel choices.",
+   "detail": "The current 15 route rows cover every hotel to the Venetian poker room (read 2026-11-17, see F81), the Venetian-to-Bellagio reverse pair and selected on-site pairs. The requested full hotel-by-venue matrix would contain 56 pairs (8 hotel records × 7 venue records); the remaining pairs, including every pair that involves Mandalay Bay, have no checked walking time here and are not assumed to meet the 30-minute limit. The schedule filter applies to the first route card of each Venetian route. Check the official property addresses and each Google/Apple walking route before comparing other hotel choices.",
    "source": "https://www.google.com/maps/dir/?api=1&travelmode=walking"
   },
   {
@@ -22996,9 +23037,9 @@
    "id": "F39",
    "area": "Hotel cost",
    "severity": "Medium",
-   "title": "Wynn, Caesars Palace and Horseshoe print no room-tax percentage, so their true nightly cost stays open",
-   "detail": "Wynn publishes 'plus tax' on the resort fee and on the room rate but no percentage (page re-read 2026-11-17: 'Reservations will be charged a daily resort fee of $55 plus tax'). Caesars Palace and Horseshoe print only the tax amount charged on their fee. The Clark County Department of Business License Combined Transient Lodging Tax schedule (Appendix III of the General Information Guide for Transient Lodging Establishments) lists every resort hotel in the Primary Gaming Corridor at 13.38% - MGM Grand, Luxor, Paris, New York-New York, Sahara and Rio were read line by line on 2026-11-17 (session 688eb797) - and the City of Las Vegas room-tax packet prints the same 13.38%/13.00% split (https://files.lasvegasnevada.gov/business-licensing/RoomTaxPacket.pdf); 13.38% is also the figure the Venetian prints in its own hotel terms. This site does not substitute a government schedule into a property-published column: the row shows the reference beside a blank property figure. Closing it needs a dated checkout total from each property.",
-   "source": "https://www.wynnlasvegas.com/about-us/resort-information"
+   "title": "Room-tax % is still blank in the property-published column for Wynn, Caesars, Horseshoe, Bellagio, MGM Grand and ARIA; a county per-property reference now sits beside each",
+   "detail": "Checked 2026-11-17 (session arena/5b8ce14d-poker3). No property page read this session prints a room-tax percentage for its room rate. Wynn's terms page prints a $55 resort fee 'plus tax' with no percentage. Caesars and Horseshoe print only the tax amount on their resort fee ($7.35 on $54.95; $6.68 on $49.95; both 13.38% to the cent). The Clark County General Information Guide for Transient Lodging (July 2021 edition) lists per-property rows that include Wynn/Encore, Caesars Palace, Bellagio, MGM Grand, ARIA and Bally's at 13.38% (Primary Gaming Corridor), and its Appendix III chart prints 13.38% for a resort hotel in SD & PGC. Horseshoe is not listed under its own name; Bally's, at the same street address (3645 Las Vegas Blvd S), appears at 13.38%, but the former name is not treated as Horseshoe's own licence, so Horseshoe stays open. Only part of the guide was read (chunks 0 and 3-11 of 12); the rows for Wynn, Bellagio, MGM Grand and Venetian were not all read to their licence numbers and are not quoted here. The guide is dated July 2021; the county's guidance page lists an April 2021 rate table as 'Updated', and no 2026 rate table was found, so the listing must be re-confirmed. DECISION NEEDED: the taxRate column is blank by policy (tests enforce 'a figure the property printed'); the county figure is shown only as a reference beside it. Whether a government per-property listing may fill that column is a user decision (see suggestions). True nightly cost still needs a dated base rate from each property, which none of these six has published.",
+   "source": "https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf"
   },
   {
    "id": "F51",
@@ -23169,6 +23210,14 @@
    "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"
   },
   {
+   "id": "F78",
+   "area": "Venetian booking engine",
+   "severity": "Medium",
+   "title": "The same trip-window query returned two different suites and totals within about 20 minutes",
+   "detail": "Observed on 2026-11-17, not inferred. The official booking engine was opened twice for the identical query - 2 adults, arrival 2026-11-23, departure 2026-11-30, seven nights. The read at about 21:54 UTC returned a venetian Newly Remodeled Luxury King suite with an estimated cost of stay of $4,010.55 (nightly rates 164.25/164.25/201.75/231.75/1,649.25/554.25/186.75, taxes $473.30). The read at about 22:15 UTC returned a palazzo Luxury King suite with an estimated cost of stay of $3,823.46 (nightly rates 204.25/204.25/286.75/406.75/1,119.25/561.75/204.25, taxes $451.21) - $187.09 less, with no change to the dates or the party size. Both quotes reconcile exactly to (rate + $55 resort fee) x 1.1338, so neither is arithmetic error: the engine's best-available offer moved between requests. Both are logged as dated observations in the rate log and neither replaces the other. For a like-for-like comparison, record the suite name, the read time and the itemised breakdown, and re-read the engine immediately before any nonrefundable payment.",
+   "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar"
+  },
+  {
    "id": "F60",
    "area": "Wynn WPT",
    "severity": "Medium",
@@ -23196,8 +23245,8 @@
    "id": "F67",
    "area": "Walking routes",
    "severity": "Medium",
-   "title": "Venetian to Bellagio: an earlier 27-minute read conflicts with a second read of 21 minutes on the same day (see F77)",
-   "detail": "On 2026-11-17 the Google Maps walking card from 3355 S Las Vegas Blvd (The Venetian) to the Bellagio Poker Room, 3600 S Las Vegas Blvd, read 27 minutes for 1.1 miles via Las Vegas Blvd S. The driving card for the same pair read 8 minutes. The walking card does not print its mode label; the link requested travelmode=walking. The reverse pair, Bellagio Hotel & Casino to The Venetian, read 21 minutes (0.9 mile) the same day, which matches the stored route. The day plan uses only the venue-to-Venetian direction, so a Venetian-to-Bellagio transfer is understated by six minutes. The 30-minute limit is still met (27 minutes). Re-read the pair on a second day before relying on either figure. UPDATE 2026-11-17 (session d3a4c0f8): a second walking-mode read of the same pair returned 21 minutes (0.9 mile) via Las Vegas Blvd S and 25 minutes (1.1 miles) via Las Vegas Blvd S and Bellagio Dr, and the stored value is now 21. The 27-minute card has no saved capture, so the conflict stays open; see F77 for the raw record.",
+   "title": "Venetian to Bellagio: an earlier 27-minute read conflicts with a second read of 21 minutes on the same day (see F81)",
+   "detail": "On 2026-11-17 the Google Maps walking card from 3355 S Las Vegas Blvd (The Venetian) to the Bellagio Poker Room, 3600 S Las Vegas Blvd, read 27 minutes for 1.1 miles via Las Vegas Blvd S. The driving card for the same pair read 8 minutes. The walking card does not print its mode label; the link requested travelmode=walking. The reverse pair, Bellagio Hotel & Casino to The Venetian, read 21 minutes (0.9 mile) the same day, which matches the stored route. The day plan uses only the venue-to-Venetian direction, so a Venetian-to-Bellagio transfer is understated by six minutes. The 30-minute limit is still met (27 minutes). Re-read the pair on a second day before relying on either figure. UPDATE 2026-11-17 (session d3a4c0f8): a second walking-mode read of the same pair returned 21 minutes (0.9 mile) via Las Vegas Blvd S and 25 minutes (1.1 miles) via Las Vegas Blvd S and Bellagio Dr, and the stored value is now 21. The 27-minute card has no saved capture, so the conflict stays open; see F81 for the raw record.",
    "source": "https://www.google.com/maps/dir/?api=1&origin=3355+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&destination=Bellagio+Poker+Room,+3600+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&travelmode=walking"
   },
   {
@@ -23209,7 +23258,23 @@
    "source": "https://github.com/karagemop466-tech/Poker3/blob/main/scripts/build_addendum.py"
   },
   {
-   "id": "F77",
+   "id": "F79",
+   "area": "Strip poker rooms",
+   "severity": "Medium",
+   "title": "Planet Hollywood's poker room is no longer open (closed 31 January 2026), so it has no rows on this site",
+   "detail": "Re-read 2026-11-17 (session arena/5b8ce14d-poker3). The official Caesars poker-tournaments page (dated 17 July 2026) names only Caesars Palace and Horseshoe Las Vegas as Caesars poker rooms with daily tournament schedules, and Planet Hollywood's own poker page could not be read (HTTP 500 on 2026-11-17). The closure is a Caesars Entertainment statement reported by the Las Vegas Review-Journal on 28 January 2026 (https://www.reviewjournal.com/business/casinos-gaming/inside-gaming-strip-casino-to-close-poker-room-3612434/): the room would not operate after 31 January, and its operations were consolidated into Caesars Palace and Horseshoe. Any Planet Hollywood tournament listing found online is therefore not used. Flamingo is also absent from the official Caesars article; a third-party closure list dates its poker-room closure to September 2021, which this site does not treat as verified.",
+   "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"
+  },
+  {
+   "id": "F80",
+   "area": "Strip poker rooms",
+   "severity": "Medium",
+   "title": "Resorts World Las Vegas: no official poker schedule could be read, and third-party sources disagree on its tournaments",
+   "detail": "Checked 2026-11-17 (session arena/5b8ce14d-poker3). Official rwlasvegas.com pages read: the poker-invite e-mail page (no schedule); /gaming/poker-room/poker-room-dining/ (dining only); /gaming/casino-events/ (promotions, no poker tournament). /poker, /casino/poker/ and /poker-room/ returned no page. Third-party pages disagree on times and buy-ins for Resorts World's tournaments (PokerNews 2024, Vegas Advantage 2025, CardPlayer, Bet-NV 2023, PokerAtlas, Somuchpoker), and none is official, so no Resorts World row is published. Its poker room is a candidate to add once its official poker page is reached. A press search result (casino.org / Vital Vegas, March 2026; article not fetched) reports the resort saying the poker room will close on 30 March 2026. No official statement was retrieved in this pass, so the closure is unverified.",
+   "source": "https://www.rwlasvegas.com/gaming/casino-events/"
+  },
+  {
+   "id": "F81",
    "area": "Walking routes",
    "severity": "Medium",
    "title": "Walking minutes are Google Maps directions read 2026-11-17 in walking mode; no venue publishes them",
@@ -23217,23 +23282,7 @@
    "source": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=The+Palazzo+Las+Vegas+NV&destination=The+Venetian+Resort+Las+Vegas+NV"
   },
   {
-   "id": "F78",
-   "area": "Strip poker rooms",
-   "severity": "High",
-   "title": "Resorts World Las Vegas poker room: reported closure from 30 March 2026 (press only; official page not retrieved)",
-   "detail": "The dashboard had listed Resorts World as an unchecked candidate. A press search result (casino.org / Vital Vegas, March 2026; article not fetched) quotes the resort as saying the poker room will close on March 30. No official Resorts World statement was retrieved in this pass: the rwlasvegas.com poker address (https://www.rwlasvegas.com/poker/) returned a marketing e-mail page. The closure therefore rests on press reporting and is unverified. Manual review: confirm on the resort's own site or with the poker room. No event is shown for this room.",
-   "source": "https://www.rwlasvegas.com/poker/"
-  },
-  {
-   "id": "F79",
-   "area": "Strip poker rooms",
-   "severity": "High",
-   "title": "Planet Hollywood poker room: reported closure after January 2026 (press only; official page not retrieved)",
-   "detail": "The dashboard had listed Planet Hollywood as an unchecked candidate. A press search result (Review-Journal, January 2026; article not fetched) reports that Caesars Entertainment will end poker at Planet Hollywood after 31 January. The official Caesars statement and the Planet Hollywood poker page were not retrieved in this pass. The Caesars poker page linked here was fetched on 2026-11-17 and contained no schedule or fee data. The closure is therefore unverified. Manual review: confirm on the Caesars or Planet Hollywood site. No event is shown for this room.",
-   "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"
-  },
-  {
-   "id": "F80",
+   "id": "F82",
    "area": "Mandalay Bay",
    "severity": "Medium",
    "title": "Mandalay Bay is open on its official page, which prints no tournament schedule",
@@ -23308,7 +23357,7 @@
   {
    "id": "Q08",
    "question": "What is the real walking time between each hotel and each poker room?",
-   "answer": "The venues publish no walking times. On 2026-11-17 every hotel was read to the Venetian poker room in Google Maps walking mode (first route card): The Palazzo 4 minutes, Wynn 13, Bellagio 21, Caesars Palace 12, Horseshoe 16, MGM Grand 35 and ARIA 31 (ARIA's other shown routes run to 38). The Venetian itself is in-property. These are Google Maps measurements, not official venue times (F77). Other hotel-to-room pairs, and every pair that includes Mandalay Bay, are not checked (F32).",
+   "answer": "The venues publish no walking times. On 2026-11-17 every hotel was read to the Venetian poker room in Google Maps walking mode (first route card): The Palazzo 4 minutes, Wynn 13, Bellagio 21, Caesars Palace 12, Horseshoe 16, MGM Grand 35 and ARIA 31 (ARIA's other shown routes run to 38). The Venetian itself is in-property. These are Google Maps measurements, not official venue times (F81). Other hotel-to-room pairs, and every pair that includes Mandalay Bay, are not checked (F32).",
    "why": "Needed",
    "blocking": "Yes - hotel-to-room pairs other than the Venetian are not checked",
    "how": "Use official property addresses to verify each hotel-to-room Google or Apple walking route; do not assume missing pairs are under 30 minutes.",
@@ -23317,7 +23366,7 @@
   {
    "id": "Q09",
    "question": "Which other Strip rooms should be added to the plan?",
-   "answer": "Mandalay Bay was added on 2026-11-17: its official page is open Wednesday to Monday but prints no tournament schedule (F80). Resorts World and Planet Hollywood are reported closed in press only (F78, F79; unverified) and are listed on the Strip-room status table, not as candidates. Not checked: South Point, Golden Nugget, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate, Tropicana, Bally's, Flamingo, LINQ, Rio and M Resort.",
+   "answer": "Mandalay Bay was added on 2026-11-17: its official page is open Wednesday to Monday but prints no tournament schedule (F82). Resorts World and Planet Hollywood are reported closed in press only (F79, F80; unverified) and are listed on the Strip-room status table, not as candidates. Not checked: South Point, Golden Nugget, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate, Tropicana, Bally's, Flamingo, LINQ, Rio and M Resort.",
    "why": "Useful",
    "blocking": "No",
    "how": "Say which properties to add; each needs its own official page and structure sheets.",
@@ -23433,7 +23482,7 @@
   {
    "id": "S04",
    "title": "Add the missing Strip poker rooms",
-   "detail": "Mandalay Bay was added on 2026-11-17 (F80). Resorts World and Planet Hollywood are reported closed in press only (F78, F79; unverified). South Point, Golden Nugget, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate, Tropicana, Bally's, Flamingo, LINQ, Rio and M Resort are all unverified. For a trip that aims to enter as many tournaments as possible, the daily rooms in walking range are worth more than another marquee series.",
+   "detail": "Mandalay Bay was added on 2026-11-17 (F82). Resorts World and Planet Hollywood are reported closed in press only (F79, F80; unverified). South Point, Golden Nugget, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate, Tropicana, Bally's, Flamingo, LINQ, Rio and M Resort are all unverified. For a trip that aims to enter as many tournaments as possible, the daily rooms in walking range are worth more than another marquee series.",
    "impact": "Medium",
    "effort": "Medium",
    "decision": "Which properties to prioritise"
@@ -26456,7 +26505,7 @@
    "read": "2026-11-17",
    "official": "https://mandalaybay.mgmresorts.com/en/casino/poker-tables.html",
    "inFeed": true,
-   "flag": "F80",
+   "flag": "F82",
    "evidence": "mandalaybay.mgmresorts.com/en/casino/poker-tables.html"
   },
   {
@@ -26478,7 +26527,7 @@
    "read": "2026-11-17",
    "official": "",
    "inFeed": false,
-   "flag": "F78",
+   "flag": "F80",
    "evidence": "Press search result only (casino.org / Vital Vegas; article not fetched); no official page retrieved"
   }
  ],

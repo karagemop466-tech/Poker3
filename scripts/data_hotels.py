@@ -60,6 +60,30 @@ ROOM_TAX_REFERENCE_NOTE = ("13.38% is the combined transient lodging tax rate pu
                            "(https://files.lasvegasnevada.gov/business-licensing/RoomTaxPacket.pdf) prints the same "
                            "split. The rate is a reference beside the property's own figure, never a substitute for it.")
 
+# Per-property lines from the same county table (Appendix III's per-property list, 2021 edition).
+# Read line by line on 2026-11-17 (session arena/5b8ce14d-poker3). The county guide's own link text
+# reads "Rates Effective 3-1-17 by Property", and the county guidance page links the rate table as
+# "Transient Lodging Tax Rates Effective as of April 2021". Each line is a REFERENCE only: the
+# property's own page prints no room-tax percentage, so `taxRate` stays blank (tests enforce this).
+def county_reference(listing: str, extra: str = "") -> str:
+    return ("County per-property table, " + listing + ": 13.38% for a resort hotel in the Primary Gaming Corridor (PGC). "
+            "The guide's Appendix III chart prints 13.38% for 'Resort Hotel in SD & PGC'. Shown as a reference only; "
+            "the property's own page prints no room-tax percentage."
+            + (" " + extra if extra else ""))
+
+WYNN_COUNTY_REF = county_reference("\"Wynn Las Vegas / Encore at Wynn Las Vegas\"")
+BELLAGIO_COUNTY_REF = county_reference("\"Bellagio\"")
+MGM_COUNTY_REF = county_reference("\"MGM Grand Hotel/Casino\"")
+ARIA_COUNTY_REF = county_reference("\"Aria Resort & Casino\", 3730 Las Vegas Blvd S")
+CAESARS_COUNTY_REF = county_reference(
+    "\"Caesars Palace\", licence 1136233.RES-001 (the county table prints its address as \"35/0\"; not used)",
+    "Caesars' own fee block prints $7.35 tax on its $54.95 fee; 13.38% of $54.95 is $7.35 to the cent, which "
+    "agrees with the county figure but is not itself a printed percentage.")
+HORSESHOE_COUNTY_REF = county_reference(
+    "\"Bally's Las Vegas\", 3645 Las Vegas Blvd S (the Horseshoe page prints the same street address; the county "
+    "table uses the former name, so this entry is not treated as Horseshoe's own licence)",
+    "Horseshoe's own fee block prints $6.68 tax on its $49.95 fee; 13.38% of $49.95 is $6.68 to the cent.")
+
 # Dated calendar cells read off the official Horseshoe booking page at 01:26 UTC and again at
 # 01:31 UTC on 2026-11-17.  The page states: "Rates shown reflect the lowest available rate and
 # include applicable resort fees."  They are observations of a moving calendar, not quotes.
@@ -363,6 +387,7 @@ HOTELS = [
         taxRate="",
         taxNote=("Wynn prints 'plus tax' without a percentage. The 13.38% Clark County room tax is the rate printed in the "
                  "Venetian hotel terms; applying it to Wynn's own total is an assumption and is labelled as one."),
+        taxReference=WYNN_COUNTY_REF, taxReferenceSource=ROOM_TAX_REFERENCE,
         parking=("Self parking is complimentary for registered guests. Non-registered guests pay $25 per day with the first "
                  "three hours free; valet $40 per day. Complimentary self-parking is extended to Wynn Poker Room guests."),
         parkingSource=WYNN_TERMS,
@@ -395,6 +420,7 @@ HOTELS = [
         taxNote=("'Lodging taxes apply to the basic room rate, any resort fee, additional per occupant charges, upgrades, as "
                  "well as any other charges as required by applicable law.' The percentage is not printed on the page; the "
                  "Clark County rate of 13.38% is published in the Venetian hotel terms."),
+        taxReference=BELLAGIO_COUNTY_REF, taxReferenceSource=ROOM_TAX_REFERENCE,
         parking="",
         parkingSource=BELLAGIO_TERMS,
         cancellation=("The first night's deposit is fully refundable if cancellation is received at least 72 hours prior to "
@@ -419,6 +445,7 @@ HOTELS = [
         taxRate="",
         taxNote=("'Lodging taxes apply to the basic room rate, any resort fee...' The percentage is not printed; the "
                  "Clark County 13.38% rate is printed in the Venetian hotel terms."),
+        taxReference=MGM_COUNTY_REF, taxReferenceSource=ROOM_TAX_REFERENCE,
         parking="", parkingSource="",
         cancellation=("The first night's deposit is fully refundable with notice at least 72 hours before arrival; later "
                       "cancellations and no-shows forfeit the first night."),
@@ -454,7 +481,7 @@ HOTELS = [
         checkInOut="Check-in starts at 4 PM; check-out is 11 AM; minimum check-in age is 21.",
         qualification="",
         source=CAESARS_HOTEL, feeSource=CAESARS_CALENDAR, taxSource=CAESARS_CALENDAR,
-        taxReference=ROOM_TAX_REFERENCE_NOTE, taxReferenceSource=ROOM_TAX_REFERENCE,
+        taxReference=CAESARS_COUNTY_REF, taxReferenceSource=ROOM_TAX_REFERENCE,
         qualityNote=("Not scored. No official quality metric is published. Facts published by the property for 2026 "
                      "stays: 3,976 rooms, 11 restaurants, full-service spa, pool complex; 21+ check-in."),
         status=("Resort fee, deposit, parking policy and check-in/check-out are confirmed from the property's own "
@@ -485,7 +512,7 @@ HOTELS = [
         checkInOut="Check-in starts at 4 PM; check-out is 11 AM; minimum check-in age is 21.",
         qualification="",
         source=HORSESHOE_HOTEL, feeSource=HORSESHOE_CALENDAR_NOV, taxSource=HORSESHOE_CALENDAR_NOV,
-        taxReference=ROOM_TAX_REFERENCE_NOTE, taxReferenceSource=ROOM_TAX_REFERENCE,
+        taxReference=HORSESHOE_COUNTY_REF, taxReferenceSource=ROOM_TAX_REFERENCE,
         qualityNote=("Not scored. No official quality metric is published. Facts published by the property for 2026 "
                      "stays: 2,056 rooms, 10 restaurants, outdoor seasonal pool, 21+ check-in."),
         status=("The only reviewed property whose official calendar publishes a dated lowest-available rate per night "
@@ -503,6 +530,7 @@ HOTELS = [
         taxRate="",
         taxNote=("Lodging taxes apply to the basic room rate and to any resort fee. The percentage is not printed; the "
                  "13.38% Clark County rate is printed in the Venetian hotel terms."),
+        taxReference=ARIA_COUNTY_REF, taxReferenceSource=ROOM_TAX_REFERENCE,
         parking="", parkingSource="",
         cancellation=("The first night's deposit is fully refundable with notice at least 72 hours before arrival; later "
                       "cancellations and no-shows forfeit the first night."),
@@ -545,6 +573,31 @@ RATE_LOG = [
                "day for other windows differed (see the rows below), so this quote is one dated observation."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar",
          feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
+    # Second read of the SAME trip window on the same day (session 7529044d, 2026-11-17 about 22:15 UTC,
+    # about 20 minutes after the read above). The engine returned a different suite tower and a different
+    # total for an identical query. Both are kept as dated observations; neither replaces the other (flag F78).
+    dict(hotel="palazzo", observedOn="2026-11-17", baseRate="",
+         publishedStartingRates="204.25 (Nov 23), 204.25 (Nov 24), 286.75 (Nov 25), 406.75 (Nov 26), "
+                                "1,119.25 (Nov 27), 561.75 (Nov 28), 204.25 (Nov 29) per night, rate before resort fee",
+         resortFee="55.00 per night",
+         tax="451.21 printed (7 nights)",
+         trueNightlyLow="293.94", trueNightlyHigh="1331.36",
+         nightlyRates=[204.25, 204.25, 286.75, 406.75, 1119.25, 561.75, 204.25],
+         nightlyTrueCost=[293.94, 293.94, 387.48, 523.53, 1331.36, 699.27, 293.94],
+         quoteType=("Dated official checkout total (2 adults, 7 nights, 23-30 Nov 2026, best available "
+                    "palazzo Luxury King suite) - read 2026-11-17 about 22:15 UTC"),
+         note=("Second read of the identical query (2 adults, arrival 23 Nov, departure 30 Nov) about 20 minutes "
+               "after the earlier read the same day: the engine returned a different suite tower - a palazzo "
+               "Luxury King (about 720 sq ft) instead of the venetian Newly Remodeled Luxury King - and a lower "
+               "total, $3,823.46 against $4,010.55, a difference of $187.09 with no change to dates or party size "
+               "(flag F78). Printed on the page: estimated cost of stay $3,823.46, average rate $481.75, taxes "
+               "$451.21, $55.00 resort fee on each of the seven nights. The seven derived per-night true costs "
+               "(rate + $55) x 1.1338 are 293.94, 293.94, 387.48, 523.53, 1331.36, 699.27 and 293.94, which add "
+               "to the printed $3,823.46 exactly, and 13.38% of the printed pre-tax subtotal of $3,372.25 is the "
+               "printed $451.21. This is a dated observation of the engine's best-available offer, not a booking "
+               "price; compare like-for-like by suite name and read time before budgeting (see the rate log and "
+               "flag F78)."),
+         source=VENETIAN_CALENDAR_TRIP_URL, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
     dict(hotel="venetian", observedOn="2026-11-17", baseRate="",
          publishedStartingRates="621.75 (Nov 17) and 164.25 (Nov 18) per night",
          resortFee="55.00 per night", tax="119.89 printed",
@@ -736,7 +789,7 @@ ROUTES = [
     # Walking routes to the Venetian poker room were re-read on 2026-11-17 in Google Maps walking mode.
     # Each row with a walkCapture key is asserted against raw/google_maps_walk_2026-11-17.json by
     # tests/test_walk_captures_2026_11_17.py. `minutes` is the first (recommended) route card; the
-    # other shown routes are in `note`. Google Maps is not an official venue source (flag F77).
+    # other shown routes are in `note`. Google Maps is not an official venue source (flag F81).
     dict(hotel="venetian", venue="venetian", minutes=0, miles="",
          note="Poker room is inside the hotel's own resort; indoor walk, no street crossing.",
          via="", source="https://www.venetianlasvegas.com/resort/casino/poker.html",
@@ -798,7 +851,7 @@ ROUTES = [
          via="Las Vegas Blvd S", source="https://bellagio.mgmresorts.com/en/casino/poker.html",
          mapsOrigin="Bellagio+Hotel+%26+Casino+Las+Vegas+NV", mapsDestination="The+Venetian+Resort+Las+Vegas+NV"),
     # Venetian hotel -> Bellagio Poker Room (reverse direction), read 2026-11-17. Replaces the earlier
-    # 27-minute single read, which has no saved capture (flag F77).
+    # 27-minute single read, which has no saved capture (flag F81).
     dict(hotel="venetian", venue="bellagio", minutes=21, miles="0.9", lastReadOn="2026-11-17", walkCapture="venetian-to-bellagio",
          note=("Google Maps walking directions read 2026-11-17: 21 min (0.9 mile) via Las Vegas Blvd S; a 25-minute route "
                "(1.1 miles) via Las Vegas Blvd S and Bellagio Dr is also shown. The same pair is 10 minutes by car on the control read."),
