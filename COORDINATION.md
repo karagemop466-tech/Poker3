@@ -3264,9 +3264,30 @@ following the pattern of the previous integration sessions.
 | R1 Re-read the official URLs the runner could not reach (17 unavailable on the last monitor run) using the platform page reader; record each result with its retrieval date | **done** | arena/37292d23 | `research/`, this section | Page reader only — sandbox `curl` cannot reach venue hosts (F40) |
 | R2 F32: extend the walking-route table for hotel–venue pairs still missing a measurement; no invented minutes | **done — 56/56 pairs** | arena/37292d23 | `scripts/data_hotels.py` (ROUTES only), `site/data.json` (regenerated) | A pair gets a value only if a maps/official reading resolves; otherwise it stays recorded as not measured |
 | R3 Live re-check of trip-window hotel readings (rate log freshness) and of any row this session touches | **done — narrowed, no new row** | arena/37292d23 | `scripts/data_hotels.py` (RATE_LOG append), `site/data.json` | Observations appended, never averaged or chosen |
-| R4 Full verification suite, PR to `main`, merge, Pages confirmation, record result here | local suite green; PR opened after this commit | arena/37292d23 | this section, `COORDINATION.md` | Flagged items do not block the merge |
+| R4 Full verification suite, PR to `main`, merge, Pages confirmation, record result here | **done — PR #118 merged (`88e709f`), Pages run `44191709464` success** | arena/37292d23 | this section, `COORDINATION.md` | Flagged items do not block the merge |
 
 **Claim push:** this commit.
+
+### Merge record (R4) — 2026-11-17 UTC
+
+- **R4 DONE — merged:** PR #118 <https://github.com/karagemop466-tech/Poker3/pull/118>
+  merged into `main` with `gh pr merge 118 --merge` at 2026-11-17T22:36:33Z
+  (merge commit `88e709f1dec995c49b9480a20f7a074adc71ba5a`).
+- PR checks before merge (final head): **verify** run `44191561929` pass (19s),
+  **transcription** run `44191561591` pass (4s).
+- Post-merge on `88e709f`: **Pages deployment run `44191709464` success**
+  (site https://karagemop466-tech.github.io/Poker3/), publish run `44191711175`
+  success, verify `44191710864` success, transcription `44191711645` success;
+  scheduled re-check run `44191711123` was still pending (non-blocking).
+- Final re-verification of the merged tree (detached checkout of `88e709f`):
+  **129 tests OK**, `verify_site` passed (341 events, 8 hotels, 56 routes,
+  43 sources, 75 flags, 7 plan days, 16 pages), `verify_nye_live` 49/49 exit 0,
+  `verify_dse_full` exit 0, `verify_live_official` exit 0, audits OK,
+  canonical smoke OK. F32/F67 present, 44 route rows dated `2026-11-17`.
+- Two merge-rebuild cycles were needed because parallel PRs (#109, #114, #116,
+  #119, #121) landed mid-flight; COORDINATION was resolved each time as
+  main's full file plus this session's section (append-vs-append, both kept).
+
 
 ### Progress record (2026-11-17 UTC, session arena/37292d23-poker3)
 
