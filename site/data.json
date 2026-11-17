@@ -20795,7 +20795,7 @@
    "area": "Hotels",
    "severity": "Medium",
    "title": "The Venetian booking calendar disagrees with the quote, and the cells move within a day",
-   "detail": "The calendar cell for November 17 read $855 in the observation recorded on 2026-11-16, while the same page's quote for the same night printed a $824.25 room rate, and an earlier observation of the same calendar on the same day recorded $605. The calendar states that its prices are the best available suite and rate, include the daily resort fee and exclude taxes. Calendar cells are logged as observations and are never used in a total. On 2026-11-17 the same booking engine, fetched live for Nov 25 to Dec 2, showed $XXX in every date cell, so the trip window is still unpriced and no cell was recorded.",
+   "detail": "The calendar cell for November 17 read $855 in the observation recorded on 2026-11-16, while the same page's quote for the same night printed a $824.25 room rate, and an earlier observation of the same calendar on the same day recorded $605. The calendar states that its prices are the best available suite and rate, include the daily resort fee and exclude taxes. Calendar cells are logged as observations and are never used in a total. On 2026-11-17 the same booking engine, fetched live for Nov 25 to Dec 2, showed no amount in any date cell, so the trip window is still unpriced and no cell was recorded.",
    "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"
   },
   {

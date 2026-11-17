@@ -289,7 +289,7 @@ FLAGS = [
                  "calendar on the same day recorded $605. The calendar states that its prices are the best available suite "
                  "and rate, include the daily resort fee and exclude taxes. Calendar cells are logged as observations and "
                  "are never used in a total. On 2026-11-17 the same booking engine, fetched live for Nov 25 to Dec 2, "
-                 "showed $XXX in every date cell, so the trip window is still unpriced and no cell was recorded."),
+                 "showed no amount in any date cell, so the trip window is still unpriced and no cell was recorded."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"),
     dict(id="F16", area="Schedule", severity="High",
          title="No official schedule publishes tournament finish times",
