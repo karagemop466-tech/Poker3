@@ -2908,3 +2908,121 @@ Bellagio/ARIA/MGM hosts timing out from the runner) - published as unavailable, 
 `audit_data.py` 37 sheets vs 94 rows, 0 failures; `audit_951cd431.py` 0 failures, 0 warnings;
 `verify_live_official.py` OK - canonical rows match both official captures line by line; `canonical_smoke.py` and
 `smoke.py` render clean; `node --check site/assets/app.js` clean; `json.tool` clean.0472662 (docs: record live verification results for arena/b13ca4cb-poker3)
+
+### Result (session `arena/3e1382ce-poker3`, 2026-11-17, 22:10-22:40 UTC)
+
+**What this session found.** The dated quote that PRs #87 and #92 put on `main` was **already out of date by the time
+this session started**, and the site did not know it. Two independent live reads of the *identical* official booking
+query for the recommended stay (23-30 November 2026, two adults, seven nights, "Book Direct: Up to 25% Off") printed
+two different totals on the same afternoon:
+
+| Read at | Suite offered | Nightly rates | Resort fee | Tax | Checkout total | Average rate |
+|---|---|---|---|---|---|---|
+| 21:54 UTC | venetian Newly Remodeled Luxury King | 164.25 / 164.25 / 201.75 / 231.75 / 1,649.25 / 554.25 / 186.75 | $55.00 | $473.30 | **$4,010.55** | $505.32 |
+| about 22:07 UTC | palazzo Luxury King | 204.25 / 204.25 / 286.75 / 406.75 / 1,119.25 / 561.75 / 204.25 | $55.00 | $451.21 | **$3,823.46** | $481.75 |
+
+Both reconcile exactly against (rate + $55) x 1.1338, per night and in total, so neither is an arithmetic error. Two
+reads minutes apart inside this session agreed on the second figure. The earlier reading is corroborated independently
+by session `arena/b13ca4cb-poker3`, whose record is preserved above, so the difference is in the venue's engine, not in
+one reader's work. The difference is $187.09 on the stay and $26.73 a night.
+
+**Changes made.**
+
+- `scripts/data_hotels.py`: `VENETIAN_QUOTE_TRIP` is now the later reading; the earlier one is kept as
+  `VENETIAN_QUOTE_TRIP_PRIOR`. Both are in `VENETIAN_QUOTES` and both have their own row in the dated `RATE_LOG`.
+  Every quote now carries a `readAt` timestamp, and the current one carries `isCurrent`.
+- `scripts/data_source.py`: the trip profile, the trip cost model, Q05, Q15, the live facts and F65/F66 now carry the
+  new figures; `liveQuote` gained `earlierSameDayReading` so the movement is published rather than hidden.
+- `scripts/data_source.py` flags: **F77** (High, new) the change monitor cannot see a price change on the booking
+  pages; **F78** (Medium, new) the same query returned two prices thirteen minutes apart; **F15**, **F36** and **F64**
+  now name the window they describe (the superseded 25 Nov - 2 Dec window) instead of asserting a gap that the dated
+  quote closed; **F77**'s detail was corrected (the raw bytes differ between the five booking URLs; it is the *visible
+  text* that is identical).
+- `scripts/data_source.py` questions and suggestions: **Q19** added (which figure should the budget use, given the
+  price moves); **S14** marked done for the trip window; **S18** rewritten to state that an automated re-quote needs a
+  rendered read; **S23** added (make the change monitor read the booking pages the way a browser does).
+- `scripts/check_sources.py`: new `mark_query_blind()` detects URLs on one path that differ only in the query string
+  and return identical visible text, and marks them `queryBlind` with a reason. New `--annotate-only` mode applies the
+  labels to the stored record without fetching, which is how the published record was updated from this sandbox.
+- `site/assets/app.js`: the quotes list now sorts newest-first by `readAt` and shows a "Current published figure" pill
+  and a "Later reading supersedes this one" pill; the trip cost line prints the earlier same-day reading; the sources
+  page prints the blind-to-changes count and the per-URL reason.
+- `site/index.html`, `site/hotels.html`, `site/calculator.html`, `site/venues/venetian.html`, `site/schedule.html`:
+  the stale claims repaired (below).
+- `README.md`: the snapshot table now carries both dated readings and the current figure; the dangling `(F38)`
+  citation is now `(F57)`; the flagged-item count is 74.
+
+**The stale claims this session repaired.** Each of these was published on a live page and had been falsified by the
+dated quote:
+
+| Where | What it said | Why it was wrong |
+|---|---|---|
+| `site/index.html` | "no date-specific checkout total exists for the trip window (F15, F36)" | The engine printed two |
+| `site/index.html` | "Eight days, fourteen sheet-screened candidates" | Seven days, twelve candidates |
+| `site/index.html` | the hotel card: "for the trip dates it returned no suite at all" | It priced the stay twice |
+| `site/hotels.html` | "For the recommended trip dates it returned no suite at all." | Same |
+| `site/hotels.html` | "A price for the trip dates themselves" listed as missing | The Venetian publishes one |
+| `site/calculator.html` | "No property publishes a date-specific total for the recommended window" | Same |
+| `site/venues/venetian.html` | "no date-specific room quote exists in the reviewed sources" | Same |
+| `site/schedule.html`, `site/assets/app.js` | "Eight days", "the eight recommended entries" | Seven, and $2,600 |
+| `README.md` | "68 items"; "(F38)" | 74 items; F38 does not exist in the register |
+| `scripts/data_source.py` | F15, F36, F64 titles and details | Asserted a closed gap |
+
+**The monitor blind spot (F77), in detail.** The five Venetian booking URLs differ only in the dates in the query
+string. All five return a response of 142,771 bytes whose *visible text* is 1,779 characters, and all five carry the
+same visible-text hash; their raw bytes differ only in material a reader never sees. The page renders its prices in the
+browser, so the response does not depend on the query at all. The scheduled re-check compares visible text, so it
+reported "unchanged" for these URLs on a day when the price moved by $187.09. The recorder now detects the situation
+from the stored hashes and marks the affected URLs `queryBlind`; the sources page says "change not detectable here"
+instead of a green "unchanged". Closing the gap properly needs a rendered read compared with a stored rendered read
+(S23). The detector was checked against the real record: it marks exactly the five booking URLs and nothing else.
+
+**Verification run on the combined tree (this branch, after merging PR #93).**
+
+| Check | Result |
+|---|---|
+| `python3 scripts/verify_site.py` | pass — 341 events, 8 hotels, 15 routes, 43 sources, **74 flags**, 7 plan days, 16 pages |
+| `python3 scripts/audit_951cd431.py` | **0 failures, 0 warnings**; 24 rate-log records; 52 sheets |
+| `python3 scripts/verify_live_official.py` | OK — the canonical rows match both official captures line by line; the dated quotes reconcile |
+| `python3 scripts/audit_data.py` | pass — 37 structure sheets against 94 scheduled rows |
+| `python3 tests/canonical_smoke.py` | pass — 11 main pages, 5 detail pages |
+| `node tests/canonical_render.js` | all pages rendered |
+| `node --check` on app.js, venue.js, canonical_render.js, site/poker3/assets/app.js | all parse |
+| `python3 -m json.tool` on site/data.json and site/poker3/data/research.json | valid |
+| `python3 -m unittest discover -s tests -p 'test_*.py'` | **126 tests, OK** (was 111) |
+| `python3 -m unittest tests.test_workflows` | 6 tests, OK |
+| `python3 tests/smoke.py` (Poker3 companion) | OK — 8 pages, 25 starts, 9 rooms, 7 hotels, 60 sources |
+| build reproducibility | two consecutive builds produce a byte-identical `site/data.json` (sha256 `2a3825ff…`) |
+
+**New tests, and the defects they were written for.**
+
+- `tests/test_flag_citations.py` — every `Fnn` cited on a published page, in the README or inside `site/data.json`
+  must exist in the register, and the README's stated item count must match it. It was written after finding that the
+  README cited `(F38)`, an ID the register does not contain: the "30 November and 1 December publish no price" finding
+  is F57. The test was checked against the pre-fix README and does flag it.
+- `tests/test_monitor_blind_spot.py` — pins the blind-spot detection and the published record.
+
+**Not done, and why.** The gap that makes F77 a permanent limitation rather than a bug is a rendered read of the
+booking pages; that needs a headless browser in CI and is recorded as S23 rather than attempted here. No telephone call
+was possible, so the poker-rate question (F66) and the single-entry question (F31) remain open. No property other than
+The Venetian has a dated quote, so the hotel comparison still cannot be like-for-like across properties (F19, F39). No
+tournament sheet states a maximum number of entries per player, so no row is promoted to confirmed single entry.
+
+**Integration log.**
+
+- Merged `refs/remotes/origin/pr93` (PR #93, session `arena/ab5d9f7d-poker3`, NYE label repair) into this branch: the
+  11 NYE rows that still carried the *Unverified* label after their sheets were read are reclassified, the `unverified`
+  category count is 0, and `single` is 52. One append/append conflict in `COORDINATION.md`; both sides kept.
+- Merged `refs/remotes/origin/pr95` (PR #95, session `arena/6d1b2adb-poker3`, root-page redirects) into this branch:
+  the nine repository-root pages become redirects into `site/`, so the legacy 2026-11-16 templates can no longer
+  contradict the dashboard. One append/append conflict in `COORDINATION.md`; both sides kept.
+- **PR #94 (session `arena/b13ca4cb-poker3`) is not merged, on purpose.** Its branch has no common ancestor with
+  `main` (its root commit is `895478b`) and predates PR #87, so diffing it against `main` shows it would *remove* the
+  dated quote: `VENETIAN_QUOTE_TRIP` and the 23-30 November `TRIP_NIGHTS` go back to the superseded 25 Nov - 2 Dec
+  window, the `liveQuote` block goes from `scripts/trip_cost.py`, the README's withdrawn $2,140 and $346.62
+  calendar-cell figures come back, and the seven-night quote renderer is replaced by one that only handles two nights.
+  Its `site/checks.json` also records `fetched: 0, failed: 98` for every URL because that sandbox could not reach the
+  hosts, which would replace a working record (`fetched: 81, failed: 17, changed: 0`) with an empty one. Its unique
+  contribution — correcting the stale "the engine publishes no price for the trip window" note in `calculator.html`
+  and `scripts/trip_cost.py` — is adopted here and implemented against a fresher quote. Its full verification record is
+  preserved verbatim above.
