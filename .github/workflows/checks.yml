@@ -23,19 +23,22 @@ name: Scheduled source re-check and daily room feed
 
 on:
   push:
+    # A change to this file itself gives the job a real run through the normal
+    # push path, so site/checks.json and site/feed/ exist and are exercised
+    # immediately instead of waiting for a cron nobody has seen fire. GitHub
+    # runs the *new* version of a workflow whose own file changes in the push.
+    # The Actions token available to a session cannot dispatch a workflow
+    # (POST /dispatches returns 403), so this trigger is the only way a session
+    # can prove the job runs.
+    #
+    # site/checks.json and site/feed/** are deliberately absent: this job writes
+    # them, so including them would make the job trigger itself.
     branches: [main]
     paths:
-      # Run as soon as the job, the data it reads or the dashboard changes, so
-      # the published change record is never older than the content it
-      # describes. It also gives the job its first real run: a cron that has
-      # never fired leaves site/checks.json absent, and the Actions token cannot
-      # dispatch this workflow by hand (POST /dispatches returns 403).
-      #
-      # site/checks.json and site/feed/** are deliberately absent: this job
-      # writes them, so including them would make it trigger itself.
       - '.github/workflows/checks.yml'
       - 'scripts/check_sources.py'
       - 'scripts/daily_feed.py'
+      - 'scripts/verify_transcription.py'
       - 'scripts/data_source.py'
       - 'scripts/data_venetian.py'
       - 'scripts/data_venues.py'
@@ -46,19 +49,6 @@ on:
     # and captures each room's daily schedule. GitHub Actions cron is UTC-only.
     - cron: "10 12 * * *"
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      # A change to this file itself gives the job a real run through the normal
-      # push path, so site/checks.json and site/feed/ exist and are exercised
-      # immediately instead of waiting for the cron. GitHub runs the *new*
-      # version of a workflow whose own file changes in the push. The Actions
-      # token available to a session cannot dispatch a workflow (HTTP 403), so
-      # this path trigger is the only way a session can prove the job runs.
-      - '.github/workflows/checks.yml'
-      - 'scripts/check_sources.py'
-      - 'scripts/daily_feed.py'
-      - 'scripts/verify_transcription.py'
 
 permissions:
   contents: write
