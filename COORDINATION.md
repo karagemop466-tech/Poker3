@@ -1015,7 +1015,7 @@ Branch: `arena/741b3a8e-poker3` (the platform binds this session to one branch; 
 | T-B Freshness: per-event status (past / today / upcoming), past rows hidden by default, snapshot date 2026-11-17 | done | 741b3a8e | `scripts/data_source.py`, `site/assets/app.js`, `site/tournaments.html`, `site/data.json` | Two events dated 2026-11-16 (1A and 1B flights) were still listed as upcoming; now marked past. Correction to the first draft of this claim, which said 26: that count included 24 undated recurring rows. |
 | T-C Hotel: official booking link per date for the fixed stay; dated rate-log entry for 2026-11-17 | done (no price captured) | 741b3a8e | `scripts/data_hotels.py`, `site/assets/app.js`, `site/hotels.html`, `site/data.json` | Booking engine prices are not in the static page; no price is invented. |
 | T-D Flags and answers for today's irregularities (stale Bellagio notice; earliest verified start; booking-engine placeholders) | done | 741b3a8e | `scripts/data_source.py`, `site/data.json`, `site/flagged.html` | |
-| T-E Tests, verification, PR to `main`, merge, Pages check | in progress | 741b3a8e | this section | See the record below. |
+| T-E Tests, verification, PR to `main`, merge, Pages check | in progress | 741b3a8e | this section | PR [#46](https://github.com/karagemop466-tech/Poker3/pull/46) open against `main`, head `8501962`. Verify workflow passed on that head. Merge and Pages result recorded below. |
 
 Claim time: 2026-11-17 (UTC). Per the coordination rules, this claim is committed and pushed before any data edit.
 
@@ -1061,3 +1061,12 @@ Claim time: 2026-11-17 (UTC). Per the coordination rules, this claim is committe
 - No live nightly rate for the fixed stay; the booking engine needs a browser read on the booking day.
 - The NYE schedule (Dec 24 to Jan 10) and its 15 structure sheets were not read today.
 - Wynn Signature Series (Jan 11 to 24, 2027) structures are unpublished on the reviewed pages.
+
+**Rebase and PR (2026-11-17, late)**
+
+- `origin/main` moved to `0d8caab` (PR #48) during this session. Merged it into this branch rather than rebasing commit by commit. The only conflicts were in `COORDINATION.md`, which keeps both records, and in the generated/source files already listed above.
+- The pre-rebase commits `ccbeca5` and `8da8039` on the remote branch were replaced by a `--force-with-lease` push (`8da8039` to `8501962`). This was needed because the rebase rewrote them. The branch belongs to this session alone.
+- The Venetian re-check was re-verified before the final commit: the Nov 16–27 rows (chunk 0) match on structure link too; the Nov 28–Dec 23 rows match on name, time, buy-in and guarantee only. Q10 and the PR body were corrected to say exactly that. The earlier "64 event numbers" claim was not supported by a count and is withdrawn.
+- Caesars chunk 2 is footer only, so the Caesars page is now read in full.
+- Local link check on `site/`: 132 local references, none broken.
+- PR #46 title and body were rewritten to match what was verified.
