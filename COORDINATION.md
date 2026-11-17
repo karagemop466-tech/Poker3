@@ -3110,3 +3110,52 @@ Branch: `arena/da83eca8-poker3` (platform-bound; the `session-<id>/<task>` namin
 - **Pages:** API reports `status: built`, source `main` `/`, https://karagemop466-tech.github.io/Poker3/ . The canonical dashboard serves the coverage matrix, the dated 23-30 Nov Venetian quote ($4,010.55 all-in) and the 72-flag register.
 - **Changes merged:** `scripts/coverage.py` + `site/coverage.json` (brief-coverage traceability matrix: 25 items, 21 shipped / 3 partial / 1 not-resolvable), `README.md` (coverage section), `COORDINATION.md` (this session's claim + result records). All other shared outputs (`site/**`, `scripts/**`, tests, workflows) unchanged from the verified `main` state.
 - **Open items (do not block merge; published on site/flagged.html):** F31 (no one-entry-per-player cap → strict-entry filter returns 0), F17 (no official 8 AM start), F16 (no published finish times), F32 (walking times are Google Maps estimates; not all pairs), F39 (room-tax % unpublished at Wynn/Caesars/Horseshoe), F56 (Wynn Signature structures unpublished), F15/F36/F57 (no date-specific hotel quotes for non-Venetian / trip dates).
+
+## Session `arena/e9de19dc-poker3` — completion of D1-D5 and final integration (2026-11-17 UTC)
+
+Branch: `arena/e9de19dc-poker3`, branched from `main` @ `b9c8d77` (PR #100 merged). No other session holds an active claim on the board when this claim was written. This session completes the D tasks left in progress by session `arena/da83eca8-poker3` and acts as the integration owner for the canonical `site/` dashboard, `scripts/**`, `tests/**`, `.github/workflows/**`, `README.md` and this section of `COORDINATION.md`. Prior artefacts (`docs/`, `verified/`, `planner/`, `single-entry/`, root legacy pages, `site/poker3/`, `handoff/`, `raw/`, `data/`) are read-only here.
+
+### Claim (recorded before any file edit)
+
+| Task | Status | Owner session | Files in scope | Notes |
+|---|---|---|---|---|
+| D1 Live re-verification of official sources behind published trip-window rows | done | arena/e9de19dc-poker3 | `scripts/data_venetian.py`, `scripts/data_hotels.py`, `scripts/data_venues.py`, `raw/**` | Live venue hosts unreachable from this sandbox (connection refused); verification is against the verbatim official copies in `raw/` and `data/`. `lastChecked` is advanced only where a row was actually re-read against a captured official source. |
+| D2 Close remaining hotel-rate gaps from official terms pages | done | arena/e9de19dc-poker3 | `scripts/data_hotels.py`, regenerated `site/data.json` | Every blank `baseRate`/`taxRate`/`trueNightly` is intentionally blank and flagged (F15, F36, F39, F51, F57, F66); nothing inferred. Dated Venetian checkout quotes re-arithmeticed and reconciled exactly. |
+| D3 Re-verify walking-route evidence; label non-venue sources honestly | done | arena/e9de19dc-poker3 | `scripts/data_hotels.py` (`routes`), `site/data.json` | All 15 route rows carry the "Google Maps walking estimate" label plus maps URL; no venue publishes a walking time, so F32 stands. No pair inferred to meet the 30-minute limit. |
+| D4 Confirm which brief items are shipped vs flagged; publish traceability | done | arena/e9de19dc-poker3 | `site/coverage.json`, `scripts/coverage.py` | 21 shipped, 3 partial (C9 dated checkout totals, C14 walking routes, U3 best-hotels ranking — all flagged), 1 not-resolvable (U4 8 AM all-day plan, F17). Nothing claimed without a location or a flag. |
+| D5 Verification suite, PR → `main`, merge, Pages confirmation, record here | done | arena/e9de19dc-poker3 | whole repo | See work log and integration record below. |
+
+### Work log
+
+**D1.** Re-ran the full verification battery against the recorded official captures:
+- `verify_dse_full.py`: 94/94 official DSE IV rows matched, 0 value mismatches, 0 unmatched, 0 unaccounted.
+- `verify_wpt_full.py`: all WPT rows matched; the "Dec. 18 Wednesday"/Friday discrepancy is the known source irregularity F61 (flagged, not a data error; the site keeps the printed date).
+- `verify_live.py` and `verify_live_official.py`: canonical rows match both official captures line by line.
+- `verify_transcription.py`: 44/44 trip-window rows matched.
+- Limitation: the sandbox cannot reach venetianlasvegas.com, wynnlasvegas.com, bellagio.mgmresorts.com, caesars.com, mgmgrand.mgmresorts.com or aria.mgmresorts.com. Live re-fetch is not possible here; results stand on the dated official captures already in the repo.
+
+**D2.** Hotel-rate gaps: all blank hotel fields are intentional and flagged; no value was inferred. The two dated Venetian checkout quotes ($1,245.48 for 17-19 Nov 2026; $4,010.55 for 23-30 Nov 2026) were re-arithmeticed: per-night `(rate + $55) x 1.1338` sums to each printed total exactly ($996.89 + $248.59 = $1,245.48). This confirms from the official page itself that the 13.38% Clark County room tax applies to the rate and the resort fee together. F65 records the $0.02 tax rounding observed on one quote.
+
+**D3.** Walking routes: 15 route rows recorded. Each minute figure carries the "Google Maps walking estimate" label and its maps URL; no venue publishes a walking time, so F32 stands. No pair was inferred to meet the 30-minute limit.
+
+**D4.** Traceability: `scripts/coverage.py` regenerates `site/coverage.json` (25 items): 21 shipped, 3 partial (C9 dated checkout totals, C14 walking routes, U3 best-hotels ranking — all flagged), 1 not-resolvable (U4 8 AM all-day plan, F17: no official start before 9:10 AM). Nothing is claimed without a location or a flag.
+
+**D5.** Full verification suite:
+- `verify_site.py`: PASS (341 events, 8 hotels, 15 routes, 43 sources, 72 flags, 7 plan days, 16 pages).
+- `verify_sheets.py`: PASS (22 sheets, 57 rows, 50 single-entry rows confirmed against their sheet).
+- `verify_dse_full.py`, `verify_wpt_full.py`, `verify_live_official.py`, `audit_data.py`, `audit_951cd431.py`: all pass.
+- `tests/`: 129 tests OK.
+- `node --check` on site/assets/app.js, site/assets/venue.js, tests/canonical_render.js: OK.
+- `python3 -m json.tool site/data.json`: valid.
+- `scripts/data_source.py` rebuild: byte-identical to committed `site/data.json` (reproducible).
+- No value inferred; blanks stay blank and flagged.
+
+### Integration record
+
+- PR: [#111](https://github.com/karagemop466-tech/Poker3/pull/111) (`arena/e9de19dc-poker3` → `main`), merged with `gh pr merge 111 --merge` (no auto-merge).
+- Checks on the PR head: `verify` → success; `transcription` → success.
+- Pages: "Publish the canonical Vegas Poker Planner to GitHub Pages" → success; Pages API reports `status: built`, source `main` `/`, live at https://karagemop466-tech.github.io/Poker3/.
+- Result: every brief item is implemented or published as a flagged gap; none of the open flags blocks the merge; all are on `site/flagged.html` with official source links.
+
+### Open flags carried forward (do not block merge; published on site/flagged.html)
+F17 (no 8:00 AM start → 8 AM all-day plan not buildable), F31 (no written one-entry-per-player cap → strict-entry filter returns 0), F32 (walking times are Google Maps estimates), F39 (room-tax % unpublished at Wynn/Bellagio/Caesars/Horseshoe), F56 (Wynn Signature structures unpublished → 38 rows not-verified), F57 (no dated quote for some windows), F66 (phone-only poker rate), plus the per-source unavailable URLs in the monitor (17 URLs recorded as unavailable, never as unchanged).
