@@ -1740,3 +1740,49 @@ kept exactly as written; this session's two records moved again, to **F55** (Hor
 `mode: "live fetch"`): 92 official URLs known, 79 fetched, **0 content changes**, 13 unreachable from the runner
 (the MGM Resorts hosts, consistent with flag F40). The change monitor this project asked for is therefore live, not
 merely written, and `site/feed/` now carries the morning room feed beside it.
+
+---
+
+### Pull requests, merges and the Pages deployment (session `arena/951cd431-poker3`)
+
+| PR | Content | State |
+|---|---|---|
+| [#63](https://github.com/karagemop466-tech/Poker3/pull/63) | The independent auditor, the three data defects (F48/F49/F50), the venue-page corrections, the sheet-extract mirror and the re-check `push` trigger | **merged** 2026-11-17 01:22:42 UTC as `96b05aa` |
+| [#65](https://github.com/karagemop466-tech/Poker3/pull/65) | Fix for the duplicate `push:` key in `checks.yml` | **closed as superseded** — PR #66 (session `arena/ed1d2489-poker3`) landed the same fix first, with a broader `tests/test_workflows.py`. Closed rather than merged so the fix is not duplicated and their test module is not shadowed. |
+| [#68](https://github.com/karagemop466-tech/Poker3/pull/68) | The one assertion PR #66's test file lacked: the re-check trigger must exclude `site/checks.json` and `site/feed/**`, which the job writes, or it re-triggers itself | **merged** 2026-11-17 01:29:59 UTC |
+
+**Merge checks.** `verify` passed on all three pull requests
+(runs 43994985884, 43995610028, 43995918168). No broken internal links; every local `href`/`src`
+in every published page resolves and stays inside `site/`.
+
+**The scheduled re-check now runs for real.** The push trigger landed with PR #63, and
+`site/checks.json` together with `site/feed/index.json` and the dated room snapshots exist on `main`
+as its output. The first live record covers **92 official URLs: 79 HTTP 200, 10 unreachable,
+2 HTTP 403, 1 HTTP 302, 0 changed**. Those 79 successful fetches are live confirmations that the
+official pages behind the dashboard resolve; the unreachable ones are published as `unavailable`,
+never as a content change.
+
+**Duplicate-key failure caught.** Merging PR #63 and PR #62 left two `push:` keys in `checks.yml`.
+`yaml.safe_load` accepts that silently and keeps the last key, so every local parse looked clean, but
+GitHub Actions rejected the file outright: run
+[43995214819](https://github.com/karagemop466-tech/Poker3/actions/runs/43995214819) finished in 0s
+with **zero jobs scheduled**. Fixed in PR #66 (their fix) and guarded by `tests/test_workflows.py`,
+which parses every workflow with a loader that refuses duplicate keys — verified against the broken
+file, where `safe_load` passes and the strict loader raises `duplicate mapping key(s): push`.
+
+**Pages.** `gh api .../pages` reports `status: built`, source `main` `/`,
+https://karagemop466-tech.github.io/Poker3/ . The "Publish the canonical Vegas Poker Planner" workflow
+and the legacy `pages build and deployment` both completed successfully for the merge commits
+(runs 43996034386 and 43996075635). The sandbox cannot fetch `github.io` directly, so the deployment
+is confirmed through the Pages API and the run statuses.
+
+### Open items for a later session (not blocking)
+
+- 13 of the 92 monitored URLs did not return 200 on the first live run. Each should be re-read: a 403
+  is usually a bot block rather than a dead page, and an `unreachable` may be transient.
+- The three flags this session added (F48 duplicate NYE start, F49 resumption rows, F50 two-clock
+  late-registration clauses) still need the official page or the poker room to settle. They are on
+  `site/flagged.html` with their source links.
+- Flag numbering is under contention between sessions. `tests/test_workflows.py` and the auditor now
+  assert flag ids stay unique, but a shared allocation table in `COORDINATION.md` would stop the
+  renumbering churn.
