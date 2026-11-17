@@ -2393,6 +2393,22 @@ def with_live_quote(model):
             note=PER_NIGHT_NOTE,
         ),
     )
+    # Per-night breakdown of the same quote. Every value is read from the quote record; the per-night true
+    # cost is derived as (rate + resort fee) x 1.1338 and rounded to the cent.
+    model["liveQuote"]["perNight"] = dict(
+        property=q["property"], guests=q["guests"], offer=q["offer"],
+        nightlyRates=rates, resortFeePerNight=q["resortFeePerNight"],
+        nightlyTrueCostDerived=[round((r + q["resortFeePerNight"]) * 1.1338, 2) for r in rates],
+        printedTaxes=q["taxes"], printedTotal=q["total"], printedAverageRate=q["averageRate"],
+        observedOn=q["observedOn"], source=q["source"],
+        note=("Re-read live from the official Venetian booking engine on 2026-11-17 for the exact trip window (2 adults, "
+              "7 nights). The per-night true costs are derived as (rate + $55) x 1.1338 and sum to the printed total. "
+              "The engine's own 'Average Rate' line prints $505.32, which equals the average of (rate + $55 resort fee), "
+              "confirming that its average-rate figure includes the resort fee. Printed tax is $0.02 above 13.38% of the "
+              "printed pre-tax subtotal; the page does not explain the difference and the printed figures are kept as "
+              "printed (flag F65). This is a dated observation, not a booking price: the engine's rates move between "
+              "reads, and the poker-suite rate page adds a play-qualification condition and the EPOKR25 code."),
+    )
     return model
 
 
