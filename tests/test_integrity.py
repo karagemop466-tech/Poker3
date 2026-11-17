@@ -39,8 +39,9 @@ class DataIntegrity(unittest.TestCase):
         $824.25 + $55 on 17 Nov, $164.25 + $55 on 18 Nov, $146.98 tax, $1,245.48 total.
         """
         quote = [r for r in DATA["rateLog"]
-                 if r["quoteType"].startswith("Dated official checkout total")]
-        self.assertEqual(len(quote), 1, "expected exactly one dated checkout total")
+                 if r["quoteType"].startswith("Dated official checkout total")
+                 and r["observedOn"] == "2026-11-16"]
+        self.assertEqual(len(quote), 1, "expected exactly one 2026-11-16 dated checkout total")
         row = quote[0]
         low, high = float(row["trueNightlyLow"]), float(row["trueNightlyHigh"])
         self.assertLess(low, high, "observed nights must be recorded low to high")
@@ -52,6 +53,32 @@ class DataIntegrity(unittest.TestCase):
 
         # The two derived nights must reconcile to the printed total within rounding.
         self.assertLess(abs((night_17 + night_18) - 1245.48), 0.10)
+
+    def test_every_dated_quote_is_ordered_and_reconciles(self):
+        """Every official quote: night one is the earlier night, and (rate + $55) x 1.1338 hits the printed total.
+
+        The engine has now printed three of them, and it priced the same stay at $1,245.48 and
+        then at $1,015.89 on consecutive days, so the log can no longer assume a single total.
+        """
+        quotes = [q for h in DATA["hotels"] for q in (h.get("quotes") or [])]
+        self.assertGreaterEqual(len(quotes), 1, "expected at least one dated quote")
+        for q in quotes:
+            nights = [q["nightOne"], q["nightTwo"]]
+            self.assertLess(q["nightOne"]["date"], q["nightTwo"]["date"],
+                            f"{q['checkIn']}: night one must be the earlier night")
+            derived = round(sum((n["rate"] + n["resortFee"]) * (1 + TAX) for n in nights), 2)
+            self.assertLess(abs(derived - q["total"]), 0.05,
+                            f"{q['checkIn']} -> {q['checkOut']}: derived {derived} != printed {q['total']}")
+            self.assertLess(abs(q["derivedTotal"] - q["total"]), 0.05,
+                            f"{q['checkIn']} -> {q['checkOut']}: stored derived total {q['derivedTotal']}")
+
+    def test_dated_rate_log_rows_record_the_lower_night_first(self):
+        """A rate-log row stores its two true nightly figures low then high."""
+        rows = [r for r in DATA["rateLog"] if r["quoteType"].startswith("Dated official checkout total")]
+        self.assertGreaterEqual(len(rows), 1, "expected at least one dated checkout total")
+        for row in rows:
+            low, high = float(row["trueNightlyLow"]), float(row["trueNightlyHigh"])
+            self.assertLessEqual(low, high, f"{row['observedOn']}: nights must be recorded low to high")
 
     def test_trip_nightly_budget_is_the_published_floor(self):
         """$197.28 = ($119 published poker-suite start + $55 fee) x 1.1338."""
