@@ -57,3 +57,31 @@ class CompareCheckTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class VisibleTextTests(unittest.TestCase):
+    """A raw-byte hash of a venue page is noise; the visible text hash is the signal."""
+
+    def test_scripts_styles_and_tags_do_not_reach_the_hash(self):
+        from scripts.check_sources import content_hash
+        a = content_hash(b"<html><script>var r=1;</script><p>Event 10  $400</p></html>", "text/html")
+        b = content_hash(b"<html><script>var r=999;</script><div>Event 10&nbsp; $400</div></html>", "text/html")
+        self.assertEqual(a, b, "a rotating script or a tag difference must not look like a content change")
+
+    def test_a_real_editorial_change_moves_the_hash(self):
+        from scripts.check_sources import content_hash
+        a = content_hash(b"<p>Guarantee: $15,000</p>", "text/html")
+        b = content_hash(b"<p>Guarantee: $20,000</p>", "text/html")
+        self.assertNotEqual(a, b)
+
+    def test_pdf_bytes_are_compared_on_extracted_text(self):
+        from scripts.check_sources import content_hash
+        a = content_hash(b"%PDF-1.4\nstream binary-one endstream\nStart Time: 11:10 AM", "application/pdf")
+        b = content_hash(b"%PDF-1.4\nstream binary-two endstream\nStart Time: 11:10 AM", "application/pdf")
+        self.assertEqual(a, b)
+
+    def test_compare_check_uses_the_text_hash_it_is_given(self):
+        from scripts.check_sources import compare_check
+        old = {"hash": "raw-old", "textHash": "text-1", "status": "HTTP 200"}
+        self.assertFalse(compare_check(old, "HTTP 200", "text-1")["changed"])
+        self.assertTrue(compare_check(old, "HTTP 200", "text-2")["changed"])

@@ -23,6 +23,7 @@ import datetime as dt
 import hashlib
 import json
 import pathlib
+import re
 import ssl
 import sys
 import urllib.error
@@ -85,17 +86,55 @@ def fetch(url: str) -> tuple[int, str, bytes]:
         return response.status, response.headers.get("Content-Type", ""), response.read()
 
 
+# A raw-byte hash of a venue page is not a useful change signal: those pages embed
+# booking banners, availability grids and per-request nonces, so 14 of 79 reachable URLs
+# flipped hash on 2026-11-17 with no change to any published value. The comparison below
+# hashes what a reader would actually read: the visible text of an HTML page, or the
+# extracted text of a PDF. The raw-byte digest is still recorded, so the noise is
+# visible rather than hidden, and a genuine editorial change still moves the text hash.
+_SCRIPT_STYLE = re.compile(r"<(script|style|noscript|svg)\b[^>]*>.*?</\1>", re.IGNORECASE | re.DOTALL)
+_TAG = re.compile(r"<[^>]+>")
+_WS = re.compile(r"\s+")
+_ENTITY = {"&nbsp;": " ", "&amp;": "&", "&lt;": "<", "&gt;": ">", "&quot;": '"', "&#39;": "'"}
+
+
+def visible_text(body: bytes, content_type: str) -> str:
+    """The text a human would read from the response, whitespace-normalised."""
+    if "pdf" in (content_type or "").lower() or body[:4] == b"%PDF":
+        text = body.decode("latin-1", errors="ignore")
+        text = re.sub(r"stream.*?endstream", " ", text, flags=re.DOTALL)
+    else:
+        html = body.decode("utf-8", errors="ignore")
+        html = _SCRIPT_STYLE.sub(" ", html)
+        html = _TAG.sub(" ", html)
+        for entity, plain in _ENTITY.items():
+            html = html.replace(entity, plain)
+        text = html
+    return _WS.sub(" ", text).strip().lower()
+
+
+def content_hash(body: bytes, content_type: str) -> str:
+    return hashlib.sha256(visible_text(body, content_type).encode("utf-8")).hexdigest()
+
+
 def compare_check(old: dict | None, status: str, digest: str | None) -> dict:
     """Classify a fetch without conflating a failed request with changed content."""
     available = status.startswith("HTTP 2")
-    prior_hash = (old or {}).get("hash")
+    # `digest` is the visible-text hash. Older records carry only a raw `hash`, so fall
+    # back to it rather than reporting every URL as changed on the first run after the
+    # switch to text comparison.
+    prior_hash = (old or {}).get("textHash") or (old or {}).get("hash")
     changed = bool(available and prior_hash and digest and prior_hash != digest)
     baseline = bool(available and not prior_hash)
+    prior_text = (old or {}).get("textHash")
+    wording = bool(available and prior_text and digest and prior_text != digest) if digest else False
     return {
         "changed": changed,
+        "wordingChanged": wording,
         "unavailable": not available,
         "baseline": baseline,
         "previousHash": prior_hash or None,
+        "previousTextHash": prior_text or None,
         "previousChecked": (old or {}).get("checked", "") or None,
         "statusChanged": bool(old and old.get("status") != status),
     }
@@ -129,10 +168,12 @@ def main() -> int:
         old = previous.get(url)
         try:
             status, ctype, body = fetch(url)
-            digest = hashlib.sha256(body).hexdigest()
             row["status"] = f"HTTP {status}"
-            row["hash"] = digest
+            row["hash"] = hashlib.sha256(body).hexdigest()
             row["bytes"] = len(body)
+            row["textHash"] = content_hash(body, ctype)
+            row["textChars"] = len(visible_text(body, ctype))
+            digest = row["textHash"]
         except urllib.error.HTTPError as exc:
             row["status"] = f"HTTP {exc.code}"
             row["error"] = str(exc)
@@ -140,7 +181,11 @@ def main() -> int:
             row["status"] = "unreachable"
             row["error"] = f"{type(exc).__name__}: {exc}"
 
-        row.update(compare_check(old, row["status"], row.get("hash")))
+        row.update(compare_check(old, row["status"], row.get("textHash")))
+        # The visible text is what matters; a raw-body difference with identical visible
+        # text is recorded so the noise is visible, but it is never a "changed" flag.
+        row["rawOnly"] = bool(row.get("hash") and (old or {}).get("hash")
+                              and row["hash"] != old["hash"] and not row.get("changed"))
         if row["changed"]:
             changed.append(row)
         rows.append(row)
@@ -163,8 +208,10 @@ def main() -> int:
         "urls": rows,
         "changedCount": len(changed),
         "changed": [r["url"] for r in changed],
-        "note": ("Automated re-check of every official URL behind this dashboard. A changed flag means the page body "
-                 "differs from the stored hash and a human must re-read the source before any value is changed."),
+        "hashBasis": "visible text (HTML tags, scripts and styles removed); the raw-byte hash is kept per URL as hash",
+        "note": ("Automated re-check of every official URL behind this dashboard. A changed flag means the visible text "
+                 "differs from the stored text hash and a human must re-read the source before any value is changed. "
+                 "A raw-body hash difference with identical visible text is recorded as noise, not as a change."),
     }
     if CHECKS.exists():
         try:
