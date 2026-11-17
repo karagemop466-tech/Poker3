@@ -211,14 +211,19 @@ price for every night; the previously recommended 25 November → 2 December win
 
 | Lodging figure | Value | Basis |
 |---|---|---|
-| Seven nightly cells (resort fee in, tax out) | $165, $165, $190, $210, $905, $340, $165 | Official booking calendar, read twice on 2026-11-17 |
-| Total before tax | $2,140 | sum of the cells |
-| All-in at 13.38% Clark County room tax | $2,426.33 | confirmed from the printed checkout total (F37) |
-| Average per night, all-in | $346.62 | $2,426.33 / 7 |
-| Poker-rate floor | $197.28 | ($119 + $55) x 1.1338, phone-only under code EPOKR25, not a quote |
+| Dated checkout total, 23–30 Nov, 2 adults, Luxury King | $4,010.55 | Official Venetian booking engine, read 2026-11-17 after 21:54 UTC (rate log, F65) |
+| Room rates + $55 resort fee, seven nights | $3,537.25 | Itemised on the same quote: rates $3,152.25 + resort fees $385.00 |
+| Clark County room tax 13.38% | $473.30 | Printed on the same quote; equals the per-night tax on (rate + fee) |
+| Average per night, all-in | $572.94 | $4,010.55 / 7 |
+| Largest night | Fri 27 Nov: $1,932.28 all-in | $1,649.25 rate + $55 fee + tax (the night after Thanksgiving) |
+| Poker-rate floor | $197.28 | ($119 + $55) x 1.1338, phone-only under code EPOKR25, not a quote (F66) |
 
-The single most expensive night on the trip is **Friday 27 November 2026 at $905**, the night after Thanksgiving —
-5.5x the $165 baseline and 42% of the lodging bill on its own. Sheet-screened candidate events: **45**, each
+The calendar cells on the same page ($165 … $905) are **not** prices: they sit below rate plus fee on the same nights and
+change with the stay window selected (F69). The earlier $2,140 and $346.62 figures were sums and averages of those cells
+for the superseded 25 Nov – 2 Dec window, so they are withdrawn.
+
+The most expensive night on the trip is **Friday 27 November 2026 at $1,932.28 all-in**, the night after Thanksgiving —
+48% of the stay total on its own, against $248.59 all-in on 23 and 24 November. Sheet-screened candidate events: **45**, each
 re-checked against its official structure sheet on 2026-11-17. None of those sheets states a maximum number of
 entries per player, so none is a confirmed one-entry event (F31). A further 14 published rows carry the
 *Unverified* label because their structure sheets have not been read (F40).

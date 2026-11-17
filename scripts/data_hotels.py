@@ -11,9 +11,12 @@ RETRIEVED = "2026-11-16"
 
 VENETIAN_SUITE_RATES = "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"
 VENETIAN_RESORT_FEE = "https://www.venetianlasvegas.com/resort/resort-fee.html"
-# Per-date official booking link for the fixed stay (2 adults, Nov 25 to Dec 2, 2026). The booking engine
-# is read in a browser on the day; this module never stores a price from it.
-VENETIAN_FIXED_STAY_BOOKING = ("https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25"
+# Per-date official booking link for the trip stay (2 adults, Nov 23 to Nov 30, 2026: seven nights, check-out
+# 30 Nov). The engine priced this window in full on 2026-11-17 (see VENETIAN_QUOTE_TRIP). The earlier Nov 25 -
+# Dec 2 window is kept as VENETIAN_OLD_WINDOW_BOOKING for the log only. This module never stores a price from a link.
+VENETIAN_FIXED_STAY_BOOKING = ("https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23"
+                               "&children[]=0&departure_date=2026-11-30&view=calendar")
+VENETIAN_OLD_WINDOW_BOOKING = ("https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25"
                                "&children[]=0&departure_date=2026-12-02&view=calendar")
 VENETIAN_HOTEL_TERMS = "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html"
 WYNN_ROOMS = "https://www.wynnlasvegas.com/rooms-and-suites"
@@ -94,8 +97,8 @@ VENETIAN_QUOTE_URL = ("https://www.venetianlasvegas.com/booking?adults[]=2&arriv
                       "&children[]=0&departure_date=2026-11-19&view=calendar")
 VENETIAN_CALENDAR_NOV_URL = ("https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17"
                              "&children[]=0&departure_date=2026-11-19&view=calendar")
-VENETIAN_CALENDAR_TRIP_URL = ("https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25"
-                              "&children[]=0&departure_date=2026-12-02&view=calendar")
+VENETIAN_CALENDAR_TRIP_URL = ("https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23"
+                              "&children[]=0&departure_date=2026-11-30&view=calendar")
 
 def next_day(iso_date: str) -> str:
     """The following calendar day, used to turn a stay night into a one-night booking URL."""
@@ -187,7 +190,27 @@ VENETIAN_QUOTE_NOV_20 = dict(
           "Two Queen quotes are not directly comparable on price."),
     source=venetian_stay_url("2026-11-20", "2026-11-22"), observedOn="2026-11-17")
 
-VENETIAN_QUOTES = [VENETIAN_QUOTE, VENETIAN_QUOTE_2026_11_17, VENETIAN_QUOTE_NOV_20]
+# The trip stay, 23 to 30 November 2026 (seven nights, check-out 11:00 a.m. on 30 November), quoted by the official
+# booking engine on 2026-11-17 after 21:54 UTC (sandbox clock). Every figure is printed on the page. The per-night
+# all-in figures are derived as (rate + $55 resort fee) x 1.1338, rounded to the cent, and they add to the printed
+# checkout total exactly. This is the first dated checkout total for the trip window itself.
+VENETIAN_QUOTE_TRIP = dict(
+    property="The Venetian Resort - venetian Newly Remodeled Luxury King suite",
+    checkIn="2026-11-23", checkOut="2026-11-30", guests=2, nights=7,
+    offer="Book Direct: Up to 25% Off",
+    suiteDetail="Approximately 650 square feet, king bed, living room, Roman tub",
+    nightly=[("2026-11-23", 164.25), ("2026-11-24", 164.25), ("2026-11-25", 201.75), ("2026-11-26", 231.75),
+             ("2026-11-27", 1649.25), ("2026-11-28", 554.25), ("2026-11-29", 186.75)],
+    resortFeePerNight=55.00,
+    taxes=473.30, total=4010.55, averageRate=505.32,
+    derivedNightly=[248.59, 248.59, 291.10, 325.12, 1932.28, 690.77, 274.10], derivedTotal=4010.55,
+    note=("Re-read from the official booking engine on 2026-11-17 after 21:54 UTC. The engine's Average Rate of $505.32 "
+          "is the average of (rate + $55 resort fee) over the seven nights. The printed taxes of $473.30 equal the sum of "
+          "13.38% of (rate + resort fee) on each night, rounded to the cent per night. This is the engine's best available "
+          "rate for a Luxury King suite. It is not the phone-only poker rate (code EPOKR25; see F66)."),
+    source=VENETIAN_CALENDAR_TRIP_URL, observedOn="2026-11-17")
+
+VENETIAN_QUOTES = [VENETIAN_QUOTE, VENETIAN_QUOTE_2026_11_17, VENETIAN_QUOTE_NOV_20, VENETIAN_QUOTE_TRIP]
 
 # Stay windows the engine was opened for on 2026-11-17 that returned no suite and no price.
 # Each is a dated observation of the official engine, not an inference.
@@ -254,7 +277,7 @@ VENETIAN_CALENDAR_2026_11_17 = dict(
                         ("2026-12-02", 1405), ("2026-12-03", 805), ("2026-12-04", 774), ("2026-12-05", 774)]))
 
 # The seven nights of the recommended trip, each with its own official booking deep link.
-TRIP_NIGHTS = ["2026-11-25", "2026-11-26", "2026-11-27", "2026-11-28", "2026-11-29", "2026-11-30", "2026-12-01"]
+TRIP_NIGHTS = ["2026-11-23", "2026-11-24", "2026-11-25", "2026-11-26", "2026-11-27", "2026-11-28", "2026-11-29"]
 
 HOTELS = [
     dict(
@@ -279,9 +302,9 @@ HOTELS = [
                         "tournament, for each night stayed, completed before 2 a.m. on the last night. Book with code "
                         "EPOKR25 on 866.255.8936. Failure to qualify means the prevailing rate is charged."),
         source=VENETIAN_SUITE_RATES, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS,
-        quote=VENETIAN_QUOTE_2026_11_17,
+        quote=VENETIAN_QUOTE_TRIP,
         quotes=VENETIAN_QUOTES,
-        bookingUrl=VENETIAN_QUOTE_URL,
+        bookingUrl=VENETIAN_CALENDAR_TRIP_URL,
         calendarUrl=VENETIAN_CALENDAR_TRIP_URL,
         calendarObservation=VENETIAN_CALENDAR_2026_11_17,
         noQuoteWindows=VENETIAN_NO_QUOTE_WINDOWS,
@@ -289,8 +312,9 @@ HOTELS = [
         + [dict(label="whole trip, 7 nights", url=VENETIAN_CALENDAR_TRIP_URL)],
         bookingLinksNote=(
             "Each link opens the official booking engine with that night's dates and two adults already filled in. "
-            "On 2026-11-17 the engine returned an itemised quote for near-term stays and no suite at all for every "
-            "stay inside the trip window, so these links are the way to check the live price rather than a price."),
+            "On 2026-11-17 the engine returned an itemised checkout total for the 23-30 November trip stay ($4,010.55; "
+            "see the rate log) and for near-term stays. The one-night links open the engine for a single night; the "
+            "dated rate log is the record of what the engine printed, and the links are not a price."),
         qualityNote=("Not scored. No official quality metric was published for the suites in the reviewed material, so the "
                      "quality ranking is left blank rather than inferred."),
         status=("Best-value candidate for a Venetian-based trip: poker room on property, published starting rate, published "
@@ -548,13 +572,14 @@ RATE_LOG = [
          publishedStartingRates="",
          resortFee="55.00 per night", tax="13.38%",
          trueNightlyLow="", trueNightlyHigh="",
-         quoteType="No quote returned for the trip window",
-         note=("The engine was opened four times on 2026-11-17 for stays inside the recommended trip window: "
+         quoteType="No quote returned for the superseded 25 Nov - 2 Dec window",
+         note=("The engine was opened four times on 2026-11-17 for stays in the superseded 25 Nov - 2 Dec window "
+               "(the trip was later moved to 23-30 Nov, which the engine prices in full; see the 23-30 Nov entry): "
                "Nov 25 to Dec 2 (7 nights) returned every calendar cell as the placeholder '$XXX' and no suite; "
                "Nov 25 to Nov 27 did not finish loading; Nov 27 to Nov 28 rendered the calendar but no suite; and "
                "Nov 30 to Dec 1 rendered every cell as '$XXX' and no suite. No rate, no tax and no total is published "
-               "for the trip dates, so the trip budget stays at the published starting-rate floor."),
-         source=VENETIAN_CALENDAR_TRIP_URL, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
+               "for that window only; the 23-30 Nov window was re-read later and is priced."),
+         source=VENETIAN_OLD_WINDOW_BOOKING, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
     dict(hotel="venetian", observedOn="2026-11-17", baseRate="",
          publishedStartingRates=("calendar cells with the Nov 17-19 window open: "
                                  + ", ".join(f"{d[5:]} ${v}" if v != "" else f"{d[5:]} no price"
@@ -749,8 +774,8 @@ ROUTES = [
          source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
          mapsOrigin="Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV",
          mapsDestination="The+Venetian+Resort,+Las+Vegas,+NV"),
-    dict(hotel="wynn", venue="venetian", minutes=13, miles="0.6",
-         note="Maps walking estimate; a 14-minute alternative via Las Vegas Blvd S is also shown.",
+    dict(hotel="wynn", venue="venetian", minutes=13, miles="0.6", lastReadOn="2026-11-17",
+         note="Maps walking estimate, re-read 2026-11-17 (13 min, 0.6 mile); a 14-minute alternative via Las Vegas Blvd S is also shown.",
          via="Wynn Main Gate Dr", source="https://www.wynnlasvegas.com/casino/poker",
          mapsOrigin="Wynn+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109",
          mapsDestination="The+Venetian+Resort,+Las+Vegas,+NV"),
@@ -759,8 +784,8 @@ ROUTES = [
          via="Linq Ln", source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
          mapsOrigin="Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169",
          mapsDestination="The+Venetian+Resort,+Las+Vegas,+NV"),
-    dict(hotel="bellagio", venue="venetian", minutes=21, miles="0.9",
-         note="Maps walking estimate; a 24-minute alternative is also shown.", via="Las Vegas Blvd S",
+    dict(hotel="bellagio", venue="venetian", minutes=21, miles="0.9", lastReadOn="2026-11-17",
+         note="Maps walking estimate, re-read 2026-11-17 (21 min, 0.9 mile); a 24-minute alternative is also shown.", via="Las Vegas Blvd S",
          source="https://bellagio.mgmresorts.com/en/casino/poker.html",
          mapsOrigin="Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV", mapsDestination="The+Venetian+Resort,+Las+Vegas,+NV"),
     dict(hotel="mgm", venue="venetian", minutes=35, miles="1.6",
@@ -771,4 +796,12 @@ ROUTES = [
          note="Maps walking estimate; outside the 30-minute limit.", via="Las Vegas Blvd S",
          source="https://aria.mgmresorts.com/en/casino/poker.html",
          mapsOrigin="ARIA+Resort+%26+Casino,+Las+Vegas,+NV", mapsDestination="The+Venetian+Resort,+Las+Vegas,+NV"),
+    # Venetian hotel -> Bellagio Poker Room, the reverse direction is not in the day plan (see F67).
+    dict(hotel="venetian", venue="bellagio", minutes=27, miles="1.1", lastReadOn="2026-11-17",
+         note=("Google Maps walking card, read 2026-11-17 (single read): 27 min, 1.1 miles via Las Vegas Blvd S. The driving "
+               "card for the same pair read 8 min. The walking card does not print its mode label; the link requested "
+               "travelmode=walking. Not re-read on a second day."),
+         via="Las Vegas Blvd S", source="https://bellagio.mgmresorts.com/en/casino/poker.html",
+         mapsOrigin="3355+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109",
+         mapsDestination="Bellagio+Poker+Room,+3600+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109"),
 ]
