@@ -458,6 +458,11 @@ HOTELS = [
                        "centre access for two."),
         taxRate="", taxNote=("The property page does not print a room-tax percentage for the rate. It prints only the tax "
                             "amount charged on the resort fee ($7.35 on $54.95)."),
+        # Printed on the property's own booking page, re-read 2026-11-17 22:3x UTC. Kept as numbers so the
+        # cost model's 13.38% can be checked against the property's own arithmetic, not only the Venetian's terms.
+        printedFeeAndTax=dict(fee=54.95, tax=7.35, allIn=62.30, observedOn="2026-11-17",
+                              excerpt="Resort fees: $62.30 ($54.95 plus $7.35 tax)",
+                              source=CAESARS_CALENDAR),
         parking="Self parking: surcharge applies. Valet parking: surcharge applies. Both are complimentary for Caesars Rewards members at Platinum tier or higher; Nevada locals get the first 3 hours of self parking at no charge. No dollar amount is published on the page.",
         parkingSource=CAESARS_CALENDAR,
         cancellation=("The official property page advertises 'FREE 48-Hour Cancellation*' under 'Why Book With Us'; the "
@@ -489,6 +494,11 @@ HOTELS = [
                        "centre access for two. The rooms page states 'Wifi included in Resort Fee'."),
         taxRate="", taxNote=("The property page does not print a room-tax percentage for the rate. It prints only the tax "
                              "amount charged on the resort fee ($6.68 on $49.95)."),
+        # Printed on the property's own booking page. Kept as numbers so the cost model's 13.38% can be checked against
+        # the property's own arithmetic rather than only the Venetian's terms.
+        printedFeeAndTax=dict(fee=49.95, tax=6.68, allIn=56.63, observedOn="2026-11-17",
+                              excerpt="Resort fees: $56.63 ($49.95 plus $6.68 tax)",
+                              source=HORSESHOE_CALENDAR_NOV),
         parking="Self parking: surcharge applies. Valet parking: surcharge applies. Both are complimentary for Caesars Rewards members at Platinum tier or higher; Nevada locals get the first 3 hours of self parking at no charge. No dollar amount is published on the page.",
         parkingSource=HORSESHOE_CALENDAR_NOV,
         cancellation=("The official property page advertises 'FREE 48-Hour Cancellation*' under 'Why Book With Us'; the "

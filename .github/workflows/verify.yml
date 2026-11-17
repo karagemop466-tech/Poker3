@@ -27,6 +27,8 @@ jobs:
           node --check site/assets/app.js
           node --check site/assets/venue.js
           node --check tests/canonical_render.js
+          node --check tests/walk_limit_render.js
+          node tests/walk_limit_render.js
           python3 -m json.tool site/data.json > /dev/null
       - name: Assert the corrected numbers and their arithmetic
         run: python3 -m unittest discover -s tests -p 'test_*.py' -v

@@ -67,7 +67,9 @@ ITEMS = [
      "singleEntry / reEntry / addOn / fee blocks each carry status, excerpt, source link and retrieved date; blanks explained by note or flag."),
     ("C14", "Walking-route check: official-address walking times per hotel-venue pair, 30-minute limit applied",
      "partial", "site/data.json (routes) + site/hotels.html", ["F32", "F67"],
-     "14 of 56 hotel-venue pairs recorded as Google Maps walking estimates; no venue publishes a walking time. Pairs over 30 minutes excluded by the walkOnly filter; missing pairs not inferred."),
+     "15 of 56 hotel-venue pairs recorded as Google Maps walking estimates; no venue publishes a walking time. The tournament table's 30-minute "
+     "limit is opt-in and measured from a hotel the reader selects; rows over the limit and rows with no measured route are counted separately so a "
+     "missing estimate is never shown as an eliminated option; missing pairs not inferred."),
     # ---- Change monitoring (duplicate of C2 in brief; listed once) ----
     ("C15", "Re-check official pages on a schedule and flag any value that changed",
      "shipped", ".github/workflows/checks.yml + scripts/check_sources.py", ["F30"],

@@ -174,15 +174,19 @@ def main() -> int:
     if "rule.maxEntries === 1" not in app:
         errors.append("app.js: strict-entry filter does not require an explicit maxEntries=1 rule")
 
+    if "walkOnly: false" not in app:
+        errors.append("app.js: the 30-minute walking limit must be off by default, so no row is hidden before the reader asks")
+
     if shutil.which("node"):
-        result = subprocess.run(["node", str(ROOT / "tests" / "canonical_render.js")],
-                                capture_output=True, text=True, cwd=ROOT)
-        if result.returncode != 0:
-            errors.append("headless render check failed:\n" + result.stdout + result.stderr)
-        else:
-            print(result.stdout.strip())
+        for script, label in ((("canonical_render.js"), "headless render"), ("walk_limit_render.js", "walking-limit render")):
+            result = subprocess.run(["node", str(ROOT / "tests" / script)],
+                                    capture_output=True, text=True, cwd=ROOT)
+            if result.returncode != 0:
+                errors.append(f"{label} check failed:\n" + result.stdout + result.stderr)
+            else:
+                print(result.stdout.strip())
     else:
-        print("node not available: skipped the headless render check")
+        print("node not available: skipped the headless render checks")
 
     if errors:
         print(f"\n{len(errors)} problem(s):")

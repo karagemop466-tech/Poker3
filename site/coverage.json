@@ -4,8 +4,8 @@
     "events": 341,
     "hotels": 8,
     "routes": 15,
-    "sources": 43,
-    "flags": 72,
+    "sources": 45,
+    "flags": 75,
     "planDays": 7,
     "asOf": "2026-11-17"
   },
@@ -143,7 +143,7 @@
         "F32",
         "F67"
       ],
-      "note": "14 of 56 hotel-venue pairs recorded as Google Maps walking estimates; no venue publishes a walking time. Pairs over 30 minutes excluded by the walkOnly filter; missing pairs not inferred."
+      "note": "15 of 56 hotel-venue pairs recorded as Google Maps walking estimates; no venue publishes a walking time. The tournament table's 30-minute limit is opt-in and measured from a hotel the reader selects; rows over the limit and rows with no measured route are counted separately so a missing estimate is never shown as an eliminated option; missing pairs not inferred."
     },
     {
       "id": "C15",

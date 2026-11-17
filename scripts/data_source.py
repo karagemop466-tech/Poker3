@@ -752,8 +752,52 @@ FLAGS = [
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar"),
     dict(id="F32", area="Walking routes", severity="Medium",
          title="The 30-minute walking check does not cover every hotel–venue pair",
-         detail=("The current 14 route rows cover routes from the recommended Venetian resort hotel to the listed poker rooms, plus selected on-site pairs. The requested full hotel-by-venue matrix would contain 56 pairs (8 hotel records × 7 venue records); the remaining pairs have no checked walking time here and are not assumed to meet the 30-minute limit. The existing schedule filter applies only to the recommended Venetian resort route estimates. Check the official property addresses and each Google/Apple walking route before comparing other hotel choices."),
+         detail=("The current 15 route rows cover each listed hotel's walk to the Venetian poker room, each hotel's walk to its own "
+                 "poker room, and one hotel-to-other-venue pair (Venetian to Bellagio, 27 minutes). The requested full hotel-by-venue "
+                 "matrix would contain 56 pairs (8 hotel records × 7 venue records), so most pairs have no checked walking time here "
+                 "and are not assumed to meet the 30-minute limit. The tournament table's walking limit is therefore opt-in and is "
+                 "measured from the hotel selected in the same control; rows whose route was never measured are counted separately "
+                 "from rows measured over the limit, so a missing estimate is never presented as an eliminated option. No property "
+                 "publishes a walking time: every minute figure is a Google Maps estimate captured on the date in the route row. "
+                 "Where the control resolves a pair only by the reverse of a recorded row, the cell says so - a reversed pair is a "
+                 "property-to-property figure whose far end is the resort address, not the poker room, so it is labelled "
+                 "'reverse of the recorded pair' rather than presented as a measurement of that direction. Selecting The Venetian "
+                 "as the hotel turns the old 145-row view into 333 of the 339 rows that are not in the past, and the 6 rows the "
+                 "limit removes are the four MGM Grand and two ARIA rows, measured at 35 and 31 minutes and over the limit in "
+                 "both directions. Check the official property "
+                 "addresses and each Google/Apple walking route before committing to a hotel choice."),
          source="https://www.google.com/maps/dir/?api=1&travelmode=walking"),
+    dict(id="F78", area="Hotels", severity="Medium",
+         title="The dated Venetian checkout total rests on one successful engine read; a second read the same evening returned no prices",
+         detail=("The $4,010.55 all-in total for 23-30 November 2026 was printed by the official booking engine on 2026-11-17 and "
+                 "re-read that evening at 21:5x UTC (see F15). A third read from this session at 22:33 UTC on the same URL returned "
+                 "no price at all: every calendar cell rendered the placeholder '$XXX', the suite panel showed only 'Your Venice "
+                 "meets Vegas getaway is loading', and no checkout summary was returned. That is the same rendering failure this "
+                 "repository recorded for four other stay windows, so it is treated as evidence that the engine does not serve a "
+                 "stable static price to every reader, not as evidence that the price moved. Consequence for a decision: the "
+                 "published total is dated, reproducible from the recorded nightly figures and internally consistent "
+                 "(every night reconciles to (rate + $55) x 1.1338 and the seven figures add to the printed total), but it must be "
+                 "re-read at the moment of booking before any non-refundable payment. Nothing on the site was revalued on the "
+                 "strength of the failed read."),
+         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar"),
+    dict(id="F79", area="Verification", severity="Low",
+         title="Sources re-read on 2026-11-17 (22:3x UTC) that match the published rows, recorded so the re-check date is not lost",
+         detail=("Re-read line by line from this session with no change found, and therefore no value edited: the Venetian "
+                 "DeepStack IV schedule page (chunk 0 of 4, 16-28 November rows: event numbers, dates, start times, buy-ins, "
+                 "guarantees and structure-sheet links all agree with site/data.json); the Venetian 2026 poker suite-rates page "
+                 "('rates will start as low as $119 and $209', '$55 resort fee per night stayed', the six-hours-cash-or-$300-"
+                 "tournament qualification, code EPOKR25, the 150-day horizon); the Wynn WPT World Championship structures PDF "
+                 "(chunks 0, 1, 4 and 5 of 8: the general terms, and the $600 NLH, $600 Limit Omaha 8/Stud 8, $1,100 PLO, $1,600 "
+                 "NLH, $600 HORSE and $1,100 Prime Championship sections, each fee split, registration clause and starting stack "
+                 "quoting exactly as published, including the $1,100 section whose components add to $1,105 - F60); the Wynn resort "
+                 "policies page ('a daily resort fee of $55 plus tax', check-in 3 p.m., check-out 12 p.m., self-parking for up to "
+                 "two vehicles included in the fee); the Bellagio terms and conditions ('A daily resort fee of $55.00 plus "
+                 "applicable tax', $50 plus tax per additional occupant, 72-hour cancellation window, $150 per day incidental "
+                 "authorisation); and the Caesars Palace booking page ('$62.30 ($54.95 plus $7.35 tax)', 'Rates shown reflect the "
+                 "lowest available rate and include applicable resort fees'). Caesars' printed fee-plus-tax figures divide to "
+                 "13.375%, and Horseshoe's ($49.95 plus $6.68) to 13.373%, which corroborates the 13.38% Clark County room tax "
+                 "used by the cost model from the properties' own pages rather than only from the Venetian's terms."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
     dict(id="F33", area="Schedule overlap", severity="Medium",
          title="Day 2 restarts of earlier Venetian events overlap the trip-window primaries",
          detail=("Re-read on 2026-11-17 from the official schedule: Event #7 ($400 No Limit Hold'em flights) has a Day 2 Restart "
@@ -1267,11 +1311,19 @@ SUGGESTIONS = [
          impact="Medium", effort="Medium", decision="Which properties to prioritise"),
     dict(id="S05", title="Replace the estimated walking times with a venue-published figure",
          detail=("No venue publishes a walking time. Asking each property for the official route and time to its own poker room "
-                 "would replace Google Maps estimates, which are model outputs that ignore indoor walkways and Strip traffic."),
+                 "would replace Google Maps estimates, which are model outputs that ignore indoor walkways and Strip traffic. "
+                 "Until then the site only filters on measured pairs: as of 2026-11-17 the tournaments table's 30-minute limit "
+                 "is opt-in, is measured from the hotel the reader selects, labels a figure used in the reverse of its recorded "
+                 "direction, and counts the rows it hides as either over the limit or unmeasured."),
          impact="Medium", effort="Low", decision="Worth doing for the final shortlist"),
     dict(id="S06", title="Capture the hotel cost components for the remaining properties",
-         detail=("MGM Grand, Caesars Palace, Horseshoe and ARIA have no verified resort fee, tax or parking in the current data, so "
-                 "they cannot be compared like for like. One pass over each property's terms page closes that gap."),
+         detail=("STATUS UPDATED 2026-11-17. The fee half of this is closed: all eight properties now carry a resort fee taken "
+                 "from the property's own page (Venetian, Palazzo, Wynn and Bellagio $55, MGM Grand $50, Caesars Palace $54.95, "
+                 "Horseshoe $49.95, ARIA $55), and Caesars Palace and Horseshoe additionally print the tax on that fee, which "
+                 "divides to 13.376% and 13.373% and corroborates the 13.38% the model applies. What still blocks a like-for-like "
+                 "ranking is the room rate: no property except the Venetian publishes a dated price a static reader can reach, so "
+                 "true cost per night exists only for the Venetian and the Palazzo. Parking is published for Venetian, Palazzo, "
+                 "Wynn, Caesars and Horseshoe and not for MGM Grand, Bellagio or ARIA."),
          impact="Medium", effort="Low", decision="Straightforward research, no new source needed"),
     dict(id="S07", title="Add a bankroll-versus-prize view that states the assumption",
          detail=("The site deliberately shows guaranteed pool divided by entry fee as a descriptive ratio and never as a forecast. A "
@@ -1357,7 +1409,9 @@ SUGGESTIONS = [
                  "engine can offer for that query, not a nightly rate. This is already enforced in the data - only the "
                  "itemised quote panel is used - but the comparison is worth keeping on the hotels page so a reader does "
                  "not copy a calendar figure into a budget."),
-         impact="Medium", effort="Done", decision="Keep the comparison published"),
+         impact="Medium", effort="Done", decision="Keep the comparison published - and since 2026-11-17 the calculator page "
+                                                 "itself warns against pasting a calendar cell into the room-rate box, "
+                                                 "quoting the two properties' own 'includes resort fee' sentences"),
     dict(id="S20", title="Ask the Venetian two questions in one call, then fix the rate basis once",
          detail=("Two open questions are answered by the same phone call to 866.255.8936 (code EPOKR25). (1) Is the "
                  "$119 / $209 poker rate quoted before or after the $55 resort fee? The Resort Fee page says the fee is "
@@ -2153,6 +2207,15 @@ def build():
             high = round((h["baseRateCeiling"] + h["resortFee"]) * (1 + h["taxRate"] / 100), 2)
         row["trueNightlyLow"] = low
         row["trueNightlyHigh"] = high
+        # Where a property prints its resort fee and the tax on that fee as two dollar amounts, the
+        # implied percentage is arithmetic on its own page, not an assumption borrowed from another
+        # property's terms.  It corroborates the 13.38% the cost model applies; it does not replace
+        # taxRate, which stays blank until the property prints a room-tax percentage for the rate.
+        paid = h.get("printedFeeAndTax")
+        if paid:
+            implied = round(paid["tax"] / paid["fee"] * 100, 3)
+            row["printedFeeAndTax"] = dict(paid, taxPctImplied=implied,
+                                           agreesWithModelTaxPct=abs(implied - 13.38) < 0.02)
         row["lastChecked"] = (CHECKED_TODAY if h["id"] in ("venetian", "palazzo", "caesars", "horseshoe") else ASOF)
         row["lastVerified"] = VERIFIED_ON
         # Facts confirmed live on 2026-11-17 that the earlier build left blank.
