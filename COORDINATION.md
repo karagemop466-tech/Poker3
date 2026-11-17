@@ -3162,9 +3162,9 @@ D1–D4 board rows are carried forward as follows:
 - Open PR `arena/4c7b94ab-poker3` → `main` (PR #110: https://github.com/karagemop466-tech/Poker3/pull/110)
 - Merge PR #110 with `gh pr merge 110 --merge`: merged as merge commit `e0c360b7b2fef84fedaeda72b870c23c4e1af642` (no auto-merge; PR was MERGEABLE before merge)
 - `pages.yml` re-deploys the canonical `site/` artifact on every push to `main`; this merge's push triggered a new Pages deployment (confirmation below)
-- Confirm GitHub Pages deployment via the Pages API after the merge (done): `status: built`, source `main` `/`, https://karagemop466-tech.github.io/Poker3/ , observed 2026-11-17 22:33:01 UTC after the PR #113 merge push (4853437)
-- Record PR link and merge result in this section (done): PR #110 merged as `e0c360b7b2fef84fedaeda72b870c23c4e1af642`; PR #113 merged as `48534373fbbca7bef53de1fb4fec09f438b4f359`
-- D5 complete for this session; the concurrent session arena/7529044d-poker3's PR #114 (merged as `18d5d8d`, live re-verification pass: second dated Venetian quote, flag F78) is recorded in that session's own section of this file
+- Confirm GitHub Pages deployment via the Pages API after the merge (done): `status: built`, source `main` `/`, https://karagemop466-tech.github.io/Poker3/ , observed 2026-11-17 22:33:01 UTC after PR #113's merge push (4853437) and again 22:34:10 UTC after PR #117's merge push (eda037e)
+- Record PR link and merge result in this section (done): PR #110 merged as `e0c360b7b2fef84fedaeda72b870c23c4e1af642` (`gh pr merge 110 --merge`); PR #113 merged as `48534373fbbca7bef53de1fb4fec09f438b4f359` (`gh pr merge 113 --merge`); PR #117 merged as `eda037ea2917cc22e17803bec127d4ed92f7a990` (`gh pr merge 117 --merge`). All three merges were `gh pr merge <n> --merge` with no auto-merge; each PR was MERGEABLE before merging.
+- D5 complete for this session: verification suite green, PRs merged, Pages deployment confirmed live. The concurrent session arena/7529044d-poker3's PR #114 (merged as `18d5d8d`, live re-verification pass: second dated Venetian quote, flag F78) is recorded in that session's own section of this file.
 
 
 - **PR:** [#100](https://github.com/karagemop466-tech/Poker3/pull/100) (`arena/da83eca8-poker3` → `main`), merged with `gh pr merge 100 --merge` as merge commit `b9c8d77a1f17a6000dc5aa29fff5ab9a2ceec50e` on 2026-11-17 UTC.
