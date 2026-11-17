@@ -887,9 +887,18 @@ FLAGS = [
                  "rate and another states it is already in it. Second, neither page says which convention the "
                  "phone-only poker rate (EPOKR25) uses. The published floor keeps the conservative reading (fee added, "
                  "+$55 a night, about $300 over seven nights); if the poker rate proves to be fee-inclusive, the true "
-                 "floor is about $154 a night, roughly $43 lower. Only a dated checkout total for the poker rate settles "
-                 "it. The same caution applies to the Horseshoe calendar cells, whose own page says they include the "
-                 "resort fee."),
+                 "floor is $119 x 1.1338 = $134.92 a night, $62.36 a night lower, or $436.51 over a 7-night stay. "
+                 "(Correction 2026-11-17, session arena/d1a97472-poker3: earlier wording on both sides of this dispute "
+                 "claimed 'about $43 a night lower' or 'about $154 a night'; no fee-inclusive reading yields either "
+                 "figure - the formula equals the $197.28 floor itself - so the corrected figures are the ones in this "
+                 "sentence and the bad arithmetic is recorded here so it cannot return.) Only a dated checkout total "
+                 "for the poker rate settles it. The trip-window itemised quote panel adds the decisive evidence for "
+                 "quote panels: it lists each night's Rate and Resort Fee as separate lines and its printed total "
+                 "equals rates + fees + per-night 13.38% tax exactly ($3,152.25 + $385.00 + $473.30 = $4,010.55, "
+                 "read 2026-11-17), so for a Best-Available quote the panel's rate lines are fee-exclusive even though "
+                 "the calendar footnote says the cells include the fee. That settles the convention for quote panels, "
+                 "not for the $119 poker-suite page - ask (S20). The same caution applies to the Horseshoe calendar "
+                 "cells, whose own page says they include the resort fee."),
          source="https://www.venetianlasvegas.com/resort/resort-fee.html"),
     dict(id="F55", area="Hotel cost", severity="Medium",
          title="The Horseshoe rate calendar printed two different grids five minutes apart on the same day",
@@ -1583,12 +1592,14 @@ SUGGESTIONS = [
                                                  "quoting the two properties' own 'includes resort fee' sentences"),
     dict(id="S20", title="Ask the Venetian two questions in one call, then fix the rate basis once",
          detail=("Two open questions are answered by the same phone call to 866.255.8936 (code EPOKR25). (1) Is the "
-                 "$119 / $209 poker rate quoted before or after the $55 resort fee? The Resort Fee page says the fee is "
-                 "chargeable on top of the rate and the booking calendar says its prices include the fee, so the poker "
-                 "rate itself decides whether the $197.28 floor overstates the nightly cost by about $43 (F51). (2) Does one $300 or higher entry cover every night of a "
-                 "multi-day event, or only the night it is paid? The answer decides whether the 23 and 24 November "
-                 "nights are repriced (F54). A dated checkout total for the booked 23-30 November stay is already "
-                 "recorded ($4,010.55, F15), so quote the poker rate against that same stay to compare like for like."),
+                 "$119 / $209 poker-suite starting rate quoted before or after the $55 resort fee? The itemised "
+                 "quote panel lists Rate and Resort Fee as separate lines (so its own rate lines are fee-exclusive), "
+                 "but the $119 poker page still does not say - if it is fee-inclusive, the $197.28 floor is a "
+                 "double-count of $62.36 a night (F51). (2) Does one $300 or higher entry cover every night of a "
+                 "multi-day event, or only the night it is paid? The answer decides whether the Nov 23 and Nov 24 "
+                 "nights are repriced (F54). The dated checkout total for the trip itself now exists - $4,010.55 "
+                 "read on 2026-11-17 (Q15) - so the third ask is the same stay priced under code EPOKR25, the "
+                 "conditional poker rate, for comparison against it."),
          impact="High", effort="Low",
          decision="One call settles the nightly budget basis, the qualification risk and the missing total"),
     dict(id="S21", title="Score each day on rate qualification as well as on guarantee",

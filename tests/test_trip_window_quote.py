@@ -48,13 +48,19 @@ class TripWindowCheckoutTotal(unittest.TestCase):
         self.assertEqual(q["observedOn"], "2026-11-17")
 
         # The dated capture records the same seven nightly rates and their arithmetic.
-        self.assertEqual([n["rate"] for n in CAPTURE["nightsList"]], EXPECTED_NIGHTLY)
-        self.assertAlmostEqual(CAPTURE["total"], EXPECTED_TOTAL, places=2)
-        self.assertAlmostEqual(CAPTURE["taxes"], 473.30, places=2)
-        self.assertAlmostEqual(CAPTURE["resortFees"], 385.00, places=2)
-        self.assertEqual(CAPTURE["calendar"], "https://www.venetianlasvegas.com/booking?"
-                         "adults[]=2&arrival_date=2026-11-23&children[]=0"
-                         "&departure_date=2026-11-30&view=calendar")
+        cquote, cart = CAPTURE["quote"], CAPTURE["arithmetic"]
+        self.assertEqual([n["rate"] for n in cquote["nightly"]], EXPECTED_NIGHTLY)
+        self.assertAlmostEqual(cquote["totalPrinted"], EXPECTED_TOTAL, places=2)
+        self.assertAlmostEqual(cquote["taxesPrinted"], 473.30, places=2)
+        self.assertAlmostEqual(cquote["averageRatePrinted"], 505.32, places=2)
+        self.assertEqual(cart["sumOfRates"], 3152.25)
+        self.assertEqual(cart["sumOfResortFees"], 385.00)
+        self.assertEqual(cart["subtotalBeforeTax"], 3537.25)
+        self.assertAlmostEqual(cart["sumOfPerNightDerived"], EXPECTED_TOTAL, places=2)
+        self.assertEqual(cart["perNightDerived"], EXPECTED_TRUE)
+        self.assertEqual(CAPTURE["stay"]["checkIn"], TRIP_ARRIVAL)
+        self.assertEqual(CAPTURE["stay"]["checkOut"], TRIP_DEPARTURE)
+        self.assertIn(f"arrival_date={TRIP_ARRIVAL}", CAPTURE["source"])
 
     def test_every_dated_quote_reconciles_to_the_printed_total(self):
         for hotel in DATA["hotels"]:
