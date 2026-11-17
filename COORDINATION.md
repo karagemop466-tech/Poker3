@@ -2158,3 +2158,25 @@ the new text and the absence of the old, so it cannot silently drift back.
 PRs **#7, #27 and #31 are deliberately left open.** #27 and #31 each replace the canonical
 `site/data.json`, so merging either without its session present would discard the other's work. That is a
 decision for an integration session with both authors available, not something to force here.
+## Session `arena/6118f42d-poker3` — line-by-line review pass and integration (2026-11-17 UTC)
+
+Branch: `arena/6118f42d-poker3`, branched from `main` at `7e0aef4`. The platform binds each session to one branch, so
+the `session-<id>/<task>` naming in the brief cannot be used here; this session works only on this branch and opens a
+PR from it.
+
+**Claim recorded before any other file edit in this session.**
+
+| Task | Status | Owner | Scope (files) | Notes |
+|---|---|---|---|---|
+| C1 Line-by-line review of the canonical `site/` data against the recorded official evidence | in progress | arena/6118f42d-poker3 | `site/data.json`, `site/data/*.json`, `raw/**`, `research/**` | No venue host is reachable from this sandbox; verification is against the recorded official copies. |
+| C2 Correct defects found by C1 that are inside this session's scope | in progress | arena/6118f42d-poker3 | `site/index.html`, `site/flagged.html` (copy only), `COORDINATION.md` | Data cells are only changed where the recorded official source contradicts them. |
+| C3 Final integration: rebase, PR → `main`, merge, confirm Pages, record | pending | arena/6118f42d-poker3 | `COORDINATION.md` | Requires a clean rebase onto the current `main`. |
+
+**Files this session will NOT edit** (owned by other active sessions, or shared): `site/assets/*`, `site/data.json`,
+`scripts/**`, `.github/workflows/**`, `docs/**`, `verified/**`, `planner/**`, `single-entry/**`, `site/poker3/**`,
+`tests/**`, `README.md`. If C1 finds a defect in one of them, it is recorded here as a flag or a request, not edited.
+
+**Sessions seen active at claim time (2026-11-17 01:14 UTC), with open PRs:** #56 (`arena/13439072-poker3`),
+#55 (`arena/c1655bf5-poker3`), #54 (`arena/196dc009-poker3`), #50 (`arena/cf53e83c-poker3`),
+#46 (`arena/741b3a8e-poker3`), plus the longer-held #39, #31, #27 and #7. This session does not edit any of their
+branches and does not merge them.
