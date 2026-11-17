@@ -34,6 +34,7 @@ SITE = ROOT / "site"
 DATA = SITE / "data.json"
 CHECKS = SITE / "checks.json"
 
+HASH_BASIS = ("visible text (HTML tags, scripts and styles removed); the raw-byte hash is kept per URL as hash")
 USER_AGENT = "Poker3SourceChecker/1.0 (+https://karagemop466-tech.github.io/Poker3/)"
 TIMEOUT = 30
 
@@ -124,7 +125,11 @@ def compare_check(old: dict | None, status: str, digest: str | None) -> dict:
     # comparison carries only a raw body `hash`; comparing the two bases would report
     # every page as changed, so that record seeds a fresh baseline instead (basisReset)
     # and the difference is still recorded as rawOnly for audit.
-    prior_text = (old or {}).get("textHash")
+    # The record itself states which hash basis produced it. Comparing across two bases
+    # is meaningless, so when a URL's stored basis differs from the one this run uses,
+    # the run seeds a fresh baseline for that URL instead of reporting a change. Without
+    # this the first run after the switch flagged all 80 reachable URLs on 2026-11-17.
+    prior_text = (old or {}).get("textHash") if (old or {}).get("hashBasis") == HASH_BASIS else None
     prior_raw = (old or {}).get("hash")
     basis_reset = bool(available and prior_raw and not prior_text)
     prior_hash = prior_text if prior_text else None
@@ -176,6 +181,7 @@ def main() -> int:
             row["hash"] = hashlib.sha256(body).hexdigest()
             row["bytes"] = len(body)
             row["textHash"] = content_hash(body, ctype)
+            row["hashBasis"] = HASH_BASIS
             row["textChars"] = len(visible_text(body, ctype))
             digest = row["textHash"]
         except urllib.error.HTTPError as exc:
@@ -212,7 +218,7 @@ def main() -> int:
         "urls": rows,
         "changedCount": len(changed),
         "changed": [r["url"] for r in changed],
-        "hashBasis": "visible text (HTML tags, scripts and styles removed); the raw-byte hash is kept per URL as hash",
+        "hashBasis": HASH_BASIS,
         "note": ("Automated re-check of every official URL behind this dashboard. A changed flag means the visible text "
                  "differs from the stored text hash and a human must re-read the source before any value is changed. "
                  "A raw-body hash difference with identical visible text is recorded as noise, not as a change."),
