@@ -826,6 +826,21 @@ FLAGS = [
                  "12:00 PM' without Day 1F. The structure_14 rules are applied to all three linked rows and the header "
                  "mismatch is flagged here. Read 2026-11-17."),
          source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_14.pdf"),
+    dict(id="F54", area="Hotels", severity="High",
+         title="30 November and 1 December 2026 print no figure in any reading, so a stay spanning them cannot be booked online",
+         detail=("The official Venetian booking calendar was read on 2026-11-17 with two different stay windows open. "
+                 "Every date in the captured range printed a figure in at least one of the two renderings except two: "
+                 "30 November and 1 December were blank in both. An arrival date of 30 November returns the message "
+                 "\u201cWe're sorry, but there is no availability for some of your selected dates. Please select different "
+                 "dates to proceed.\u201d No rate, no suite and no checkout total can therefore be obtained online for a stay "
+                 "that includes either night. This is why the recommended trip is 23 November to 30 November and not 25 "
+                 "November to 2 December: the longer window spans two nights the engine will not price, so it cannot be "
+                 "booked as one stay. This finding does not depend on treating a calendar cell as a price \u2014 F47 records "
+                 "that the cells move with the query, and F28 that they disagree with the quote. It is narrower than "
+                 "either: across two independent renderings these were the only two dates that printed no figure at all. "
+                 "Confirm by phone on 866.255.8936 before booking either night."),
+         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-30&children[]=0&departure_date=2026-12-02&view=calendar"),
+
 ]
 
 QUESTIONS = [
