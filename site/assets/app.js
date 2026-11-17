@@ -615,7 +615,7 @@ function renderSources() {
     const body = (db.structureSheets || []).map((s) => `
       <tr><td>${esc(s.series)}</td><td>${esc(s.sheet)}</td>
       <td>${s.read ? '<span class="badge ok">Read</span>' : '<span class="badge bad">Not read</span>'}</td>
-      <td>${esc(s.readOn || '')}</td><td>${esc(s.note)}</td>
+      <td>${esc(s.readOn || '')}${s.reReadOn ? `<br>Re-read live ${esc(s.reReadOn)}` : ''}</td><td>${esc(s.note)}</td>
       <td><a href="${esc(s.url)}" target="_blank" rel="noopener">PDF</a></td></tr>`).join('');
     sheets.innerHTML = `<div class="table-wrap"><table><thead><tr><th>Series</th><th>Sheet</th><th>Status</th>
       <th>Read on</th><th>Note</th><th>Link</th></tr></thead><tbody>${body}</tbody></table></div>`;
