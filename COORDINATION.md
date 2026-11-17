@@ -931,3 +931,35 @@ Branch: `arena/45cfee0b-poker3`, branched from `main` at `2649b47`. Scope: `scri
 **Next steps (not done):** re-check pages 2–4 of the DSE IV page; obtain an official dated Venetian quote for Nov 25 to Dec 2, 2026; find an official walking-time source per hotel-venue pair or log that none exists.
 
 **Result (session 45cfee0b).** PR [#42](https://github.com/karagemop466-tech/Poker3/pull/42) merged to `main` with `gh pr merge 42 --merge` at 2026-11-17 00:51 UTC (merge commit `0380b72`). Verify workflow on `main`: success. Pages build and deployment: success, Pages status `built`, site https://karagemop466-tech.github.io/Poker3/ . This record is in follow-up PR (see below).
+
+#### Correction (2026-11-17, arena/b1fadb7e-poker3) — B3 reason restated, and an error of mine recorded
+
+The B3 finding above said `checks.yml`, `monitor.yml` and `daily-check.yml` "deleted each other's work".
+**That was an inference, not an observation, and it is wrong.** Restated from the files:
+
+- Observed (facts): `gh run list` showed **0 runs** for all three workflows. `site/checks.json` did not
+  exist on `main`, so the Sources page had no automated check file.
+- Cause of the 0 runs: the workflows reached `main` at 00:44 UTC on 2026-11-17, and their crons were
+  `13 12 * * *` (12:13 UTC), `5 12 * * *` (12:05 UTC) and `0 9 * * *` (09:00 UTC). At the time of
+  inspection (about 00:40 UTC) every one of those times was still **in the future**. They had not run
+  because their first scheduled time had not arrived. That is all. Nothing had been deleted.
+- The race risk was real but hypothetical: `monitor.yml` and `daily-check.yml` had **no concurrency
+  group at all**, and `checks.yml` used `source-checks`, so the three were serialised against nothing.
+  `daily-check.yml` also ran `git pull --rebase origin main && git push origin main` over a working tree
+  it had just regenerated, and `monitor.yml` pushed with `|| true`, which hides a rejected push. So a
+  future collision was plausible, and the consolidation removes the risk, but no collision was observed.
+
+What remains true and useful: three committers that wrote overlapping records on overlapping crons was
+the wrong design, and it is now one serialised job that also keeps `site/checks.json` and the rate of
+change honest. The correction is recorded here rather than quietly edited so the earlier claim stays
+auditable.
+
+**My own error, recorded for audit.** I triggered PR #41 with a description saying it added
+`.github/workflows/checks.yml` to the `source-monitor.yml` push path filter. The commit was
+comment-only; the description overstated it. PR #44 then made the change the description described. Both
+are merged; this note is the correction. Separately, the "triggered" expectations of PRs #41/#44 did not
+produce a run of `checks.yml`, because `source-monitor.yml` writes nothing to the tracked tree on a run
+where `site/poker3/data/source-monitor.json` is unchanged, and `checks.yml` has no `push` trigger. The
+honest state is: **`checks.yml` is registered and active, and its first run will be its 12:13 UTC cron.**
+It has not been observed running yet, and this record does not claim that it has.
+
