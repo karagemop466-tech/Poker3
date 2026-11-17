@@ -733,6 +733,19 @@ FLAGS = [
                  "'5:25 PM or 12:25 PM' and no row in this schedule would take the 12:25 PM figure, so confirm the "
                  "12:25 PM reading with the poker room."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html"),
+    dict(id="F52", area="Bellagio", severity="Low",
+         title="The Bellagio Saturday structure sheet prints a blind level as 200-4300",
+         detail=("The sheet linked from the Bellagio poker-room page prints the third blind level of the Saturday event as "
+                 "'200-4300', which does not fit the level ladder used by the neighbouring levels. Re-read 2026-11-17; the "
+                 "value is reported exactly as printed and no level data is derived from it."),
+         source="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf"),
+    dict(id="F53", area="Venetian NYE", severity="Low",
+         title="NYE structure_14 header names only Day 1B & 1D although three flights link to it",
+         detail=("The official NYE schedule links the 5:10 PM flights on January 7, 8 and 9, 2027 (Day 1B, 1D and 1F) to "
+                 "dse_dec_2026-structure_14.pdf, but the sheet's flight header prints 'Day 1B & 1D @ 5:10 PM with Day 2 @ "
+                 "12:00 PM' without Day 1F. The structure_14 rules are applied to all three linked rows and the header "
+                 "mismatch is flagged here. Read 2026-11-17."),
+         source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_14.pdf"),
 ]
 
 QUESTIONS = [
@@ -1564,7 +1577,7 @@ def build():
     # --- Other venues ----------------------------------------------------
     def add_group(group, venue, prefix, last_checked=ASOF):
         for i, d in enumerate(group):
-            rules = {k: dict(v, source=d["source"], retrieved=ASOF) for k, v in d["rules"].items()}
+            rules = {k: dict(v, source=v.get("source", d["source"]), retrieved=ASOF) for k, v in d["rules"].items()}
             st = rules["singleEntry"]["status"]
             entry_type = ("none" if st == "single-entry-on-sheet"
                           else ("not-verified" if "not-verified" in st else "multi-buyin"))
@@ -1687,6 +1700,47 @@ def build():
     for e in events:
         if RECHECKED_TODAY in (e.get("scheduleUrl") or ""):
             e["lastChecked"] = RECHECKED
+
+    # Second 2026-11-17 re-read pass (session arena-196dc009): schedule pages and
+    # hotel terms fetched again that day and compared with the published rows.
+    # Advance a date only where the URL behind it was re-read; everything else
+    # keeps ASOF / VERIFIED_ON / LAST_PASS as set above.
+    RECHECKED_URLS = {
+        "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+        "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html",
+        "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
+        "https://www.venetianlasvegas.com/resort/resort-fee.html",
+        "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
+        "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_13.pdf",
+        "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_14.pdf",
+        "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
+        "https://www.wynnlasvegas.com/casino/poker",
+        "https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf",
+        "https://cdn.wynnresorts.com/image/upload/v1752011191/visitwynn_pdfs_files/Poker/Daily%20Tournaments/Poker-All_Daily_Structures.pdf",
+        "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
+        "https://www.wynnlasvegas.com/terms-and-conditions/850070",
+        "https://bellagio.mgmresorts.com/en/casino/poker.html",
+        "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/bltb202e65a90a1327d/85a065bdcab3b356884f4873f3ad8042/mgm-bellagio-poker-fridays-$600-nlh.pdf",
+        "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf",
+        "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf",
+        "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blte904386f4117e230202cb512347e3b85/mgm-bellagio-poker-sundays-$400-horse.pdf",
+        "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt07fcf1244a6da661/6af491a339e2b4f6b76a86ad/mgm-bellagio-poker-sundays-$400-horse.pdf",
+        "https://bellagio.mgmresorts.com/en/terms-and-conditions.html",
+        "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
+        "https://aria.mgmresorts.com/en/casino/poker.html",
+    }
+    for src in SOURCES:
+        if src["url"] in RECHECKED_URLS:
+            src["checked"] = RECHECKED
+    for e in events:
+        if e["scheduleUrl"] in RECHECKED_URLS or e["sheetUrl"] in RECHECKED_URLS:
+            e["lastChecked"] = RECHECKED
+        for body in e["rules"].values():
+            if body.get("source") in RECHECKED_URLS:
+                body["retrieved"] = RECHECKED
+    for h in hotels:
+        if h.get("id") in ("venetian", "palazzo", "wynn", "bellagio"):
+            h["lastChecked"] = RECHECKED
 
     recurring_events = [e for e in events if not e["date"] and e.get("weekdays")]
     plan, conflicts = build_day_plan(events, TRIP["start"], TRIP["end"], recurring_events)
