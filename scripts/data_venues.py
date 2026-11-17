@@ -30,7 +30,7 @@ ARIA_GUIDE = "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria
 # ---------------------------------------------------------------- Wynn daily
 # Recurring daily tournaments. Structure PDF is the rule source.
 WYNN_DAILY = [
-    dict(name="$200 No Limit Hold'em (Monday-Thursday)", days="Monday-Thursday", time="12:00 PM", weekdays=[0,1,2,3],
+    dict(name="$200 No Limit Hold'em", days="Monday-Thursday", time="12:00 PM", weekdays=[0,1,2,3],
          buyIn=200, guarantee=10000, chips=25000, levelMin=30, lateReg="Registration and re-entries until the start of level 9 (approximately 4:30 p.m.)",
          source=WYNN_DAILY_STRUCT, poster=WYNN_DAILY_POSTER, category="extra",
          rules=dict(
@@ -39,7 +39,7 @@ WYNN_DAILY = [
              addOn=dict(status="none-printed", excerpt="No add-on provision appears on this structure sheet."),
              fee=dict(status="confirmed", excerpt="The $200 Entry Fee will be distributed as follows: $26 for the Tournament fee, $12 for the poker staff service charge, and $162 for the Tournament prize pool.")),
          note="The daily slate is suspended during each Wynn Signature, Wynn Millions and Classic tournament series (per the official poker-room page)."),
-    dict(name="$240 No Limit Hold'em Rebuy & Add-on (Friday)", days="Friday", time="12:00 PM", weekdays=[4],
+    dict(name="$240 No Limit Hold'em Rebuy & Add-on", days="Friday", time="12:00 PM", weekdays=[4],
          buyIn=240, guarantee=40000, chips=25000, levelMin=30, lateReg="Registration, rebuys and add-ons until the start of level 9 (approximately 4:30 p.m.)",
          source=WYNN_DAILY_STRUCT, poster=WYNN_DAILY_POSTER, category="extra",
          rules=dict(
@@ -49,7 +49,7 @@ WYNN_DAILY = [
              rebuy=dict(status="allowed", excerpt="Unlimited $200 rebuys for 25,000 tournament chips are available any time a player is at 15,000 chips or less."),
              fee=dict(status="confirmed", excerpt="The Tournament entry fee is $240, of which $35 will be withheld for the Tournament fee and $15 as a service charge for poker staff. $190 of each Entry Fee and rebuy will fund the Tournament prize pool.")),
          note="A rebuy-heavy event: spending more buys a second shot at the same prize pool."),
-    dict(name="$200 No Limit Hold'em (Saturday & Sunday)", days="Saturday, Sunday", time="12:00 PM", weekdays=[5,6],
+    dict(name="$200 No Limit Hold'em", days="Saturday, Sunday", time="12:00 PM", weekdays=[5,6],
          buyIn=200, guarantee=25000, chips=25000, levelMin=30, lateReg="Registration, re-entries, and one (1) add-on per entry until the start of level 11 (approximately 5:30 p.m.)",
          source=WYNN_DAILY_STRUCT, poster=WYNN_DAILY_POSTER, category="extra",
          rules=dict(
@@ -57,7 +57,7 @@ WYNN_DAILY = [
              reEntry=dict(status="allowed", excerpt="Registration, re-entries, and one (1) add-on per entry will be available until the start of level 11 (approximately 5:30 p.m.)."),
              addOn=dict(status="allowed", excerpt="One (1) $100 add-on for 25,000 tournament chips is available any time until the end of registration."),
              fee=dict(status="confirmed", excerpt="The $200 Entry Fee will be distributed as follows: $26 for the Tournament fee, $12 for the poker staff service charge, and $162 for the Tournament prize pool."))),
-    dict(name="$160 No Limit Hold'em Nightly", days="Nightly Monday-Sunday", time="6:00 PM", weekdays=[0,1,2,3,4,5,6],
+    dict(name="$160 No Limit Hold'em", days="Nightly", time="6:00 PM", weekdays=[0,1,2,3,4,5,6],
          buyIn=160, guarantee=10000, chips=25000, levelMin=20, lateReg="Registration, re-entries, and one (1) add-on per entry until the start of level 9 (approximately 9:00 p.m.)",
          source=WYNN_DAILY_STRUCT, poster=WYNN_DAILY_POSTER, category="extra",
          rules=dict(

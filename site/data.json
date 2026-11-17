@@ -8286,7 +8286,7 @@
    "venue": "wynn",
    "date": "",
    "time": "12:00 PM",
-   "name": "$200 No Limit Hold'em (Monday-Thursday) (Monday-Thursday)",
+   "name": "$200 No Limit Hold'em (Monday-Thursday)",
    "buyIn": 200,
    "guarantee": 10000,
    "ratio": 50.0,
@@ -8348,7 +8348,7 @@
    "venue": "wynn",
    "date": "",
    "time": "12:00 PM",
-   "name": "$240 No Limit Hold'em Rebuy & Add-on (Friday) (Friday)",
+   "name": "$240 No Limit Hold'em Rebuy & Add-on (Friday)",
    "buyIn": 240,
    "guarantee": 40000,
    "ratio": 166.7,
@@ -8413,7 +8413,7 @@
    "venue": "wynn",
    "date": "",
    "time": "12:00 PM",
-   "name": "$200 No Limit Hold'em (Saturday & Sunday) (Saturday, Sunday)",
+   "name": "$200 No Limit Hold'em (Saturday, Sunday)",
    "buyIn": 200,
    "guarantee": 25000,
    "ratio": 125.0,
@@ -8473,7 +8473,7 @@
    "venue": "wynn",
    "date": "",
    "time": "6:00 PM",
-   "name": "$160 No Limit Hold'em Nightly (Nightly Monday-Sunday)",
+   "name": "$160 No Limit Hold'em (Nightly)",
    "buyIn": 160,
    "guarantee": 10000,
    "ratio": 62.5,
@@ -8530,7 +8530,7 @@
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1752011191/visitwynn_pdfs_files/Poker/Daily%20Tournaments/Poker-All_Daily_Structures.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1752011191/visitwynn_pdfs_files/Poker/Daily%20Tournaments/Poker-All_Daily_Structures.pdf",
    "lastChecked": "2026-11-16",
-   "note": " Recurring nightly monday-sunday.",
+   "note": " Recurring nightly.",
    "eligibility": ""
   },
   {
@@ -20016,8 +20016,8 @@
    "publishedStartingRates": "824.25 and 164.25 per night for Nov. 17-19, 2026",
    "resortFee": "55.00 per night",
    "tax": "146.98 printed",
-   "trueNightlyLow": "996.91",
-   "trueNightlyHigh": "248.61",
+   "trueNightlyLow": "248.61",
+   "trueNightlyHigh": "996.91",
    "quoteType": "Dated official checkout total (2 adults, 2 nights)",
    "note": "The official booking engine printed $824.25 + $55 and $164.25 + $55, taxes $146.98 and a total of $1,245.48 for a 650 sq ft Newly Remodeled Luxury King suite. Derived nightly figures are (rate + $55) x 1.1338 and reconcile to $1,245.52 against the printed $1,245.48.",
    "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar",
@@ -21014,7 +21014,7 @@
     {
      "id": "wynn-daily-0",
      "venue": "wynn",
-     "name": "$200 No Limit Hold'em (Monday-Thursday) (Monday-Thursday)",
+     "name": "$200 No Limit Hold'em (Monday-Thursday)",
      "time": "12:00 PM",
      "buyIn": 200,
      "guarantee": 10000,
@@ -21026,7 +21026,7 @@
     {
      "id": "wynn-daily-3",
      "venue": "wynn",
-     "name": "$160 No Limit Hold'em Nightly (Nightly Monday-Sunday)",
+     "name": "$160 No Limit Hold'em (Nightly)",
      "time": "6:00 PM",
      "buyIn": 160,
      "guarantee": 10000,
@@ -21258,7 +21258,7 @@
     {
      "id": "wynn-daily-0",
      "venue": "wynn",
-     "name": "$200 No Limit Hold'em (Monday-Thursday) (Monday-Thursday)",
+     "name": "$200 No Limit Hold'em (Monday-Thursday)",
      "time": "12:00 PM",
      "buyIn": 200,
      "guarantee": 10000,
@@ -21270,7 +21270,7 @@
     {
      "id": "wynn-daily-3",
      "venue": "wynn",
-     "name": "$160 No Limit Hold'em Nightly (Nightly Monday-Sunday)",
+     "name": "$160 No Limit Hold'em (Nightly)",
      "time": "6:00 PM",
      "buyIn": 160,
      "guarantee": 10000,
@@ -21502,7 +21502,7 @@
     {
      "id": "wynn-daily-1",
      "venue": "wynn",
-     "name": "$240 No Limit Hold'em Rebuy & Add-on (Friday) (Friday)",
+     "name": "$240 No Limit Hold'em Rebuy & Add-on (Friday)",
      "time": "12:00 PM",
      "buyIn": 240,
      "guarantee": 40000,
@@ -21514,7 +21514,7 @@
     {
      "id": "wynn-daily-3",
      "venue": "wynn",
-     "name": "$160 No Limit Hold'em Nightly (Nightly Monday-Sunday)",
+     "name": "$160 No Limit Hold'em (Nightly)",
      "time": "6:00 PM",
      "buyIn": 160,
      "guarantee": 10000,
@@ -21758,7 +21758,7 @@
     {
      "id": "wynn-daily-2",
      "venue": "wynn",
-     "name": "$200 No Limit Hold'em (Saturday & Sunday) (Saturday, Sunday)",
+     "name": "$200 No Limit Hold'em (Saturday, Sunday)",
      "time": "12:00 PM",
      "buyIn": 200,
      "guarantee": 25000,
@@ -21770,7 +21770,7 @@
     {
      "id": "wynn-daily-3",
      "venue": "wynn",
-     "name": "$160 No Limit Hold'em Nightly (Nightly Monday-Sunday)",
+     "name": "$160 No Limit Hold'em (Nightly)",
      "time": "6:00 PM",
      "buyIn": 160,
      "guarantee": 10000,
@@ -22014,7 +22014,7 @@
     {
      "id": "wynn-daily-2",
      "venue": "wynn",
-     "name": "$200 No Limit Hold'em (Saturday & Sunday) (Saturday, Sunday)",
+     "name": "$200 No Limit Hold'em (Saturday, Sunday)",
      "time": "12:00 PM",
      "buyIn": 200,
      "guarantee": 25000,
@@ -22026,7 +22026,7 @@
     {
      "id": "wynn-daily-3",
      "venue": "wynn",
-     "name": "$160 No Limit Hold'em Nightly (Nightly Monday-Sunday)",
+     "name": "$160 No Limit Hold'em (Nightly)",
      "time": "6:00 PM",
      "buyIn": 160,
      "guarantee": 10000,
@@ -22258,7 +22258,7 @@
     {
      "id": "wynn-daily-0",
      "venue": "wynn",
-     "name": "$200 No Limit Hold'em (Monday-Thursday) (Monday-Thursday)",
+     "name": "$200 No Limit Hold'em (Monday-Thursday)",
      "time": "12:00 PM",
      "buyIn": 200,
      "guarantee": 10000,
@@ -22270,7 +22270,7 @@
     {
      "id": "wynn-daily-3",
      "venue": "wynn",
-     "name": "$160 No Limit Hold'em Nightly (Nightly Monday-Sunday)",
+     "name": "$160 No Limit Hold'em (Nightly)",
      "time": "6:00 PM",
      "buyIn": 160,
      "guarantee": 10000,
@@ -22502,7 +22502,7 @@
     {
      "id": "wynn-daily-0",
      "venue": "wynn",
-     "name": "$200 No Limit Hold'em (Monday-Thursday) (Monday-Thursday)",
+     "name": "$200 No Limit Hold'em (Monday-Thursday)",
      "time": "12:00 PM",
      "buyIn": 200,
      "guarantee": 10000,
@@ -22514,7 +22514,7 @@
     {
      "id": "wynn-daily-3",
      "venue": "wynn",
-     "name": "$160 No Limit Hold'em Nightly (Nightly Monday-Sunday)",
+     "name": "$160 No Limit Hold'em (Nightly)",
      "time": "6:00 PM",
      "buyIn": 160,
      "guarantee": 10000,
@@ -22746,7 +22746,7 @@
     {
      "id": "wynn-daily-0",
      "venue": "wynn",
-     "name": "$200 No Limit Hold'em (Monday-Thursday) (Monday-Thursday)",
+     "name": "$200 No Limit Hold'em (Monday-Thursday)",
      "time": "12:00 PM",
      "buyIn": 200,
      "guarantee": 10000,
@@ -22758,7 +22758,7 @@
     {
      "id": "wynn-daily-3",
      "venue": "wynn",
-     "name": "$160 No Limit Hold'em Nightly (Nightly Monday-Sunday)",
+     "name": "$160 No Limit Hold'em (Nightly)",
      "time": "6:00 PM",
      "buyIn": 160,
      "guarantee": 10000,
