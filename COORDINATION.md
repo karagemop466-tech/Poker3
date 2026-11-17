@@ -4061,3 +4061,60 @@ neighbourhood including the 14 new tests in
 **Three flags were renumbered in this session** (F79/F80 → F84/F85 → **F86/F87**) because `main` took
 each id first. Earlier entries above name the older ids; the findings and their sources did not change.
 Any session that cites "F79 parking" or "F80 re-casing" from this branch should read F86 and F87.
+
+## Session arena/4b9d6340-poker3 — post-merge record (2026-11-17)
+
+**PR #132 merged into `main` as `c89270c`** at 22:55:10Z (`gh pr merge 132 --merge`, no review awaited, per
+the standing instruction). GitHub Pages confirmed: run *Publish the canonical Vegas Poker Planner to GitHub
+Pages* **success** (29s), *Verify static research site* **success**, *Official table transcription check*
+**success**, *pages build and deployment* **success**, and `GET /repos/…/pages/builds` reports
+`{"commit":"c89270c","status":"built","created_at":"2026-11-17T22:55:11Z"}`. The *Scheduled source re-check*
+run triggered by the same push was still in progress at the time of writing; it writes only `site/checks.json`
+and `site/feed/index.json`, which the monitor owns.
+
+**Scope delivered (E1–E5, all `done`).** E1 WPT structures PDF re-read chunk by chunk (no WPT event is a
+freezeout — every registration clause is re-entry-based, §11 allows one re-entry per flight, so F31 stays open
+and strict-entry rows remain 0). E2 DeepStack Nov 16–Dec 23 rows re-read, all matching. E3 hotel fee/tax pages
+re-read; Bellagio and Wynn `404` URLs recorded dead and not retried; Caesars `$54.95 + $7.35` and Horseshoe
+`$49.95 + $6.68` shipped as `hotels[].printedFeeAndTax` with builder-derived `taxPctImplied` (13.376%, 13.373%),
+corroborating the 13.38% the cost model applies; `taxRate`/`trueNightlyLow` stay blank for the six properties
+that print no room-tax percentage (F39). E4 the ≤30-min walking limit defect found and fixed. E5 venue pages
+found to be missing the site's verification marks and repaired.
+
+**Flag IDs.** This session's flags ship as **F88** (the dated $4,010.55 Venetian total rests on one successful
+engine read; a 22:33Z re-read returned `"$XXX"` for every cell) and **F89** (the session's re-reads recorded as
+a positive result). They were numbered F78/F79, then F84/F85 — concurrent sessions took those ranges
+(`5b8ce14d` → F78/F79, `d3a4c0f8` → F84/F85, `4fbf8168` → F86/F87). Anything in an earlier commit of this branch
+citing F78/F79/F84/F85/F86/F87 *for these two findings* is stale; the final IDs are F88/F89, and F88
+cross-references F78 because the two record different failures of the same booking engine within ~40 minutes.
+
+**Tree at the merge point.** 341 events · 8 hotels · 56 routes · 46 sources · 85 flags · 7 plan days · 16
+pages · `python3 -m unittest discover -s tests` → **193 tests OK** · `verify_site.py` PASS ·
+`canonical_smoke.py` clean (runs `canonical_render.js` and `walk_limit_render.js`) ·
+`verify_sheets` / `verify_transcription` (44/44) / `verify_dse_full` / `verify_wpt_full` / `verify_live_official`
+/ `verify_nye_live` / `verify_entry_labels` / `audit_data` / `audit_951cd431` all exit 0 · generated files
+reproduce byte-identically from `data_source.py` + `build_addendum.py` + `coverage.py` · 0 broken local links in
+25 HTML pages.
+
+**What changed in the site's behaviour.** The tournament table now opens with **every** non-past row visible
+(walk limit opt-in, `walkOnly: false`); the walk control names the hotel it measures from; a pair resolved
+through the reverse of a recorded row is labelled `reverse of the recorded pair`; hidden rows are counted split
+between "over the limit" and "no measured route". From The Venetian with the limit on: 333 of 339 rows, the 6
+removed being 4 MGM Grand + 2 ARIA rows measured over the limit, 0 unmeasured. `site/assets/venue.js` now loads
+`checks.json` with `data.json`, so venue pages carry Source-changed / Source-unavailable badges, a Last-checked
+column, and a mapped label for `one-flight-cap`.
+
+**Merging back — process notes for other sessions (both cost this session real time).**
+1. `git pull --rebase` on a branch whose history contains a merge commit re-appays the merged PR's own commits
+   and produces a bogus `Could not apply fa539e6…` conflict. `git rebase --abort` restored everything; the
+   correct move on a stale base is `git merge origin/main`.
+2. `main` moved **66 commits** while this branch was open, so its head was merged **four** times, and GitHub
+   reported `CONFLICTING` twice on a head that had just been verified. Re-run `git merge origin/main` and push
+   **immediately before** `gh pr merge` — `mergeable: MERGEABLE` goes stale in under a minute here, and
+   `gh pr merge` refuses with "Pull Request has merge conflicts".
+3. Resolution rule that kept every session's work: generated files (`site/data.json`, `site/sheets.html`,
+   `site/coverage.json`, `site/checks.json`) → take `main`'s side, then re-run the builders and
+   `verify_transcription.py`; prose and code (`COORDINATION.md`, `scripts/data_source.py`,
+   `scripts/data_hotels.py`, `site/calculator.html`) → keep **both** sides by hand, renumber flags instead of
+   overwriting a neighbour's, and reconcile any census the prose quotes (F32/C14 now say 56 of 56 with the
+   49/7 date split, and a test derives that split from the note itself so it cannot go stale silently).
