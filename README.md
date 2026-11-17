@@ -19,10 +19,10 @@ dashboard either way. See flag F29 on the Flagged for review page.
 | `site/calculator.html` | *Estimated cost of a trip* = entries × buy-ins + nights × true hotel cost, computed from the published components, with a like-for-like comparison of the eight entries and seven nights at each published rate. |
 | `site/browse.html` | Venue and category subpages, so a bounty event is never mixed in with a plain freezeout. |
 | `site/schedule.html` | A provisional sheet-screened candidate per day, conditional fallback, recurring room events and estimated overlap flags; none is strict-entry confirmed. |
-| `site/hotels.html` | Published rate components, the mandatory resort fee, tax, true cost per night, parking, cancellation deadlines, walking times and the dated rate log. |
+| `site/hotels.html` | Published rate components, the mandatory resort fee, tax, true cost per night, parking, cancellation deadlines, walking times, one official booking deep link per trip night, the dated quote log and the dated rate log. |
 | `site/questions.html` | The information still needed before booking, each with the official source behind the answer. |
 | `site/suggestions.html` | Proposed improvements with impact, effort and the decision each one needs. |
-| `site/flagged.html` | Every irregularity and unverified value, each with a link for manual review. |
+| `site/flagged.html` | Every irregularity and unverified value, each with a link for manual review (31 items). |
 | `site/sources.html` | The official source log, every structure sheet with its read status, the morning feed sources and the automated re-check results. |
 
 ## Evidence policy
@@ -60,6 +60,27 @@ window (44 rows). `scripts/verify_transcription.py` compares it with `site/data.
 date, start time, registration cut-off, guarantee, chip count or level length drifts.
 
 `research/reread_2026-11-17.json` is the live re-read of the 13 trip-window rows (Nov 25 – Dec 2, 2026) and the seven structure sheets behind them, dated 2026-11-17. `tests/test_reread_2026_11_17.py` fails if the published rows drift from it.
+
+## The 2026-11-17 re-verification pass
+
+Every DeepStack Extravaganza IV row was re-read against a fresh capture of the official schedule page
+(`raw/dse_nov_2026_schedule_html_2026-11-17.md`) and cross-checked against the official schedule PDF
+(`raw/venetian_dse_nov_2026_schedule.md`). All 94 rows agree on date, time, event number, event name, structure-sheet
+link, printed buy-in and printed guarantee. Eleven canonical names were truncated relative to the page and were
+corrected; the rest already matched.
+
+The official booking engine was re-opened on the same day. It priced the same November 17-19 stay at **$1,015.89**,
+against **$1,245.48** the day before, and quoted November 20-22 at **$2,504.00**. All three reconcile exactly with
+`(rate + $55 resort fee) x 1.1338`, confirming that the 13.38% Clark County room tax applies to the rate and to the
+resort fee together. Four stay windows inside the recommended trip dates returned no suite and no price.
+
+Two official-source irregularities came out of the pass and are published on the Flagged page: the schedule PDF prints
+decorative sponsor art instead of a date on 20 rows (F46), and the booking calendar's cells change value with the stay
+window that is open, so no calendar cell is ever used as a price (F47).
+
+`raw/official_excerpts_2026-11-17.md` holds the verbatim official text behind the hotel and Wynn daily-tournament
+values, and `scripts/verify_live_official.py` asserts them on every CI run.
+>>>>>>> a1af876 (Sync the narrative with the 2026-11-17 findings)
 
 ## Scheduled checks
 
@@ -102,7 +123,10 @@ Then open `http://localhost:8000`.
 ## Verification
 
 ```sh
-python3 scripts/verify_site.py        # official-source, blank-value and link checks over site/data.json
+python3 scripts/verify_live_official.py  # canonical rows vs the official schedule page and schedule PDF,
+                                        #   the hotel values vs the official excerpts, and the quote arithmetic
+python3 scripts/audit_data.py            # every structure-sheet value vs the read log
+python3 scripts/verify_site.py           # official-source, blank-value and link checks over site/data.json
 python3 tests/canonical_smoke.py       # page structure plus a headless render check of every page
 node --check site/assets/app.js
 python3 -m json.tool site/data.json

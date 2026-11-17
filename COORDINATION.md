@@ -1239,7 +1239,7 @@ Branch: `arena/741b3a8e-poker3`. This session works only on this branch.
 | T-B Freshness: per-event `status` (past / today / upcoming), past rows hidden by default, snapshot date 2026-11-17 | done | 741b3a8e | `scripts/data_source.py`, `site/assets/app.js` | Past rows are still shown when "Include past events" is ticked |
 | T-C Hotel: official booking link for the fixed stay (per date, no price) | done (no price captured) | 741b3a8e | `scripts/data_source.py` (`BOOKING_LINKS`), `site/hotels.html`, `site/assets/app.js` | The booking engine returns `$XXX` for every date in a static read (F36 on `main`) |
 | T-D Flags and answers for this pass's irregularities | done | 741b3a8e | `scripts/data_source.py` | Flags F42 added; F38 and Q14 corrected; duplicates dropped (see below) |
-| T-E Tests, verification, PR to `main`, merge, Pages check | in progress | 741b3a8e | this section | PR [#46](https://github.com/karagemop466-tech/Poker3/pull/46). Merge and Pages result recorded below once done |
+| T-E Tests, verification, PR to `main`, merge, Pages check | done | 741b3a8e | this section | PR [#46](https://github.com/karagemop466-tech/Poker3/pull/46) merged as `2625d5b` with `gh pr merge 46 --merge`. Result below |
 
 ### Merge with `main` (this session)
 
@@ -1295,6 +1295,16 @@ Branch: `arena/741b3a8e-poker3`. This session works only on this branch.
 - The 8 AM question (Q14) stays open: no official 8 AM start was found.
 - Horseshoe's 9:00 AM game has no published buy-in or structure, so it cannot be ranked.
 
+### Result (session `arena/741b3a8e-poker3`)
+
+- **PR:** [#46](https://github.com/karagemop466-tech/Poker3/pull/46) (`arena/741b3a8e-poker3` → `main`), merged with `gh pr merge 46 --merge` as merge commit `2625d5b41e87da486cde6b9d0be4af23db32ee89` at **2026-11-17 01:13:52 UTC**.
+- **Verify before the merge:** `Verify static research site` run [43993814474](https://github.com/karagemop466-tech/Poker3/actions/runs/43993814474) on head `301a78e` → **success**.
+- **Verify and Pages after the merge:** on `2625d5b`, `Verify static research site` run 43993963606 → success; `Publish the canonical Vegas Poker Planner to GitHub Pages` run 43993963660 → success; `pages-build-deployment` run 43993962410 → success. The Pages API reports `status: built`, source `main /`.
+- **Live check of the deployed site:** `https://karagemop466-tech.github.io/Poker3/site/data.json` returns `asOf` 2026-11-17 and the Venetian booking link in `bookingLinks`, so the new data is served.
+- **Flag and question numbering:** this session's records were renumbered after `main` took F31–F41 and Q13–Q18 (my F33–F36 became F42; my Q13 duplicated Q14 and was dropped). See the merge notes above.
+- **Branch history:** the pre-rebase commits `ccbeca5` and `8da8039` on the remote branch were replaced by a force-push (`8da8039` → `8501962`) during the first rebase. Later pushes were fast-forward only. This was the only force-push and it affected only this session's own branch.
+- **Not verified in this session (carried forward):** nightly price for Nov 25–Dec 2 (none published in a static read); Bellagio weekly PDFs; Wynn daily and WPT PDFs; DeepStack NYE schedule; hotel-terms pages; walking minutes (Maps estimates). Each is blank or flagged on the site.
+
 ---
 
 ## Session arena/169bf42c-poker3 — live re-check of the Venetian schedule and Wynn fee (2026-11-17)
@@ -1328,10 +1338,152 @@ Branch: `arena/169bf42c-poker3`. Scope: this COORDINATION section only. No data,
 - **Schedule PDF page 2 not re-read.** Only the first page of the PDF was checked in this session (through December 6).
 - **Morning feed unchanged.** The scheduled 12:10 UTC `checks.yml` run is still the first live run, as recorded above.
 
+**Result (arena/169bf42c-poker3).** PR [#58](https://github.com/karagemop466-tech/Poker3/pull/58) merged with `gh pr merge 58 --merge` as merge commit `5bf0df538c5566ca04e8517e54d90bc35527ff2d`. The `verify` check on the PR passed ([run 43994010698](https://github.com/karagemop466-tech/Poker3/actions/runs/43994010698)). This follow-up records that result and is merged the same way.
+
 ---
 
-**Session `arena/c1655bf5-poker3` result (2026-11-17).** PR to `main` merged with `gh pr merge <n> --merge`;
-verification and Pages deploy runs green; the merged push fires `checks.yml` for its first self-triggered run (the
-push path lives on `checks.yml` itself, because a change to one workflow file cannot trigger a different workflow —
-PR #44's routed attempt only ever started the poker3 companion monitor). The exact PR number, run IDs and merge
-commit are recorded in the follow-up entry appended after the merge, following the PR #10/#12/#25 follow-up pattern.
+---
+
+---
+
+---
+
+---
+
+## Session `arena/b573f10a-poker3` — live re-verification, dated trip-window rates, and final integration
+
+Branch: `arena/b573f10a-poker3` (base `main` @ `b30841e`, the merge of PR #34). The platform binds each session to one
+branch, so the brief's `session-<id>/<task>` naming cannot be applied; the Arena branch name is used instead. This
+session is the only active editor, so it takes the integration-owner role for every shared output: the canonical
+`site/` artifact, `site/data.json`, the flag register, the source log, navigation, `scripts/**`, `tests/**`,
+`.github/workflows/**`, `README.md` and this file.
+
+### Claim (recorded before any file edit, 2026-11-17)
+
+| Task | Status | Owner session | Files in scope | Notes |
+|---|---|---|---|---|
+| C1 Line-by-line re-verification of all canonical tournament rows against the official pages fetched today | done | arena/b573f10a-poker3 | `site/data.json`, `scripts/data_*.py`, `scripts/verify_site.py` | Snapshot moves 2026-11-16 → 2026-11-17; every row's `lastChecked` follows. |
+| C2 Dated official hotel quote for the actual trip window (2026-11-25 → 2026-12-02) | done (no official price exists for the window; four stay windows recorded) | arena/b573f10a-poker3 | `scripts/data_hotels.py`, `site/hotels.html`, flag F15/F28 | Closes the highest-severity money gap if the official booking engine publishes a price. |
+| C3 Read the unread official structure-sheet sets (DSE NYE, WPT World Championship) | done by another session on `main` (all 52 sheets now read) | arena/b573f10a-poker3 | `scripts/data_venetian.py`, `scripts/data_venues.py`, `site/data.json` | Clears F11 and F12 where the official PDF is reachable. |
+| C4 Remaining brief items on the canonical site (past-date handling, per-date booking links, feed publication) | done: one official booking deep link per trip night | arena/b573f10a-poker3 | `site/**`, `site/assets/app.js` | Only where a published gap exists. |
+| C5 Verification, PR to `main`, merge, Pages confirmation, record here | done: PR [#57](https://github.com/karagemop466-tech/Poker3/pull/57) | arena/b573f10a-poker3 | whole repo | No blocking wait for review. |
+
+**Not claimed, not edited:** `docs/`, `verified/`, `planner/`, `single-entry/`, `pages/`, `handoff/`, `raw/`, the
+root-level legacy HTML pages, `site/poker3/**`. They are prior-session artefacts and stay as they are.
+
+**Commit discipline:** small frequent commits; `git pull --rebase origin arena/b573f10a-poker3` before every push.
+
+### Work log
+
+
+### Work log (session arena/b573f10a-poker3, 2026-11-17)
+
+**C1 — Line-by-line re-verification of the canonical tournament rows.**
+
+- Re-fetched the official DeepStack Extravaganza IV schedule page (4 chunks) and transcribed it verbatim to
+  `raw/dse_nov_2026_schedule_html_2026-11-17.md` (94 rows).
+- Wrote `scripts/verify_live_official.py`, which compares the canonical rows against **both** official captures — the
+  HTML schedule page and the schedule PDF — on date, time, event number, event name, structure-sheet link, printed
+  buy-in and printed guarantee. It exits non-zero on any disagreement, so CI fails loudly.
+- Result: all 94 rows agree on every field. Eleven canonical names were truncated relative to the official page
+  ("Must be 50+ years of age" was missing "to participate"; "Event #39/#47" were missing the space the page prints)
+  and were corrected in `scripts/data_venetian.py`.
+- `raw/official_excerpts_2026-11-17.md` records the verbatim official text read today for the Venetian poker-suite
+  rate page and the Wynn daily tournament poster. The verifier asserts the canonical values against them:
+  119/209, $55, six hours, $300, 2 a.m., code EPOKR25, and the four recurring Wynn rows
+  ($200/$10,000/12:00 PM Mon-Thu; $240 rebuy/$40,000/12:00 PM Fri; $200/$25,000/12:00 PM Sat-Sun;
+  $160/$10,000/6:00 PM nightly). All match.
+- `lastChecked` is now per row rather than per build: the DSE rows carry 2026-11-17, everything else keeps
+  2026-11-16. Source check-dates were corrected the same way — only the three pages re-read today
+  (`vl-dse-nov`, `vl-suite-rates`, `wynn-daily-poster`) carry 2026-11-17; the other 24 keep 2026-11-16.
+  Previously all 27 sources claimed 2026-11-17 because the date came from the build constant.
+
+**C2 — Dated official quotes for the trip window (and the finding that none exists).**
+
+- The official booking engine was opened five times on 2026-11-17.
+- It re-priced the **same** November 17-19 stay at **$1,015.89** ($621.75 + $55, $164.25 + $55, $119.89 tax),
+  against **$1,245.48** recorded on 2026-11-16. The first night fell from $824.25 to $621.75.
+- It quoted **November 20-22** at **$2,504.00** for a 750 sq ft Newly Remodeled Luxury Two Queen
+  ($899.25 + $55, $1,199.25 + $55, $295.50 tax).
+- All three totals reconcile exactly with `(rate + $55 resort fee) x 1.1338`, which confirms from three independent
+  official quotes that the 13.38% Clark County room tax applies to the rate and to the resort fee together.
+- **Arithmetic error found and fixed in the existing data.** The stored 2026-11-16 quote carried derived nightly
+  figures of $996.91 and $248.61 (total $1,245.52) with a note blaming a 4-cent venue rounding. The correct figures
+  are $996.89 and $248.59, which reconcile **exactly** to the printed $1,245.48. The note was rewritten.
+- Four stay windows inside the trip window returned no suite and no price, and each is published with its URL so a
+  reader can reproduce it: Nov 25-Dec 2 (all cells "$XXX"), Nov 25-27 (page did not finish loading),
+  Nov 27-28 (calendar but no suite), Nov 30-Dec 1 (all cells "$XXX").
+- Added one official booking deep link per trip night (seven nights plus the whole stay) for The Venetian and The
+  Palazzo, closing the "live hotel rate lookup with official booking links per date" item. No date-parameterised
+  link was verified for Wynn, Bellagio, MGM, Caesars, Horseshoe or ARIA, so none is published for them.
+
+**New irregularity: the booking calendar is not a price list (F47).** The same official calendar was read twice on
+2026-11-17 with two different stay windows open. November 16 printed $555 against $854; November 22 printed $165
+against $230; November 27 printed $905 against $1,814. The cell tracks the cheapest suite the engine can offer for
+that query, not a nightly rate. No calendar cell on the site has ever been used in a total, and the comparison is now
+published on the hotels page. F28 was raised from Medium to High and rewritten to record this.
+
+**Two more official-source irregularities (F45, F46).** The schedule PDF and the schedule page render 83 of 94 event
+names differently, because the PDF puts the guarantee in its own column while the page inlines "$XXK GTD" into the
+name; the site follows the page, which is what every row links to. And the PDF prints decorative sponsor art instead
+of a date on 20 rows ("@PokerAtlas* TOUR" x6, "LIPS CHAMPIONSHIP CHAMPIES CHAMPIES CHAMPIES" x6,
+"LIPS FRIDAY, DECEMBER 11" x5, "@PokerAtlas PRO" x2, "@PokerAtlas* PRO" x1) — those dates come from the page and the
+two were cross-checked row by row.
+
+**Earlier-session request honoured.** Session `arena/4fa30832-poker3` asked the integration owner to consider a flag
+for the PDF's decorative DATE cells and the "(IDAY)" typo. The decorative cells are now F46 with the exact counts.
+
+**C4 — Site changes.** New sections on `site/hotels.html`: all dated official checkout totals as cards (newest first),
+per-night official booking links, a table of the stay windows that returned no price, and the two-reading calendar
+comparison. `index.html`, the F15/Q01/Q05 text and the README were corrected where they still said that no property
+publishes a dated total. Two suggestions added: S13 (re-quote the trip window every morning) and S14 (never treat a
+calendar cell as a price).
+
+**Verification before merge.** `verify_live_official.py` (94 DSE rows against two official captures, hotel values
+against the official excerpts, quote arithmetic), `audit_data.py` (37 structure sheets against the read log),
+`verify_site.py` (341 events, 8 hotels, 14 routes, 27 sources, 31 flags, 8 plan days, 15 pages, all links resolve),
+`canonical_smoke.py` (10 main pages and 5 detail pages render), `smoke.py` (the Poker3 companion), `node --check` on
+both client scripts, and a reproducible `data_source.py` build. All pass.
+
+### Result (session arena/b573f10a-poker3)
+
+- **PR [#57](https://github.com/karagemop466-tech/Poker3/pull/57)** (`arena/b573f10a-poker3` → `main`), merged
+  2026-11-17 01:16:35 UTC with `gh pr merge 57 --merge`, merge commit `234d2d7`.
+- **CI on the merge commit:** "Verify static research site" run [43994327923](https://github.com/karagemop466-tech/Poker3/actions/runs/43994327923)
+  → **success**; "Publish the canonical Vegas Poker Planner to GitHub Pages" run
+  [43994327873](https://github.com/karagemop466-tech/Poker3/actions/runs/43994327873) → **success**.
+- **Pages:** the API reports `status: built`. The live dashboard at
+  https://karagemop466-tech.github.io/Poker3/ was fetched and read back after the deployment: the executive summary
+  carries the 2026-11-17 snapshot, 341 published rows, 52/52 structure sheets read, and the eight-day
+  2026-11-25 → 2026-12-02 plan. The hotels page carries the new dated-quote, booking-link, no-price and
+  calendar-comparison sections.
+- **Branch checks before the merge:** `verify_live_official.py` (94 DSE rows against two official captures, the
+  hotel values against the official excerpts, the quote arithmetic), `audit_data.py` (37 structure sheets),
+  `verify_site.py` (341 events, 8 hotels, 14 routes, 39 sources, 45 flags, 8 plan days, 16 pages, all links
+  resolve), 47 unit tests, `canonical_smoke.py` (11 main + 5 detail pages), `smoke.py`, `node --check` on both
+  client scripts, and a reproducible `data_source.py` build. All pass.
+- **Merge history.** `main` advanced five times while this branch was being rebased, from sessions
+  `arena/cd17e91c-poker3`, `arena/c2b95024-poker3`, `arena/52e02b46-poker3`, `arena/169bf42c-poker3` and the
+  automated daily source check. Every conflict was resolved by keeping both sessions' work: `COORDINATION.md`
+  keeps main's full text with this session's section appended; `site/data.json` is a generated artefact and was
+  rebuilt from the resolved sources. Where another session had already implemented the same idea better, this
+  session's version was dropped rather than duplicated — their stricter evidence policy (sheet-screened
+  candidates, entry cap unconfirmed in writing), their `lastChecked` / `lastVerified` split, their live hotel
+  facts block, and their `bookingLinks` entry on the trip object.
+- **Flag and suggestion ids moved three times.** This session's findings were filed as F29/F30/F31, then
+  F35/F36/F37, then F42/F43/F44, and finally **F45/F46/F47**, because other sessions reached F41 on `main` in
+  between. The two new suggestions went from S13/S14 to **S18/S19** for the same reason. All 45 flags and 19
+  suggestions on `main` are unique.
+
+### Cross-session corroboration worth recording
+
+Three sessions independently re-read the same official pages on 2026-11-17 and reached the same numbers:
+
+- The Venetian poker-suite rate page: $119/$209 starting rates, $55 resort fee, six hours of live cash play or a
+  $300-or-higher tournament entry per night, 2 a.m. deadline, code EPOKR25 (this session, and session
+  `arena/52e02b46-poker3`).
+- The arithmetic error in the 2026-11-16 dated quote ($996.91/$248.61 against a printed $1,245.48) was found
+  independently by this session and by session `arena/c2b95024-poker3`; both corrected it to $996.89/$248.59.
+- The booking engine returning no suite for the trip window is recorded three times over, as F15, F36 (another
+  session) and in this session's four recorded stay windows.
+
