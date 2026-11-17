@@ -174,6 +174,44 @@ def fmt_clock(minutes):
     return f"{hh12}:{mm:02d} {ampm}"
 
 
+def late_cutoff_times(text):
+    """Every clock time printed in a late-registration clause, in printed order."""
+    out = []
+    for m in _CLOCK.finditer(text or ""):
+        hh, mm, ap = int(m.group(1)), int(m.group(2)), m.group(3).lower()
+        if hh == 12:
+            hh = 0
+        if ap == "p":
+            hh += 12
+        out.append(hh * 60 + mm)
+    return out
+
+
+def select_cutoff(start_min, late_text):
+    """Pick the printed cut-off that belongs to this row's start time.
+
+    A few NYE sheets print one late-registration clause covering two different
+    start flights, for example "6 levels + break (~5:25 PM or ~8:25 PM)".
+    Taking the first clock time blindly puts a 5:25 PM cut-off on the 6:10 PM
+    row, which closes registration before that event begins, and the estimate
+    built on it is meaningless.
+
+    Both times are printed on the sheet, so this disambiguates published values
+    rather than inventing one: when more than one time is printed, the earliest
+    one still falling after this row's start is the one that belongs to it. If
+    no printed time falls after the start, the sheet cannot be matched to this
+    row and no cut-off is published, so the row falls back to the documented
+    six-hour planning assumption.
+    """
+    times = late_cutoff_times(late_text)
+    if not times:
+        return None
+    if len(times) == 1 or start_min is None:
+        return times[0]
+    after = [t for t in times if t > start_min]
+    return min(after) if after else None
+
+
 def session_estimate(start_min, late_text, level_min):
     """Estimate a session length from printed data only.
 
@@ -182,7 +220,7 @@ def session_estimate(start_min, late_text, level_min):
     more levels (one level and one break).  With no printed cut-off time the
     documented six-hour planning assumption is used.
     """
-    cutoff = clock_minutes(late_text)
+    cutoff = select_cutoff(start_min, late_text)
     if cutoff is None or start_min is None:
         return 360, "", None
     if cutoff <= start_min:
@@ -190,6 +228,28 @@ def session_estimate(start_min, late_text, level_min):
     level = level_min if isinstance(level_min, int) and level_min else 30
     length = (cutoff - start_min) + (2 * level) + 15
     return length, fmt_clock(cutoff), cutoff
+
+
+def is_continuation(name: str) -> bool:
+    """True when a schedule row is a resumption of a field that has already closed.
+
+    A "Day 2 Restart", a "Day 3" row or a "Final Table" row resumes a field that
+    was seeded on an earlier day, so registration is closed and no official
+    finish time is published for the row.
+
+    A starting flight is NOT a continuation even when its payout clause mentions
+    a later day: "$250 No Limit Hold'em 1A $75K GTD - Day 1 payouts with 5%
+    advancing to Day 2" is flight 1A.  Only the part of the name before the
+    first " - " separator is tested for a day number, so a trailing payout
+    clause cannot turn a flight into a restart.  "(2Day)" is also not matched,
+    because there is no word boundary between the digit and "Day".
+    """
+    n = (name or "").lower()
+    if "restart" in n or "final table" in n:
+        return True
+    head = n.split(" - ", 1)[0]
+    return bool(re.search(r"\bday\s*[2-9]\b", head))
+
 
 VENUES = [
     dict(id="venetian", name="The Venetian Resort", pokerRoom="Venetian poker room",
@@ -644,6 +704,42 @@ FLAGS = [
                  "general statement about its tournaments, not a published finish time for any event. The six-hour planning "
                  "assumption for every room therefore remains an assumption."),
          source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"),
+    dict(id="F48", area="Venetian DeepStack NYE", severity="Medium",
+         title="Two NYE events share one 11:10 AM start on January 4, 2027",
+         detail=("The official DeepStack Extravaganza NYE schedule page lists Event #20 ($1,600 MSPT Day 2 Restart) and "
+                 "Event #27 ($250 No Limit Hold'em 1A $75K GTD) at 11:10 AM on the same day. Every other Day 2 or Day 3 "
+                 "restart row in both Venetian series is published at 10:00, 11:00 AM or 12:00 PM, never at 11:10 AM, "
+                 "while every 1A/1B/1C starting flight is published at 11:10 AM or 5:10 PM. The restart time therefore "
+                 "looks like a transcription slip on the official page rather than a genuine 11:10 AM restart, but this "
+                 "cannot be settled from the repository's copy, so the row is published exactly as the official page has "
+                 "it and is not adjusted. Confirm against the official page before sequencing anything on that date."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html"),
+    dict(id="F49", area="Day 2 / final-table rows", severity="Medium",
+         title="Resumption rows carry no late-registration cut-off and no estimated finish",
+         detail=("45 rows are resumptions of a field that closed on an earlier day: Day 2, Day 3, Day 4 and Day 5 restarts "
+                 "and streamed final tables at the Venetian and at Wynn. Earlier in this build those rows printed the "
+                 "structure sheet's late-registration clause and the session length derived from it, but both belong to "
+                 "the earlier day's flight, not to the restart: registration closed when that day ended, and no venue "
+                 "publishes a restart finish time. On the LIPS streamed final table this produced a 7:00 PM start with a "
+                 "'late registration until 4:55 PM' that closed three hours earlier, and an estimated finish at 6:30 PM "
+                 "the following afternoon. Both fields are now blank on those rows, with the reason recorded on the row. "
+                 "Four NYE rows that had been misclassified as restarts were also corrected: '$250 No Limit Hold'em "
+                 "1A/1B/1C/1D $75K GTD - Day 1 payouts with 5% advancing to Day 2' are starting flights, not resumptions, "
+                 "because their 'Day 2' mention sits in the trailing payout clause. Continuation detection is now one "
+                 "shared rule instead of four separate regexes, two of which could not see a bare 'Final Table' row."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
+    dict(id="F50", area="Venetian DeepStack NYE", severity="Low",
+         title="Three NYE sheets print one late-registration clause covering two start times",
+         detail=("Sheets dse_dec_2026-structure_4, _5 and _15 print a single late-registration clause with two clock times, "
+                 "for example '6 levels + break (~5:25 PM or ~8:25 PM)', because one sheet covers more than one start "
+                 "flight. The builder previously took the first clock time on every row, which put a 5:25 PM cut-off on the "
+                 "6:10 PM row and closed registration before that event began. The row now takes the earliest printed time "
+                 "that still falls after its own start, so the 3:10 PM row keeps 5:25 PM and the 6:10 PM row takes 8:25 PM. "
+                 "Both times are printed on the sheet, so this disambiguates published values rather than inventing one; "
+                 "where no printed time falls after a row's start, no cut-off is published at all. Sheet _5 prints "
+                 "'5:25 PM or 12:25 PM' and no row in this schedule would take the 12:25 PM figure, so confirm the "
+                 "12:25 PM reading with the poker room."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html"),
 ]
 
 QUESTIONS = [
@@ -958,8 +1054,24 @@ def _event(eid, venue, date, time, name, buyIn, guarantee, rules, category, kind
     buy = buyIn if isinstance(buyIn, str) else ("" if buyIn in (None, "-") else buyIn)
     gua = guarantee if isinstance(guarantee, str) else ("" if guarantee in (None, "-") else guarantee)
     start = clock_minutes(time)
-    length, cutoff, _ = session_estimate(start, late_reg, level_min)
-    end = None if start is None else start + length
+    if continuation:
+        # A restart row resumes a closed field.  The structure sheet's
+        # late-registration clause and the session arithmetic derived from it
+        # describe the earlier day's flight, not this row: registration closed
+        # when that day ended, and no venue publishes a restart finish time.
+        # Carrying either value across would print a late-registration cut-off
+        # for an event nobody can register for, so both are left blank and the
+        # reason is recorded on the row.
+        length, cutoff, end = None, "", None
+        note = (note + " " if note else "") + (
+            "Resumption row: the structure sheet's late-registration clause"
+            + (f" ({late_reg})" if late_reg else "")
+            + " and the session length derived from it belong to the earlier day, so no late-registration cut-off"
+              " and no estimated finish are published for this row.")
+        late_reg = ""
+    else:
+        length, cutoff, _ = session_estimate(start, late_reg, level_min)
+        end = None if start is None else start + length
     if not fmt:
         n = name.lower()
         if entry_type == "satellite":
@@ -1257,7 +1369,7 @@ def build():
     for date, time, no, name, sheet, guarantee, category in V.DSE_ROWS:
         s = V.SHEETS[sheet]
         url = f"{V.BASE}/dse_nov_2026-structure_{sheet}.pdf"
-        cont = bool(re.search(r"day [23]\b", name.lower()))
+        cont = is_continuation(name)
         guarantee_value = guarantee
         guarantee_note = ""
         if not guarantee_value and s.get("kind") == "satellite" and s.get("guarantee"):
@@ -1325,7 +1437,7 @@ def build():
                               f"the prize pool consists of ${sh['pool']} of every ${sh['buyIn']:,} buy-in."),
                      source=url, retrieved=VERIFIED_ON),
         )
-        cont = bool(re.search(r"day [23]\b", name.lower()))
+        cont = is_continuation(name)
         events.append(_event(
             f"vl-nye-{date}-{no}-{time.replace(':', '').replace(' ', '').lower()}",
             "venetian", date, time, name, sh["buyIn"], guarantee, rules, category, sh["kind"], url, V.NYE, url,
@@ -1394,7 +1506,7 @@ def build():
                  "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read."),
                 WPT_MARK_NOTES.get(marks, "")] if x).strip(),
             chips=int(chips) if chips not in ("-", "") else "", entry_type=("multi-flight" if flight else "not-verified"),
-            continuation=bool(re.search(r"day [2345]\b|final table", name.lower())),
+            continuation=is_continuation(name),
         ))
 
     # --- Wynn Signature Series ------------------------------------------
@@ -1431,7 +1543,7 @@ def build():
                  "Wynn Signature Series row from the official schedule PDF; entry rules not yet read."),
                 SIG_MARK_NOTES.get(marks, "")] if x).strip(),
             chips=int(chips) if chips not in ("-", "") else "", entry_type=("multi-flight" if flight else "not-verified"),
-            continuation=bool(re.search(r"day [2345]\b|final table", name.lower())),
+            continuation=is_continuation(name),
         ))
 
     # --- Other venues ----------------------------------------------------
@@ -1631,6 +1743,16 @@ def main():
     out = ROOT / "site" / "data.json"
     data = build()
     out.write_text(json.dumps(data, indent=1, ensure_ascii=False) + "\n", encoding="utf-8")
+    # The sheet-verification page links the machine-readable sheet extracts. The
+    # source of truth lives at data/sheet_extracts.jsonl, outside the published
+    # directory, and the Pages artifact publishes only site/. Mirror it so the
+    # link resolves under the artifact publisher and under the root publisher.
+    src = ROOT / "data" / "sheet_extracts.jsonl"
+    if src.exists():
+        dst = ROOT / "site" / "data" / "sheet_extracts.jsonl"
+        dst.parent.mkdir(parents=True, exist_ok=True)
+        if not dst.exists() or dst.read_bytes() != src.read_bytes():
+            dst.write_bytes(src.read_bytes())
     cats = {}
     for e in data["events"]:
         cats[e["category"]] = cats.get(e["category"], 0) + 1

@@ -109,6 +109,33 @@ reconciling to the printed total, the `$197.28` nightly floor, `ratio = guarante
 `lastChecked` date on every row — and `verify.yml` runs them, so a later edit cannot quietly reintroduce a wrong
 number.
 
+The job also starts on a `push` to `main` that touches the workflow, the recorder scripts, the data modules or
+`site/data.json`, as well as on the daily cron. `site/checks.json` and `site/feed/**` are deliberately left out of
+the trigger, because the job writes them and would otherwise set itself off.
+
+`scripts/audit_951cd431.py` is a second, independent auditor that also runs in `verify.yml`. It re-derives every
+one of those numbers straight from `site/data.json` and the verbatim official copies in `raw/`, and deliberately
+does **not** import the builder, so a defect in the builder cannot hide itself from the check. It also re-parses
+all 94 official DeepStack Extravaganza IV rows and matches them on date and start time.
+
+## Resumption rows
+
+45 rows are resumptions of a field that closed on an earlier day — Day 2 to Day 5 restarts and streamed final
+tables at the Venetian and at Wynn. Those rows carry **no** late-registration cut-off and **no** estimated
+finish, because the structure sheet's late-registration clause and the session length derived from it describe the
+earlier day's flight, not the restart: registration closed when that day ended, and no venue publishes a restart
+finish time. The reason is printed on each row and recorded on the Flagged for review page. Resumption rows are
+also excluded from the day plan and from the overlap check, so the plan is unaffected.
+
+## Late-registration clauses that cover two start times
+
+Three NYE sheets print one late-registration clause with two clock times, for example
+"6 levels + break (~5:25 PM or ~8:25 PM)", because a single sheet covers more than one start flight. The builder
+takes the earliest printed time that still falls after a row's own start, so the 3:10 PM row keeps 5:25 PM and the
+6:10 PM row takes 8:25 PM. Both times are printed on the sheet, so this disambiguates published values rather than
+inventing one; where no printed time falls after a row's start, no cut-off is published at all. This is recorded
+on the Flagged for review page.
+
 ## Run locally
 
 ```sh
