@@ -2005,7 +2005,7 @@
  "note": "Automated re-check of every official URL behind this dashboard. A changed flag means the visible text differs from the stored text hash and a human must re-read the source before any value is changed. A raw-body hash difference with identical visible text is recorded as noise, not as a change.",
  "transcription": {
   "status": "checked",
-  "checked": "2026-11-17T22:36:19+00:00",
+  "checked": "2026-11-17T22:32:37+00:00",
   "source": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
   "sourceHash": "",
   "range": "2026-11-16 → 2026-12-06",

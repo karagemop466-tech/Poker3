@@ -180,15 +180,43 @@ class HotelFacts(unittest.TestCase):
         self.assertIn("$4,010.55", booking["priceInStaticPage"])
         self.assertIn("arrival_date=2026-11-23", booking["url"])
         logged = [r for r in DATA["rateLog"] if r.get("quoteType", "").startswith("Dated official checkout total (2 adults, 7 nights")]
-        self.assertEqual(len(logged), 1, "exactly one dated 7-night trip quote is logged")
-        self.assertEqual(logged[0]["observedOn"], "2026-11-17")
-        self.assertIn("4010.55", logged[0]["note"].replace(",", ""))
+        # Two distinct official reads of the identical window are logged on 2026-11-17: the ~21:54 UTC
+        # venetian-suite read ($4,010.55) and the ~22:15 UTC palazzo-suite read ($3,823.46, flag F78).
+        # Both must be present, each with its own printed total; neither may duplicate or replace the other.
+        self.assertEqual(len(logged), 2, "two distinct dated 7-night trip reads are logged")
+        # Identify each read by its suite label, not by a dollar figure: each note cites the other's total
+        # for comparison, so a money filter would match both rows.
+        first = next((r for r in logged if "palazzo" not in r.get("quoteType", "").lower()), None)
+        second = next((r for r in logged if "palazzo" in r.get("quoteType", "").lower()), None)
+        self.assertIsNotNone(first, "the 21:54 UTC read ($4,010.55) must stay in the log")
+        self.assertIsNotNone(second, "the 22:15 UTC read ($3,823.46) must be logged beside it")
+        self.assertIn("4010.55", first["note"].replace(",", ""))
+        self.assertIn("3823.46", second["note"].replace(",", ""))
+        self.assertEqual(first["observedOn"], "2026-11-17")
+        self.assertEqual(second["observedOn"], "2026-11-17")
+        self.assertNotEqual(first.get("nightlyRates"), second.get("nightlyRates"),
+                            "the two reads printed different nightly rates and must stay distinct")
 
     def test_every_hotel_fact_links_the_recorded_source(self):
         self.assertEqual(self.hotel["source"], self.rec["sources"]["pokerSuiteRate"])
         self.assertEqual(self.hotel["feeSource"], self.rec["sources"]["resortFee"])
         self.assertEqual(self.hotel["taxSource"], self.rec["sources"]["terms"])
-        self.assertEqual(self.hotel["parkingSource"], self.rec["sources"]["terms"])
+
+    def test_parking_source_is_the_poker_room_page_that_prints_the_waiver(self):
+        """The 2026-11-17 record above cites the hotel-terms page for the $20 guest fee.
+
+        A later live read on the same day (session 58e42dbd) found the poker room's own
+        parking page, which prints both the $20 guest fee and a player-specific waiver that
+        the terms page does not carry: three hours or more of tournament or cash play earns
+        complimentary self-parking for that day. The published row therefore cites that page,
+        and the $20 fee itself must still be present in the text so the fee is not lost.
+        """
+        self.assertEqual(self.hotel["parkingSource"],
+                         "https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html")
+        self.assertIn("$20", self.hotel["parking"])
+        self.assertIn("three hours or more", self.hotel["parking"])
+        # The hotel terms page is still the source of the factual $20 figure the record captured.
+        self.assertIn("$20/day, seven days a week", self.rec["parkingExcerpt"])
 
 
 class WynnTerms(unittest.TestCase):
