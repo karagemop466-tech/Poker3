@@ -3110,3 +3110,16 @@ Branch: `arena/da83eca8-poker3` (platform-bound; the `session-<id>/<task>` namin
 - **Pages:** API reports `status: built`, source `main` `/`, https://karagemop466-tech.github.io/Poker3/ . The canonical dashboard serves the coverage matrix, the dated 23-30 Nov Venetian quote ($4,010.55 all-in) and the 72-flag register.
 - **Changes merged:** `scripts/coverage.py` + `site/coverage.json` (brief-coverage traceability matrix: 25 items, 21 shipped / 3 partial / 1 not-resolvable), `README.md` (coverage section), `COORDINATION.md` (this session's claim + result records). All other shared outputs (`site/**`, `scripts/**`, tests, workflows) unchanged from the verified `main` state.
 - **Open items (do not block merge; published on site/flagged.html):** F31 (no one-entry-per-player cap → strict-entry filter returns 0), F17 (no official 8 AM start), F16 (no published finish times), F32 (walking times are Google Maps estimates; not all pairs), F39 (room-tax % unpublished at Wynn/Caesars/Horseshoe), F56 (Wynn Signature structures unpublished), F15/F36/F57 (no date-specific hotel quotes for non-Venetian / trip dates).
+### Final integration record — session `arena/8689ef6e-poker3` (2026-11-17 UTC)
+
+| Item | Result |
+|---|---|
+| H1 Live re-read, Venetian booking engine and poker suite-rate page, 23-30 Nov | done (2026-11-17, after 21:54 UTC) |
+| H2 Hotel module corrected from the stale 25 Nov - 2 Dec window to 23-30 Nov; calendar-cell averages withdrawn | done |
+| H3 New flags with official source links | done (F66-F69; F65 is `fe903bcb`'s tax flag) |
+| H4 Verification, PR, merge, Pages | done: PR [#92](https://github.com/karagemop466-tech/Poker3/pull/92) merged as `f8e4753`; PR [#97](https://github.com/karagemop466-tech/Poker3/pull/97) merged as `1ae354a` (stale "no checkout total" claims corrected) |
+
+- **Pages:** `pages build and deployment` and "Publish the canonical Vegas Poker Planner to GitHub Pages" succeeded for `f8e4753` and for `1ae354a`. The live executive summary at https://karagemop466-tech.github.io/Poker3/ shows the corrected sentence and the dated quote.
+- **Still open, published on the Flagged for Review page, not blocking:** F66 (phone-only $119 rate and play requirement), F67 (Venetian-to-Bellagio walk), F68 (stale `site/data/*.json`), F69 (calendar cells are not prices), F31 (single-entry rule not confirmed on any official sheet), and no verified 8 AM start (earliest verified main-list start 10:10 AM).
+- **Not re-read today:** Wynn and Bellagio parking, Palazzo quote, MGM, Caesars, Horseshoe, ARIA. Walking minutes are single Google Maps reads.
+
