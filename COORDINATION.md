@@ -1367,3 +1367,146 @@ Branch: `arena/741b3a8e-poker3`. This session works only on this branch.
 - **Branch history:** the pre-rebase commits `ccbeca5` and `8da8039` on the remote branch were replaced by a force-push (`8da8039` → `8501962`) during the first rebase. Later pushes were fast-forward only. This was the only force-push and it affected only this session's own branch.
 - **Not verified in this session (carried forward):** nightly price for Nov 25–Dec 2 (none published in a static read); Bellagio weekly PDFs; Wynn daily and WPT PDFs; DeepStack NYE schedule; hotel-terms pages; walking minutes (Maps estimates). Each is blank or flagged on the site.
 
+---
+
+## Session arena/169bf42c-poker3 — live re-check of the Venetian schedule and Wynn fee (2026-11-17)
+
+Branch: `arena/169bf42c-poker3`. Scope: this COORDINATION section only. No data, page or script was changed, because the re-check found no drift.
+
+| Task | Status | Notes |
+|---|---|---|
+| Live re-check of the Venetian DeepStack Extravaganza IV series page and schedule PDF | done | Sources below. |
+| Live re-check of the Wynn resort fee | done | Sources below. |
+| Test suite and site verification on the current branch | done | Results below. |
+| Full brief (live feed of all Strip rooms, hotel rate lookup, Maps walking times, 8 AM all-day plan, mapping of every structure sheet) | not done in this session | Already partly covered by earlier sessions; the open gaps are listed in the flags and questions pages. |
+
+### Sources read in this session (2026-11-17, UTC)
+
+- Venetian poker room page: https://www.venetianlasvegas.com/resort/casino/poker.html. Location, 24-hour hours, and the statement that the room is on level 2, Grand Canal Shoppes, were read.
+- Venetian DeepStack Extravaganza landing page: https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html. The DSE IV series is listed as November 16 – December 23, 2026, with the schedule PDF linked.
+- Official DSE IV schedule PDF: https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf. Page 1 (November 16 to December 6) was read in full.
+- Wynn resort policies: https://www.wynnlasvegas.com/about-us/resort-information. Resort fee $55 plus tax; check-in 3 p.m.; check-out 12 p.m.
+
+### Verification performed
+
+- **Schedule PDF vs `site/data/venetian_pdf_rows.json`.** Compared every row of the PDF's first page: date, event number, name, start time, registration close, guarantee, chips and level. The transcription matches on all of them. The sampled rows included events 1A/1B/1C/1D, 2, 7, 8, 14, 16, 24, 26 (1A, 1B, 1C, 1D, 1E, 1F) and 28.
+- **Wynn fee.** `site/data.json` carries $55 for Wynn Las Vegas. The live page matches.
+- **Tests and verifiers** (run on the current branch, after `git merge --ff-only origin/main`): `scripts/data_source.py` rebuilt `site/data.json`; `scripts/verify_site.py` passed; `tests/canonical_smoke.py` and `tests/smoke.py` passed; `tests/test_integrity.py`, `tests/test_checks_schema.py`, `tests/test_reread_2026_11_17.py` and `tests/test_source_monitor.py` passed. `node --check site/assets/app.js` passed. `tests/test_check_sources.py` needs `PYTHONPATH=.` when run as a bare script; CI runs it with `python3 -m unittest discover`, so it passes there. This is not a defect.
+
+### Irregularities and gaps
+
+- **F40 is out of date.** The earlier note that the sandbox cannot reach the venue hosts was true for the session that wrote it. In this session the Venetian and Wynn official pages were reachable. The flag stays on the page as a historical record.
+- **Hotel total not verified.** The Venetian booking engine and rate pages were not read to a dated checkout total, so no rate or resort-fee figure for the Venetian is re-confirmed here.
+- **Schedule PDF page 2 not re-read.** Only the first page of the PDF was checked in this session (through December 6).
+- **Morning feed unchanged.** The scheduled 12:10 UTC `checks.yml` run is still the first live run, as recorded above.
+
+**Result (arena/169bf42c-poker3).** PR [#58](https://github.com/karagemop466-tech/Poker3/pull/58) merged with `gh pr merge 58 --merge` as merge commit `5bf0df538c5566ca04e8517e54d90bc35527ff2d`. The `verify` check on the PR passed ([run 43994010698](https://github.com/karagemop466-tech/Poker3/actions/runs/43994010698)). This follow-up records that result and is merged the same way.
+
+---
+
+---
+
+---
+
+---
+
+---
+
+## Session `arena/b573f10a-poker3` — live re-verification, dated trip-window rates, and final integration
+
+Branch: `arena/b573f10a-poker3` (base `main` @ `b30841e`, the merge of PR #34). The platform binds each session to one
+branch, so the brief's `session-<id>/<task>` naming cannot be applied; the Arena branch name is used instead. This
+session is the only active editor, so it takes the integration-owner role for every shared output: the canonical
+`site/` artifact, `site/data.json`, the flag register, the source log, navigation, `scripts/**`, `tests/**`,
+`.github/workflows/**`, `README.md` and this file.
+
+### Claim (recorded before any file edit, 2026-11-17)
+
+| Task | Status | Owner session | Files in scope | Notes |
+|---|---|---|---|---|
+| C1 Line-by-line re-verification of all canonical tournament rows against the official pages fetched today | in progress | arena/b573f10a-poker3 | `site/data.json`, `scripts/data_*.py`, `scripts/verify_site.py` | Snapshot moves 2026-11-16 → 2026-11-17; every row's `lastChecked` follows. |
+| C2 Dated official hotel quote for the actual trip window (2026-11-25 → 2026-12-02) | in progress | arena/b573f10a-poker3 | `scripts/data_hotels.py`, `site/hotels.html`, flag F15/F28 | Closes the highest-severity money gap if the official booking engine publishes a price. |
+| C3 Read the unread official structure-sheet sets (DSE NYE, WPT World Championship) | claimed | arena/b573f10a-poker3 | `scripts/data_venetian.py`, `scripts/data_venues.py`, `site/data.json` | Clears F11 and F12 where the official PDF is reachable. |
+| C4 Remaining brief items on the canonical site (past-date handling, per-date booking links, feed publication) | claimed | arena/b573f10a-poker3 | `site/**`, `site/assets/app.js` | Only where a published gap exists. |
+| C5 Verification, PR to `main`, merge, Pages confirmation, record here | pending | arena/b573f10a-poker3 | whole repo | No blocking wait for review. |
+
+**Not claimed, not edited:** `docs/`, `verified/`, `planner/`, `single-entry/`, `pages/`, `handoff/`, `raw/`, the
+root-level legacy HTML pages, `site/poker3/**`. They are prior-session artefacts and stay as they are.
+
+**Commit discipline:** small frequent commits; `git pull --rebase origin arena/b573f10a-poker3` before every push.
+
+### Work log
+
+
+### Work log (session arena/b573f10a-poker3, 2026-11-17)
+
+**C1 — Line-by-line re-verification of the canonical tournament rows.**
+
+- Re-fetched the official DeepStack Extravaganza IV schedule page (4 chunks) and transcribed it verbatim to
+  `raw/dse_nov_2026_schedule_html_2026-11-17.md` (94 rows).
+- Wrote `scripts/verify_live_official.py`, which compares the canonical rows against **both** official captures — the
+  HTML schedule page and the schedule PDF — on date, time, event number, event name, structure-sheet link, printed
+  buy-in and printed guarantee. It exits non-zero on any disagreement, so CI fails loudly.
+- Result: all 94 rows agree on every field. Eleven canonical names were truncated relative to the official page
+  ("Must be 50+ years of age" was missing "to participate"; "Event #39/#47" were missing the space the page prints)
+  and were corrected in `scripts/data_venetian.py`.
+- `raw/official_excerpts_2026-11-17.md` records the verbatim official text read today for the Venetian poker-suite
+  rate page and the Wynn daily tournament poster. The verifier asserts the canonical values against them:
+  119/209, $55, six hours, $300, 2 a.m., code EPOKR25, and the four recurring Wynn rows
+  ($200/$10,000/12:00 PM Mon-Thu; $240 rebuy/$40,000/12:00 PM Fri; $200/$25,000/12:00 PM Sat-Sun;
+  $160/$10,000/6:00 PM nightly). All match.
+- `lastChecked` is now per row rather than per build: the DSE rows carry 2026-11-17, everything else keeps
+  2026-11-16. Source check-dates were corrected the same way — only the three pages re-read today
+  (`vl-dse-nov`, `vl-suite-rates`, `wynn-daily-poster`) carry 2026-11-17; the other 24 keep 2026-11-16.
+  Previously all 27 sources claimed 2026-11-17 because the date came from the build constant.
+
+**C2 — Dated official quotes for the trip window (and the finding that none exists).**
+
+- The official booking engine was opened five times on 2026-11-17.
+- It re-priced the **same** November 17-19 stay at **$1,015.89** ($621.75 + $55, $164.25 + $55, $119.89 tax),
+  against **$1,245.48** recorded on 2026-11-16. The first night fell from $824.25 to $621.75.
+- It quoted **November 20-22** at **$2,504.00** for a 750 sq ft Newly Remodeled Luxury Two Queen
+  ($899.25 + $55, $1,199.25 + $55, $295.50 tax).
+- All three totals reconcile exactly with `(rate + $55 resort fee) x 1.1338`, which confirms from three independent
+  official quotes that the 13.38% Clark County room tax applies to the rate and to the resort fee together.
+- **Arithmetic error found and fixed in the existing data.** The stored 2026-11-16 quote carried derived nightly
+  figures of $996.91 and $248.61 (total $1,245.52) with a note blaming a 4-cent venue rounding. The correct figures
+  are $996.89 and $248.59, which reconcile **exactly** to the printed $1,245.48. The note was rewritten.
+- Four stay windows inside the trip window returned no suite and no price, and each is published with its URL so a
+  reader can reproduce it: Nov 25-Dec 2 (all cells "$XXX"), Nov 25-27 (page did not finish loading),
+  Nov 27-28 (calendar but no suite), Nov 30-Dec 1 (all cells "$XXX").
+- Added one official booking deep link per trip night (seven nights plus the whole stay) for The Venetian and The
+  Palazzo, closing the "live hotel rate lookup with official booking links per date" item. No date-parameterised
+  link was verified for Wynn, Bellagio, MGM, Caesars, Horseshoe or ARIA, so none is published for them.
+
+**New irregularity: the booking calendar is not a price list (F47).** The same official calendar was read twice on
+2026-11-17 with two different stay windows open. November 16 printed $555 against $854; November 22 printed $165
+against $230; November 27 printed $905 against $1,814. The cell tracks the cheapest suite the engine can offer for
+that query, not a nightly rate. No calendar cell on the site has ever been used in a total, and the comparison is now
+published on the hotels page. F28 was raised from Medium to High and rewritten to record this.
+
+**Two more official-source irregularities (F45, F46).** The schedule PDF and the schedule page render 83 of 94 event
+names differently, because the PDF puts the guarantee in its own column while the page inlines "$XXK GTD" into the
+name; the site follows the page, which is what every row links to. And the PDF prints decorative sponsor art instead
+of a date on 20 rows ("@PokerAtlas* TOUR" x6, "LIPS CHAMPIONSHIP CHAMPIES CHAMPIES CHAMPIES" x6,
+"LIPS FRIDAY, DECEMBER 11" x5, "@PokerAtlas PRO" x2, "@PokerAtlas* PRO" x1) — those dates come from the page and the
+two were cross-checked row by row.
+
+**Earlier-session request honoured.** Session `arena/4fa30832-poker3` asked the integration owner to consider a flag
+for the PDF's decorative DATE cells and the "(IDAY)" typo. The decorative cells are now F46 with the exact counts.
+
+**C4 — Site changes.** New sections on `site/hotels.html`: all dated official checkout totals as cards (newest first),
+per-night official booking links, a table of the stay windows that returned no price, and the two-reading calendar
+comparison. `index.html`, the F15/Q01/Q05 text and the README were corrected where they still said that no property
+publishes a dated total. Two suggestions added: S13 (re-quote the trip window every morning) and S14 (never treat a
+calendar cell as a price).
+
+**Verification before merge.** `verify_live_official.py` (94 DSE rows against two official captures, hotel values
+against the official excerpts, quote arithmetic), `audit_data.py` (37 structure sheets against the read log),
+`verify_site.py` (341 events, 8 hotels, 14 routes, 27 sources, 31 flags, 8 plan days, 15 pages, all links resolve),
+`canonical_smoke.py` (10 main pages and 5 detail pages render), `smoke.py` (the Poker3 companion), `node --check` on
+both client scripts, and a reproducible `data_source.py` build. All pass.
+
+### Result (session arena/b573f10a-poker3)
+
+Recorded after the merge in the section below.

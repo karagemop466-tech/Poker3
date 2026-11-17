@@ -71,5 +71,34 @@ class ChecksSchema(unittest.TestCase):
         self.assertNotIn("json.tool site/checks.json", before_first)
 
 
+class FlagReferences(unittest.TestCase):
+    """A page that cites a flag by ID must cite one that exists and says what it claims.
+
+    Renumbering flags during a rebase is easy; leaving a page pointing at the wrong
+    number is easy too, and it silently sends a reader to an unrelated finding.
+    """
+
+    def test_every_flag_id_cited_in_published_pages_exists(self):
+        doc = json.loads((ROOT / "site" / "data.json").read_text(encoding="utf-8"))
+        flags = {f["id"]: f["title"] for f in doc["flags"]}
+        questions = {q["id"] for q in doc["questions"]}
+        cited = set()
+        for page in sorted((ROOT / "site").glob("*.html")):
+            text = page.read_text(encoding="utf-8")
+            cited |= set(re.findall(r"\b(F\d{2})\b", text))
+            for qid in re.findall(r"\b(Q\d{2})\b", text):
+                self.assertIn(qid, questions, f"{page.name} cites {qid}, which does not exist")
+        for fid in sorted(cited):
+            self.assertIn(fid, flags, f"a published page cites {fid}, which does not exist")
+
+    def test_the_booking_engine_citation_points_at_the_booking_engine_flag(self):
+        doc = json.loads((ROOT / "site" / "data.json").read_text(encoding="utf-8"))
+        flags = {f["id"]: f["title"] for f in doc["flags"]}
+        index = (ROOT / "site" / "index.html").read_text(encoding="utf-8")
+        self.assertIn("checkout total", index)
+        self.assertIn("$XXX", flags["F36"], "F36 is no longer the booking-engine flag")
+        self.assertIn("F36", index, "the trip-window checkout gap must cite the booking-engine flag")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)
