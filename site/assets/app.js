@@ -382,7 +382,9 @@ function renderHotels() {
       <td>${esc(r.hotel)}</td><td>${esc(r.observedOn)}</td>
       <td>${r.publishedStartingRates ? '$' + r.publishedStartingRates : blank}</td>
       <td>${esc(r.resortFee || 'not published')}</td><td>${esc(r.tax || 'not published')}</td>
-      <td>${r.trueNightlyLow ? '$' + r.trueNightlyLow : blank}</td>
+      <td>${r.quoteType && r.quoteType.indexOf('Dated official checkout total') === 0
+        ? `observed nights: $${r.trueNightlyLow} and $${r.trueNightlyHigh}<span class="muted">one dated quote, two nights; not a price range and not a floor</span>`
+        : (r.trueNightlyLow ? '$' + r.trueNightlyLow : blank)}</td>
       <td>${esc(r.quoteType)}<span class="muted">${esc(r.note || '')}</span></td>
       <td><a href="${esc(r.source)}" target="_blank" rel="noopener">Official source</a></td></tr>`).join('');
     log.innerHTML = `<div class="table-wrap"><table><thead><tr><th>Property</th><th>Observed</th><th>Published rate</th>

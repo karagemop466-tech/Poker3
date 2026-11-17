@@ -1,12 +1,24 @@
-name: Publish integrated Vegas Poker Planner to GitHub Pages
+name: Publish the canonical Vegas Poker Planner to GitHub Pages
+
+# End state this workflow guarantees: the published site is the canonical
+# dashboard in site/, served at the repository's Pages root (…/Poker3/), with the
+# site/poker3/ archive beside it at /poker3/.
+#
+# Why the workflow_run trigger: the repository's Pages source is the legacy
+# "deploy from a branch: main / (root)" setting, and the API token available to
+# this session cannot change it (PUT /pages returns 403). Under that setting
+# GitHub's own "pages build and deployment" job republishes the whole repository
+# after every push, which would otherwise put the stale root-level index.html
+# back at the root URL. Re-running this deployment after that job finishes keeps
+# the verified artifact as the site that is actually served.
+#
+# The root-level index.html in the repository is also a redirect to site/, so the
+# root URL reaches the canonical dashboard even if the legacy build wins a race.
+# It is therefore never possible for a visitor to land on the stale page.
 
 on:
   push:
     branches: [main]
-  # The repository also has GitHub's legacy branch deployment ("pages build and
-  # deployment") enabled, which publishes the repository root. Re-running the
-  # Actions deployment after that job finishes makes the canonical site/ artifact
-  # the one served at the site root.
   workflow_run:
     workflows: ["pages build and deployment"]
     types: [completed]
@@ -19,8 +31,8 @@ permissions:
   id-token: write
 
 concurrency:
-  # A different group from the legacy deployment's, so the two deployments do not
-  # cancel each other; the last one to finish is the one that is served.
+  # A distinct group from the legacy deployment's, so the two never cancel each
+  # other; the last deployment to finish is the one served.
   group: pages-actions
   cancel-in-progress: false
 
@@ -30,19 +42,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
-      - name: Upload published dashboard
+
+      - name: Upload the canonical dashboard
         uses: actions/upload-pages-artifact@v3
         with:
           path: site
+
   deploy:
+    needs: build
+    runs-on: ubuntu-latest
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
     steps:
-      - name: Deploy site
+      - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4

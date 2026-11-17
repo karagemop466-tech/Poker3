@@ -872,10 +872,16 @@ def build():
         ))
 
     # --- Wynn daily ------------------------------------------------------
+    # Most WYNN_DAILY names already print their day range (e.g. "$200 No Limit
+    # Hold'em (Monday-Thursday)"). Appending the range again produced duplicated
+    # labels such as "(Monday-Thursday) (Monday-Thursday)", so the suffix is only
+    # added when the name does not already state the range.
     for i, d in enumerate(N.WYNN_DAILY):
         rules = {k: dict(v, source=d["source"], retrieved=ASOF) for k, v in d["rules"].items()}
+        first_day = d["days"].split(",")[0].strip()
+        label = d["name"] if first_day in d["name"] else f"{d['name']} ({d['days']})"
         events.append(_event(
-            f"wynn-daily-{i}", "wynn", "", d["time"], f"{d['name']} ({d['days']})",
+            f"wynn-daily-{i}", "wynn", "", d["time"], label,
             d["buyIn"], d["guarantee"], rules, d["category"], "daily",
             d["poster"], d["source"], d["source"],
             note=d.get("note", "") + f" Recurring {d['days'].lower()}.", last_checked=ASOF,

@@ -1,29 +1,46 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Overview | Vegas Poker Trip Planner</title><link rel="stylesheet" href="style.css"></head>
-<body><header><div class="wrap"><p class="eyebrow">LAS VEGAS · DECISION DASHBOARD · RESEARCH SNAPSHOT 16 NOV 2026</p><h1>Plan the poker trip.<br><span>Know what’s confirmed.</span></h1><p class="lede">A source-first view of tournament options, lodging and the open questions that must be resolved before booking.</p><nav><a href="index.html" aria-current=page>Overview</a><a href="tournaments.html">Tournaments</a><a href="schedule.html">Schedule</a><a href="hotels.html">Hotels</a><a href="questions.html">Questions &amp; suggestions</a><a href="flagged.html">Flagged for review</a></nav></div></header>
-<main class="wrap">
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vegas Poker Planner — redirecting to the current dashboard</title>
+<!--
+  This file is a redirect, not a dashboard.
 
-<section class="callout"><b>Executive summary</b>
-<p>46 single-start Venetian events from DeepStack Extravaganza IV (Nov 16 – Dec 23, 2026) have terms read from official structure sheets. The top buy-in is $1,100 (Tue Dec 15 at 11:10 AM, PKO format), with a $75,000 guarantee. Single-entry wording is not printed on any sheet, so each row must be confirmed with the room.</p>
-<p>Excluded for multi-entry, paid advantage, or unpublished terms: multi-flight Venetian events, Wynn WPT and daily, Bellagio weekly, Wynn Signature Series, and satellites.</p>
-<p>No verified start time falls before 10:10 AM, so an 8 AM all-day plan cannot be built. No hotel rate, resort fee, or walking time has been verified, so no hotel ranking is shown.</p></section>
-<div class="cards">
-<article><strong>46</strong><span>main-list events, single-start, official sheet read</span></article>
-<article><strong>48</strong><span>excluded rows, each with a reason and source</span></article>
-<article><strong>10:10 AM</strong><span>earliest verified start (no 8 AM start exists)</span></article>
-<article><strong>0</strong><span>hotels with a verified nightly total or walking time</span></article>
-<article><strong>19</strong><span>items on Flagged for review</span></article>
-</div>
-<div class="panel"><h3>Expanded Poker3 field guide</h3><p>Explore a detailed, source-linked tournament calendar, daily room schedules, hotel fee notes, route estimates and a cautious date planner. <a href="site/poker3/">Open the field guide →</a></p></div>
-<h2>Recommended planning stance</h2>
-<p>Pick dates first. Then confirm single-entry status and finish times with the room for each event you want. Get official hotel totals for those dates, including mandatory resort fees. Only then rank the events against hotels.</p>
-<div class="panel"><h3>What can be said now</h3><ul>
-<li>Venetian structures list buy-ins, house fees, prize-pool share, and guarantees for the main-list events.</li>
-<li>Multi-flight Venetian events and Bellagio/Wynn re-entry events are excluded from the main list.</li>
-<li>Schedule and hotel pages show only verified values; blank means unverified.</li>
-</ul></div>
-<p class="small">Snapshot date: 2026-11-16 UTC. Every displayed value links to its official source.</p>
+  It used to be a full research page from an earlier round (46 Venetian rows,
+  no verified hotel cost). The canonical dashboard — 341 source-linked rows, the
+  dated hotel rate log, the day plan and the Flagged for review register — lives
+  in site/ and is published at /Poker3/site/.
 
+  Leaving the old page here meant the repository's root URL served conclusions
+  that the live dashboard contradicts, depending on which of the two GitHub Pages
+  publishers won the last race. Redirecting removes that possibility whichever
+  publisher is serving. The old content is not deleted: it is in version control
+  as index.html before this commit, and its successor is site/index.html.
+
+  No-JavaScript fallback: a refresh to /Poker3/site/ plus a visible link.
+-->
+<link rel="canonical" href="site/index.html">
+<meta http-equiv="refresh" content="0; url=site/index.html">
+<style>
+  :root{color-scheme:dark light}
+  body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0d1117;color:#e6edf3;
+       font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding:24px}
+  main{max-width:34rem;text-align:center}
+  h1{font-size:1.25rem;margin:0 0 .5rem;font-weight:650}
+  p{margin:.5rem 0;color:#9aa7b4}
+  a{color:#6ea8fe}
+  .note{font-size:.85rem;margin-top:1.5rem;color:#7d8896}
+</style>
+</head>
+<body>
+<main>
+  <h1>Opening the Vegas Poker Planner</h1>
+  <p>The current dashboard is loading. If nothing happens,
+     <a href="site/index.html">open the dashboard</a>.</p>
+  <p class="note">Every value there links the official venue page it was read from. Blank cells are
+     unverified values, listed on the Flagged for review page.</p>
 </main>
-<footer class="wrap">Research snapshot 2026-11-16 UTC. Every value links to an official source; blank cells are unverified and flagged. Confirm schedules and terms with the venue before entry.</footer>
-</body></html>
+<script>location.replace('site/index.html' + location.hash);</script>
+</body>
+</html>

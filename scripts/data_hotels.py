@@ -41,9 +41,13 @@ VENETIAN_QUOTE = dict(
     nightOne=dict(date="2026-11-17", rate=824.25, resortFee=55.00),
     nightTwo=dict(date="2026-11-18", rate=164.25, resortFee=55.00),
     taxes=146.98, total=1245.48, averageRate=549.25,
-    derivedNightly=[996.91, 248.61], derivedTotal=1245.52,
-    note=("The two derived nightly figures, (rate + $55 resort fee) x 1.1338, add to $1,245.52 against the printed "
-          "total of $1,245.48; the 4 cents are the venue's own rounding of the tax line."),
+    # (rate + $55 resort fee) x 1.1338, rounded to cents per night, as printed.
+    # $996.89 + $248.59 = $1,245.48, which is the venue's printed total exactly.
+    # An earlier version used 996.91 / 248.61 and a note excusing a 4-cent gap;
+    # that gap was arithmetic error in this repository, not the venue's rounding.
+    derivedNightly=[996.89, 248.59], derivedTotal=1245.48,
+    note=("The two derived nightly figures, (rate + $55 resort fee) x 1.1338 rounded to cents, add to $1,245.48, "
+          "the printed total exactly."),
     source=VENETIAN_QUOTE_URL, observedOn="2026-11-16")
 
 # Calendar cells published by the same booking engine for November 2026.  The page
@@ -225,11 +229,13 @@ RATE_LOG = [
     dict(hotel="venetian", observedOn="2026-11-16", baseRate="",
          publishedStartingRates="824.25 and 164.25 per night for Nov. 17-19, 2026",
          resortFee="55.00 per night", tax="146.98 printed",
-         trueNightlyLow="248.61", trueNightlyHigh="996.91",
+         # Low/high are the two observed NIGHTS in this one dated quote, not a
+         # price range: 17 Nov came to $996.89 all-in and 18 Nov to $248.59.
+         trueNightlyLow="248.59", trueNightlyHigh="996.89",
          quoteType="Dated official checkout total (2 adults, 2 nights)",
          note=("The official booking engine printed $824.25 + $55 and $164.25 + $55, taxes $146.98 and a total of "
                "$1,245.48 for a 650 sq ft Newly Remodeled Luxury King suite. Derived nightly figures are "
-               "(rate + $55) x 1.1338 and reconcile to $1,245.52 against the printed $1,245.48."),
+               "(rate + $55) x 1.1338 and add to $1,245.48, the printed total exactly."),
          source=VENETIAN_QUOTE_URL, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
     dict(hotel="venetian", observedOn="2026-11-16", baseRate="",
          publishedStartingRates="calendar cells for Nov. 17-30: " + ", ".join(
