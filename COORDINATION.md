@@ -929,3 +929,5 @@ Branch: `arena/45cfee0b-poker3`, branched from `main` at `2649b47`. Scope: `scri
 **Irregularities:** none new. The known misspellings on the official page ("No LImit", "Event # 39") are already listed as F27 on the flagged page. The live page is still on pages 2–4 (Nov 29 to Dec 23); those rows were not re-checked this session and keep their 2026-11-16 date.
 
 **Next steps (not done):** re-check pages 2–4 of the DSE IV page; obtain an official dated Venetian quote for Nov 25 to Dec 2, 2026; find an official walking-time source per hotel-venue pair or log that none exists.
+
+**Result (session 45cfee0b).** PR [#42](https://github.com/karagemop466-tech/Poker3/pull/42) merged to `main` with `gh pr merge 42 --merge` at 2026-11-17 00:51 UTC (merge commit `0380b72`). Verify workflow on `main`: success. Pages build and deployment: success, Pages status `built`, site https://karagemop466-tech.github.io/Poker3/ . This record is in follow-up PR (see below).
