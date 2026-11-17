@@ -2731,3 +2731,12 @@ OK · `unittest discover` **111 tests OK**.
 earlier session, so the legacy publisher keeps running beside `.github/workflows/pages.yml`. The redirects make the root
 safe, but changing the Pages source to "GitHub Actions" is the real fix and needs a repo-owner token. Recorded on the
 flag register under F29; a later session found the same 403.
+### H4 result — PR #92 (session `arena/8689ef6e-poker3`)
+
+- **PR:** [#92](https://github.com/karagemop466-tech/Poker3/pull/92) (`arena/8689ef6e-poker3` into `main`), merged with `gh pr merge 92 --merge` at 2026-11-17 22:06:27 UTC; merge commit `f8e4753`.
+- **Checks on the PR head:** `verify` pass, `transcription` pass (after the `verify_live_official.py` fix below).
+- **Pages:** `pages build and deployment` and "Publish the canonical Vegas Poker Planner to GitHub Pages" both `success` for `f8e4753`. Live: https://karagemop466-tech.github.io/Poker3/ returns the dashboard and the dated 23-30 Nov quote.
+- **CI failure found and fixed on the PR:** `scripts/verify_live_official.py` read only the two-night quote shape (`KeyError: 'nightOne'`). It now reads the seven-night shape too.
+- **Stale claim found on the live site after merge:** the executive summary and the calculator notice still said no checkout total existed for the trip window (F15, F36). Corrected in a follow-up PR from the same branch (see the entry below), with F15 and F36 reworded to the superseded 25 Nov - 2 Dec window.
+- **Still open (not blocking):** flags F66 (phone-only $119 poker rate), F67 (Venetian-to-Bellagio walk), F68 (stale `site/data/*.json`), F69 (calendar cells are not prices), plus the 8 AM plan gap and the unconfirmed single-entry rule (F31). All are published on the Flagged for Review page with source links.
+

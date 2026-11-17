@@ -509,14 +509,15 @@ FLAGS = [
                  "is flagged rather than resolved."),
          source="https://www.wynnlasvegas.com/terms-and-conditions/850070"),
     dict(id="F15", area="Hotels", severity="High",
-         title="Dated checkout totals exist for near-term stays, but none for the recommended trip window",
+         title="Dated checkout totals exist for near-term stays and for the 23-30 Nov trip window, but none for the superseded 25 Nov - 2 Dec window",
          detail=("The Venetian booking engine has now printed three dated totals. November 17-19, 2026 with two adults: "
                  "$824.25 + $55, $164.25 + $55, $146.98 tax, $1,245.48 total on 2026-11-16, and the same stay at "
                  "$621.75 + $55, $164.25 + $55, $119.89 tax, $1,015.89 total on 2026-11-17. November 20-22, 2026: "
                  "$899.25 + $55, $1,199.25 + $55, $295.50 tax, $2,504.00 total. On 2026-11-17 four stay windows inside "
-                 "the recommended trip window of November 25 to December 2, 2026 were opened and none returned a suite or "
-                 "a price, so the nightly budget stays at the floor computed from the published starting rates of $119 "
-                 "and $209 and is labelled a floor, not a quote."),
+                 "the then-recommended November 25 to December 2, 2026 dates were opened and none returned a suite or "
+                 "a price. Later the same day the 23-30 November window was priced in full: $4,010.55 for seven nights "
+                 "(rate log). The floor computed from the published starting rates of $119 and $209 is labelled a floor, "
+                 "not a quote."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"),
     dict(id="F28", area="Hotels", severity="High",
          title="The Venetian booking calendar disagrees with the quote, and its cells change with the query",
@@ -753,11 +754,11 @@ FLAGS = [
                  "only in offer terms, so Wynn has no verified flexible-booking cancellation deadline and is shown blank."),
          source="https://www.wynnlasvegas.com/about-us/resort-information"),
     dict(id="F36", area="Hotel cost", severity="Medium",
-         title="The booking engine prints $XXX for the recommended trip dates, so no checkout total exists for them",
+         title="The booking engine printed $XXX for the superseded 25 Nov - 2 Dec dates, so no checkout total exists for them (the 23-30 Nov trip window has a dated quote, F15)",
          detail=("The Venetian booking engine was opened for 2026-11-25 to 2026-12-02 with two adults. It returned the "
                  "date picker with every cell reading $XXX, because prices are loaded by script after the page renders. "
-                 "No dated checkout total can therefore be read for the trip window without a browser session. The site "
-                 "keeps the published starting-rate floor ($197.28) and labels it a floor, never a quote."),
+                 "No dated checkout total could be read for those dates. The 23-30 Nov trip window was priced on "
+                 "2026-11-17 (F15). The published starting-rate floor ($197.28) is kept and labelled a floor, never a quote."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-02&view=calendar"),
     dict(id="F37", area="Hotel cost", severity="Low",
          title="Caesars Palace and Horseshoe resort fees are now confirmed; their room-tax percentage is not",
