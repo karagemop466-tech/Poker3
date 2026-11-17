@@ -29,6 +29,7 @@ PAGES = {
     "suggestions.html": "suggestions",
     "flagged.html": "flagged",
     "sources.html": "sources",
+    "search.html": "search",
 }
 
 # Detailed pages that use their own data attributes instead of data-page.
@@ -51,6 +52,7 @@ REQUIRED_HOOKS = {
     "suggestions.html": ["data-suggestions"],
     "flagged.html": ["data-flags"],
     "sources.html": ["data-sources", "data-sheets", "data-feed", "data-autochecks"],
+    "search.html": ["data-search-summary", "data-search-results"],
 }
 
 
@@ -147,6 +149,24 @@ def main() -> int:
         errors.append("data.json: no fixed trip dates")
     if len(data.get("dayPlan", [])) != 8:
         errors.append("data.json: the day plan does not cover eight days")
+    for collection in ("events", "hotels", "routes"):
+        for index, row in enumerate(data.get(collection, []), start=1):
+            if not row.get("lastChecked"):
+                errors.append(f"data.json: {collection} row {index} has no lastChecked date")
+    for index, row in enumerate(data.get("rateLog", []), start=1):
+        if not row.get("observedOn"):
+            errors.append(f"data.json: rate log row {index} has no observation date")
+    flag_ids = {flag.get("id") for flag in data.get("flags", [])}
+    if not {"F31", "F32"}.issubset(flag_ids):
+        errors.append("data.json: entry-cap and route-coverage evidence gaps must remain flagged")
+    strict = [event for event in data.get("events", [])
+              if (event.get("rules") or {}).get("singleEntry", {}).get("status") == "confirmed"
+              and (event.get("rules") or {}).get("singleEntry", {}).get("maxEntries") == 1]
+    if strict:
+        errors.append("data.json: an event was marked strict single-entry without new written confirmation review")
+    app = (SITE / "assets" / "app.js").read_text(encoding="utf-8")
+    if "rule.maxEntries === 1" not in app:
+        errors.append("app.js: strict-entry filter does not require an explicit maxEntries=1 rule")
 
     if shutil.which("node"):
         result = subprocess.run(["node", str(ROOT / "tests" / "canonical_render.js")],

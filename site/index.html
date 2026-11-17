@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="description" content="Source-first Las Vegas Strip poker trip planner: verified single-entry tournaments, hotel true cost per night, walking times and a dated rate log, built only from official venue pages.">
+<meta name="description" content="Source-first Las Vegas poker trip planner with official tournament data, provisional entry candidates, hotel true costs, walking estimates and dated rate logs.">
 <title>Vegas Poker Planner · Executive summary</title>
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body data-page="home">
 <header class="topbar">
   <a class="brand" href="index.html"><span class="brand-mark">♠</span><span>Vegas Poker Planner</span></a>
-  <form class="top-search" data-search-form><input type="search" placeholder="Search every tournament, venue and rule…" aria-label="Search tournaments"><button class="btn" type="submit">Search</button></form>
+  <form class="top-search" data-search-form><input type="search" placeholder="Search every table…" aria-label="Search tournaments"><button class="btn" type="submit">Search</button></form>
   <span class="top-tag">Official sources only · verified <span data-asof></span></span>
 </header>
 <nav class="mobile-nav" data-mobile-nav></nav>
@@ -31,8 +31,9 @@
       <p>
         Every row on this site was read from an official venue or property page: the Venetian DeepStack Extravaganza
         structure sheets, the Wynn daily and WPT schedules, the Bellagio weekly structures, the MGM Grand $120 sheet,
-        the Caesars tournament page and each property's own hotel terms. Where a venue prints one buy-in, one start
-        flight and no re-entry, rebuy or add-on clause, the row is marked single entry and links the sheet that says so.
+        the Caesars tournament page and each property's own hotel terms. Where a sheet prints one buy-in, one start
+        flight and no re-entry, rebuy or add-on clause, the row is labelled a sheet-screened candidate and links the
+        sheet. That is not proof of a maximum-entry-per-player rule: written venue confirmation is still required.
         Where a room prints a rebuy, a re-entry, an add-on or an optional paid chip boost, the row is isolated in the
         extra-spend section instead of being quietly mixed in.
       </p>
@@ -42,11 +43,10 @@
     <div class="notice">
       <strong>What is confirmed and what is not.</strong>
       Tournament fees, guarantees, prize-pool shares, chip counts, level lengths and late-registration cut-offs are
-      confirmed from official sheets for the 37 DeepStack Extravaganza IV events and the daily and weekly room events.
-      Three things are <em>not</em> confirmed and are shown as blanks with a flag rather than filled in: date-specific
-      hotel checkout totals, published tournament finish times, and the entry rules behind the 15 DeepStack NYE sheets
-      and the WPT series rows. Walking minutes are Google Maps walking estimates, because no venue publishes a walking
-      time.
+      checked against the reviewed official sheets. The 45 Venetian candidates have no extra-entry provision printed,
+      but the sheets do not state a maximum entry count per player; they are <em>not confirmed as strict single-entry</em>
+      until the venue provides written policy (F31). Other open items include date-specific hotel checkout totals,
+      published tournament finish times, unread NYE/WPT structure rules and walking times (Maps estimates only).
     </div>
 
     <div class="stats" data-stats></div>
@@ -57,10 +57,10 @@
         <article class="card" data-trip-card></article>
         <article class="card">
           <span class="pill">Why these dates</span>
-          <h3>Eight days, fourteen verified single-entry events</h3>
+          <h3>Eight days, fourteen sheet-screened candidates</h3>
           <ul class="list">
-            <li>2026-11-25 → 2026-12-02 holds more single-entry events verified on an official structure sheet than any other eight-day window: 14, and every one of the eight days has at least one.</li>
-            <li>All 37 DSE IV structure sheets were opened and read, so the single-entry call on these dates comes from a primary document, not from the event title.</li>
+            <li>2026-11-25 → 2026-12-02 has 14 one-buy-in candidates whose sheets print no re-entry, rebuy or add-on term. This is not proof of a one-entry-per-player cap; see F31.</li>
+            <li>All 37 DSE IV structure sheets were opened and read. None of the reviewed candidate sheets gives written maximum-entry confirmation, so venue confirmation is required before treating this path as eligible.</li>
             <li>The window stays inside DSE IV. The New Year's Eve series is published but its 15 structure sheets were not read, so those rows cannot honestly join the single-entry list yet.</li>
             <li>It sits before the $10,400 WPT World Championship buy-in tier on December 13.</li>
           </ul>
@@ -70,10 +70,10 @@
     </section>
 
     <section class="section">
-      <div class="section-head"><div><h2>One primary event per day</h2><p>Largest published guarantee among verified single-entry events inside a 30-minute walk.</p></div></div>
+      <div class="section-head"><div><h2>One provisional candidate per day</h2><p>Largest published guarantee among sheet-screened candidates inside a 30-minute walk; conditional on written entry-cap confirmation.</p></div></div>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Date</th><th>Start</th><th>Event</th><th>Buy-in</th><th>Guaranteed pool</th><th>Walk</th><th>Official sources</th></tr></thead>
+          <thead><tr><th>Date</th><th>Start</th><th>Event candidate</th><th>Buy-in</th><th>Guaranteed pool</th><th>Walk</th><th>Last checked</th><th>Official sources</th></tr></thead>
           <tbody data-top-picks></tbody>
         </table>
       </div>
@@ -84,11 +84,11 @@
       <div class="section-head"><div><h2>What the evidence supports</h2><p>Short answers before the detailed tables.</p></div></div>
       <div class="cards">
         <article class="card">
-          <span class="pill ok">Single entry confirmed</span>
-          <h3>The Venetian one-day events</h3>
-          <p>The official sheets print one buy-in, one start flight, one starting-chip figure and no re-entry, rebuy or
-          add-on clause. That is recorded as “single entry on the sheet” with the excerpt attached, not as a claim that
-          the word “single entry” appears on the page, because it does not.</p>
+          <span class="pill warn">Entry cap not confirmed</span>
+          <h3>The Venetian one-day candidates</h3>
+          <p>The official sheets print one buy-in and one start flight and no re-entry, rebuy or add-on clause. They do
+          not state a maximum number of entries per player or explicitly call the event a freezeout. These rows are
+          screened candidates only; obtain written confirmation before treating them as strict single-entry events.</p>
           <a class="card-link" href="tournaments.html">Open the tournament table →</a>
         </article>
         <article class="card">
@@ -129,7 +129,7 @@
           <span class="pill">Also published</span>
           <h3>Every other view of the same data</h3>
           <ul class="list">
-            <li><a href="tournaments.html">Tournaments</a> — 341 published rows with date filters, a venue filter, a category filter, a single-entry filter and a search box.</li>
+            <li><a href="tournaments.html">Tournaments</a> — 341 rows with date, venue and category filters, a strict written-confirmation filter, a separate sheet-candidate filter and global search.</li>
             <li><a href="venues.html">Venues</a> — one page per Strip poker room with its events and its hotels.</li>
             <li><a href="schedule.html">Day plan</a> — one primary event per day, a conditional fallback, and the flagged impossible sequences.</li>
             <li><a href="hotels.html">Hotels</a> — true cost per night, parking, cancellation deadlines, walking times and the dated rate log.</li>

@@ -868,10 +868,40 @@ reproducible `scripts/data_source.py` rebuild with no diff.
 
 | Task | Status | Owner | Scope | Notes |
 |---|---|---|---|---|
-| Audit canonical dashboard and automation against the user brief; fix only demonstrable defects or omissions | in progress | arena/b2a8d36b-poker3 | `site/**`, `scripts/**`, `.github/workflows/**`, `tests/**`, `README.md`, this section | Current branch is platform-bound as `arena/b2a8d36b-poker3`; no other active claims are present in this checkout. Existing sources and claims will be rechecked; unknowns remain flagged, not inferred. |
+| Audit canonical dashboard and automation against the user brief; fix demonstrable defects and flag evidence gaps | done (source snapshot is 2026-11-16; unresolved evidence remains flagged) | arena/b2a8d36b-poker3 | `site/**`, `scripts/**`, `.github/workflows/**`, `tests/**`, `README.md`, this section | Added strict written-entry confirmation filter, sheet-candidate distinction, row-level source-change/unavailable badges, last-checked display, and cross-table search. |
 | Final verification, PR, merge, Pages confirmation | pending | arena/b2a8d36b-poker3 | integration | Do not merge unless checks pass and the canonical site is intact. |
 
 ### Claim record
 
 - Claimed 2026-11-17 UTC. Scope: canonical `site/`, build/monitor/verification scripts, workflows, tests, README and this log. Legacy/parallel artefacts (`docs/`, `verified/`, `planner/`, `single-entry/`, root-level pages, `site/poker3/`) are read-only unless a specific cross-file request is logged.
-- The branch naming protocol in the brief cannot be applied because Arena binds this session to `arena/b2a8d36b-poker3`. This branch is based on `b30841e` and is the only branch used.
+- The branch naming protocol in the brief cannot be applied because Arena binds this session to `arena/b2a8d36b-poker3`. This branch started at `b30841e`; after PR #38 merged as `739b301`, it was rebased onto updated `origin/main` without switching branches.
+
+### Audit, corrections and verification — session `arena/b2a8d36b-poker3`
+
+- **Cross-session integration:** PR [#38](https://github.com/karagemop466-tech/Poker3/pull/38) was merged to `main` as `739b301` after its `verify` check passed. Preserved its root redirect, serialized source-check workflow, corrected Venetian quote arithmetic and Wynn day-range cleanup; during rebase, both coordination records were retained and the source/entry/route updates below were reapplied with distinct F31/F32 IDs. PR #39 is a duplicate overlapping integration and remains open/unmerged; PRs #31, #27 and #7 remain untouched.
+- **Source-monitor correctness:** `scripts/check_sources.py` previously marked any prior URL as “changed” when a later request timed out or returned an HTTP error. It now distinguishes content-hash changes from `unavailable`, records first successful retrievals as `baseline`, and retains previous hash/check metadata. Transient failures are never presented as changed values.
+- **Row-level change status:** tournament source cells, hotel source cells, search results, and the automated source table now render separate `Source changed · review` and `Source unavailable · recheck` badges from `site/checks.json`. A content hash change is a review signal only; it does not mutate event or hotel values.
+- **Entry-policy correction:** the previous wording “Single entry confirmed” overclaimed what the 37 reviewed DSE IV sheets establish. The 45 sheet-screened rows are now explicitly candidates only: one printed buy-in/start with no extra-entry clause is not written confirmation of a one-entry-per-player cap. The tournaments page has a distinct strict-confirmation toggle (requires `status: confirmed` and `maxEntries: 1`) and a separate candidate toggle. The strict filter currently yields **0** rows. Added flag **F31** and made Q04 blocking until the venue confirms maximum-entry/no-rebuy/no-add-on policy in writing. The day plan is labelled provisional, not a confirmed eligible itinerary.
+- **Route coverage correction:** the 14 captured route rows do not cover the requested 8 hotels × 7 venues (56 pairs). Missing pairs are not inferred to meet the 30-minute limit. Added flag **F32**, updated Q08, and stated that the existing schedule filter only covers estimates from the recommended Venetian resort hotel and selected on-site pairs.
+- **Last-checked presentation:** tournament, hotel, walking-route, and per-venue event/hotel rows now visibly show their recorded date. Rate observations retain their observation date; source log rows retain their checked date.
+- **Global search:** added `site/search.html`. The top search form now searches tournament/rule, hotel, dated rate, walking-route, official-source, question, and flagged-review records and returns linked results with check dates. The tournament filter remains a separate local table filter.
+- **Schedule:** `.github/workflows/checks.yml` now runs at 13:00 UTC (05:00 PST / 06:00 PDT) with the timezone stated accurately, and runs the unit tests before committing the daily feed/check snapshot.
+- **No new official values were added.** This pass relied on the repository's official-source record and the prior 2026-11-16 line-by-line reads; the sandbox cannot fetch the venue domains directly. `site/data.json` remains as-of 2026-11-16 until the scheduled GitHub Actions run obtains a live baseline.
+
+#### Checks run
+
+- `python3 scripts/verify_site.py` — passed (341 events, 8 hotels, 14 routes, 27 sources, 32 flags, 8 plan days, 16 pages).
+- `python3 tests/canonical_smoke.py` — passed (11 main pages + 5 detail pages; changed/unavailable row badges and cross-table search render).
+- `python3 scripts/audit_data.py` — passed (37 structure sheets audited against the read log for 94 scheduled DSE rows).
+- `python3 -m unittest discover -s tests -p 'test_*.py'` — passed (16 tests across integrity, source-target coverage and baseline/unchanged/changed/unavailable source-check cases).
+- `python3 tests/smoke.py` — passed (Poker3 companion archive).
+- `node --check` for `site/assets/app.js`, `site/assets/venue.js`, `tests/canonical_render.js`; `py_compile`; JSON parsing; `git diff --check` — passed.
+- Local HTTP smoke test: `/`, `/search.html?q=venetian`, `/data.json`, and `/assets/app.js` returned HTTP 200.
+
+#### Remaining evidence gaps (published as F31/F32 and related flags)
+
+- No event is currently confirmed by written official terms to allow a maximum of one entry per player; strict confirmed-event filter therefore has zero results. Do not treat the provisional day plan as registration advice.
+- Only 14 of the 56 hotel–venue route pairs are recorded; other pairs and official-address verification remain incomplete.
+- No date-specific hotel total exists for the fixed Nov 25–Dec 2 stay; the only stored checkout quote is the Nov 17–19 sample. Compare same dates, occupancy, checkout total, nightly average, resort fee/tax, parking and cancellation terms before booking.
+- The 15 Venetian NYE structure sheets and full WPT structure terms remain unread in the canonical evidence snapshot; their rows stay unverified/separate. Schedule, finish-time and room-confirmation limitations remain on the Flagged page.
+- Fresh venue-host HTTP checks were not possible in this sandbox. The daily workflow will establish/refresh source hashes and morning schedule snapshots when it runs on GitHub Actions; until that first successful run, the page correctly says no automated check file exists.

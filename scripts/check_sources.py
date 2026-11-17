@@ -56,10 +56,25 @@ def official_targets(data: dict) -> list[dict]:
     for e in data.get("events", []):
         add(e.get("scheduleUrl", ""), f"Schedule for {e['name']}")
         add(e.get("structureUrl", ""), f"Structure sheet for {e['name']}")
+        for rule_name, rule in (e.get("rules") or {}).items():
+            if isinstance(rule, dict):
+                add(rule.get("source", ""), f"{e['name']} {rule_name} rule")
     for h in data.get("hotels", []):
-        add(h.get("source", ""), f"{h['name']} room source")
-        add(h.get("feeSource", ""), f"{h['name']} fee terms")
-        add(h.get("taxSource", ""), f"{h['name']} tax terms")
+        for field, label in (
+            ("source", "room source"), ("feeSource", "fee terms"), ("taxSource", "tax terms"),
+            ("feeSourceAlt", "alternate fee terms"), ("parkingSource", "parking terms"),
+            ("cancellationSource", "cancellation terms"), ("bookingUrl", "booking page"),
+            ("calendarUrl", "booking calendar"),
+        ):
+            add(h.get(field, ""), f"{h['name']} {label}")
+        quote = h.get("quote") or {}
+        add(quote.get("source", ""), f"{h['name']} dated quote")
+    for row in data.get("rateLog", []):
+        add(row.get("source", ""), f"{row.get('hotel', 'Hotel')} rate observation")
+        add(row.get("feeSource", ""), f"{row.get('hotel', 'Hotel')} fee source")
+        add(row.get("taxSource", ""), f"{row.get('hotel', 'Hotel')} tax source")
+    for route in data.get("routes", []):
+        add(route.get("source", ""), f"{route.get('hotel', '')} to {route.get('venue', '')} official address")
     return list(out.values())
 
 
@@ -68,6 +83,22 @@ def fetch(url: str) -> tuple[int, str, bytes]:
     context = ssl.create_default_context()
     with urllib.request.urlopen(request, timeout=TIMEOUT, context=context) as response:
         return response.status, response.headers.get("Content-Type", ""), response.read()
+
+
+def compare_check(old: dict | None, status: str, digest: str | None) -> dict:
+    """Classify a fetch without conflating a failed request with changed content."""
+    available = status.startswith("HTTP 2")
+    prior_hash = (old or {}).get("hash")
+    changed = bool(available and prior_hash and digest and prior_hash != digest)
+    baseline = bool(available and not prior_hash)
+    return {
+        "changed": changed,
+        "unavailable": not available,
+        "baseline": baseline,
+        "previousHash": prior_hash or None,
+        "previousChecked": (old or {}).get("checked", "") or None,
+        "statusChanged": bool(old and old.get("status") != status),
+    }
 
 
 def main() -> int:
@@ -102,29 +133,19 @@ def main() -> int:
             row["status"] = f"HTTP {status}"
             row["hash"] = digest
             row["bytes"] = len(body)
-            if old and old.get("hash") and old["hash"] != digest:
-                row["changed"] = True
-                row["previousHash"] = old["hash"]
-                row["previousChecked"] = old.get("checked", "")
-                changed.append(row)
-            else:
-                row["changed"] = False
         except urllib.error.HTTPError as exc:
             row["status"] = f"HTTP {exc.code}"
             row["error"] = str(exc)
-            row["changed"] = bool(old)
-            if old and old.get("hash"):
-                row["previousHash"] = old["hash"]
-                changed.append(row)
         except Exception as exc:  # noqa: BLE001 - the checker must survive one bad URL
             row["status"] = "unreachable"
             row["error"] = f"{type(exc).__name__}: {exc}"
-            row["changed"] = bool(old)
-            if old and old.get("hash"):
-                row["previousHash"] = old["hash"]
-                changed.append(row)
+
+        row.update(compare_check(old, row["status"], row.get("hash")))
+        if row["changed"]:
+            changed.append(row)
         rows.append(row)
-        print(f"{row['status']:>14}  {url}")
+        state = "CHANGED" if row["changed"] else "UNAVAILABLE" if row["unavailable"] else "BASELINE" if row["baseline"] else "unchanged"
+        print(f"{row['status']:>14}  {state:>11}  {url}")
 
     payload = {
         "lastRun": now,

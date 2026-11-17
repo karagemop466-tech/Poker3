@@ -13,10 +13,11 @@ dashboard either way. See flag F29 on the Flagged for review page.
 | Page | What it does |
 |---|---|
 | `site/index.html` | Executive summary: the fixed trip, the primary event per day, and what is and is not confirmed. |
-| `site/tournaments.html` | Every published tournament row, with date, venue, category and single-entry filters, a search box and a per-row rule panel. |
+| `site/tournaments.html` | Every published tournament row, with date, venue, category, written single-entry confirmation and sheet-candidate filters, plus per-row rules. |
+| `site/search.html` | Global search across tournaments, hotel rows, dated rates, walking routes, sources, questions and review flags. |
 | `site/venues.html` | One page per Strip poker room, each with its events and its hotels (`browse.html?view=venue&key=…`). |
 | `site/browse.html` | Venue and category subpages, so a bounty event is never mixed in with a plain freezeout. |
-| `site/schedule.html` | One realistic primary event per day, a conditional fallback, the recurring room events, and the flagged impossible sequences. |
+| `site/schedule.html` | A provisional sheet-screened candidate per day, conditional fallback, recurring room events and estimated overlap flags; none is strict-entry confirmed. |
 | `site/hotels.html` | Published rate components, the mandatory resort fee, tax, true cost per night, parking, cancellation deadlines, walking times and the dated rate log. |
 | `site/questions.html` | The information still needed before booking, each with the official source behind the answer. |
 | `site/suggestions.html` | Proposed improvements with impact, effort and the decision each one needs. |
@@ -26,11 +27,11 @@ dashboard either way. See flag F29 on the Flagged for review page.
 ## Evidence policy
 
 Only official venue and property pages and official PDFs substantiate a value. A structure sheet that prints one buy-in,
-one start flight and no re-entry, rebuy, add-on or second-flight clause is recorded as **single entry on the sheet**,
-with the excerpt and the retrieval date attached; the site never claims a sheet uses the words “single entry”.
-A row with a blank fee or guarantee is always explained by a note or a flag. The guaranteed-pool ÷ entry-fee figure is
-a descriptive ratio, never a forecast. Walking minutes are Google Maps walking estimates, because no venue publishes a
-walking time. Snapshot: **2026-11-16 UTC**.
+one start flight and no re-entry, rebuy, add-on or second-flight clause is **sheet-screened only**; it does not prove a
+maximum number of entries per player. No candidate is treated as strictly eligible until the venue confirms the one-entry,
+no-rebuy and no-add-on rules in writing (flag F31). Each row carries the exact excerpt, source and retrieval date. A row
+with a blank fee or guarantee is explained by a note or flag. Guaranteed-pool ÷ entry-fee is descriptive, never a forecast.
+Walking minutes are Google Maps estimates because no venue publishes a walking time. Snapshot: **2026-11-16 UTC**.
 
 ## Data pipeline
 
@@ -49,8 +50,8 @@ python3 scripts/data_source.py        # rebuilds site/data.json from the source 
 
 ## Scheduled checks
 
-`.github/workflows/checks.yml` is the single scheduled job that reviews the official sources; it runs every
-morning at 05:00 Pacific (12:13 UTC in winter) and can be dispatched by hand:
+`.github/workflows/checks.yml` is the single scheduled job that reviews official sources at 13:00 UTC
+(05:00 PST / 06:00 PDT) and can be dispatched by hand:
 
 - `scripts/check_sources.py` fetches every official URL behind the dashboard, stores a SHA-256 of the response and
   flags any source whose body changed. It never changes a tournament value on its own: a changed page is re-read by a
