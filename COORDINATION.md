@@ -2816,3 +2816,59 @@ fresh when this session claimed. This session edits no file inside that claim's 
 PR #88/#89 landed produced one append/append conflict in this file only; both sides were kept.
 
 **Commit discipline.** Small frequent commits; `git pull --rebase origin arena/b13ca4cb-poker3` before every push.2d7def5 (claim: arena/b13ca4cb-poker3 final verification pass, stale-note fix, integration)76e699f (claim: arena/b13ca4cb-poker3 final verification pass, stale-note fix, integration)83ce94f (claim: arena/b13ca4cb-poker3 final verification pass, stale-note fix, integration)4f99e06 (claim: arena/b13ca4cb-poker3 final verification pass, stale-note fix, integration)
+
+**Commit discipline.** Small frequent commits; `git pull --rebase origin arena/b13ca4cb-poker3` before every push.2d7def5 (claim: arena/b13ca4cb-poker3 final verification pass, stale-note fix, integration)76e699f (claim: arena/b13ca4cb-poker3 final verification pass, stale-note fix, integration)83ce94f (claim: arena/b13ca4cb-poker3 final verification pass, stale-note fix, integration)
+
+**Commit discipline.** Small frequent commits; `git pull --rebase origin arena/b13ca4cb-poker3` before every push.2d7def5 (claim: arena/b13ca4cb-poker3 final verification pass, stale-note fix, integration)76e699f (claim: arena/b13ca4cb-poker3 final verification pass, stale-note fix, integration)
+
+**Commit discipline.** Small frequent commits; `git pull --rebase origin arena/b13ca4cb-poker3` before every push.2d7def5 (claim: arena/b13ca4cb-poker3 final verification pass, stale-note fix, integration)
+
+**Commit discipline.** Small frequent commits; `git pull --rebase origin arena/b13ca4cb-poker3` before every push.
+
+### Verification results (session `arena/b13ca4cb-poker3`, live reads from this sandbox, 2026-11-17 UTC)
+
+**Sources re-read line by line against the canonical rows (all matched):**
+
+- **Venetian DSE November schedule page** (`dse-nov-2026.html`, all chunks): every trip-window row (23-30 Nov,
+  events 7-22) matches on date, start time, event number, name, guarantee and structure-sheet link.
+- **Venetian structure sheets, read from the official PDFs:** `structure_30` (Event 8, $200 PKO: 5:10 PM, 25,000
+  chips, 30-min levels, late reg 8 levels + break 9:40 PM, $8,000 GTD, $40/$200 house fee); `structure_6` (Event 10,
+  $400 1Day: 11:10 AM, 40,000 chips, late reg 10 levels + break ~4:55 PM, $15,000 GTD, $65/$400); `structure_1`
+  (the recurring $200 Bounty sheet: 5:10 PM, 25,000 chips, $8,000 GTD, events 9/11/13/15/21/22/23/25...);
+  `structure_22` (Event 20, $300 PLO Double Board Bomb Pot: 12:10 PM, 30,000 chips, late reg ~4:40 PM, $10,000 GTD,
+  $58/$300). All values match the stored rows and rule excerpts.
+- **Wynn poker room page:** WPT World Championship 27 Nov - 21 Dec (new $400 Super Gold Million, $3,000,000 GTD),
+  Signature Series 11-24 Jan 2027, daily tournaments suspended during series runs, $40,000 GTD Friday rebuy and
+  $10,000 GTD nightly 6 p.m. - matches the stored rows and flag F18.
+- **Wynn daily poster PDF:** Mon-Thu $200 NLH 12 p.m. $10K; Fri $240 NLH Rebuy 12 p.m. $40K; Sat/Sun $200 NLH 12 p.m.
+  $25K; nightly $160 NLH 6 p.m. $10K - matches the day-plan recurring rows.
+- **MGM Grand $120 NLH sheet:** $92 prize pool + $13 house fee + $11 *optional* staff gratuity (10,000 extra chips) +
+  $4 promotions - the paid chip boost is isolated in the extra-spend path, as published.
+- **Bellagio Friday $600 NLH sheet:** $510 prize pool + $50 house fee + $40 voluntary gratuity (15,000 extra chips);
+  re-entry through level 8 - matches the spend-more isolation and flags F02/F52.
+- **Caesars official poker page:** Caesars Palace four daily NLH (10 a.m./2 p.m./6 p.m./9 p.m., $100, 20,000 chips,
+  $1,000 GTD, $50 add-on at first break); Horseshoe six daily NLH (9 a.m., 11 a.m., 2 p.m., 5 p.m., 8 p.m., 11 p.m.,
+  mixed buy-ins); "most sessions finish in four to six hours" - matches F17, F20, F43.
+- **Venetian hotel:** suite-rates page ($119/$209 starting rates, $55/night, EPOKR25 code, six hours cash play or a
+  $300+ tournament buy-in per night, 150-day horizon), resort-fee page ($55 plus tax), and the **booking engine
+  re-read for the exact trip window 2026-11-23 -> 2026-11-30**: nightly rates 164.25, 164.25, 201.75, 231.75, 1649.25,
+  554.25, 186.75; $55 resort fee; tax $473.30; total **$4,010.55**; engine average rate $505.32. This matches PR #87's
+  stored quote exactly; the derived per-night true costs sum to the printed total.
+
+**Defect found and fixed (V2):** `tripCostModel.note` still claimed "the official booking engine publishes no price
+for the recommended trip window at all", which PR #87's dated quote made false. The model now keeps the published-rate
+floor and adds a `datedQuote` block carrying the 2026-11-17 official quote (nightly rates, resort fee, printed taxes
+and total, derived per-night true costs, engine average rate, source link, F65 rounding note). No existing field was
+removed or revalued; the calculator and dashboard keep rendering from the same fields.
+
+**Monitor record:** a fresh live run of `scripts/check_sources.py` from this sandbox at 2026-11-17T21:55Z re-read 80
+of 97 official URLs and reported **0 changed**. The two flags in the 20:48Z record (Venetian December schedule page,
+suite-rates page) were booking-banner/rotating-content noise and did not reproduce; both pages were also re-read by
+hand during this session with no value change. 17 URLs remain recorded as `unavailable` (Caesars 403/302 loops,
+Bellagio/ARIA/MGM hosts timing out from the runner) - published as unavailable, never as unchanged.
+
+**Suite results on the merged tree:** `tests/` 99 passed + 149 subtests; `verify_site.py` pass (341 events, 8 hotels,
+14 routes, 43 sources, 62 flags, 7 plan days, 16 pages); `verify_transcription.py` 44/44 rows matched;
+`audit_data.py` 37 sheets vs 94 rows, 0 failures; `audit_951cd431.py` 0 failures, 0 warnings;
+`verify_live_official.py` OK - canonical rows match both official captures line by line; `canonical_smoke.py` and
+`smoke.py` render clean; `node --check site/assets/app.js` clean; `json.tool` clean.0472662 (docs: record live verification results for arena/b13ca4cb-poker3)44efdf8 (docs: record live verification results for arena/b13ca4cb-poker3)6f8db65 (docs: record live verification results for arena/b13ca4cb-poker3)987225f (docs: record live verification results for arena/b13ca4cb-poker3)
