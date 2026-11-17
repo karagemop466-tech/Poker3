@@ -96,6 +96,9 @@ function ruleBadge(status) {
     'multiple-entries': ['warn', 'More than one entry possible'],
     'multi-buyin': ['warn', 'More than one entry possible'],
     'separate-flights': ['warn', 'Separate start flights'],
+    // The section prints an explicit cap on starting flights, but still permits one re-entry
+    // into that flight, so the event is not a one-entry tournament.
+    'one-flight-cap': ['warn', 'One entry per flight + one re-entry'],
     'not-verified': ['bad', 'Entry rules not verified'],
     'not-allowed': ['ok', 'Re-entry not allowed'],
     'allowed': ['warn', 'Allowed'],
@@ -127,10 +130,14 @@ function ratioCell(e) {
 /* ------------------------------------------------------------- tournaments */
 const state = {
   q: '', from: '', to: '', venue: '', category: '', format: '',
-  singleOnly: false, candidateOnly: false, walkOnly: true, showUndated: true, showPast: false,
+  singleOnly: false, candidateOnly: false, walkOnly: false, hotelWalk: 'venetian',
+  showUndated: true, showPast: false,
 };
 
-function filteredEvents() {
+// filteredEvents({ ignoreWalk: true }) returns the rows that match every filter except the
+// 30-minute walking limit, so the page can say how many rows the limit hides and why.
+function filteredEvents(opts) {
+  const ignoreWalk = !!(opts && opts.ignoreWalk);
   const q = state.q.trim().toLowerCase();
   return (db.events || []).filter((e) => {
     if (state.singleOnly && !hasConfirmedSingleEntryPolicy(e)) return false;
@@ -144,9 +151,9 @@ function filteredEvents() {
     if (state.to && e.date && e.date > state.to) return false;
     if (state.from && !e.date) return false;
     if (state.to && !e.date) return false;
-    if (state.walkOnly) {
-      const walk = walkToVenetian(e.venue);
-      if (walk === null || walk > 30) return false;
+    if (state.walkOnly && !ignoreWalk) {
+      const walk = walkMinutes(state.hotelWalk, e.venue);
+      if (walk === null || walk > WALK_LIMIT_MIN) return false;
     }
     if (q) {
       const hay = [e.name, e.venue, venueName(e.venue), e.date, e.time, e.format, e.category,
@@ -161,6 +168,41 @@ function filteredEvents() {
     return ta < tb ? -1 : ta > tb ? 1 : 0;
   });
 }
+const WALK_LIMIT_MIN = 30;   // the brief's limit: a hotel must be within a 30-minute walk of the venue
+
+function hotelName(id) {
+  const h = (db.hotels || []).find((x) => x.id === id);
+  return h ? h.name : id;
+}
+
+/* Routes are recorded in whichever direction they were measured (hotel -> poker room, or
+   hotel -> venue), so look both ways. null means no route was measured for the pair (F32). */
+function walkRoute(hotelId, venueId) {
+  if (!hotelId || !venueId) return null;
+  const list = db.routes || [];
+  const direct = list.find((x) => x.hotel === hotelId && x.venue === venueId);
+  if (direct) return { route: direct, direction: 'measured' };
+  if (hotelId === venueId) return { route: { minutes: 0, note: 'the room is inside this hotel' }, direction: 'same property' };
+  const reverse = list.find((x) => x.hotel === venueId && x.venue === hotelId);
+  // The reverse of a measured pair is a property-to-property figure, not a re-measurement of this
+  // direction, and its far end is the resort address rather than the poker room. Say so (F32).
+  return reverse ? { route: reverse, direction: 'reverse of the recorded pair' } : null;
+}
+
+function walkMinutes(hotelId, venueId) {
+  const w = walkRoute(hotelId, venueId);
+  return w ? w.route.minutes : null;
+}
+
+function walkCell(hotelId, venueId) {
+  const w = walkRoute(hotelId, venueId);
+  if (!w) return '<span class="muted">no route measured (F32)</span>';
+  const m = w.route.minutes;
+  const over = m > WALK_LIMIT_MIN;
+  const how = w.direction === 'measured' ? '' : ` · ${esc(w.direction)}`;
+  return `<span class="muted"${over ? ' style="color:#b3261e"' : ''}>${m} min walk from ${esc(hotelName(hotelId))}${over ? ' · over the limit' : ''}${how}</span>`;
+}
+
 function walkToVenetian(venue) {
   const r = (db.routes || []).find((x) => x.hotel === 'venetian' && x.venue === venue);
   return r ? r.minutes : null;
@@ -169,6 +211,16 @@ function applyTournamentFilters() {
   const host = document.querySelector('[data-tournament-table]');
   if (!host) return;
   const rows = filteredEvents();
+  // What the walking limit hides, counted out loud so a filter never silently drops rows.
+  let walkOver = 0, walkUnmeasured = 0;
+  if (state.walkOnly) {
+    const withoutWalk = filteredEvents({ ignoreWalk: true });
+    withoutWalk.forEach((e) => {
+      const m = walkMinutes(state.hotelWalk, e.venue);
+      if (m === null) walkUnmeasured += 1;
+      else if (m > WALK_LIMIT_MIN) walkOver += 1;
+    });
+  }
   const head = `<thead><tr>
       <th>Date</th><th>Start</th><th>Venue</th><th>Event</th>
       <th>Buy-in</th><th>Guaranteed pool</th><th>Pool ÷ fee</th>
@@ -178,7 +230,7 @@ function applyTournamentFilters() {
     <tr class="row-click" data-id="${esc(e.id)}">
       <td>${e.date ? esc(e.date) : '<span class="muted">Recurring</span>'}${e.status === 'past' ? '<span class="muted">Past</span>' : ''}</td>
       <td>${esc(e.time)}</td>
-      <td>${esc(venueName(e.venue))}${walkToVenetian(e.venue) !== null ? `<span class="muted">${walkToVenetian(e.venue)} min walk to the Venetian</span>` : ''}</td>
+      <td>${esc(venueName(e.venue))}${state.walkOnly ? walkCell(state.hotelWalk, e.venue) : ''}</td>
       <td class="event-name">${esc(e.name)}${e.eligibility ? `<span class="muted">Restricted: ${esc(e.eligibility)}</span>` : ''}${e.note ? `<span class="muted">${esc(e.note)}</span>` : ''}</td>
       <td>${money(e.buyIn) || blank}</td>
       <td>${money(e.guarantee) || blank}${e.guaranteeNote ? `<span class="muted">${esc(e.guaranteeNote)}</span>` : ''}</td>
@@ -190,8 +242,11 @@ function applyTournamentFilters() {
       <td>${e.lastVerified ? esc(e.lastVerified) : blank}${e.lastChecked ? `<span class="muted">values read ${esc(e.lastChecked)}</span>` : ''}</td>
       <td>${sourceLinks(e)}</td>
     </tr>`).join('') : `<tr><td colspan="13" class="empty">${state.singleOnly ? 'No event in this reviewed data set has a written one-entry-per-player confirmation. See flagged item F31; do not treat the candidate list as strict eligibility.' : 'No rows match the current filters.'}</td></tr>`;
+  const walkNote = state.walkOnly
+    ? ` Walking limit (${WALK_LIMIT_MIN} min from ${esc(hotelName(state.hotelWalk))}) hides ${walkOver + walkUnmeasured} further rows: ${walkOver} measured over the limit, ${walkUnmeasured} with no measured route (F32).`
+    : '';
   host.innerHTML = `<div class="table-wrap"><table>${head}<tbody>${body}</tbody></table></div>
-    <p class="toolbar-note">${rows.length} of ${(db.events || []).length} rows.
+    <p class="toolbar-note">${rows.length} of ${(db.events || []).length} rows.${walkNote}
     Every row links the official page or PDF it came from. Blank cells are values no official source published.</p>`;
   host.querySelectorAll('tr.row-click').forEach((tr) => {
     tr.addEventListener('click', () => showDetail(tr.dataset.id));
@@ -250,6 +305,7 @@ function buildTournamentControls() {
     `<option value="${esc(k)}">${esc(db.categories[k].label)}</option>`).join('');
   const formats = [...new Set((db.events || []).map((e) => e.format))].sort()
     .map((f) => `<option value="${esc(f)}">${esc(f)}</option>`).join('');
+  const hotels = (db.hotels || []).map((h) => `<option value="${esc(h.id)}">${esc(h.name)}</option>`).join('');
   host.innerHTML = `
     <div class="filters">
       <label>Search<input type="search" data-f="q" value="${esc(state.q)}" placeholder="event, venue, rule text…"></label>
@@ -260,7 +316,9 @@ function buildTournamentControls() {
       <label>Format<select data-f="format"><option value="">All formats</option>${formats}</select></label>
       <label class="check"><input type="checkbox" data-f="singleOnly"> Single-entry / freezeout confirmed (written max one entry)</label>
       <label class="check"><input type="checkbox" data-f="candidateOnly"> Sheet-screened candidates (entry cap unconfirmed)</label>
-      <label class="check"><input type="checkbox" data-f="walkOnly" checked> Within 30 minutes of the Venetian</label>
+      <label class="check"><input type="checkbox" data-f="walkOnly"> Walking limit only
+        <select data-f="hotelWalk" aria-label="Hotel the walk is measured from">${hotels}</select>
+        <span class="muted">within ${WALK_LIMIT_MIN} min walk</span></label>
       <label class="check"><input type="checkbox" data-f="showUndated" checked> Include recurring rooms</label>
       <label class="check"><input type="checkbox" data-f="showPast"> Include past events (before ${esc(db.today || db.asOf)})</label>
       <button class="btn" data-reset>Reset</button>
@@ -268,6 +326,7 @@ function buildTournamentControls() {
   host.querySelectorAll('[data-f]').forEach((el) => {
     const key = el.dataset.f;
     if (el.type === 'checkbox') el.checked = !!state[key];
+    if (el.tagName === 'SELECT') el.value = state[key] || '';
     el.addEventListener(el.tagName === 'SELECT' || el.type === 'date' ? 'change' : 'input', () => {
       state[key] = el.type === 'checkbox' ? el.checked : el.value;
       applyTournamentFilters();
@@ -275,7 +334,8 @@ function buildTournamentControls() {
   });
   host.querySelector('[data-reset]').addEventListener('click', () => {
     state.q = ''; state.from = ''; state.to = ''; state.venue = ''; state.category = '';
-    state.format = ''; state.singleOnly = false; state.candidateOnly = false; state.walkOnly = true; state.showUndated = true; state.showPast = false;
+    state.format = ''; state.singleOnly = false; state.candidateOnly = false; state.walkOnly = false;
+    state.hotelWalk = 'venetian'; state.showUndated = true; state.showPast = false;
     buildTournamentControls();
     applyTournamentFilters();
   });
@@ -409,7 +469,11 @@ function renderHotels() {
         <td>${h.resortFee ? '$' + h.resortFee + ' plus tax' : blank}</td>
         <td>${h.taxRate ? h.taxRate + '%' : (h.taxReference
           ? `percentage not published<span class="muted">${esc(h.taxReference)} Reference: <a href="${esc(h.taxReferenceSource)}" target="_blank" rel="noopener">room-tax schedule</a></span>`
-          : 'percentage not published')}</td>
+          : 'percentage not published')}${h.printedFeeAndTax
+            ? `<span class="muted">its own page prints $${h.printedFeeAndTax.fee} + $${h.printedFeeAndTax.tax} tax = ${h.printedFeeAndTax.taxPctImplied}%
+                ${h.printedFeeAndTax.agreesWithModelTaxPct ? 'agrees with' : 'disagrees with'} the 13.38% the cost model applies ·
+                <a href="${esc(h.printedFeeAndTax.source)}" target="_blank" rel="noopener">printed ${esc(h.printedFeeAndTax.excerpt)}</a></span>`
+            : ''}</td>
         <td>${h.trueNightlyLow ? '$' + h.trueNightlyLow.toFixed(2) + ' – $' + h.trueNightlyHigh.toFixed(2) + '<span class="muted">floor computed from published components</span>' : blank}</td>
         <td>${esc(h.parking || 'Not published')}</td>
         <td>${esc(h.cancellation || 'Not published')}${h.cancellationDetail ? `<span class="muted">${esc(h.cancellationDetail)}</span>` : ''}${h.checkInOut ? `<span class="muted">${esc(h.checkInOut)}</span>` : ''}</td>

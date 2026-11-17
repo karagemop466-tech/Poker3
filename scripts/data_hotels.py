@@ -36,6 +36,7 @@ WYNN_ROOMS = "https://www.wynnlasvegas.com/rooms-and-suites"
 # before September 30, 2025".  The live, non-offer policy page below is therefore
 # used instead; the expired page is kept only as a cross-check and is flagged.
 WYNN_TERMS = "https://www.wynnlasvegas.com/about-us/resort-information"
+WYNN_PARKING = "https://www.wynnlasvegas.com/about-us/parking"
 # Cancellation policy. Re-read live on 2026-11-17 (after the last build): this
 # page prints a CANCELLATION POLICY section headed by a deposit statement, and the
 # 48-hour window is in that section's own body text, not only in a promotional
@@ -329,7 +330,12 @@ HOTELS = [
                       "quote is published."),
         resortFee=55, resortFeeNote="$55 resort fee per night stayed, plus tax, payable upon check-in.",
         taxRate=TAX_RATE,
-        taxNote="Clark County Room Tax of 13.38% applies to the daily rate; the resort fee is 'plus applicable tax'.",
+        taxNote=("Printed in the official Hotel Terms and Conditions, 'Taxes, Surcharges, and Resort Fee' section: 'Daily "
+                 "rates do not include the applicable Clark County Room Tax of 13.38%.' The county per-property schedule prints the same "
+                 "13.38% for a resort hotel in the Primary Gaming Corridor, and the resort fee is 'plus applicable tax' per night. The "
+                 "same terms page still opens its Resort Fee section with 'Rates include a daily Resort Fee of $55 plus tax per night', "
+                 "and the booking calendar footnote says its prices 'include daily resort fee, excludes taxes', so two official pages "
+                 "describe the fee differently and the site uses the fee-on-top reading (F51)."),
         parking=("$20 per day for registered hotel guests (seven days a week); $20 Monday-Thursday and $25 Friday-Sunday "
                  "for non-hotel guests; valet $40 per day (hotel terms). The resort's own poker-room parking page repeats "
                  "those figures and adds a waiver: 'Players in the poker room who play three hours or more in tournament "
@@ -398,7 +404,14 @@ HOTELS = [
                       "property is not stated."),
         resortFee=55, resortFeeNote="$55 resort fee per night stayed, plus tax, payable upon check-in.",
         taxRate=TAX_RATE,
-        taxNote="Clark County Room Tax of 13.38% applies to the daily rate; the resort fee is 'plus applicable tax'.",
+        taxNote=("Printed in the official Hotel Terms and Conditions, 'Taxes, Surcharges, and Resort Fee' section: 'Daily "
+                 "rates do not include the applicable Clark County Room Tax of 13.38%.' The county per-property schedule prints the same "
+                 "13.38% for a resort hotel in the Primary Gaming Corridor, and the resort fee is 'plus applicable tax' per night. The "
+                 "same terms page still opens its Resort Fee section with 'Rates include a daily Resort Fee of $55 plus tax per night', "
+                 "and the booking calendar footnote says its prices 'include daily resort fee, excludes taxes', so two official pages "
+                 "describe the fee differently and the site uses the fee-on-top reading (F51). These are the resort-wide Venetian "
+                 "terms: no Palazzo-specific fee or tax page was found, and the poker rate page covers 'either The Venetian or The "
+                 "Palazzo', so the figures are shared rather than separately published."),
         parking=("$20 per day for registered hotel guests; $25 Friday-Sunday for non-hotel guests; valet $40 per day. "
                  "The poker room is in this building, and the row cites the resort's own poker-room parking page because "
                  "that is where the player waiver appears: 'Players in the poker room who play three hours or more in "
@@ -448,9 +461,12 @@ HOTELS = [
         taxNote=("Wynn prints 'plus tax' without a percentage. The 13.38% Clark County room tax is the rate printed in the "
                  "Venetian hotel terms; applying it to Wynn's own total is an assumption and is labelled as one."),
         taxReference=WYNN_COUNTY_REF, taxReferenceSource=ROOM_TAX_REFERENCE,
-        parking=("Self parking is complimentary for registered guests. Non-registered guests pay $25 per day with the first "
-                 "three hours free; valet $40 per day. Complimentary self-parking is extended to Wynn Poker Room guests."),
-        parkingSource=WYNN_TERMS,
+        parking=("Confirmed on the official Parking page: 'Self-parking garages at Wynn and Encore ... complimentary "
+                 "parking for all Wynn and Encore Resort and Tower Suite registered guests'; 'The daily parking fee for "
+                 "non-registered guests is $25 per day with the first three (3) hours complimentary'; 'Complimentary "
+                 "self-parking is extended to Wynn Poker Room guests'; 'Valet parking is $40 per day up to 24 hours (no "
+                 "grace period, no re-entry)'."),
+        parkingSource=WYNN_PARKING,
         cancellation=("A deposit of the first night's room rate and tax is charged at booking. The property's live "
                       "terms page prints a CANCELLATION POLICY section: \"cancellations must be received at least 48 "
                       "hours prior to arrival date or deposit (if applicable) will be forfeited\", and early departures "
@@ -540,6 +556,11 @@ HOTELS = [
                        "centre access for two."),
         taxRate="", taxNote=("The property page does not print a room-tax percentage for the rate. It prints only the tax "
                             "amount charged on the resort fee ($7.35 on $54.95)."),
+        # Printed on the property's own booking page, re-read 2026-11-17 22:3x UTC. Kept as numbers so the
+        # cost model's 13.38% can be checked against the property's own arithmetic, not only the Venetian's terms.
+        printedFeeAndTax=dict(fee=54.95, tax=7.35, allIn=62.30, observedOn="2026-11-17",
+                              excerpt="Resort fees: $62.30 ($54.95 plus $7.35 tax)",
+                              source=CAESARS_CALENDAR),
         parking="Self parking: surcharge applies. Valet parking: surcharge applies. Both are complimentary for Caesars Rewards members at Platinum tier or higher; Nevada locals get the first 3 hours of self parking at no charge. No dollar amount is published on the page.",
         parkingSource=CAESARS_CALENDAR,
         cancellation=("The official property page advertises 'FREE 48-Hour Cancellation*' under 'Why Book With Us'; the "
@@ -571,6 +592,11 @@ HOTELS = [
                        "centre access for two. The rooms page states 'Wifi included in Resort Fee'."),
         taxRate="", taxNote=("The property page does not print a room-tax percentage for the rate. It prints only the tax "
                              "amount charged on the resort fee ($6.68 on $49.95)."),
+        # Printed on the property's own booking page. Kept as numbers so the cost model's 13.38% can be checked against
+        # the property's own arithmetic rather than only the Venetian's terms.
+        printedFeeAndTax=dict(fee=49.95, tax=6.68, allIn=56.63, observedOn="2026-11-17",
+                              excerpt="Resort fees: $56.63 ($49.95 plus $6.68 tax)",
+                              source=HORSESHOE_CALENDAR_NOV),
         parking="Self parking: surcharge applies. Valet parking: surcharge applies. Both are complimentary for Caesars Rewards members at Platinum tier or higher; Nevada locals get the first 3 hours of self parking at no charge. No dollar amount is published on the page.",
         parkingSource=HORSESHOE_CALENDAR_NOV,
         cancellation=("The official property page advertises 'FREE 48-Hour Cancellation*' under 'Why Book With Us'; the "

@@ -4,6 +4,8 @@ Format for the compact table rows: date|time|name|buyIn|guarantee|chips|levels
 `buyIn` and `guarantee` are plain numbers, "-" means the value is not printed.
 """
 
+import re
+
 RETRIEVED = "2026-11-16"
 
 WYNN_POKER = "https://www.wynnlasvegas.com/casino/poker"
@@ -140,32 +142,32 @@ WYNN_WPT_ROWS = """
 2026-12-11|6:00 PM|Super Gold Million Mystery Bounty Day 1D|400|3000000|30000|20/40
 2026-12-12|10:00 AM|No Limit Hold'em|800|100000|30000|30
 2026-12-12|1:00 PM|PLO|3000|250000|30000|30
-2026-12-12|2:00 PM|WPT Prime Championship Final Table|-|-|-|-|**
-2026-12-12|2:00 PM|Super Gold Million Mystery Bounty Day 2|-|-|-|-|**
+2026-12-12|2:00 PM|WPT Prime Championship Final Table|-|-|-|-
+2026-12-12|2:00 PM|Super Gold Million Mystery Bounty Day 2|-|-|-|-
 2026-12-12|2:00 PM|Milestone Satellite to $10,400 World Championship 1A/8|1100|75 Seats|20000|25|**
 2026-12-12|4:00 PM|Milestone Satellite to $10,400 Ladies NLH Championship|200|10 Seats|20000|20|**
 2026-12-12|7:00 PM|Milestone Satellite to $10,400 World Championship 1A/8|1100|25 Seats|20000|25|**
 2026-12-12|9:00 PM|NLH Turbo|600|50000|30000|20
 2026-12-13|11:00 AM|WPT World Championship Day 1A $1,000,000 Added|10400|-|100000|60/90|***
 2026-12-13|11:00 AM|Ladies NIH Championship (2 Day)|1100|250000|40000|40|****|***
-2026-12-13|11:00 AM|TORSE (2 Day)|1100|-|40000|40|***
-2026-12-13|11:00 AM|No Limit Hold'em Day 1A|800|500000|40000|40|***
-2026-12-13|12:00 PM|PLO Day 1A|1600|1000000|40000|40|**
+2026-12-13|11:00 AM|TORSE (2 Day)|1100|-|40000|40
+2026-12-13|11:00 AM|No Limit Hold'em Day 1A|800|500000|40000|40
+2026-12-13|12:00 PM|PLO Day 1A|1600|1000000|40000|40
 2026-12-13|12:00 PM|Milestone Satellite to $10,400 World Championship 1B|1100|25 Seats|20000|25|**
 2026-12-13|1:00 PM|Super Gold Million Mystery Bounty Day 3|-|-|-|-
 2026-12-13|6:00 PM|Milestone Satellite to $10,400 World Championship 1B/C|1100|25 Seats|20000|25|**
 2026-12-14|11:00 AM|WPT World Championship Day 1B $1,000,000 Added|10400|-|100000|60/90|***
-2026-12-14|11:00 AM|No Limit Hold'em Day 1B|800|500000|40000|40|***
-2026-12-14|12:00 PM|PLO Day 1B|1600|1000000|40000|40|**
-2026-12-14|12:00 PM|Mixed Triple Draw (A-5, 2-7, Badugi) (2 Day)|1100|-|40000|40|**
+2026-12-14|11:00 AM|No Limit Hold'em Day 1B|800|500000|40000|40
+2026-12-14|12:00 PM|PLO Day 1B|1600|1000000|40000|40
+2026-12-14|12:00 PM|Mixed Triple Draw (A-5, 2-7, Badugi) (2 Day)|1100|-|40000|40
 2026-12-14|12:00 PM|Milestone Satellite to $10,400 World Championship 1C|1100|25 Seats|20000|25|**
 2026-12-14|2:00 PM|Super Gold Million Mystery Bounty Final Table|-|-|-|-
 2026-12-14|6:00 PM|Milestone Satellite to $10,400 World Championship 1C|1100|25 Seats|20000|25|**
 2026-12-14|7:00 PM|PLO Turbo|1100|100000|30000|20
 2026-12-14|9:00 PM|NLH Turbo|600|50000|30000|20
 2026-12-15|11:00 AM|WPT World Championship Day 1C $1,000,000 Added|10400|-|100000|60/90|***
-2026-12-15|11:00 AM|No Limit Hold'em Day 2|-|-|-|-|***
-2026-12-15|11:00 AM|Milestone Satellite to $10,400 World Championship 1C/Day 2|1100|10 Seats|20000|25|***
+2026-12-15|11:00 AM|No Limit Hold'em Day 2|-|-|-|-
+2026-12-15|11:00 AM|Milestone Satellite to $10,400 World Championship 1C/Day 2|1100|10 Seats|20000|25|**
 2026-12-15|12:00 PM|PLO Day 2|-|-|-|-
 2026-12-15|12:00 PM|Big O|1100|-|30000|30
 2026-12-15|1:00 PM|PLO Progressive Bounty (PKO)|3000|250000|30000|30
@@ -174,10 +176,10 @@ WYNN_WPT_ROWS = """
 2026-12-18|11:00 AM|No Limit Hold'em Day 1A|1100|1000000|40000|40
 2026-12-18|12:00 PM|WPT World Championship Day 2 (Registration open until the start of Day 2)|-|-|-|-
 2026-12-18|12:00 PM|PLO Double Board Bomb Pot|800|-|30000|30
-2026-12-18|1:00 PM|PLO 6-Max|10500|-|100000|30/40
+2026-12-18|1:00 PM|PLO 6-Max|10500|-|100000|30/40|****
 2026-12-18|1:00 PM|HORSE|800|-|35000|30
-2026-12-18|6:00 PM|Milestone Satellite to $25K NLH High Roller|3000|-|20000|25
-2026-12-18|6:00 PM|Milestone Satellite to $3,000 NLH|400|25 Seats|20000|20
+2026-12-18|6:00 PM|Milestone Satellite to $25K NLH High Roller|3000|-|20000|25|****
+2026-12-18|6:00 PM|Milestone Satellite to $3,000 NLH|400|25 Seats|20000|20|**
 2026-12-18|7:00 PM|No Limit Hold'em Day 1B|1100|1000000|40000|20/40
 2026-12-17|11:00 AM|Seniors NLH Championship (3 Day)|1100|500000|40000|40
 2026-12-17|11:00 AM|Wynn Mixed Championship (2 Day)|1600|-|40000|40/60
@@ -192,15 +194,15 @@ WYNN_WPT_ROWS = """
 2026-12-18|12:00 PM|No Limit Hold'em Day 1B|3000|2000000|40000|40
 2026-12-18|12:00 PM|Limit Omaha 8 Championship (2 Day)|1600|-|40000|40/60
 2026-12-18|12:00 PM|No Limit Hold'em|600|100000|30000|30
-2026-12-18|1:00 PM|NLH 6-Max|10500|-|100000|30/40
+2026-12-18|1:00 PM|NLH 6-Max|10500|-|100000|30/40|****
 2026-12-18|2:00 PM|Milestone Satellite to $5,000 Seniors High Roller|600|10 Seats|20000|20|**
 2026-12-18|6:00 PM|NLH Turbo|1100|100000|30000|20
 2026-12-19|11:00 AM|Seniors High Roller (3 Day)|5000|250000|50000|60
 2026-12-19|11:00 AM|NLH Mystery Bounty Day 1A|1600|1000000|40000|40
-2026-12-19|12:00 PM|WPT World Championship Day 5|-|-|-|-|**
-2026-12-19|12:00 PM|No Limit Hold'em Day 2|-|-|-|-|**
+2026-12-19|12:00 PM|WPT World Championship Day 5|-|-|-|-
+2026-12-19|12:00 PM|No Limit Hold'em Day 2|-|-|-|-
 2026-12-19|12:00 PM|Milestone Satellite to $1,600 Mystery Bounty|300|10 Seats|20000|20|**
-2026-12-19|1:00 PM|PLO|10500|-|100000|30/40
+2026-12-19|1:00 PM|PLO|10500|-|100000|30/40|****
 2026-12-19|1:00 PM|NLH 6-Max|3000|500000|30000|30
 2026-12-19|1:00 PM|TORSE Championship (2 Day)|1600|-|40000|40/60
 2026-12-19|5:00 PM|Milestone Satellite to $1,600 Mystery Bounty|300|10 Seats|20000|20|**
@@ -210,13 +212,184 @@ WYNN_WPT_ROWS = """
 2026-12-20|12:00 PM|No Limit Hold'em Final Table|-|-|-|-
 2026-12-20|12:00 PM|No Limit Hold'em|600|50000|30000|30
 2026-12-20|1:00 PM|NLH 8-Max|10500|-|100000|30/40|****
-2026-12-20|1:00 PM|Mixed Triple Draw (A-5, 2-7, Badugi)|600|-|35000|30|****
+2026-12-20|1:00 PM|Mixed Triple Draw (A-5, 2-7, Badugi)|600|-|35000|30
 2026-12-20|2:00 PM|WPT World Championship Final Table|-|-|-|-
 2026-12-20|6:00 PM|5-Card PLO Turbo|600|50000|30000|20
 2026-12-20|7:00 PM|NLH Mystery Bounty Day 1D|1600|1000000|40000|20/40
 2026-12-21|12:00 PM|No Limit Hold'em|1100|100000|30000|30
 2026-12-21|1:00 PM|NLH Mystery Bounty Day 2|-|-|-|-
-2026-12-21|8:00 PM|NLH Turbo|600|50000|30000|20""".strip()
+2026-12-21|8:00 PM|NLH Turbo|600|50000|30000|20
+""".strip()
+
+# ------------------------------------- WPT World Championship structures PDF
+# Read in full (all eight chunks) on 2026-11-17.  Every string below is copied
+# from the document, and raw/wynn_wpt_world_championship_structures_2026-11-17.md
+# is the verbatim capture it was copied from.
+#
+# `dates` is the list of printed start slots the section's own Terms and
+# Conditions block names.  A schedule row is matched to a section ONLY when its
+# date AND start time AND buy-in all appear in that list, so a row cannot inherit
+# another event's rules by sharing a name.  The page reader renders 11 a.m. as
+# "11 a.m."; the schedule transcript stores "11:00 AM", so both sides are
+# normalised through the same helper before comparison.
+#
+# Keys are (buy-in, printed event name as it appears on the schedule transcript).
+# The document prints "$600 NLH Turbo" while the schedule prints "NLH Turbo", and
+# "Mixed Triple Draw (A-5, 2-7, Badugi)" is printed identically on both, so the
+# mapping below is by the schedule's own name.
+WPT_SHEET_SECTIONS = {
+    ("600", "No Limit Hold'em Day 1"): dict(  # matches Day 1A..Day 1F
+        title="$600 No Limit Hold'em $400,000 Guarantee (November 27-30, 2026)",
+        dates={
+            "2026-11-27 11:00": "Day 1A", "2026-11-27 17:00": "Day 1B",
+            "2026-11-28 11:00": "Day 1C", "2026-11-28 17:00": "Day 1D",
+            "2026-11-29 11:00": "Day 1E", "2026-11-29 18:00": "Day 1F",
+        },
+        days_printed="1A Fri Nov 27 11 a.m. / 1B Fri Nov 27 5 p.m. / 1C Sat Nov 28 11 a.m. / "
+                     "1D Sat Nov 28 5 p.m. / 1E Sun Nov 29 11 a.m. / 1F Sun Nov 29 6 p.m. / "
+                     "Day 2 Mon Nov 30 1 p.m.",
+        fee="$600 Buy-in = $510 (Tournament Prize Pool) + $65 (Tournament Fee) + $25 (Poker Staff Service Charge)",
+        registration="Unlimited re-entry for each starting flight will be available until the start of level 9. "
+                     "A player who advances to Day 2 is prohibited from entering a subsequent starting flight.",
+        chips="Players will start with 40,000 in tournament chips.",
+        levels="Day 1A-E: 30 minutes per level until 12.5% or less of the field remains. Day 1F: 20 minutes per level.",
+    ),
+    ("600", "TORSE"): dict(
+        title="$600 TORSE (November 27, 2026)",
+        dates={"2026-11-27 12:00": ""},
+        days_printed="Friday, November 27, 2026, at 12 p.m.",
+        fee="$600 Buy-in = $510 (Tournament Prize Pool) + $65 (Tournament Fee) + $25 (Poker Staff Service Charge)",
+        registration="Unlimited re-entry will be available until the start of level 9",
+        chips="Players will start with 35,000 in tournament chips.",
+        levels="30 minutes per level until a winner is declared.",
+    ),
+    ("400", "PLO"): dict(
+        title="$400 PLO (November 27, 2026)",
+        dates={"2026-11-27 13:00": ""},
+        days_printed="Friday, November 27, 2026, at 1 p.m.",
+        fee="$400 Buy-in = $337 (Tournament Prize Pool) + $45 (Tournament Fee) + $18 (Poker Staff Service Charge)",
+        registration="Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).",
+        chips="Players will start with 30,000 in tournament chips.",
+        levels="30 minutes per level until a winner is declared.",
+    ),
+    ("600", "Mixed Triple Draw (A-5, 2-7, Badugi)"): dict(
+        title="$600 Mixed Triple Draw (A-5, 2-7, Badugi) (November 28 and December 20, 2026)",
+        dates={"2026-11-28 12:00": "", "2026-12-20 13:00": ""},
+        days_printed="Saturday, November 28, 2026, at 12 p.m. / Sunday, December 20, 2026, at 1 p.m.",
+        fee="$600 Buy-in = $510 (Tournament Prize Pool) + $65 (Tournament Fee) + $25 (Poker Staff Service Charge)",
+        registration="Unlimited re-entry will be available until the start of level 9.",
+        chips="Players will start with 35,000 in tournament chips.",
+        levels="30 minutes per level until a winner is declared.",
+    ),
+    ("800", "No Limit Hold'em Day 1"): dict(  # matches Day 1A..Day 1F
+        title="$800 No Limit Hold'em $1,000,000 Guarantee (November 30 - December 4, 2026)",
+        dates={
+            "2026-11-30 11:00": "Day 1A", "2026-11-30 17:00": "Day 1B",
+            "2026-12-01 11:00": "Day 1C", "2026-12-01 17:00": "Day 1D",
+            "2026-12-02 11:00": "Day 1E", "2026-12-02 18:00": "Day 1F",
+        },
+        days_printed="1A Mon Nov 30 11 a.m. / 1B Mon Nov 30 5 p.m. / 1C Tue Dec 1 11 a.m. / "
+                     "1D Tue Dec 1 5 p.m. / 1E Wed Dec 2 11 a.m. / 1F Wed Dec 2 6 p.m. / "
+                     "Day 2 Thu Dec 3 1 p.m. / Final Table Fri Dec 4 1 p.m.",
+        fee="$800 Buy-in = $695 (Tournament Prize Pool) + $72 (Tournament Fee) + $33 (Poker Staff Service Charge)",
+        registration="Unlimited re-entry for each starting flight will be available until the start of level 9. "
+                     "A player who advances to Day 2 is prohibited from entering a subsequent starting flight.",
+        chips="Players will start with 40,000 in tournament chips.",
+        levels="Day 1A-1E: 30 minutes per level until 12.5% or less of the field remains. Day 1F: 20 minutes per level.",
+    ),
+    ("600", "Limit Omaha 8"): dict(
+        title="$600 Limit Omaha 8 (November 30, 2026)",
+        dates={"2026-11-30 12:00": ""},
+        days_printed="Monday, November 30, 2026, at 12 p.m.",
+        fee="$600 Buy-in = $510 (Tournament Prize Pool) + $65 (Tournament Fee) + $25 (Poker Staff Service Charge)",
+        registration="Unlimited re-entry will be available until the start of level 9",
+        chips="Players will start with 35,000 in tournament chips.",
+        levels="30 minutes per level until a winner is declared.",
+    ),
+    ("600", "Limit Omaha 8/5/stud 8"): dict(
+        title="$600 Limit Omaha 8/Stud 8 (December 1, 2026)",
+        dates={"2026-12-01 12:00": ""},
+        days_printed="Tuesday, December 1, 2026, at 12 p.m.",
+        fee="$600 Buy-in = $510 (Tournament Prize Pool) + $65 (Tournament Fee) + $25 (Poker Staff Service Charge)",
+        registration="Unlimited re-entry will be available until the start of level 9",
+        chips="Players will start with 35,000 in tournament chips.",
+        levels="30 minutes per level until a winner is declared.",
+    ),
+    ("1100", "PLO"): dict(
+        title="$1,100 PLO (December 1, 2026)",
+        dates={"2026-12-01 13:00": ""},
+        days_printed="Tuesday, December 1, 2026, at 1 p.m.",
+        # The printed components sum to $1,105 against the printed $1,100 buy-in (flag F60).
+        fee="$1,100 Buy-in = $975 (Tournament Prize Pool) + $85 (Tournament Fee) + $45 (Poker Staff Service Charge)",
+        registration="Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).",
+        chips="Players will start with 30,000 in tournament chips.",
+        levels="30 minutes per level until a winner is declared.",
+    ),
+    ("1600", "No Limit Hold'em Day 1"): dict(  # matches Day 1A and Day 1B only
+        title="$1,600 No Limit Hold'em $1,000,000 Guarantee (December 3-5, 2026)",
+        dates={"2026-12-03 11:00": "Day 1A", "2026-12-04 11:00": "Day 1B"},
+        days_printed="Day 1A Thu Dec 3 11 a.m. / Day 1B Fri Dec 4 11 a.m. / Day 2 Sat Dec 5 11 a.m.",
+        fee="$1,600 Buy-in = $1,430 (Tournament Prize Pool) + $120 (Tournament Fee) + $50 (Poker Staff Service Charge)",
+        registration="Unlimited re-entry for each starting flight will be available until the start of level 10. "
+                     "A player who advances to Day 2 is prohibited from entering a subsequent starting flight.",
+        chips="Players will start with 40,000 in tournament chips.",
+        levels="Day 1: 40 minutes per level until 12.5% or less of the field remains.",
+    ),
+    ("600", "HORSE"): dict(
+        title="$600 HORSE (December 4, 2026)",
+        dates={"2026-12-04 12:00": ""},
+        days_printed="Friday, December 4, 2026 at 12 p.m.",
+        fee="$600 Buy-in = $510 (Tournament Prize Pool) + $65 (Tournament Fee) + $25 (Poker Staff Service Charge)",
+        registration="Unlimited re-entry will be available until the start of level 9 (approximately 4:30 p.m.).",
+        chips="Players will start with 35,000 in tournament chips.",
+        levels="30 minutes per level until a winner is declared.",
+    ),
+    ("600", "NLH Turbo"): dict(
+        title="$600 NLH Turbo $50,000 Guarantee (eight printed dates)",
+        dates={
+            "2026-12-05 21:00": "", "2026-12-06 21:00": "", "2026-12-07 21:00": "",
+            "2026-12-08 21:00": "", "2026-12-09 21:00": "", "2026-12-12 21:00": "",
+            "2026-12-14 21:00": "", "2026-12-21 18:00": "",
+        },
+        days_printed="Sat Dec 5 9 p.m. / Sun Dec 6 9 p.m. / Mon Dec 7 9 p.m. / Tue Dec 8 9 p.m. / "
+                     "Wed Dec 9 9 p.m. / Sat Dec 12 9 p.m. / Mon Dec 14 9 p.m. / Mon Dec 21 6 p.m.",
+        fee="$600 Buy-in = $515 (Tournament Prize Pool) + $60 (Tournament Fee) + $25 (Poker Staff Service Charge)",
+        registration="Unlimited re-entry will be available until the start of level 9.",
+        chips="Players will start with 30,000 in tournament chips.",
+        levels="20 minutes per level until a winner is declared.",
+    ),
+    ("1600", "PLO Mystery Bounty"): dict(  # the schedule prints this as "PLO $500 Bounty"
+        title="$1,600 PLO Mystery Bounty $500,000 Guarantee (December 6-7, 2026)",
+        dates={"2026-12-06 11:00": "Day 1A", "2026-12-06 18:00": "Day 1B"},
+        days_printed="Day 1A Sun Dec 6 11 a.m. / Day 1B Sun Dec 6 6 p.m. / Day 2 Mon Dec 7 12 p.m.",
+        fee="$1,600 Buy-in = $930 (Tournament Prize Pool) + $500 (Mystery Bounty Prize Pool) + "
+            "$120 (Tournament Fee) + $50 (Poker Staff Service Charge)",
+        registration="Unlimited re-entry for each starting flight will be available until the start of level 10. "
+                     "A player who advances to Day 2 is prohibited from entering a subsequent starting flight.",
+        chips="Players will start with 40,000 in tournament chips.",
+        levels="Day 1A: 40 minutes per level. Day 1B: 20 minutes per level.",
+    ),
+    # The only section in the document that prints an explicit per-flight entry cap.
+    ("1100", "WPT Prime Championship Day 1"): dict(  # matches Day 1A..Day 1D
+        title="$1,100 WPT Prime Championship $5,000,000 Guarantee (December 5-12, 2026)",
+        dates={
+            "2026-12-05 11:00": "Day 1A", "2026-12-06 11:00": "Day 1B",
+            "2026-12-07 11:00": "Day 1C", "2026-12-08 11:00": "Day 1D",
+        },
+        days_printed="1A Sat Dec 5 11 a.m. / 1B Sun Dec 6 11 a.m. / 1C Mon Dec 7 11 a.m. / "
+                     "1D Tue Dec 8 11 a.m. / Day 2 Wed Dec 9 12 p.m. / Day 3 Thu Dec 10 12 p.m. / "
+                     "Day 4 Fri Dec 11 12 p.m. / Final Table Sat Dec 12 2 p.m.",
+        fee="$1,100 Buy-in = $970 (Tournament Prize Pool) + $90 (Tournament Fee) + $40 (Poker Staff Service Charge)",
+        registration="One (1) Entry and One (1) re-entry for each starting flight will be available until the start "
+                     "of level 10 (approximately 6:45 p.m.). A player who advances to Day 2 is prohibited from "
+                     "entering a subsequent starting flight.",
+        chips="Players will start with 40,000 in tournament chips.",
+        levels="Day 1: 40 minutes per level until 12.5% or less of the field remains.",
+        # Printed in the document; NOT a one-entry tournament, so the row stays out of the
+        # single-entry filter. This phrase is quoted verbatim in the rule panel.
+        per_flight_cap="One (1) Entry and One (1) re-entry for each starting flight",
+    ),
+}
 
 # ------------------------------------------------------ Wynn Signature Series
 WYNN_SIGNATURE_ROWS = """
@@ -460,3 +633,39 @@ ARIA_EVENTS = [
              fee=dict(status="not-verified", excerpt="No buy-in is published in the reviewed material.")),
          note="Undated cadence only."),
 ]
+
+
+def wpt_slot(date: str, time: str) -> str:
+    """Normalise a schedule row's date and start time to a 'YYYY-MM-DD HH:MM' 24-hour slot.
+
+    The structures document prints 11 a.m. / 1 p.m. and the schedule transcript
+    stores 11:00 AM / 1:00 PM, so both sides are compared as 24-hour clock slots.
+    """
+    clock, meridiem = time.strip().split()
+    hh, mm = (int(x) for x in clock.split(":"))
+    hh = hh % 12 + (12 if meridiem.upper() == "PM" else 0)
+    return f"{date} {hh:02d}:{mm:02d}"
+
+
+def wpt_section_for(date: str, time: str, name: str, buy_in):
+    """The structures section a WPT schedule row belongs to, or None.
+
+    A row matches only when its buy-in, its printed name and its exact date and
+    start slot all agree with the section, so no row can inherit another event's
+    entry rules by sharing part of a name.  Day 2, Day 3, final table and
+    satellite rows never match: those sections print no restart rules.
+    """
+    if buy_in in ("", "-", None):
+        return None
+    slot = wpt_slot(date, time)
+    buy = str(buy_in)
+    flight = re.search(r" Day 1([A-F])$", name)
+    base = name[: flight.start()] if flight else name
+    for (sec_buy, sec_name), sec in WPT_SHEET_SECTIONS.items():
+        if sec_buy != buy:
+            continue
+        if sec_name != base and not (flight and sec_name == base + " Day 1"):
+            continue
+        if slot in sec["dates"]:
+            return sec
+    return None

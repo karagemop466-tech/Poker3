@@ -149,3 +149,19 @@ Footnotes as printed (WPT schedule PDF):
 *** $1,000,000 will be added in cash prizes by ClubWPT Gold. ClubWPT Gold is not available in Nevada. See structure sheet for details.
 **** The Tournament Entry for the Ladies Championship is $11,100. Ladies will receive a discounted entry. See structure sheet for details.
 ***** Players registered prior to the start of the event will receive a discounted entry. See structure sheet for details.
+
+## Footnote marker census (added 2026-11-17, counted from the rows above)
+
+Counted mechanically over every data row in this capture, taking the longest run of escaped asterisks
+on the row:
+
+| Marker | Rows carrying it | Which rows |
+| --- | --- | --- |
+| `*` (1) | 3 | Dec 3 7 p.m., Dec 4 7 p.m. and Dec 6 7 p.m. Double Play Milestone Satellites, printed "(2 X $1,100 Ticket)" |
+| `**` (2) | 21 | the 21 Milestone Satellite rows that award direct entry to a named event |
+| `***` (3) | 3 | WPT World Championship Day 1A, 1B and 1C, printed "$1,000,000 Added" |
+| `****` (4) | 7 | Ladies Championship ($1,100, Dec 13) — the only row the footnote describes — plus PLO 6-Max ($10,500), Milestone Satellite to $25K NLH High Roller ($3,000), NLH High Roller ($25,800), NLH 6-Max ($10,500), PLO ($10,500) and NLH 8-Max ($10,500) |
+| `*****` (5) | 0 | no captured row carries it |
+
+The unresolved mismatch is marker 4: one described row, six undescribed high-roller-era rows. The site
+keeps every printed buy-in unchanged and treats nothing as discounted (F25).

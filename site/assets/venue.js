@@ -31,6 +31,8 @@
       'multiple-entries': ['warn', 'More than one entry possible'],
       'multi-buyin': ['warn', 'More than one entry possible'],
       'separate-flights': ['warn', 'Separate start flights'],
+      // Printed cap on starting flights, but one paid re-entry is still allowed: not a one-entry event.
+      'one-flight-cap': ['warn', 'One entry per flight + one re-entry'],
       'not-verified': ['bad', 'Entry rules not verified'],
       'not-allowed': ['ok', 'Re-entry not allowed'],
       'allowed': ['warn', 'Allowed'],
@@ -47,7 +49,27 @@
     return '<span class="badge ' + pair[0] + '">' + cell(pair[1]) + '</span>';
   }
 
-  fetch(root + '/data.json').then((r) => r.json()).then((d) => {
+  /* The scheduled re-check writes site/checks.json. A row whose official page has changed
+     text since it was last read is marked here as well as on the main tables, so the venue
+     page can never show a stale row without saying so. */
+  function sourceBadges(urls) {
+    const monitored = checks && Array.isArray(checks.urls) ? checks.urls : [];
+    const rows = [...new Set((urls || []).filter(Boolean))]
+      .map((url) => monitored.find((row) => row.url === url)).filter(Boolean);
+    const out = [];
+    const changed = rows.filter((row) => row.changed);
+    const unavailable = rows.filter((row) => row.unavailable || row.status === 'unreachable' || /^HTTP [45]/.test(row.status || ''));
+    if (changed.length) out.push('<span class="badge bad" title="' + cell(changed.map((r) => (r.label || r.url) + ': ' + (r.checked || '')).join('; ')) + '">Source changed · review</span>');
+    if (unavailable.length) out.push('<span class="badge warn" title="' + cell(unavailable.map((r) => (r.label || r.url) + ': ' + (r.status || 'unavailable') + ' · ' + (r.checked || '')).join('; ')) + '">Source unavailable · recheck</span>');
+    return out.join(' ');
+  }
+
+  let checks = null;
+  Promise.all([
+    fetch(root + '/data.json').then((r) => r.json()),
+    fetch(root + '/checks.json').then((r) => (r.ok ? r.json() : null)).catch(() => null),
+  ]).then(([d, c]) => {
+    checks = c;
     const events = (d.events || []).filter((e) => selected.includes(e.venue));
     const hotels = (d.hotels || []).filter((h) => selected.includes(h.id) || selected.includes(h.venue));
     const ev = document.getElementById('venue-events');
@@ -80,12 +102,15 @@
         '<td>' + cell(e.format) + '</td>' +
         '<td>' + entryBadge(e) + '</td>' +
         '<td>' + (e.lateReg ? cell(e.lateReg) : '<span class="muted">Not published</span>') + '</td>' +
-        '<td>' + link(e.structureUrl, 'Structure sheet') + ' ' + link(e.scheduleUrl, 'Schedule') + '</td>' +
+        '<td>' + (e.lastVerified ? cell(e.lastVerified) : '<span class="muted">Not recorded</span>') +
+        (e.lastChecked ? '<div class="muted" style="font-size:11px">values read ' + cell(e.lastChecked) + '</div>' : '') + '</td>' +
+        '<td>' + link(e.structureUrl, 'Structure sheet') + ' ' + link(e.scheduleUrl, 'Schedule') +
+        ' ' + sourceBadges([e.structureUrl, e.scheduleUrl]) + '</td>' +
         '</tr>';
     }).join('');
     return '<div class="table-wrap"><table><thead><tr><th>Date</th><th>Start</th><th>Tournament</th>' +
       '<th>Buy-in</th><th>Guaranteed pool</th><th>Pool ÷ fee</th><th>Format</th>' +
-      '<th>Entry check</th><th>Late registration</th><th>Official sources</th></tr></thead>' +
+      '<th>Entry check</th><th>Late registration</th><th>Last checked</th><th>Official sources</th></tr></thead>' +
       '<tbody>' + rows + '</tbody></table></div>';
   }
 
@@ -106,12 +131,14 @@
           '<div class="muted" style="font-size:11px">floor from published components</div>' : '<span class="muted">Cannot be computed</span>') + quote + '</td>' +
         '<td>' + cell(h.cancellation || 'Not published') + '</td>' +
         '<td>' + cell(h.qualityNote || '') + '</td>' +
-        '<td>' + link(h.source, 'Room source') + ' ' + link(h.feeSource, 'Fee terms') + '</td>' +
+        '<td>' + (h.lastChecked ? cell(h.lastChecked) : 'Not recorded') + '</td>' +
+        '<td>' + link(h.source, 'Room source') + ' ' + link(h.feeSource, 'Fee terms') +
+        ' ' + sourceBadges([h.source, h.feeSource, h.taxSource]) + '</td>' +
         '</tr>';
     }).join('');
     return '<div class="table-wrap"><table><thead><tr><th>Hotel</th><th>Poker room</th><th>Published base rate</th>' +
       '<th>Mandatory resort fee</th><th>Tax</th><th>True cost per night</th><th>Cancellation deadline</th>' +
-      '<th>Quality evidence</th><th>Official sources</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
+      '<th>Quality evidence</th><th>Last checked</th><th>Official sources</th></tr></thead><tbody>' + rows + '</tbody></table></div>';
   }
 
   function wireSearch(container) {
