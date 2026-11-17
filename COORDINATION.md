@@ -2573,3 +2573,10 @@ Claim recorded before edits. Verification: canonical `site/data.json` sets 7 ent
 - PR checks: `verify` and `transcription` passed.
 - GitHub Pages workflow run [44185129035](https://github.com/karagemop466-tech/Poker3/actions/runs/44185129035) succeeded. Pages API reports `status: built` from `main /`; site: https://karagemop466-tech.github.io/Poker3/.
 >
+
+### Result (session `arena/fe903bcb-poker3`, recorded 2026-11-17 UTC)
+
+- **PR:** [#87](https://github.com/karagemop466-tech/Poker3/pull/87) (`arena/fe903bcb-poker3` into `main`), merged with `gh pr merge 87 --merge` at 2026-11-17; merge commit `2a25820`. The branch was rebased twice onto a `main` that other sessions had moved; the `COORDINATION.md` conflicts were resolved by keeping both sections.
+- **Pages:** "Publish the canonical Vegas Poker Planner to GitHub Pages" (run 44184941786) and "pages build and deployment" (run 44184940080) both `success` for `2a25820`. The sandbox cannot reach `github.io` directly, so this confirmation is from the GitHub run status, not an HTTP check.
+- **Still running at the time of writing:** the scheduled source re-check (run 44184941629, "Scheduled source re-check and daily room feed") on `2a25820`. It was in progress and its result is not recorded here; check `site/checks.json` on `main` for the next published record.
+- **Force-push note:** the remote branch carried an earlier claim commit (`12cab37`) that had been rebased; it was updated with `--force-with-lease` to this session's own commits. No other branch was touched.
