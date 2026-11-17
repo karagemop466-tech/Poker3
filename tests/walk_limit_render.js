@@ -93,10 +93,13 @@ setTimeout(() => {
   const mgmNote = noteOf(hook('[data-tournament-table]').html);
   expect('the MGM view separates the two reasons', /(\d+) measured over the limit, (\d+) with no measured route/.test(mgmNote), true);
 
-  // 4. The reverse-direction label must be attached to the cells that rely on it.
+  // 4. Every shown row must carry the walk from the hotel that is selected, with its date.
   vm.runInContext("state.hotelWalk = 'venetian'; applyTournamentFilters();", sandbox);
-  const wynnRow = (hook('[data-tournament-table]').html.match(/<td>[^<]*Wynn[^<]*<span[^>]*>[^<]*<\/span>/) || [''])[0];
-  expect('a reversed pair is labelled as reversed', wynnRow.includes('reverse of the recorded pair'), true);
+  const html = hook('[data-tournament-table]').html;
+  expect('rows are labelled with the walk from the selected hotel', html.includes('min walk from The Venetian Resort'), true);
+  // The matrix is complete, so no row may need the reverse fallback in this view; if one did, it must be labelled.
+  const reversed = (html.match(/reverse of the recorded pair/g) || []).length;
+  expect('the reverse label only appears where a pair is resolved backwards', reversed, 0);
 
   if (failures.length) {
     failures.forEach((f) => console.error('FAIL ' + f));

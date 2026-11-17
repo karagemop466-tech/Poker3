@@ -766,20 +766,20 @@ FLAGS = [
                  "recorded row is labelled 'reverse of the recorded pair', because a reversed row is a property-to-property "
                  "figure whose far end is the resort address rather than the poker room."),
          source="https://www.google.com/maps/dir/?api=1&travelmode=walking"),
-    dict(id="F78", area="Hotels", severity="Medium",
+    dict(id="F84", area="Hotels", severity="Medium",
          title="The dated Venetian checkout total rests on one successful engine read; a second read the same evening returned no prices",
          detail=("The $4,010.55 all-in total for 23-30 November 2026 was printed by the official booking engine on 2026-11-17 and "
                  "re-read that evening at 21:5x UTC (see F15). A third read from this session at 22:33 UTC on the same URL returned "
                  "no price at all: every calendar cell rendered the placeholder '$XXX', the suite panel showed only 'Your Venice "
                  "meets Vegas getaway is loading', and no checkout summary was returned. That is the same rendering failure this "
                  "repository recorded for four other stay windows, so it is treated as evidence that the engine does not serve a "
-                 "stable static price to every reader, not as evidence that the price moved. Consequence for a decision: the "
+                 "stable static price to every reader, not as evidence that the price moved. F78, published by a concurrent session, records a different failure of the same engine on the same night: the same trip-window query returned two different suites and totals about 20 minutes apart. Read the two together - the engine is not a stable source for a static reader. Consequence for a decision: the "
                  "published total is dated, reproducible from the recorded nightly figures and internally consistent "
                  "(every night reconciles to (rate + $55) x 1.1338 and the seven figures add to the printed total), but it must be "
                  "re-read at the moment of booking before any non-refundable payment. Nothing on the site was revalued on the "
                  "strength of the failed read."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar"),
-    dict(id="F79", area="Verification", severity="Low",
+    dict(id="F85", area="Verification", severity="Low",
          title="Sources re-read on 2026-11-17 (22:3x UTC) that match the published rows, recorded so the re-check date is not lost",
          detail=("Re-read line by line from this session with no change found, and therefore no value edited: the Venetian "
                  "DeepStack IV schedule page (chunk 0 of 4, 16-28 November rows: event numbers, dates, start times, buy-ins, "

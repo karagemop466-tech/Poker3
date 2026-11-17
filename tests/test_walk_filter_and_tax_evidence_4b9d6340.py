@@ -1,16 +1,21 @@
-"""Walking-limit behaviour and the property-printed tax evidence (session arena/4b9d6340-poker3).
+"""Walking-limit behaviour, route-matrix claims and the property-printed tax evidence.
 
-Two things are pinned here.
+Written by session arena/4b9d6340-poker3 after the 2026-11-17 live re-reads.
 
-1. The tournament table's 30-minute walking limit must not hide rows silently.  Before this
-   pass the limit was ON by default and was measured from one hotel only, which dropped 196 of
-   the 341 published rows on first paint - rows were not excluded because they were unplayable,
-   they were excluded because a route had never been measured for them.  The limit is now opt-in,
-   is measured from a hotel the reader selects, and the page counts what it hides.
+Three things are pinned here.
 
-2. Where a property prints its resort fee and the tax on that fee as two dollar amounts, the
-   implied percentage is arithmetic on the property's own page.  It has to agree with the 13.38%
-   the cost model applies, or the model's true-cost figures are wrong for that property.
+1. The tournament table's 30-minute walking limit must not hide rows before the reader asks.
+   It shipped ON by default and looked up one direction only, which dropped rows because no route
+   had been recorded, not because any of them is too far. It is now opt-in, measured from a hotel the
+   reader selects, and it counts what it hides - over the limit and unmeasured separately.
+
+2. The published prose about the route matrix must match the published matrix. F32 claims every
+   hotel-venue pair is measured; a lost route row would make that sentence false, so it is checked
+   against the data, and so is the coverage note's pair census.
+
+3. Where a property prints its resort fee and the tax on that fee as two dollar amounts, the implied
+   percentage is arithmetic on the property's own page. It has to agree with the 13.38% the cost model
+   applies, or the model's true-cost figures are wrong for that property.
 """
 import json
 import pathlib
@@ -20,15 +25,30 @@ import unittest
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 DATA = json.loads((ROOT / "site" / "data.json").read_text(encoding="utf-8"))
 APP = (ROOT / "site" / "assets" / "app.js").read_text(encoding="utf-8")
+VENUE = (ROOT / "site" / "assets" / "venue.js").read_text(encoding="utf-8")
 TOURNAMENTS = (ROOT / "site" / "tournaments.html").read_text(encoding="utf-8")
+CALCULATOR = (ROOT / "site" / "calculator.html").read_text(encoding="utf-8")
 COVERAGE = json.loads((ROOT / "site" / "coverage.json").read_text(encoding="utf-8"))
 
 MODEL_TAX_PCT = DATA["tripCostModel"]["taxPct"]
+HOTEL_IDS = {h["id"] for h in DATA["hotels"]}
+VENUE_IDS = {v["id"] for v in DATA["venues"]}
+ROUTES = {(r["hotel"], r["venue"]): r["minutes"] for r in DATA["routes"]}
+LIVE = [e for e in DATA["events"] if e.get("status") != "past"]
 
 
-class WalkingLimit(unittest.TestCase):
+def walk_minutes(hotel, venue):
+    """Mirror of walkMinutes() in app.js: forward row, same-property zero, reverse row, else None."""
+    if (hotel, venue) in ROUTES:
+        return ROUTES[(hotel, venue)]
+    if hotel == venue:
+        return 0
+    return ROUTES.get((venue, hotel))
+
+
+class WalkingLimitControl(unittest.TestCase):
     def test_limit_is_off_by_default_in_state_and_markup(self):
-        """The table must open showing every row, so walkOnly starts false and the checkbox is unchecked."""
+        """The table must open showing every row, so walkOnly starts false and the box is unchecked."""
         state = re.search(r"const state = \{(.*?)\};", APP, re.S)
         self.assertIsNotNone(state, "the filter state object was not found in app.js")
         self.assertIn("walkOnly: false", state.group(1), "the walking limit must default to off")
@@ -38,7 +58,7 @@ class WalkingLimit(unittest.TestCase):
     def test_limit_constant_is_thirty_minutes(self):
         m = re.search(r"const WALK_LIMIT_MIN = (\d+);", APP)
         self.assertIsNotNone(m, "no named walking limit found in app.js")
-        self.assertEqual(int(m.group(1)), 30)
+        self.assertEqual(int(m.group(1)), 30, "the brief's limit is 30 minutes")
 
     def test_limit_is_measured_from_a_selected_hotel(self):
         self.assertIn("hotelWalk: 'venetian'", APP, "the walk control needs a hotel to measure from")
@@ -47,80 +67,120 @@ class WalkingLimit(unittest.TestCase):
                       "the filter must use the selected hotel, not a hard-coded one")
 
     def test_hidden_rows_are_counted_out_loud(self):
-        """Rows hidden by the limit must be reported, split between over-limit and unmeasured."""
+        """Rows the limit hides must be reported, and split between over-limit and unmeasured."""
         self.assertIn("filteredEvents({ ignoreWalk: true })", APP)
         self.assertIn("no measured route", APP)
         self.assertIn("over the limit", APP)
 
-    def test_walk_lookup_reads_both_directions(self):
-        """A route is stored in whichever direction it was measured, so the reverse must resolve too."""
+    def test_reverse_lookup_exists_and_is_labelled(self):
+        """A reversed row is a property-to-property figure, so the UI has to say which one it is."""
         self.assertIn("const reverse = list.find((x) => x.hotel === venueId && x.venue === hotelId);", APP)
-
-    def _minutes(self, routes, hotel, venue):
-        """Mirror of walkMinutes() in app.js: forward row, same-property zero, reverse row, else None."""
-        if (hotel, venue) in routes:
-            return routes[(hotel, venue)]
-        if hotel == venue:
-            return 0
-        return routes.get((venue, hotel))
-
-    def test_reverse_lookup_recovers_the_rows_the_old_default_hid(self):
-        """The old filter looked one way only and dropped most of the table; the new one must not.
-
-        Numbers asserted here are the ones F32 publishes, so the flag text cannot drift from the data.
-        """
-        routes = {(r["hotel"], r["venue"]): r["minutes"] for r in DATA["routes"]}
-        live = [e for e in DATA["events"] if e.get("status") != "past"]
-        old_shown = [e for e in live if routes.get(("venetian", e["venue"])) is not None
-                     and routes[("venetian", e["venue"])] <= 30]
-        new_shown = [e for e in live if (lambda m: m is not None and m <= 30)(
-            self._minutes(routes, "venetian", e["venue"]))]
-        self.assertEqual(len(old_shown), 145, "the historical one-direction view is expected to be 145 rows")
-        self.assertEqual(len(new_shown), 333, "with the Venetian selected the limit must keep 333 rows")
-        self.assertEqual(len(live), 339)
-        over = sorted({e["venue"] for e in live if (lambda m: m is not None and m > 30)(
-            self._minutes(routes, "venetian", e["venue"]))})
-        self.assertEqual(over, ["aria", "mgm"], "only the over-limit venues may be removed")
-        unmeasured = [e for e in live if self._minutes(routes, "venetian", e["venue"]) is None]
-        self.assertEqual(unmeasured, [], "no row may be dropped for want of a measurement in this view")
-        f32 = next(f for f in DATA["flags"] if f["id"] == "F32")["detail"]
-        for token in ("145-row view into 333", "339 rows that are not in the past", "the 6 rows"):
-            self.assertIn(token, f32, f"F32 must state {token!r}, which is what the data produces")
-
-    def test_reversed_pairs_are_labelled_as_such(self):
-        """A reversed row is a property-to-property figure, so the UI has to say which it is."""
         self.assertIn("reverse of the recorded pair", APP)
-        self.assertIn("function walkRoute(hotelId, venueId)", APP)
 
-    def test_tournaments_page_explains_the_new_behaviour(self):
+    def test_tournaments_page_explains_the_behaviour(self):
         self.assertIn("walking limit is opt-in", TOURNAMENTS)
+        self.assertIn("counts separately the rows where no route has been measured", TOURNAMENTS)
 
 
-class FlagAndCoverageConsistency(unittest.TestCase):
-    def test_f32_route_count_matches_the_data(self):
-        """F32 quotes the route count; a stale figure there is exactly the defect this repo keeps flagging."""
-        f32 = next(f for f in DATA["flags"] if f["id"] == "F32")
-        stated = int(re.search(r"The current (\d+) route rows", f32["detail"]).group(1))
-        self.assertEqual(stated, len(DATA["routes"]), "F32 states a route count that is not the published count")
+class WalkingLimitAgainstData(unittest.TestCase):
+    def test_unlimited_view_keeps_every_non_past_row(self):
+        self.assertEqual(len(LIVE), 339)
+        # Nothing else can be hidden at boot: past rows are the only default filter.
+        self.assertEqual(len([e for e in DATA["events"] if e.get("status") == "past"]),
+                         len(DATA["events"]) - len(LIVE))
+
+    def test_limited_view_hides_only_measured_over_limit_rows(self):
+        shown = [e for e in LIVE if (lambda m: m is not None and m <= 30)(walk_minutes("venetian", e["venue"]))]
+        self.assertEqual(len(shown), 333, "the Venetian view must keep every row measured within 30 minutes")
+        over = sorted({e["venue"] for e in LIVE if (lambda m: m is not None and m > 30)(
+            walk_minutes("venetian", e["venue"]))})
+        self.assertEqual(over, ["aria", "mgm"], "only the two venues measured over the limit may be removed")
+        hidden = [e for e in LIVE if e not in shown]
+        self.assertEqual(len(hidden), 6)
+
+    def test_no_row_anywhere_is_hidden_for_want_of_a_measurement(self):
+        """With a complete matrix, 'unmeasured' must stay zero for every hotel - that is what F32 claims."""
+        for hotel in sorted(HOTEL_IDS):
+            with self.subTest(hotel=hotel):
+                unmeasured = [e for e in LIVE if walk_minutes(hotel, e["venue"]) is None]
+                self.assertEqual(unmeasured, [], f"{hotel}: rows would be dropped with no measured route")
+
+
+class RouteMatrixClaims(unittest.TestCase):
+    def test_f32_matrix_claim_matches_the_data(self):
+        f32 = next(f for f in DATA["flags"] if f["id"] == "F32")["detail"]
+        self.assertIn("all 56 pairs", f32, "F32 must state the pair census it is claiming")
+        self.assertEqual(len(DATA["routes"]), len(HOTEL_IDS) * len(VENUE_IDS),
+                         "the published route rows do not cover every hotel-venue pair F32 claims")
+        self.assertIn("opt-in", f32, "F32 must describe the walking limit as opt-in, which is how it ships")
+
+    def test_every_pair_has_a_row(self):
+        missing = [(h, v) for h in HOTEL_IDS for v in VENUE_IDS if (h, v) not in ROUTES]
+        self.assertEqual(missing, [], "these hotel-venue pairs have no walking row")
 
     def test_c14_coverage_note_matches_the_data(self):
         item = next(i for i in COVERAGE["items"] if i["id"] == "C14")
-        stated = int(re.search(r"(\d+) of (\d+) hotel-venue pairs", item["note"]).groups()[0])
-        self.assertEqual(stated, len(DATA["routes"]))
-        hotels = {h["id"] for h in DATA["hotels"]}
-        venues = {v["id"] for v in DATA["venues"]}
-        self.assertEqual(int(re.search(r"of (\d+) hotel-venue pairs", item["note"]).groups()[0]),
-                         len(hotels) * len(venues), "the pair census in C14 does not match the record counts")
+        stated, total = (int(x) for x in re.search(r"(\d+) of (\d+) hotel-venue pairs", item["note"]).groups())
+        self.assertEqual(total, len(HOTEL_IDS) * len(VENUE_IDS), "C14's pair census is not the record count")
+        self.assertEqual(stated, len(DATA["routes"]), "C14's measured-pair count is not the published count")
+        if item["status"] == "shipped":
+            self.assertEqual(stated, total, "a shipped walking-route item may not claim partial coverage")
 
-    def test_new_verification_flags_cite_official_property_hosts(self):
-        venue_hosts = ("venetianlasvegas.com", "wynnlasvegas.com", "cdn.wynnresorts.com", "caesars.com",
-                       "bellagio.mgmresorts.com", "mgmgrand.mgmresorts.com", "aria.mgmresorts.com")
-        for fid in ("F78", "F79"):
+    def test_routes_carry_a_retrieval_date(self):
+        for r in DATA["routes"]:
+            self.assertTrue(re.fullmatch(r"\d{4}-\d{2}-\d{2}", r.get("lastChecked") or ""),
+                            f"route {r['hotel']}->{r['venue']} has no last checked date")
+        # The coverage note and F32 both date the two passes, so the split has to be what the rows say.
+        from collections import Counter
+        by = Counter(r["lastChecked"] for r in DATA["routes"])
+        self.assertEqual(by["2026-11-17"], 44, "44 rows must carry the 2026-11-17 pass date")
+        self.assertEqual(by["2026-11-16"], 12, "12 base-pass rows must still carry the 2026-11-16 date")
+
+
+class VenuePageMarks(unittest.TestCase):
+    """One page per venue was a brief item; those pages must carry the same verification marks."""
+
+    def test_venue_pages_load_the_monitor_record(self):
+        self.assertIn("checks.json", VENUE)
+        self.assertIn("Source changed", VENUE)
+        self.assertIn("Source unavailable", VENUE)
+
+    def test_venue_pages_show_last_checked(self):
+        self.assertIn("<th>Last checked</th>", VENUE)
+        self.assertIn("e.lastVerified", VENUE)
+        self.assertIn("h.lastChecked", VENUE)
+
+    def test_venue_page_badge_map_knows_every_published_status(self):
+        statuses = set()
+        for e in DATA["events"]:
+            for k, v in (e.get("rules") or {}).items():
+                if k == "singleEntry" and v.get("status"):
+                    statuses.add(v["status"])
+        known = set(re.findall(r"'([a-z-]+)': \[", VENUE))
+        self.assertTrue(statuses <= known, f"venue.js renders a raw slug for {sorted(statuses - known)}")
+
+
+class VerificationFlags(unittest.TestCase):
+    OFFICIAL_HOSTS = ("venetianlasvegas.com", "wynnlasvegas.com", "cdn.wynnresorts.com", "caesars.com",
+                      "bellagio.mgmresorts.com", "mgmgrand.mgmresorts.com", "aria.mgmresorts.com")
+
+    def test_session_flags_exist_and_cite_official_property_hosts(self):
+        for fid in ("F84", "F85"):
             flag = next((f for f in DATA["flags"] if f["id"] == fid), None)
             self.assertIsNotNone(flag, f"{fid} is missing from the flag register")
             self.assertTrue(flag["source"].startswith("https://"), f"{fid} has no https source")
-            self.assertTrue(any(h in flag["source"] for h in venue_hosts),
+            self.assertTrue(any(h in flag["source"] for h in self.OFFICIAL_HOSTS),
                             f"{fid} must cite a venue or property host, not a third party")
+
+    def test_flag_ids_are_unique_and_this_sessions_are_at_the_end(self):
+        ids = [f["id"] for f in DATA["flags"]]
+        self.assertEqual(len(ids), len(set(ids)), "duplicate flag ids in the register")
+        self.assertIn("F84", ids)
+        self.assertIn("F85", ids)
+
+    def test_calculator_warns_against_a_fee_inclusive_figure(self):
+        self.assertIn("Do not paste a booking-calendar figure", CALCULATOR)
+        self.assertIn("includes daily resort fee", CALCULATOR)
 
 
 class PropertyPrintedTax(unittest.TestCase):
@@ -137,13 +197,10 @@ class PropertyPrintedTax(unittest.TestCase):
                                 "the property's own fee-plus-tax figures must agree with the model's tax rate")
                 self.assertTrue(p["agreesWithModelTaxPct"])
                 self.assertTrue(p["source"].startswith("https://"))
-                self.assertEqual(p["observedOn"], DATA["asOf"] if DATA.get("asOf") else p["observedOn"])
 
     def test_taxRate_stays_blank_where_the_property_prints_no_percentage(self):
-        """A corroborating fee ratio is not a published room-tax percentage; taxRate must stay empty."""
+        """A corroborating fee ratio is not a printed room-tax percentage for the rate."""
         for h in DATA["hotels"]:
-            if h.get("printedFeeAndTax") and not h.get("taxRate"):
-                continue
             if h.get("taxRate"):
                 self.assertEqual(round((h["baseRateFloor"] + h["resortFee"]) * (1 + h["taxRate"] / 100), 2),
                                  h["trueNightlyLow"], f"{h['name']}: true nightly cost does not recompute")

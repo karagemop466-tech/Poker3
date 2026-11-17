@@ -3,15 +3,15 @@
   "dataCounts": {
     "events": 341,
     "hotels": 8,
-    "routes": 15,
+    "routes": 56,
     "sources": 45,
-    "flags": 75,
+    "flags": 81,
     "planDays": 7,
     "asOf": "2026-11-17"
   },
   "coverageByStatus": {
-    "shipped": 21,
-    "partial": 3,
+    "shipped": 22,
+    "partial": 2,
     "not-resolvable": 1
   },
   "items": [
@@ -137,13 +137,13 @@
     {
       "id": "C14",
       "requirement": "Walking-route check: official-address walking times per hotel-venue pair, 30-minute limit applied",
-      "status": "partial",
-      "location": "site/data.json (routes) + site/hotels.html",
+      "status": "shipped",
+      "location": "site/data.json (routes) + site/hotels.html + site/tournaments.html",
       "flags": [
         "F32",
         "F67"
       ],
-      "note": "15 of 56 hotel-venue pairs recorded as Google Maps walking estimates; no venue publishes a walking time. The tournament table's 30-minute limit is opt-in and measured from a hotel the reader selects; rows over the limit and rows with no measured route are counted separately so a missing estimate is never shown as an eliminated option; missing pairs not inferred."
+      "note": "56 of 56 hotel-venue pairs recorded as Google Maps walking estimates: 42 added by the 2026-11-17 matrix pass and 14 from the base pass, of which 12 still carry the 2026-11-16 date and 2 were re-read on 2026-11-17; every row carries its own measurement date. No venue publishes a walking time, so F32 and F67 keep the point-in-time and endpoint caveats. The tournaments table's 30-minute limit is opt-in and measured from a hotel the reader selects; rows over the limit and rows with no measured route are counted separately, so a missing estimate is never shown as an eliminated option."
     },
     {
       "id": "C15",
