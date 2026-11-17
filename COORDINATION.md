@@ -905,3 +905,27 @@ reproducible `scripts/data_source.py` rebuild with no diff.
 - No date-specific hotel total exists for the fixed Nov 25–Dec 2 stay; the only stored checkout quote is the Nov 17–19 sample. Compare same dates, occupancy, checkout total, nightly average, resort fee/tax, parking and cancellation terms before booking.
 - The 15 Venetian NYE structure sheets and full WPT structure terms remain unread in the canonical evidence snapshot; their rows stay unverified/separate. Schedule, finish-time and room-confirmation limitations remain on the Flagged page.
 - Fresh venue-host HTTP checks were not possible in this sandbox. The daily workflow will establish/refresh source hashes and morning schedule snapshots when it runs on GitHub Actions; until that first successful run, the page correctly says no automated check file exists.
+
+---
+
+## Session 45cfee0b (arena/45cfee0b-poker3): live re-check of the DeepStack Extravaganza IV window
+
+Branch: `arena/45cfee0b-poker3`, branched from `main` at `2649b47`. Scope: `scripts/data_source.py` and the generated `site/data.json` only. The platform binds each session to one branch, so the `session-<id>/<task>` naming could not be used (same as the other sessions above).
+
+| Task | Status | Scope | Notes |
+|---|---|---|---|
+| Re-check official DSE IV rows, 2026-11-16 to 2026-11-28 | done | `scripts/data_source.py`, `site/data.json` | 24 rows matched the live official page on date, start time and structure-sheet link. Those rows now carry `lastChecked: 2026-11-17` and a `recheck` record with the source URL. |
+| Full-brief review (trip cost calculator, change monitoring, search, date filter, single-entry toggle, venue pages, walking routes, schedule, Q&A, suggestions) | reviewed, not rebuilt | — | Features already present on `site/`. Not re-done here. |
+| Live hotel rate lookup, Google/Apple Maps walking verification, Strip-wide daily feed, 8 AM all-day route | **not done** | — | Need a valid official dated quote or an official walking-time source. None was obtained in this session, so no value was filled in. |
+
+**Sources read this session (2026-11-17):**
+- https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html (page 1 of 4; rows Nov 16 to Nov 28, 2026). The page's structure-sheet links are the `dse_nov_2026-structure_N.pdf` files listed in each row.
+- Re-fetch of the same page's `tournaments.html` path returned 404 (`/content/venetian/...`), so that URL is not a valid official source and is not used.
+
+**Verification performed:** the 24 live rows (date, time, event number, structure number) were compared with `site/data.json`. Result: 24 of 24 agree, 0 missing. Buy-ins and guarantees in the same window were also compared by eye against the live page and agree.
+
+**Checks run:** `python3 scripts/data_source.py` (rebuild, 341 events), `python3 scripts/verify_site.py` (passed), `python3 -m unittest discover -s tests` (10 of 10 OK), `python3 tests/canonical_smoke.py` (passed), `node --check site/assets/app.js`.
+
+**Irregularities:** none new. The known misspellings on the official page ("No LImit", "Event # 39") are already listed as F27 on the flagged page. The live page is still on pages 2–4 (Nov 29 to Dec 23); those rows were not re-checked this session and keep their 2026-11-16 date.
+
+**Next steps (not done):** re-check pages 2–4 of the DSE IV page; obtain an official dated Venetian quote for Nov 25 to Dec 2, 2026; find an official walking-time source per hotel-venue pair or log that none exists.
