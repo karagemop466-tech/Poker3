@@ -2708,3 +2708,28 @@ Branch: `arena/8689ef6e-poker3` (platform-bound; the `session-<id>/<task>` namin
 - **Force-push of this session's own branch.** The branch was pushed as `28ee9bd` before the rebase onto `main` (`c86803a`). The rebase replaced that commit with `a8c2c78`. Only this session's commits were replaced; no one else's commit was on the remote branch. The push uses `--force-with-lease` pinned to `28ee9bd`, so it cannot overwrite anything that is not that commit.
 - **CI `verify` failure on PR #92 and fix.** The job failed at `scripts/verify_live_official.py` (`KeyError: 'nightOne'`). Step 7 of that script read only the two-night quote shape; the seven-night 23-30 Nov quote stores its nights as a `nightly` list with one `resortFeePerNight`. The script now reads both shapes and reconciles the seven-night total to the printed $4,010.55. Every other `verify.yml` step was reproduced locally and passes. The GitHub log could not be downloaded from the sandbox, so the failing step was identified by running each step in turn.
 
+
+---
+
+## Session `arena/3e1382ce-poker3` — claim: second dated read of the trip-window quote, repair of the claims the quote made false, and the change-monitor blind spot
+
+Branch: `arena/3e1382ce-poker3`, from `main` @ `f8e4753`. This session is the **final integration session** for the
+open parallel work, so it also merges the branches behind PRs #93, #94 and #95 and re-verifies the combined result
+before publishing.
+
+| Task | Status | Owner | Files in scope | Notes |
+|---|---|---|---|---|
+| R1 Re-read the official Venetian booking engine for the exact trip window and log the result as a dated rate-log observation | done | arena/3e1382ce | `scripts/data_hotels.py` | Append-only. Two independent reads, minutes apart, agree. |
+| R2 Repair every published statement that the dated 23-30 Nov quote made false | done | arena/3e1382ce | `site/index.html`, `site/hotels.html`, `site/calculator.html`, `site/venues/venetian.html`, `scripts/data_source.py` | Each stale sentence named and corrected with its official source. |
+| R3 Close the change-monitor blind spot: the booking pages return an identical shell for every query | done | arena/3e1382ce | `scripts/check_sources.py`, `tests/test_monitor_blind_spot.py` | The monitor reported `changed: false` for a page whose price had in fact changed. |
+| R4 Regression tests and the dated observation recorded in the flag register | done | arena/3e1382ce | `tests/test_rate_log_consistency.py`, `scripts/data_source.py` (FLAGS) | New flag F77. |
+| R5 Merge PRs #93, #94, #95, re-verify the combined data line by line, publish to GitHub Pages | in progress | arena/3e1382ce | whole repo | See the integration log below. |
+
+### Claim note on file scope
+
+PRs #93 and #94 claim `scripts/data_source.py` and `site/data.json`; PR #95 claims the repository-root `*.html`
+redirect pages and `tests/test_root_redirects.py`. This session is the final integration session named in the protocol,
+so it merges those three branches into its own branch **first** and then edits the merged tree. Nothing from those
+branches is discarded: every conflict is resolved by keeping both sides, and the merged data is regenerated from the
+merged scripts rather than hand-patched. `site/data.json` is never hand-edited.
+
