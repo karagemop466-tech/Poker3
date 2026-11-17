@@ -963,6 +963,46 @@ where `site/poker3/data/source-monitor.json` is unchanged, and `checks.yml` has 
 honest state is: **`checks.yml` is registered and active, and its first run will be its 12:13 UTC cron.**
 It has not been observed running yet, and this record does not claim that it has.
 
+
+#### Final integration record (2026-11-17 UTC, arena/b1fadb7e-poker3)
+
+Every task claimed at the top of this section is now **done**. Sequence, with the evidence:
+
+| PR | What it did | Merge commit | Checks |
+|---|---|---|---|
+| [#38](https://github.com/karagemop466-tech/Poker3/pull/38) | Root redirect + `pages.yml` redeploy after the branch build; three racing monitors consolidated into one serialised job; Wynn doubled-name bug; dated-quote night order; `tests/test_integrity.py`; flags F29/F30 | `739b301` | verify ✅, publish ✅, pages build ✅ |
+| [#41](https://github.com/karagemop466-tech/Poker3/pull/41) | Comment only — its description overstated it (recorded as my error above) | `1f8c045` | verify ✅ |
+| [#44](https://github.com/karagemop466-tech/Poker3/pull/44) | The `checks.yml` push-path trigger that #41 should have been | `51da229` | verify ✅ |
+| [#45](https://github.com/karagemop466-tech/Poker3/pull/45) | Corrects F30 from an inference to the observed facts; records my own errors | `a6ba599` | verify ✅, publish ✅, pages build ✅ |
+
+**Deployed URL — confirmed by fetching it, not by trusting the API.**
+
+- `https://karagemop466-tech.github.io/Poker3/` now serves the canonical dashboard: it returns "One Strip trip,
+  built only from what the venues publish", 341 rows, the $197.28 nightly floor and the eight-day candidate path.
+  Before this round the same URL returned the earlier 46-row page with "0 hotels with a verified nightly total".
+- The earlier-round page is gone from the served output. GitHub's CDN served cached copies for a few minutes, which
+  is why the first reads still showed the stale page; the same URL with a cache-busting query returned the new one.
+- `…/Poker3/site/hotels.html` shows the corrected rate log: "observed nights: \$248.59 and \$996.89 … not a price
+  range and not a floor", and "add to \$1,245.48, the printed total exactly".
+- `…/Poker3/site/flagged.html` publishes the full register, now 32 flags after another session added F31 and F32.
+- Pages API: `status: built`. All three workflows on `a6ba599` are `success`.
+
+**What this round actually changed in the data**, as opposed to the presentation:
+
+1. The dated Venetian quote nights were `996.91`/`248.61` and 2 cents wrong; they are `996.89`/`248.59`, which
+   reconcile to the printed `$1,245.48` exactly. The old note excused a 4-cent gap that did not exist.
+2. Wynn daily rows no longer print their day range twice.
+3. The rate log no longer labels the most expensive observed night a "floor".
+
+**What is still not verified, and is intentionally left blank and flagged:** date-specific hotel totals for the trip
+window; hotel fee/tax terms for MGM Grand, Caesars Palace, Horseshoe and ARIA; published finish times; any start
+before 9:10 AM; walking times (Maps estimates only); the NYE and WPT structure rules. F31 is the important one for
+the user's original goal: no reviewed sheet states a maximum entries per player, so "strict single entry" is not
+confirmed anywhere and the site now says "sheet-screened candidate" instead of implying otherwise.
+
+**Open PRs left deliberately unmerged:** #31 and #27 (verdict in B5 above) and #7. None of them is required for the
+brief, and each rewrites shared outputs that this round verified.
+
 ---
 
 ## Session arena/741b3a8e-poker3 (live re-check 2026-11-17, freshness and hotel booking links)
@@ -992,7 +1032,7 @@ Claim time: 2026-11-17 (UTC). Per the coordination rules, this claim is committe
 
 **Verification performed**
 
-- The 94 Venetian rows dated Nov 16 to Dec 23 were compared against the live schedule page on date, start time, event name, buy-in and guarantee. All 64 event numbers, with their restarts, matched. The comparison was done by reading the page text against `site/data.json`; it was not automated. Those 94 rows now carry last-checked 2026-11-17.
+- The 94 Venetian rows dated Nov 16 to Dec 23 were checked against the live schedule page, which was read in full across its four chunks. The 21 rows dated Nov 16 to Nov 27 (chunk 0) match on date, start time, event name, buy-in, guarantee and structure-sheet link. The 73 rows dated Nov 28 to Dec 23 match on date, start time, event name, buy-in and guarantee; their structure links were not compared. The comparison was done by reading the page text against `site/data.json`; it was not automated. The 21 and 73 rows carry last-checked 2026-11-17 with a per-row `recheck` record.
 - Caesars and Horseshoe rows (10) were compared with the page and now carry last-checked 2026-11-17. Horseshoe buy-ins are still not published on that page, so they stay blank.
 - Venetian and Palazzo hotel rows carry last-checked 2026-11-17 for the fee; the tax percentage and the hotel terms were not re-read today.
 - Per-date booking link added for the fixed stay (Venetian and Palazzo share one engine). No price is recorded for these dates.
