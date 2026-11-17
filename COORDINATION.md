@@ -2794,3 +2794,25 @@ literal — `none` → `single`, `multi-flight` → `flight`, `multi-buyin` → 
 
 ### Result
 - Committed and pushed on `arena/ab5d9d7d-poker3`; PR opened to `main` and merged (recorded below).
+
+---
+
+## Session `arena/b13ca4cb-poker3` — final verification pass, stale-note fix, integration, publish (2026-11-17 UTC)
+
+Branch: `arena/b13ca4cb-poker3`, rebased onto `origin/main` @ `2a25820` (PR #87 merged) and then again onto `origin/main`
+@ `d97e9e3` (PRs #90 and #91 merged while this session ran). This session is the
+integration owner for the shared outputs; it acts alone (no other session is editing the canonical site right now
+except the open calculator PR #88, whose scope is respected and left untouched).
+
+| Task | Status | Owner session | Files in scope | Notes |
+|---|---|---|---|---|
+| V1 Line-by-line live re-verification of the canonical data against official sources from this sandbox (which reaches the venue hosts) | done | arena/b13ca4cb-poker3 | verification only; writes via the data modules | Trip window 2026-11-23 → 2026-11-30; Venetian schedule + structure sheets for the day-plan primaries, Wynn/Bellagio/MGM/Caesars spot-checks, hotel quote re-read. |
+| V2 Fix the stale `tripCostModel` note created by PR #87 (claims the booking engine publishes no price for the trip window; PR #87 now has a dated official quote) and add the dated-quote basis to the trip model | done | arena/b13ca4cb-poker3 | `site/data.json` | Adds the 2026-11-17 dated quote as the quoted basis while keeping the published-rate floor; flag F65 already records the $0.02 tax rounding. |
+| V3 Full verification suite on the combined tree (tests, site verifier, transcription check, link check, JS syntax, JSON validity) | done | arena/b13ca4cb-poker3 | `tests/**`, `scripts/**`, `site/**` | Passed on the merged tree (see the verification-results block in this section). |
+| V4 Integrate the open green PR #88 (calculator defaults), merge this session's verification branch to `main`, confirm Pages, record results | in progress | arena/b13ca4cb-poker3 | `COORDINATION.md`, this section | PR #88 was merged by its own session at 21:57:12 UTC (PR #89 records it); this session rebased onto it and proceeds with the combined verification and merge. |
+
+**Concurrency note.** PR #88 (`arena/fbb67630-poker3`, calculator defaults + entry-status copy, CI green) was open and
+fresh when this session claimed. This session edits no file inside that claim's scope. The rebase onto `main` after
+PR #88/#89 landed produced one append/append conflict in this file only; both sides were kept.
+
+**Commit discipline.** Small frequent commits; `git pull --rebase origin arena/b13ca4cb-poker3` before every push.2d7def5 (claim: arena/b13ca4cb-poker3 final verification pass, stale-note fix, integration)76e699f (claim: arena/b13ca4cb-poker3 final verification pass, stale-note fix, integration)83ce94f (claim: arena/b13ca4cb-poker3 final verification pass, stale-note fix, integration)4f99e06 (claim: arena/b13ca4cb-poker3 final verification pass, stale-note fix, integration)
