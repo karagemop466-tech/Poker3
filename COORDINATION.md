@@ -963,6 +963,55 @@ where `site/poker3/data/source-monitor.json` is unchanged, and `checks.yml` has 
 honest state is: **`checks.yml` is registered and active, and its first run will be its 12:13 UTC cron.**
 It has not been observed running yet, and this record does not claim that it has.
 
+## Session `arena/c2b95024-poker3` — trip-window re-verification against live official sources (2026-11-17 UTC)
+
+Branch: `arena/c2b95024-poker3` (platform-bound; the `session-<id>/<task>` naming cannot be applied). Base: `main` at `2649b47`. Open PRs #39 (`arena/d81a0934-poker3`) and #40 (`arena/b2a8d36b-poker3`) belong to other sessions and are not edited here.
+
+| Task | Status | Owner | Scope (files) | Notes |
+|---|---|---|---|---|
+| C1 Re-read the official DSE IV schedule rows and structure sheets behind the trip-window primary and fallback picks (Nov 25 – Dec 2, 2026) | done 2026-11-17 | arena/c2b95024-poker3 | `COORDINATION.md`, flag/data files only if a value is wrong | Live fetch of the official pages, not the earlier snapshot. |
+| C2 Check the scheduled re-check and morning feed | done (first scheduled run not yet due) | arena/c2b95024-poker3 | `COORDINATION.md` | `checks.yml` cron is 12:13 UTC; at claim time (00:50 UTC) no scheduled run had yet been due. |
+| C3 Hotel rate for the exact trip dates from the official booking engine | done: no price published | arena/c2b95024-poker3 | `COORDINATION.md` | Previous sessions found none published. Re-tried once. |
+| C4 Integration: PR to `main`, merge, Pages check, record result | in progress | arena/c2b95024-poker3 | `COORDINATION.md` | Merge only after the checks pass. |
+
+### Results (2026-11-17 UTC, arena/c2b95024-poker3)
+
+**C1 — 13 trip-window rows, live re-read (done).** Eight primaries and five fallbacks for Nov 25 – Dec 2, 2026 were compared with the official Venetian DeepStack Extravaganza IV schedule (`dse-nov-2026.html`, table rows Nov 16 – Dec 6 read live) and with the seven structure sheets they cite (sheets 1, 5, 6, 7, 11, 22, 26; each PDF read live). All 13 rows match on date, start time, event number, printed name, buy-in, guarantee, starting chips, late-registration cutoff and the house-fee line. None of the seven sheets prints re-entry, rebuy or add-on wording; each says so in its clause text. `lastChecked` is now `2026-11-17` on those 13 rows, and `reReadOn` is set on the seven sheets. Record: `research/reread_2026-11-17.json`. Test: `tests/test_reread_2026_11_17.py`.
+
+**C1b — Wynn WPT structure PDF, read end to end (added this session).** All eight chunks of `WPT_World_Championship_Structures.pdf` were read. Six trip-window WPT rows matched a printed section and carry the registration clause "Unlimited re-entry … until the start of level 9" (TORSE Nov 27; PLO $400 Nov 27; Mixed Triple Draw Nov 28; Limit Omaha 8 Nov 30; Limit Omaha 8/Stud 8 Dec 1; PLO $1,100 Dec 1). Those rows are now multi-entry on the official text. They were already outside the single-entry list, so no classification moved. The $800 NLH "Day 2" row on the schedule (Nov 30, 1:00 PM) does not match the structure sheet, so it is left `not-verified` (F34). The $10,400 WPT World Championship has no section in this PDF, so its rules stay unverified (F12).
+
+**C2 — scheduled re-check and morning feed (checked; first scheduled run not yet due).**
+- `checks.yml` (cron `13 12 * * *`, 12:13 UTC) and `source-monitor.yml` (cron `0 13 * * *`) are on `main`. At the time of checking (00:55 UTC) no scheduled run had yet occurred. The only runs so far were push-triggered, so this is not a failure.
+- Both scripts were run end to end in a throwaway copy. `check_sources.py` checked 86 URLs. The sandbox cannot reach the official hosts, so every URL was `unreachable`; that is recorded as unavailable, not as changed. `daily_feed.py` ran and wrote its index. Nothing from that run was committed.
+- `site/checks.json` and `site/feed/` do not exist in the repo yet. The first scheduled run on the GitHub runner creates them. Check with `gh run list --workflow checks.yml --event schedule`.
+
+**C3 — live hotel rate for the trip dates (done; no price).** The Venetian booking engine for Nov 25 – Dec 2 (2 adults) shows `$XXX` in every date cell. The official suite-rates page says the poker rates "start as low as $119 and $209 and can be higher" and that "there is a $55 resort fee per night stayed". The resort-fee page says "Rates include a daily Resort Fee of $55 plus tax per night". The nightly floor on the hotels page ($197.28) is still the only computed figure. The 2026-11-16 calendar cells recorded earlier (for example $185 on Nov 25) cannot be reproduced today. F28 now records today's observation.
+
+### Irregularities and questions added (for manual review)
+
+- **F33 (Medium, schedule overlap).** Day 2 restarts of earlier Venetian events fall on the same morning as trip-window primaries: #7 restart at 11:00 AM on Nov 25 (primary #10 at 11:10 AM); #19 flight at 11:10 AM on Nov 29 (primary #20 at 12:10 PM); #19 restart at 11:00 AM on Dec 2. They apply only to a player who bagged chips earlier, and the day plan treats them as conditional.
+- **F34 (High, WPT dates).** The WPT schedule and the WPT structure PDF give different dates for the $800 NLH (schedule: Nov 30 1:00 PM "Day 2"; structure: Day 1A Nov 30 11 AM, Day 2 Dec 3 1 PM) and the $1,600 NLH (schedule: Dec 9 11 AM "2 Day"; structure: Dec 3–5).
+- **Q13 (eligibility question).** Each of the seven sheets read today requires 21+ and a Venetian Rewards card. The Dec 2 10:10 AM $600 Seniors event (#24) requires 50+ according to the official schedule. Its sheet (17) was not read, so it is excluded from the plan and the question is open.
+- **F12 narrowed**, **F28 extended** (see above).
+
+### Checks run on this branch
+
+`python3 -m unittest discover -s tests` (25 tests, including 12 new ones for the re-read and WPT rows) · `scripts/verify_site.py` (341 events, 8 hotels, 14 routes, 27 sources, 34 flags, 8 plan days, 16 pages) · `tests/canonical_smoke.py` · `tests/smoke.py` · `node --check` on `site/assets/app.js` and `venue.js` · `python3 -m json.tool site/data.json` · `scripts/data_source.py` rebuild with no diff · `git diff --check`.
+
+### Still not verified (unchanged; each is flagged)
+
+- No verified start before 9:00 AM. The Horseshoe 9:00 AM daily row has no date, so the all-day 8 AM route is not built.
+- No date-specific hotel rate or total for the trip window at any property. Walking times are Google Maps estimates only; no venue publishes one.
+- Structure sheets for the other rooms (MGM Grand, Caesars Palace, Horseshoe, ARIA, Bellagio) and the 15 NYE sheets were not re-read in this session. The Seniors sheet (17) was not read either.
+- Open PRs #39 (`arena/d81a0934-poker3`), #27, #31 and #7 belong to other sessions and were not edited.
+
+### Conflict log (arena/c2b95024-poker3, 2026-11-17)
+
+- **Flag ID collision (F31–F34).** Main already defines F31 (Venetian DSE IV) and F32 (walking routes). This session adds F33 (schedule overlap) and F34 (Wynn WPT dates). Open PR #46 (`arena/741b3a8e-poker3`) also defines F31 (Bellagio), F32 (Hotels), F33 (Schedule) and F34 (Verification) with different meanings. PR #46 is DIRTY against main. This session did not renumber or edit #46. Whichever of the two merges second must renumber its own flags and update any references. Left to that session's owner.
+- **Suggestion S-re-read (site change, not implemented).** Show "Re-read live <date>" under the sheets table's "Read on" column when a sheet has `reReadOn`. The `app.js` edit was reverted on this branch because site renderer changes need a user choice first. The `reReadOn` data stays in `site/data.json` and is inert until the user picks this option.
+- **Other open PRs seen during this session (not edited):** #46, #47 (`arena/f0351b8d-poker3`, DIRTY), #48 (`arena/b1fadb7e-poker3`, CLEAN).
+- **Branch history.** `origin/arena/c2b95024-poker3` held the original claim commit `0848649`. The branch was rebased onto `origin/main` (`a6ba599`) and merged with `0848649` (no content lost; the claim table rows are updated to done/in progress). No force push was used.
+
 
 #### Final integration record (2026-11-17 UTC, arena/b1fadb7e-poker3)
 

@@ -48,6 +48,8 @@ python3 scripts/data_source.py        # rebuilds site/data.json from the source 
 
 `research/structure_notes.md` records the read log for all 37 DSE IV structure PDFs.
 
+`research/reread_2026-11-17.json` is the live re-read of the 13 trip-window rows (Nov 25 – Dec 2, 2026) and the seven structure sheets behind them, dated 2026-11-17. `tests/test_reread_2026_11_17.py` fails if the published rows drift from it.
+
 ## Scheduled checks
 
 `.github/workflows/checks.yml` is the single scheduled job that reviews official sources at 13:00 UTC
