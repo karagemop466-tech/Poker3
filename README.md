@@ -75,8 +75,8 @@ against **$1,245.48** the day before, and quoted November 20-22 at **$2,504.00**
 resort fee together. Four stay windows inside the recommended trip dates returned no suite and no price.
 
 Two official-source irregularities came out of the pass and are published on the Flagged page: the schedule PDF prints
-decorative sponsor art instead of a date on 20 rows (F43), and the booking calendar's cells change value with the stay
-window that is open, so no calendar cell is ever used as a price (F44).
+decorative sponsor art instead of a date on 20 rows (F46), and the booking calendar's cells change value with the stay
+window that is open, so no calendar cell is ever used as a price (F47).
 
 `raw/official_excerpts_2026-11-17.md` holds the verbatim official text behind the hotel and Wynn daily-tournament
 values, and `scripts/verify_live_official.py` asserts them on every CI run.
