@@ -789,17 +789,21 @@ FLAGS = [
                  "needs a dated checkout total from each property."),
          source="https://www.wynnlasvegas.com/about-us/resort-information"),
     dict(id="F51", area="Hotel cost", severity="High",
-         title="The published nightly floor may double-count the resort fee, because the Venetian engine says its prices already include it",
-         detail=("Found on 2026-11-17. The Venetian booking calendar footnote reads: 'Pricing shown is best available "
-                 "suite and rate, includes daily resort fee, excludes taxes.' The nightly budget on this site is built "
-                 "from the poker-suite page's starting rates and adds the $55 fee to them: ($119 + $55) x 1.1338 = "
-                 "$197.28. The poker-suite page does not say whether $119 is quoted before or after the resort fee. If a "
-                 "poker-suite price behaves like a calendar cell, the fee is counted twice and the true floor is closer to "
-                 "$119 x 1.1338 + $55 x 1.1338 on a fee-inclusive reading, i.e. about $43 a night lower, or about $300 "
-                 "over a 7-night stay. The same caution applies to the Horseshoe calendar cells, which their own page "
-                 "says include the resort fee. Until the venue confirms it, treat the $197.28 as an upper bound of the "
-                 "published floor, not a quote. Do not compare a fee-inclusive figure with a fee-exclusive one."),
-         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-02&view=calendar"),
+         title="Two official Venetian pages disagree on whether the resort fee is added to the rate or included in it",
+         detail=("Partly resolved on 2026-11-17 by reading the resort-fee page itself, which the earlier pass had not "
+                 "quoted. The Venetian's own Resort Fee page states: 'Rates include a daily Resort Fee of $55 plus tax "
+                 "per night, payable upon check-in.' That page governs the fee and it supports the arithmetic this site "
+                 "uses: the poker-suite starting rates are quoted before the fee, the $55 is chargeable on top, and the "
+                 "floor is therefore ($119 + $55) x 1.1338 = $197.28 rather than a double-count. Two things stay open. "
+                 "First, the booking calendar footnote says the opposite - 'Pricing shown is best available suite and "
+                 "rate, includes daily resort fee, excludes taxes' - so one official page states the fee is added to the "
+                 "rate and another states it is already in it. Second, neither page says which convention the "
+                 "phone-only poker rate (EPOKR25) uses. The published floor keeps the conservative reading (fee added, "
+                 "+$55 a night, about $300 over seven nights); if the poker rate proves to be fee-inclusive, the true "
+                 "floor is about $154 a night, roughly $43 lower. Only a dated checkout total for the poker rate settles "
+                 "it. The same caution applies to the Horseshoe calendar cells, whose own page says they include the "
+                 "resort fee."),
+         source="https://www.venetianlasvegas.com/resort/resort-fee.html"),
     dict(id="F55", area="Hotel cost", severity="Medium",
          title="The Horseshoe rate calendar printed two different grids five minutes apart on the same day",
          detail=("Both readings are kept in the rate log. At 01:26 UTC the December 2026 grid printed Dec 1 $449, "
@@ -942,6 +946,61 @@ FLAGS = [
                  "F48 flags the same restart time from a different angle (two events share the 11:10 AM slot); the sheet "
                  "evidence here shows the printed restart is 11:00 AM. Confirm the restart time with the poker room."),
          source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_8.pdf"),
+    dict(id="F71", area="MGM Grand", severity="Medium",
+         title="MGM Grand's official poker page and its official weekly schedule PDF print different start times",
+         detail=("Both pages were re-read on 2026-11-17. The poker-room page states 'Daily Texas Hold'em Tournaments "
+                 "11:00am, 7:00pm and 11:00pm'. The weekly schedule PDF linked from that same page prints 11:10am, "
+                 "7:10pm and 11:10pm on all seven days. The published rows follow the PDF. The difference is ten "
+                 "minutes, so it cannot change whether an event is reachable, but a player who arrives on the strength "
+                 "of the HTML time would miss the first ten minutes. The PDF carries its own reason to distrust its "
+                 "dates: it is titled 'MGM Grand August Tournament Schedule' (F07). Confirm the current slot with the "
+                 "poker room before travelling."),
+         source="https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html"),
+    dict(id="F72", area="MGM Grand", severity="Low",
+         title="MGM Grand's only printed entry-policy statement for the $120 daily assumes five or more entries",
+         detail=("Verified on 2026-11-17 from the footnote at the foot of the published weekly schedule PDF: 'Sunday "
+                 "through Friday - Players with 5 entries or more in $120 Daily Tournaments will receive one (1) free "
+                 "entry to the Saturday $150 NLH $2,000 Guarantee'. That sentence is the only entry-policy statement "
+                 "the room publishes for these events and it assumes a player takes five or more entries, so the $120 "
+                 "daily is recorded as a multi-entry format and kept out of the single-entry path. It is not a cap: no "
+                 "maximum number of entries per player is printed anywhere on the sheet."),
+         source="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf"),
+    dict(id="F73", area="Caesars Palace", severity="Medium",
+         title="The Caesars Palace and Horseshoe daily schedules are published only inside a dated marketing article",
+         detail=("Re-read on 2026-11-17. The page that publishes every Caesars Palace and Horseshoe start time is an "
+                 "editorial page, bylined 'James Billington' and dated July 17, 2026, not a tournament page, and it "
+                 "carries no structure-sheet link. The four Caesars Palace values it prints ($100 buy-in, 20,000 "
+                 "chips, $1,000 guarantee, 20-minute levels, plus a $50 add-on at the first break for 15,000 extra "
+                 "chips) are recorded on the four rows with that article as their source. The Horseshoe rows stay blank "
+                 "because the article publishes only 'a mixture of buy-ins, levels and guarantees' (F20). A schedule "
+                 "that exists in a four-month-old article is not something to rely on before a nonrefundable booking."),
+         source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"),
+    dict(id="F74", area="Venetian DSE NYE", severity="Low",
+         title="Eleven NYE rows carried a 'structure sheet not read' label after all 15 sheets had been read",
+         detail=("Found and fixed on 2026-11-17. Eleven NYE rows sat in the category 'Unverified - structure sheet not "
+                 "read' even though all 15 NYE sheets were read in full that day and each of those rows already "
+                 "carried an excerpt quoted from its own sheet. Each row now takes the category its own sheet supports: "
+                 "the sheet-screened candidate list where the sheet prints no re-entry clause, the extra-spend list "
+                 "where it does. No money, date or time value changed. The error is published here because a wrong "
+                 "label on a verified row is the failure this page exists to surface."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html"),
+    dict(id="F75", area="Venetian DSE NYE", severity="Medium",
+         title="NYE Event #29 was listed as a single-entry candidate although its own sheet prints re-entry wording",
+         detail=("Found by a new automated label check on 2026-11-17 and fixed. NYE Event #29 ($200 NLH Bounty, "
+                 "Wednesday 2027-01-06 at 5:10 PM, CES-badge $10 rake discount) sat in the sheet-screened candidate "
+                 "category while its own row already carried the structure-2 excerpt: 'The $20 discount can be applied "
+                 "to the initial entry or any subsequent re-entry'. A sheet that contemplates a subsequent re-entry "
+                 "cannot sit in the single-entry candidate list, so the row is now in the extra-spend category. No "
+                 "money, date or time value changed. Structure 2 is shared by nine bounty events, so the same wording "
+                 "governs all of them; the other eight were already correctly placed."),
+         source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_2.pdf"),
+    dict(id="F76", area="Wynn WPT", severity="Low",
+         title="Six WPT rows said 'entry rules not yet read' while quoting the entry rule from the sheet",
+         detail=("Found and fixed on 2026-11-17. The six NLH flight rows whose structure sections were matched that "
+                 "day carried both the registration clause quoted from the official structures PDF and the older note "
+                 "'entry rules not yet read'. The note now states that the rules were read from the structure sheet. "
+                 "No value changed; the contradiction was in the prose only."),
+         source="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"),
     dict(id="F60", area="Wynn WPT", severity="Medium",
          title="The $1,100 PLO structure sheet's printed buy-in components total $1,105, not $1,100",
          detail=("The WPT World Championship structure sheet for the $1,100 PLO (Tuesday Dec 1, 1 p.m.) prints the buy-in "
@@ -1200,9 +1259,9 @@ SUGGESTIONS = [
          impact="Medium", effort="Done", decision="Keep the comparison published"),
     dict(id="S20", title="Ask the Venetian two questions in one call, then fix the rate basis once",
          detail=("Two open questions are answered by the same phone call to 866.255.8936 (code EPOKR25). (1) Is the "
-                 "$119 / $209 poker-suite starting rate quoted before or after the $55 resort fee? The online booking "
-                 "engine states its own prices 'include daily resort fee', which would make the $197.28 floor a "
-                 "double-count of about $43 a night (F51). (2) Does one $300 or higher entry cover every night of a "
+                 "$119 / $209 poker rate quoted before or after the $55 resort fee? The Resort Fee page says the fee is "
+                 "chargeable on top of the rate and the booking calendar says its prices include the fee, so the poker "
+                 "rate itself decides whether the $197.28 floor overstates the nightly cost by about $43 (F51). (2) Does one $300 or higher entry cover every night of a "
                  "multi-day event, or only the night it is paid? The answer decides whether the Nov 30 and Dec 1 nights "
                  "are repriced (F54). Ask both while a dated checkout total for 2026-11-25 to 2026-12-02 is also "
                  "requested (F15, F36), which is the only figure that replaces the floor with a real number."),
@@ -2015,7 +2074,13 @@ def build():
         ev["rules"]["singleEntry"] = dict(status="multiple-entries", excerpt=rec["excerpt"], source=src,
                                           retrieved=WPT_REREAD["retrievedOn"])
         ev["lastChecked"] = WPT_REREAD["retrievedOn"]
-        ev["note"] = (ev.get("note", "") + f" Official structure sheet ({rec['section']}): {rec['excerpt']}").strip()
+        # The note said "entry rules not yet read" while the rules above now quote the sheet's
+        # own registration clause. Leaving both produced a row that contradicted itself, so the
+        # stale clause is replaced by the read date rather than stacked underneath it (defect
+        # fixed 2026-11-17; see COORDINATION.md).
+        ev["note"] = (ev.get("note", "")
+                      .replace("entry rules not yet read.", "entry rules read from the official structure sheet.")
+                      + f" Official structure sheet ({rec['section']}): {rec['excerpt']}").strip()
 
 # Fee splits and registration clauses for the WPT rows the structure PDF names
     # explicitly (PDF read 2026-11-17). The six split rows are the ones the PDF

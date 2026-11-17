@@ -2580,3 +2580,72 @@ Claim recorded before edits. Verification: canonical `site/data.json` sets 7 ent
 - **Pages:** "Publish the canonical Vegas Poker Planner to GitHub Pages" (run 44184941786) and "pages build and deployment" (run 44184940080) both `success` for `2a25820`. The sandbox cannot reach `github.io` directly, so this confirmation is from the GitHub run status, not an HTTP check.
 - **Still running at the time of writing:** the scheduled source re-check (run 44184941629, "Scheduled source re-check and daily room feed") on `2a25820`. It was in progress and its result is not recorded here; check `site/checks.json` on `main` for the next published record.
 - **Force-push note:** the remote branch carried an earlier claim commit (`12cab37`) that had been rebased; it was updated with `--force-with-lease` to this session's own commits. No other branch was touched.
+---
+
+## Session `arena/6d1b2adb-poker3` — claim: line-by-line verification of the published rows and labels (2026-11-17)
+
+Branch `arena/6d1b2adb-poker3`, from `main` @ `2bdcc0d`, rebased onto `main` @ `c86803a` (nine commits from other
+sessions landed while this pass ran; the only conflict was in this file, resolved by keeping both records). The
+canonical `site/` dashboard already implements every feature in the brief — trip-cost calculator, one page per venue,
+global search, date and strict-entry filters, dated rate log, overlap and walking checks, scheduled source re-check,
+questions, suggestions and the flag register — so this session did not rebuild it. It claimed one task instead:
+verify the published rows and labels line by line against the official pages, fix what is wrong, flag what cannot be
+confirmed.
+
+| Task | Status | Owner | Files in scope | Notes |
+|---|---|---|---|---|
+| V1 Line-by-line verification of published rows and flag labels | done | arena/6d1b2adb-poker3 | `scripts/data_source.py`, `scripts/data_venetian.py`, `site/data.json` (regenerated), `site/{index,hotels,calculator}.html`, `tests/test_label_integrity_2026_11_17.py`, `README.md`, this file | Live reads listed below. |
+
+**Flag-id note for other sessions.** Main held ids F01–F65 when this pass started, so the new findings take **F71–F76**.
+F60 keeps its id and its existing text; it was moved above the new block only to keep the file readable.
+
+### Sources read live this session
+
+- `https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html` — "Daily Texas Hold'em Tournaments 11:00am, 7:00pm and 11:00pm".
+- `https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf` — 11:10am / 7:10pm / 11:10pm on all seven days, plus the five-entries footnote (F71, F72).
+- `https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip` — byline "James Billington", dated July 17, 2026; Caesars Palace 10 a.m./2 p.m./6 p.m./9 p.m., $100, 20,000 chips, $1,000 GTD, 20-minute levels, $50 add-on; Horseshoe six slots with no published buy-in (F73, F20, F17).
+- `https://www.venetianlasvegas.com/resort/resort-fee.html` — "Rates include a daily Resort Fee of $55 plus tax per night, payable upon check-in."
+- `https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html` — "These rates will start as low as $119 and $209 and can be higher ... There is a $55 resort fee per night stayed"; six hours or a $300+ buy-in per night; EPOKR25; 150-day horizon; repricing on failure to qualify.
+- `https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html` (both chunks) — all 49 NYE rows, including reused event numbers and the December 26 rows printed as 2025.
+- `https://bellagio.mgmresorts.com/en/terms-and-conditions.html` — $55 resort fee, 72-hour cancellation, $150/day incidental hold (existing rows confirmed, unchanged).
+
+### Defects found and fixed (no money, date or time value changed)
+
+1. **Eleven NYE rows carried the wrong category.** They read "Unverified — structure sheet not read" although all 15
+   NYE sheets were read in full and each row already quoted its own sheet. Each now takes the category its sheet
+   supports: 8 to the sheet-screened candidate list, 3 to the extra-spend list. Flag F74.
+2. **One NYE row sat in the single-entry list against its own evidence.** Event #29 (2027-01-06, $200 bounty, CES
+   discount) was a candidate while its rule panel quoted "the initial entry or any subsequent re-entry". Moved to the
+   extra-spend list. Flag F75. Found by the new test, not by reading.
+3. **Six WPT rows contradicted themselves in prose** — "entry rules not yet read" beside the quoted registration
+   clause. The note now states the rules were read from the sheet. Flag F76.
+4. **F51 was stated more strongly than the evidence supported.** The earlier text said the nightly floor "may
+   double-count" the resort fee. The official Resort Fee page says the fee is chargeable on top of the rate, which
+   makes ($119 + $55) × 1.1338 = $197.28 correct as built. What stays genuinely open is the *poker rate's* basis,
+   because the booking calendar says its own prices include the fee. F51 is rewritten on that narrower footing; the
+   three static pages that quoted the old reading (index, hotels, calculator) are corrected. **No floor figure moved**,
+   and S20's first question is narrowed to match.
+
+**A claim I drafted and withdrew.** I first wrote a flag asserting that Venetian event numbers are reused for different
+tournaments. Checking the official NYE page instead of trusting the draft showed the opposite: #8/#19/#20/#27/#30 are
+reused only across flights and restarts of the *same* tournament. The flag was not published. It is recorded here, not
+in the register, on purpose.
+
+### Verification performed
+
+- `python3 scripts/verify_site.py` — PASS (341 events, 8 hotels, 14 routes, 43 sources, 68 flags, 7 plan days, 16 pages).
+- `python3 -m unittest discover -s tests -p 'test_*.py'` — **108 tests OK**, including 6 new ones in
+  `tests/test_label_integrity_2026_11_17.py`: no row labelled "sheet not read" while quoting a sheet; every NYE row
+  matches its own sheet's entry status; no row saying "not yet read" while printing the rule; no candidate row with a
+  multi-entry status; flag ids unique; every flag links an official (or repository) host.
+- `python3 tests/canonical_smoke.py` — 11 main pages, 5 detail pages render.
+- `python3 scripts/audit_951cd431.py` — 0 failures, 0 warnings.
+- **Explicitly unchanged, checked by diff:** the day plan (primary and fallback id per date), the plan-conflict count,
+  the 12 sheet-screened candidates inside the trip window, the $2,600 buy-in total and every published nightly figure.
+
+### Still unverified after this pass (published as flags, not filled in)
+
+F15/F36/F57 no dated checkout total for the poker rate; F31 no written one-entry-per-player cap; F32 no measured
+walking time for every hotel–venue pair; F39 no published room-tax percentage at Wynn/Bellagio/Caesars/Horseshoe;
+F16 no published finish time; F17 no 8:00 AM start at any Strip room; F56 Wynn Signature structures unpublished.
+None blocks merging; all are on the Flagged for review page with their source links.

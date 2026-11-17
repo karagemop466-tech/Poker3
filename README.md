@@ -22,7 +22,7 @@ dashboard either way. See flag F29 on the Flagged for review page.
 | `site/hotels.html` | Published rate components, the mandatory resort fee, tax, true cost per night, parking, cancellation deadlines, walking times, one official booking deep link per trip night, the dated quote log and the dated rate log. |
 | `site/questions.html` | The information still needed before booking, each with the official source behind the answer. |
 | `site/suggestions.html` | Proposed improvements with impact, effort and the decision each one needs. |
-| `site/flagged.html` | Every irregularity and unverified value, each with a link for manual review (31 items). |
+| `site/flagged.html` | Every irregularity and unverified value, each with a link for manual review (68 items, rendered from `site/data.json`). |
 | `site/sources.html` | The official source log, every structure sheet with its read status, the morning feed sources and the automated re-check results. |
 
 ## Evidence policy
