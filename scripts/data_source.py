@@ -952,8 +952,7 @@ QUESTIONS = [
                  "of the seven nights carry a $300 or higher primary (Nov 25 $400, Nov 26 $300, Nov 27 $600, Nov 28 "
                  "$600, Nov 29 $300) and two do not (Nov 23 and Nov 24, both $200). The seven nights are 23-29 "
                  "November because the trip ends with an 11:00 a.m. check-out on 30 November, which is a departure "
-                 "day and not a night. Each day of the plan prints its own result. What the page does not say is "
-                 "not say is whether one entry covers every night of a multi-day event, or only the night it is paid - "
+                 "day and not a night. Each day of the plan prints its own result. What the page does not say is whether one entry covers every night of a multi-day event, or only the night it is paid - "
                  "ask the room before treating the $119 floor as certain (F54)."),
          why="Needed", blocking="No, but it decides which events belong on which day",
          how="Confirm with the poker room that the tournament buy-in counts on the day it is paid, and whether a Day 2 "
