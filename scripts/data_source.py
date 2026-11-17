@@ -305,9 +305,9 @@ SOURCES = [
     dict(id="vl-suite-rates", name="Venetian poker-room suite rates and play requirements 2026",
          url="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html", type="official rate page", checked=RECHECKED),
     dict(id="vl-resort-fee", name="Venetian resort fee page", url="https://www.venetianlasvegas.com/resort/resort-fee.html",
-         type="official fee page", checked=LAST_PASS),
+         type="official fee page", checked=RECHECKED),
     dict(id="vl-hotel-terms", name="Venetian hotel terms and conditions (tax, parking, cancellation)",
-         url="https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html", type="official terms", checked=LAST_PASS),
+         url="https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html", type="official terms", checked=RECHECKED),
     dict(id="wynn-poker", name="Wynn Las Vegas poker room page", url="https://www.wynnlasvegas.com/casino/poker",
          type="official room page", checked=LAST_PASS),
     dict(id="wynn-daily-poster", name="Wynn daily tournament poster",
@@ -318,7 +318,7 @@ SOURCES = [
          type="official structures", checked=LAST_PASS),
     dict(id="wynn-wpt-sched", name="WPT World Championship schedule at Wynn Las Vegas (Nov 27 - Dec 21, 2026)",
          url="https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
-         type="official schedule", checked=LAST_PASS),
+         type="official schedule", checked=RECHECKED),
     dict(id="wynn-wpt-struct", name="WPT World Championship structures at Wynn Las Vegas",
          url="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
          type="official structures", checked=LAST_PASS),
@@ -330,7 +330,7 @@ SOURCES = [
     dict(id="wynn-terms", name="Wynn Las Vegas terms (resort fee, cancellation, parking)",
          url="https://www.wynnlasvegas.com/terms-and-conditions/850070", type="official terms", checked=LAST_PASS),
     dict(id="bell-poker", name="Bellagio poker room page", url="https://bellagio.mgmresorts.com/en/casino/poker.html",
-         type="official room page", checked=LAST_PASS),
+         type="official room page", checked=RECHECKED),
     dict(id="bell-fri", name="Bellagio Friday $600 No Limit Hold'em structure",
          url="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf",
          type="official structure", checked=LAST_PASS),
@@ -1663,6 +1663,22 @@ def build():
                                           retrieved=WPT_REREAD["retrievedOn"])
         ev["lastChecked"] = WPT_REREAD["retrievedOn"]
         ev["note"] = (ev.get("note", "") + f" Official structure sheet ({rec['section']}): {rec['excerpt']}").strip()
+
+    # Live re-check, 2026-11-17 (session c1655bf5): the official WPT World Championship schedule PDF
+    # was re-fetched independently and every published Wynn row inside the trip window (2026-11-25 to
+    # 2026-12-02, 19 rows) was matched on date, start time, buy-in and guarantee. This complements the
+    # structure-level REREAD above (which covers the rows whose structure section that PDF prints) by
+    # also recording the rows the REREAD does not list.
+    WPT_SCHEDULE_URL = ("https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/"
+                        "Poker/WPT/WPT_World_Championship_Schedule.pdf")
+    n2 = 0
+    for e in events:
+        if e["venue"] == "wynn" and e["date"] and TRIP["start"] <= e["date"] <= TRIP["end"]:
+            e["lastChecked"] = RECHECKED
+            e["recheck"] = dict(date=RECHECKED, source=WPT_SCHEDULE_URL,
+                                result="matched on date, start time, buy-in and guarantee")
+            n2 += 1
+    assert n2 == 19, f"expected 19 re-checked Wynn in-window rows, got {n2}"
 
     # lastChecked is per row, not per build. Every row on the official DSE IV schedule page
     # was re-read against that page on 2026-11-17 (scripts/verify_live_official.py compares
