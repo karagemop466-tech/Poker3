@@ -786,19 +786,23 @@ FLAGS = [
 
     
     dict(id="F39", area="Hotel cost", severity="Medium",
-         title="Wynn, Caesars Palace and Horseshoe print no room-tax percentage, so their true nightly cost stays open",
-         detail=("Wynn publishes 'plus tax' on the resort fee and on the room rate but no percentage (page re-read "
-                 "2026-11-17: 'Reservations will be charged a daily resort fee of $55 plus tax'). Caesars Palace and "
-                 "Horseshoe print only the tax amount charged on their fee. The Clark County Department of Business "
-                 "License Combined Transient Lodging Tax schedule (Appendix III of the General Information Guide for "
-                 "Transient Lodging Establishments) lists every resort hotel in the Primary Gaming Corridor at 13.38% "
-                 "- MGM Grand, Luxor, Paris, New York-New York, Sahara and Rio were read line by line on 2026-11-17 "
-                 "(session 688eb797) - and the City of Las Vegas room-tax packet prints the same 13.38%/13.00% split "
-                 "(https://files.lasvegasnevada.gov/business-licensing/RoomTaxPacket.pdf); 13.38% is also the figure "
-                 "the Venetian prints in its own hotel terms. This site does not substitute a government schedule into "
-                 "a property-published column: the row shows the reference beside a blank property figure. Closing it "
-                 "needs a dated checkout total from each property."),
-         source="https://www.wynnlasvegas.com/about-us/resort-information"),
+         title="Room-tax % is still blank in the property-published column for Wynn, Caesars, Horseshoe, Bellagio, MGM Grand and ARIA; a county per-property reference now sits beside each",
+         detail=("Re-read 2026-11-17 (session arena/5b8ce14d-poker3). No property page prints a room-tax percentage for its "
+                 "room rate; Wynn prints 'plus tax' only, and Caesars and Horseshoe print only the tax amount on their resort "
+                 "fee ($7.35 on $54.95; $6.68 on $49.95, both 13.38% to the cent). The Clark County Department of Business "
+                 "License General Information Guide for Transient Lodging Establishments (July 2021 edition) prints a "
+                 "per-property table in which Wynn Las Vegas / Encore at Wynn (licence 2000013.RES-001), Caesars Palace "
+                 "(1136233.RES-001), Bellagio (1003760.RES-001), MGM Grand Hotel/Casino (1003821.RES-001) and Aria Resort & "
+                 "Casino (2000035.RES-001) are each listed at 13.38% (Primary Gaming Corridor). The guide's Appendix III chart "
+                 "prints 13.38% for 'Resort Hotel in SD & PGC'. Horseshoe is not listed under its name; the same street address "
+                 "(3645 Las Vegas Blvd S) appears as 'Bally's Las Vegas' at 13.38% (licence 1003121.RES-001), and the Horseshoe "
+                 "page prints that address, but the former name is not treated as Horseshoe's own licence, so Horseshoe stays open. "
+                 "The county's guidance page links the rate table as 'Transient Lodging Tax Rates Effective as of April 2021', so the "
+                 "listing is dated and must be re-confirmed. DECISION NEEDED: the taxRate column is blank by policy (tests enforce "
+                 "'a figure the property printed'); the county figure is shown only as a reference beside it. Whether a government "
+                 "per-property listing may fill that column is a user decision (see suggestions). True nightly cost still needs a "
+                 "dated base rate from each property, which none of these six has published."),
+         source="https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf"),
     dict(id="F51", area="Hotel cost", severity="High",
          title="Two official Venetian pages disagree on whether the resort fee is added to the rate or included in it",
          detail=("Partly resolved on 2026-11-17 by reading the resort-fee page itself, which the earlier pass had not "
