@@ -1230,6 +1230,10 @@ CATEGORIES = {
     "single": {"label": "Sheet-screened candidates (entry cap unconfirmed)", "blurb":
                "The official structure sheet prints one buy-in and no re-entry, rebuy, add-on or second-flight clause, "
                "but does not state a maximum number of entries per player. These are candidates only until the venue confirms its written policy."},
+    "unverified": {"label": "Unverified — structure sheet not read", "blurb":
+                   "Published on an official schedule but its structure sheet has not been read, so no entry rule, "
+                   "fee split or chip count is confirmed. These rows keep the unverified label on purpose and are "
+                   "never counted as single-entry events."},
     "flight": {"label": "Multi-flight", "blurb":
                "The official schedule publishes separate start flights. A player who does not bag for Day 2 may buy into "
                "another flight, so more than one entry is possible."},
@@ -1251,18 +1255,29 @@ CATEGORIES = {
 }
 
 TRIP = {
-    "start": "2026-11-25",
-    "end": "2026-12-02",
+    "start": "2026-11-23",
+    "end": "2026-11-30",
+    "playableEnd": "2026-11-29",
     "nights": 7,
-    "days": 8,
+    "days": 7,
     "hotel": "venetian",
     "alternativeHotel": "palazzo",
+    "checkoutNote": (
+        "Check-out is 11:00 a.m. on 2026-11-30, so 30 November is a departure day, not a playable day. The seven "
+        "playable days are 23-29 November 2026. The Venetian does publish a 5:10 p.m. $200 bounty on 30 November, "
+        "but it cannot be played after an 11:00 a.m. check-out unless the player pays for a late check-out, which "
+        "the official terms say is subject to an additional fee."),
     "nightlyBudget": 197.28,
     "nightlyBudgetNote": (
-        "Fixed by this session at the lowest published true nightly cost of the recommended property: "
-        "($119 published poker-suite starting rate + $55 mandatory resort fee) x 1.1338 Clark County room tax = $197.28. "
-        "It is a floor computed from published components, not a quote."),
+        "Two figures, because they answer different questions. The floor is $197.28: ($119 published poker-suite "
+        "starting rate + $55 mandatory resort fee) x 1.1338 Clark County room tax. It is a floor computed from "
+        "published components, not a quote, and the $119 rate is available only by phone under code EPOKR25 and only "
+        "to a player who meets the daily play requirement. The observed figure is $346.62: the average of the seven "
+        "dated calendar cells for these nights, $2,140 before tax and $2,426.33 all-in."),
     "nightlyBudgetCeiling": 299.32,
+    "nightlyObservedAverage": 346.62,
+    "lodgingTotalBeforeTax": 2140,
+    "lodgingTotalAllIn": 2426.33,
     "qualityFloor": (
         "Fixed by this session on an objective published-evidence test rather than an invented score: the property must "
         "publish its own poker-room rate, keep the poker room on site, and publish its resort fee, tax and cancellation "
@@ -1281,9 +1296,15 @@ TRIP = {
         ("The Wynn WPT schedule runs from November 27 inside the window, so three days carry additional published rows, "
          "all clearly marked as series rows with unverified entry rules (F12)."),
     ],
-    "bankrollNote": ("The provisional path's buy-in sum is shown with a 25% general contingency buffer. The buffer is not "
-                     "permission or a budget for rebuys/add-ons; no event qualifies for strict entry policy until the venue "
-                     "confirms the written rules. It is a planning figure, not a forecast."),
+    "nightlyRisk": (
+        "The night of Friday 27 November 2026, the night after Thanksgiving, is published at $905 against a $165 "
+        "baseline on the surrounding nights - 5.5x, and 42% of the whole lodging bill on its own. A player who can "
+        "move the trip, or who is willing to change property for that one night, removes $839 of all-in cost. The "
+        "phone-only poker rate ($119-$209 + $55) is the other lever, if the daily play requirement is met."),
+    "bankrollNote": ("Bankroll figure on the day-plan page is the sum of the recommended primary buy-ins plus a 25% "
+                     "buffer. The buffer is not permission or a budget for rebuys or add-ons: no event is treated as a confirmed "
+                     "one-entry event until the venue confirms the written rules (F31). It is a planning number, not "
+                     "a forecast."),
     "lodgingEvidence": (
         "The official Venetian booking engine was opened on 2026-11-17 for four stay windows inside the recommended trip "
         "dates of November 25 to December 2, 2026, with two adults. None returned a suite or a price: the seven-night stay "
@@ -1876,7 +1897,7 @@ def build():
             h["lastChecked"] = RECHECKED
 
     recurring_events = [e for e in events if not e["date"] and e.get("weekdays")]
-    plan, conflicts = build_day_plan(events, TRIP["start"], TRIP["end"], recurring_events)
+    plan, conflicts = build_day_plan(events, TRIP["start"], TRIP.get("playableEnd", TRIP["end"]), recurring_events)
     bankroll = sum(p["primaryBuyIn"] for p in plan if isinstance(p["primaryBuyIn"], (int, float)))
     TRIP["primaryBuyIns"] = bankroll
     TRIP["bankrollWithBuffer"] = round(bankroll * 1.25)
