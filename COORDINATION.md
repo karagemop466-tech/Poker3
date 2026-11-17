@@ -2319,3 +2319,24 @@ duplicates, and `main`'s F43 (Schedule/Caesars), F45 (Sources), F46 and F47 are 
 - **Environment note for whoever runs the tests next:** `tests/test_workflows.py` imports `yaml`, which the sandbox
   image does not provide. `pip install --break-system-packages pyyaml` makes the full suite (92 tests) pass locally.
   The GitHub runner image ships PyYAML, so CI is unaffected — `verify` passed on the PR head without any change.
+
+
+### The live record's first comparison was noise; the hash now tracks visible text
+
+The live record written at 2026-11-17T01:30Z was the **baseline**: 92 URLs known, 79 fetched, 0 changed. The next run at
+01:42Z compared against it and reported **14 of 79 reachable pages as changed**. Inspecting the per-URL record shows why:
+the flagged set is every HTML page that carries a booking banner, an availability grid or a per-request nonce — the
+Venetian schedule page, the suite-rate page, the resort-fee page, the hotel terms, the Wynn poker and rooms pages and
+four booking-calendar URLs. The PDFs, which are static, did not flip. No published value had changed.
+
+That is noise, not signal, and a flag register that cries wolf 14 times a run is worse than no register. `check_sources.py`
+now hashes **the visible text** of the response — scripts, styles, tags and HTML entities removed, whitespace
+normalised, PDF streams stripped — while still recording the raw-byte hash per URL. A raw difference with identical
+visible text is stored as `rawOnly` and rendered as "Raw body differs, visible text identical · noise", never as a
+change. A genuine editorial change (a guarantee, a start time, a fee, a policy sentence) still moves the text hash and
+still raises the flag.
+
+`tests/test_check_sources.py` gains four tests: a rotating script or tag difference must not change the hash, a real
+value change must, two PDFs differing only in binary stream must agree, and `compare_check` must use the text hash it is
+given. The comparison also falls back to the old raw hash when a record predates the switch, so the first run after
+this change does not report 79 false changes.
