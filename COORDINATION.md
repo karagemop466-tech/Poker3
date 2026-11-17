@@ -1969,3 +1969,16 @@ not exist — it caught the F38 dangling reference this session left behind.
 - `tests/test_integrity.py` — kept upstream's 2026-11-16 assertion and added one test that both dated
   observations survive as a series rather than the newer overwriting the older.
 - `tests/test_recheck_ed1d2489.py` — updated only the two lines that pinned the old trip window.
+
+**3. Trip-window changes ripple into assertions that hard-code the old window.** Two more surfaced
+after the note above was written:
+- `scripts/data_source.py` asserted `n2 == 19` for Wynn rows inside the trip window. Moving the window
+  to 23–30 Nov dropped that to 13 and the build collapsed. The fix is not to change 19 to 13: the
+  re-check belongs to the rows that were read, so the loop is now scoped to the WPT schedule PDF's own
+  coverage (2026-11-25..2026-12-02, 19 rows) rather than to whichever window the site happens to
+  advise. Scoping evidence to the advice would have silently withdrawn the re-check from the 1 and
+  2 December rows.
+- `tests/test_recheck_ed1d2489.py` pinned the trip dates (covered in note 1 above).
+
+If you change `TRIP`, grep for `TRIP[` and for `2026-11-25` / `2026-12-02` — several checks are pinned
+to the old window and the build fails loudly rather than quietly going stale, which is the intent.

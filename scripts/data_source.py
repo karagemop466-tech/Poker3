@@ -1832,20 +1832,30 @@ def build():
         ev["note"] = (ev.get("note", "") + f" Official structure sheet ({rec['section']}): {rec['excerpt']}").strip()
 
     # Live re-check, 2026-11-17 (session c1655bf5): the official WPT World Championship schedule PDF
-    # was re-fetched independently and every published Wynn row inside the trip window (2026-11-25 to
-    # 2026-12-02, 19 rows) was matched on date, start time, buy-in and guarantee. This complements the
-    # structure-level REREAD above (which covers the rows whose structure section that PDF prints) by
-    # also recording the rows the REREAD does not list.
+    # was re-fetched independently and every published Wynn row across the range that PDF covers,
+    # 2026-11-25 to 2026-12-02, was matched on date, start time, buy-in and guarantee: 19 rows. This
+    # complements the structure-level REREAD above (which covers the rows whose structure section that
+    # PDF prints) by also recording the rows the REREAD does not list.
+    #
+    # The range is deliberately the PDF's own coverage and NOT the trip window. The trip moved to
+    # 2026-11-23..2026-11-30 (flag F51: 30 Nov and 1 Dec print no price, so a stay cannot span them),
+    # and scoping this re-check to the trip window would have silently withdrawn the re-check
+    # evidence from the 1 and 2 December rows, which were read just as carefully as the others.
+    # Evidence of a read belongs to the rows that were read, not to the window we happen to advise.
     WPT_SCHEDULE_URL = ("https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/"
                         "Poker/WPT/WPT_World_Championship_Schedule.pdf")
+    WPT_REREAD_FROM, WPT_REREAD_TO = "2026-11-25", "2026-12-02"
     n2 = 0
     for e in events:
-        if e["venue"] == "wynn" and e["date"] and TRIP["start"] <= e["date"] <= TRIP["end"]:
+        if e["venue"] == "wynn" and e["date"] and WPT_REREAD_FROM <= e["date"] <= WPT_REREAD_TO:
             e["lastChecked"] = RECHECKED
             e["recheck"] = dict(date=RECHECKED, source=WPT_SCHEDULE_URL,
                                 result="matched on date, start time, buy-in and guarantee")
             n2 += 1
-    assert n2 == 19, f"expected 19 re-checked Wynn in-window rows, got {n2}"
+    assert n2 == 19, (
+        f"expected 19 re-checked Wynn rows across {WPT_REREAD_FROM}..{WPT_REREAD_TO}, got {n2}. "
+        "This range is the coverage of the official WPT schedule PDF, not the trip window; if the PDF "
+        "changes, re-read it and update both together.")
 
     # lastChecked is per row, not per build. Every row on the official DSE IV schedule page
     # was re-read against that page on 2026-11-17 (scripts/verify_live_official.py compares
