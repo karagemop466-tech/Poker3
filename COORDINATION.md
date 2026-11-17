@@ -987,7 +987,7 @@ Claim time: 2026-11-17 (UTC). Per the coordination rules, this claim is committe
 - Venetian booking engine for Nov 25 to Dec 2, 2026, 2 adults: https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-02&view=calendar . Every calendar cell showed `$XXX`; the page says its prices include the daily resort fee and exclude taxes.
 - Venetian resort-fee page (covers the Venetian and the Palazzo): https://www.venetianlasvegas.com/resort/resort-fee.html . Still "$55 plus tax per night".
 - Wynn poker landing page: https://www.wynnlasvegas.com/casino/poker . WPT window Nov 27 to Dec 21; Super Gold Million at $400 with a $3,000,000 guarantee; daily slate unchanged.
-- Bellagio poker landing page: https://bellagio.mgmresorts.com/en/casino/poker.html . The "resume on Saturday, July 26" notice is still there (flag F31).
+- Bellagio poker landing page: https://bellagio.mgmresorts.com/en/casino/poker.html . The "resume on Saturday, July 26" notice is still there (flag F33).
 - Caesars Palace and Horseshoe daily lists: https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip . Caesars Palace 10 a.m., 2, 6, 9 p.m. ($100, $50 add-on); Horseshoe 9 a.m., 11 a.m., 2, 5, 8, 11 p.m.
 
 **Verification performed**
@@ -1001,7 +1001,7 @@ Claim time: 2026-11-17 (UTC). Per the coordination rules, this claim is committe
 
 **Changes**
 
-- `scripts/data_source.py`: `TODAY` (2026-11-17), `CHECKED_TODAY`, per-event `status`, booking-link block, F17 rewritten, flags F31 to F34, Q10 rewritten, Q13 added.
+- `scripts/data_source.py`: `TODAY` (2026-11-17), `CHECKED_TODAY`, per-event `status`, booking-link block, F17 rewritten, flags F33 to F36, Q10 rewritten, Q13 added.
 - `scripts/data_hotels.py`: booking-link constant and a dated rate-log entry for 2026-11-17 with no price.
 - `site/assets/app.js`, `site/hotels.html`: "Include past events" control (off by default); past badge; per-date booking table.
 - `tests/test_integrity.py`, `tests/canonical_smoke.py`: new assertions; snapshot date updated.
@@ -1009,11 +1009,11 @@ Claim time: 2026-11-17 (UTC). Per the coordination rules, this claim is committe
 
 **Irregularities found today (all on the Flagged for review page)**
 
-- F31: Bellagio notice dated "Saturday, July 26" is stale (Saturday in 2025, Sunday in 2026); the notice has no year.
-- F32: the Venetian booking engine shows no nightly price in a static read; the true cost for the fixed stay stays blank.
+- F33: Bellagio notice dated "Saturday, July 26" is stale (Saturday in 2025, Sunday in 2026); the notice has no year.
+- F34: the Venetian booking engine shows no nightly price in a static read; the true cost for the fixed stay stays blank.
 - F17 corrected: the earlier flag said the Wynn WPT starts at 11:00 AM and that no start was before 9:10 AM. The official Caesars page lists Horseshoe at 9:00 AM. Most Wynn WPT rows do start at 11:00 AM, but the 10:00 AM rows are the Super Gold Million flights, one WPT row and a satellite.
-- F33: the Caesars page says "most sessions finish in four to six hours", which is a general statement, not a per-event finish time.
-- F34: which sources were not re-read today (structure PDFs, NYE schedule, Wynn and Bellagio PDFs, hotel-terms pages, Google Maps walking times, room pages for MGM, Caesars, Horseshoe and ARIA). Those rows keep their earlier dates.
+- F35: the Caesars page says "most sessions finish in four to six hours", which is a general statement, not a per-event finish time.
+- F36: which sources were not re-read today (structure PDFs, NYE schedule, Wynn and Bellagio PDFs, hotel-terms pages, Google Maps walking times, room pages for MGM, Caesars, Horseshoe and ARIA). Those rows keep their earlier dates.
 
 **Still open (not blocked by this session)**
 

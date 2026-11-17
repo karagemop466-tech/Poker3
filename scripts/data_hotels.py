@@ -11,6 +11,10 @@ RETRIEVED = "2026-11-16"
 
 VENETIAN_SUITE_RATES = "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"
 VENETIAN_RESORT_FEE = "https://www.venetianlasvegas.com/resort/resort-fee.html"
+# Per-date official booking link for the fixed stay (2 adults, Nov 25 to Dec 2, 2026). The booking engine
+# is read in a browser on the day; this module never stores a price from it.
+VENETIAN_FIXED_STAY_BOOKING = ("https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25"
+                               "&children[]=0&departure_date=2026-12-02&view=calendar")
 VENETIAN_HOTEL_TERMS = "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html"
 WYNN_ROOMS = "https://www.wynnlasvegas.com/rooms-and-suites"
 WYNN_TERMS = "https://www.wynnlasvegas.com/terms-and-conditions/850070"
@@ -281,6 +285,15 @@ RATE_LOG = [
          resortFee="", tax="", trueNightlyLow="", trueNightlyHigh="",
          quoteType="Not verified in this pass", note="Hotel fee and tax terms still to be captured.",
          source=ARIA_HOTEL, feeSource="", taxSource=""),
+    dict(hotel="venetian", observedOn="2026-11-17", baseRate="", publishedStartingRates="",
+         resortFee="55.00 per night plus tax (resort-fee page re-read 2026-11-17)",
+         tax="13.38% Clark County room tax (hotel terms not re-read on 2026-11-17)",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType="Booking-engine calendar, no price captured",
+         note=("Static read of the booking page for Nov 25 to Dec 2, 2026 (2 adults): every calendar cell showed $XXX. "
+               "No nightly rate is recorded for these dates. The page says its prices include the daily resort fee and "
+               "exclude taxes."),
+         source=VENETIAN_FIXED_STAY_BOOKING, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
 ]
 
 MAPS = "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin={o}&destination={d}"

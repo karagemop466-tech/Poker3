@@ -95,5 +95,55 @@ class CalculatorArithmetic(unittest.TestCase):
         self.assertAlmostEqual(entries * buy_in + nights * true_nightly, 2800 + 1380.96, places=2)
 
 
+class FreshnessAndBookingTests(unittest.TestCase):
+    """Snapshot status, per-date booking link and the earliest-start claim (re-read 2026-11-17)."""
+
+    TODAY = "2026-11-17"
+
+    def test_status_follows_the_snapshot_date(self):
+        for event in DATA["events"]:
+            date = event.get("date")
+            if not date:
+                self.assertEqual(event.get("status"), "recurring", event["id"])
+            elif date < self.TODAY:
+                self.assertEqual(event.get("status"), "past", event["id"])
+            elif date == self.TODAY:
+                self.assertEqual(event.get("status"), "today", event["id"])
+            else:
+                self.assertEqual(event.get("status"), "upcoming", event["id"])
+
+    def test_snapshot_date_is_2026_11_17(self):
+        self.assertEqual(DATA.get("today"), self.TODAY)
+        self.assertEqual(DATA.get("asOf"), self.TODAY)
+
+    def test_fixed_stay_booking_link_is_the_official_venetian_engine(self):
+        links = DATA.get("bookingLinks") or []
+        self.assertTrue(links, "no per-date booking link")
+        url = links[0]["url"]
+        self.assertTrue(url.startswith("https://www.venetianlasvegas.com/booking?"), url)
+        self.assertIn("arrival_date=2026-11-25", url)
+        self.assertIn("departure_date=2026-12-02", url)
+        self.assertIn("adults[]=2", url)
+        # The page printed $XXX placeholders, so no price may be stored with the link.
+        self.assertNotIn("nightly", links[0].get("priceInStaticPage", "").lower().split("no.")[0])
+
+    def test_no_official_event_starts_before_nine_am(self):
+        """Earliest verified start is 9:00 AM (Horseshoe daily). The all-day 8 AM plan stays unsupported."""
+        def minutes(text):
+            hh, rest = text.split(":")
+            mm, ap = rest.split()
+            hh = int(hh) % 12 + (12 if ap == "PM" else 0)
+            return hh * 60 + int(mm)
+        for event in DATA["events"]:
+            t = event.get("time")
+            if t and t[-2:] in ("AM", "PM"):
+                self.assertGreaterEqual(minutes(t), 9 * 60, f"{event['id']} starts before 9 AM: {t}")
+
+    def test_past_rows_are_not_shown_as_upcoming_by_default(self):
+        app = (ROOT / "site" / "assets" / "app.js").read_text(encoding="utf-8")
+        self.assertIn("showPast: false", app, "past rows must be hidden by default")
+        self.assertIn("e.status === 'past'", app, "past filter missing")
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

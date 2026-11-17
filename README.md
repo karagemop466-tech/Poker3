@@ -31,7 +31,7 @@ one start flight and no re-entry, rebuy, add-on or second-flight clause is **she
 maximum number of entries per player. No candidate is treated as strictly eligible until the venue confirms the one-entry,
 no-rebuy and no-add-on rules in writing (flag F31). Each row carries the exact excerpt, source and retrieval date. A row
 with a blank fee or guarantee is explained by a note or flag. Guaranteed-pool ÷ entry-fee is descriptive, never a forecast.
-Walking minutes are Google Maps estimates because no venue publishes a walking time. Snapshot: **2026-11-16 UTC**.
+Walking minutes are Google Maps estimates because no venue publishes a walking time. Snapshot: **2026-11-17 UTC**. On that date the Venetian DeepStack Extravaganza IV schedule (94 rows dated Nov 16 to Dec 23: the 21 rows of Nov 16–27 fully, the 73 rows of Nov 28–Dec 23 on date, time, name, buy-in and guarantee), the Caesars Palace and Horseshoe daily lists and the Venetian resort-fee page were re-read; each row shows its own last-checked date.
 
 ## Data pipeline
 
