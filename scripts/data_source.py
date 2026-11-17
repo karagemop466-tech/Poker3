@@ -715,7 +715,7 @@ FLAGS = [
                  "says include the resort fee. Until the venue confirms it, treat the $197.28 as an upper bound of the "
                  "published floor, not a quote. Do not compare a fee-inclusive figure with a fee-exclusive one."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-02&view=calendar"),
-    dict(id="F52", area="Hotel cost", severity="Medium",
+    dict(id="F55", area="Hotel cost", severity="Medium",
          title="The Horseshoe rate calendar printed two different grids five minutes apart on the same day",
          detail=("Both readings are kept in the rate log. At 01:26 UTC the December 2026 grid printed Dec 1 $449, "
                  "Dec 4 $219, Dec 5 $369, Dec 6 $249, Dec 7 $229, Dec 8 $169, Dec 9 $149, Dec 10 $359, Dec 11 $479, "
@@ -728,7 +728,7 @@ FLAGS = [
                  "calendar; this flag is the Caesars-page instance, which matters because the Horseshoe cells are the "
                  "only dated room rates any reviewed property publishes for the trip window."),
          source="https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=December&propCode=blv"),
-    dict(id="F53", area="Wynn Signature Series", severity="Medium",
+    dict(id="F56", area="Wynn Signature Series", severity="Medium",
          title="The official Wynn Signature Series structures file is a 'coming soon' placeholder, so 38 rows cannot be confirmed",
          detail=("Read on 2026-11-17. The URL the site cites for Wynn Signature Series structures "
                  "(Wynn_Signature_Series_Structures.pdf) now returns only 'LAS VEGAS POKER / COMING SOON'. The series "
@@ -1099,7 +1099,7 @@ SUGGESTIONS = [
                  "lowest-available rates, in plain HTML rather than by script - unlike the Venetian engine, which prints "
                  "$XXX. Both pages are now in the monitored source list, so the 12:10 UTC re-check will see a Caesars "
                  "Palace calendar appear as soon as the property starts publishing one, and the rate log will keep both "
-                 "readings when a cell moves (F52). No scraper is needed for these two properties."),
+                 "readings when a cell moves (F55). No scraper is needed for these two properties."),
          impact="Medium", effort="Done in this pass",
          decision="No further work: the URLs are in site/data.json sources and are re-checked on schedule"),
 ]
@@ -1668,7 +1668,7 @@ def build():
     # --- Wynn Signature Series ------------------------------------------
     # The official structures file cited below was re-read on 2026-11-17 and prints only
     # "LAS VEGAS POKER / COMING SOON"; the schedule tells guests to scan a QR code for structures.
-    # Entry rules are therefore left not verified rather than inferred (F53).
+    # Entry rules are therefore left not verified rather than inferred (F56).
     SIG_STRUCT_GAP = ("The official Wynn Signature Series structures file printed only 'LAS VEGAS POKER - COMING SOON' "
                       "when it was re-read on 2026-11-17, and the schedule PDF directs guests to scan a QR code for "
                       "event structures, so no entry rule is published in readable form for this event.")

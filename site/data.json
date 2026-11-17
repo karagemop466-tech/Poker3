@@ -22806,7 +22806,7 @@
    "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-02&view=calendar"
   },
   {
-   "id": "F52",
+   "id": "F55",
    "area": "Hotel cost",
    "severity": "Medium",
    "title": "The Horseshoe rate calendar printed two different grids five minutes apart on the same day",
@@ -22814,7 +22814,7 @@
    "source": "https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=December&propCode=blv"
   },
   {
-   "id": "F53",
+   "id": "F56",
    "area": "Wynn Signature Series",
    "severity": "Medium",
    "title": "The official Wynn Signature Series structures file is a 'coming soon' placeholder, so 38 rows cannot be confirmed",
@@ -23230,7 +23230,7 @@
   {
    "id": "S22",
    "title": "Keep monitoring the two Caesars booking pages for a dated rate",
-   "detail": "The Caesars property booking pages publish a fee block and, for Horseshoe, a full dated month of lowest-available rates, in plain HTML rather than by script - unlike the Venetian engine, which prints $XXX. Both pages are now in the monitored source list, so the 12:10 UTC re-check will see a Caesars Palace calendar appear as soon as the property starts publishing one, and the rate log will keep both readings when a cell moves (F52). No scraper is needed for these two properties.",
+   "detail": "The Caesars property booking pages publish a fee block and, for Horseshoe, a full dated month of lowest-available rates, in plain HTML rather than by script - unlike the Venetian engine, which prints $XXX. Both pages are now in the monitored source list, so the 12:10 UTC re-check will see a Caesars Palace calendar appear as soon as the property starts publishing one, and the rate log will keep both readings when a cell moves (F55). No scraper is needed for these two properties.",
    "impact": "Medium",
    "effort": "Done in this pass",
    "decision": "No further work: the URLs are in site/data.json sources and are re-checked on schedule"

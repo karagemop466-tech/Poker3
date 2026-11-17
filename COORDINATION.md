@@ -1729,3 +1729,14 @@ session was discarded; every conflict was resolved by keeping both sides and ren
   corrected is dropped in favour of main's wording.
 - `tests/`: main's `test_checks_schema.FlagReferences` guard and `test_workflows.py` (needs PyYAML, present on the CI
   runner) both pass alongside this session's 16 new tests; the local run was 89 tests, all green.
+
+**Second re-numbering (same session).** After the rebase, `tests/test_recheck_ed1d2489.py` (from PR #54) caught that
+session 196dc009 had taken **F52** and **F53** for a Bellagio sheet and a NYE flight header. Both of their flags are
+kept exactly as written; this session's two records moved again, to **F55** (Horseshoe calendar instability) and
+**F56** (Wynn Signature structures placeholder), with every reference repointed. The published register is 53 flags,
+53 unique ids, and the duplicate-id guard is green.
+
+**Milestone recorded here:** the scheduled re-check produced its first real run on 2026-11-17 (`ccb092d`,
+`mode: "live fetch"`): 92 official URLs known, 79 fetched, **0 content changes**, 13 unreachable from the runner
+(the MGM Resorts hosts, consistent with flag F40). The change monitor this project asked for is therefore live, not
+merely written, and `site/feed/` now carries the morning room feed beside it.
