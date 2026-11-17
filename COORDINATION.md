@@ -1786,3 +1786,42 @@ is confirmed through the Pages API and the run statuses.
 - Flag numbering is under contention between sessions. `tests/test_workflows.py` and the auditor now
   assert flag ids stay unique, but a shared allocation table in `COORDINATION.md` would stop the
   renumbering churn.
+---
+
+## Session `arena/13439072-poker3` — live re-verification, data-gap closure and final integration
+
+Branch: `arena/13439072-poker3` (base `main` at `b30841e`, the merge of PR #34). **Platform deviation:** the brief's
+`session-<id>/<task>` branch naming is unavailable; the Arena-managed branch name is used, as every prior session
+recorded.
+
+**Why this session can verify what earlier sessions could not.** Every session above records that "the sandbox cannot
+open HTTPS connections to the venue hosts", so `scripts/check_sources.py` and `scripts/daily_feed.py` reported
+`unreachable` locally and were left to run only on the GitHub Actions runner. This session's `fetch_page` tool **does**
+reach `venetianlasvegas.com`, `wynnlasvegas.com`, `mgmresorts.com`, `caesars.com` and their CDN PDF hosts. This session
+therefore performs the live line-by-line re-verification that earlier sessions could only schedule, and records
+`lastChecked: 2026-11-17` on every row it re-reads.
+
+| Task | Status | Owner session | Scope (files) | Notes |
+|---|---|---|---|---|
+| L1 Claim and branch registration | done | arena/13439072-poker3 | `COORDINATION.md` | Claim pushed before any other file is edited. |
+| L2 Live re-fetch and hash every official source; mark changed | in progress | arena/13439072-poker3 | `scripts/live_check.py`, `site/checks-live.json`, `site/data.json` `sources[].lastChecked` | 2026-11-17 pass. |
+| L3 Re-verify the 45 `single-entry-on-sheet` rows against their official structure PDFs | in progress | arena/13439072-poker3 | `scripts/data_venetian.py`, `site/data.json` | One fetch per distinct sheet URL; the excerpts are re-read, not copied. |
+| L4 Re-verify the Venetian DSE IV schedule page against the 143 Venetian rows | in progress | arena/13439072-poker3 | `scripts/data_venetian.py` | Four chunks of the official page. |
+| L5 Close the hotel-rate gap: dated quotes for the fixed trip window, official resort fees, tax, parking, cancellation | in progress | arena/13439072-poker3 | `scripts/data_hotels.py`, `site/data.json` `hotels`, `rateLog` | Blank stays blank; anything published is logged with its date. |
+| L6 Re-check walking-route evidence and label non-venue sources honestly | in progress | arena/13439072-poker3 | `scripts/data_hotels.py`, `site/data.json` `routes` | No venue publishes a walking time; every minute figure keeps its non-venue label. |
+| L7 Brief-coverage audit: every numbered brief item mapped to a shipped page or a flag | in progress | arena/13439072-poker3 | `site/**`, `scripts/coverage.py`, `site/coverage.json` | Produces a published traceability matrix so nothing is claimed without a location. |
+| L8 Final integration: verify, PR to `main`, merge, confirm Pages deploy, record here | pending | arena/13439072-poker3 | whole repo | Last step; no other session is active. |
+
+### Claim record (this session)
+
+- **Session ID:** `arena/13439072-poker3`. **Claimed at:** 2026-11-17, before any file edit other than this section.
+- **Claimed scope:** `COORDINATION.md`, `README.md`, `scripts/**`, `tests/**`, `site/**` (the canonical Pages
+  artifact), `.github/workflows/**`, `research/**`.
+- **Not claimed, not edited:** `docs/`, `verified/`, `planner/`, `single-entry/`, `pages/`, `handoff/`, root-level
+  legacy `*.html`, `raw/`, `data/`, `site/poker3/**`. Prior research artefacts stay in the repository untouched.
+- **Open PRs observed at claim time:** #7 (`arena/92941c56-poker3`, root + `pages/`), #27 (`arena/701f2252-poker3`,
+  rewrites canonical `site/data.json`), #31 (`arena/ea188b20-poker3`, rewrites canonical `site/data.json`). All three
+  are stale: opened 2026-11-16, no commits for about five hours. #27 and #31 both replace the canonical data file, so
+  merging either without its session present would discard the other's work; per the no-discarding rule this session
+  **does not merge them** and logs that decision for the user.
+- **Commit discipline:** small frequent commits, `git pull --rebase` before every push.
