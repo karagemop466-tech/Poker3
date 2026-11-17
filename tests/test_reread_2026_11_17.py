@@ -67,5 +67,35 @@ class TripWindowRows(unittest.TestCase):
                 self.assertEqual(published[int(number)].get("reReadOn"), RECORD["retrievedOn"])
 
 
+class WptTripWindowRows(unittest.TestCase):
+    """Six Wynn WPT rows matched to a printed section of the structure PDF (read 2026-11-17)."""
+
+    def _event(self, event_id):
+        matches = [e for e in DATA["events"] if e["id"] == event_id]
+        self.assertEqual(len(matches), 1, f"{event_id} must be published exactly once")
+        return matches[0]
+
+    def test_matched_rows_carry_the_printed_re_entry_clause(self):
+        for row in RECORD["wpt"]["rows"]:
+            with self.subTest(row=row["id"]):
+                e = self._event(row["id"])
+                self.assertEqual(e["rules"]["reEntry"]["status"], "re-entry-printed")
+                self.assertEqual(e["rules"]["reEntry"]["excerpt"], row["excerpt"])
+                self.assertEqual(e["rules"]["reEntry"]["source"], RECORD["wpt"]["sheetUrl"])
+                self.assertEqual(e["rules"]["reEntry"]["retrieved"], RECORD["wpt"]["retrievedOn"])
+
+    def test_matched_rows_are_not_single_entry(self):
+        for row in RECORD["wpt"]["rows"]:
+            with self.subTest(row=row["id"]):
+                e = self._event(row["id"])
+                self.assertFalse(e["singleEntry"])
+                self.assertEqual(e["rules"]["singleEntry"]["status"], "multiple-entries")
+
+    def test_schedule_row_with_conflicting_date_stays_unverified(self):
+        e = self._event("wynn-wpt-2026-11-30-011-100pm")
+        self.assertEqual(e["rules"]["reEntry"]["status"], "not-verified")
+        self.assertFalse(e["singleEntry"])
+
+
 if __name__ == "__main__":
     unittest.main()

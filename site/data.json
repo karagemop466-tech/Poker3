@@ -8722,16 +8722,16 @@
    "guaranteeNote": "",
    "rules": {
     "singleEntry": {
-     "status": "not-verified",
-     "excerpt": "The WPT structure sheets have not been read in this pass, so no entry rule is confirmed for this event.",
+     "status": "multiple-entries",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "not-verified",
-     "excerpt": "The WPT structure sheets have not been read in this pass.",
+     "status": "re-entry-printed",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-17"
     },
     "addOn": {
      "status": "not-verified",
@@ -8763,8 +8763,8 @@
    "sheetUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-   "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "lastChecked": "2026-11-17",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Official structure sheet ($600 TORSE, Friday Nov 27 at 12 p.m.): Registration: Unlimited re-entry will be available until the start of level 9.",
    "eligibility": ""
   },
   {
@@ -8779,16 +8779,16 @@
    "guaranteeNote": "",
    "rules": {
     "singleEntry": {
-     "status": "not-verified",
-     "excerpt": "The WPT structure sheets have not been read in this pass, so no entry rule is confirmed for this event.",
+     "status": "multiple-entries",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "not-verified",
-     "excerpt": "The WPT structure sheets have not been read in this pass.",
+     "status": "re-entry-printed",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-17"
     },
     "addOn": {
      "status": "not-verified",
@@ -8820,8 +8820,8 @@
    "sheetUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-   "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "lastChecked": "2026-11-17",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Official structure sheet ($400 PLO, Friday Nov 27 at 1 p.m.): Registration: Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).",
    "eligibility": ""
   },
   {
@@ -8950,16 +8950,16 @@
    "guaranteeNote": "",
    "rules": {
     "singleEntry": {
-     "status": "not-verified",
-     "excerpt": "The WPT structure sheets have not been read in this pass, so no entry rule is confirmed for this event.",
+     "status": "multiple-entries",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "not-verified",
-     "excerpt": "The WPT structure sheets have not been read in this pass.",
+     "status": "re-entry-printed",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-17"
     },
     "addOn": {
      "status": "not-verified",
@@ -8991,8 +8991,8 @@
    "sheetUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-   "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "lastChecked": "2026-11-17",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Official structure sheet ($600 Mixed Triple Draw (A-5, 2-7, Badugi), Saturday Nov 28 at 12 p.m.): Registration: Unlimited re-entry will be available until the start of level 9.",
    "eligibility": ""
   },
   {
@@ -9235,16 +9235,16 @@
    "guaranteeNote": "",
    "rules": {
     "singleEntry": {
-     "status": "not-verified",
-     "excerpt": "The WPT structure sheets have not been read in this pass, so no entry rule is confirmed for this event.",
+     "status": "multiple-entries",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "not-verified",
-     "excerpt": "The WPT structure sheets have not been read in this pass.",
+     "status": "re-entry-printed",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-17"
     },
     "addOn": {
      "status": "not-verified",
@@ -9276,8 +9276,8 @@
    "sheetUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-   "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "lastChecked": "2026-11-17",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Official structure sheet ($600 Limit Omaha 8, Monday Nov 30 at 12 p.m.): Registration: Unlimited re-entry will be available until the start of level 9.",
    "eligibility": ""
   },
   {
@@ -9463,16 +9463,16 @@
    "guaranteeNote": "",
    "rules": {
     "singleEntry": {
-     "status": "not-verified",
-     "excerpt": "The WPT structure sheets have not been read in this pass, so no entry rule is confirmed for this event.",
+     "status": "multiple-entries",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "not-verified",
-     "excerpt": "The WPT structure sheets have not been read in this pass.",
+     "status": "re-entry-printed",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9.",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-17"
     },
     "addOn": {
      "status": "not-verified",
@@ -9504,8 +9504,8 @@
    "sheetUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-   "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "lastChecked": "2026-11-17",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Official structure sheet ($600 Limit Omaha 8/Stud 8, Tuesday Dec 1 at 12 p.m.): Registration: Unlimited re-entry will be available until the start of level 9.",
    "eligibility": ""
   },
   {
@@ -9520,16 +9520,16 @@
    "guaranteeNote": "",
    "rules": {
     "singleEntry": {
-     "status": "not-verified",
-     "excerpt": "The WPT structure sheets have not been read in this pass, so no entry rule is confirmed for this event.",
+     "status": "multiple-entries",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-17"
     },
     "reEntry": {
-     "status": "not-verified",
-     "excerpt": "The WPT structure sheets have not been read in this pass.",
+     "status": "re-entry-printed",
+     "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).",
      "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-17"
     },
     "addOn": {
      "status": "not-verified",
@@ -9561,8 +9561,8 @@
    "sheetUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "scheduleUrl": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "structureUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
-   "lastChecked": "2026-11-16",
-   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read.",
+   "lastChecked": "2026-11-17",
+   "note": "Schedule row from the official WPT World Championship schedule PDF; entry rules not yet read. Official structure sheet ($1,100 PLO, Tuesday Dec 1 at 1 p.m.): Registration: Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).",
    "eligibility": ""
   },
   {
@@ -20762,8 +20762,8 @@
    "id": "F12",
    "area": "Wynn WPT",
    "severity": "Medium",
-   "title": "WPT World Championship structure sheets were not read in this pass",
-   "detail": "The WPT schedule PDF publishes buy-in, guarantee, chips and level length but not the entry rules. The structure PDF is an eight-chunk document that was not read end to end, so re-entry and add-on terms for WPT rows are marked unverified and those rows are excluded from the single-entry filter.",
+   "title": "The WPT structure PDF is read, but the $10,400 event and most WPT rows are still not matched to a section",
+   "detail": "Read end to end on 2026-11-17 (all eight chunks). Six trip-window WPT rows (Nov 27 - Dec 1) now carry the printed registration clause 'Unlimited re-entry ... until the start of level 9', so they are multi-entry and stay out of the single-entry filter. The other WPT rows keep 'not-verified' re-entry status: the structure PDF has no section for the $10,400 WPT World Championship, and the add-on terms for those rows are still not matched to a section.",
    "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"
   },
   {
@@ -20933,6 +20933,14 @@
    "title": "Day 2 restarts of earlier Venetian events overlap the trip-window primaries",
    "detail": "Re-read on 2026-11-17 from the official schedule: Event #7 ($400 No Limit Hold'em flights) has a Day 2 Restart at 11:00 AM on Wed Nov 25, the same morning as the 11:10 AM primary (#10). Event #19 ($400 flights) has a Day 2 Restart at 11:00 AM on Wed Dec 2, and its 11:10 AM Day 1 flight on Sun Nov 29 is the same morning as the 12:10 PM primary (#20). A restart applies only to a player who bagged chips in an earlier flight, so the day plan treats these as conditional and does not model them. Before relying on a primary, check whether any earlier flight was played.",
    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
+  },
+  {
+   "id": "F34",
+   "area": "Wynn WPT",
+   "severity": "High",
+   "title": "The WPT schedule and the WPT structure PDF give different dates for the same events",
+   "detail": "Read on 2026-11-17. The schedule PDF lists a 'No Limit Hold'em Day 2' for the $800 NLH on Mon Nov 30 at 1:00 PM, but the structure PDF gives that event Day 1A at 11 a.m. on Mon Nov 30 and Day 2 at 1 p.m. on Thu Dec 3. The schedule also lists a 'No Limit Hold'em (2 Day)' $1,600 on Dec 9 at 11 a.m., while the structure PDF gives the $1,600 NLH Day 1A on Thu Dec 3 and Day 2 on Sat Dec 5. The rows are reproduced as printed and not corrected. The $800 row is not matched to a structure section for that reason. Confirm the date with the poker room before any decision that depends on it.",
+   "source": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf"
   }
  ],
  "questions": [

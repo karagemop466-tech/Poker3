@@ -249,5 +249,42 @@
       "sheet": "1",
       "role": "primary"
     }
-  ]
+  ],
+  "wpt": {
+    "_about": "Live read on 2026-11-17 of the official Wynn WPT World Championship structures PDF (all 8 chunks). Six trip-window WPT rows (Nov 25 - Dec 2, 2026) are matched to their section by date, start time and event name. Only the registration clause for each section is recorded. The $800 No Limit Hold'em 'Day 2' row listed on the schedule for Nov 30 at 1:00 PM is NOT matched: the structure sheet lists that event's Day 1A at 11 a.m. on Nov 30 and its Day 2 at 1 p.m. on Dec 3, so the schedule row does not match the sheet (flag F34).",
+    "retrievedOn": "2026-11-17",
+    "sheetUrl": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
+    "rows": [
+      {
+        "id": "wynn-wpt-2026-11-27-001-1200pm",
+        "section": "$600 TORSE, Friday Nov 27 at 12 p.m.",
+        "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9."
+      },
+      {
+        "id": "wynn-wpt-2026-11-27-002-100pm",
+        "section": "$400 PLO, Friday Nov 27 at 1 p.m.",
+        "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.)."
+      },
+      {
+        "id": "wynn-wpt-2026-11-28-005-1200pm",
+        "section": "$600 Mixed Triple Draw (A-5, 2-7, Badugi), Saturday Nov 28 at 12 p.m.",
+        "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9."
+      },
+      {
+        "id": "wynn-wpt-2026-11-30-010-1200pm",
+        "section": "$600 Limit Omaha 8, Monday Nov 30 at 12 p.m.",
+        "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9."
+      },
+      {
+        "id": "wynn-wpt-2026-12-01-014-1200pm",
+        "section": "$600 Limit Omaha 8/Stud 8, Tuesday Dec 1 at 12 p.m.",
+        "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9."
+      },
+      {
+        "id": "wynn-wpt-2026-12-01-015-100pm",
+        "section": "$1,100 PLO, Tuesday Dec 1 at 1 p.m.",
+        "excerpt": "Registration: Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.)."
+      }
+    ]
+  }
 }
