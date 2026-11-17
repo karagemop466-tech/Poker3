@@ -370,12 +370,21 @@ FLAGS = [
                  "the page reported 'No automated check file yet'. The three are now one serialised job. The first real run "
                  "is triggered by the merge of this change; its result is recorded on the sources page when it lands."),
          source="https://github.com/karagemop466-tech/Poker3/actions"),
+    dict(id="F31", area="Venetian DSE IV", severity="High",
+         title="The structure sheets do not confirm a one-entry-per-player maximum",
+         detail=("The 45 Venetian rows classified as 'single entry on the sheet' have one printed buy-in and no re-entry, rebuy, add-on or second-flight provision in the reviewed sheet. However, the sheets do not state a maximum number of entries per player and do not explicitly call the event a freezeout. This is only a document-level screen, not written confirmation of the room's one-entry policy. Do not treat these candidates as strictly eligible or book around them until the venue confirms the maximum-entry, no-rebuy and no-add-on rules in writing. The source excerpt and date are attached to each row."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
+    dict(id="F32", area="Walking routes", severity="Medium",
+         title="The 30-minute walking check does not cover every hotel–venue pair",
+         detail=("The current 14 route rows cover routes from the recommended Venetian resort hotel to the listed poker rooms, plus selected on-site pairs. The requested full hotel-by-venue matrix would contain 56 pairs (8 hotel records × 7 venue records); the remaining pairs have no checked walking time here and are not assumed to meet the 30-minute limit. The existing schedule filter applies only to the recommended Venetian resort route estimates. Check the official property addresses and each Google/Apple walking route before comparing other hotel choices."),
+         source="https://www.google.com/maps/dir/?api=1&travelmode=walking"),
 ]
 
 QUESTIONS = [
     dict(id="Q01", question="What are the actual travel dates, and how many nights?",
-         answer=("This session fixed the dates at November 25 to December 2, 2026 because that window holds the most "
-                 "single-entry events verified on an official structure sheet. The official booking engine publishes no "
+         answer=("For planning purposes this session fixed the dates at November 25 to December 2, 2026 because that window "
+                 "contains the most sheet-screened candidates (not confirmed single-entry events) in the reviewed snapshot. "
+                 "The official booking engine publishes no "
                  "price for those dates. The one dated checkout total it does publish is November 17-19, 2026 for two "
                  "adults: $1,245.48 including the $55 nightly resort fee and $146.98 of tax."),
          why="Needed", blocking="Yes - no hotel total can be confirmed without it",
@@ -392,8 +401,8 @@ QUESTIONS = [
          how="Give a maximum true cost per night and the minimum standard you accept, then re-run the comparison with the published rate floors.",
          source="https://www.wynnlasvegas.com/rooms-and-suites"),
     dict(id="Q04", question="Is one total entry per player actually required, or only one entry per event?",
-         answer="For the Venetian one-day events the official sheets print one buy-in, one start flight and no re-entry, rebuy, add-on or second-flight clause. The sheets never use the words 'single entry' or 'freezeout', so the site labels this as 'single entry on the official sheet' and shows the excerpt. For Wynn, Bellagio, MGM Grand and Caesars the sheets print re-entry, rebuy or add-on clauses, so those events are placed in the separate extra-spend section.",
-         why="Needed", blocking="No - the rule set is documented on every row",
+         answer="For 45 Venetian one-day candidates, the official sheets print one buy-in and no re-entry, rebuy, add-on or second-flight clause. They do not state a maximum number of entries per player or explicitly say 'single entry' or 'freezeout'. The site therefore calls these sheet-screened candidates only; written confirmation from the venue is still needed before treating them as eligible. Wynn, Bellagio, MGM Grand and Caesars rows with printed re-entry, rebuy or add-on clauses are isolated in the separate extra-spend section.",
+         why="Needed", blocking="Yes - the maximum-entry policy is not published in the reviewed sheets",
          how="Ask the poker room to confirm in writing that a second buy-in is not accepted for a specific event if that matters for your decision.",
          source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf"),
     dict(id="Q05", question="Which hotels actually publish a room price for the dates you want?",
@@ -416,11 +425,11 @@ QUESTIONS = [
          why="Needed", blocking="No, but it limits the day plan",
          how="Ask the poker room for expected finish times, or treat the plan as a template and confirm on the day.",
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
-    dict(id="Q08", question="What is the real walking time between the chosen hotel and each poker room?",
-         answer="The venues publish no walking times. Google Maps walking estimates captured on 2026-11-16 are used and labelled as estimates: Caesars Palace to the Venetian 12 minutes, Wynn to the Venetian 13, Horseshoe 16, Bellagio 21, ARIA 31, MGM Grand 35. The Wynn poker room is in Encore, a 10-minute walk from the Wynn hotel.",
-         why="Needed", blocking="No - the 30-minute filter is applied to the estimates",
-         how="Re-check the live Maps route on the morning of each tournament; Strip crossings add time that the estimate does not include.",
-         source="https://www.wynnlasvegas.com/casino/poker"),
+    dict(id="Q08", question="What is the real walking time between each hotel and each poker room?",
+         answer="The venues publish no walking times. Google Maps estimates captured on 2026-11-16 cover the recommended Venetian resort hotel to the listed rooms and selected on-site pairs only; the full 8-hotel × 7-venue matrix is incomplete (F32). The recommended-hotel estimates are: Caesars Palace 12 minutes, Wynn 13, Horseshoe 16, Bellagio 21, ARIA 31 and MGM Grand 35. The Wynn poker room is in Encore, a 10-minute estimate from the Wynn hotel. These are estimates, not verified venue times.",
+         why="Needed", blocking="Yes - only the recommended hotel's route set is checked",
+         how="Use official property addresses to verify each hotel-to-room Google or Apple walking route; do not assume missing pairs are under 30 minutes.",
+         source="https://www.google.com/maps/dir/?api=1&travelmode=walking"),
     dict(id="Q09", question="Which other Strip rooms should be added to the plan?",
          answer="Not covered. This pass verified The Venetian, Wynn, Bellagio, MGM Grand, Caesars Palace, Horseshoe and ARIA. South Point, Golden Nugget, Resorts World, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate, Tropicana, Bally's, Flamingo, LINQ, Planet Hollywood, Rio and M Resort were not checked.",
          why="Useful", blocking="No",
@@ -534,7 +543,8 @@ def _rules_for_sheet(sheet_no):
     if s["entry"] == "none":
         single = dict(status="single-entry-on-sheet",
                       excerpt=(f"The sheet prints one ${s['buyIn']} buy-in, one start flight and one 'Starting Chips' figure. "
-                               "No re-entry, rebuy, add-on or second-flight provision appears anywhere on the sheet."), **base)
+                               "No re-entry, rebuy, add-on or second-flight provision appears anywhere on the sheet. "
+                               "The sheet does not state a per-player maximum-entry count or explicitly call the event a freezeout; venue confirmation is still required."), **base)
         reentry = dict(status="none-printed", excerpt="No re-entry provision appears on this structure sheet.", **base)
         addon = dict(status="none-printed", excerpt="No add-on provision appears on this structure sheet.", **base)
     elif s["entry"] == "multi-flight":
@@ -607,9 +617,9 @@ def _event(eid, venue, date, time, name, buyIn, guarantee, rules, category, kind
 
 
 CATEGORIES = {
-    "single": {"label": "Single entry (verified on the official sheet)", "blurb":
-               "The official structure sheet prints one buy-in, one start flight and no re-entry, rebuy, add-on or "
-               "second-flight clause."},
+    "single": {"label": "Sheet-screened candidates (entry cap unconfirmed)", "blurb":
+               "The official structure sheet prints one buy-in and no re-entry, rebuy, add-on or second-flight clause, "
+               "but does not state a maximum number of entries per player. These are candidates only until the venue confirms its written policy."},
     "flight": {"label": "Multi-flight", "blurb":
                "The official schedule publishes separate start flights. A player who does not bag for Day 2 may buy into "
                "another flight, so more than one entry is possible."},
@@ -648,20 +658,21 @@ TRIP = {
         "publish its own poker-room rate, keep the poker room on site, and publish its resort fee, tax and cancellation "
         "terms. No comparable official quality score exists for these rooms, so the quality column stays blank (F19)."),
     "rationale": [
-        ("2026-11-25 to 2026-12-02 (7 nights, 8 days) holds the largest number of single-entry events verified on an "
-         "official structure sheet: 14, and every one of the eight days has at least one."),
-        ("All 37 DeepStack Extravaganza IV structure sheets were read directly on 2026-11-16, so the single-entry "
-         "classification on these dates comes from a primary source rather than from the schedule title."),
+        ("2026-11-25 to 2026-12-02 (7 nights, 8 days) holds the largest number of structure-screened candidates "
+         "whose sheets omit extra-entry terms: 14, with at least one on each date. This is not proof of a one-entry-per-player cap."),
+        ("All 37 DeepStack Extravaganza IV structure sheets were read directly on 2026-11-16. The sheets are primary-source "
+         "evidence for their printed terms, but they do not confirm a maximum number of entries per player; see F31."),
         ("The window stays inside DSE IV. The December 24 to January 10 DeepStack NYE dates are published on the "
          "official schedule page, but the 15 NYE structure sheets were not read, so those rows cannot enter the "
-         "single-entry list yet (F11)."),
+         "sheet-screened candidate list yet (F11)."),
         ("It also sits before the $10,400 WPT World Championship buy-in tier on December 13, which would break the trip "
          "budget on a single entry."),
         ("The Wynn WPT schedule runs from November 27 inside the window, so three days carry additional published rows, "
          "all clearly marked as series rows with unverified entry rules (F12)."),
     ],
-    "bankrollNote": ("Bankroll figure on the day-plan page is the sum of the eight recommended primary buy-ins plus a 25% "
-                     "buffer for one rebuy or an add-on if a room allows it. It is a planning number, not a forecast."),
+    "bankrollNote": ("The provisional path's buy-in sum is shown with a 25% general contingency buffer. The buffer is not "
+                     "permission or a budget for rebuys/add-ons; no event qualifies for strict entry policy until the venue "
+                     "confirms the written rules. It is a planning figure, not a forecast."),
     "lodgingEvidence": (
         "The official Venetian booking engine publishes one dated checkout total, for November 17-19, 2026 with two "
         "adults: $824.25 + $55 on the 17th, $164.25 + $55 on the 18th, $146.98 tax, $1,245.48 total. For the recommended "
@@ -670,12 +681,11 @@ TRIP = {
 }
 
 PLAN_NOTES = {
-    "primaryRule": ("Primary event = the verified single-entry event on that date with the largest published guarantee, "
-                    "among venues within a 30-minute walk of the recommended hotel, excluding age-restricted, "
-                    "female-only and team formats."),
-    "fallbackRule": ("Fallback = the next verified single-entry event that starts after the primary's estimated finish "
-                     "plus a 30-minute transfer. When nothing fits, the fallback is the best alternative that date with "
-                     "the reason it was not chosen."),
+    "primaryRule": ("Provisional primary candidate = the sheet-screened event on that date with the largest published guarantee, "
+                    "among venues within a 30-minute walk of the recommended hotel, excluding age-restricted, female-only "
+                    "and team formats. This is not confirmation of a one-entry-per-player cap; written venue rules are required."),
+    "fallbackRule": ("Fallback = the next sheet-screened candidate that starts after the primary's estimated finish plus a "
+                     "30-minute transfer. The fallback is conditional on written confirmation of entry rules and fit."),
     "transfer": 30,
     "walkLimit": 30,
 }
@@ -706,11 +716,13 @@ FEED_ROOMS = [
 
 
 def _plan_eligible(e):
-    """Can this event be a recommended primary entry for a general traveller?
+    """Can this event appear in the provisional planning shortlist?
 
-    Ranking needs a confirmed entry fee and a confirmed guarantee, a verified
-    single-entry sheet, no age/gender/team restriction, and a venue inside the
-    30-minute walking limit from the recommended hotel.
+    Ranking needs a confirmed entry fee and guarantee, a one-buy-in sheet with
+    no extra-entry clause printed, no age/gender/team restriction, and a venue
+    inside the 30-minute walking limit. The structure sheet does not prove the
+    venue's maximum-entry policy; every shortlist item remains conditional on
+    written confirmation before registration or nonrefundable travel.
     """
     if e["entryType"] != "none":
         return False
@@ -751,7 +763,7 @@ def _fallback_reason(primary, alt):
     if WALK.get(alt["venue"], 99) > WALK.get(primary["venue"], 0):
         return (f"Same published guarantee but {WALK.get(alt['venue'], '?')} minutes' walk from the recommended hotel "
                 f"against {WALK.get(primary['venue'], 0)}.")
-    return "Next best published single-entry event on this date."
+    return "Next sheet-screened candidate on this date; entry cap still needs written confirmation."
 
 
 def build_day_plan(events, start_date, end_date, recurring=()):
@@ -781,10 +793,10 @@ def build_day_plan(events, start_date, end_date, recurring=()):
                     fallback = others[0]
                     fallback_reason = _fallback_reason(primary, fallback)
                 else:
-                    fallback_reason = ("No other verified single-entry event is published for this date. The multi-flight "
+                    fallback_reason = ("No other sheet-screened candidate is published for this date. The multi-flight "
                                        "and series rows for this date are listed in the tournaments table.")
         else:
-            fallback_reason = "No verified single-entry event with a published fee and guarantee on this date."
+            fallback_reason = "No sheet-screened candidate with a published fee and guarantee on this date."
         for a in by_date[date]:
             if a["isContinuation"]:
                 continue
@@ -897,7 +909,10 @@ def build():
     for i, d in enumerate(N.WYNN_DAILY):
         rules = {k: dict(v, source=d["source"], retrieved=ASOF) for k, v in d["rules"].items()}
         first_day = d["days"].split(",")[0].strip()
-        label = d["name"] if first_day in d["name"] else f"{d['name']} ({d['days']})"
+        if d["name"].endswith("Nightly") and d["days"].startswith("Nightly "):
+            label = f"{d['name']} ({d['days'][len('Nightly '):]})"
+        else:
+            label = d["name"] if first_day in d["name"] else f"{d['name']} ({d['days']})"
         events.append(_event(
             f"wynn-daily-{i}", "wynn", "", d["time"], label,
             d["buyIn"], d["guarantee"], rules, d["category"], "daily",

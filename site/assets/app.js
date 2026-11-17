@@ -46,11 +46,13 @@ function renderNav() {
   document.querySelectorAll('[data-search-form]').forEach((f) => {
     const input = f.querySelector('input');
     if (input && !input.value) input.value = new URLSearchParams(location.search).get('q') || '';
+    if (f.dataset.searchBound) return;
+    f.dataset.searchBound = 'true';
     f.addEventListener('submit', (ev) => {
       ev.preventDefault();
       const q = (input.value || '').trim();
-      if (PAGE === 'tournaments') { state.q = q; applyTournamentFilters(); }
-      else location.href = 'tournaments.html?q=' + encodeURIComponent(q);
+      if (PAGE === 'search') renderSearchResults(q);
+      else location.href = 'search.html?q=' + encodeURIComponent(q);
     });
   });
 }
@@ -63,15 +65,33 @@ function venueName(id) {
 function categoryLabel(id) {
   return (db.categories && db.categories[id]) ? db.categories[id].label : id;
 }
+function sourceChecksFor(urls) {
+  const monitored = checks && Array.isArray(checks.urls) ? checks.urls : [];
+  return [...new Set((urls || []).filter(Boolean))]
+    .map((url) => monitored.find((row) => row.url === url))
+    .filter(Boolean);
+}
+function sourceStatusBadges(urls) {
+  const rows = sourceChecksFor(urls);
+  const changed = rows.filter((row) => row.changed);
+  const unavailable = rows.filter((row) => row.unavailable || row.status === 'unreachable' || /^HTTP [45]/.test(row.status || ''));
+  const badges = [];
+  if (changed.length) badges.push(`<span class="badge bad" title="${esc(changed.map((r) => `${r.label || r.url}: ${r.checked || ''}`).join('; '))}">Source changed · review</span>`);
+  if (unavailable.length) badges.push(`<span class="badge warn" title="${esc(unavailable.map((r) => `${r.label || r.url}: ${r.status || 'unavailable'} · ${r.checked || ''}`).join('; '))}">Source unavailable · recheck</span>`);
+  return badges.join(' ');
+}
 function sourceLinks(e) {
   const out = [];
   if (e.structureUrl) out.push(`<a href="${esc(e.structureUrl)}" target="_blank" rel="noopener">Structure sheet</a>`);
   if (e.scheduleUrl) out.push(`<a href="${esc(e.scheduleUrl)}" target="_blank" rel="noopener">Official schedule</a>`);
+  const ruleUrls = Object.values(e.rules || {}).map((rule) => rule && rule.source);
+  const badges = sourceStatusBadges([e.structureUrl, e.scheduleUrl, ...ruleUrls]);
+  if (badges) out.push(badges);
   return out.join('<span class="muted"> · </span>');
 }
 function ruleBadge(status) {
   const map = {
-    'single-entry-on-sheet': ['ok', 'Single entry on the sheet'],
+    'single-entry-on-sheet': ['warn', 'No extra-entry terms printed · cap unconfirmed'],
     'none-printed': ['ok', 'No re-entry, rebuy or add-on printed'],
     'multiple-entries': ['warn', 'More than one entry possible'],
     'multi-buyin': ['warn', 'More than one entry possible'],
@@ -95,6 +115,10 @@ function entryCheckCell(e) {
   const st = e.rules && e.rules.singleEntry ? e.rules.singleEntry.status : 'not-verified';
   return ruleBadge(st);
 }
+function hasConfirmedSingleEntryPolicy(e) {
+  const rule = e.rules && e.rules.singleEntry;
+  return !!(rule && rule.status === 'confirmed' && rule.maxEntries === 1);
+}
 function ratioCell(e) {
   if (typeof e.ratio !== 'number' || !e.ratio) return blank;
   return `${e.ratio.toFixed(1)}<span class="muted">× published pool ÷ fee</span>`;
@@ -103,13 +127,14 @@ function ratioCell(e) {
 /* ------------------------------------------------------------- tournaments */
 const state = {
   q: '', from: '', to: '', venue: '', category: '', format: '',
-  singleOnly: false, walkOnly: true, showUndated: true,
+  singleOnly: false, candidateOnly: false, walkOnly: true, showUndated: true,
 };
 
 function filteredEvents() {
   const q = state.q.trim().toLowerCase();
   return (db.events || []).filter((e) => {
-    if (state.singleOnly && e.entryType !== 'none') return false;
+    if (state.singleOnly && !hasConfirmedSingleEntryPolicy(e)) return false;
+    if (state.candidateOnly && e.entryType !== 'none') return false;
     if (state.venue && e.venue !== state.venue) return false;
     if (state.category && e.category !== state.category) return false;
     if (state.format && e.format !== state.format) return false;
@@ -146,9 +171,9 @@ function applyTournamentFilters() {
   const head = `<thead><tr>
       <th>Date</th><th>Start</th><th>Venue</th><th>Event</th>
       <th>Buy-in</th><th>Guaranteed pool</th><th>Pool ÷ fee</th>
-      <th>Format</th><th>Entry check</th><th>Late registration</th><th>Est. end</th><th>Sources</th>
+      <th>Format</th><th>Entry check</th><th>Late registration</th><th>Est. end</th><th>Last checked</th><th>Sources</th>
     </tr></thead>`;
-  const body = rows.map((e) => `
+  const body = rows.length ? rows.map((e) => `
     <tr class="row-click" data-id="${esc(e.id)}">
       <td>${e.date ? esc(e.date) : '<span class="muted">Recurring</span>'}</td>
       <td>${esc(e.time)}</td>
@@ -161,8 +186,9 @@ function applyTournamentFilters() {
       <td>${entryCheckCell(e)}</td>
       <td>${e.lateReg ? esc(e.lateReg) : blank}</td>
       <td>${e.endEstimate ? esc(e.endEstimate) : blank}<span class="muted">Estimate</span></td>
+      <td>${esc(e.lastChecked || 'Not recorded')}</td>
       <td>${sourceLinks(e)}</td>
-    </tr>`).join('');
+    </tr>`).join('') : `<tr><td colspan="13" class="empty">${state.singleOnly ? 'No event in this reviewed data set has a written one-entry-per-player confirmation. See flagged item F29; do not treat the candidate list as strict eligibility.' : 'No rows match the current filters.'}</td></tr>`;
   host.innerHTML = `<div class="table-wrap"><table>${head}<tbody>${body}</tbody></table></div>
     <p class="toolbar-note">${rows.length} of ${(db.events || []).length} rows.
     Every row links the official page or PDF it came from. Blank cells are values no official source published.</p>`;
@@ -229,7 +255,8 @@ function buildTournamentControls() {
       <label>Venue<select data-f="venue"><option value="">All venues</option>${venues}</select></label>
       <label>Category<select data-f="category"><option value="">All categories</option>${cats}</select></label>
       <label>Format<select data-f="format"><option value="">All formats</option>${formats}</select></label>
-      <label class="check"><input type="checkbox" data-f="singleOnly"> Single entry only (verified on the sheet)</label>
+      <label class="check"><input type="checkbox" data-f="singleOnly"> Single-entry / freezeout confirmed (written max one entry)</label>
+      <label class="check"><input type="checkbox" data-f="candidateOnly"> Sheet-screened candidates (entry cap unconfirmed)</label>
       <label class="check"><input type="checkbox" data-f="walkOnly" checked> Within 30 minutes of the Venetian</label>
       <label class="check"><input type="checkbox" data-f="showUndated" checked> Include recurring rooms</label>
       <button class="btn" data-reset>Reset</button>
@@ -244,7 +271,7 @@ function buildTournamentControls() {
   });
   host.querySelector('[data-reset]').addEventListener('click', () => {
     state.q = ''; state.from = ''; state.to = ''; state.venue = ''; state.category = '';
-    state.format = ''; state.singleOnly = false; state.walkOnly = true; state.showUndated = true;
+    state.format = ''; state.singleOnly = false; state.candidateOnly = false; state.walkOnly = true; state.showUndated = true;
     buildTournamentControls();
     applyTournamentFilters();
   });
@@ -273,7 +300,7 @@ function renderVenueIndex() {
           <h3>${esc(v.name)}</h3>
           <p class="muted">${esc(v.pokerRoom)}</p>
         </div>
-        <span class="pill">${dated.length} dated rows · ${single.length} single entry</span>
+        <span class="pill">${dated.length} dated rows · ${single.length} sheet-screened candidates</span>
       </div>
       <p>${esc(v.series)}</p>
       <p class="muted">${esc(v.note)}</p>
@@ -329,10 +356,11 @@ function eventTable(evs) {
       <td>${money(e.guarantee) || blank}</td>
       <td>${esc(e.format)}</td>
       <td>${entryCheckCell(e)}</td>
+      <td>${esc(e.lastChecked || 'Not recorded')}</td>
       <td>${sourceLinks(e)}</td>
     </tr>`).join('');
   return `<div class="table-wrap"><table><thead><tr><th>Date</th><th>Start</th><th>Event</th><th>Buy-in</th>
-    <th>Guaranteed pool</th><th>Format</th><th>Entry check</th><th>Sources</th></tr></thead><tbody>${body}</tbody></table></div>`;
+    <th>Guaranteed pool</th><th>Format</th><th>Entry check</th><th>Last checked</th><th>Sources</th></tr></thead><tbody>${body}</tbody></table></div>`;
 }
 function hotelCards(hotels) {
   if (!hotels.length) return '<div class="empty"><strong>No hotel row.</strong> No lodging at this property is verified in this pass.</div>';
@@ -343,8 +371,9 @@ function hotelCards(hotels) {
     <p><strong>Mandatory resort fee:</strong> ${h.resortFee ? '$' + h.resortFee + ' plus tax' : 'not verified'}</p>
     <p><strong>True cost per night:</strong> ${h.trueNightlyLow ? '$' + h.trueNightlyLow.toFixed(2) + ' – $' + h.trueNightlyHigh.toFixed(2) : 'cannot be computed without a published rate'}</p>
     <p><strong>Cancellation deadline:</strong> ${esc(h.cancellation || 'not published')}</p>
+    <p><strong>Last checked:</strong> ${esc(h.lastChecked || 'Not recorded')}</p>
     <p class="muted">${esc(h.status || '')}</p>
-    <p><a class="card-link" href="${esc(h.source)}" target="_blank" rel="noopener">Official source →</a></p>
+    <p><a class="card-link" href="${esc(h.source)}" target="_blank" rel="noopener">Official source →</a> ${sourceStatusBadges([h.source, h.feeSource, h.taxSource])}</p>
   </article>`).join('')}</div>`;
 }
 
@@ -364,16 +393,18 @@ function renderHotels() {
         <td>${h.trueNightlyLow ? '$' + h.trueNightlyLow.toFixed(2) + ' – $' + h.trueNightlyHigh.toFixed(2) + '<span class="muted">floor computed from published components</span>' : blank}</td>
         <td>${esc(h.parking || 'Not published')}</td>
         <td>${esc(h.cancellation || 'Not published')}</td>
+        <td>${esc(h.lastChecked || 'Not recorded')}</td>
         <td>${esc(h.qualityNote || '')}</td>
         <td>${self && self.minutes !== 0 ? esc(self.minutes) + ' min to the room' : 'room on site'}${walk ? `<span class="muted">${walk.minutes} min to the Venetian</span>` : ''}</td>
         <td><a href="${esc(h.source)}" target="_blank" rel="noopener">Room source</a>
             ${h.feeSource ? `<span class="muted"><a href="${esc(h.feeSource)}" target="_blank" rel="noopener">Fee terms</a></span>` : ''}
-            ${h.taxSource ? `<span class="muted"><a href="${esc(h.taxSource)}" target="_blank" rel="noopener">Tax terms</a></span>` : ''}</td>
+            ${h.taxSource ? `<span class="muted"><a href="${esc(h.taxSource)}" target="_blank" rel="noopener">Tax terms</a></span>` : ''}
+            ${sourceStatusBadges([h.source, h.feeSource, h.taxSource])}</td>
       </tr>`;
     }).join('');
     host.innerHTML = `<div class="table-wrap"><table><thead><tr>
       <th>Property</th><th>Poker room</th><th>Published base rate</th><th>Mandatory resort fee</th><th>Tax</th>
-      <th>True cost per night</th><th>Parking</th><th>Cancellation deadline</th><th>Quality evidence</th>
+      <th>True cost per night</th><th>Parking</th><th>Cancellation deadline</th><th>Last checked</th><th>Quality evidence</th>
       <th>Walking</th><th>Sources</th></tr></thead><tbody>${body}</tbody></table></div>`;
   }
   const log = document.querySelector('[data-rate-log]');
@@ -396,11 +427,11 @@ function renderHotels() {
       <td>${esc(r.hotel)}</td><td>${esc(r.venue)}</td>
       <td>${r.minutes === 0 ? 'On site' : r.minutes + ' minutes'}</td>
       <td>${r.miles ? r.miles + ' mile' : ''}</td>
-      <td>${esc(r.via || '')}</td><td>${esc(r.note || '')}</td>
+      <td>${esc(r.via || '')}</td><td>${esc(r.note || '')}</td><td>${esc(r.lastChecked || 'Not recorded')}</td>
       <td><a href="${esc(r.mapsUrl)}" target="_blank" rel="noopener">Live Maps route</a>
           <span class="muted"><a href="${esc(r.source)}" target="_blank" rel="noopener">Venue source</a></span></td></tr>`).join('');
     routes.innerHTML = `<div class="table-wrap"><table><thead><tr><th>From</th><th>To</th><th>Walk</th><th>Distance</th>
-      <th>Via</th><th>Note</th><th>Sources</th></tr></thead><tbody>${body}</tbody></table></div>`;
+      <th>Via</th><th>Note</th><th>Last checked</th><th>Sources</th></tr></thead><tbody>${body}</tbody></table></div>`;
   }
   const quote = document.querySelector('[data-quote]');
   if (quote) {
@@ -476,11 +507,11 @@ function renderSchedule() {
     return `<article class="day">
       <div class="day-head">
         <div><span class="kicker">${esc(p.weekday)}</span><h3>${esc(p.date)}</h3></div>
-        <div class="day-badges">${p.candidates} ranked single-entry option${p.candidates === 1 ? '' : 's'}</div>
+        <div class="day-badges">${p.candidates} provisional candidate${p.candidates === 1 ? '' : 's'} · entry cap unconfirmed</div>
       </div>
       <div class="day-grid">
         <div class="day-primary">
-          <span class="pill ok">Primary</span>
+          <span class="pill warn">Primary candidate · conditional</span>
           ${primary ? `<h4>${esc(primary.name)}</h4>
             <p class="day-meta">${esc(venueName(primary.venue))} · starts ${esc(primary.time)} · estimated finish ${esc(primary.endEstimate)}
               · ${p.primaryWalk === 0 ? 'room on site' : p.primaryWalk + ' min walk'}</p>
@@ -489,7 +520,8 @@ function renderSchedule() {
             <p class="day-meta">Starting chips ${primary.chips ? primary.chips.toLocaleString('en-US') : 'not published'}
               · late registration: ${primary.lateReg ? esc(primary.lateReg) : 'not published'}</p>
             ${primary.eligibility ? `<p class="day-meta warn">Restricted: ${esc(primary.eligibility)}</p>` : ''}
-            <p>${sourceLinks(primary)}</p>` : '<p class="muted">No verified single-entry event with a published fee and guarantee on this date.</p>'}
+            <p class="day-meta warn">Provisional candidate only: the reviewed sheet does not establish the maximum entries per player. Confirm in writing before registration.</p>
+            <p>${sourceLinks(primary)}</p>` : '<p class="muted">No sheet-screened candidate with a published fee and guarantee on this date.</p>'}
         </div>
         <div class="day-fallback">
           <span class="pill warn">Conditional fallback</span>
@@ -608,13 +640,73 @@ function renderSources() {
       <td class="event-name">${esc(u.url)}<span class="muted">${esc(u.label || '')}</span></td>
       <td>${esc(u.status || '')}</td>
       <td>${esc(u.checked || '')}</td>
-      <td>${u.changed ? '<span class="badge warn">Content changed since the stored hash</span>' : '<span class="badge ok">Unchanged</span>'}</td>
+      <td>${u.changed ? '<span class="badge bad">Content changed · manual review</span>' : u.unavailable ? '<span class="badge warn">Unavailable · not verified</span>' : u.baseline ? '<span class="badge info">Baseline recorded</span>' : '<span class="badge ok">Unchanged</span>'}</td>
       <td>${u.changed ? esc(u.previousHash ? u.previousHash.slice(0, 12) + ' → ' : '') + esc((u.hash || '').slice(0, 12)) : (u.hash || '').slice(0, 12)}</td>
     </tr>`).join('');
     auto.innerHTML = `<div class="table-wrap"><table><thead><tr><th>Official URL</th><th>Status</th><th>Checked</th>
       <th>Change flag</th><th>Hash</th></tr></thead><tbody>${body}</tbody></table></div>
       <p class="toolbar-note">Last automated run: ${esc(checks.lastRun || 'not yet run')}. ${esc(checks.note || '')}</p>`;
   }
+}
+
+/* ------------------------------------------------------- cross-table search */
+function renderSearchResults(query) {
+  const host = document.querySelector('[data-search-results]');
+  const summary = document.querySelector('[data-search-summary]');
+  if (!host || !summary) return;
+  const q = String(query || '').trim().toLowerCase();
+  if (!q) {
+    summary.textContent = 'Enter a query above to search all published tables.';
+    host.innerHTML = '<div class="empty"><strong>No query entered.</strong> Use the search box to find tournament, hotel, route, rate, source, question or flagged-review rows.</div>';
+    return;
+  }
+  const records = [];
+  const add = (type, title, when, detail, checked, searchable, sourceHtml) => {
+    const haystack = [type, title, when, detail, searchable].join(' ').toLowerCase();
+    if (haystack.includes(q)) records.push({ type, title, when, detail, checked, sourceHtml });
+  };
+  (db.events || []).forEach((e) => {
+    const rules = Object.values(e.rules || {}).map((r) => r && r.excerpt).filter(Boolean).join(' ');
+    add('Tournament · ' + venueName(e.venue), e.name, e.date || 'Recurring',
+      [e.time, e.format, money(e.buyIn), money(e.guarantee), rules, e.note].filter(Boolean).join(' · '),
+      e.lastChecked || db.asOf, `${e.venue} ${e.category} ${e.eligibility || ''}`,
+      sourceLinks(e) || '<span class="muted">Source link not recorded</span>');
+  });
+  (db.hotels || []).forEach((h) => {
+    const detail = [h.rooms, h.baseRateNote, h.resortFeeNote, h.taxNote, h.parking, h.cancellation, h.status,
+      h.trueNightlyLow && `True nightly floor ${money(h.trueNightlyLow)}`].filter(Boolean).join(' · ');
+    const links = `<a href="${esc(h.source)}" target="_blank" rel="noopener">Hotel source</a> ${sourceStatusBadges([h.source, h.feeSource, h.taxSource])}`;
+    add('Hotel', h.name, '', detail, h.lastChecked || db.asOf, `${h.venue} ${h.property || ''}`, links);
+  });
+  (db.rateLog || []).forEach((r) => {
+    add('Hotel rate log', r.hotel, r.observedOn || '', [r.publishedStartingRates, r.resortFee, r.tax, r.trueNightlyLow,
+      r.quoteType, r.note].filter(Boolean).join(' · '), r.observedOn || db.asOf,
+      `${r.hotel} ${r.source || ''}`, `<a href="${esc(r.source)}" target="_blank" rel="noopener">Official rate source</a> ${sourceStatusBadges([r.source, r.feeSource, r.taxSource])}`);
+  });
+  (db.routes || []).forEach((r) => {
+    add('Walking route', `${r.hotel} → ${r.venue}`, '', `${r.minutes === 0 ? 'On site' : r.minutes + ' minutes'} · ${r.miles || ''} ${r.note || ''}`,
+      r.lastChecked || db.asOf, `${r.via || ''} ${r.mapsOrigin || ''} ${r.mapsDestination || ''}`,
+      `<a href="${esc(r.mapsUrl)}" target="_blank" rel="noopener">Walking map</a> · <a href="${esc(r.source)}" target="_blank" rel="noopener">Official venue source</a>`);
+  });
+  (db.sources || []).forEach((s) => {
+    add('Official source', s.name, '', s.type || '', s.checked || db.asOf, s.url,
+      `<a href="${esc(s.url)}" target="_blank" rel="noopener">Open official source</a> ${sourceStatusBadges([s.url])}`);
+  });
+  (db.flags || []).forEach((f) => {
+    add('Flag · ' + (f.severity || ''), f.title, '', `${f.area || ''} · ${f.detail || ''}`, db.asOf, f.id,
+      `<a href="${esc(f.source)}" target="_blank" rel="noopener">Review official source</a>`);
+  });
+  (db.questions || []).forEach((item) => {
+    add('Open question · ' + (item.why || ''), item.question, '', `${item.answer || ''} · ${item.how || ''}`,
+      db.asOf, item.blocking || '', `<a href="${esc(item.source)}" target="_blank" rel="noopener">Official source</a>`);
+  });
+  summary.textContent = `${records.length} matching rows across ${new Set(records.map((r) => r.type.split(' · ')[0])).size} table categories for “${query}”.`;
+  if (!records.length) {
+    host.innerHTML = '<div class="empty"><strong>No matches.</strong> Try an event name, property, date, buy-in, rule, source or flag ID.</div>';
+    return;
+  }
+  host.innerHTML = `<div class="table-wrap"><table><thead><tr><th>Table</th><th>Date / observed</th><th>Record</th><th>Matching details</th><th>Last checked</th><th>Source / review</th></tr></thead><tbody>${records.map((r) =>
+    `<tr><td>${esc(r.type)}</td><td>${esc(r.when)}</td><td class="event-name">${esc(r.title)}</td><td>${esc(r.detail)}</td><td>${esc(r.checked)}</td><td>${r.sourceHtml}</td></tr>`).join('')}</tbody></table></div>`;
 }
 
 /* ------------------------------------------------------------------- home */
@@ -629,8 +721,8 @@ function renderHome() {
     stats.innerHTML = `
       <div class="stat"><div class="stat-label">Published tournament rows</div><div class="stat-value">${evs.length}</div>
         <div class="stat-caption">${dated.length} dated, ${evs.length - dated.length} recurring room events</div></div>
-      <div class="stat"><div class="stat-label">Single entry verified</div><div class="stat-value">${single.length}</div>
-        <div class="stat-caption">One buy-in, one flight, no re-entry printed on the sheet</div></div>
+      <div class="stat"><div class="stat-label">Sheet-screened candidates</div><div class="stat-value">${single.length}</div>
+        <div class="stat-caption">No extra-entry terms printed; maximum entries per player unconfirmed (F29)</div></div>
       <div class="stat"><div class="stat-label">Fee and guarantee confirmed</div><div class="stat-value">${withFee.length}</div>
         <div class="stat-caption">Only these rows are ranked</div></div>
       <div class="stat"><div class="stat-label">Venues inside 30 minutes</div><div class="stat-value">${walkOk.length}</div>
@@ -646,8 +738,8 @@ function renderHome() {
          $119 before the $55 mandatory resort fee and 13.38% Clark County room tax, and the walk to any other
          Strip room on the list is inside 30 minutes.</p>
       <p class="muted">Nightly budget fixed at $${(t.nightlyBudget || 0).toFixed(2)} (the published floor).
-         The eight recommended entries total ${money(t.primaryBuyIns)} in buy-ins; with a 25% buffer, plan on
-         ${money(t.bankrollWithBuffer)}.</p>
+         The provisional eight-day candidate path totals ${money(t.primaryBuyIns)} in printed buy-ins. It is not a confirmed
+         single-entry itinerary: obtain written maximum-entry / no-rebuy / no-add-on rules first.</p>
       <p><a class="card-link" href="schedule.html">Open the day plan →</a> · <a class="card-link" href="hotels.html">Open the hotel comparison →</a></p>`;
   }
   const picks = document.querySelector('[data-top-picks]');
@@ -662,6 +754,7 @@ function renderHome() {
         <td class="event-name">${esc(p.primaryName)}</td>
         <td>${money(p.primaryBuyIn)}</td><td>${money(p.primaryGuarantee)}</td>
         <td>${p.primaryWalk === 0 ? 'on site' : p.primaryWalk + ' min'}</td>
+        <td>${esc(e ? e.lastChecked || 'Not recorded' : '')}</td>
         <td>${e ? sourceLinks(e) : ''}</td></tr>`;
     }).join('');
   }
@@ -689,6 +782,7 @@ function boot() {
     if (PAGE === 'suggestions') renderSuggestions();
     if (PAGE === 'flagged') renderFlags();
     if (PAGE === 'sources') renderSources();
+    if (PAGE === 'search') renderSearchResults(new URLSearchParams(location.search).get('q') || '');
   }).catch(() => {
     document.querySelectorAll('[data-load-error]').forEach((e) => { e.hidden = false; });
   });

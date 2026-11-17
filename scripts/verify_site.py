@@ -11,8 +11,9 @@ Checks, in order:
   5. Every hotel row carries a source, and a computed true nightly cost matches
      the published components it claims to use.
   6. Every flag carries a source link.
-  7. The day plan only recommends rows that are verified single entry with a
-     published fee and guarantee, and every plan row points at a real event.
+  7. Day-plan rows are explicitly provisional sheet-screened candidates with
+     confirmed fees/guarantees; they are not treated as strict-entry eligible
+     without a written max-one-entry rule.
   8. Every local link in every published HTML page resolves to a file that
      exists, and every page loads the shared script.
 """
@@ -45,7 +46,7 @@ OFFICIAL_HOSTS = (
 
 PAGES = (
     "index.html", "tournaments.html", "venues.html", "browse.html", "schedule.html",
-    "hotels.html", "questions.html", "suggestions.html", "flagged.html", "sources.html",
+    "hotels.html", "questions.html", "suggestions.html", "flagged.html", "sources.html", "search.html",
 )
 
 # Detailed pages that carry their own data attributes instead of data-page.
@@ -101,6 +102,13 @@ def main() -> int:
     events = data["events"]
     if not events:
         fail("data.json has no tournament rows", errors)
+    for collection in ("events", "hotels", "routes"):
+        for index, row in enumerate(data.get(collection, []), start=1):
+            if not row.get("lastChecked"):
+                fail(f"{collection} row {index} has no lastChecked date", errors)
+    for index, row in enumerate(data.get("rateLog", []), start=1):
+        if not row.get("observedOn"):
+            fail(f"rateLog row {index} has no observation date", errors)
 
     ids = set()
     for e in events:
@@ -179,7 +187,10 @@ def main() -> int:
                 fail(f"plan {day['date']}: primary id not in events", errors)
             else:
                 if e["entryType"] != "none":
-                    fail(f"plan {day['date']}: primary is not a verified single-entry row", errors)
+                    fail(f"plan {day['date']}: primary candidate has printed extra-entry terms", errors)
+                single_rule = (e.get("rules") or {}).get("singleEntry") or {}
+                if single_rule.get("status") != "single-entry-on-sheet":
+                    fail(f"plan {day['date']}: primary candidate has no sheet-screening evidence", errors)
                 if not e.get("buyIn") or not e.get("guarantee"):
                     fail(f"plan {day['date']}: primary has no confirmed fee and guarantee", errors)
                 if e.get("eligibility"):

@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Search all published tournament, hotel, rate, route, source, question and review tables in the Vegas Poker Planner.">
+<title>Vegas Poker Planner · Search all tables</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="search">
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark">♠</span><span>Vegas Poker Planner</span></a>
+  <form class="top-search" data-search-form><input type="search" placeholder="Search every table…" aria-label="Search all tables"><button class="btn" type="submit">Search</button></form>
+  <span class="top-tag">Official sources only · verified <span data-asof></span></span>
+</header>
+<nav class="mobile-nav" data-mobile-nav></nav>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="side-label">Plan your trip</div>
+    <nav class="nav" data-nav></nav>
+    <div class="side-note"><strong>Cross-table search</strong>Searches the published tournament, hotel, dated rate, walking route, source, question and flagged-review records. Each fact result links to its cited source.</div>
+  </aside>
+  <main class="main">
+    <section class="hero">
+      <div class="eyebrow">Search · all published data tables</div>
+      <h1>Find a fact across the planner.</h1>
+      <p>Matches include event names and rule excerpts, hotel cost terms, dated rate observations, walking routes, official source titles, open questions and review flags. Search does not change or infer any data.</p>
+    </section>
+    <section class="section">
+      <div class="section-head"><div><h2>Matching rows</h2><p data-search-summary>Enter a query above.</p></div></div>
+      <div data-search-results></div>
+    </section>
+    <div class="footer"><a href="tournaments.html">Tournament filters</a> · <a href="flagged.html">Flagged for review</a> · <a href="sources.html">Source log</a></div>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>
