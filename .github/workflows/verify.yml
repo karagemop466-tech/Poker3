@@ -31,6 +31,13 @@ jobs:
       - name: Assert the corrected numbers and their arithmetic
         run: python3 -m unittest discover -s tests -p 'test_*.py' -v
 
+      - name: Assert every workflow file parses with no duplicate keys
+        # A duplicate key makes GitHub reject the whole workflow with zero jobs and no
+        # log, which is how the scheduled re-check stayed dormant (flag F30).
+        run: |
+          python3 -m pip install --quiet pyyaml
+          python3 -m unittest tests.test_workflows -v
+
       - name: Validate Poker3 companion dashboard
         run: |
           python3 tests/smoke.py
