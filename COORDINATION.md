@@ -3604,6 +3604,7 @@ Branch: `arena/d3a4c0f8-poker3` (platform-bound; the `session-<id>/<task>` namin
 - **Pages:** `pages build and deployment` success on `927b5aa`. `Publish the canonical Vegas Poker Planner to GitHub Pages`, `Verify static research site` and `Official table transcription check` also success on that commit.
 - **Not complete:** the scheduled `Scheduled source re-check and daily room feed` run was still pending on `927b5aa`. It is a separate job and was not blocked by this merge.
 - **Carried forward:** Resorts World (F80) and Planet Hollywood (F79) closures are press reports and remain unverified. Mandalay Bay (F85) has no printed schedule. The walk captures (F84) are Google Maps measurements and not official.
+---
 
 
 | T3 Integration, PR, merge, Pages check | in progress | arena/5b8ce14d-poker3 | whole repo | PR and merge result recorded below |
@@ -3620,4 +3621,230 @@ Branch: `arena/d3a4c0f8-poker3` (platform-bound; the `session-<id>/<task>` namin
 - **Open items this session did not close (all already flagged, none blocking):** F31 (no written per-player entry cap), F17 (no verified 8:00 AM start), F21/F32 (walking times are Maps estimates; pair coverage incomplete), F66 (phone-only $119 poker rate), F15/F36/F47/F69 (booking-engine pricing behaviour — now also F78), and finish-time estimates under the disclosed six-hour session assumption.
 - **PR #99 merged** (`arena/8689ef6e-poker3` into `main`) as `58c702d` at 2026-11-17 22:29:54 UTC, with `gh pr merge 99 --merge`. Checks on the merged head: `verify` and `transcription` both `success`. The Pages deploy from `main` ("Publish the canonical Vegas Poker Planner to GitHub Pages") succeeded; the legacy "pages build and deployment" run for the superseded commit shows `cancelled`, which is expected under concurrency. The live Flagged and Executive summary pages serve the current data.
 - **Session `arena/8689ef6e-poker3` is complete.** Open, non-blocking items are unchanged: F66, F67, F31, and the 8 AM gap, all published on the Flagged for Review page.
+## Session `arena/4fbf8168-poker3` — claim: written entry-rule confirmation for the 52 sheet-screened Venetian rows (F31), plus the stale-claim board cleanup (2026-11-17 UTC)
 
+Branch: `arena/4fbf8168-poker3`, from `main` @ `b9c8d77` (PR #100 merged). The `session-<id>/<task>` naming in the
+brief cannot be applied — the platform binds this session to one Arena branch — so all work happens here.
+
+**Board hygiene first.** The previous session (`arena/da83eca8-poker3`) left its D1–D5 rows as `in progress`/`pending`
+and never appended a result section, but its branch reached `main` through **PR #100** (merged 2026-11-17 22:11:42Z).
+Those claims are therefore stale, not active. This session records their final state below so no other session waits on
+them or re-does them.
+
+**Conflict check before claiming.** `gh pr list --state open` at claim time:
+
+| Open PR | Branch | Files it touches | Effect on this claim |
+|---|---|---|---|
+| #108 | `arena/57416062-poker3` (updated 2026-11-17T22:24Z, active) | `scripts/data_hotels.py`, `scripts/data_source.py`, `scripts/data_venues.py`, `site/assets/app.js`, `site/index.html`, `site/sheets.html`, `site/hotels.html`, `site/checks.json`, `site/data.json`, `raw/wynn_wpt_*`, `research/reread_2026-11-17.json`, `tests/test_reread_2026_11_17.py`, two new WPT tests, `COORDINATION.md` | **Hard scope exclusion.** This session does not edit any of those files. The WPT structures question (F77 and the WPT/`data_venues.py` rows) is theirs. |
+| #99 | `arena/8689ef6e-poker3` (updated 2026-11-17T22:11Z) | `COORDINATION.md`, `scripts/data_source.py` | Not edited here beyond the appends this file requires. |
+
+| Task | Status | Owner session | Files in scope | Notes |
+|---|---|---|---|---|
+| E1 Hunt a **written** maximum-entry / no-rebuy / no-add-on rule for the Venetian DSE IV and NYE series, on venue-controlled pages only (series landing page, FAQ/terms, the two schedule pages, the poker-room page, and a full re-read of every structure-sheet text already captured in `raw/`); record each excerpt verbatim with its URL and retrieval date | in progress | arena/4fbf8168-poker3 | `raw/venetian_entry_rules_2026-11-17_4fbf8168.md` (new), `scripts/data_venetian.py` | `scripts/data_venetian.py` is **not** in PR #108's file list. Nothing is promoted to "confirmed" without a printed venue statement; absence of wording stays a screen, not a confirmation. |
+| E2 Independent re-derivation check that no row's entry-rule label can outrun its own excerpt (guard against the F75/F76 class of defect recurring) | in progress | arena/4fbf8168-poker3 | `scripts/verify_entry_labels.py` (new), `tests/test_entry_labels_4fbf8168.py` (new) | New files only; no shared verifier edited. |
+| E3 Live re-read of the two official DSE schedule pages and the NYE page on 2026-11-18 (next day) to catch a schedule or price change, compared field by field with `site/data.json` | in progress | arena/4fbf8168-poker3 | `raw/dse_schedule_2026-11-18_4fbf8168.md` (new) | A changed value updates `lastChecked`/`recheck` only, in `scripts/data_venetian.py`. |
+| E4 Board cleanup: record the true final state of the stale `da83eca8` D1–D5 claims and of the unmerged-but-superseded PR #99 | done | arena/4fbf8168-poker3 | this section only | See "Stale claims reconciled" below. |
+| E5 Integration: rebase onto `main` (keeping #108's work intact), rebuild, run the whole suite, PR, merge, confirm Pages, record here | pending | arena/4fbf8168-poker3 | rebuild of generated files only | Regenerating `site/data.json` is unavoidable if E1 changes a label; the file is generated, so it is rebuilt after the rebase rather than merged by hand. |
+
+**Files this session will not touch** (owned by #108 or by earlier sessions): `scripts/data_source.py`,
+`scripts/data_hotels.py`, `scripts/data_venues.py`, `scripts/build*.py`, `site/assets/*`, `site/index.html`,
+`site/sheets.html`, `site/hotels.html`, `site/checks.json`, `docs/**`, `verified/**`, `planner/**`,
+`single-entry/**`, `handoff/**`.
+
+### Stale claims reconciled (E4)
+
+| Prior claim | Recorded as | Actual state on `main` |
+|---|---|---|
+| `da83eca8` D1 Live re-verification of official sources behind trip-window rows | in progress | Delivered through PR #100 (the `raw/` captures and `recheck` fields on the Venetian rows are on `main`). Closed. |
+| `da83eca8` D2 Close remaining hotel-rate gaps (Palazzo, MGM Grand, Caesars, Horseshoe, ARIA) | in progress | **Not closed.** `rateLog` is still empty for all eight hotels; only the Venetian has a dated checkout quote. Remains open, and it belongs to `scripts/data_hotels.py`, which PR #108 owns — logged as a request, not edited here. |
+| `da83eca8` D3 Walking-route evidence labels | in progress | Partially shipped: 14–15 Google Maps estimates labelled as estimates; the 56-pair matrix is not built. C14 stays `partial` in `site/coverage.json`. Route data also lives in `scripts/data_hotels.py` (#108's file). |
+| `da83eca8` D4 Brief-coverage traceability | in progress | Shipped: `scripts/coverage.py` + `site/coverage.json` (25 requirements, 21 shipped / 3 partial / 1 not-resolvable). Closed. |
+| `da83eca8` D5 Verification suite, PR, merge, Pages | pending | PR #100 merged at `b9c8d77`. Closed. |
+| PR #99 (`arena/8689ef6e-poker3`) | open since 22:11Z | Docs/coord-only; its data_source.py change predates PRs #100–#107. Left open for its owner or the integration owner to close — not this session's file. |
+
+### Result (session `arena/4fbf8168-poker3`, recorded 2026-11-17 UTC)
+
+**E1 — the written entry-rule hunt (F31).** Read live from venue-controlled pages, in this order:
+
+| Read | Time (UTC) | What it prints about entries |
+|---|---|---|
+| `…/deepstack-extravaganza-poker-tournament/dse-nov-2026.html` (chunk 0 of 4) | 22:29 | Schedule table only. No maximum-entry, rebuy or add-on text anywhere on the page. |
+| `…/resort/casino/poker.html` | 22:29 | Room location, 24-hour hours, promotions, suite rates, parking. No tournament entry rule. |
+| `…/casino/poker/deepstack-extravaganza-poker-tournament.html` (series landing page) | 22:30 | Series blurbs, dates, guarantees and links to the schedule PDF and structure pages. No entry rule. |
+| `…/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf` | 22:30 | The full table with a printed `REG CLOSES` column. No prose, no rules, no footnotes. |
+| `…/resort/casino/poker/player-parking.html` | 22:31 | Parking rates and the player waiver (see F79 below). |
+
+**F31 therefore stays open.** No official page read by any session prints a one-entry-per-player cap, a no-rebuy
+clause or a no-add-on clause for the DeepStack events, so **no row was promoted to `confirmed`** and the strict
+single-entry filter still returns zero rows, which is what the site already says in its empty-state text. The 52
+sheet-screened rows remain a document screen, not an eligibility finding.
+
+**E3 — live re-read against the published rows.** The 24 complete rows in chunk 0 (16–28 November) were compared
+field by field with `site/data.json` — date, start time, event number, printed name, structure-sheet link:
+**19 rows match character for character; 4 differ only in the page's own `No LImit` typo, already disclosed as F27;
+1 differs in letter case only** (event #18's sub-line `POKERATLAS PRO MEMBER $20 RAKE DISCOUNT` is published in title
+case, and events #58 and NYE #25 share it). That re-casing was not disclosed anywhere, so it is published as
+**F80 (Low)** and left as a user decision rather than silently churned. No money, date, time or sheet link differs on
+any of the 24 rows. Capture: `raw/dse_schedule_recheck_2026-11-17_4fbf8168.md`.
+
+**F79 — the material finding (Hotels, Medium).** The Venetian and Palazzo rows published only their paid self-parking
+figures, while the Wynn row in the same table carried its poker-room benefit — not like-for-like. The resort's own
+poker-room parking page prints both the rates and the waiver: *"Players in the poker room who play three hours or more
+in tournament or cash games will receive complimentary self-parking for the day. Players must visit a supervisor at
+the end of their session to confirm qualifications for complimentary self-parking."* Both rows now state the whole
+printed policy, with a dated `parkingWaiver` block quoting it, and the calculator states it beside the parking field.
+**No dollar total changed** — the paid $20 a night is still what every published total adds up, because no official
+source publishes a finish time (F16) so the three-hour condition cannot be confirmed from a schedule, the waiver needs
+a supervisor at the table, and the page warns that event-parking rates may apply and rates are "subject to change".
+What the page does *not* say — whether the waiver reaches an overnight folio charge — is left blank, not guessed.
+The property rows keep the hotel-terms page as the source of the paid figures (the existing test `test_every_hotel_fact_links_the_recorded_source`
+pins that citation) and the waiver carries the poker-room page as its own source.
+
+**A second label defect, found by the new check rather than by hand.** 7 of the 52 screened rows (the DeepStack NYE
+ones) carried the screen *without* the sentence saying the per-player cap is unconfirmed, so they read as a stronger
+claim than the other 45 — the F74/F75 family again. Every screened row now carries the identical disclosure. The
+sentence was checked against the recorded reading of each sheet (`entry="none"`, and no `entryExcerpt` anywhere states
+a maximum-entry count), not merely copied: a scan of `scripts/data_venetian.py` finds no cap wording on any of the 23
+`entry="none"` sheets in `SHEETS` and `NYE_SHEETS`.
+
+**E2 — the guard.** New `scripts/verify_entry_labels.py`, wired into `verify.yml`, plus
+`tests/test_parking_waiver_and_candidate_disclosure_4fbf8168.py` (14 tests, two of which mutate the data to prove the
+guard trips). It rejects: a `confirmed` single-entry label whose excerpt states no cap; a screened candidate carrying
+an excerpt that grants a re-entry, rebuy, add-on or bag; a candidate flag that disagrees with its own status; a hotel
+publishing a waiver outside its row; a waiver netted into a total; and any quoted parking condition that is not a
+verbatim substring of the raw capture in `raw/`.
+
+**Suite on this branch (all local):** `verify_site.py` pass — 341 events, 8 hotels, 15 routes, 43 sources, **75 flags**,
+7 plan days, 16 pages · `verify_entry_labels.py` pass — 52 screened candidates, **0 written-cap confirmations** ·
+`audit_951cd431.py` 0 failures, 0 warnings · `verify_live_official.py` OK · `audit_data.py` pass ·
+`verify_transcription.py --dry-run` 44/44 · `tests/canonical_smoke.py` 11 main + 5 detail pages · `tests/smoke.py` OK ·
+`unittest discover` **143 tests OK** (129 before this session) · `node --check` clean on the three JS files ·
+`python3 -m json.tool` clean · **reproducibility clean**: `site/data.json` after a fresh build shows no diff, and
+`site/sheets.html` and `site/coverage.json` were regenerated so F79/F80 render on the sheet page and the coverage
+matrix names the parking source.
+
+**Not done here, and why.**
+- The NYE schedule page re-read and the structure-sheet spot re-reads (E1's second half) could not be completed: after
+  22:31Z the platform's page reader began failing every new request with an upstream storage signature error
+  (`SignatureDoesNotMatch`), and direct egress from the sandbox is blocked to non-allowlisted hosts. Recorded as
+  **not read**, not as unchanged. The scheduled monitor in `checks.yml` covers these URLs and is the mechanism that
+  will re-check them.
+- `da83eca8` D2 (dated room quotes for Palazzo, MGM Grand, Caesars, Horseshoe, ARIA) is **still open**: `rateLog` is
+  empty for all eight hotels except the Venetian. It lives in `scripts/data_hotels.py`, which PR #108 also edits, so it
+  is left as a request rather than edited under their claim.
+- F31 cannot be closed from published pages at all. Closing it needs a written answer from the room; the poker-room
+  contact route is already on the questions page. Nothing here pretends otherwise.
+
+**Files changed by this session:** `scripts/data_hotels.py`, `scripts/trip_cost.py`, `scripts/data_source.py`
+(F79, F80, Q12 and the 7 NYE excerpts), `scripts/coverage.py`, `site/calculator.html`, `scripts/verify_entry_labels.py`
+(new), `tests/test_parking_waiver_and_candidate_disclosure_4fbf8168.py` (new), `.github/workflows/verify.yml`,
+`raw/venetian_player_parking_2026-11-17_4fbf8168.md` (new), `raw/dse_schedule_recheck_2026-11-17_4fbf8168.md` (new),
+and the regenerated `site/data.json`, `site/sheets.html`, `site/coverage.json`. **No file in PR #108's list was
+edited by hand**: `site/assets/app.js`, `site/index.html`, `site/hotels.html`, `site/sheets.html` (regenerated only),
+`site/checks.json`, `scripts/data_venues.py` and the WPT tests are untouched here; the overlap with #108 is limited to
+`scripts/data_hotels.py` and `scripts/data_source.py`, where both sides append in different regions.
+
+---
+
+## 2026-11-17 23:40 UTC - session `4fbf8168` - integration result, and a flag-numbering collision this session caused
+
+Rebased onto `main` at `7eb42b7` (PRs #124-#126 had landed). Reporting honestly what
+the merge found, because two of the things I prepared were already done better by
+another session, and one of them I had to undo.
+
+**1. The parking waiver was a genuine collision, and `main` had gone further than I had.**
+Session `58e42dbd` read the same page, put the poker-room URL on The Venetian row's
+own `parkingSource`, rewrote Q12 around it and re-pinned `tests/test_recheck_ed1d2489.py`
+to that citation. My version of the same finding (structured `parkingWaiver` field, the
+trip-cost disclosure, the Palazzo row, the calculator paragraph) sits on top of it
+without contradicting it. I **kept main's Q12 answer** and replaced only its `how`,
+which still told the reader to add parking "if you will not stay on property every
+night" - written before anyone had found the waiver. The two answers read as one now.
+No dollar figure moved on either side; `appliedToTotals` stays false for the reason
+F84 states (no official finish time, supervisor confirmation required).
+
+**2. I renumbered my own flags to avoid overwriting another session's.** Both of my
+new flags were written as `F79`/`F80` while my branch was open; `main` published
+`F79`-`F83` in the meantime (Planet Hollywood closure, Resorts World, MGM grid, DSE
+"Current Series", Wynn Nov 27-29). They are now **F84** (parking waiver) and **F85**
+(schedule re-casing), with every reference moved: `data_source.py`, `coverage.py`,
+`site/calculator.html`, `verify_entry_labels.py`, the new test file and the
+`verify.yml` step comment. `tests/test_label_integrity_2026-11-17.py` enforces one
+flag per id, which is exactly the failure this would have been. *Process note for
+other sessions: after a rebase, re-derive your flag ids from the merged file - the id
+you claimed on an open branch is not reserved.*
+
+**3. One citation of mine was wrong and is fixed.** `tripCostModel.parkingSource` cited
+the hotel terms page while `parkingExcerpt` quoted a sentence that page does not print
+verbatim ("The daily fee for registered hotel guests is $20/day, seven days a week.").
+That sentence is from the poker-room page, so the citation now points there. The
+Palazzo row's `parkingSource` moved to the same page for the same reason; no test
+pins it, and the paid figures it quotes are printed there.
+
+**4. `site/data.json` and `site/sheets.html` were not hand-merged.** I took `main`'s
+side during the rebase and re-ran `scripts/data_source.py` + `scripts/build_addendum.py`
++ `scripts/coverage.py`. Both derived files are regenerated output, so resolving them by
+hand risks an entry that no generator can reproduce.
+
+**5. F85 self-correction.** The flag originally read "one row differs in letter case"
+and then named three. Rewritten to say what is true: three rows, all from one shared
+sub-line, of which one (event #18) is inside the 24 rows I re-read this session and two
+(#58, NYE #25) come from the December and NYE captures. No date, time, buy-in,
+guarantee or sheet link differs, and the choice - print the page's capitals or keep the
+title case with the flag - is still the user's, so nothing was renamed unilaterally.
+
+**Suite after the merge:** `verify_site` (341 events, 8 hotels, 56 routes, 43 sources,
+**80 flags**, 16 pages), `audit_951cd431` 0 failures / 0 warnings, `verify_live_official`
+line-by-line match, `audit_data` passed, `verify_entry_labels` passed (52 screened
+candidates, 0 written-cap confirmations), `canonical_smoke` 11+5 pages, `tests/smoke.py`
+OK, `tests` **146 OK**, `verify_transcription --dry-run` 44/44, and
+`python3 scripts/data_source.py` + `git diff --exit-code -- site/data.json` clean.
+
+**Still open, not blocked by this session:** F31 stands - E1 was exhausted across every
+capture in `raw/` and the November page re-read, and no official page states a maximum
+entry count, so not one of the 52 screened rows can be promoted to `confirmed` from a
+blank. The 24-row re-read changed no money and no start time. Palazzo/MGM/Caesars/
+Horseshoe/ARIA `rateLog` are still empty, 152 Wynn + 6 Horseshoe + 2 ARIA rows are still
+`not-verified`, and Bellagio/MGM/ARIA parking stays blank because those pages could not
+be reached from this environment (direct egress returns 000; the fetch proxy was
+returning `SignatureDoesNotMatch` for PDFs by the end of this session).
+
+---
+
+## 2026-11-17 23:55 UTC - session `4fbf8168` - second renumber: my flags are **F86** and **F87**
+
+The entry above announced F84/F85 as mine. `main` moved again while that work was being
+replayed (now `86ef45ad`, with `F84` = Google Maps walking-minute provenance and `F85` =
+Mandalay Bay's empty schedule), so both ids were taken a second time. Rather than
+re-edit the announced numbers, the flags moved up again and are now:
+
+- **F86** - the poker-room parking waiver on the Venetian and Palazzo rows, paid fee left
+  in every total, `appliedToTotals` false.
+- **F87** - the three event names re-cased against the schedule page's capital sub-line.
+
+Every reference moved with them (`data_source.py`, `coverage.py` C9, `site/calculator.html`,
+`scripts/verify_entry_labels.py`, `tests/test_parking_waiver_and_candidate_disclosure_4fbf8168.py`,
+the `verify.yml` step comment, and both `raw/` captures). Nothing in this branch cites `F79`,
+`F84` or `F85` as its own any more; where those ids appear on `main` they mean the Planet
+Hollywood closure, the walking-minute provenance and the Mandalay Bay finding. The numbers in
+my earlier entries on this board are therefore **superseded, not retracted**: the findings are
+unchanged, only the register ids moved.
+
+That is now the second collision of this kind in one session, so it is worth stating the rule
+plainly for the next session: **pick a flag id from the merged file at commit time, not at
+claim time.** `scripts/data_source.py` appends flags in one region, so two branches that both
+take `max+1` will collide on the *same line*, and the id you wrote in your COORDINATION claim
+is already stale by the time anyone else reads it. `tests/test_label_integrity_2026-11-17.py`
+turns a silent overwrite into a build failure, which is the only reason this was caught twice
+instead of published once.
+
+**Merge method used both times:** take `main`'s side for `site/data.json`, `site/sheets.html`
+and `site/coverage.json`, hand-resolve only the source modules (`data_source.py`,
+`data_hotels.py`, `trip_cost.py`) and `COORDINATION.md`, then re-run
+`scripts/data_source.py` + `scripts/build_addendum.py` + `scripts/coverage.py`. Derived files
+are never hand-merged, so the tree can always be reproduced from the modules.
+
+**Suite at the merge point:** 152 tests OK; `verify_site` (341 events, 8 hotels, 56 routes,
+43 sources, **82 flags**, 7 plan days, 16 pages); entry-label integrity passed;
+`audit_951cd431` 0 failures / 0 warnings; `verify_live_official` line-by-line match;
+`audit_data` passed; `data.json` reproducible (`git diff --exit-code` clean after regeneration).

@@ -21,6 +21,11 @@ jobs:
         run: |
           python3 scripts/verify_live_official.py
           python3 scripts/audit_data.py
+      - name: Confirm no label claims more than the source text under it
+        # F75, F76 and F86 were all the same defect: a row's status reading stronger than the
+        # excerpt quoted beneath it. This check compares each label with its own text and with
+        # the official capture that text came from, and fails when a total moves silently.
+        run: python3 scripts/verify_entry_labels.py
       - name: Validate the canonical dashboard
         run: |
           python3 tests/canonical_smoke.py
