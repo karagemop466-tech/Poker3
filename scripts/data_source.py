@@ -713,6 +713,14 @@ FLAGS = [
                  "nothing here converts them into one: they are recorded so a reader can see that part of the window "
                  "does have published figures."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"),
+    dict(id="F65", area="Hotels", severity="Low",
+         title="Printed Venetian tax for the 23-30 Nov quote is $0.02 above 13.38% of its pre-tax subtotal",
+         detail=("Dated official booking-engine read on 2026-11-17 (2 adults, 23-30 Nov 2026, 7 nights): the printed "
+                 "nightly rates total $3,152.25, the printed resort fees total $385.00, the pre-tax subtotal is $3,537.25, "
+                 "and the printed tax is $473.30. 13.38% of $3,537.25 is $473.28. The page does not explain the $0.02 "
+                 "difference. The record keeps the printed $473.30 and the printed $4,010.55 total, and does not adjust "
+                 "either figure. Per-night true costs are derived as (rate + $55) x 1.1338 and sum to the printed total."),
+         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar"),
     dict(id="F32", area="Walking routes", severity="Medium",
          title="The 30-minute walking check does not cover every hotel–venue pair",
          detail=("The current 14 route rows cover routes from the recommended Venetian resort hotel to the listed poker rooms, plus selected on-site pairs. The requested full hotel-by-venue matrix would contain 56 pairs (8 hotel records × 7 venue records); the remaining pairs have no checked walking time here and are not assumed to meet the 30-minute limit. The existing schedule filter applies only to the recommended Venetian resort route estimates. Check the official property addresses and each Google/Apple walking route before comparing other hotel choices."),
