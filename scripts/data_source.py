@@ -1122,6 +1122,27 @@ FLAGS = [
                  "was renumbered twice as other sessions published their own flags on main while this branch was open, and "
                  "is now F81; flag ids are kept unique across the whole repository, not per session."),
          source="https://bellagio.mgmresorts.com/book-room?property=bellagio&resort=66964e2b-2550-4476-84c3-1a4c0c5c067f"),
+    dict(id="F82", area="Venetian series pages", severity="Low",
+         title="The DeepStack landing page still labels the ended WPT Fall Festival as the Current Series",
+         detail=("The official DeepStack Poker Series landing page was re-read on 2026-11-17 (session arena-1bbee97f), two days "
+                 "after the festival's printed end date, and still heads its list with 'Current Series: WPT Fall Festival, "
+                 "October 28 - November 15, 2026', while DeepStack Extravaganza IV (November 16 - December 23, 2026) is "
+                 "labelled 'Next Series'. The series dates themselves agree with the DSE IV schedule page and the series is "
+                 "live, so only the current/next label is stale. No published value depends on the label; recorded for manual "
+                 "review so a reader does not conclude DSE IV has not started. Renumbered twice as other sessions published "
+                 "F81 first: flag ids are kept unique across the whole repository."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html"),
+    dict(id="F83", area="Wynn", severity="Medium",
+         title="Whether the Wynn daily slate runs on November 27-29 is not stated by any official page",
+         detail=("The official Wynn poker page says the daily tournament slate 'runs twice a day during non-event timeframes' "
+                 "and that 'the Daily Tournament schedule will be suspended during each Wynn Signature, Wynn Millions, and "
+                 "Classic tournament series'. The WPT World Championship (November 27 - December 21, 2026) is a series that "
+                 "starts on day 5 of the trip window, but it is not named in the suspension note and no official page states "
+                 "whether the daily $200/$240 events run alongside it. Re-read 2026-11-17 (session arena-1bbee97f); the wording "
+                 "was unchanged. Until the room confirms it, the day plan's Wynn daily rows for November 27-29 are conditional "
+                 "and should not be counted on: the Venetian DSE IV events and the WPT $600/$800 flights are the verified "
+                 "options on those days."),
+         source="https://www.wynnlasvegas.com/casino/poker"),
 
 ]
 
