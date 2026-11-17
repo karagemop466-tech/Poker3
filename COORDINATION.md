@@ -905,3 +905,16 @@ reproducible `scripts/data_source.py` rebuild with no diff.
 - No date-specific hotel total exists for the fixed Nov 25–Dec 2 stay; the only stored checkout quote is the Nov 17–19 sample. Compare same dates, occupancy, checkout total, nightly average, resort fee/tax, parking and cancellation terms before booking.
 - The 15 Venetian NYE structure sheets and full WPT structure terms remain unread in the canonical evidence snapshot; their rows stay unverified/separate. Schedule, finish-time and room-confirmation limitations remain on the Flagged page.
 - Fresh venue-host HTTP checks were not possible in this sandbox. The daily workflow will establish/refresh source hashes and morning schedule snapshots when it runs on GitHub Actions; until that first successful run, the page correctly says no automated check file exists.
+
+---
+
+## Session `arena/c2b95024-poker3` — trip-window re-verification against live official sources (2026-11-17 UTC)
+
+Branch: `arena/c2b95024-poker3` (platform-bound; the `session-<id>/<task>` naming cannot be applied). Base: `main` at `2649b47`. Open PRs #39 (`arena/d81a0934-poker3`) and #40 (`arena/b2a8d36b-poker3`) belong to other sessions and are not edited here.
+
+| Task | Status | Owner | Scope (files) | Notes |
+|---|---|---|---|---|
+| C1 Re-read the official DSE IV schedule rows and structure sheets behind the trip-window primary and fallback picks (Nov 25 – Dec 2, 2026) | claimed 2026-11-17 | arena/c2b95024-poker3 | `COORDINATION.md`, flag/data files only if a value is wrong | Live fetch of the official pages, not the earlier snapshot. |
+| C2 Check the scheduled re-check and morning feed | claimed 2026-11-17 | arena/c2b95024-poker3 | `COORDINATION.md` | `checks.yml` cron is 12:13 UTC; at claim time (00:50 UTC) no scheduled run had yet been due. |
+| C3 Hotel rate for the exact trip dates from the official booking engine | claimed 2026-11-17 | arena/c2b95024-poker3 | `COORDINATION.md` | Previous sessions found none published. Re-tried once. |
+| C4 Integration: PR to `main`, merge, Pages check, record result | pending | arena/c2b95024-poker3 | `COORDINATION.md` | Merge only after the checks pass. |
