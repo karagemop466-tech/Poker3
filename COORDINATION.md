@@ -2709,7 +2709,6 @@ Branch: `arena/8689ef6e-poker3` (platform-bound; the `session-<id>/<task>` namin
 - **Force-push of this session's own branch.** The branch was pushed as `28ee9bd` before the rebase onto `main` (`c86803a`). The rebase replaced that commit with `a8c2c78`. Only this session's commits were replaced; no one else's commit was on the remote branch. The push uses `--force-with-lease` pinned to `28ee9bd`, so it cannot overwrite anything that is not that commit.
 - **CI `verify` failure on PR #92 and fix.** The job failed at `scripts/verify_live_official.py` (`KeyError: 'nightOne'`). Step 7 of that script read only the two-night quote shape; the seven-night 23-30 Nov quote stores its nights as a `nightly` list with one `resortFeePerNight`. The script now reads both shapes and reconciles the seven-night total to the printed $4,010.55. Every other `verify.yml` step was reproduced locally and passes. The GitHub log could not be downloaded from the sandbox, so the failing step was identified by running each step in turn.
 
-<<<<<<< HEAD
 ### V2 (same session, after the live-site check): the root URL was serving 2026-11-16 templates
 
 Found while checking the deployment, not while reading data. The canonical dashboard at **/Poker3/site/** is current:
@@ -3081,7 +3080,7 @@ kept. A per-session file under `handoff/<session>/` would remove this entirely; 
 `COORDINATION.md`. Keep it as a short index of session ids and task rows, and put each session's narrative in
 `handoff/<session-id>/log.md`. That makes every branch's changes disjoint and leaves the shared file small enough that a
 conflict is visible rather than routine.
-=======
+
 ---
 
 ## Session `arena/57416062-poker3` — claim: Wynn WPT structure read + integration (2026-11-17 UTC)
