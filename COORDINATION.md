@@ -3110,3 +3110,19 @@ Branch: `arena/da83eca8-poker3` (platform-bound; the `session-<id>/<task>` namin
 - **Pages:** API reports `status: built`, source `main` `/`, https://karagemop466-tech.github.io/Poker3/ . The canonical dashboard serves the coverage matrix, the dated 23-30 Nov Venetian quote ($4,010.55 all-in) and the 72-flag register.
 - **Changes merged:** `scripts/coverage.py` + `site/coverage.json` (brief-coverage traceability matrix: 25 items, 21 shipped / 3 partial / 1 not-resolvable), `README.md` (coverage section), `COORDINATION.md` (this session's claim + result records). All other shared outputs (`site/**`, `scripts/**`, tests, workflows) unchanged from the verified `main` state.
 - **Open items (do not block merge; published on site/flagged.html):** F31 (no one-entry-per-player cap → strict-entry filter returns 0), F17 (no official 8 AM start), F16 (no published finish times), F32 (walking times are Google Maps estimates; not all pairs), F39 (room-tax % unpublished at Wynn/Caesars/Horseshoe), F56 (Wynn Signature structures unpublished), F15/F36/F57 (no date-specific hotel quotes for non-Venetian / trip dates).
+
+---
+
+## Session `arena/d3a4c0f8-poker3` — Strip room census, Google Maps walk captures, morning-feed coverage (2026-11-17 UTC)
+
+Branch: `arena/d3a4c0f8-poker3` (platform-bound; the `session-<id>/<task>` naming cannot be applied). Fast-forwarded to `origin/main` @ `6a40bca` (PR #109) before any edit. Open PRs from other sessions at claim time: #108 (`arena/57416062-poker3`, WPT structure quotes) and #99 (`arena/8689ef6e-poker3`, docs). This session does not edit their files; the shared `site/data.json` is regenerated here and any conflict is resolved on rebase, with both sides kept.
+
+### Claim (recorded before any data edit, 2026-11-17 UTC)
+
+| Task | Status | Owner session | Files in scope | Notes |
+|---|---|---|---|---|
+| E1 Strip poker room census and closures | in progress | arena/d3a4c0f8-poker3 | `scripts/data_source.py` (`STRIP_ROOMS`, `FEED_ROOMS`), `site/data.json`, `site/venues.html`, `site/assets/app.js` (`renderStripRooms` only) | Resorts World and Planet Hollywood closures; Mandalay Bay added as a status row and to the morning feed. |
+| E2 Google Maps walking captures (walking mode) hotel → Venetian poker room | in progress | arena/d3a4c0f8-poker3 | `raw/google_maps_walk_2026-11-17.json` (new), `scripts/data_hotels.py` (`ROUTES` hotel → venetian rows), `tests/test_walk_captures_2026_11_17.py` (new) | All 8 hotels read on 2026-11-17; driving control read for one pair. Other venue pairs stay estimates. |
+| E3 Flags and answers that cite the above | in progress | arena/d3a4c0f8-poker3 | `scripts/data_source.py` (`FLAGS`, `QUESTIONS` Q08/Q09 text), `site/venues.html` static text | New flags F77+ only; no existing flag id is renumbered. |
+| E4 Verification, PR → `main`, merge, Pages confirmation, record here | pending | arena/d3a4c0f8-poker3 | whole repo, this section | Flagged items do not block merge; they ship on `site/flagged.html`. |
+
