@@ -207,6 +207,57 @@ def main() -> int:
         if printed and not c["guarantee"]:
             problems.append(f"event {h['event']} {h['date']}: name prints a guarantee but canonical has none")
 
+    # 6. The hotel and recurring-room values that the 2026-11-17 excerpts support.
+    #    See raw/official_excerpts_2026-11-17.md for the verbatim official text behind each one.
+    hotels = {h["id"]: h for h in json.loads(DATA.read_text())["hotels"]}
+    ven = hotels.get("venetian", {})
+    for field, expected in (("baseRateFloor", 119), ("baseRateCeiling", 209), ("resortFee", 55)):
+        if ven.get(field) != expected:
+            problems.append(f"hotel venetian: {field} is {ven.get(field)!r}, the suite-rates page prints {expected}")
+    qual = (ven.get("qualification") or "").lower()
+    for token in ("six hours", "$300", "2 a.m.", "epokr25"):
+        if token not in qual:
+            problems.append(f"hotel venetian: qualification is missing '{token}' printed on the suite-rates page")
+    pal = hotels.get("palazzo", {})
+    if pal.get("resortFee") != 55 or pal.get("baseRateFloor") != 119:
+        problems.append("hotel palazzo: the suite-rates page covers The Palazzo at the same $119/$209 and $55")
+
+    # The four recurring Wynn rows, against the daily poster.
+    expected_wynn = {
+        "200/10000/12:00 PM": "$200 No Limit Hold'em Mon-Thu, $10,000 guarantee, 12 p.m.",
+        "240/40000/12:00 PM": "$240 No Limit Hold'em Rebuy Fri, $40,000 guarantee, 12 p.m.",
+        "200/25000/12:00 PM": "$200 No Limit Hold'em Sat-Sun, $25,000 guarantee, 12 p.m.",
+        "160/10000/6:00 PM": "$160 No Limit Hold'em nightly, $10,000 guarantee, 6 p.m.",
+    }
+    seen = set()
+    for e in json.loads(DATA.read_text())["events"]:
+        if e.get("venue") != "wynn" or e.get("date") or not e.get("weekdays"):
+            continue
+        key = f"{e.get('buyIn')}/{e.get('guarantee')}/{e.get('time')}"
+        if key in expected_wynn:
+            seen.add(key)
+        else:
+            problems.append(
+                f"recurring Wynn row {e['id']}: {key} is not one of the four rows printed on the daily poster")
+    for key, label in expected_wynn.items():
+        if key not in seen:
+            problems.append(f"recurring Wynn row missing from the data: {label}")
+    print(f"Recurring Wynn rows matched against the daily poster: {len(seen)} of {len(expected_wynn)}")
+
+    # 7. Every dated official quote must reconcile with (rate + resort fee) x (1 + tax rate).
+    for h in json.loads(DATA.read_text())["hotels"]:
+        for q in h.get("quotes") or ([] if not h.get("quote") else [h["quote"]]):
+            nights = [q["nightOne"], q["nightTwo"]]
+            derived = round(sum((n["rate"] + n["resortFee"]) * 1.1338 for n in nights), 2)
+            printed = round(q["total"], 2)
+            if abs(derived - printed) > 0.02:
+                problems.append(
+                    f"quote {q['checkIn']}->{q['checkOut']} ({q['property']}): derived {derived} != printed {printed}")
+            if q.get("derivedTotal") and abs(q["derivedTotal"] - printed) > 0.02:
+                problems.append(
+                    f"quote {q['checkIn']}->{q['checkOut']}: stored derivedTotal {q['derivedTotal']} != printed {printed}")
+    print("Dated official quotes reconciled against (rate + resort fee) x 1.1338")
+
     if problems:
         print(f"\nFAILED - {len(problems)} mismatch(es):")
         for p in problems:
