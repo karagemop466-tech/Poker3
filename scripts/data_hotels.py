@@ -225,7 +225,7 @@ RATE_LOG = [
     dict(hotel="venetian", observedOn="2026-11-16", baseRate="",
          publishedStartingRates="824.25 and 164.25 per night for Nov. 17-19, 2026",
          resortFee="55.00 per night", tax="146.98 printed",
-         trueNightlyLow="996.91", trueNightlyHigh="248.61",
+         trueNightlyLow="248.61", trueNightlyHigh="996.91",
          quoteType="Dated official checkout total (2 adults, 2 nights)",
          note=("The official booking engine printed $824.25 + $55 and $164.25 + $55, taxes $146.98 and a total of "
                "$1,245.48 for a 650 sq ft Newly Remodeled Luxury King suite. Derived nightly figures are "
