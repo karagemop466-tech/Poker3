@@ -214,6 +214,20 @@ def select_cutoff(start_min, late_text):
     after = [t for t in times if t > start_min]
     return min(after) if after else None
 
+# DeepStack Extravaganza IV rows whose late-registration cut-off is published as a
+# clock time on the official series schedule PDF but not on their structure sheet.
+#
+# The series PDF is the only official place that prints REG CLOSES as a clock time,
+# and it prints one per row. Sheet 25 ($260 Turbo Milestone Satellite) covers three
+# rows that start at three different times, and the sheet itself says only "6 levels",
+# so a single sheet-level value cannot carry the printed cut-off for all three.
+# These are the values printed in the REG CLOSES column, applied per row.
+DSE_REG_CLOSES = {
+    ("2026-12-11", "45"): "6 levels (REG CLOSES 9:55 PM)",
+    ("2026-12-12", "46"): "6 levels (REG CLOSES 10:55 AM)",
+    ("2026-12-12", "48"): "6 levels (REG CLOSES 1:55 PM)",
+}
+
 
 def session_estimate(start_min, late_text, level_min):
     """Estimate a session length from printed data only.
@@ -395,8 +409,11 @@ FLAGS = [
          title="The official WPT schedule PDF labels December 18 as both a Wednesday and a Friday",
          detail=("In the same PDF, 'Dec. 18 Wednesday' carries the No Limit Hold'em Day 1A and PLO rows while 'Dec. 18 Friday' "
                  "carries the WPT World Championship Day 4 rows. The rows also run out of order, with the December 17 block "
-                 "printed after the December 18 Wednesday block. December 18, 2026 is a Friday, so the 'Wednesday' label is the "
-                 "error. The schedule dates are reproduced exactly as printed and the weekday label is flagged rather than corrected."),
+                 "printed after the December 18 Wednesday block, and no December 16 block appears anywhere in the PDF. "
+                 "December 18, 2026 is a Friday. Flag F61 sets out the official evidence that the day number, not the weekday, "
+                 "is the misprint and that these eight rows are very likely December 16. The schedule dates are reproduced "
+                 "exactly as printed and the dispute is flagged rather than corrected, because the site does not silently "
+                 "re-date a row on an inference."),
          source="https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"),
     dict(id="F02", area="Bellagio", severity="High",
          title="Bellagio Saturday buy-in is printed three different ways on official sources",
@@ -638,6 +655,55 @@ FLAGS = [
          title="The structure sheets do not confirm a one-entry-per-player maximum",
          detail=("The 52 Venetian rows classified as 'single entry on the sheet' have one printed buy-in and no re-entry, rebuy, add-on or second-flight provision in the reviewed sheet. However, the sheets do not state a maximum number of entries per player and do not explicitly call the event a freezeout. This is only a document-level screen, not written confirmation of the room's one-entry policy. Do not treat these candidates as strictly eligible or book around them until the venue confirms the maximum-entry, no-rebuy and no-add-on rules in writing. The source excerpt and date are attached to each row."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
+    dict(id="F61", area="Wynn WPT schedule", severity="High",
+         title="Eight WPT rows are probably two days late: the 'Dec. 18 Wednesday' block is very likely December 16",
+         detail=("The official WPT schedule PDF prints one block labelled 'Dec. 18 Wednesday' and a second labelled "
+                 "'Dec. 18 Friday' holding different events, and it prints no December 16 block at all. Four pieces of "
+                 "official evidence say the Wednesday block is December 16. (1) It sits between the December 15 Tuesday "
+                 "block and the December 17 Thursday block in print order, exactly where December 16 belongs. "
+                 "(2) December 16, 2026 is a Wednesday, which is the weekday the block prints. (3) It carries WPT World "
+                 "Championship Day 2, and that event's Day 1C is printed on December 15 while its Day 3 is printed on "
+                 "December 17, so Day 2 has to fall between them. (4) The $1,100 No Limit Hold'em whose Day 1A and Day 1B "
+                 "appear in the block has its 'No Limit Hold'em Day 2' printed inside the December 17 block. The day "
+                 "number therefore looks like the misprint, not the weekday. The site keeps the date exactly as printed, "
+                 "because re-dating a row on an inference is exactly what this project promises not to do, so these eight "
+                 "rows remain dated 2026-12-18: that collides them with the genuine December 18 rows and leaves "
+                 "2026-12-16 empty. Confirm against the room's own published calendar before planning around any of them. "
+                 "Flag F01 recorded the PDF's self-contradiction and concluded the weekday was the error; this flag "
+                 "records the evidence that reverses that conclusion, and F01 has been amended to point here."),
+         source="https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"),
+    dict(id="F62", area="Wynn WPT schedule", severity="Low",
+         title="Four WPT event names read differently from the printed text",
+         detail=("The schedule PDF prints 'NIH Turbo', 'NIH $500 Bounty Turbo' and 'Milestone Satellite to $25K NIH High "
+                 "Roller', and it prints 'Double Play Milestone Satellite1' with a trailing digit. The published rows read "
+                 "'NLH Turbo', 'NLH $500 Bounty Turbo', 'Milestone Satellite to $25K NLH High Roller' and 'Double Play "
+                 "Milestone Satellite'. NIH is almost certainly the PDF's own rendering of NLH, but NIH is what is "
+                 "printed, so this is a normalisation rather than a transcription and it is recorded as one. Every other "
+                 "cell on those four rows - date, start time, buy-in, guarantee, chips and level length - was re-checked "
+                 "against the PDF on 2026-11-17 and agrees."),
+         source="https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"),
+    dict(id="F63", area="Venetian DSE IV", severity="Low",
+         title="Day 2 restart rows carry values that their own schedule row leaves blank",
+         detail=("The official DeepStack Extravaganza IV series schedule PDF prints an empty GUARANTEE, CHIPS, LEVEL and "
+                 "REG CLOSES cell for every Day 2 restart row, because those rows continue an event whose Day 1 row "
+                 "already printed them. The published restart rows fill those cells with the values printed on that "
+                 "event's own structure sheet, so the figures are official but they come from the sheet, not from the "
+                 "restart row. A line-by-line re-check of all 94 rows against the PDF on 2026-11-17 found 43 such cells, "
+                 "all on Day 2 restart rows, and no other disagreement anywhere in the series."),
+         source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf"),
+    dict(id="F64", area="Hotels", severity="Low",
+         title="Two different official booking requests gave two different answers for the trip window",
+         detail=("Asking the official Venetian booking engine for the trip window itself (arrival 2026-11-25, departure "
+                 "2026-12-02) returns $XXX in every cell, so no checkout total exists for those nights. Asking the same "
+                 "engine for a calendar view (arrival 2026-11-17) prints per-night cells for 17-30 November, including "
+                 "$185 on 25 November, $190 on 26 November, $210 on 27 November, $905 on 28 November, $340 on "
+                 "29 November and $165 on 30 November, and the calendar states those cells include the daily resort fee "
+                 "and exclude taxes. A note carried by an earlier build of this site said the trip window published no "
+                 "price at all, which those cells contradict; a later live re-read rewrote that note, and this flag keeps "
+                 "the two requests distinct so the claim cannot return. The calendar cells are still not a quote, and "
+                 "nothing here converts them into one: they are recorded so a reader can see that part of the window "
+                 "does have published figures."),
+         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"),
     dict(id="F32", area="Walking routes", severity="Medium",
          title="The 30-minute walking check does not cover every hotel–venue pair",
          detail=("The current 14 route rows cover routes from the recommended Venetian resort hotel to the listed poker rooms, plus selected on-site pairs. The requested full hotel-by-venue matrix would contain 56 pairs (8 hotel records × 7 venue records); the remaining pairs have no checked walking time here and are not assumed to meet the 30-minute limit. The existing schedule filter applies only to the recommended Venetian resort route estimates. Check the official property addresses and each Google/Apple walking route before comparing other hotel choices."),
@@ -889,7 +955,7 @@ QUESTIONS = [
          how="Give a maximum true cost per night and the minimum standard you accept, then re-run the comparison with the published rate floors.",
          source="https://www.wynnlasvegas.com/rooms-and-suites"),
     dict(id="Q04", question="Is one total entry per player actually required, or only one entry per event?",
-         answer="For 45 Venetian one-day candidates, the official sheets print one buy-in and no re-entry, rebuy, add-on or second-flight clause. They do not state a maximum number of entries per player or explicitly say 'single entry' or 'freezeout'. The site therefore calls these sheet-screened candidates only; written confirmation from the venue is still needed before treating them as eligible. Wynn, Bellagio, MGM Grand and Caesars rows with printed re-entry, rebuy or add-on clauses are isolated in the separate extra-spend section.",
+         answer="For 52 Venetian one-day candidates, the official sheets print one buy-in and no re-entry, rebuy, add-on or second-flight clause. They do not state a maximum number of entries per player or explicitly say 'single entry' or 'freezeout'. The site therefore calls these sheet-screened candidates only; written confirmation from the venue is still needed before treating them as eligible. Wynn, Bellagio, MGM Grand and Caesars rows with printed re-entry, rebuy or add-on clauses are isolated in the separate extra-spend section.",
          why="Needed", blocking="Yes - the maximum-entry policy is not published in the reviewed sheets",
          how="Ask the poker room to confirm in writing that a second buy-in is not accepted for a specific event if that matters for your decision.",
          source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf"),
@@ -1602,7 +1668,8 @@ def build():
                             else guarantee_note
                             or ("includes bounties" if ("bounties" in s["guarantee"] or "Bounty" in name
                                                        or "PKO" in name or "Knock-Out" in name) else "")),
-            chips=s.get("chips", ""), level_min=s.get("levelMin", ""), late_reg=s.get("late", ""),
+            chips=s.get("chips", ""), level_min=s.get("levelMin", ""),
+            late_reg=DSE_REG_CLOSES.get((date, no), s.get("late", "")),
             entry_type=s["entry"], continuation=cont,
         ))
 

@@ -70,6 +70,16 @@ WYNN_DAILY = [
 # ------------------------------------------------------- Wynn WPT Championship
 # Rows exactly as printed on the official schedule PDF, including the December 18
 # weekday conflict (the PDF labels two different days "Dec. 18").
+# Transcript of the official WPT World Championship schedule PDF: one line per
+# printed row, fields  date | start | event | buy-in | guarantee | chips | levels | marks.
+# '-' means the official cell is empty.
+#
+# Re-checked line by line against raw/wynn_wpt_world_championship_schedule.md on
+# 2026-11-17 by scripts/verify_wpt_full.py, which reports 136/136 rows matched and
+# names every difference. Seven guarantee cells were corrected in that pass: a
+# satellite's seat guarantee had been carried onto the non-satellite rows that share
+# its date and start time (rows 59, 60, 76, 116, 117 of this block), and two
+# satellites had lost the seat guarantee the PDF prints on their own row (rows 84, 96).
 WYNN_WPT_ROWS = """
 2026-11-27|11:00 AM|No Limit Hold'em Day 1A|600|400000|40000|30/40
 2026-11-27|12:00 PM|TORSE|600|-|35000|30
@@ -130,8 +140,8 @@ WYNN_WPT_ROWS = """
 2026-12-11|6:00 PM|Super Gold Million Mystery Bounty Day 1D|400|3000000|30000|20/40
 2026-12-12|10:00 AM|No Limit Hold'em|800|100000|30000|30
 2026-12-12|1:00 PM|PLO|3000|250000|30000|30
-2026-12-12|2:00 PM|WPT Prime Championship Final Table|-|75 Seats|-|-|**
-2026-12-12|2:00 PM|Super Gold Million Mystery Bounty Day 2|-|75 Seats|-|-|**
+2026-12-12|2:00 PM|WPT Prime Championship Final Table|-|-|-|-|**
+2026-12-12|2:00 PM|Super Gold Million Mystery Bounty Day 2|-|-|-|-|**
 2026-12-12|2:00 PM|Milestone Satellite to $10,400 World Championship 1A/8|1100|75 Seats|20000|25|**
 2026-12-12|4:00 PM|Milestone Satellite to $10,400 Ladies NLH Championship|200|10 Seats|20000|20|**
 2026-12-12|7:00 PM|Milestone Satellite to $10,400 World Championship 1A/8|1100|25 Seats|20000|25|**
@@ -147,7 +157,7 @@ WYNN_WPT_ROWS = """
 2026-12-14|11:00 AM|WPT World Championship Day 1B $1,000,000 Added|10400|-|100000|60/90|***
 2026-12-14|11:00 AM|No Limit Hold'em Day 1B|800|500000|40000|40|***
 2026-12-14|12:00 PM|PLO Day 1B|1600|1000000|40000|40|**
-2026-12-14|12:00 PM|Mixed Triple Draw (A-5, 2-7, Badugi) (2 Day)|1100|25 Seats|40000|40|**
+2026-12-14|12:00 PM|Mixed Triple Draw (A-5, 2-7, Badugi) (2 Day)|1100|-|40000|40|**
 2026-12-14|12:00 PM|Milestone Satellite to $10,400 World Championship 1C|1100|25 Seats|20000|25|**
 2026-12-14|2:00 PM|Super Gold Million Mystery Bounty Final Table|-|-|-|-
 2026-12-14|6:00 PM|Milestone Satellite to $10,400 World Championship 1C|1100|25 Seats|20000|25|**
@@ -155,7 +165,7 @@ WYNN_WPT_ROWS = """
 2026-12-14|9:00 PM|NLH Turbo|600|50000|30000|20
 2026-12-15|11:00 AM|WPT World Championship Day 1C $1,000,000 Added|10400|-|100000|60/90|***
 2026-12-15|11:00 AM|No Limit Hold'em Day 2|-|-|-|-|***
-2026-12-15|11:00 AM|Milestone Satellite to $10,400 World Championship 1C/Day 2|1100|-|20000|25|***
+2026-12-15|11:00 AM|Milestone Satellite to $10,400 World Championship 1C/Day 2|1100|10 Seats|20000|25|***
 2026-12-15|12:00 PM|PLO Day 2|-|-|-|-
 2026-12-15|12:00 PM|Big O|1100|-|30000|30
 2026-12-15|1:00 PM|PLO Progressive Bounty (PKO)|3000|250000|30000|30
@@ -167,7 +177,7 @@ WYNN_WPT_ROWS = """
 2026-12-18|1:00 PM|PLO 6-Max|10500|-|100000|30/40
 2026-12-18|1:00 PM|HORSE|800|-|35000|30
 2026-12-18|6:00 PM|Milestone Satellite to $25K NLH High Roller|3000|-|20000|25
-2026-12-18|6:00 PM|Milestone Satellite to $3,000 NLH|400|-|20000|20
+2026-12-18|6:00 PM|Milestone Satellite to $3,000 NLH|400|25 Seats|20000|20
 2026-12-18|7:00 PM|No Limit Hold'em Day 1B|1100|1000000|40000|20/40
 2026-12-17|11:00 AM|Seniors NLH Championship (3 Day)|1100|500000|40000|40
 2026-12-17|11:00 AM|Wynn Mixed Championship (2 Day)|1600|-|40000|40/60
@@ -187,8 +197,8 @@ WYNN_WPT_ROWS = """
 2026-12-18|6:00 PM|NLH Turbo|1100|100000|30000|20
 2026-12-19|11:00 AM|Seniors High Roller (3 Day)|5000|250000|50000|60
 2026-12-19|11:00 AM|NLH Mystery Bounty Day 1A|1600|1000000|40000|40
-2026-12-19|12:00 PM|WPT World Championship Day 5|-|10 Seats|-|-|**
-2026-12-19|12:00 PM|No Limit Hold'em Day 2|-|10 Seats|-|-|**
+2026-12-19|12:00 PM|WPT World Championship Day 5|-|-|-|-|**
+2026-12-19|12:00 PM|No Limit Hold'em Day 2|-|-|-|-|**
 2026-12-19|12:00 PM|Milestone Satellite to $1,600 Mystery Bounty|300|10 Seats|20000|20|**
 2026-12-19|1:00 PM|PLO|10500|-|100000|30/40
 2026-12-19|1:00 PM|NLH 6-Max|3000|500000|30000|30

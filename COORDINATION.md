@@ -2158,3 +2158,144 @@ the new text and the absence of the old, so it cannot silently drift back.
 PRs **#7, #27 and #31 are deliberately left open.** #27 and #31 each replace the canonical
 `site/data.json`, so merging either without its session present would discard the other's work. That is a
 decision for an integration session with both authors available, not something to force here.
+## Session `arena/6118f42d-poker3` — line-by-line review pass and integration (2026-11-17 UTC)
+
+Branch: `arena/6118f42d-poker3`, branched from `main` at `7e0aef4`. The platform binds each session to one branch, so
+the `session-<id>/<task>` naming in the brief cannot be used here; this session works only on this branch and opens a
+PR from it.
+
+**Claim recorded before any other file edit in this session.**
+
+| Task | Status | Owner | Scope (files) | Notes |
+|---|---|---|---|---|
+| C1 Line-by-line review of the canonical `site/` data against the recorded official evidence | in progress | arena/6118f42d-poker3 | `site/data.json`, `site/data/*.json`, `raw/**`, `research/**` | No venue host is reachable from this sandbox; verification is against the recorded official copies. |
+| C2 Correct defects found by C1 that are inside this session's scope | in progress | arena/6118f42d-poker3 | `site/index.html`, `site/flagged.html` (copy only), `COORDINATION.md` | Data cells are only changed where the recorded official source contradicts them. |
+| C3 Final integration: rebase, PR → `main`, merge, confirm Pages, record | pending | arena/6118f42d-poker3 | `COORDINATION.md` | Requires a clean rebase onto the current `main`. |
+
+**Files this session will NOT edit** (owned by other active sessions, or shared): `site/assets/*`, `site/data.json`,
+`scripts/**`, `.github/workflows/**`, `docs/**`, `verified/**`, `planner/**`, `single-entry/**`, `site/poker3/**`,
+`tests/**`, `README.md`. If C1 finds a defect in one of them, it is recorded here as a flag or a request, not edited.
+
+**Sessions seen active at claim time (2026-11-17 01:14 UTC), with open PRs:** #56 (`arena/13439072-poker3`),
+#55 (`arena/c1655bf5-poker3`), #54 (`arena/196dc009-poker3`), #50 (`arena/cf53e83c-poker3`),
+#46 (`arena/741b3a8e-poker3`), plus the longer-held #39, #31, #27 and #7. This session does not edit any of their
+branches and does not merge them.
+
+---
+
+## Session `arena/6118f42d-poker3` — line-by-line review pass, integration and merge (2026-11-17 UTC)
+
+Branch: `arena/6118f42d-poker3`, branched from `main` at `7e0aef4`. The platform binds each session to one branch, so
+the `session-<id>/<task>` naming in the brief cannot be used; this session worked only on this branch and merged from it.
+
+| Task | Status | Owner | Scope (files) | Notes |
+|---|---|---|---|---|
+| C1 Line-by-line review of the canonical `site/` data against the recorded official evidence | done | arena/6118f42d-poker3 | `scripts/verify_dse_full.py`, `scripts/verify_wpt_full.py` (new) | Two new read-only verifiers; no value is edited by either. |
+| C2 Correct the defects C1 found | done | arena/6118f42d-poker3 | `scripts/data_venues.py`, `scripts/data_source.py` | Seven WPT guarantee cells and three Venetian cut-offs. |
+| C3 Publish the findings and correct wording the sources contradict | done | arena/6118f42d-poker3 | `scripts/data_source.py`, `.github/workflows/transcription-check.yml` | Flags F61-F64. |
+| C4 Final integration: rebase, PR → `main`, merge, confirm Pages, record | done | arena/6118f42d-poker3 | `COORDINATION.md` | Recorded below. |
+
+### What the two new verifiers do
+
+Neither edits anything. Both read the verbatim official tables recorded under `raw/` and compare them, cell by cell,
+with the published `site/data.json`. Neither needs network access, so both run in the sandbox and in CI.
+
+- **`scripts/verify_dse_full.py`** — all **94** DeepStack Extravaganza IV rows (2026-11-16 → 2026-12-23), where the
+  existing `scripts/verify_transcription.py` covers the 44 rows inside the trip window. The PDF prints each day in a
+  merged cell, so the fetched markdown repeats a sponsor banner on rows that carry no date; the script resolves the
+  dates from row order and start-time sequence and **asserts that every printed day label is reproduced**, so a wrong
+  segmentation cannot pass silently. It also reports, rather than guesses, any row it cannot date.
+- **`scripts/verify_wpt_full.py`** — all **136** WPT World Championship rows, matched one-to-one on date + clock time
+  with the event name as tiebreaker (several events share a start time on that schedule). It also checks each printed
+  weekday against the calendar, which is how the Dec 18 conflict below surfaced.
+
+Both are wired into a new workflow, `.github/workflows/transcription-check.yml`, which runs on every push and pull
+request. It writes nothing and commits nothing, so it cannot race the scheduled committer in `checks.yml`.
+
+**Result after the fixes: 94/94 DSE IV rows and 136/136 WPT rows agree with the official tables, with zero value
+mismatches and zero unaccounted published rows.** Both scripts exit non-zero on any mismatch.
+
+### Defects found and corrected
+
+1. **Seven WPT guarantee cells (`scripts/data_venues.py`).** A satellite's seat guarantee had been carried onto the
+   non-satellite rows that share its date and start time, and two satellites had lost the guarantee printed on their
+   own row. The official table prints the seat guarantee on the Milestone Satellite row only.
+
+   | Row | Change |
+   |---|---|
+   | 2026-12-12 2:00 PM · WPT Prime Championship Final Table | `75 Seats` → blank |
+   | 2026-12-12 2:00 PM · Super Gold Million Mystery Bounty Day 2 | `75 Seats` → blank |
+   | 2026-12-14 12:00 PM · Mixed Triple Draw (A-5, 2-7, Badugi) (2 Day) | `25 Seats` → blank |
+   | 2026-12-15 11:00 AM · Milestone Satellite … 1C/Day 2 | blank → `10 Seats` |
+   | 2026-12-18 6:00 PM · Milestone Satellite to $3,000 NLH | blank → `25 Seats` |
+   | 2026-12-19 12:00 PM · WPT World Championship Day 5 | `10 Seats` → blank |
+   | 2026-12-19 12:00 PM · No Limit Hold'em Day 2 | `10 Seats` → blank |
+
+   Two of these were materially misleading: a final table and a Day 2 were shown as guaranteeing *seats*.
+
+2. **Three Venetian cut-offs (`scripts/data_source.py`).** The three $260 Turbo Milestone Satellites (events 45, 46, 48)
+   share sheet 25, which says only "6 levels", so no clock time reached those rows. The official series PDF prints a
+   REG CLOSES clock time for every row, so a per-row override (`DSE_REG_CLOSES`) now supplies 9:55 PM, 10:55 AM and
+   1:55 PM. The rows are satellites outside the trip window; the effect is on the printed cut-off, not on the plan.
+
+### New flags (F61-F64), each with its official source link
+
+- **F61 (High) — eight WPT rows are probably two days late.** The PDF prints a "Dec. 18 Wednesday" block and a
+  "Dec. 18 Friday" block holding different events, and prints **no December 16 block at all**. Four pieces of official
+  evidence say the Wednesday block is 16 December: it sits between the 15 December and 17 December blocks in print
+  order; 16 December 2026 *is* a Wednesday; it carries WPT World Championship **Day 2**, whose Day 1C is printed on
+  15 December and whose Day 3 is printed on 17 December; and the $1,100 NLH whose Day 1A/1B it carries has its own
+  Day 2 printed inside the 17 December block. The day number, not the weekday, therefore looks like the misprint. The
+  site keeps the printed date — re-dating a row on an inference is what this project promises not to do — so the rows
+  stay on 2026-12-18, which collides them with the real 18 December rows and leaves 16 December empty. **Flag F01
+  recorded the contradiction and reached the opposite conclusion; F01 is amended to point at F61.**
+- **F62 (Low)** — four WPT event names were normalised away from the printed text (`NIH` → `NLH`, and a trailing digit
+  on `Satellite1`); every other cell on those rows agrees with the PDF.
+- **F63 (Low)** — 43 cells on Venetian Day 2 restart rows are filled from the event's own structure sheet, because the
+  series PDF leaves those cells blank on the restart row. The figures are official; the provenance is now stated.
+- **F64 (Low)** — asking the official Venetian booking engine for the trip window returns `$XXX` in every cell, while
+  the calendar view of the same engine *does* print per-night cells for 25-30 November. An earlier note on this site
+  said the window "published no price at all", which those cells contradict; a later live re-read rewrote that note,
+  and this flag keeps the two requests distinct so the claim cannot return.
+
+**Numbering note.** `main` took F42-F45 while this branch was open. Per the convention recorded by session
+`arena/52e02b46-poker3`, the branch that merges second renumbers its own flags, so this session's four became
+**F61-F64** (past the highest ID then on `main`, F60). No ID is reused: the merged build reports 61 flags with no
+duplicates, and `main`'s F43 (Schedule/Caesars), F45 (Sources), F46 and F47 are all still present.
+
+### Conflicts on rebase, and how each was resolved without discarding work
+
+`main` advanced by several merges while this branch was open (PRs #56, #67, #71, #73). Five conflicts:
+
+1. **`COORDINATION.md`** — append against append. Resolved by keeping `main`'s content in full and appending this
+   section after it. Nothing of any other session's record was removed.
+2. **`site/checks.json`** — two `checked` timestamps. Kept the newer one from the scheduled daily job.
+3. **`scripts/data_source.py`** (first conflict) — another session had added `late_cutoff_times()` and
+   `select_cutoff()`, which disambiguate a sheet printing two cut-off times for two start flights; this session had
+   added `DSE_REG_CLOSES`. The two solve different problems, so **both blocks were kept**, not one over the other.
+4. **`site/index.html`, `scripts/data_hotels.py`, `scripts/data_source.py` (later conflicts), `site/data.json`** —
+   other sessions had already corrected the NYE wording and re-read the booking engine live on 2026-11-17 with newer
+   evidence (three dated quotes: $1,245.48, $1,015.89 and $2,504.00). Their side was kept in every case; this session's
+   older wording was dropped rather than overwrite a newer live read.
+
+### Verification run on the merged tree before the pull request
+
+- `scripts/verify_site.py` — passed: 341 events, 8 hotels, 14 routes, 42 sources, 61 flags, 7 plan days, 16 pages.
+- `scripts/verify_dse_full.py` — 94/94 rows, 0 value mismatches, 0 unaccounted.
+- `scripts/verify_wpt_full.py` — 136/136 rows, 0 value mismatches, 0 unaccounted.
+- `scripts/verify_transcription.py` — 44/44 rows match.
+- `tests/canonical_smoke.py` — 11 main pages, 5 detail pages render. `tests/smoke.py` — 8 pages.
+- `python3 -m unittest discover -s tests` — **92 tests, all pass** (this needed `pip install pyyaml`; the sandbox image
+  lacks it, and `tests/test_workflows.py` imports it — a sandbox gap, not a repository defect, and the GitHub runner
+  image ships PyYAML).
+- `python3 scripts/data_source.py` — rebuild is **byte-identical** to the committed `site/data.json`.
+- All five workflow YAML files parse; `site/**/*.html` internal references resolve (the single "broken" hit is a
+  JavaScript template string, not an `href`).
+
+### Requests for a user decision (recorded, not acted on)
+
+- **F61** is the one that needs a human: confirm the eight WPT rows' real date against the room's own calendar before
+  planning around them. The site will not re-date them on an inference.
+- The remaining 42 hotel-venue walking pairs still have no recorded route time (F32). All eight hotels do have a route
+  to the Venetian, which is what the Venetian-based plan needs; the gap only bites if you stay at one property and
+  play at another.
