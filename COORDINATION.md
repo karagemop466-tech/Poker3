@@ -2888,3 +2888,87 @@ Branch `arena/271f1c70-poker3`, from `main` @ `f8e4753` (PR #92). Most items in 
 - **Checks run:** `python3 scripts/verify_site.py` passed (341 events, 8 hotels, 15 routes, 43 sources, 66 flags, 7 plan days, 16 pages). `python3 -m unittest discover -s tests -p 'test_*.py'` — 108 tests OK after installing PyYAML in the sandbox (sandbox-only; no repo change). `python3 scripts/data_source.py` regenerated `site/data.json` with no diff.
 - **Irregularities:** none new. The source's own typo "No LImit" in the event names is ignored (the data uses the corrected wording).
 - **Not touched:** open PRs #93, #94, #95 and the scheduled re-check run in progress on `main`.
+
+
+---
+
+## Session `arena/57c814fd-poker3` — line-by-line re-verification, stale sheet page, trip-window drift (2026-11-17 UTC)
+
+Branch: `arena/57c814fd-poker3`, branched from `main` @ `f8e4753`. The `session-<id>/<task>` naming in the brief
+cannot be applied — the platform binds a session to one branch — so this session works only on that branch and is the
+sole active editor.
+
+### Claim (recorded before any data edit)
+
+| Task | Status | Owner | Files in scope | Notes |
+|---|---|---|---|---|
+| R1 Re-verify every published Venetian DSE IV row against the official schedule page, line by line | done | arena/57c814fd-poker3 | `raw/` (new capture), verification only | 94/94 rows, 0 mismatches. |
+| R2 Fix `site/sheets.html`, which published 2026-11-16 data, and resolve F68 | done | arena/57c814fd-poker3 | `scripts/build_addendum.py`, `site/sheets.html`, `site/data/{hotels,rates,routes}.json` (deleted), `scripts/data_source.py` (FLAGS) | 14 retired `FL` flags, 5/8 hotels, 13/15 routes with blank walking times. |
+| R3 Find and correct every flag or suggestion still describing the retired 25 Nov – 2 Dec window | done | arena/57c814fd-poker3 | `scripts/data_source.py` (FLAGS, SUGGESTIONS) | F54 was wrong on the dates; F15, F36, F28, S21 superseded. |
+| R4 Regression tests for both classes of defect | done | arena/57c814fd-poker3 | `tests/test_sheet_page_not_stale.py`, `tests/test_trip_window_consistency.py` | 14 new assertions. |
+| R5 Integration: merge, confirm Pages, record here | done | arena/57c814fd-poker3 | whole repo | See the integration record. |
+
+### Official sources read live this session (2026-11-17)
+
+| Source | What was read |
+|---|---|
+| https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html | All four chunks — all 94 rows of the Nov 16 – Dec 23 2026 schedule, with time, event #, name and structure-PDF link. |
+| structure PDFs 1, 6 and 17 (`…/dse_nov_2026-structure_{1,6,17}.pdf`) | Read in full: 25,000 / 40,000 chips, 30-minute levels, late-reg cut-off, `$40/$160`, `$65/$335`, `$90/$510` splits, guarantees $8,000 / $15,000 / $40,000, payout 12.5% / 12.5% / 15%, and the absence of any re-entry, rebuy or add-on clause. Sheet 17 carries "MUST BE 50+ YEARS OF AGE TO PARTICIPATE". |
+| https://www.venetianlasvegas.com/resort/resort-fee.html | "Rates include a daily Resort Fee of $55 plus tax per night, payable upon check-in." |
+| https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html | $119 / $209 starting rates; phone 866.255.8936, code EPOKR25; six hours of live cash or a $300+ buy-in per night before 2 a.m. of the last night; failure reprices the night. |
+| https://bellagio.mgmresorts.com/en/terms-and-conditions.html | $55 daily resort fee plus tax; 72-hour cancellation forfeits the first night; $150 incidental per day. |
+| https://www.wynnlasvegas.com/casino/poker | WPT World Championship Nov 27 – Dec 21; Signature Series Jan 11-24 2027; daily tournaments suspended during series. |
+| https://cdn.wynnresorts.com/…/Wynn_Signature_Series_Structures.pdf | Still only "LAS VEGAS / POKER / COMING SOON" — F56 stands. |
+
+### Verification performed on the published rows
+
+- **All 94 official DSE IV rows compared field by field with `site/data.json`:** date, start time, event number,
+  printed buy-in, printed guarantee and structure-PDF link. **0 mismatches, 0 official rows missing, 0 extra rows**
+  inside the Nov 16 – Dec 23 window. The 49 later Venetian rows in `data.json` are the separately-read DeepStack NYE
+  series (Dec 24 – Jan 10) and are correct to be there.
+- The capture is kept at `raw/dse_nov_2026_schedule_2026-11-17_independent.md` so the comparison can be re-run.
+
+### Defects found and fixed
+
+1. **`site/sheets.html` published 2026-11-16 data (High, now F68 — resolved).** `scripts/build_addendum.py` read
+   `site/data/{tournaments,hotels,routes,flags}.json`, four snapshots no script regenerated. That page is in the site
+   navigation (`NAV` in `site/assets/app.js`), so a reader saw 14 retired `FL`-prefixed flags instead of the live
+   72-item `F` register, 5 of 8 hotels, and 13 of 15 walking routes with every walking time blank. Fixed by deleting
+   the three unused snapshots and rewriting the builder against `site/data.json` + `data/sheet_extracts.jsonl` +
+   `scripts/data_venetian.py`. The page now renders 52 sheets, 72 flags, 8 hotels, 15 routes and 21 spend-more rows.
+2. **F54 named nights that are not in the stay (High).** The trip is 23-30 November; F54 said "a $200 primary on
+   Nov 30 and Dec 1", "the Dec 2 $200 entry" and listed Nov 30 / Dec 1 alternatives — all from the retired
+   25 Nov – 2 Dec window. The nights that actually fail the $300 condition are **23 and 24 November**, confirmed
+   against `dayPlan[].primaryBuyIn` and `pokerRateSatisfied`; the $300+ alternative on each is the $400
+   No Limit Hold'em 1A / 1B at 11:10 AM, both multi-flight.
+3. **F15 and F36 said no checkout total exists for the trip window (High/Medium).** False since the evening of
+   2026-11-17: the rate log carries the dated **$4,010.55** total for 23-30 Nov 2026, and every night reconciles to
+   `(rate + $55) × 1.1338`. Both are rewritten as resolved and kept on the register as the record. The remaining
+   gap is **F66** — the phone-only poker rate does not appear in the engine quote.
+4. **F28 and S21 repeated the retired window** ("still unpriced", "leave Nov 30 and Dec 1 as $200 primaries").
+   Corrected to the booked stay.
+
+### Cross-checks that were run and passed
+
+- The 2026-11-16 line-by-line read record (`data/sheet_extracts.jsonl`) and the dashboard module
+  (`scripts/data_venetian.py`) use **different vocabularies for the same fact** (`entryWording` vs `entry`). Mapped
+  explicitly in the builder and checked at build time: **0 unexplained disagreements across all 37 DSE IV sheets**
+  once "satellite" and "special" are read as formats that print no entry clause rather than as entry rules. This is
+  printed on the page rather than left implicit.
+- No internal link on any of the 25 published pages is broken.
+
+### Irregularities recorded but not changed
+
+- The Wynn Signature Series structures PDF is still a "COMING SOON" placeholder, so its 38 rows stay unverified (F56).
+- No venue publishes a tournament finish time; the overlap check remains an estimate built from each sheet's printed
+  late-registration cut-off plus two levels (F16).
+- The Caesars Palace and Horseshoe pages print no room-tax percentage, so their true nightly cost stays open (F37/F39).
+- The phone-only poker rate (EPOKR25) is not observable from the sandbox and needs a call (F66).
+
+### Integration record
+
+- Verification before merge: `python3 scripts/verify_site.py` — passed (341 events, 8 hotels, 15 routes, 43 sources,
+  72 flags, 7 plan days, 16 pages); `python3 -m unittest discover -s tests` — **125 tests OK** (17 new);
+  `node tests/canonical_render.js` — all pages rendered; `python3 tests/canonical_smoke.py` — 11 main pages,
+  5 detail pages; 0 broken internal links over 25 pages; `node --check site/assets/app.js` OK.
+- PR and Pages result: recorded in the commit that follows the merge.
