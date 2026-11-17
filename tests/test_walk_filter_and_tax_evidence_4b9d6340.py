@@ -168,7 +168,7 @@ class VerificationFlags(unittest.TestCase):
                       "bellagio.mgmresorts.com", "mgmgrand.mgmresorts.com", "aria.mgmresorts.com")
 
     def test_session_flags_exist_and_cite_official_property_hosts(self):
-        for fid in ("F86", "F87"):
+        for fid in ("F88", "F89"):
             flag = next((f for f in DATA["flags"] if f["id"] == fid), None)
             self.assertIsNotNone(flag, f"{fid} is missing from the flag register")
             self.assertTrue(flag["source"].startswith("https://"), f"{fid} has no https source")
@@ -178,8 +178,8 @@ class VerificationFlags(unittest.TestCase):
     def test_flag_ids_are_unique_and_this_sessions_are_at_the_end(self):
         ids = [f["id"] for f in DATA["flags"]]
         self.assertEqual(len(ids), len(set(ids)), "duplicate flag ids in the register")
-        self.assertIn("F86", ids)
-        self.assertIn("F87", ids)
+        self.assertIn("F88", ids)
+        self.assertIn("F89", ids)
 
     def test_calculator_warns_against_a_fee_inclusive_figure(self):
         self.assertIn("Do not paste a booking-calendar figure", CALCULATOR)

@@ -24,6 +24,12 @@ VENETIAN_HOTEL_TERMS = "https://www.venetianlasvegas.com/legal/hotel-terms-and-c
 # self-parking for that day. Used as the Venetian hotel row's parking source so the trip-cost parking
 # assumption is not overstated.
 VENETIAN_POKER_PARKING = "https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html"
+VENETIAN_PARKING_READ = "2026-11-17"
+VENETIAN_PARKING_WAIVER = (
+    "Players in the poker room who play three hours or more in tournament or cash games will receive "
+    "complimentary self-parking for the day. Players must visit a supervisor at the end of their session to "
+    "confirm qualifications for complimentary self-parking."
+)
 WYNN_ROOMS = "https://www.wynnlasvegas.com/rooms-and-suites"
 # The page the earlier build cited (terms-and-conditions/850070) is an expired
 # 2025 DINING CREDIT offer: its own text says a stay "must be completed on or
@@ -325,17 +331,41 @@ HOTELS = [
         resortFee=55, resortFeeNote="$55 resort fee per night stayed, plus tax, payable upon check-in.",
         taxRate=TAX_RATE,
         taxNote=("Printed in the official Hotel Terms and Conditions, 'Taxes, Surcharges, and Resort Fee' section: 'Daily "
-                 "rates do not include the applicable Clark County Room Tax of 13.38%.' and 'The Venetian Resort has a "
-                 "standard Las Vegas Resort Fee of $55 plus applicable tax per night, payable upon check-in.' The same "
-                 "page still opens its Resort Fee section with 'Rates include a daily Resort Fee of $55 plus tax per "
-                 "night', and the booking calendar footnote says its prices 'include daily resort fee, excludes taxes', "
-                 "so the two official pages describe the fee differently and the site uses the fee-on-top reading (F51)."),
-        parking=("$20 per day for registered hotel guests (seven days a week); $20 Monday-Thursday and $25 "
-                 "Friday-Sunday for non-hotel guests; valet $40 per day. Separately, the poker room's own parking page "
-                 "states that players in the poker room who play three hours or more in tournament or cash games "
-                 "receive complimentary self-parking for the day, confirmed with a supervisor at the end of the "
-                 "session; Venetian Rewards Sapphire members and above also self-park free."),
+                 "rates do not include the applicable Clark County Room Tax of 13.38%.' The county per-property schedule prints the same "
+                 "13.38% for a resort hotel in the Primary Gaming Corridor, and the resort fee is 'plus applicable tax' per night. The "
+                 "same terms page still opens its Resort Fee section with 'Rates include a daily Resort Fee of $55 plus tax per night', "
+                 "and the booking calendar footnote says its prices 'include daily resort fee, excludes taxes', so two official pages "
+                 "describe the fee differently and the site uses the fee-on-top reading (F51)."),
+        parking=("$20 per day for registered hotel guests (seven days a week); $20 Monday-Thursday and $25 Friday-Sunday "
+                 "for non-hotel guests; valet $40 per day (hotel terms). The resort's own poker-room parking page repeats "
+                 "those figures and adds a waiver: 'Players in the poker room who play three hours or more in tournament "
+                 "or cash games will receive complimentary self-parking for the day.' Venetian Rewards Sapphire and above "
+                 "park free; Nevada residents get three hours free; event parking rates may be in effect and rates are "
+                 "'subject to change'."),
+        # The paid figures are printed on this same page; the hotel terms page prints them too, and the
+        # row cites the poker-room page because that is where the player waiver appears (main's test
+        # test_every_hotel_fact_links_the_recorded_source pins the citation to this page).
         parkingSource=VENETIAN_POKER_PARKING,
+        parkingWaiver=dict(
+            status="published-conditional",
+            excerpt=VENETIAN_PARKING_WAIVER,
+            conditions=("Validated by a supervisor at the end of the session. The same page adds, in its own words, that "
+                        "'Venetian Rewards Sapphire members and above receive complimentary self-parking' and that 'Event "
+                        "parking rates may be in effect and are subject to change; check posted signage for additional "
+                        "details.' It also gives Nevada residents three hours of complimentary self-parking by scanning a "
+                        "valid Nevada driver's licence at a self-parking kiosk, not available while event parking rates are "
+                        "in effect; that clause is paraphrased because the page's own punctuation could not be reproduced "
+                        "byte for byte in this capture."),
+            tierRoute=("75 cash-game hours or 15 tournaments in the past 12 months can be emailed to the address on the "
+                       "page to be validated for Sapphire tier, which carries complimentary self-parking."),
+            source=VENETIAN_POKER_PARKING,
+            retrieved=VENETIAN_PARKING_READ,
+            appliedToTotals=False,
+            whyNotApplied=("The $20 per night stays in every published total. No official source publishes a tournament "
+                           "finish time (F16), so a three-hour session cannot be confirmed for a named event, and the "
+                           "page makes the waiver conditional on a supervisor confirming the session. The waiver is "
+                           "published beside the figure, not folded into it."),
+        ),
         cancellation=("A deposit for the stay including suite, fee and tax is billed on reservation confirmation. Blackout "
                       "dates apply. Prepaid offers are non-cancellable and non-refundable. Early checkout before the "
                       "scheduled departure date costs $100 plus tax."),
@@ -375,13 +405,31 @@ HOTELS = [
         resortFee=55, resortFeeNote="$55 resort fee per night stayed, plus tax, payable upon check-in.",
         taxRate=TAX_RATE,
         taxNote=("Printed in the official Hotel Terms and Conditions, 'Taxes, Surcharges, and Resort Fee' section: 'Daily "
-                 "rates do not include the applicable Clark County Room Tax of 13.38%.' and 'The Venetian Resort has a "
-                 "standard Las Vegas Resort Fee of $55 plus applicable tax per night, payable upon check-in.' The same "
-                 "page still opens its Resort Fee section with 'Rates include a daily Resort Fee of $55 plus tax per "
-                 "night', and the booking calendar footnote says its prices 'include daily resort fee, excludes taxes', "
-                 "so the two official pages describe the fee differently and the site uses the fee-on-top reading (F51)."),
-        parking="$20 per day for registered hotel guests; valet $40 per day.",
-        parkingSource=VENETIAN_HOTEL_TERMS,
+                 "rates do not include the applicable Clark County Room Tax of 13.38%.' The county per-property schedule prints the same "
+                 "13.38% for a resort hotel in the Primary Gaming Corridor, and the resort fee is 'plus applicable tax' per night. The "
+                 "same terms page still opens its Resort Fee section with 'Rates include a daily Resort Fee of $55 plus tax per night', "
+                 "and the booking calendar footnote says its prices 'include daily resort fee, excludes taxes', so two official pages "
+                 "describe the fee differently and the site uses the fee-on-top reading (F51). These are the resort-wide Venetian "
+                 "terms: no Palazzo-specific fee or tax page was found, and the poker rate page covers 'either The Venetian or The "
+                 "Palazzo', so the figures are shared rather than separately published."),
+        parking=("$20 per day for registered hotel guests; $25 Friday-Sunday for non-hotel guests; valet $40 per day. "
+                 "The poker room is in this building, and the row cites the resort's own poker-room parking page because "
+                 "that is where the player waiver appears: 'Players in the poker room who play three hours or more in "
+                 "tournament or cash games will receive complimentary self-parking for the day.' The same page prints the "
+                 "paid guest rate; the hotel terms page carries the identical figures."),
+        parkingSource=VENETIAN_POKER_PARKING,
+        parkingWaiver=dict(
+            status="published-conditional",
+            excerpt=VENETIAN_PARKING_WAIVER,
+            conditions=("The page is the resort's single poker-room parking page and does not separate The Venetian from "
+                        "The Palazzo; the poker room itself is at The Palazzo, level 2 of Grand Canal Shoppes, per the "
+                        "official poker-room page. Supervisor confirmation required."),
+            source=VENETIAN_POKER_PARKING,
+            retrieved=VENETIAN_PARKING_READ,
+            appliedToTotals=False,
+            whyNotApplied=("Same as The Venetian: the paid figure stays in the total because no official source publishes "
+                           "a finish time (F16) and the waiver needs supervisor confirmation."),
+        ),
         cancellation=("Deposit billed on confirmation; blackout dates apply; prepaid offers non-refundable; early checkout "
                       "$100 plus tax."),
         cancellationSource=VENETIAN_HOTEL_TERMS,
