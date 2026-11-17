@@ -1,0 +1,33 @@
+name: Official table transcription check
+
+# Re-runs the two full-coverage transcription verifiers on every change.
+#
+# Why a separate workflow: scripts/verify_dse_full.py and scripts/verify_wpt_full.py
+# compare the published site/data.json against the verbatim official tables recorded
+# under raw/, row by row and cell by cell. They need no network, so they run in the
+# sandbox and in CI alike. They are kept out of verify.yml because verify.yml is
+# already owned by another session's branch and this file is new.
+#
+# This job writes nothing and commits nothing. It does not overlap with the
+# scheduled source re-check in checks.yml, which is the only scheduled committer.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  transcription:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: DeepStack Extravaganza IV - all 94 official rows
+        run: python3 scripts/verify_dse_full.py
+
+      - name: Wynn WPT World Championship - all 136 official rows
+        run: python3 scripts/verify_wpt_full.py
