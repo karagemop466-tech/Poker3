@@ -38,6 +38,11 @@ OFFICIAL_HOSTS = (
     "mgmresorts.com",
     "caesars.com",
     "aria.mgmresorts.com",
+    # Other venue-controlled property hosts. Listed so a flag can link the page
+    # it could not read; no value is published from them in this build.
+    "goldennugget.com",
+    "circalasvegas.com",
+    "resortsworldlasvegas.com",
     "google.com",
     # MGM Resorts' own content delivery host, linked from the official resort pages.
     "assets.contentstack.io",

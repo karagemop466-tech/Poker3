@@ -560,7 +560,7 @@ function renderFlags() {
   if (!host) return;
   const sev = { High: 'danger', Medium: 'warn', Low: '' };
   const body = (db.flags || []).map((f) => `
-    <tr>
+    <tr id="${esc(String(f.id).toLowerCase())}">
       <td>${esc(f.id)}</td>
       <td><span class="badge ${sev[f.severity] || ''}">${esc(f.severity)}</span></td>
       <td>${esc(f.area)}</td>

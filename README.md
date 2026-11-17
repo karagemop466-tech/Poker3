@@ -14,7 +14,8 @@ the only directory published by the Pages workflow.
 | `site/questions.html` | The information still needed before booking, each with the official source behind the answer. |
 | `site/suggestions.html` | Proposed improvements with impact, effort and the decision each one needs. |
 | `site/flagged.html` | Every irregularity and unverified value, each with a link for manual review. |
-| `site/sources.html` | The official source log, every structure sheet with its read status, the morning feed sources and the automated re-check results. |
+| `site/sources.html` | The official source log with each source's last-checked date, the dated manual re-check log, every structure sheet with its read status, the morning feed sources and the automated hash-check results. |
+| `site/search.html` | One search box across every table: tournaments, hotels, the dated rate log, walking routes, flags, questions, suggestions, sources, structure sheets, re-checks and the day plan. The top-bar box on every page opens it. |
 
 ## Evidence policy
 
@@ -23,7 +24,9 @@ one start flight and no re-entry, rebuy, add-on or second-flight clause is recor
 with the excerpt and the retrieval date attached; the site never claims a sheet uses the words “single entry”.
 A row with a blank fee or guarantee is always explained by a note or a flag. The guaranteed-pool ÷ entry-fee figure is
 a descriptive ratio, never a forecast. Walking minutes are Google Maps walking estimates, because no venue publishes a
-walking time. Snapshot: **2026-11-16 UTC**.
+walking time. Every row carries a `lastChecked` date, and a row only moves to a newer date when its own official page was opened
+again and compared line by line on that date; the dated re-check log on the sources page records what each re-read
+covered and what it found. Snapshot: **2026-11-16 UTC**, re-checked against the official pages on **2026-11-17 UTC**.
 
 ## Data pipeline
 
@@ -61,13 +64,20 @@ Then open `http://localhost:8000`.
 ## Verification
 
 ```sh
-python3 scripts/verify_site.py        # official-source, blank-value and link checks over site/data.json
+python3 scripts/verify_site.py        # official-source, blank-value, dated-check and link checks over site/data.json
+python3 scripts/audit_data.py         # every DSE IV row against the read log for all 37 structure sheets
 python3 tests/canonical_smoke.py       # page structure plus a headless render check of every page
 node --check site/assets/app.js
 python3 -m json.tool site/data.json
+python3 scripts/data_source.py && git diff --exit-code -- site/data.json   # the published data reproduces from its modules
 ```
 
-`.github/workflows/verify.yml` runs all of these on every pull request and push to `main`.
+.github/workflows/verify.yml` runs all of these on every pull request and push to `main`.
+
+The hash check is only half of the re-check story. A scheduled job can say *this page changed*; it cannot say what the new
+value means. The dated re-check log on the sources page is the other half: a person re-reads the official page, compares the
+published rows field by field, moves the `lastChecked` date on exactly the rows it re-read, and records the result. A changed
+page is never allowed to edit a value on its own.
 
 ## Prior-session artefacts
 

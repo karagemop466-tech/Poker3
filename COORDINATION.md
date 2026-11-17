@@ -747,3 +747,97 @@ before this claim, so under the takeover rule they are reviewed and dispositione
 - **Standing constraints honoured:** nothing is inferred; a value that cannot be confirmed from an official source
   stays blank and is flagged. The guaranteed-pool ÷ entry-fee figure stays a descriptive ratio. Bounty, flight,
   satellite and extra-spend formats stay separated from the single-entry path.
+
+### Live re-verification results (2026-11-17, arena/cf53e83c-poker3)
+
+Every check below was made by opening the venue's own page again on 2026-11-17 and reading it against the published row.
+The sandbox cannot open HTTPS to the venue hosts from `bash`, but `fetch_page` can, so the comparison is against the
+live page rather than against the stored snapshot alone.
+
+| Official source | What was re-read | Result |
+|---|---|---|
+| Venetian DSE IV schedule page (`dse-nov-2026.html`, 4 chunks) | all 94 published rows: date, time, event #, name, buy-in, guarantee, structure-sheet link | **no drift.** 94/94 rows match; the comparison is recorded in `research/live_check_2026-11-17_venetian_dse_iv.csv` |
+| DSE IV structure sheets 6 and 18 | fee split, chips, level length, late-registration line, guarantee, payout %, entry clauses | **no drift.** Sheet 6: `$65 of the $400 Buy-In is withheld… prize pool consists of $335`, `$15,000` guarantee, `40,000` chips, `10 levels + Break (~ 4:55 PM)`, `pays 12.5% of the field`. Sheet 18: `$35 of the $200 Buy-In… $165`, `30,000` chips, `20/15`, `6 levels + Break (~ 12:25 PM)`, **no guarantee line printed** (confirms F22) |
+| Wynn daily structures PDF | all four daily events: fee split, re-entry/rebuy/add-on clauses, stacks, levels, cut-offs | **no drift.** Mon–Thu $200 = $26/$12/$162, re-entries to level 9 (~4:30 PM); Fri $240 = $35/$15 with unlimited $200 rebuys + one $100 add-on and "Re-entry is NOT allowed"; Sat–Sun $200 ($25,000 GTD) to level 11 (~5:30 PM); nightly $160 ($10,000 GTD) 20-minute levels to level 9 (~9:00 PM) |
+| Wynn poker page | WPT dates, daily slate, suspension note, linked PDF versions | **no drift.** WPT World Championship "November 27–December 21"; "$200,000 in guaranteed prize pools weekly"; daily slate suspended during Wynn Signature, Wynn Millions and Classic series |
+| Bellagio poker page | the three weekly links, the bomb-pot highlight, the resumption notice | **no drift.** Page still reads "SATURDAYS \| $1,000 NLH" while the structure PDF header prints $1,100 and its rule 07 describes a $600 buy-in — F02 stands; the undated "Saturday, July 26" notice is still on the page — F03 stands |
+| Venetian poker-suite rate page | starting rates, resort fee, play requirement, deadline, booking code, 150-day window | **no drift.** "These rates will start as low as $119 and $209 and can be higher"; "There is a $55 resort fee per night stayed"; six hours of live cash play or a $300-or-higher tournament buy-in per night, before 2 a.m.; code EPOKR25 |
+| Venetian booking calendar, planned window (Nov 25 → Dec 2, 2 adults) | every date cell | **still no price published** — the cells render a placeholder, so the trip keeps the published starting-rate floor and F15/F28 stand. Logged as F32 and added to the dated rate log as a 2026-11-17 observation |
+| WPT World Championship structures PDF | every event starting inside the trip window, plus the Dec 3–5 $1,600 event | **newly verified (was "not read").** Nine sheets read: $600 NLH $400K, $600 TORSE, $400 PLO, $600 Mixed Triple Draw, $800 NLH $1M, $600 Limit Omaha 8, $600 Limit Omaha 8/Stud 8, $1,100 PLO, $1,600 NLH $1M. **Each prints "Unlimited re-entry"**, so 23 schedule rows moved from *entry rules not verified* to *confirmed multi-entry* with the printed clause and the printed fee split attached |
+
+### Changes made to the canonical build (this session)
+
+- **Entry rules now verified for the WPT rows in the trip window.** `scripts/data_venues.py` gained `WPT_EVENTS_READ`
+  (printed registration clause, fee split, stack, level length, printed flight dates per sheet) and
+  `wpt_event_read()`, which matches on printed buy-in + sheet game name + a date the sheet itself prints.
+  `scripts/data_source.py::apply_rechecks()` applies it. The fee splits were arithmetic-checked, not copied:
+  $510+$65+$25=$600, $337+$45+$18=$400, $695+$72+$33=$800, $975+$85+$45=$1,100, $1,430+$120+$50=$1,600 — all
+  reconcile, so no `source-conflict` was raised. F12 was rewritten to say which sheets are now read and which are not.
+- **"Last checked" became real.** `RECHECK = 2026-11-17` and a `rechecks` log in `site/data.json`. 121 rows carry
+  2026-11-17 (94 DSE IV rows re-read against the schedule page, 4 of them against a re-opened sheet, 23 WPT rows,
+  4 Wynn daily rows) and 220 rows keep 2026-11-16 because their source was not re-opened. `asOf` is 2026-11-17 with
+  a new `snapshot` field = 2026-11-16. `scripts/verify_site.py` now rejects a non-ISO or future `lastChecked`,
+  a rule retrieval date that is not ISO, a re-check without an official URL/date/result, and a re-check that claims
+  more re-stamped rows than the data actually holds.
+- **Irregularity from an earlier request, fixed:** the Wynn daily row names no longer repeat the day label
+  ("…(Monday-Thursday) (Monday-Thursday)"), via `name_with_days()` in `scripts/data_source.py`. This was request #1 of
+  session `arena/cd17e91c`'s audit; the fix is in the generator and the data was rebuilt.
+- **Requests from `arena/4fa30832` shipped as flags:** F29 (the DSE IV schedule PDF prints decorative text in the DATE
+  column on 14 rows; dates come from the HTML page, re-read today) and F30 (the PDF prints "(IDAY)" for "(1Day)").
+- **New irregularities found today, flagged:** F31 (High) — the WPT schedule prints the $1,600 Day 2 at 1 p.m. on
+  Dec 3 while that event's structure sheet prints Day 2 on Sat Dec 5 at 11 a.m. and no Dec 3 afternoon restart; the
+  row is reproduced as printed, both documents are linked from it, and no part of the plan relies on it. F32 (Medium)
+  — the booking calendar still publishes no price for the planned window. F33 (Medium) — three more rooms were
+  attempted and publish nothing readable: Golden Nugget's poker page returns an empty body through this build's fetch
+  path, `circalasvegas.com/casino/poker` is a 404 and `resortsworldlasvegas.com/casino/poker` is Not Found; no value
+  is inferred for them, so they have no rows. `OFFICIAL_HOSTS` gained those three property domains so a flag can link
+  the page it could not read. Q13 records the decision this leaves to the user.
+- **Site feature the brief asked for that the site did not have:** a search box across *all* tables. `site/search.html`
+  indexes tournaments, hotels, the dated rate log, walking routes, flags, questions, suggestions, sources, the re-check
+  log, structure sheets, the day plan and the room list (533 rows), highlights matches, and links each hit to its table
+  and its official source. The top-bar box on every page now opens it instead of silently filtering only the
+  tournament list; `tournaments.html` keeps its in-place table filter. Flag rows gained `id` anchors so a deep link
+  (`flagged.html#f02`) lands on the row.
+- **Sources page** now shows "Last checked / latest re-check" per source (re-read vs not re-read) plus the dated
+  re-check log table.
+- **Dated rate log** gained two 2026-11-17 observations (rate page re-read unchanged; trip-window calendar still
+  unpriced). Rates remain an append-only dated log.
+
+### Verification run (this session)
+
+- `python3 scripts/verify_site.py` → 341 events, 8 hotels, 14 routes, 27 sources, 33 flags, 8 plan days, 16 pages, passed.
+- `python3 scripts/audit_data.py` → all 37 DSE IV sheets match the read log.
+- `python3 tests/canonical_smoke.py` → 11 main pages + 5 detail pages render headlessly, including the three new search
+  states (`''`, `$400`, `F02`).
+- `python3 -m unittest discover -s tests` → 2 passed. `python3 tests/smoke.py` → the `site/poker3` companion still passes.
+- `node --check` on `site/assets/app.js`; `python3 -m json.tool site/data.json`; `git diff --check` clean.
+- Reproducibility: `python3 scripts/data_source.py` then `git diff --exit-code -- site/data.json` → identical, so the
+  published data still rebuilds from its modules (the CI step that guards this stays green).
+- Local HTTP smoke: all 18 published files returned 200 from `python3 -m http.server --directory site`.
+
+### Open-PR disposition (takeover rule, 60+ minutes stale, no commits)
+
+- **PR [#31](https://github.com/karagemop466-tech/Poker3/pull/31)** (`arena/ea188b20-poker3`) rewrites the shared outputs this
+  session owns (`site/data.json`, `site/assets/app.js`, `site/index.html`, `site/tournaments.html`, `scripts/verify_site.py`)
+  with its own 107-row generation of the same dashboard. Merging it would replace the 341-row verified build and break the
+  reproducibility guard. Its monitoring idea (`scripts/monitor_official_sources.py`) duplicates three monitors already on
+  `main`. **Disposition: not merged, left open for the user; its unique values were reviewed and none was verified against a
+  source the canonical build does not already cite.**
+- **PR [#27](https://github.com/karagemop466-tech/Poker3/pull/27)** (`arena/701f2252-poker3`) is the same pattern: it replaces
+  `site/**` and `scripts/verify_site.py`, and adds venue pages for rooms whose official pages this session could not read
+  (see F33), so those rows cannot be imported as verified. **Disposition: not merged, left open.**
+- **PR [#7](https://github.com/karagemop466-tech/Poker3/pull/7)** (`arena/92941c56-poker3`) writes a second site into the
+  repository root (`index.html`, `pages/*.html`) that earlier sessions already recorded as superseded by `site/`.
+  **Disposition: not merged, left open** — the same decision `arena/ed88c788` recorded, and it is a user choice to retire
+  the root pages.
+- No file from those branches was copied into the canonical build, and no other session's file was edited.
+
+### Trip-date answer (the brief's "fix trip dates")
+
+The dates stay **2026-11-25 → 2026-12-02**, seven nights on the Venetian/Palazzo resort, because that window holds the most
+single-entry events verified on an official structure sheet (14) with at least one on every day, and it stops before the
+$10,400 WPT World Championship tier. The nightly budget stays the published floor **$197.28** — computed as
+($119 + $55) × 1.1338, re-confirmed against the rate page today — and is labelled a floor, not a quote, because the
+booking calendar publishes no price for the window (F32). No user-supplied dates exist anywhere in the repository, and the
+brief forbids asking, so the dates remain fixed by the build rather than confirmed by the traveller; Q01 keeps that
+distinction visible. Request before any nonrefundable payment: confirm the dates, then re-read the calendar on that date.

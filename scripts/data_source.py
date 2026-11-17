@@ -466,9 +466,35 @@ FLAGS = [
                  "(F15). The trip's nightly budget is therefore the published starting-rate floor of $197.28, not a quote, "
                  "and the cost calculator labels it as such."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-03&view=calendar"),
+    dict(id="F33", area="Coverage", severity="Medium",
+         title="Three further poker rooms were attempted on 2026-11-17 and publish no readable schedule page",
+         detail=("The plan covers the seven Strip rooms whose official pages could be read. Three more rooms were "
+                 "attempted on 2026-11-17 and produced nothing publishable: the Golden Nugget poker page "
+                 "(https://www.goldennugget.com/las-vegas/casino/poker/) returned an empty body through the fetch path "
+                 "this build uses, https://www.circalasvegas.com/casino/poker is now a 404 page, and "
+                 "https://www.resortsworldlasvegas.com/casino/poker returns Not Found on both the short and the "
+                 "long-form path. No value is inferred for any of them, so they have no rows. Circa and Golden Nugget "
+                 "are downtown and outside the 30-minute walking limit from the Strip hotels in any case; Resorts World "
+                 "is on the Strip, so a later session should retry its poker page from a network that renders the "
+                 "venue's own page."),
+         source="https://www.goldennugget.com/las-vegas/casino/poker/"),
 ]
 
 QUESTIONS = [
+    dict(id="Q13", question="Should the plan extend past the seven Strip rooms to the other Las Vegas poker rooms?",
+         answer=("Not on the evidence available from the venues themselves. This build publishes the Venetian, Wynn, "
+                 "Bellagio, MGM Grand, Caesars Palace, Horseshoe and ARIA rooms because each of those publishes an "
+                 "official schedule, structure sheet or room page that could be read. The Golden Nugget poker page "
+                 "returned an empty body on 2026-11-17, Circa's /casino/poker path is a 404 and Resorts World's poker "
+                 "path returns Not Found, so those rooms have no verified rows (F33). Circa and Golden Nugget are also "
+                 "downtown, outside the 30-minute walking limit this trip is built on."),
+         why=("Extending the list without a readable official schedule would mean either copying a third-party "
+              "calendar, which the evidence policy forbids, or publishing blanks, which adds no decision value."),
+         blocking="No",
+         how=("Call or open the room page from a normal browser: Resorts World poker desk and the Golden Nugget daily "
+              "tournament page. Anything worth adding needs a printed buy-in, start time and entry clause before it "
+              "can join the single-entry list."),
+         source="https://www.goldennugget.com/las-vegas/casino/poker/"),
     dict(id="Q01", question="What are the actual travel dates, and how many nights?",
          answer=("This session fixed the dates at November 25 to December 2, 2026 because that window holds the most "
                  "single-entry events verified on an official structure sheet. The official booking engine publishes no "
@@ -1270,7 +1296,10 @@ def build():
                                  "30-minute transfer between venues, so every conflict it reports is an estimate."),
         categories=CATEGORIES,
         venues=VENUES, events=events, hotels=hotels, rateLog=H.RATE_LOG, routes=routes,
-        sources=sources, flags=FLAGS, questions=QUESTIONS, suggestions=SUGGESTIONS,
+        # The register reads in id order; new findings are appended to FLAGS, so the
+        # published list is sorted rather than kept in discovery order.
+        sources=sources, flags=sorted(FLAGS, key=lambda f: f['id']),
+        questions=QUESTIONS, suggestions=SUGGESTIONS,
         rechecks=rechecks,
         trip=TRIP,
         dayPlan=plan, planConflicts=conflicts, planNotes=PLAN_NOTES,
