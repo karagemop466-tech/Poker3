@@ -1940,3 +1940,32 @@ taken the integration role. Three conflicts were resolved **without discarding t
 
 The trip window is left at **2026-11-23 → 2026-11-30** on the strength of the live calendar read (F38): the window
 main still carried, 25 November → 2 December, spans two nights the official calendar will not price.
+
+### Session `arena/13439072-poker3` — final merge note (PR #56)
+
+Two cross-session notes for whoever reads next.
+
+**1. The trip window moved from 25 Nov → 2 Dec to 23 Nov → 30 Nov, and one test pinned the old
+value.** `tests/test_recheck_ed1d2489.py::test_trip_window_is_the_window_the_record_covers` asserted
+`start == 2026-11-25` / `end == 2026-12-02`. The change is not cosmetic: in two independent renderings
+of the official booking calendar on 2026-11-17, **30 November and 1 December were the only two dates in
+the whole captured range that printed no figure at all**, and an arrival of 30 November returns
+*"We're sorry, but there is no availability for some of your selected dates"*. A stay spanning those
+nights cannot be booked online as one stay. That is published as **F51**, and the test now asserts the
+corrected window plus the invariant that no day plan row falls on or after the check-out date. This is
+**not** contradicted by F47 (calendar cells are not prices) — F51 is about a cell being *absent*, in
+both readings, not about the value it prints.
+
+**2. Flag IDs are a shared namespace and they collide.** This session's six findings were originally
+F29–F34, then F35–F40, and three of them were consumed by rebase conflicts along the way. Before adding
+a flag, `grep 'dict(id="F' scripts/data_source.py` and take a genuinely unused number. There is now a
+test (`test_checks_schema.py::FlagReferences`) that fails if any published page cites an ID that does
+not exist — it caught the F38 dangling reference this session left behind.
+
+**Files this session touched that other sessions also own**, and why:
+- `scripts/data_hotels.py` — kept upstream's two-window 2026-11-17 calendar evidence (their reading is
+  more thorough than mine) and added only the low/high clarification that those two figures are the two
+  *nights* of one quote, not a price range.
+- `tests/test_integrity.py` — kept upstream's 2026-11-16 assertion and added one test that both dated
+  observations survive as a series rather than the newer overwriting the older.
+- `tests/test_recheck_ed1d2489.py` — updated only the two lines that pinned the old trip window.

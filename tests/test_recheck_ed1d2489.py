@@ -70,10 +70,23 @@ class ScheduleRows(unittest.TestCase):
                                 "published row does not link the sheet the schedule page links")
 
     def test_trip_window_is_the_window_the_record_covers(self):
-        self.assertEqual(TRIP["start"], "2026-11-25")
-        self.assertEqual(TRIP["end"], "2026-12-02")
+        """The record covers 25 Nov - 2 Dec; the trip ends on 30 Nov because 30 Nov and 1 Dec
+        print no figure on the official booking calendar in any reading (F51), so a stay
+        spanning them cannot be booked online. Every day in the trip must still be playable."""
+        self.assertEqual(TRIP["start"], "2026-11-23")
+        self.assertEqual(TRIP["end"], "2026-11-30")
+        # The record's own rows for 1 and 2 December are outside the trip by the same finding.
         dates = {r["date"] for r in REC["rows"]}
-        self.assertEqual(len([d for d in dates if TRIP["start"] <= d <= TRIP["end"]]), 8)
+        self.assertEqual(len([d for d in dates if TRIP["start"] <= d <= TRIP["playableEnd"]]), 5)
+        self.assertIn("F51", FLAGS, "the unavailability finding behind this window must be published")
+
+    def test_the_day_plan_covers_the_playable_days_and_no_more(self):
+        """Check-in day through the day before check-out; the check-out day is not playable."""
+        planned = [d["date"] for d in DATA["dayPlan"]]
+        self.assertEqual(len(planned), int(TRIP["days"]))
+        self.assertEqual(planned[0], TRIP["start"])
+        self.assertTrue(all(d < TRIP["end"] for d in planned),
+                        "the day plan includes the check-out date, which is not playable")
 
 
 class StructureSheets(unittest.TestCase):
