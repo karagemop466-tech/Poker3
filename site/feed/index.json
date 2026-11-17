@@ -1,0 +1,221 @@
+{
+ "generated": "2026-11-17T01:28:42+00:00",
+ "date": "2026-11-17",
+ "rooms": [
+  {
+   "id": "venetian",
+   "name": "The Venetian poker room",
+   "fetched": "2026-11-17T01:28:42+00:00",
+   "pages": [
+    {
+     "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+     "status": "HTTP 200",
+     "hash": "8b2f677e2d833ab3a12c6fffa7e5c6f7fbff05df972d8cba1031ca94f7d86134",
+     "bytes": 267639,
+     "contentType": "text/html;charset=utf-8",
+     "textLength": 12375,
+     "times": [
+      "10:00 AM",
+      "10:10 ",
+      "10:10 AM",
+      "11:00 AM",
+      "11:10 ",
+      "11:10 AM",
+      "12:00 PM",
+      "12:10 PM",
+      "1:00 PM",
+      "4:10 PM",
+      "5:10 PM",
+      "6:10 ",
+      "6:10 PM",
+      "7:00 PM",
+      "8:10 PM",
+      "9:10 AM"
+     ],
+     "amounts": [
+      "$1",
+      "$1,100",
+      "$10",
+      "$100",
+      "$15",
+      "$150",
+      "$2,200",
+      "$20",
+      "$200",
+      "$25",
+      "$260",
+      "$3",
+      "$30",
+      "$300",
+      "$40",
+      "$400",
+      "$50",
+      "$500",
+      "$600",
+      "$75",
+      "$8",
+      "$800"
+     ],
+     "snapshot": "feed/venetian-2026-11-17.txt"
+    },
+    {
+     "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html",
+     "status": "HTTP 200",
+     "hash": "3963b0f01340e15f0bd7a667f80f3eb9a1957398278c5cf0695aa3d60e6d0231",
+     "bytes": 245887,
+     "contentType": "text/html;charset=utf-8",
+     "textLength": 8376,
+     "times": [
+      "10:00 AM",
+      "10:10 AM",
+      "11:00 AM",
+      "11:10 AM",
+      "12:00 PM",
+      "3:10 PM",
+      "5:10 PM",
+      "6:10 PM"
+     ],
+     "amounts": [
+      "$1",
+      "$1,100",
+      "$1,600",
+      "$10",
+      "$100",
+      "$15",
+      "$20",
+      "$200",
+      "$250",
+      "$260",
+      "$300",
+      "$40",
+      "$400",
+      "$50",
+      "$500",
+      "$600",
+      "$75",
+      "$8"
+     ],
+     "snapshot": "feed/venetian-2026-11-17.txt"
+    },
+    {
+     "url": "https://www.venetianlasvegas.com/resort/casino/poker.html",
+     "status": "HTTP 200",
+     "hash": "95d49954803cb14a87256fd71e129d7d17d4af36f08e37da3ad214ef7f8dedb6",
+     "bytes": 253560,
+     "contentType": "text/html;charset=utf-8",
+     "textLength": 6170,
+     "times": [
+      "00:00",
+      "23:59"
+     ],
+     "amounts": [
+      "$4"
+     ],
+     "snapshot": "feed/venetian-2026-11-17.txt"
+    }
+   ]
+  },
+  {
+   "id": "wynn",
+   "name": "Wynn poker room",
+   "fetched": "2026-11-17T01:28:42+00:00",
+   "pages": [
+    {
+     "url": "https://www.wynnlasvegas.com/casino/poker",
+     "status": "HTTP 200",
+     "hash": "af37421b0ece20b4937185826c6bbe08b8d733a5fa9e983f561b12a87ff92e91",
+     "bytes": 459242,
+     "contentType": "text/html; charset=utf-8",
+     "textLength": 3748,
+     "times": [],
+     "amounts": [
+      "$10,000",
+      "$200,000",
+      "$25",
+      "$3,000,000",
+      "$40,000",
+      "$400",
+      "$95,000"
+     ],
+     "snapshot": "feed/wynn-2026-11-17.txt"
+    },
+    {
+     "url": "https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf",
+     "status": "HTTP 200",
+     "hash": "f7dc8281b1b508b55cfcea08485665ad2e627d19c4d274359c6c3f89cf71ccec",
+     "bytes": 2861483,
+     "contentType": "application/pdf"
+    },
+    {
+     "url": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
+     "status": "HTTP 200",
+     "hash": "9291f60e5263033d9bd884849a56e36cb8180d91e6bee24aa319267d8634b3e0",
+     "bytes": 23785821,
+     "contentType": "application/pdf"
+    }
+   ]
+  },
+  {
+   "id": "bellagio",
+   "name": "Bellagio poker room",
+   "fetched": "2026-11-17T01:28:42+00:00",
+   "pages": [
+    {
+     "url": "https://bellagio.mgmresorts.com/en/casino/poker.html",
+     "status": "unreachable",
+     "error": "TimeoutError: The read operation timed out"
+    },
+    {
+     "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf",
+     "status": "HTTP 200",
+     "hash": "5789e88e243d2655d3bef9731d80324e9d56cd1bdc4dbde3ffeb23ab3876b91d",
+     "bytes": 1676621,
+     "contentType": "application/pdf"
+    }
+   ]
+  },
+  {
+   "id": "mgm",
+   "name": "MGM Grand poker room",
+   "fetched": "2026-11-17T01:28:42+00:00",
+   "pages": [
+    {
+     "url": "https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
+     "status": "unreachable",
+     "error": "TimeoutError: The read operation timed out"
+    },
+    {
+     "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/bltb2a45da7e8ee5621/mgm-grand-casino-poker-120_nlh.pdf",
+     "status": "HTTP 200",
+     "hash": "68f132dae3bc823c0ca443c9dbebf44db81c6184eaa6dfe0ec440cd160bec9bd",
+     "bytes": 295633,
+     "contentType": "application/pdf"
+    }
+   ]
+  },
+  {
+   "id": "caesars",
+   "name": "Caesars Palace and Horseshoe poker rooms",
+   "fetched": "2026-11-17T01:28:42+00:00",
+   "pages": [
+    {
+     "url": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
+     "status": "HTTP 302",
+     "error": "HTTP Error 302: The HTTP server returned a redirect error that would lead to an infinite loop.\nThe last 30x error message was:\nFound"
+    }
+   ]
+  },
+  {
+   "id": "aria",
+   "name": "ARIA poker room",
+   "fetched": "2026-11-17T01:28:42+00:00",
+   "pages": [
+    {
+     "url": "https://aria.mgmresorts.com/en/casino/poker.html",
+     "status": "unreachable",
+     "error": "TimeoutError: The read operation timed out"
+    }
+   ]
+  }
+ ]
+}
