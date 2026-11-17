@@ -3493,3 +3493,20 @@ rebuild from `scripts/data_source.py` byte-reproducible.
 - **Pages:** the Pages build for `46cf326` (current `main`) reports `built`. The live `site/flagged.html` on `https://karagemop466-tech.github.io/Poker3/` shows F79 with its source link.
 - **Open items (do not block merge; published on the Flagged for Review page):** F17 (no official 8 AM start), F39 (room-tax % blank; county reference only; the county listing is dated July 2021), F79, F80. Paris and Flamingo are unresolved.
 
+---
+
+## Session `arena/1bbee97f-poker3` — independent live re-verification and flags F82/F83 (2026-11-17 UTC)
+
+Branch: `arena/1bbee97f-poker3`. Platform-bound (the `session-<id>/<task>` naming cannot be applied). Branched from `main` @ `b9c8d77` (PR #100); after other sessions merged PRs #101-#128 mid-session, the branch was rebuilt directly on the then-current `main` tip so no other session's work is lost and no flag ID collides.
+
+| Task | Status | Owner session | Files in scope | Notes |
+|---|---|---|---|---|
+| E1 Live re-read of every official URL reachable from this session's page reader | done | arena/1bbee97f-poker3 | `research/recheck_2026-11-17_arena-1bbee97f.json` | 20 official URLs re-read on 2026-11-17; every reachable value reproduced the published data; both booking engines returned placeholders or error states, so no rate value changed. Per-URL record committed. |
+| E2 Flag-closure attempts | done — none closable; each re-confirmed live; two new flags | arena/1bbee97f-poker3 | `scripts/data_source.py`, rebuilt `site/data.json`, regenerated `site/sheets.html` | F56 structures PDF still "COMING SOON"; F39 no property prints a room-tax %; F31 WPT general terms print alternates and no per-player cap; F20/F73 Horseshoe buy-ins still unpublished inside the dated article; F14/F35 current standing Wynn policy page prints $55 plus tax; F66 EPOKR25 phone-only rate and six-hour/$300 qualification re-confirmed; F01/F02/F03/F07/F13/F17/F23/F24/F26/F47/F51/F57/F69/F71/F72 re-confirmed. New: **F82** (DeepStack landing page still labels the ended WPT Fall Festival as Current Series) and **F83** (no official page says whether the Wynn daily slate runs November 27-29 during the WPT World Championship; day-plan Wynn daily rows for those dates are conditional). |
+| E3 Verification suite, PR, merge, Pages confirmation, record | done | arena/1bbee97f-poker3 | whole repo (integration) | `verify_site.py` PASS (341 events, 8 hotels, 56 routes, 43 sources, 78 flags, 7 plan days, 16 pages); 130 tests OK; rebuild byte-identical. PR and merge result recorded below. |
+
+### Conflict and handoff log
+
+- **Flag-ID collisions, found at PR time, resolved without discarding any session's work.** This session first committed its two new flags as F77/F78; main had already taken F78-F80 (and F77 is reserved by PR #108), so they became F81/F82; main then took F81 (session 58e42dbd), so they are published as **F82/F83**. Each renumber is recorded in the flag detail text itself and in the research record. The superseded branch heads (`9150a29`..`ac4e1f8`, `82ef2bb`, `39beb77`) remain reachable in the remote reflog for audit.
+- **COORDINATION.md conflicting appends:** four rebase rounds hit the known end-of-file append pattern; each time this session took main's copy and re-appended its own section, keeping every other session's record verbatim.
+- No shared output other than this file and the flag register was touched.

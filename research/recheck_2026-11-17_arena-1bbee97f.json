@@ -1,0 +1,141 @@
+{
+  "session": "arena-1bbee97f",
+  "retrievedOn": "2026-11-17",
+  "purpose": "Independent live re-read of every official URL behind the trip window that this session could reach with the page reader. Observation only: no published value was changed on the basis of a read; differences are recorded as flags (F77, F78) and this record. Field values confirmed unchanged are listed as 'match'; placeholders, errors and ambiguities are described verbatim.",
+  "urls": [
+    {
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "type": "official schedule page",
+      "result": "match",
+      "what": "DeepStack Extravaganza IV, November 16 - December 23, 2026, 'More than $3.6 Million in guaranteed tournament prize pools'. Every trip-window row read: Nov 23 #7 1A 11:10 AM + #8 5:10 PM; Nov 24 #7 1B 11:10 AM + #9 5:10 PM; Nov 25 restart 11:00 AM + #10 11:10 AM + #11 5:10 PM; Nov 26 #12 11:10 AM + #13 5:10 PM; Nov 27 #14 11:10 AM + #15 5:10 PM; Nov 28 #16 11:10 AM + #17 12:10 PM + #18 5:10 PM; Nov 29 #19 1A 11:10 AM + #20 12:10 PM + #21 5:10 PM. Dates, times, event numbers, names and structure-sheet links agree with the published rows."
+    },
+    {
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html",
+      "type": "official series landing page",
+      "result": "stale label",
+      "what": "Still heads with 'Current Series: WPT Fall Festival, October 28 - November 15, 2026' two days after its printed end, and labels DeepStack Extravaganza IV 'Next Series'. DSE IV dates (Nov 16 - Dec 23), NYE (Dec 24 - Jan 10) and Showdown January 2027 dates all match. Published as flag F77."
+    },
+    {
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
+      "type": "official rate page",
+      "result": "match",
+      "what": "Poker suite rates 'start as low as $119 and $209 and can be higher'; $55 resort fee per night stayed; six hours of active live cash play or a $300-or-higher tournament buy-in per night, completed before 2 a.m. on the last night; booked by phone 866.255.8936 with code EPOKR25. Confirms F66 and the qualification text used by the trip model."
+    },
+    {
+      "url": "https://www.venetianlasvegas.com/resort/resort-fee.html",
+      "type": "official fee page",
+      "result": "match",
+      "what": "'Rates include a daily Resort Fee of $55 plus tax per night, payable upon check-in.' The F51 wording ('Rates include') is unchanged."
+    },
+    {
+      "url": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
+      "type": "official terms",
+      "result": "match",
+      "what": "'Daily rates do not include the applicable Clark County Room Tax of 13.38%.' Registered-guest self-parking $20/day seven days a week, valet $40/day; early checkout $100 plus tax; check-in 3:00 PM to 11:59 PM, check-out 11:00 AM. Confirms the 13.38% rate on every Venetian/Palazzo row and the published parking figure."
+    },
+    {
+      "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar",
+      "type": "official booking engine",
+      "result": "placeholders only",
+      "what": "Calendar rendered '$XXX' placeholder cells for November 30 and December 1-5 and no cell text for November 23-29 in this render; the guest-selection modal opened on top. Footnote re-confirmed verbatim: 'Pricing shown is best available suite and rate, includes daily resort fee, excludes taxes.' No price was obtainable and none was inferred; the itemised $4,010.55 quote of 2026-11-17 remains the only engine quote for the stay. F28, F47, F57 and F69 all stand."
+    },
+    {
+      "url": "https://www.wynnlasvegas.com/casino/poker",
+      "type": "official poker page",
+      "result": "match",
+      "what": "WPT World Championship 'November 27-December 21'; Wynn Signature Series 'January 11-24. 2027'; daily slate 'runs twice a day during non-event timeframes' with '$40,000 guaranteed NLH Rebuy on Friday and a $10,000 guaranteed event every evening at 6 p.m.'; suspension note still names only Signature, Wynn Millions and Classic series. Whether the daily slate runs during the WPT series is unstated. Published as flag F78."
+    },
+    {
+      "url": "https://www.wynnlasvegas.com/about-us/resort-information",
+      "type": "official hotel policy page",
+      "result": "match",
+      "what": "'Reservations will be charged a daily resort fee of $55 plus tax' for both standard rooms and Tower Suites; check-in 3 p.m., check-out 12 p.m. Confirms the $55 fee on a current standing policy page (not an offer page)."
+    },
+    {
+      "url": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
+      "type": "official schedule PDF",
+      "result": "match",
+      "what": "Both chunks read. Trip-window rows agree: Nov 27 $600 NLH $400K Day 1A 11 a.m. and Day 1B 5 p.m., TORSE $600 12 p.m., PLO $400 1 p.m.; Nov 28 Day 1C 11 a.m., Mixed Triple Draw $600 12 p.m., Day 1D 5 p.m.; Nov 29 Day 1E 11 a.m., Day 1F 6 p.m.; Nov 30 $800 $1M Day 1A 11 a.m. and Day 1B 5 p.m. Footnotes re-confirmed: '$1,000,000 will be added in cash prizes by ClubWPT Gold. ClubWPT Gold is not available in Nevada' (F24); 'The Tournament Entry for the Ladies Championship is $11,100' beside the $1,100 row (F23). The PDF still prints 'Dec. 18 Wednesday' and 'Dec. 18 Friday' blocks with the Dec 17 block printed after the Dec 18 Wednesday block (F01, F61)."
+    },
+    {
+      "url": "https://cdn.wynnresorts.com/image/upload/v1753296112/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Schedule.pdf",
+      "type": "official schedule PDF",
+      "result": "match",
+      "what": "Prints 'THE WYNN SIGNATURE SERIES January 11-24, 2027' with guarantees and entries per row; agrees with the 38 published rows dated 2027-01-11 to 2027-01-24. The shifted guarantee/entry cells on the 1/17, 1/18 and 1/24 rows (F26) are visible again in this render."
+    },
+    {
+      "url": "https://cdn.wynnresorts.com/image/upload/v1762299460/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Structures.pdf",
+      "type": "official structures PDF",
+      "result": "placeholder",
+      "what": "Reads only 'LAS VEGAS POKER COMING SOON'. The 38 Signature rows therefore still have no published structure sheet (F56 stands)."
+    },
+    {
+      "url": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
+      "type": "official structures PDF",
+      "result": "match",
+      "what": "General Terms and Conditions re-read: registration opens four hours before each event; entry fee in cash or live casino chips only; alternates seated when space allows; no per-player entry-count maximum appears in the general terms. Consistent with F31 (no written one-entry cap) and with F12's per-event findings."
+    },
+    {
+      "url": "https://bellagio.mgmresorts.com/en/casino/poker.html",
+      "type": "official poker page",
+      "result": "match",
+      "what": "The notice 'Tournament play will resume on Saturday, July 26, beginning with the $300 PLO Double Board Bomb Pot Tournament at 2 PM PT.' is still printed on 2026-11-17 (F03 stands). Weekly links unchanged: FRIDAYS | $600 NLH, SATURDAYS | $1,000 NLH, SUNDAYS | $400 H.O.R.S.E (F02 stands)."
+    },
+    {
+      "url": "https://bellagio.mgmresorts.com/en/terms-and-conditions.html",
+      "type": "official terms",
+      "result": "match",
+      "what": "'A daily resort fee of $55.00 plus applicable tax will be applied to all reservations'; lodging taxes apply to the basic room rate and to the resort fee; percentage not printed; first night refundable with 72-hour notice; $50 plus tax per additional occupant above two."
+    },
+    {
+      "url": "https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
+      "type": "official poker page",
+      "result": "match",
+      "what": "'Daily Texas Hold'em Tournaments - 11:00am, 7:00pm and 11:00pm'; the weekly schedule PDF and $120 NLH structure PDF links unchanged. The page-versus-PDF start-time conflict (F71) stands."
+    },
+    {
+      "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
+      "type": "official schedule PDF",
+      "result": "match",
+      "what": "Still headed 'MGM Grand August Tournament Schedule' (F07 stands). Slots 11:10am/7:10pm/11:10pm; Saturday 11:10am $150 NLH $2,000 GTD with 20-minute levels; Sunday-Friday footnote: 'Players with 5 entries or more in $120 Daily Tournaments will receive one (1) free entry to the Saturday $150 NLH $2,000 Guarantee' (F72 stands)."
+    },
+    {
+      "url": "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html",
+      "type": "official terms",
+      "result": "match",
+      "what": "'A daily resort fee of $50.00 plus applicable tax'; percentage not printed; first night refundable with 72-hour notice; $40 plus tax per additional occupant above two; check-in 3:00 pm, check-out 11:00 am."
+    },
+    {
+      "url": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
+      "type": "official poker article",
+      "result": "match",
+      "what": "Dated July 17, 2026 (F73 stands). Caesars Palace: four daily $100 NLH tournaments at 10 a.m., 2 p.m., 6 p.m. and 9 p.m., 20,000 chips, $1,000 guarantee, 20-minute blinds, '$50 add-on at the first break gives you an extra 15,000 chips' - the add-on is printed, so these events are not single-entry. Horseshoe: six daily NLH at 9 a.m., 11 a.m., 2 p.m., 5 p.m., 8 p.m. and 11 p.m., 'a mixture of buy-ins, levels and guarantees' with no figures printed (F20 stands). 9 a.m. remains the earliest start published anywhere (F17 stands)."
+    },
+    {
+      "url": "https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=November&propCode=clv",
+      "type": "official booking page",
+      "result": "fee block only",
+      "what": "Rate search errored: 'Sorry! Our website is currently experiencing technical difficulties.' Fees block re-confirmed: 'Resort fees: $62.30 ($54.95 plus $7.35 tax)'; deposit $100 per day; 'Cash is not accepted for deposits or room charges.' No room-tax percentage printed."
+    },
+    {
+      "url": "https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=November&propCode=blv",
+      "type": "official booking page",
+      "result": "fee block only",
+      "what": "Rate search errored with the same message. Fees block re-confirmed: 'Resort fees: $56.63 ($49.95 plus $6.68 tax)'; deposit $50 per day; pet fee $75; rollaway $30 per day; check-in 4 PM, check-out 11 AM; 'Rates shown reflect the lowest available rate and include applicable resort fees.' No room-tax percentage printed."
+    },
+    {
+      "url": "https://www.caesars.com/horseshoe-las-vegas/hotel",
+      "type": "official hotel page",
+      "result": "match",
+      "what": "Rooms and deals page; no room price printed. Claims 'FREE 48-Hour Cancellation*' under Why Book With Us (asterisk not resolved on the page). No fee or tax figures on the page itself."
+    },
+    {
+      "url": "https://aria.mgmresorts.com/en/casino/poker.html",
+      "type": "official poker page",
+      "result": "match",
+      "what": "No tournament schedule published; 'Be sure to call the Poker Room or check out our Twitter account, @ARIAPoker, for the most recent information on whether our Daily Tournaments are running as scheduled!' (F13 stands). Poker-player room rates by phone 702.590.7232."
+    }
+  ],
+  "conclusion": "Every value this session could reach reproduced the published data. Two new irregularities were published (F82 stale Current-Series label; F83 Wynn daily slate unconfirmed during the WPT World Championship). The booking engines returned placeholders or error states rather than prices, so no rate value changed. Flags F01, F02, F03, F07, F13, F17, F20, F23, F24, F26, F31, F47, F51, F56, F57, F66, F69, F71, F72, F73 were re-confirmed against the live pages on 2026-11-17.",
+  "note": "Flag IDs were renumbered twice during the rebase chain: this session's two new flags were first committed as F77/F78, then renumbered F81/F82 when main moved (F77 reserved by PR #108; F78/F79/F80 taken), then F82/F83 when main took F81 (session 58e42dbd). They are published as F82 (stale Current-Series label) and F83 (Wynn daily slate unconfirmed during the WPT World Championship). The rebase kept every other session's work intact."
+}
