@@ -1548,3 +1548,75 @@ Three sessions independently re-read the same official pages on 2026-11-17 and r
   independently by this session and by session `arena/c2b95024-poker3`; both corrected it to $996.89/$248.59.
 - The booking engine returning no suite for the trip window is recorded three times over, as F15, F36 (another
   session) and in this session's four recorded stay windows.
+
+---
+
+## Session arena/ed1d2489-poker3 — final verification and integration (2026-11-17)
+
+Branch: `arena/ed1d2489-poker3`, rebased onto `main` at `2625d5b` before any work. The platform binds a session to one
+branch, so the `session-<id>/<task>` naming in the brief cannot be applied; this session works only on this branch and
+opens one PR from it. No other session holds a claim on these files in this window, so the scope below does not overlap.
+This session is the integration owner for the shared outputs it touches.
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| Live line-by-line re-verification of every published trip-window row and hotel term against the official source | in progress | arena/ed1d2489-poker3 | `research/recheck_2026-11-17_ed1d2489.json`, `tests/**` | Read by the page reader on 2026-11-17; every row linked. |
+| Defect pass on the canonical data (duplicate flag IDs, stale README claim, any row that fails its own source) | in progress | arena/ed1d2489-poker3 | `scripts/data_source.py`, `README.md`, `site/data.json`, `site/*.html` | Only values already backed by an official source are touched. |
+| Rebuild, verify, PR, merge, Pages confirmation | pending | arena/ed1d2489-poker3 | whole repo | `scripts/verify_site.py`, `tests/**`, `verify.yml`, `pages.yml` |
+
+### Work log (session arena/ed1d2489-poker3, 2026-11-17)
+
+**Source position.** This session re-read, from the venue hosts on 2026-11-17, the official DeepStack Extravaganza IV
+schedule (all four chunks, Nov 16 – Dec 23 2026), the eight structure PDFs the day plan relies on (sheets 1, 5, 6, 7,
+11, 17, 22, 26), the Venetian poker-suite rate page, the resort-fee page, the hotel terms and conditions page, and the
+Wynn Resort Policies page. The transcript is `research/recheck_2026-11-17_ed1d2489.json`; `tests/test_recheck_ed1d2489.py`
+(19 tests) pins every published row, fee line, guarantee, chip count, late-registration line and hotel component to it.
+
+**What matched the published data.** All 21 scheduled rows between 2026-11-25 and 2026-12-02 (date, start time, event
+number, printed name, buy-in, guarantee and the structure-sheet link the page prints). For sheets 1, 5, 6, 7, 11, 17, 22
+and 26: the title, the event numbers each sheet covers, start time, starting chips, level duration, the late-registration
+line, the guarantee (including the per-event-number guarantees on sheets 7 and 11) and the exact house-fee sentence,
+including the $60/$340 split on sheet 26. Venetian hotel: $119/$209 starting rates, $55 resort fee, 13.38% Clark County
+room tax, $20/day registered-guest parking, $150/night incidental authorisation, 3:00 PM check-in / 11:00 AM check-out,
+$100 early-checkout fee, code EPOKR25, and the six-hours-or-$300-tournament qualification. Wynn: $55 + tax resort fee,
+3 p.m. / 12 p.m. check-in and check-out, no printed tax percentage.
+
+**Defects found and fixed in this pass** (each one was a published statement that the sources do not support):
+
+| # | Defect | Fix |
+|---|---|---|
+| D1 | Flag IDs were not unique: `F38` was defined twice (schedule/Caesars coverage, and DSE NYE 2025 year). | The second definition stays as F41; the duplicate F38 is removed. All 41 flags now have unique IDs and every `F##` citation on every page resolves (asserted in a test). |
+| D2 | F41 said the 15 NYE structure sheets were "not read". They are read (F11, 52/52). | F41 now says the printed year is the only open point on those rows. |
+| D3 | The trip rationale said NYE rows "cannot enter the candidate list" because their sheets were unread. | Rewritten: the sheets are read; three of them print multi-entry wording, which is the real reason those rows stay out. |
+| D4 | `site/index.html` repeated the same false "15 structure sheets were not read" statement. | Same correction; the test fails if either file reintroduces it. |
+| D5 | Q13 said the Seniors sheet (#24) "has not been read", so its entry rules were unconfirmed. | Sheet 17 was read and re-read: it prints "MUST BE 50+ YEARS OF AGE TO PARTICIPATE" and a no-refund clause for under-50 buy-ins. Q13 now quotes the sheet. |
+| D6 | `app.js` attributed the entry-cap gap to F29 (a Pages publishing incident) and the tournaments empty state did too. | Both now cite F31, which is the entry-cap flag. |
+| D7 | Q10 cited F33 (schedule overlap) for the Bellagio stale notice. | Now F03. |
+| D8 | F31's detail and the `tournaments.html` notice said "45 sheet-screened" rows; the data has 52. | Both say 52. |
+| D9 | `questions.html` said "four questions marked as blocking" and "Seventeen questions"; `suggestions.html` said "Twelve items" and described a fixed 3/2/1 split. Data: 18 questions (8 blocking) and 17 suggestions. | All replaced by render-time counts from `site/data.json`; a test forbids the hard-coded numbers returning. |
+| D10 | README claimed "every official page and PDF was re-read and re-confirmed on 2026-11-17". No pass did that; Q10 itself lists what was not re-read. | README now names what was re-read and points at Q10 for the rest. |
+| D11 | No way to prove the scheduled re-check runs: `checks.yml` had only `schedule` + `workflow_dispatch`, and this session's token cannot dispatch (HTTP 403). | Added a path-filtered `push` trigger on `main` for `checks.yml` itself and the scripts it runs, so the first real run happens on merge. This is the same repair PR #55 proposes; it is applied here rather than in a competing branch. |
+| D12 | The day plan printed a bounty-inclusive guarantee ("$8,000 (prize pool + total bounties)") as a plain pool figure. | Each primary and fallback now carries a `*GuaranteeNote` taken from the sheet wording ("Includes total bounties, not a cash-only prize pool"), rendered beside the ratio. |
+
+**Not changed, and why.** No tournament, fee, guarantee, hotel or route value was altered: the re-read found no
+discrepancy. The competing PRs (#56, #55, #54, #50, #46, #39, #31, #27, #7) were read for unique findings and left
+unmerged so no other session's work is discarded; the one repair they shared that this session needed (D11) is applied
+here on top of `main`.
+
+**Rebase onto `main` at `19906c0`.** `main` advanced three times while this session worked (PRs #58, #59, #60, #61:
+session `arena/b573f10a-poker3` added dated hotel quotes and a live verifier, and renumbered its flags to F45–F47).
+This branch was rebased onto `19906c0`. Conflicts and how they were resolved, with nothing discarded:
+
+- `COORDINATION.md`: both records kept, `main`'s block first, this session's section appended.
+- `README.md`: `main`'s new "2026-11-17 re-verification pass" section kept in full, and this session's re-read record
+  paragraph appended after it. Both describe the same day from two independently verified vantage points.
+- `scripts/data_source.py`, `site/*`: no conflict, but the merge exposed one ID collision. `main` already defines **F38**
+  for the identical 9 a.m.-start finding, so this session's new flag (the Caesars "four to six hours" note, which was
+  F42 on the pre-rebase tree) is renumbered to **F43**. `git show origin/main:site/data.json` had no F43, so no id is
+  reused. The register now runs F01–F47 minus F38, F42 and F44: F38 is deliberately absent on this branch because its
+  content lives in F17 and F38 on `main`, and F44 is another session's number.
+
+**Verification on the rebased tree.** `data_source.py` rebuild byte-identical · `verify_site.py` passed (341 events,
+8 hotels, 14 routes, 39 sources, **44 flags, all unique**, 8 plan days, 16 pages) · **68 unit tests OK**, including the
+19 new ones · `canonical_smoke.py` and `canonical_render.js` pass · `smoke.py` OK · `node --check` and `json.tool` clean
+· 0 broken local links · every `F##` citation on every page resolves to a published flag.
