@@ -22432,7 +22432,7 @@
    "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"
   },
   {
-   "id": "F35",
+   "id": "F42",
    "area": "Sources",
    "severity": "Low",
    "title": "The official schedule PDF and the official schedule page print the event name differently",
@@ -22440,7 +22440,7 @@
    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
   },
   {
-   "id": "F36",
+   "id": "F43",
    "area": "Sources",
    "severity": "Medium",
    "title": "The official schedule PDF prints decorative sponsor art in the DATE column on 20 rows",
@@ -22448,7 +22448,7 @@
    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
   },
   {
-   "id": "F37",
+   "id": "F44",
    "area": "Hotels",
    "severity": "High",
    "title": "Booking-calendar cells are not prices: the same date prints a different figure per query",
@@ -22704,7 +22704,7 @@
   {
    "id": "Q05",
    "question": "Which hotels actually publish a room price for the dates you want?",
-   "answer": "Only The Venetian, and only through its own booking engine rather than on the rate page. Re-read on 2026-11-17, the engine printed $621.75 + $55 and $164.25 + $55 with $119.89 tax and a $1,015.89 total for a 650 sq ft Luxury King suite on November 17-19, against $1,245.48 for the same stay the day before, plus $2,504.00 for November 20-22. For the trip window itself it returned no suite at all. The engine's calendar cells are not prices: read twice on the same day, November 16 printed $555 with one stay window open and $854 with another, and November 27 printed $905 against $1,814 (F37). The rate page publishes only starting rates of $119 and $209, which are explicitly not date-specific, and states that rates are provided up to 150 days out.",
+   "answer": "Only The Venetian, and only through its own booking engine rather than on the rate page. Re-read on 2026-11-17, the engine printed $621.75 + $55 and $164.25 + $55 with $119.89 tax and a $1,015.89 total for a 650 sq ft Luxury King suite on November 17-19, against $1,245.48 for the same stay the day before, plus $2,504.00 for November 20-22. For the trip window itself it returned no suite at all. The engine's calendar cells are not prices: read twice on the same day, November 16 printed $555 with one stay window open and $854 with another, and November 27 printed $905 against $1,814 (F44). The rate page publishes only starting rates of $119 and $209, which are explicitly not date-specific, and states that rates are provided up to 150 days out.",
    "why": "Needed",
    "blocking": "Yes for a confirmed total",
    "how": "Open the booking link with the exact dates, then log the printed total in the rate log with its timestamp.",
@@ -22966,7 +22966,7 @@
    "decision": "Read three PDFs; no new source needed"
   },
   {
-   "id": "S15",
+   "id": "S18",
    "title": "Re-quote the trip window every morning and log what the engine returns",
    "detail": "Three dated quotes show the engine moves: the same November 17-19 stay printed $1,245.48 on 2026-11-16 and $1,015.89 on 2026-11-17. Four stay windows inside the trip window returned no suite at all. A scheduled job that opens the seven per-night booking links each morning and appends whatever the engine prints - a total, or 'no suite returned' - would turn the trip budget from a floor into a tracked number without anyone having to remember to look.",
    "impact": "High",
@@ -22974,7 +22974,7 @@
    "decision": "Automate the morning re-quote, or keep the per-night links manual"
   },
   {
-   "id": "S16",
+   "id": "S19",
    "title": "Never treat a booking-calendar cell as a price",
    "detail": "Read twice on the same day, the official calendar printed $555 and $854 for November 16 and $905 and $1,814 for November 27 depending on which stay window was open. The cell tracks the cheapest suite the engine can offer for that query, not a nightly rate. This is already enforced in the data - only the itemised quote panel is used - but the comparison is worth keeping on the hotels page so a reader does not copy a calendar figure into a budget.",
    "impact": "Medium",

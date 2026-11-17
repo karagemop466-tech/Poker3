@@ -429,7 +429,7 @@ FLAGS = [
                  "are never used in a total. On 2026-11-17 the same booking engine, fetched live for Nov 25 to Dec 2, "
                  "showed no amount in any date cell, so the trip window is still unpriced and no cell was recorded."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"),
-    dict(id="F35", area="Sources", severity="Low",
+    dict(id="F42", area="Sources", severity="Low",
          title="The official schedule PDF and the official schedule page print the event name differently",
          detail=("Both captures are official and they agree on date, time, event number and structure-sheet link for all "
                  "94 rows, but 83 of the 94 names are rendered differently: the PDF puts the guarantee in its own "
@@ -437,7 +437,7 @@ FLAGS = [
                  "'$200 NLH BOUNTY (1DAY)' with a separate $8,000 guarantee, and the page prints '$200 No Limit Hold'em "
                  "Bounty $8K GTD (1Day)'. The site's names follow the HTML page, which is the page every row links to."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
-    dict(id="F36", area="Sources", severity="Medium",
+    dict(id="F43", area="Sources", severity="Medium",
          title="The official schedule PDF prints decorative sponsor art in the DATE column on 20 rows",
          detail=("20 of the 94 rows on the official DeepStack Extravaganza IV schedule PDF carry no date at all: 6 read "
                  "'@PokerAtlas* TOUR', 6 read 'LIPS CHAMPIONSHIP CHAMPIES CHAMPIES CHAMPIES', 5 read "
@@ -445,7 +445,7 @@ FLAGS = [
                  "events 17, 18, 32-38, 41-46, 48, 50, 51 and 58. The dates on this site for those rows come from the "
                  "official schedule page, not from the PDF, and the two were cross-checked row by row."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
-    dict(id="F37", area="Hotels", severity="High",
+    dict(id="F44", area="Hotels", severity="High",
          title="Booking-calendar cells are not prices: the same date prints a different figure per query",
          detail=("On 2026-11-17 the official Venetian booking calendar was read twice, with two different stay windows "
                  "open. November 16 printed $555 with the November 17-19 window open and $854 with the November 27-28 "
@@ -680,7 +680,7 @@ QUESTIONS = [
                  "same stay the day before, plus $2,504.00 for November 20-22. For the trip window itself it "
                  "returned no suite at all. The engine's calendar cells are not prices: read twice on the same day, "
                  "November 16 printed $555 with one stay window open and $854 with another, and November 27 printed "
-                 "$905 against $1,814 (F37). The rate page publishes only starting rates of $119 and $209, which are "
+                 "$905 against $1,814 (F44). The rate page publishes only starting rates of $119 and $209, which are "
                  "explicitly not date-specific, and states that rates are provided up to 150 days out."),
          why="Needed", blocking="Yes for a confirmed total",
          how="Open the booking link with the exact dates, then log the printed total in the rate log with its timestamp.",
@@ -870,7 +870,7 @@ SUGGESTIONS = [
                  "2026-12-02 would settle it."),
          impact="High", effort="Low",
          decision="Read three PDFs; no new source needed"),
-    dict(id="S15", title="Re-quote the trip window every morning and log what the engine returns",
+    dict(id="S18", title="Re-quote the trip window every morning and log what the engine returns",
          detail=("Three dated quotes show the engine moves: the same November 17-19 stay printed $1,245.48 on "
                  "2026-11-16 and $1,015.89 on 2026-11-17. Four stay windows inside the trip window returned no suite at "
                  "all. A scheduled job that opens the seven per-night booking links each morning and appends whatever "
@@ -878,7 +878,7 @@ SUGGESTIONS = [
                  "tracked number without anyone having to remember to look."),
          impact="High", effort="Medium",
          decision="Automate the morning re-quote, or keep the per-night links manual"),
-    dict(id="S16", title="Never treat a booking-calendar cell as a price",
+    dict(id="S19", title="Never treat a booking-calendar cell as a price",
          detail=("Read twice on the same day, the official calendar printed $555 and $854 for November 16 and $905 and "
                  "$1,814 for November 27 depending on which stay window was open. The cell tracks the cheapest suite the "
                  "engine can offer for that query, not a nightly rate. This is already enforced in the data - only the "

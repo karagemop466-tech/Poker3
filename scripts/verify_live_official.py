@@ -172,7 +172,7 @@ def main() -> int:
 
     # 3. The two official captures render the event name differently: the PDF puts the
     #    guarantee in its own column while the HTML page inlines "$XXK GTD" into the name.
-    #    That difference is an official-source rendering fact (flag F35), not a data error,
+    #    That difference is an official-source rendering fact (flag F42), not a data error,
     #    so it is counted and printed but does not fail the check.
     name_diffs = 0
     for i, (p, h) in enumerate(zip(pdf, html)):
@@ -182,7 +182,7 @@ def main() -> int:
     print(
         f"PDF/HTML name rendering differences: {name_diffs} of {len(pdf)} rows "
         "(the PDF prints the guarantee in its own column; the HTML page inlines it) "
-        "- recorded as irregularity F35, not a data error."
+        "- recorded as irregularity F42, not a data error."
     )
 
     # 4. buy-in printed in the event name must match the canonical buyIn field
