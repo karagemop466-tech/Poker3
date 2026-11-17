@@ -2376,4 +2376,54 @@ head immediately before merging. If any of those branches moves after this claim
 and re-assess before integrating.
 
 **Commit discipline:** small frequent commits; `git pull --rebase origin arena/688eb797-poker3` before every push.
+<<<<<<< HEAD
 >>>>>>> 816cff9 (COORDINATION: claim final-integration scope for session arena/688eb797-poker3)
+=======
+
+### Closing the superseded open PRs (I1/I2, session 688eb797, 2026-11-17)
+
+Four open PRs are superseded rebuilds or fully-covered fix sets. Their canonical-site rewrites must not be
+merged over the verified dashboard (three earlier sessions recorded the same conclusion: PR #50's body,
+PR #56's body and PR #77's body). Their session records are preserved below so the verification work is not
+lost; the full text stays on each branch. Each PR is closed with a comment pointing here.
+
+**PR #7 — session `arena/92941c56-poker3` (2026-11-16).** Built a separate dashboard at `pages/`
+(tournaments with a separate rebuy/add-on section, hotels with a true-cost table, 8 AM schedule,
+executive summary, questions, suggestions, flagged-for-review). Data compiled 2026-11-16 from
+venetianlasvegas.com, worldpokertour.com, wynnlasvegas.com, aria.com, bellagio.mgmresorts.com and
+caesars.com, with third-party calendars listed as flags. Key flags it raised first: single-entry status
+unverified on every event, Nov-Dec 2026 room rates unpublished, ARIA/Horseshoe buy-in conflicts,
+Wynn/Encore resort-fee conflict, Bellagio schedule uncertainty, stale MGM rebuy listing. Every one of
+those findings is now carried, with official sources, on the canonical site. **Closed as superseded by
+the canonical `site/` dashboard.**
+
+**PR #27 — session `arena/701f2252-poker3` (2026-11-16).** Rebuilt `site/` from its own verified
+dataset: all 37 DSE IV structure sheets read in full; the 48 "single-entry confirmed" labels inferred
+from silence replaced with honest verdicts (silence is not proof); `reconcile_dse_iv.py` comparing all
+94 rows against two official transcriptions; global search, strict-entry toggle, one page per venue,
+trip-cost calculator, day plan with overlap check, dated hotel-rate logs, `check_hotel_rates.py`,
+`scrape_venetian_schedule.py` and a change-monitor page. **The stricter entry-label model and the
+reconciliation approach survive on `main`** — later merged sessions adopted them. The wholesale
+`site/data.json` rewrite itself is superseded by the verified build. **Closed as superseded.**
+
+**PR #31 — session `arena/ea188b20-poker3` (2026-11-16).** Reconciled the canonical data to all 83
+listed Venetian starts across 64 event numbers (Nov 16 - Dec 23); added date/venue/strict-entry filters,
+global search, CSV export, venue pages, schedule start-gap checks and an itemized hotel-cost estimator;
+added a dated hotel-rate search log and a source-change dashboard; added a weekly official-source
+monitor writing only `site/data/source-monitor.json`. Verified: `verify_site.py` PASS (102 rows), 7 unit
+tests, `node --check`, JSON validation, HTTP 200 page checks. Its monitoring concept was later
+consolidated into the single scheduled job (`checks.yml`) that deliberately replaced the overlapping
+committers. **Closed as superseded.**
+
+**PR #39 — session `arena/d81a0934-poker3` (2026-11-17).** Four defect fixes, each verified present on
+`main` today before closing: (B1) clean Wynn daily names — `main`'s four `wynn-daily` names carry no
+duplicated suffix; (B2) rate-log nightly low/high swap — `main` carries the later exact-reconciliation
+figures $248.59/$996.89 (superseding this PR's $248.61/$996.91); (B3) executive-summary flag count —
+`main` renders counts from the data (commit `b0728d5`); (B4) root `index.html` as a redirect to the
+canonical dashboard — on `main`. Its B5 re-verification (DSE schedule, Wynn poster, Venetian fee and
+suite-rate pages) matches today's records. **Closed as fully superseded.**
+
+These closures do not discard work: the superseding verified data, the monitoring consolidation and the
+verification suite on `main` implement (or improve on) everything each of these PRs introduced, and the
+branches remain reachable for audit.
+>>>>>>> 91eec2e (COORDINATION: preserve the records of PRs #7/#27/#31/#39 before closing them as superseded)
