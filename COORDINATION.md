@@ -3132,7 +3132,60 @@ Branch: `arena/da83eca8-poker3` (platform-bound; the `session-<id>/<task>` namin
 - F56 Wynn Signature structures unpublished → 38 rows stay not-verified.
 - Palazzo, MGM Grand, Caesars Palace, Horseshoe and ARIA dated rates not yet in the log.
 
-### Integration record (session `arena/da83eca8-poker3`)
+---
+
+## Session `arena/d4037af5-poker3` — live re-verification + daily-feed snapshot fix (2026-11-17 UTC)
+
+Branch: `arena/d4037af5-poker3`, branched from `main` @ `b9c8d77`. The platform binds a session
+to one branch, so the `session-<id>/<task>` naming cannot be applied; this session is the sole
+active editor on this branch and acts as integration owner for the shared record. Scope this
+session touched: `scripts/daily_feed.py`, `tests/test_daily_feed_snapshots.py` (new),
+`research/reverify_2026-11-17_d4037af5.md` (new), and this COORDINATION.md section. It did not
+edit the canonical table data, the site pages, or any other session's files.
+
+| Task | Status | Owner session | Files in scope | Notes |
+|---|---|---|---|---|
+| V1 Re-read the official sources behind the published trip-window rows, line by line | done | arena/d4037af5-poker3 | `raw/**` (read-only), `research/reverify_2026-11-17_d4037af5.md` | DSE IV schedule (all 4 chunks), Venetian resort-fee page, Wynn poker page — all match `site/data.json`. |
+| V2 Re-confirm the open negative claims (F17, F31) against the data | done | arena/d4037af5-poker3 | `site/data.json` (read-only) | Earliest start 9:00 AM (Horseshoe); 0 confirmed single-entry events. Both claims hold. |
+| V3 Fix the daily-feed snapshot overwrite for multi-page rooms | done | arena/d4037af5-poker3 | `scripts/daily_feed.py`, `tests/test_daily_feed_snapshots.py` | Each page now gets a unique dated snapshot; 2 regression tests added. |
+| V4 Verification suite, PR → `main`, merge, Pages confirmation, record here | pending | arena/d4037af5-poker3 | whole repo | See the integration record below. |
+
+### Live re-verification (2026-11-17)
+
+The DSE IV schedule page was re-read in all four chunks and compared field by field with
+`site/data.json` and the recorded capture `raw/dse_nov_2026_schedule_2026-11-17.md`: date,
+start time, event number, name, structure-PDF link, buy-in and guarantee. **0 mismatches.**
+The Venetian resort-fee page re-prints "$55 plus tax per night" and the Wynn poker page
+re-prints the WPT / Signature / daily-tournament facts; both match the published rows. The
+Wynn page's new "Super Gold Million" is already captured in the published WPT rows, so it is
+not drift. Full detail: `research/reverify_2026-11-17_d4037af5.md`.
+
+### Defect fixed
+
+`scripts/daily_feed.py` wrote every page of a multi-page room to the same
+`<room>-<date>.txt` filename, so the last page overwrote the earlier ones and only the last
+page's text survived on disk. Fixed by keying each page's snapshot on a short digest of its
+URL. `tests/test_daily_feed_snapshots.py` (2 cases) locks the behaviour. The scheduled
+`checks.yml` workflow regenerates `site/feed/**` on the next run (triggered by the
+`scripts/daily_feed.py` change) and commits the corrected artifacts back to `main`.
+
+### Checks run on the fixed tree
+
+`verify_site.py` PASS (341 events, 8 hotels, 15 routes, 43 sources, 72 flags, 7 plan days,
+16 pages); `audit_951cd431.py` 0 failures; `verify_live_official.py` OK; `audit_data.py`
+passed; `tests.test_workflows` OK; `tests.test_daily_feed_snapshots` OK; `unittest discover`
+**131 tests OK** (2 new); `node --check` on the JS assets OK.
+
+### Integration record
+
+- **PR:** see the merge record appended after the merge.
+- **Pages:** confirmed via the GitHub Pages API after the merge.
+
+### Open items (unchanged, published as flags)
+
+F31, F17, F16, F32, F39, F56 and the unquoted true-nightly cost for the non-Venetian
+properties remain open and are published on `site/flagged.html` with their source links.
+They do not block the merge.
 
 ## Current session `arena/4c7b94ab-poker3` — integration, verification and publication (2026-11-17 UTC)
 

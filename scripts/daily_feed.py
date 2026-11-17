@@ -83,9 +83,15 @@ def main() -> int:
                     page["textLength"] = len(text)
                     page["times"] = sorted(set(TIME_RE.findall(text)))[:60]
                     page["amounts"] = sorted(set(MONEY_RE.findall(text)))[:60]
-                    snapshot = FEED / f"{room['id']}-{stamp}.txt"
+                    # One room can publish more than one schedule page (the Venetian
+                    # publishes the DSE IV page, the DSE NYE page and the poker-room
+                    # page). Each page gets its own dated snapshot, keyed by a short
+                    # digest of its URL, so the pages never overwrite one another and
+                    # a morning run can be compared with the previous morning per page.
+                    slug = hashlib.sha256(url.encode("utf-8")).hexdigest()[:8]
+                    snapshot = FEED / f"{room['id']}-{stamp}-{slug}.txt"
                     snapshot.write_text(text, encoding="utf-8")
-                    page["snapshot"] = f"feed/{room['id']}-{stamp}.txt"
+                    page["snapshot"] = f"feed/{room['id']}-{stamp}-{slug}.txt"
             except urllib.error.HTTPError as exc:
                 page["status"] = f"HTTP {exc.code}"
                 page["error"] = str(exc)
