@@ -33,6 +33,9 @@ on:
       #
       # site/checks.json and site/feed/** are deliberately absent: this job
       # writes them, so including them would make it trigger itself.
+      # A change to this file itself also fires the job through this same push
+      # path, so site/checks.json exists immediately instead of waiting for the
+      # cron; the Actions token cannot dispatch this workflow by hand (403).
       - '.github/workflows/checks.yml'
       - 'scripts/check_sources.py'
       - 'scripts/daily_feed.py'
@@ -42,6 +45,7 @@ on:
       - 'scripts/data_hotels.py'
       - 'scripts/verify_transcription.py'
       - 'site/data.json'
+      - 'scripts/verify_transcription.py'
   schedule:
     # 12:10 UTC = 04:10 PST / 05:10 PDT, the morning pull. Re-reads every official URL
     # and captures each room's daily schedule. GitHub Actions cron is UTC-only.
