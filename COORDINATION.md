@@ -3124,3 +3124,21 @@ Branch: `arena/da83eca8-poker3` (platform-bound; the `session-<id>/<task>` namin
 - **Not re-read today:** Wynn and Bellagio parking, Palazzo quote, MGM, Caesars, Horseshoe, ARIA. Walking minutes are single Google Maps reads.
 - **Reproducibility failure on `main` and the fix.** Commit `5a9269d` (branch `arena/b13ca4cb-poker3`) added `tripCostModel.liveQuote.perNight` to `site/data.json` by hand, with no generator change. `verify.yml` regenerates `data.json` and fails on any diff, so the check could not pass. `scripts/data_source.py` now builds `perNight` from the quote record (`VENETIAN_QUOTE_TRIP`), and the regenerated file is committed. Values are unchanged; the only difference is formatting (lists expanded, `473.30` written as `473.3`). The regenerated output is byte-identical on a second run.
 
+
+
+
+
+---
+
+## Session `arena/7529044d-poker3` — claim (2026-11-17 UTC)
+
+Branch: `arena/7529044d-poker3` (platform-bound; the `session-<id>/<task>` naming cannot be applied, as in every prior session). Branched from `main` @ `d97e9e3` (merge of PR #90). This session records its claim before any other file edit.
+
+| Task | Status | Owner | Scope (files) | Notes |
+|---|---|---|---|---|
+| Repo review line-by-line against official sources; fix demonstrable defects; flag what cannot be confirmed | claimed 2026-11-17 | arena/7529044d-poker3 | `scripts/**`, `site/**`, `tests/**`, `.github/workflows/**`, `README.md`, this section | Verification-first pass over the canonical dashboard. |
+| Final integration: full check suite, PR → `main`, merge, confirm GitHub Pages, record result here | claimed 2026-11-17 | arena/7529044d-poker3 | this section + integration | No blocking wait for review; flagged items do not block merge. |
+
+**Not claimed, not edited:** `docs/`, `verified/`, `planner/`, `single-entry/`, `pages/`, `handoff/`, `raw/`, root-level legacy `*.html`, `site/poker3/**`. Prior-session artefacts stay as they are.
+
+**Concurrency note at claim time:** open PRs #92 (`arena/8689ef6e-poker3`), #93 (`arena/ab5d9f7d-poker3`) and #94 (`arena/b13ca4cb-poker3`) were opened minutes before this claim by concurrent sessions and are not touched by this session unless they are stale at integration time.
