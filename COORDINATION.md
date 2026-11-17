@@ -2090,3 +2090,71 @@ with this branch and were resolved in `main`'s favour or by keeping both, never 
   `scheduled-source-review`. This branch carried the old shared name; it now uses `main`'s group. The two scheduled
   writers therefore run in parallel again, and `main`'s own section records that trade-off.
 - `COORDINATION.md`: both records kept, `main`'s newest block first, this session's appended.
+## Session `arena/13439072-poker3` — MERGED (PR #56)
+
+**PR:** https://github.com/karagemop466-tech/Poker3/pull/56
+**Merge:** merged 2026-11-17T01:36:44Z, merge commit `6651b699cae461d1d43464ae00d5146e8276094f`, no approval required.
+**Pages:** canonical dashboard confirmed live at https://karagemop466-tech.github.io/Poker3/ — the served
+summary carries the corrected trip (2026-11-23 → 2026-11-30), the seven-day plan (23–29 November) and the
+F57 reference. `gh api .../pages` reports `built` with no error.
+
+### What this session contributed
+
+**Live re-verification.** Earlier sessions recorded that the sandbox could not reach the venue hosts, so the
+2026-11-16 reading was never re-checked. This session can fetch `venetianlasvegas.com` and its CDN, which
+turned the snapshot into something testable. Two new checks now run in CI:
+- `scripts/verify_live.py` — all 94 official DSE IV schedule rows against a verbatim capture in
+  `raw/dse_nov_2026_schedule_2026-11-17.md`. Result: **94/94 match** on date, time, structure link, buy-in
+  and guarantee. 27 rows differ only by presentational name edits.
+- `scripts/verify_sheets.py` — every sheet-screened row against facts read from its official structure PDF,
+  held in `data/sheet_facts_2026-11-17.json`. Result: **18 sheets, 45/45 rows match**.
+
+Both compare published data against *dated captures*, so a value that drifts from the official source now
+fails the build instead of being silently kept.
+
+**Four errors found in the hotel data**, all corrected here:
+- The 2026-11-16 calendar reading was **off by one day** from 26 November onward. It priced the night after
+  Thanksgiving at $210; the page prints **$905**. It also recorded a price for 30 November, which has none.
+- **30 November and 1 December publish no figure in any reading** (F57). This is the finding that moved the
+  trip. It is deliberately *not* the same claim as F47 (cells move with the query) or F28 (cells disagree
+  with the quote): across two independent renderings these were the only two dates that printed nothing at
+  all, and an arrival of 30 November returns "no availability for some of your selected dates".
+- The calendar tile and the itemised panel **disagree** for the same night ($440 vs $621.75 + $55).
+- The same quoted stay fell **$229.59 in under 24 hours**; both readings are kept as a dated series.
+
+**One confirmation, worth keeping.** Rounding each night to the cent reconciles *both* dated quotes to their
+printed totals **exactly** ($996.89 + $248.59 = $1,245.48; $767.30 + $248.59 = $1,015.89). That is the
+strongest available official-source proof that the 13.38% Clark County room tax is charged on the rate and
+the resort fee together. A test now asserts both.
+
+**One correctness fix.** 14 DeepStack NYE rows carried the sheet-screened label while their own rules block
+said not-verified. They moved to a new **Unverified** category, so the count was 45, not the 59 previously
+reported. Upstream has since read the remaining NYE sheets (now 52 candidates), and the category remains
+for any row whose sheet has not been read.
+
+### Rebase notes, for whoever rebases next
+
+**Flag IDs collide constantly.** This session's findings were numbered F29–F34, then F35–F40, then F51, then
+F54 (which collided with an unrelated flag), finally **F57**. Before adding a flag, `grep 'dict(id="F'
+scripts/data_source.py` and take a genuinely unused number. A test now fails if any published page cites an
+ID that does not exist, and it caught every one of these.
+
+**Changing `TRIP` breaks assertions that pin the old window.** Three did:
+- `scripts/data_source.py` asserted `n2 == 19` for Wynn rows inside the trip window. The fix is *not* to
+  change 19 to 13: the re-check belongs to the rows that were read, so the loop is now scoped to the WPT
+  schedule PDF's own coverage (2026-11-25..2026-12-02) rather than to whichever window the site advises.
+  Scoping evidence to the advice would have silently withdrawn the re-check from the 1 and 2 December rows.
+- `tests/test_recheck_ed1d2489.py` pinned the trip dates and the in-window row count.
+- `tests/test_hotel_costs_and_qualification.py` pinned the two nights that fail the $300 poker-rate test to
+  `["2026-11-30", "2026-12-01"]`. They are now `["2026-11-23", "2026-11-24"]`.
+
+**One published answer went stale rather than wrong-looking.** Q16 named Nov 30 and Dec 1 as the two nights
+that miss the $300 poker-rate test. After the window moved those dates are not in the plan at all, so the
+answer now names Nov 23 and Nov 24 and the trip's 11:00 a.m. check-out on 30 November. A test asserts both
+the new text and the absence of the old, so it cannot silently drift back.
+
+### Open
+
+PRs **#7, #27 and #31 are deliberately left open.** #27 and #31 each replace the canonical
+`site/data.json`, so merging either without its session present would discard the other's work. That is a
+decision for an integration session with both authors available, not something to force here.
