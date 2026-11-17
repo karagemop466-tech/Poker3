@@ -30,22 +30,28 @@
       <h1>The rooms, what each one publishes, and how far it is.</h1>
       <p>
         Each card below opens a venue page with that room’s published events, the hotels attached to it and the walking
-        time from the recommended hotel. The walking figures are Google Maps walking estimates captured on
-        <span data-asof></span>, because no venue publishes a walking time to its own poker room. ARIA and MGM Grand
+        time from the recommended hotel. The walking figures are Google Maps walking directions in walking mode, read on
+        <span data-asof></span> for the hotel-to-Venetian pairs, because no venue publishes a walking time to its own poker room. ARIA and MGM Grand
         sit outside the 30-minute limit from the Venetian; every other room on this list is inside it.
       </p>
     </section>
 
     <section class="section">
-      <div class="section-head"><div><h2>Strip poker rooms</h2><p>Seven rooms verified from official pages in this pass.</p></div></div>
+      <div class="section-head"><div><h2>Strip poker rooms</h2><p>Seven rooms with an official poker page on record; the status table below shows when each one was read.</p></div></div>
       <div class="cards" data-venue-list></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Strip poker-room status</h2><p>Every Strip room the dashboard tracks, with its status, the date it was read and the official page behind it. A closure is shown only as a press report until an official page confirms it.</p></div></div>
+      <div class="table-wrap" data-strip-rooms></div>
+      <p class="toolbar-note">Resorts World and Planet Hollywood are reported closed in 2026 by press only; neither closure is confirmed on an official page (flags F78 and F79). Mandalay Bay is open on its official page, which prints no tournament schedule (flag F80), so it has no event rows. Google Maps walking times for the hotels are on the <a href="hotels.html">hotel comparison</a>.</p>
     </section>
 
     <section class="section">
       <div class="section-head"><div><h2>Rooms not checked in this pass</h2><p>Recorded so the coverage gap is visible.</p></div></div>
       <div class="card">
-        <p>South Point, Golden Nugget, Resorts World, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate,
-        Tropicana, Bally’s, Flamingo, LINQ, Planet Hollywood, Rio and M Resort were not read. For a trip that wants the
+        <p>South Point, Golden Nugget, Circa, Excalibur, Luxor, Orleans, Red Rock, Palms, Westgate,
+        Tropicana, Bally’s, Flamingo, LINQ, Rio and M Resort were not read. For a trip that wants the
         most playable tournaments in walking range, the smaller daily rooms are often worth more than another marquee
         series, so this gap matters more than the missing headline events.</p>
         <p class="muted">Each one needs its own official page and its own structure sheets before any of its values

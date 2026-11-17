@@ -1,0 +1,118 @@
+{
+  "_about": "Google Maps directions read on 2026-11-17 (UTC) through the public directions URL with travelmode=walking. Each record keeps the exact query, the page title, every route card that was shown, and the mode marker text the page printed. The page was rendered in a French browser locale; numbers are copied as printed (a comma is a decimal separator, so '0,6 mile' is 0.6 mile). Google Maps is not an official venue source; no venue publishes a walking time. These are measurements from a non-official map service, labelled as such everywhere they appear. Minutes are the first (recommended) route card; every shown route is kept in routes[].",
+  "captured": "2026-11-17",
+  "walkingModeMarker": "The walking pages print 'Tous les itinéraires sont principalement plats' or 'Principalement plat' (English: 'All routes are mostly flat' / 'Mostly flat'). The driving control page prints traffic wording instead and no 'mostly flat' line.",
+  "records": [
+    {
+      "id": "palazzo-to-venetian",
+      "origin": "The Palazzo Las Vegas NV",
+      "destination": "The Venetian Resort Las Vegas NV",
+      "url": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=The+Palazzo+Las+Vegas+NV&destination=The+Venetian+Resort+Las+Vegas+NV",
+      "pageTitle": " Google Maps ",
+      "modeMarker": "Principalement plat",
+      "routes": [
+        {"minutes": 4, "miles": "0.2", "via": "routes sans nom (unnamed roads)"}
+      ]
+    },
+    {
+      "id": "wynn-to-venetian",
+      "origin": "Wynn Las Vegas, 3131 Las Vegas Blvd S, Las Vegas, NV 89109",
+      "destination": "The Venetian Resort, Las Vegas, NV",
+      "url": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Wynn+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109&destination=The+Venetian+Resort,+Las+Vegas,+NV",
+      "pageTitle": "Wynn Las Vegas à The Venetian - Google Maps",
+      "modeMarker": "Tous les itinéraires sont principalement plats",
+      "routes": [
+        {"minutes": 13, "miles": "0.6", "via": "Wynn Main Gate Dr"},
+        {"minutes": 14, "miles": "0.6", "via": "Las Vegas Blvd S"},
+        {"minutes": 16, "miles": "0.7", "via": "Sands Ave et Las Vegas Blvd S"}
+      ]
+    },
+    {
+      "id": "bellagio-to-venetian",
+      "origin": "Bellagio Hotel & Casino, Las Vegas NV",
+      "destination": "The Venetian Resort Las Vegas NV",
+      "url": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Bellagio+Hotel+%26+Casino+Las+Vegas+NV&destination=The+Venetian+Resort+Las+Vegas+NV",
+      "pageTitle": " Google Maps ",
+      "modeMarker": "Tous les itinéraires sont principalement plats",
+      "routes": [
+        {"minutes": 21, "miles": "0.9", "via": "Las Vegas Blvd S"},
+        {"minutes": 24, "miles": "1.1", "via": "Bellagio Dr et Las Vegas Blvd S"}
+      ]
+    },
+    {
+      "id": "mgm-to-venetian",
+      "origin": "MGM Grand Hotel & Casino, Las Vegas NV",
+      "destination": "The Venetian Resort Las Vegas NV",
+      "url": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=MGM+Grand+Hotel+%26+Casino+Las+Vegas+NV&destination=The+Venetian+Resort+Las+Vegas+NV",
+      "pageTitle": "MGM Grand Las Vegas à The Venetian - Google Maps",
+      "modeMarker": "Principalement plat",
+      "routes": [
+        {"minutes": 35, "miles": "1.6", "via": "Las Vegas Blvd S"}
+      ]
+    },
+    {
+      "id": "caesars-to-venetian",
+      "origin": "Caesars Palace Las Vegas NV",
+      "destination": "The Venetian Resort Las Vegas NV",
+      "url": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Caesars+Palace+Las+Vegas+NV&destination=The+Venetian+Resort+Las+Vegas+NV",
+      "pageTitle": "Caesars Palace à The Venetian - Google Maps",
+      "modeMarker": "Tous les itinéraires sont principalement plats",
+      "routes": [
+        {"minutes": 12, "miles": "0.5", "via": "Las Vegas Blvd S"},
+        {"minutes": 12, "miles": "0.6", "via": "S Siegfried And Roy Dr et Las Vegas Blvd S"}
+      ]
+    },
+    {
+      "id": "horseshoe-to-venetian",
+      "origin": "Horseshoe Las Vegas NV",
+      "destination": "The Venetian Resort Las Vegas NV",
+      "url": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=Horseshoe+Las+Vegas+NV&destination=The+Venetian+Resort+Las+Vegas+NV",
+      "pageTitle": " Google Maps ",
+      "modeMarker": "Tous les itinéraires sont principalement plats",
+      "routes": [
+        {"minutes": 16, "miles": "0.7", "via": "Linq Ln"},
+        {"minutes": 16, "miles": "0.7", "via": "Krueger Dr"},
+        {"minutes": 17, "miles": "0.8", "via": "Las Vegas Blvd S"}
+      ]
+    },
+    {
+      "id": "aria-to-venetian",
+      "origin": "ARIA Resort & Casino Las Vegas NV",
+      "destination": "The Venetian Resort Las Vegas NV",
+      "url": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=ARIA+Resort+%26+Casino+Las+Vegas+NV&destination=The+Venetian+Resort+Las+Vegas+NV",
+      "pageTitle": "Aria Resort & Casino à The Venetian - Google Maps",
+      "modeMarker": "Tous les itinéraires sont principalement plats",
+      "routes": [
+        {"minutes": 31, "miles": "1.4", "via": "Las Vegas Blvd S"},
+        {"minutes": 32, "miles": "1.4", "via": "The Cosmopolitan Service Rd et Las Vegas Blvd S"},
+        {"minutes": 38, "miles": "1.7", "via": "Frank Sinatra Dr"}
+      ]
+    },
+    {
+      "id": "venetian-to-bellagio",
+      "origin": "The Venetian Resort Las Vegas NV",
+      "destination": "Bellagio Hotel & Casino Las Vegas NV",
+      "url": "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin=The+Venetian+Resort+Las+Vegas+NV&destination=Bellagio+Hotel+%26+Casino+Las+Vegas+NV",
+      "pageTitle": "The Venetian à Bellagio - Google Maps",
+      "modeMarker": "All routes are mostly flat",
+      "routes": [
+        {"minutes": 21, "miles": "0.9", "via": "Las Vegas Blvd S"},
+        {"minutes": 25, "miles": "1.1", "via": "Las Vegas Blvd S et Bellagio Dr"}
+      ],
+      "note": "Reverse direction. The earlier stored value (27 min, single read, 2026-11-17) is replaced by this read; the 27-minute figure has no saved capture."
+    },
+    {
+      "id": "control-driving-venetian-to-bellagio",
+      "origin": "Venetian Resort Las Vegas NV",
+      "destination": "Bellagio Hotel & Casino Las Vegas NV",
+      "url": "https://www.google.com/maps/dir/?api=1&origin=Venetian+Resort+Las+Vegas+NV&destination=Bellagio+Hotel+%26+Casino+Las+Vegas+NV",
+      "pageTitle": "The Venetian à Bellagio - Google Maps",
+      "modeMarker": "Traffic wording (driving); the walking page's flat-routes line is absent",
+      "routes": [
+        {"minutes": 10, "miles": "1.0", "via": "Las Vegas Blvd S", "trafficWording": "fastest currently due to traffic conditions"},
+        {"minutes": 10, "miles": "1.0", "via": "Las Vegas Blvd S et Bellagio Dr", "trafficWording": "denser traffic than usual"}
+      ],
+      "note": "Control only, no travelmode parameter (driving). It shows the same pair is 10 minutes by car and 21 minutes on foot, so the walking captures are not driving times. The page also printed a third card (21 min, 0.9 mile) that is not attributed here."
+    }
+  ]
+}
