@@ -2540,7 +2540,21 @@ Branch: `arena/fe903bcb-poker3` (the only branch this session may touch; the `se
 
 | Task | Status | Owner | Scope | Notes |
 |---|---|---|---|---|
-| H1 Dated official checkout quote for the recommended 23–30 Nov 2026 stay at The Venetian (2 adults, 7 nights), with per-night rate, resort fee, tax, total and read timestamp | in progress (claimed 2026-11-17) | arena/fe903bcb-poker3 | `scripts/data_hotels.py` (`RATE_LOG` only), regenerated `site/data.json` | Only values printed on the official booking page are recorded; per-night true cost is arithmetic on those printed values and is labelled as derived. |
-| H2 Re-read the official Venetian poker suite-rate and resort-fee pages | in progress (claimed 2026-11-17) | arena/fe903bcb-poker3 | verification only | Read on 2026-11-17; $55 resort fee confirmed on both pages. |
+| H1 Dated official checkout quote for the recommended 23–30 Nov 2026 stay at The Venetian (2 adults, 7 nights), with per-night rate, resort fee, tax, total and read timestamp | done (2026-11-17) | arena/fe903bcb-poker3 | `scripts/data_hotels.py` (`RATE_LOG` only), regenerated `site/data.json` | Only values printed on the official booking page are recorded; per-night true cost is arithmetic on those printed values and is labelled as derived. |
+| H2 Re-read the official Venetian poker suite-rate and resort-fee pages | done (2026-11-17) | arena/fe903bcb-poker3 | verification only | Read on 2026-11-17; $55 resort fee confirmed on both pages. |
 
 No other session's scope is touched. Shared outputs (`site/data.json`) are regenerated only from `scripts/data_source.py`.
+
+### Work log and verification (session `arena/fe903bcb-poker3`, 2026-11-17 UTC)
+
+- **Sources read (official, from this sandbox, 2026-11-17):**
+  - Venetian booking engine, 2 adults, arrival 23 Nov 2026, departure 30 Nov 2026 (7 nights): https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar (the page answers at its `/book` path with the same parameters).
+  - Venetian resort-fee page: https://www.venetianlasvegas.com/resort/resort-fee.html ("a daily Resort Fee of $55 plus tax per night").
+  - Venetian poker suite-rate page: https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html ("$55 resort fee per night stayed"; starting rates $119 and $209; poker-play conditions).
+- **Printed on the booking page:** Luxury King best-available quote, nightly rates 164.25 / 164.25 / 201.75 / 231.75 / 1,649.25 / 554.25 / 186.75; resort fee $55.00 each night; taxes $473.30; estimated cost of stay $4,010.55; average rate $505.32.
+- **Derived (arithmetic, labelled as derived):** per-night all-in cost = (rate + $55) x 1.1338 = 248.59 / 248.59 / 291.10 / 325.12 / 1,932.28 / 690.77 / 274.10. These sum to the printed $4,010.55.
+- **Changes made:** `scripts/data_hotels.py` (one `RATE_LOG` entry with per-night fields); `scripts/data_source.py` (flag F65); `scripts/audit_951cd431.py` (the rate-log audit assumed a two-night quote; it now also checks multi-night quotes night by night against the printed total, and the two-night rule is unchanged); regenerated `site/data.json`.
+- **Checks run:** `verify_site.py` passed (62 flags); `audit_951cd431.py` 0 failures; `verify_live_official.py` OK; `audit_data.py` passed; `canonical_smoke.py` passed; `node --check` on both site scripts; JSON validation; `smoke.py` OK; unit tests 99 OK (includes the workflow-syntax test, which needed `pyyaml` installed in the sandbox).
+- **Irregularity flagged (F65, Low):** printed tax $473.30 vs 13.38% of the printed pre-tax $3,537.25 = $473.28 (difference $0.02, unexplained by the page). Printed figures kept as printed.
+- **Scope limits, not done in this session:** no Strip-wide hotel quotes; no walking-route changes; no change to the trip budget floor or to any event row; the booking engine's price is a non-poker-suite best-available rate, and it moves between reads (the existing log already shows this), so it is a dated observation and not a booking price. The 8 AM plan, the walking-time filter, the live scraper and the other requested features remain open and are not claimed here.
+- **Recheck before any nonrefundable payment:** rerun the booking link for the dates chosen; the fee, tax and rates are as printed on 2026-11-17.

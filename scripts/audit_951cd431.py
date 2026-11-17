@@ -182,7 +182,23 @@ for r in D['rateLog']:
         fail(f'rate log {r.get("hotel")} {r.get("observedOn")}: a dated checkout total with no derived nights')
         continue
     printed = {round(float(m.replace(',', '')), 2) for m in MONEY.findall(r.get('note') or '')}
-    got = round(low + high, 2)
+    if r.get('nightlyTrueCost'):
+        # Multi-night quote (the 7-night fixed-stay read): each night is re-derived from its printed rate and
+        # the hotel's printed resort fee, the nights must sum to the printed total, and low/high are the min/max night.
+        nts = [float(x) for x in r['nightlyTrueCost']]
+        rates = [float(x) for x in (r.get('nightlyRates') or [])]
+        fee_n = next((num(hh.get('resortFee')) for hh in D['hotels'] if hh['id'] == r.get('hotel')), None)
+        if len(rates) != len(nts) or fee_n is None:
+            fail(f'rate log {r.get("hotel")} {r.get("observedOn")}: nightlyRates/nightlyTrueCost do not line up')
+            continue
+        for i, (rt, nt) in enumerate(zip(rates, nts), 1):
+            if abs(round((rt + fee_n) * 1.1338, 2) - nt) > 0.011:
+                fail(f'rate log {r.get("hotel")} {r.get("observedOn")}: night {i} {nt} != ({rt} + {fee_n}) x 1.1338')
+        if abs(min(nts) - low) > 0.011 or abs(max(nts) - high) > 0.011:
+            fail(f'rate log {r.get("hotel")} {r.get("observedOn")}: trueNightlyLow/High are not the min/max night')
+        got = round(sum(nts), 2)
+    else:
+        got = round(low + high, 2)
     if not any(abs(got - p) <= 0.011 for p in printed):
         fail(f'rate log {r.get("hotel")} {r.get("observedOn")}: the two derived nights {low} + {high} = {got} '
              f'do not appear among the figures the record prints ({sorted(printed)})')

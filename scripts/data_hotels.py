@@ -495,6 +495,32 @@ HOTELS = [
 
 # Dated rate log. New observations are appended, never overwritten.
 RATE_LOG = [
+    # Recommended trip window, read from the official booking engine (session fe903bcb, 2026-11-17 UTC).
+    # The engine printed a best-available "Newly Remodeled Luxury King" quote for 7 nights, 2 adults.
+    # Every money figure below is printed on the page; the per-night true cost is derived (see note).
+    dict(hotel="venetian", observedOn="2026-11-17", baseRate="",
+         publishedStartingRates="164.25 (Nov 23), 164.25 (Nov 24), 201.75 (Nov 25), 231.75 (Nov 26), "
+                                "1,649.25 (Nov 27), 554.25 (Nov 28), 186.75 (Nov 29) per night, rate before resort fee",
+         resortFee="55.00 per night",
+         tax="473.30 printed (7 nights)",
+         # Derived = (printed rate + printed $55 resort fee) x 1.1338, one value per night.
+         trueNightlyLow="248.59", trueNightlyHigh="1932.28",
+         # Printed per-night room rates (23-29 Nov) and the derived all-in night costs, in stay order.
+         nightlyRates=[164.25, 164.25, 201.75, 231.75, 1649.25, 554.25, 186.75],
+         nightlyTrueCost=[248.59, 248.59, 291.10, 325.12, 1932.28, 690.77, 274.10],
+         quoteType=("Dated official checkout total (2 adults, 7 nights, 23-30 Nov 2026, best available "
+                    "Luxury King suite) - read 2026-11-17"),
+         note=("Printed on the page: the engine's 'Estimated cost of stay' of $4,010.55 (average rate $505.32 per "
+               "night, all-in before tax). Its breakdown lists the seven nightly rates above, a $55.00 resort fee on "
+               "each night ($385.00 total) and taxes of $473.30. Seven derived per-night true costs add to $4,010.55 "
+               "exactly. Tax check: 13.38% of the printed pre-tax subtotal of $3,537.25 is $473.28, so the printed "
+               "$473.30 differs by $0.02; the page gives no reason, and the figure is recorded as printed "
+               "(flagged). The 27 Nov night ($1,649.25) is the engine's own price for that night and is not a "
+               "reference rate. This is a non-poker-suite, best-available quote; the $119/$209 poker suite rate "
+               "needs the poker-play conditions on the official rate page and is not applied here. Reads on the same "
+               "day for other windows differed (see the rows below), so this quote is one dated observation."),
+         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar",
+         feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
     dict(hotel="venetian", observedOn="2026-11-17", baseRate="",
          publishedStartingRates="621.75 (Nov 17) and 164.25 (Nov 18) per night",
          resortFee="55.00 per night", tax="119.89 printed",
