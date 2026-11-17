@@ -509,15 +509,19 @@ FLAGS = [
                  "is flagged rather than resolved."),
          source="https://www.wynnlasvegas.com/terms-and-conditions/850070"),
     dict(id="F15", area="Hotels", severity="High",
-         title="Dated checkout totals exist for near-term stays and for the 23-30 Nov trip window, but none for the superseded 25 Nov - 2 Dec window",
-         detail=("The Venetian booking engine has now printed three dated totals. November 17-19, 2026 with two adults: "
-                 "$824.25 + $55, $164.25 + $55, $146.98 tax, $1,245.48 total on 2026-11-16, and the same stay at "
-                 "$621.75 + $55, $164.25 + $55, $119.89 tax, $1,015.89 total on 2026-11-17. November 20-22, 2026: "
-                 "$899.25 + $55, $1,199.25 + $55, $295.50 tax, $2,504.00 total. On 2026-11-17 four stay windows inside "
-                 "the then-recommended November 25 to December 2, 2026 dates were opened and none returned a suite or "
-                 "a price. Later the same day the 23-30 November window was priced in full: $4,010.55 for seven nights "
-                 "(rate log). The floor computed from the published starting rates of $119 and $209 is labelled a floor, "
-                 "not a quote."),
+         title="RESOLVED 2026-11-17: a dated checkout total exists for the booked trip window ($4,010.55, 23-30 Nov 2026)",
+         detail=("Superseded on the evening of 2026-11-17; the record is kept because it is the largest money gap the "
+                 "dashboard carried. The booking engine printed an itemised total for the stay the trip is actually "
+                 "booked for: 23-30 November 2026, seven nights, two adults, Newly Remodeled Luxury King under 'Book "
+                 "Direct: Up to 25% Off', $4,010.55 with $473.30 of tax and nightly room rates of $164.25, $164.25, "
+                 "$201.75, $231.75, $1,649.25, $554.25 and $186.75 before a $55 resort fee each night. Every night "
+                 "reconciles to (rate + $55) x 1.1338 and the seven derived figures add to the printed total exactly. "
+                 "The trip cost model now uses that total and publishes the $197.28 component floor beside it. For "
+                 "completeness on the superseded dates: four stay windows inside the then-recommended 25 November - "
+                 "2 December 2026 returned no suite and no price, and two earlier near-term stays are still in the rate "
+                 "log as observations (17-19 November at $1,245.48 on 2026-11-16 and $1,015.89 on 2026-11-17, 20-22 "
+                 "November at $2,504.00). What remains open is narrower and is carried by F66: the phone-only poker "
+                 "rate (code EPOKR25) does not appear in the engine quote."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"),
     dict(id="F28", area="Hotels", severity="High",
          title="The Venetian booking calendar disagrees with the quote, and its cells change with the query",
@@ -525,8 +529,10 @@ FLAGS = [
                  "page's quote for the same night printed a $824.25 room rate, and an earlier observation of the same "
                  "calendar on the same day recorded $605. The calendar states that its prices are the best available suite "
                  "and rate, include the daily resort fee and exclude taxes. Calendar cells are logged as observations and "
-                 "are never used in a total. On 2026-11-17 the same booking engine, fetched live for Nov 25 to Dec 2, "
-                 "showed no amount in any date cell, so the trip window is still unpriced and no cell was recorded."),
+                 "are never used in a total. On 2026-11-17 the same booking engine was fetched live for the superseded "
+                 "25 November - 2 December window and showed no amount in any date cell; the engine was then opened for "
+                 "the booked 23-30 November stay and printed an itemised $4,010.55 total (F15), while its calendar cells "
+                 "for those nights were still different figures (F69). No calendar cell is ever recorded as a price."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-17&children[]=0&departure_date=2026-11-19&view=calendar"),
     dict(id="F45", area="Sources", severity="Low",
          title="The official schedule PDF and the official schedule page print the event name differently",
@@ -754,12 +760,16 @@ FLAGS = [
                  "only in offer terms, so Wynn has no verified flexible-booking cancellation deadline and is shown blank."),
          source="https://www.wynnlasvegas.com/about-us/resort-information"),
     dict(id="F36", area="Hotel cost", severity="Medium",
-         title="The booking engine printed $XXX for the superseded 25 Nov - 2 Dec dates, so no checkout total exists for them (the 23-30 Nov trip window has a dated quote, F15)",
-         detail=("The Venetian booking engine was opened for 2026-11-25 to 2026-12-02 with two adults. It returned the "
-                 "date picker with every cell reading $XXX, because prices are loaded by script after the page renders. "
-                 "No dated checkout total could be read for those dates. The 23-30 Nov trip window was priced on "
-                 "2026-11-17 (F15). The published starting-rate floor ($197.28) is kept and labelled a floor, never a quote."),
-         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-25&children[]=0&departure_date=2026-12-02&view=calendar"),
+         title="RESOLVED 2026-11-17: the booking engine does print an itemised total for the trip window; the $XXX cells were a rendering artefact",
+         detail=("Superseded on the evening of 2026-11-17. This flag was written against the superseded 25 November - "
+                 "2 December window, where the date picker returned every cell reading $XXX because prices load by "
+                 "script after first paint, so no dated total could be read for those dates. Reopening the engine for "
+                 "the window the trip is booked for (23-30 November 2026) returned the itemised panel and the $4,010.55 "
+                 "checkout total described in F15. The lesson is kept on the register rather than deleted: the calendar "
+                 "cells and the itemised panel can disagree, so no calendar cell is ever used as a price (F69). The "
+                 "published starting-rate floor ($197.28) is still shown beside the quote and is still labelled a "
+                 "floor, never a quote."),
+         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar"),
     dict(id="F37", area="Hotel cost", severity="Low",
          title="Caesars Palace and Horseshoe resort fees are now confirmed; their room-tax percentage is not",
          detail=("Closed on 2026-11-17 for the fee. The official Caesars booking page for each property prints a Hotel "
@@ -830,19 +840,22 @@ FLAGS = [
          source="https://cdn.wynnresorts.com/image/upload/v1762299460/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Structures.pdf"),
 
     dict(id="F54", area="Trip plan", severity="High",
-         title="Two of the seven planned nights do not satisfy the published condition for the $119 poker-suite rate",
-         detail=("Derived on 2026-11-17 from two published documents, not inferred. The Venetian poker-suite rate page "
-                 "requires 'six hours of active live cash gameplay or buy in to a $300 or higher tournament for each "
-                 "night stayed', and failure to qualify means the prevailing rate is charged. The recommended plan "
-                 "places a $400, $300, $600, $600 and $300 primary on Nov 25, 26, 27, 28 and 29, which satisfy it, and a "
-                 "$200 primary on Nov 30 and Dec 1, which do not; the nights of those two days are therefore not covered "
-                 "by the published condition. The Dec 2 $200 entry falls on the departure day, so it is not a night that "
-                 "needs qualifying. The page does not say whether an entry counts on the day it is paid or on every night "
-                 "of a multi-day event, so no re-pricing amount is claimed - the room must be asked. Two $300+ "
-                 "alternatives are published on those dates (the $400 No Limit Hold'em 1B at 11:10 AM on Nov 30 and 1C at "
-                 "11:10 AM on Dec 1, both multi-flight, so they sit outside the single-entry screen; on Dec 2 the only "
-                 "$300+ single-day event is the $600 Seniors, which is age-restricted to 50+). Choosing between a $200 "
-                 "buy-in and a possibly repriced room is a decision this site shows but does not make."),
+         title="Two of the seven planned nights (23 and 24 November) do not satisfy the published condition for the $119 poker-suite rate",
+         detail=("Corrected 2026-11-17. The earlier text of this flag named 30 November, 1 December and 2 December, which "
+                 "belonged to the superseded 25 November - 2 December window and are not part of the booked stay; the "
+                 "finding is unchanged in substance and only the dates were wrong. Derived from two published documents, "
+                 "not inferred. The Venetian poker-suite rate page requires 'six hours of active live cash gameplay or "
+                 "buy in to a $300 or higher tournament for each night stayed', and failure to qualify means the "
+                 "prevailing rate is charged. The trip is 23-30 November 2026, so the seven nights that must qualify are "
+                 "23, 24, 25, 26, 27, 28 and 29 November. The day plan places a $400, $300, $600, $600 and $300 primary "
+                 "on 25, 26, 27, 28 and 29 November, which satisfy it, and a $200 primary on 23 and 24 November, which do "
+                 "not; those two nights are therefore not covered by the published condition. The page does not say "
+                 "whether an entry counts on the day it is paid or on every night of a multi-day event, so no re-pricing "
+                 "amount is claimed - the room must be asked. One $300+ alternative is published on each of those two "
+                 "dates: the $400 No Limit Hold'em 1A at 11:10 AM on 23 November and 1B at 11:10 AM on 24 November, both "
+                 "multi-flight, so both sit outside the single-entry screen and would also require playing into a later "
+                 "day. Choosing between a $200 buy-in with a possibly repriced room, a $400 multi-flight entry, or six "
+                 "hours of live cash play is a decision this site shows but does not make."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
     dict(id="F40", area="Monitoring", severity="Low",
          title="The build sandbox cannot reach the venue hosts; live reads were made by the page reader",
@@ -1039,12 +1052,15 @@ FLAGS = [
                  "minutes. The 30-minute limit is still met (27 minutes). Re-read the pair on a second day before relying on either figure."),
          source="https://www.google.com/maps/dir/?api=1&origin=3355+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&destination=Bellagio+Poker+Room,+3600+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&travelmode=walking"),
     dict(id="F68", area="Publishing", severity="Low",
-         title="Legacy hotel, rate and route files in site/data/ are stale and are written by no script",
-         detail=("site/data/hotels.json, site/data/rates.json and site/data/routes.json are dated 2026-11-16, are written by no script "
-                 "in scripts/, and are not linked or read by any dashboard page. They still show the 25 November - 2 December window, "
-                 "the calendar-based $2,140 figure and blank walking minutes. They are left in place so nothing else breaks; they "
-                 "should be removed or regenerated in a separate change. site/data.json is the only current source."),
-         source="https://github.com/karagemop466-tech/Poker3/tree/main/site/data"),
+         title="RESOLVED 2026-11-17: stale hotel, rate and route files were feeding the sheet-verification page",
+         detail=("site/data/hotels.json, site/data/rates.json and site/data/routes.json were dated 2026-11-16, were written by no script, "
+                 "and were not read by any dashboard page — but scripts/build_addendum.py did read hotels.json, rates.json and "
+                 "routes.json, and it generates site/sheets.html, which is a page in the site navigation. That page therefore "
+                 "published 2026-11-16 data: 14 retired FL-prefixed flags instead of the live 72-item F register, 5 of the 8 "
+                 "hotels, and 13 of the 15 walking routes with every walking time blank. The three files are deleted and "
+                 "build_addendum.py now reads site/data.json and the two data modules only, so it cannot drift again. "
+                 "site/data.json is the only current data file. Kept on the register as the record of the defect."),
+         source="https://github.com/karagemop466-tech/Poker3/blob/main/scripts/build_addendum.py"),
 
 ]
 
@@ -1301,18 +1317,19 @@ SUGGESTIONS = [
                  "$119 / $209 poker rate quoted before or after the $55 resort fee? The Resort Fee page says the fee is "
                  "chargeable on top of the rate and the booking calendar says its prices include the fee, so the poker "
                  "rate itself decides whether the $197.28 floor overstates the nightly cost by about $43 (F51). (2) Does one $300 or higher entry cover every night of a "
-                 "multi-day event, or only the night it is paid? The answer decides whether the Nov 30 and Dec 1 nights "
-                 "are repriced (F54). Ask both while a dated checkout total for 2026-11-25 to 2026-12-02 is also "
-                 "requested (F15, F36), which is the only figure that replaces the floor with a real number."),
+                 "multi-day event, or only the night it is paid? The answer decides whether the 23 and 24 November "
+                 "nights are repriced (F54). A dated checkout total for the booked 23-30 November stay is already "
+                 "recorded ($4,010.55, F15), so quote the poker rate against that same stay to compare like for like."),
          impact="High", effort="Low",
          decision="One call settles the nightly budget basis, the qualification risk and the missing total"),
     dict(id="S21", title="Score each day on rate qualification as well as on guarantee",
          detail=("The day plan now prints, per day, whether the planned primary satisfies the published $300 condition "
-                 "for the poker-suite rate. Two ways to act on it: (a) leave Nov 30 and Dec 1 as $200 primaries and "
-                 "budget those two nights at the prevailing rate, or (b) swap them for the published $400 multi-flight "
-                 "(11:10 AM on each day), which qualifies but moves both days out of the single-entry screen, because a "
-                 "flight shares a Day 2 with other flights. This site shows the trade-off and does not choose it, "
-                 "because it depends on whether the traveller values the verified rate or the single-entry format."),
+                 "for the poker-suite rate. Two ways to act on it: (a) leave 23 and 24 November as $200 primaries and "
+                 "budget those two nights at the prevailing rate, or (b) swap them for the published $400 No Limit "
+                 "Hold'em 1A / 1B at 11:10 AM on each day, which qualifies but moves both days out of the single-entry "
+                 "screen, because a flight shares a Day 2 with other flights. This site shows the trade-off and does not "
+                 "choose it, because it depends on whether the traveller values the verified rate or the single-entry "
+                 "format."),
          impact="Medium", effort="Low",
          decision="Add a 'qualifies for the poker rate' filter to the tournaments table (a $300+ buy-in filter on the "
                   "same rows already published)"),

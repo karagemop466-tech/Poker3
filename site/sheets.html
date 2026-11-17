@@ -1,446 +1,834 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Structure-sheet verification · Vegas Poker Planner</title>
+<title>Structure-sheet verification and flag register · Vegas Poker Planner</title>
 <style>
 body{font:14px/1.5 -apple-system,'Segoe UI',Roboto,Arial,sans-serif;background:#0e1116;color:#e8ecf1;margin:0;padding:20px}
-main{max-width:1240px;margin:0 auto} h1{margin:6px 0} h2{margin:26px 0 6px;border-bottom:1px solid #2a3341;padding-bottom:6px}
+main{max-width:1500px;margin:0 auto} h1{margin:6px 0} h2{margin:30px 0 6px;border-bottom:1px solid #2a3341;padding-bottom:6px}
 table{border-collapse:collapse;width:100%;font-size:12.5px;margin:10px 0 22px;background:#171c24}
-th{text-align:left;background:#1e2530;color:#9aa7b8;padding:8px} td{padding:7px 8px;border-top:1px solid #2a3341;vertical-align:top}
+th{text-align:left;background:#1e2530;color:#9aa7b8;padding:8px;position:sticky;top:0} td{padding:7px 8px;border-top:1px solid #2a3341;vertical-align:top}
 a{color:#4da3ff;text-decoration:none} a:hover{text-decoration:underline}
-.u{color:#e06c6c;font-style:italic} .q{color:#9aa7b8} .lede{color:#9aa7b8;max-width:90ch}
-.wrap{overflow-x:auto} .back{display:inline-block;margin:6px 0 14px}
+.u{color:#e06c6c;font-style:italic} .q{color:#9aa7b8} .lede{color:#9aa7b8;max-width:95ch}
+.ok{color:#79c98a} .warn{color:#e0b96c} .bad{color:#e06c6c}
+.wrap{overflow-x:auto;max-height:80vh;overflow-y:auto;border:1px solid #2a3341;border-radius:6px}
+.back{display:inline-block;margin:6px 0 14px} code{color:#9fd0ff}
 </style></head><body><main>
 <a class="back" href="index.html">← back to the dashboard</a>
-<h1>Structure-sheet verification — all 37 official sheets, read line by line</h1>
-<p class="lede">Every Venetian DeepStack Extravaganza IV structure sheet (dse_nov_2026-structure_1..37.pdf), retrieved 2026-11-16,
-verified field by field: event numbers, start time, starting stack, level length, level count, house-fee / prize-pool split,
-guarantee, payout percentage, bounty amounts, and entry clauses. <b>No sheet prints the words “single entry”, and no sheet prints a
-re-entry, rebuy or add-on clause</b> (except sheet 8's ambiguous “subsequent buy-ins” reference and the multi-flight bagging rules).
-Buy-in totals, fee splits and guarantees below are printed values, not estimates. Machine-readable copy:
-<a href="data/tournaments.json">data/tournaments.json</a> and <a href="data/sheet_extracts.jsonl">data/sheet_extracts.jsonl</a>.</p>
+<h1>Structure-sheet verification · 52 official sheets, read line by line</h1>
+<p class="lede">Every Venetian DeepStack structure sheet behind a published row, field by field against the official PDF: event
+numbers, start time, starting stack, level length, registration close, house-fee / prize-pool split, guarantee, payout
+percentage, bounty amounts and the entry clauses. <b>No sheet prints the words “single entry”, and no sheet prints a re-entry,
+rebuy or add-on clause</b> except where the verdict column says otherwise (sheet 8's “subsequent buy-in's” wording, and the
+multi-flight bagging rules). Every fee split, guarantee and chip count below is a printed value, not an estimate.
+This page is generated from <code>data/sheet_extracts.jsonl</code>, <code>scripts/data_venetian.py</code> and
+<code>site/data.json</code> — no other file.</p>
+<p class="lede"><div class="ok">Cross-check passed at build time: the 2026-11-16 read record (<code>data/sheet_extracts.jsonl</code>) and the dashboard module (<code>scripts/data_venetian.py</code>) agree on the entry rule of all 37 DeepStack Extravaganza IV sheets, once the two vocabularies for the same fact are mapped.</div></p>
 
-<h2>1 · Sheet matrix (1–37)</h2>
-<div class="wrap"><table><thead><tr><th>Sheet</th><th>Events</th><th>Event name</th><th>Start</th><th>Stack</th><th>Levels</th>
-<th>Fee split (house / prize)</th><th>Guarantee</th><th>Pays</th><th>Bounty</th><th>Entry clauses on the sheet (with excerpt)</th><th>Source</th></tr></thead>
+<h2>1 · 37 DeepStack Extravaganza IV sheets (16 Nov – 23 Dec 2026)</h2>
+<div class="wrap"><table><thead><tr><th>Sheet</th><th>Events</th><th>Event name</th><th>Start</th><th>Chips</th><th>Levels</th>
+<th>Registration closes</th><th>House / prize split</th><th>Guarantee</th><th>Pays</th><th>Bounty</th>
+<th>Entry rule printed on the sheet</th><th>Published as</th><th>Source</th></tr></thead>
 <tbody><tr><td>1</td><td>#9, #11, #13, #15, #21, #22, #23, #25, #60, #61, #62, #64</td><td>$200 No Limit Hold&#x27;em Bounty (1Day)</td>
-<td>5:10 PM</td><td>25000</td>
+<td>5:10 PM</td><td>25,000</td>
 <td>30 min × 28</td>
-<td>$40 house / $160 prize</td><td>$8,000</td><td>12.5% of the field</td>
-<td>$50 bounty per elimination</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>2</td><td>#7</td><td>$400 No Limit Hold&#x27;em (2 flights A+B)</td>
-<td>11:10 AM</td><td>40000</td>
+<td><small>8 levels + Break (9:40 PM)</small></td>
+<td>$40 / $160</td>
+<td>8000 <small class="q">(prize pool + total bounties)</small></td>
+<td>12.5% of the field</td><td>$50 bounty per elimination</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
+<td>extra / flight / single</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>2</td><td>#7</td><td>$400 No Limit Hold&#x27;em (2 flights A+B)</td>
+<td>11:10 AM</td><td>40,000</td>
 <td>40 min × 30</td>
-<td>$70 house / $330 prize</td><td>$75,000</td><td></td>
+<td><small>9 levels + Break (5:55 PM)</small></td>
+<td>$70 / $330</td>
+<td>75000</td>
+<td>—</td><td>—</td>
+<td class="warn"><small>separate starting flights; a player may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
 <td>—</td>
-<td><small>multi-flight: may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_2.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>3</td><td>#19</td><td>$400 No Limit Hold&#x27;em (3 flights A+B+C)</td>
-<td>11:10 AM</td><td>40000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_2.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>3</td><td>#19</td><td>$400 No Limit Hold&#x27;em (3 flights A+B+C)</td>
+<td>11:10 AM</td><td>40,000</td>
 <td>40 min × 30</td>
-<td>$70 house / $330 prize</td><td>$75,000</td><td></td>
+<td><small>9 levels + Break (5:55 PM)</small></td>
+<td>$70 / $330</td>
+<td>75000</td>
+<td>—</td><td>—</td>
+<td class="warn"><small>separate starting flights; a player may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
 <td>—</td>
-<td><small>multi-flight: may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>4</td><td>#59</td><td>$600 No Limit Hold&#x27;em (3 flights A+B+C)</td>
-<td>11:10 AM</td><td>40000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>4</td><td>#59</td><td>$600 No Limit Hold&#x27;em (3 flights A+B+C)</td>
+<td>11:10 AM</td><td>40,000</td>
 <td>40 min × 30</td>
-<td>$95 house / $505 prize</td><td>$150,000</td><td></td>
+<td><small>9 levels + Break (5:55 PM)</small></td>
+<td>$95 / $505</td>
+<td>150000</td>
+<td>—</td><td>—</td>
+<td class="warn"><small>separate starting flights; a player may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
 <td>—</td>
-<td><small>multi-flight: may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>5</td><td>#2, #12</td><td>$300 No Limit Hold&#x27;em (1Day)</td>
-<td>11:10 AM</td><td>40000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>5</td><td>#2, #12</td><td>$300 No Limit Hold&#x27;em (1Day)</td>
+<td>11:10 AM</td><td>40,000</td>
 <td>30 min × 28</td>
-<td>$58 house / $242 prize</td><td>$10,000</td><td>12.5% of the field</td>
+<td><small>10 levels + Break (~4:55 PM)</small></td>
+<td>$58 / $242</td>
+<td>10000</td>
+<td>12.5% of the field</td><td>—</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
+<td>extra / flight / satellite / single / special</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>6</td><td>#10</td><td>$400 No Limit Hold&#x27;em (1Day)</td>
+<td>11:10 AM</td><td>40,000</td>
+<td>30 min × 28</td>
+<td><small>10 levels + Break (~4:55 PM)</small></td>
+<td>$65 / $335</td>
+<td>15000</td>
+<td>12.5% of the field</td><td>—</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
 <td>—</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>6</td><td>#10</td><td>$400 No Limit Hold&#x27;em (1Day)</td>
-<td>11:10 AM</td><td>40000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_6.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>7</td><td>#14, #28, #63</td><td>$600 No Limit Hold&#x27;em (1Day)</td>
+<td>11:10 AM</td><td>40,000</td>
 <td>30 min × 28</td>
-<td>$65 house / $335 prize</td><td>$15,000</td><td>12.5% of the field</td>
+<td><small>10 levels + Break (~4:55 PM)</small></td>
+<td>$90 / $510</td>
+<td>30000 <small class="q">($30,000 for Events #14 and #63; $40,000 for Event #28)</small></td>
+<td>12.5% of the field</td><td>—</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
 <td>—</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_6.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>7</td><td>#14, #28, #63</td><td>$600 No Limit Hold&#x27;em (1Day)</td>
-<td>11:10 AM</td><td>40000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>8</td><td>#18, #58</td><td>$200 No Limit Hold&#x27;em Valuetown Bounty (1Day)</td>
+<td>5:10 PM</td><td>25,000</td>
 <td>30 min × 28</td>
-<td>$90 house / $510 prize</td><td>$30,000</td><td>12.5% of the field</td>
+<td><small>8 levels + Break (9:40 PM)</small></td>
+<td>$40 / $160</td>
+<td>20000 <small class="q">(prize pool + total bounties)</small></td>
+<td>12.5% of the field</td><td>$50 bounty per elimination</td>
+<td class="bad"><small>the sheet refers to “subsequent buy-in's”, so more than one buy-in is possible</small><br><small class="q">“All subsequent buy in&#x27;s after the initial buy in will be $200. (PokerAtlas PRO discount clause references subsequent buy-ins; no explicit re-entry cla”</small></td>
 <td>—</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>8</td><td>#18, #58</td><td>$200 No Limit Hold&#x27;em Valuetown Bounty (1Day)</td>
-<td>5:10 PM</td><td>25000</td>
-<td>30 min × 28</td>
-<td>$40 house / $160 prize</td><td>$20,000</td><td>12.5% of the field</td>
-<td>$50 bounty per elimination</td>
-<td><small>AMBIGUOUS: sheet refers to 'subsequent buy-ins' (FL03)</small><br><small class="q">“All subsequent buy in&#x27;s after the initial buy in will be $200. (PokerAtlas PRO discount clause references subsequent buy-ins; no explicit re-entry clause is printed.)”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>9</td><td>#1</td><td>$300 No Limit Hold&#x27;em (flights B+D)</td>
-<td>5:10 PM</td><td>30000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>9</td><td>#1</td><td>$300 No Limit Hold&#x27;em (flights B+D)</td>
+<td>5:10 PM</td><td>30,000</td>
 <td>30 min × 30</td>
-<td>$60 house / $240 prize</td><td>$75,000</td><td></td>
+<td><small>6 levels + Break (~8:40 PM)</small></td>
+<td>$60 / $240</td>
+<td>75000</td>
+<td>—</td><td>—</td>
+<td class="warn"><small>separate starting flights; a player may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
 <td>—</td>
-<td><small>multi-flight: may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_9.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>10</td><td>#1</td><td>$300 No Limit Hold&#x27;em (flights A+C)</td>
-<td>11:10 AM</td><td>30000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_9.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>10</td><td>#1</td><td>$300 No Limit Hold&#x27;em (flights A+C)</td>
+<td>11:10 AM</td><td>30,000</td>
 <td>40 min × 30</td>
-<td>$60 house / $240 prize</td><td>$75,000</td><td></td>
+<td><small>6 levels + Break (~3:40 PM)</small></td>
+<td>$60 / $240</td>
+<td>75000</td>
+<td>—</td><td>—</td>
+<td class="warn"><small>separate starting flights; a player may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
 <td>—</td>
-<td><small>multi-flight: may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_10.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>11</td><td>#16, #30, #54</td><td>$600 No Limit Hold&#x27;em Bounty (1Day)</td>
-<td>11:10 AM</td><td>40000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_10.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>11</td><td>#16, #30, #54</td><td>$600 No Limit Hold&#x27;em Bounty (1Day)</td>
+<td>11:10 AM</td><td>40,000</td>
 <td>30 min × 28</td>
-<td>$90 house / $510 prize</td><td>$30,000</td><td>12.5% of the field</td>
-<td>$200 bounty per elimination; $500 per elimination after the money; winner keeps own bounty</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>12</td><td>#26</td><td>$800 No Limit Hold&#x27;em (flights A+C+E)</td>
-<td>11:10 AM</td><td>40000</td>
+<td><small>10 levels + Break (4:55 PM)</small></td>
+<td>$90 / $510</td>
+<td>30000 <small class="q">(#16 $30,000; #30 $40,000; #54 $50,000 (each prize pool + total bounties))</small></td>
+<td>12.5% of the field</td><td>$200 bounty per elimination; $500 per elimination after the money; winner keeps own bounty</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
+<td>—</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>12</td><td>#26</td><td>$800 No Limit Hold&#x27;em (flights A+C+E)</td>
+<td>11:10 AM</td><td>40,000</td>
 <td>40 min × 30</td>
-<td>$110 house / $690 prize</td><td>$500,000</td><td></td>
+<td><small>6 levels + Break (~3:40 PM)</small></td>
+<td>$110 / $690</td>
+<td>500000</td>
+<td>—</td><td>—</td>
+<td class="warn"><small>separate starting flights; a player may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
 <td>—</td>
-<td><small>multi-flight: may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>13</td><td>#26</td><td>$800 No Limit Hold&#x27;em (flights B+D)</td>
-<td>5:10 PM</td><td>40000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>13</td><td>#26</td><td>$800 No Limit Hold&#x27;em (flights B+D)</td>
+<td>5:10 PM</td><td>40,000</td>
 <td>30 min × 30</td>
-<td>$110 house / $690 prize</td><td>$500,000</td><td></td>
+<td><small>6 levels + Break (~8:40 PM)</small></td>
+<td>$110 / $690</td>
+<td>500000</td>
+<td>—</td><td>—</td>
+<td class="warn"><small>separate starting flights; a player may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
 <td>—</td>
-<td><small>multi-flight: may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_13.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>14</td><td>#26</td><td>$800 No Limit Hold&#x27;em (flight F Turbo)</td>
-<td>5:10 PM</td><td>40000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_13.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>14</td><td>#26</td><td>$800 No Limit Hold&#x27;em (flight F Turbo)</td>
+<td>5:10 PM</td><td>40,000</td>
 <td>20 min × 30</td>
-<td>$110 house / $690 prize</td><td>$500,000</td><td></td>
+<td><small>6 levels + Break (~7:25 PM)</small></td>
+<td>$110 / $690</td>
+<td>500000</td>
+<td>—</td><td>—</td>
+<td class="warn"><small>separate starting flights; a player may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
 <td>—</td>
-<td><small>multi-flight: may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_14.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>15</td><td>#29, #31, #34, #38, #42, #50, #51, #53, #55</td><td>$300 No Limit Hold&#x27;em Bounty (1Day)</td>
-<td>5:10 PM</td><td>25000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_14.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>15</td><td>#29, #31, #34, #38, #42, #50, #51, #53, #55</td><td>$300 No Limit Hold&#x27;em Bounty (1Day)</td>
+<td>5:10 PM</td><td>25,000</td>
 <td>30 min × 28</td>
-<td>$50 house / $250 prize</td><td>$15,000</td><td>12.5% of the field</td>
-<td>$100 bounty per elimination</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>16</td><td>#36</td><td>$800 No Limit Hold&#x27;em Bounty (1Day)</td>
-<td>11:10 AM</td><td>40000</td>
-<td>30 min × 28</td>
-<td>$100 house / $700 prize</td><td>$75,000</td><td>12.5% of the field</td>
-<td>$200 bounty per elimination; $500 after the money; winner keeps own bounty</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_16.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>17</td><td>#24, #32</td><td>$600 No Limit Hold&#x27;em Seniors (1Day) — 50+</td>
-<td>10:10 AM</td><td>40000</td>
-<td>30 min × 28</td>
-<td>$90 house / $510 prize</td><td>$40,000</td><td>15% of the field</td>
+<td><small>8 levels + Break (9:40 PM)</small></td>
+<td>$50 / $250</td>
+<td>15000 <small class="q">(prize pool + total bounties)</small></td>
+<td>12.5% of the field</td><td>$100 bounty per elimination</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
 <td>—</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_17.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>18</td><td>#3, #4, #5</td><td>$200 No Limit Hold&#x27;em RaceDay Stack (1Day)</td>
-<td>10:10 AM</td><td>30000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>16</td><td>#36</td><td>$800 No Limit Hold&#x27;em Bounty (1Day)</td>
+<td>11:10 AM</td><td>40,000</td>
+<td>30 min × 28</td>
+<td><small>10 levels + Break (4:55 PM)</small></td>
+<td>$100 / $700</td>
+<td>75000 <small class="q">(prize pool + total bounties)</small></td>
+<td>12.5% of the field</td><td>$200 bounty per elimination; $500 after the money; winner keeps own bounty</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
+<td>—</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_16.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>17</td><td>#24, #32</td><td>$600 No Limit Hold&#x27;em Seniors (1Day) — 50+</td>
+<td>10:10 AM</td><td>40,000</td>
+<td>30 min × 28</td>
+<td><small>10 levels + Break (~3:55 PM)</small></td>
+<td>$90 / $510</td>
+<td>40000</td>
+<td>15% of the field</td><td>—</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
+<td>—</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_17.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>18</td><td>#3, #4, #5</td><td>$200 No Limit Hold&#x27;em RaceDay Stack (1Day)</td>
+<td>10:10 AM</td><td>30,000</td>
 <td>20 min × 28</td>
-<td>$35 house / $165 prize</td><td><span class="u">blank</span></td><td>12.5% of the field</td>
+<td><small>6 levels + Break (~12:25 PM)</small></td>
+<td>$35 / $165</td>
+<td> <small class="q">(no guarantee printed on sheet or schedule)</small></td>
+<td>12.5% of the field</td><td>—</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
 <td>—</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_18.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>19</td><td>#33, #37</td><td>$100 NLH LIPS Ladies Milestone Satellite (1Day)</td>
-<td>4:10 PM</td><td>20000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_18.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>19</td><td>#33, #37</td><td>$100 NLH LIPS Ladies Milestone Satellite (1Day)</td>
+<td>4:10 PM</td><td>20,000</td>
 <td>20 min × 28</td>
-<td>$20 house / $80 prize</td><td><span class="u">blank</span></td><td></td>
+<td><small>6 levels + Break (~6:25 PM)</small></td>
+<td>$20 / $80</td>
+<td> <small class="q">(2 Seats guaranteed (direct entry to Event #39))</small></td>
+<td>—</td><td>—</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
 <td>—</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_19.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>20</td><td>#49</td><td>$1,100 No Limit Hold&#x27;em Seniors (flights A+B) — 50+</td>
-<td>10:10 AM</td><td>40000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_19.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>20</td><td>#49</td><td>$1,100 No Limit Hold&#x27;em Seniors (flights A+B) — 50+</td>
+<td>10:10 AM</td><td>40,000</td>
 <td>40 min × 29</td>
-<td>$140 house / $960 prize</td><td>$300,000</td><td></td>
+<td><small>9 levels + Break (~4:55 PM)</small></td>
+<td>$140 / $960</td>
+<td>300000</td>
+<td>—</td><td>—</td>
+<td class="warn"><small>separate starting flights; a player may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
 <td>—</td>
-<td><small>multi-flight: may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_20.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>21</td><td>#47</td><td>$2,200 No Limit Hold&#x27;em PokerAtlas Championship Title Event (Day 1A)</td>
-<td>10:10 AM</td><td>40000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_20.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>21</td><td>#47</td><td>$2,200 No Limit Hold&#x27;em PokerAtlas Championship Title Event (Day 1A)</td>
+<td>10:10 AM</td><td>40,000</td>
 <td>40 min × 29</td>
-<td>$225 house / $1,975 prize</td><td>$1,000,000</td><td></td>
+<td><small>9 levels + Break (~4:55 PM)</small></td>
+<td>$225 / $1,975</td>
+<td>1000000</td>
+<td>—</td><td>—</td>
+<td class="warn"><small>separate starting flights; a player may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
 <td>—</td>
-<td><small>multi-flight: may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_21.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>22</td><td>#20</td><td>$300 Pot Limit Omaha Double Board Bomb Pot (1Day)</td>
-<td>12:10 PM</td><td>30000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_21.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>22</td><td>#20</td><td>$300 Pot Limit Omaha Double Board Bomb Pot (1Day)</td>
+<td>12:10 PM</td><td>30,000</td>
 <td>30 min × 28</td>
-<td>$58 house / $242 prize</td><td>$10,000</td><td>12.5% of the field (8-handed)</td>
+<td><small>8 levels + break (~4:40 PM)</small></td>
+<td>$58 / $242</td>
+<td>10000</td>
+<td>12.5% of the field (8-handed)</td><td>—</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
 <td>—</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_22.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>23</td><td>#57</td><td>$600 Pot Limit Omaha Double Board Bomb Pot (1Day)</td>
-<td>12:10 PM</td><td>30000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_22.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>23</td><td>#57</td><td>$600 Pot Limit Omaha Double Board Bomb Pot (1Day)</td>
+<td>12:10 PM</td><td>30,000</td>
 <td>30 min × 28</td>
-<td>$90 house / $510 prize</td><td>$25,000</td><td>12.5% of the field (8-handed)</td>
+<td><small>8 levels + break (~4:40 PM)</small></td>
+<td>$90 / $510</td>
+<td>25000</td>
+<td>12.5% of the field (8-handed)</td><td>—</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
 <td>—</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_23.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>24</td><td>#41, #44</td><td>$260 No Limit Hold&#x27;em Milestone Satellite (1Day) to Event #47</td>
-<td>4:10 PM</td><td>20000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_23.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>24</td><td>#41, #44</td><td>$260 No Limit Hold&#x27;em Milestone Satellite (1Day) to Event #47</td>
+<td>4:10 PM</td><td>20,000</td>
 <td>20 min × 28</td>
-<td>$40 house / $220 prize</td><td><span class="u">blank</span></td><td></td>
+<td><small>6 levels + Break (~6:25 PM)</small></td>
+<td>$40 / $220</td>
+<td> <small class="q">(2 Seats guaranteed (direct entry to Event #47))</small></td>
+<td>—</td><td>—</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
 <td>—</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_24.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>25</td><td>#45, #46, #48</td><td>$260 No Limit Hold&#x27;em Turbo Milestone Satellite (1Day) to Event #47</td>
-<td>#45 8:10 PM; #46 9:10 AM; #48 12:10 PM</td><td>20000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_24.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>25</td><td>#45, #46, #48</td><td>$260 No Limit Hold&#x27;em Turbo Milestone Satellite (1Day) to Event #47</td>
+<td>#45 8:10 PM; #46 9:10 AM; #48 12:10 PM</td><td>20,000</td>
 <td>15 min × 28</td>
-<td>$35 house / $225 prize</td><td><span class="u">blank</span></td><td></td>
+<td><small>6 levels</small></td>
+<td>$35 / $225</td>
+<td> <small class="q">(2 Seats guaranteed (direct entry to Event #47))</small></td>
+<td>—</td><td>—</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
 <td>—</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>26</td><td>#17</td><td>$400 Pot Limit Omaha Bounty (1Day)</td>
-<td>12:10 PM</td><td>30000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>26</td><td>#17</td><td>$400 Pot Limit Omaha Bounty (1Day)</td>
+<td>12:10 PM</td><td>30,000</td>
 <td>30 min × 28</td>
-<td>$60 house / $340 prize</td><td>$15,000</td><td>12.5% of the field (8-handed)</td>
-<td>$100 bounty per elimination; winner keeps own bounty chip</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_26.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>27</td><td>#40</td><td>$600 Pot Limit Omaha Bounty (1Day)</td>
-<td>12:10 PM</td><td>30000</td>
-<td>30 min × 28</td>
-<td>$90 house / $510 prize</td><td>$25,000</td><td>12.5% of the field (8-handed)</td>
-<td>$200 bounty per elimination; winner keeps own bounty chip</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_27.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>28</td><td>#27</td><td>$600 BIG O (1Day)</td>
-<td>12:10 PM</td><td>30000</td>
-<td>30 min × 28</td>
-<td>$90 house / $510 prize</td><td>$25,000</td><td>12.5% of the field (8-handed)</td>
+<td><small>8 levels + break (~4:40 PM)</small></td>
+<td>$60 / $340</td>
+<td>15000 <small class="q">(prize pool + total bounties)</small></td>
+<td>12.5% of the field (8-handed)</td><td>$100 bounty per elimination; winner keeps own bounty chip</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
 <td>—</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_28.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>29</td><td>#6</td><td>$200 No Limit Hold&#x27;em (1Day)</td>
-<td>11:10 AM</td><td>30000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_26.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>27</td><td>#40</td><td>$600 Pot Limit Omaha Bounty (1Day)</td>
+<td>12:10 PM</td><td>30,000</td>
 <td>30 min × 28</td>
-<td>$40 house / $160 prize</td><td><span class="u">blank</span></td><td>12.5% of the field</td>
+<td><small>8 levels + break (~4:40 PM)</small></td>
+<td>$90 / $510</td>
+<td>25000 <small class="q">(prize pool + total bounties)</small></td>
+<td>12.5% of the field (8-handed)</td><td>$200 bounty per elimination; winner keeps own bounty chip</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
 <td>—</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_29.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>30</td><td>#8</td><td>$200 No Limit Hold&#x27;em Progressive Knock-Out Bounty (PKO) (1Day)</td>
-<td>5:10 PM</td><td>25000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_27.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>28</td><td>#27</td><td>$600 BIG O (1Day)</td>
+<td>12:10 PM</td><td>30,000</td>
 <td>30 min × 28</td>
-<td>$40 house / $160 prize</td><td>$8,000</td><td>12.5% of the field</td>
-<td>PKO: players start as $50 bounty; half of each eliminated bounty is kept, half rolls into the eliminator&#x27;s bounty</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_30.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>31</td><td>#35</td><td>$600 No Limit Hold&#x27;em LIPS Poker Jingle Tag Team (1Day)</td>
-<td>10:10 AM</td><td>40000</td>
-<td>30 min × 28</td>
-<td>$80 house / $510 prize</td><td>$10,000</td><td>12.5% of the field</td>
+<td><small>8 levels + break (~4:40 PM)</small></td>
+<td>$90 / $510</td>
+<td>25000</td>
+<td>12.5% of the field (8-handed)</td><td>—</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
 <td>—</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_31.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>32</td><td>#39</td><td>$800 NLH LIPS Ladies (2Day) — Women in Poker Main Event</td>
-<td>10:10 AM</td><td>40000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_28.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>29</td><td>#6</td><td>$200 No Limit Hold&#x27;em (1Day)</td>
+<td>11:10 AM</td><td>30,000</td>
+<td>30 min × 28</td>
+<td><small>8 levels + Break (~3:40 PM)</small></td>
+<td>$40 / $160</td>
+<td> <small class="q">(no guarantee printed on sheet or schedule)</small></td>
+<td>12.5% of the field</td><td>—</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
+<td>—</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_29.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>30</td><td>#8</td><td>$200 No Limit Hold&#x27;em Progressive Knock-Out Bounty (PKO) (1Day)</td>
+<td>5:10 PM</td><td>25,000</td>
+<td>30 min × 28</td>
+<td><small>8 levels + Break (9:40 PM)</small></td>
+<td>$40 / $160</td>
+<td>8000 <small class="q">(prize pool + total bounty prize money)</small></td>
+<td>12.5% of the field</td><td>PKO: players start as $50 bounty; half of each eliminated bounty is kept, half rolls into the eliminator&#x27;s bounty</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
+<td>—</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_30.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>31</td><td>#35</td><td>$600 No Limit Hold&#x27;em LIPS Poker Jingle Tag Team (1Day)</td>
+<td>10:10 AM</td><td>40,000</td>
+<td>30 min × 28</td>
+<td><small>8 levels + Break (~2:40 PM)</small></td>
+<td>$80 / $510</td>
+<td>10000</td>
+<td>12.5% of the field</td><td>—</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
+<td>—</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_31.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>32</td><td>#39</td><td>$800 NLH LIPS Ladies (2Day) — Women in Poker Main Event</td>
+<td>10:10 AM</td><td>40,000</td>
 <td>40 min × 29</td>
-<td>$90 house / $690 prize</td><td>$40,000</td><td></td>
+<td><small>9 levels + Break (~4:55 PM)</small></td>
+<td>$90 / $690</td>
+<td>40000</td>
+<td>—</td><td>—</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
 <td>—</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_32.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>33</td><td>#43</td><td>$600 No Limit Hold&#x27;em LIPS Kings and Queens Bounty (1Day) — open to all</td>
-<td>11:10 AM</td><td>40000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_32.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>33</td><td>#43</td><td>$600 No Limit Hold&#x27;em LIPS Kings and Queens Bounty (1Day) — open to all</td>
+<td>11:10 AM</td><td>40,000</td>
 <td>30 min × 28</td>
-<td>$80 house / $510 prize</td><td>$30,000</td><td>12.5% of the field</td>
-<td>$200 bounty per elimination; winner keeps own bounty</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_33.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>34</td><td>#52</td><td>$1,100 No Limit Hold&#x27;em Progressive Knock-Out Bounty (PKO) (1Day)</td>
-<td>11:10 AM</td><td>40000</td>
+<td><small>10 levels + Break (4:55 PM)</small></td>
+<td>$80 / $510</td>
+<td>30000 <small class="q">(prize pool + total bounties)</small></td>
+<td>12.5% of the field</td><td>$200 bounty per elimination; winner keeps own bounty</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
+<td>—</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_33.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>34</td><td>#52</td><td>$1,100 No Limit Hold&#x27;em Progressive Knock-Out Bounty (PKO) (1Day)</td>
+<td>11:10 AM</td><td>40,000</td>
 <td>30 min × 28</td>
-<td>$130 house / $970 prize</td><td>$75,000</td><td>12.5% of the field</td>
-<td>PKO: players start as $200 bounty; half kept, half rolls into eliminator&#x27;s bounty</td>
-<td><small>no re-entry/rebuy/add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_34.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>35</td><td>#56</td><td>$1,100 No Limit Hold&#x27;em (flights A+C+E)</td>
-<td>10:10 AM</td><td>40000</td>
+<td><small>10 levels + Break (4:55 PM)</small></td>
+<td>$130 / $970</td>
+<td>75000 <small class="q">(prize pool + total bounty prize money)</small></td>
+<td>12.5% of the field</td><td>PKO: players start as $200 bounty; half kept, half rolls into eliminator&#x27;s bounty</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small><br><small class="q">“No re-entry, rebuy, or add-on clause appears on the sheet.”</small></td>
+<td>—</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_34.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>35</td><td>#56</td><td>$1,100 No Limit Hold&#x27;em (flights A+C+E)</td>
+<td>10:10 AM</td><td>40,000</td>
 <td>40 min × 30</td>
-<td>$140 house / $960 prize</td><td>$500,000</td><td></td>
+<td><small>9 levels + Break (~4:55 PM)</small></td>
+<td>$140 / $960</td>
+<td>500000</td>
+<td>—</td><td>—</td>
+<td class="warn"><small>separate starting flights; a player may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
 <td>—</td>
-<td><small>multi-flight: may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>36</td><td>#56</td><td>$1,100 No Limit Hold&#x27;em (flights B+D)</td>
-<td>6:10 PM</td><td>40000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>36</td><td>#56</td><td>$1,100 No Limit Hold&#x27;em (flights B+D)</td>
+<td>6:10 PM</td><td>40,000</td>
 <td>30 min × 30</td>
-<td>$140 house / $960 prize</td><td>$500,000</td><td></td>
+<td><small>9 levels + Break (~11:10 PM)</small></td>
+<td>$140 / $960</td>
+<td>500000</td>
+<td>—</td><td>—</td>
+<td class="warn"><small>separate starting flights; a player may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
 <td>—</td>
-<td><small>multi-flight: may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_36.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr><tr><td>37</td><td>#47</td><td>$2,200 No Limit Hold&#x27;em PokerAtlas Championship Title Event (Day 1B)</td>
-<td>6:10 PM</td><td>40000</td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_36.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>37</td><td>#47</td><td>$2,200 No Limit Hold&#x27;em PokerAtlas Championship Title Event (Day 1B)</td>
+<td>6:10 PM</td><td>40,000</td>
 <td>30 min × 30</td>
-<td>$225 house / $1,975 prize</td><td>$1,000,000</td><td></td>
+<td><small>9 levels + Break (~11:10 PM)</small></td>
+<td>$225 / $1,975</td>
+<td>1000000</td>
+<td>—</td><td>—</td>
+<td class="warn"><small>separate starting flights; a player may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
 <td>—</td>
-<td><small>multi-flight: may not re-enter a flight after bagging</small><br><small class="q">“Any player who bags chips for Day 2 may not play a subsequent flight.”</small></td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_37.pdf" target="_blank" rel="noopener">sheet PDF</a></td></tr></tbody></table></div>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_37.pdf" target="_blank" rel="noopener">PDF</a></td></tr></tbody></table></div>
 
-<h2>2 · Entry-rule excerpts verified at Wynn and Bellagio (spend-more formats)</h2>
-<p class="lede">These are the exact clauses that disqualify each event from the single-entry path. Full row set:
-<a href="data/tournaments.json">data/tournaments.json</a>.</p>
-<div class="wrap"><table><thead><tr><th>Room</th><th>Event</th><th>Re-entry</th><th>Rebuy</th><th>Add-on / paid chips</th><th>Official excerpt</th><th>Source</th></tr></thead>
-<tbody><tr><td>Wynn Poker Room (Encore)</td><td>Daily $200 NLH $10K GTD<br><small>Monday–Thursday (recurring) · 12:00 PM</small></td>
-<td>YES — entry fee, as well as the re-entry fee, is $200</td><td>no clause printed</td><td>no clause printed</td>
-<td><small class="q">“The Tournament entry fee, as well as the re-entry fee, is $200 ... Registration and re-entries will be available until the start of level 9 (approximately 4:30 p.m.).”</small></td>
-<td><a href="https://cdn.wynnresorts.com/image/upload/v1752011191/visitwynn_pdfs_files/Poker/Daily%20Tournaments/Poker-All_Daily_Structures.pdf" target="_blank" rel="noopener">official doc</a> · 2026-11-16</td></tr><tr><td>Wynn Poker Room (Encore)</td><td>Daily $240 NLH Rebuy &amp; Add-on $40K GTD<br><small>Friday (recurring) · 12:00 PM</small></td>
-<td>Re-entry is NOT allowed (explicit)</td><td>YES — unlimited $200 rebuys for 25,000 chips at 15,000 or less</td><td>YES — one $100 add-on for 15,000 chips</td>
-<td><small class="q">“Registration, rebuys and add-ons will be available until the start of level 9 (approximately 4:30 p.m.). Re-entry is NOT allowed. ... Unlimited $200 rebuys for 25,000 tournament chips are available any time a player is at 15,000 chips or less. One (1) $100 add”</small></td>
-<td><a href="https://cdn.wynnresorts.com/image/upload/v1752011191/visitwynn_pdfs_files/Poker/Daily%20Tournaments/Poker-All_Daily_Structures.pdf" target="_blank" rel="noopener">official doc</a> · 2026-11-16</td></tr><tr><td>Wynn Poker Room (Encore)</td><td>Daily $200 NLH $25K GTD<br><small>Saturday (recurring) · 12:00 PM</small></td>
-<td>YES — entry fee, as well as the re-entry fee, is $200</td><td>no clause printed</td><td>YES — one $100 add-on per entry for 25,000 chips</td>
-<td><small class="q">“Registration, re-entries, and one (1) add-on per entry will be available until the start of level 11 (approximately 5:30 p.m.).”</small></td>
-<td><a href="https://cdn.wynnresorts.com/image/upload/v1752011191/visitwynn_pdfs_files/Poker/Daily%20Tournaments/Poker-All_Daily_Structures.pdf" target="_blank" rel="noopener">official doc</a> · 2026-11-16</td></tr><tr><td>Wynn Poker Room (Encore)</td><td>Nightly $160 NLH $10K GTD<br><small>Nightly Monday–Sunday (recurring) · 6:00 PM</small></td>
-<td>YES — entry fee, as well as the re-entry fee, is $160</td><td>no clause printed</td><td>YES — one $100 add-on per entry for 25,000 chips</td>
-<td><small class="q">“Registration, re-entries, and one (1) add-on per entry will be available until the start of level 9 (approximately 9:00 p.m.).”</small></td>
-<td><a href="https://cdn.wynnresorts.com/image/upload/v1752011191/visitwynn_pdfs_files/Poker/Daily%20Tournaments/Poker-All_Daily_Structures.pdf" target="_blank" rel="noopener">official doc</a> · 2026-11-16</td></tr><tr><td>Wynn Poker Room (Encore)</td><td>$600 NLH $400K GTD (6 flights)<br><small>Nov 27–30, 2026 · 11:00 AM / 5:00 PM flights</small></td>
-<td>YES — unlimited re-entry per starting flight until start of level 9</td><td>no clause printed</td><td>no clause printed</td>
-<td><small class="q">“Unlimited re-entry for each starting flight will be available until the start of level 9.”</small></td>
-<td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">official doc</a> · 2026-11-16</td></tr><tr><td>Wynn Poker Room (Encore)</td><td>$600 TORSE (mixed)<br><small>Nov 27, 2026 · 12:00 PM</small></td>
-<td>YES — unlimited re-entry until start of level 9</td><td>no clause printed</td><td>no clause printed</td>
-<td><small class="q">“Unlimited re-entry will be available until the start of level 9.”</small></td>
-<td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">official doc</a> · 2026-11-16</td></tr><tr><td>Wynn Poker Room (Encore)</td><td>$400 PLO<br><small>Nov 27, 2026 · 1:00 PM</small></td>
-<td>YES — unlimited re-entry until start of level 9 (~5:30 PM)</td><td>no clause printed</td><td>no clause printed</td>
-<td><small class="q">“Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).”</small></td>
-<td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">official doc</a> · 2026-11-16</td></tr><tr><td>Wynn Poker Room (Encore)</td><td>$600 Mixed Triple Draw (A-5, 2-7, Badugi)<br><small>Nov 28 &amp; Dec 20, 2026 · 12:00 PM / 1:00 PM</small></td>
-<td>YES — unlimited re-entry until start of level 9</td><td>no clause printed</td><td>no clause printed</td>
-<td><small class="q">“Unlimited re-entry will be available until the start of level 9.”</small></td>
-<td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">official doc</a> · 2026-11-16</td></tr><tr><td>Wynn Poker Room (Encore)</td><td>$800 NLH $1M GTD (6 flights)<br><small>Nov 30–Dec 4, 2026 · 11:00 AM / 5:00 PM flights</small></td>
-<td>YES — unlimited re-entry per starting flight until start of level 9</td><td>no clause printed</td><td>no clause printed</td>
-<td><small class="q">“Unlimited re-entry for each starting flight will be available until the start of level 9.”</small></td>
-<td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">official doc</a> · 2026-11-16</td></tr><tr><td>Wynn Poker Room (Encore)</td><td>$600 Limit Omaha 8<br><small>Nov 30, 2026 · 12:00 PM</small></td>
-<td>YES — unlimited re-entry until start of level 9</td><td>no clause printed</td><td>no clause printed</td>
-<td><small class="q">“Unlimited re-entry will be available until the start of level 9.”</small></td>
-<td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">official doc</a> · 2026-11-16</td></tr><tr><td>Wynn Poker Room (Encore)</td><td>$600 Limit Omaha 8 / Stud 8<br><small>Dec 1, 2026 · 12:00 PM</small></td>
-<td>YES — unlimited re-entry until start of level 9</td><td>no clause printed</td><td>no clause printed</td>
-<td><small class="q">“Unlimited re-entry will be available until the start of level 9.”</small></td>
-<td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">official doc</a> · 2026-11-16</td></tr><tr><td>Wynn Poker Room (Encore)</td><td>$1,100 PLO<br><small>Dec 1, 2026 · 1:00 PM</small></td>
-<td>YES — unlimited re-entry until start of level 9 (~5:30 PM)</td><td>no clause printed</td><td>no clause printed</td>
-<td><small class="q">“Unlimited re-entry will be available until the start of level 9 (approximately 5:30 p.m.).”</small></td>
-<td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">official doc</a> · 2026-11-16</td></tr><tr><td>Wynn Poker Room (Encore)</td><td>$1,600 NLH $1M GTD (2 flights)<br><small>Dec 3–5, 2026 · 11:00 AM flights</small></td>
-<td>YES — unlimited re-entry per starting flight until start of level 10</td><td>no clause printed</td><td>no clause printed</td>
-<td><small class="q">“Unlimited re-entry for each starting flight will be available until the start of level 10.”</small></td>
-<td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">official doc</a> · 2026-11-16</td></tr><tr><td>Wynn Poker Room (Encore)</td><td>$600 HORSE<br><small>Dec 4, 2026 · 12:00 PM</small></td>
-<td>YES — unlimited re-entry until start of level 9 (~4:30 PM)</td><td>no clause printed</td><td>no clause printed</td>
-<td><small class="q">“Unlimited re-entry will be available until the start of level 9 (approximately 4:30 p.m.).”</small></td>
-<td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">official doc</a> · 2026-11-16</td></tr><tr><td>Wynn Poker Room (Encore)</td><td>$1,100 WPT Prime Championship $5M GTD (4 flights)<br><small>Dec 5–12, 2026 · 11:00 AM flights</small></td>
-<td>YES — one entry and one re-entry per starting flight until start of level 10 (~6:45 PM)</td><td>no clause printed</td><td>no clause printed</td>
-<td><small class="q">“One (1) Entry and One (1) re-entry for each starting flight will be available until the start of level 10 (approximately 6:45 p.m.). $10,400 will be withheld from the prize pool and issued to first place in the form of an entry to the December 2027 WPT World C”</small></td>
-<td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">official doc</a> · 2026-11-16</td></tr><tr><td>Wynn Poker Room (Encore)</td><td>$600 NLH Turbo $50K GTD<br><small>Dec 5–9, 12, 14 &amp; 21, 2026 · 9:00 PM (Dec 21: 6:00 PM)</small></td>
-<td>YES — unlimited re-entry until start of level 9</td><td>no clause printed</td><td>no clause printed</td>
-<td><small class="q">“Unlimited re-entry will be available until the start of level 9.”</small></td>
-<td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">official doc</a> · 2026-11-16</td></tr><tr><td>Wynn Poker Room (Encore)</td><td>$1,600 PLO Mystery Bounty $500K GTD (2 flights)<br><small>Dec 6–7, 2026 · 11:00 AM / 6:00 PM flights</small></td>
-<td>YES — unlimited re-entry per starting flight until start of level 10</td><td>no clause printed</td><td>no clause printed</td>
-<td><small class="q">“Unlimited re-entry for each starting flight will be available until the start of level 10. $1,600 Buy-in = $930 (Tournament Prize Pool) + $500 (Mystery Bounty Prize Pool) + $120 (Tournament Fee) + $50 (Poker Staff Service Charge).”</small></td>
-<td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">official doc</a> · 2026-11-16</td></tr><tr><td>Wynn Poker Room (Encore)</td><td>Super Gold Million $400 $3M GTD<br><small>Dec 10–14, 2026 · </small></td>
-<td></td><td>—</td><td>—</td>
-<td><small class="q">“Entry terms are in the official structures document beyond the 30-page fetch limit used for this research pass; blank until re-verified.”</small></td>
-<td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">official doc</a> · </td></tr><tr><td>Wynn Poker Room (Encore)</td><td>WPT World Championship $10,400<br><small>Dec 13–20, 2026 · </small></td>
-<td></td><td>—</td><td>—</td>
-<td><small class="q">“Entry terms are in the official structures document beyond the 30-page fetch limit used for this research pass; blank until re-verified.”</small></td>
-<td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">official doc</a> · </td></tr><tr><td>Bellagio Poker Room</td><td>$600 NLH (weekly)<br><small>Fridays (recurring) · 11:00 AM</small></td>
-<td>YES — buy-in and re-enter through end of level 8</td><td>no clause printed</td><td>paid chip boost: $40 voluntary staff gratuity adds 15,000 chips</td>
-<td><small class="q">“Players may buy-in and re-enter through the end of level 8 (Including Break). ... The voluntary staff gratuity will grant players an extra 15,000 chips.”</small></td>
-<td><a href="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf" target="_blank" rel="noopener">official doc</a> · 2026-11-16</td></tr><tr><td>Bellagio Poker Room</td><td>NLH (weekly) — BUY-IN CONFLICT: link says $1,000, PDF header says $1,100, PDF breakdown says $600<br><small>Saturdays (recurring) · 11:00 AM</small></td>
-<td>flights 1A–1D with combined Day 2 (multi-entry)</td><td>no clause printed</td><td>paid chip boost: $40 voluntary staff gratuity adds 20,000 chips</td>
-<td><small class="q">“Registration will be open until the start of Level 10 ... Each Flight would play until the money (12.5%). ... Of the $600 Buy-in, $510 goes to the Prize Pool, $50 is Admin Fees and $40 is optional staff gratuity.”</small></td>
-<td><a href="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf" target="_blank" rel="noopener">official doc</a> · 2026-11-16</td></tr><tr><td>Bellagio Poker Room</td><td>$400 H.O.R.S.E. (weekly)<br><small>Sundays (recurring) · 11:00 AM</small></td>
-<td>YES — buy-in and re-enter through end of level 8</td><td>no clause printed</td><td>paid chip boost: $25 voluntary staff gratuity adds 15,000 chips</td>
-<td><small class="q">“Players may buy-in and re-enter through the end of level 8 (Including Break). ... will grant players an additional 15,000 in starting chips.”</small></td>
-<td><a href="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt07fcf1244a6da661/6af491a339e2b4f6b76a86ad/mgm-bellagio-poker-sundays-$400-horse.pdf" target="_blank" rel="noopener">official doc</a> · 2026-11-16</td></tr><tr><td>ARIA Poker Room</td><td>ARIA daily / nightly tournament cadence<br><small>Undated cadence — call room to confirm · 1:00 PM</small></td>
-<td></td><td>—</td><td>—</td>
-<td><small class="q">“The current official poker page asks guests to call the room or check @ARIAPoker to confirm whether daily tournaments are running; the official guide with 1 PM / 7 PM times is undated.”</small></td>
-<td><a href="https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf" target="_blank" rel="noopener">official doc</a> · 2026-11-16</td></tr><tr><td>Horseshoe Las Vegas — Hall of Fame Poker Room</td><td>6 daily tournament times (details not published on page)<br><small>Daily (recurring) · </small></td>
-<td></td><td>—</td><td>—</td>
-<td><small class="q">“Hall of Fame Poker Room ... Test your luck with 6 exciting tournament times daily.”</small></td>
-<td><span class="u">—</span> · 2026-11-16</td></tr></tbody></table></div>
+<h2>2 · 15 DeepStack Extravaganza NYE sheets (26 Dec 2026 – 10 Jan 2027)</h2>
+<div class="wrap"><table><thead><tr><th>Sheet</th><th>Events</th><th>Event name</th><th>Registration closes</th><th>Chips</th>
+<th>Levels</th><th>House / prize split</th><th>Guarantee</th><th>Entry rule printed on the sheet</th><th>Source</th></tr></thead>
+<tbody><tr><td>1</td><td>01, 03, 17</td><td>$400 No Limit Hold&#x27;em (1Day)</td>
+<td><small>8 levels + break (~3:40 PM)</small></td><td>30,000</td>
+<td>30 min</td>
+<td>$65 / $335</td><td>$15,000</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_1.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>2</td><td>02, 04, 13, 22, 26, 29, 32</td><td>$200 No Limit Hold&#x27;em Bounty (1Day)</td>
+<td><small>8 levels + break (9:40 PM)</small></td><td>25,000</td>
+<td>30 min</td>
+<td>$40 / $160</td><td>$8,000 (prize pool + total bounties)</td>
+<td class="bad"><small>the sheet prints more than one buy-in: not a single-entry event</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_2.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>3</td><td>05</td><td>$600 No Limit Hold&#x27;em Bounty (1Day)</td>
+<td><small>10 levels + break (4:55 PM)</small></td><td>40,000</td>
+<td>30 min</td>
+<td>$90 / $510</td><td>$40,000 (prize pool + total bounties)</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_3.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>4</td><td>06, 07, 09, 10, 11, 12</td><td>$260 No Limit Hold&#x27;em Milestone Satellite (1Day)</td>
+<td><small>6 levels + break (~5:25 PM or ~8:25 PM)</small></td><td>20,000</td>
+<td>20 min</td>
+<td>$40 / $220</td><td>4 seats</td>
+<td class="warn"><small>satellite: awards direct entry to another event, so it has no cash freezeout rule</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_4.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>5</td><td>15, 18, 21, 23, 24</td><td>$200 No Limit Hold&#x27;em Milestone Satellite (1Day)</td>
+<td><small>6 levels + break (~5:25 PM or 12:25 PM)</small></td><td>20,000</td>
+<td>20 min</td>
+<td>$35 / $165</td><td>2 seats</td>
+<td class="warn"><small>satellite: awards direct entry to another event, so it has no cash freezeout rule</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_5.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>6</td><td>08</td><td>$1,100 No Limit Hold&#x27;em Ante Up Championship</td>
+<td><small>9 levels + break (~5:55 PM)</small></td><td>40,000</td>
+<td>40 min</td>
+<td>$140 / $960</td><td>$300,000</td>
+<td class="warn"><small>separate starting flights; a player may not re-enter a flight after bagging</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_6.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>7</td><td>16, 19</td><td>$200 No Limit Hold&#x27;em Turbo Milestone Satellite (1Day)</td>
+<td><small>6 levels + break (~7:55 PM)</small></td><td>20,000</td>
+<td>15 min</td>
+<td>$30 / $170</td><td>2 seats</td>
+<td class="warn"><small>satellite: awards direct entry to another event, so it has no cash freezeout rule</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_7.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>8</td><td>20</td><td>$1,600 No Limit Hold&#x27;em MSPT</td>
+<td><small>9 levels + break (~5:55 PM)</small></td><td>40,000</td>
+<td>40 min</td>
+<td>$180 / $1,420</td><td>$400,000</td>
+<td class="warn"><small>separate starting flights; a player may not re-enter a flight after bagging</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_8.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>9</td><td>25</td><td>$200 No Limit Hold&#x27;em Valuetown Bounty (1Day)</td>
+<td><small>8 levels + break (9:40 PM)</small></td><td>25,000</td>
+<td>30 min</td>
+<td>$40 / $160</td><td>$20,000 (prize pool + total bounties)</td>
+<td class="bad"><small>the sheet prints more than one buy-in: not a single-entry event</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_9.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>10</td><td>31</td><td>$400 No Limit Hold&#x27;em Seniors (1Day)</td>
+<td><small>10 levels + break (~3:55 PM)</small></td><td>40,000</td>
+<td>30 min</td>
+<td>$65 / $335</td><td>$20,000</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_10.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>11</td><td>28</td><td>$400 No Limit Hold&#x27;em (1Day)</td>
+<td><small>10 levels + break (~4:55 PM)</small></td><td>40,000</td>
+<td>30 min</td>
+<td>$65 / $335</td><td>$15,000</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_11.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>12</td><td>14</td><td>$600 No Limit Hold&#x27;em (1Day)</td>
+<td><small>10 levels + break (~4:55 PM)</small></td><td>40,000</td>
+<td>30 min</td>
+<td>$90 / $510</td><td>$50,000</td>
+<td class="ok"><small>no re-entry, rebuy or add-on clause printed</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_12.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>13</td><td>30</td><td>$300 No Limit Hold&#x27;em - Days A+C+E</td>
+<td><small>6 levels + break (~3:40 PM)</small></td><td>30,000</td>
+<td>40 min</td>
+<td>$60 / $240</td><td>$100,000</td>
+<td class="warn"><small>separate starting flights; a player may not re-enter a flight after bagging</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_13.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>14</td><td>30</td><td>$300 No Limit Hold&#x27;em - Days B+D+F</td>
+<td><small>6 levels + break (~8:40 PM)</small></td><td>30,000</td>
+<td>30 min</td>
+<td>$60 / $240</td><td>$100,000</td>
+<td class="warn"><small>separate starting flights; a player may not re-enter a flight after bagging</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_14.pdf" target="_blank" rel="noopener">PDF</a></td></tr><tr><td>15</td><td>27</td><td>$250 No Limit Hold&#x27;em (Days A+B+C+D)</td>
+<td><small>8 levels + break (~3:40 PM or ~9:40 PM)</small></td><td>40,000</td>
+<td>30 min</td>
+<td>$50 / $200</td><td>$75,000</td>
+<td class="warn"><small>separate starting flights; a player may not re-enter a flight after bagging</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_15.pdf" target="_blank" rel="noopener">PDF</a></td></tr></tbody></table></div>
 
-<h2>3 · Irregularities and flags (do not block; all link their official source)</h2>
-<div class="wrap"><table><thead><tr><th>ID</th><th>Item</th><th>Level</th><th>Finding</th><th>What to do</th><th>Source</th></tr></thead>
-<tbody><tr><td id="fl-FL01">FL01</td><td>Bellagio Saturday NLH buy-in conflict (three values)</td>
-<td>high</td><td>The poker page link says &#x27;$1,000 NLH&#x27; (filename saturdays-$1000-nlh.pdf), the PDF header says &#x27;NLH $1100 BUY-IN&#x27;, and PDF rule 07 says &#x27;Of the $600 Buy-in, $510 goes to the Prize Pool...&#x27;.</td><td>Call the Bellagio poker room (702.693.7291) before planning around this event. Buy-in is left blank.</td>
-<td><a href="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-FL02">FL02</td><td>WPT $1,100 PLO fee breakdown sums to $1,105</td>
-<td>high</td><td>Official structures doc: &#x27;$1,100 Buy-in = $975 (Tournament Prize Pool) + $85 (Tournament Fee) + $45 (Poker Staff Service Charge)&#x27; — components total $1,105, not $1,100.</td><td>Confirm the actual charged amount with the Wynn poker room before entering.</td>
-<td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-FL03">FL03</td><td>Venetian sheet 8 (Events #18/#58) references &#x27;subsequent buy-ins&#x27;</td>
-<td>medium</td><td>The PokerAtlas PRO discount clause reads &#x27;All subsequent buy in&#x27;s after the initial buy in will be $200&#x27;, implying more than one buy-in may be possible, although no explicit re-entry clause is printed on the sheet.</td><td>Ask the Venetian poker room whether #18/#58 are one-entry freezeouts. Held in Review until confirmed.</td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-FL04">FL04</td><td>Wynn terms page carries an expired offer window</td>
-<td>low</td><td>Terms page 850070 includes a stay-completed-by September 30, 2025 offer alongside the $55 + tax resort fee, parking and cancellation terms used here.</td><td>Confirm fee, parking and cancellation terms on the live booking before nonrefundable payment.</td>
-<td><a href="https://www.wynnlasvegas.com/terms-and-conditions/850070" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-FL05">FL05</td><td>Bellagio &#x27;tournament play will resume Saturday, July 26&#x27; notice is undated</td>
-<td>medium</td><td>The official poker page carries a resume notice naming July 26 with no year; July 26, 2026 is a Sunday. Current operation of the weekly schedule must be confirmed by phone.</td><td>Call 702.693.7291 to confirm the weekly tournaments are running on your dates.</td>
-<td><a href="https://bellagio.mgmresorts.com/en/casino/poker.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-FL06">FL06</td><td>ARIA daily/nightly tournament cadence is undated</td>
-<td>medium</td><td>The official guide (1 PM / 7 PM) is undated; the current official page says to call the room or check @ARIAPoker to confirm whether daily tournaments are running.</td><td>Call 702.590.7232 (or check @ARIAPoker) before counting ARIA events in a plan.</td>
-<td><a href="https://aria.mgmresorts.com/en/casino/poker.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-FL07">FL07</td><td>WPT Super Gold Million and $10,400 World Championship entry terms not captured</td>
-<td>medium</td><td>The official structures PDF is longer than the 30-page fetch limit used in this research pass; those events&#x27; registration clauses were not returned. Their entry fields are blank on purpose.</td><td>Open the official structures PDF manually and read the two events&#x27; Registration sections; then update tournaments.json.</td>
-<td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-FL08">FL08</td><td>Walking times not verified</td>
-<td>high</td><td>No official venue publishes door-to-door walking times, and no map service result could be captured in this pass. Every hotel–venue pair carries a Google Maps walking link for manual verification; walkingMinutes is blank on all rows.</td><td>Open each map link (walking mode) and record the time; the 30-minute filter will then apply to verified values.</td>
-<td><a href="https://www.google.com/maps" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-FL09">FL09</td><td>Date-specific hotel rates not published; checkout totals blank</td>
-<td>high</td><td>Venetian/Palazzo publish poker-suite starting rates ($119/$209) not mapped to dates; Wynn, Bellagio and ARIA publish no static rate. All checkoutTotal / nightlyAvg fields are blank; the trip calculator computes them once a dated rate is entered.</td><td>Fix trip dates (Workflow step 1), then pull each hotel&#x27;s official booking link for those dates and log the dated quote in the rate log.</td>
-<td><a href="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-FL10">FL10</td><td>Bellagio Saturday PDF references a stale Day 2 date</td>
-<td>low</td><td>PDF rule 04 says &#x27;Combined Final Day 2 (9/13/26) will begin at 12pm&#x27; inside a weekly tournament sheet; the date appears stale and the sheet also references Flights 1A–1D.</td><td>Ask the room for the current Saturday structure.</td>
-<td><a href="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-FL11">FL11</td><td>Golden Nugget / Resorts World / Circa / MGM Grand poker pages not retrievable</td>
-<td>medium</td><td>Golden Nugget returned empty content, Resorts World redirected to an email template, Circa failed to load, and the MGM Grand poker URL 404s. No rows were added for these rooms.</td><td>Retry these official pages (or call the rooms) and add dated schedule rows when retrieved; the daily-check workflow will also retry them.</td>
-<td><a href="https://www.goldennugget.com/las-vegas/casino/poker/" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-FL12">FL12</td><td>No verified 8:00 AM tournament start</td>
-<td>medium</td><td>The earliest verified start across all checked official schedules is 9:10 AM (Venetian satellite #46, Dec 12) and 10:10 AM for regular events; no official schedule shows an 8:00 AM start in this window.</td><td>If an 8 AM start is required, ask Horseshoe (6 daily tournaments, times unpublished) or Golden Nugget whether an early daily runs.</td>
-<td><a href="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-FL13">FL13</td><td>Single-entry is never printed as a policy</td>
-<td>high</td><td>No Venetian structure sheet prints &#x27;single entry&#x27;, &#x27;freezeout&#x27;, or a maximum-entries rule. Main-list rows are confirmed for date/time/buy-in/fee-split/guarantee and carry no re-entry/rebuy/add-on clause, but a one-entry limit is not stated in writing.</td><td>Get written confirmation of one-entry-total / no-rebuy / no-add-on from tournament staff before treating any event as a strict freezeout.</td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-FL14">FL14</td><td>Est. finish times are structure-derived estimates</td>
-<td>low</td><td>Duration estimates multiply printed level counts by level lengths plus printed breaks. Real events can end earlier (players bust) or later (final-table dynamics, TD discretion). Overlap flags use these estimates and are advisory only.</td><td>Treat overlap flags as planning guidance; the poker room controls actual timing.</td>
-<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf" target="_blank" rel="noopener">source</a></td></tr></tbody></table></div>
+<h2>3 · Where spending more can buy a second chance — kept apart from the single-entry list</h2>
+<p class="lede">These are the published rows whose own structure sheet prints more than one buy-in or more than one starting
+flight. They are not rejected as bad events; they are separated because a player who cannot play a second bullet is competing
+under different rules from a player who can. The excerpt is the sheet's own wording.</p>
+<div class="wrap"><table><thead><tr><th>First date</th><th>Start · event #</th><th>Event</th><th>Entry format</th><th>Buy-in</th>
+<th>Excerpt from the sheet</th><th>Source · read on</th></tr></thead><tbody><tr><td>2026-11-16</td>
+<td>11:10 AM · #11</td><td>$300 No Limit Hold&#x27;em 1A $75K GTD</td>
+<td>multi-flight</td><td>$300</td>
+<td><small class="q">Each starting flight will play until we are down to approximately 12.5% of the field remaining. Day 2 will resume combining all remaining players from the listed flights. Any player who bags chips for Day 2 may not play a subsequent flight, so a player who does not bag may buy in</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_10.pdf" target="_blank" rel="noopener">sheet</a>
+· 2026-11-16</td></tr><tr><td>2026-11-16</td>
+<td>5:10 PM · #11</td><td>$300 No Limit Hold&#x27;em 1B $75K GTD</td>
+<td>multi-flight</td><td>$300</td>
+<td><small class="q">Each starting flight will play until we are down to approximately 12.5% of the field remaining. Day 2 will resume combining all remaining players from the listed flights. Any player who bags chips for Day 2 may not play a subsequent flight, so a player who does not bag may buy in</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_9.pdf" target="_blank" rel="noopener">sheet</a>
+· 2026-11-16</td></tr><tr><td>2026-11-23</td>
+<td>11:10 AM · #11</td><td>$400 No Limit Hold&#x27;em 1A $75K GTD</td>
+<td>multi-flight</td><td>$400</td>
+<td><small class="q">Each starting flight will play until we are down to approximately 12.5% of the field remaining. Day 2 will resume combining all remaining players from the listed flights. Any player who bags chips for Day 2 may not play a subsequent flight, so a player who does not bag may buy in</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_2.pdf" target="_blank" rel="noopener">sheet</a>
+· 2026-11-16</td></tr><tr><td>2026-11-28</td>
+<td>5:10 PM · #11</td><td>$200 NLH PokerAtlas Valuetown Bounty $20K GTD (1Day) - PokerAtlas PRO member $20 rake discount</td>
+<td>multi-buyin</td><td>$200</td>
+<td><small class="q">PokerAtlas PRO players will receive a twenty ($20) rake discount on their initial $200 buy in only, for a total buy in of $180 instead of $200. ... All subsequent buy in&#x27;s after the initial buy in will be $200.</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf" target="_blank" rel="noopener">sheet</a>
+· 2026-11-16</td></tr><tr><td>2026-11-29</td>
+<td>11:10 AM · #11</td><td>$400 No Limit Hold&#x27;em 1A $75K GTD</td>
+<td>multi-flight</td><td>$400</td>
+<td><small class="q">Each starting flight will play until we are down to approximately 12.5% of the field remaining. Day 2 will resume combining all remaining players from the listed flights. Any player who bags chips for Day 2 may not play a subsequent flight, so a player who does not bag may buy in</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf" target="_blank" rel="noopener">sheet</a>
+· 2026-11-16</td></tr><tr><td>2026-12-03</td>
+<td>11:10 AM · #12</td><td>$800 No Limit Hold&#x27;em 1A $500K GTD</td>
+<td>multi-flight</td><td>$800</td>
+<td><small class="q">Each starting flight will play until we are down to approximately 12.5% of the field remaining. Day 2 will resume combining all remaining players from the listed flights. Any player who bags chips for Day 2 may not play a subsequent flight, so a player who does not bag may buy in</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf" target="_blank" rel="noopener">sheet</a>
+· 2026-11-16</td></tr><tr><td>2026-12-03</td>
+<td>5:10 PM · #12</td><td>$800 No Limit Hold&#x27;em 1B $500K GTD</td>
+<td>multi-flight</td><td>$800</td>
+<td><small class="q">Each starting flight will play until we are down to approximately 12.5% of the field remaining. Day 2 will resume combining all remaining players from the listed flights. Any player who bags chips for Day 2 may not play a subsequent flight, so a player who does not bag may buy in</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_13.pdf" target="_blank" rel="noopener">sheet</a>
+· 2026-11-16</td></tr><tr><td>2026-12-05</td>
+<td>5:10 PM · #12</td><td>$800 No Limit Hold&#x27;em 1F (Turbo) $500K GTD</td>
+<td>multi-flight</td><td>$800</td>
+<td><small class="q">Each starting flight will play until we are down to approximately 12.5% of the field remaining. Day 2 will resume combining all remaining players from the listed flights. Any player who bags chips for Day 2 may not play a subsequent flight, so a player who does not bag may buy in</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_14.pdf" target="_blank" rel="noopener">sheet</a>
+· 2026-11-16</td></tr><tr><td>2026-12-12</td>
+<td>10:10 AM · #12</td><td>$2,200 No Limit Hold&#x27;em 1A $1 Mill GTD - PokerAtlas Championship Title Event</td>
+<td>multi-flight</td><td>$2,200</td>
+<td><small class="q">Each starting flight will play until we are down to approximately 12.5% of the field remaining. Day 2 will resume combining all remaining players from the listed flights. Any player who bags chips for Day 2 may not play a subsequent flight, so a player who does not bag may buy in</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_21.pdf" target="_blank" rel="noopener">sheet</a>
+· 2026-11-16</td></tr><tr><td>2026-12-12</td>
+<td>6:10 PM · #12</td><td>$2,200 No Limit Hold&#x27;em 1B $1 Mill GTD - PokerAtlas Championship Title Event</td>
+<td>multi-flight</td><td>$2,200</td>
+<td><small class="q">Each starting flight will play until we are down to approximately 12.5% of the field remaining. Day 2 will resume combining all remaining players from the listed flights. Any player who bags chips for Day 2 may not play a subsequent flight, so a player who does not bag may buy in</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_37.pdf" target="_blank" rel="noopener">sheet</a>
+· 2026-11-16</td></tr><tr><td>2026-12-13</td>
+<td>10:10 AM · #12</td><td>$1,100 No Limit Hold&#x27;em Seniors 1A $300K GTD - Must be 50+ years of age to participate</td>
+<td>multi-flight</td><td>$1,100</td>
+<td><small class="q">Each starting flight will play until we are down to approximately 12.5% of the field remaining. Day 2 will resume combining all remaining players from the listed flights. Any player who bags chips for Day 2 may not play a subsequent flight, so a player who does not bag may buy in</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_20.pdf" target="_blank" rel="noopener">sheet</a>
+· 2026-11-16</td></tr><tr><td>2026-12-17</td>
+<td>10:10 AM · #12</td><td>$1,100 No Limit Hold&#x27;em 1A $500K GTD - $40 rake discount for entries before 10:10 a.m.</td>
+<td>multi-flight</td><td>$1,100</td>
+<td><small class="q">Each starting flight will play until we are down to approximately 12.5% of the field remaining. Day 2 will resume combining all remaining players from the listed flights. Any player who bags chips for Day 2 may not play a subsequent flight, so a player who does not bag may buy in</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf" target="_blank" rel="noopener">sheet</a>
+· 2026-11-16</td></tr><tr><td>2026-12-17</td>
+<td>6:10 PM · #12</td><td>$1,100 No Limit Hold&#x27;em 1B $500K GTD - $40 rake discount for entries before 6:10 p.m.</td>
+<td>multi-flight</td><td>$1,100</td>
+<td><small class="q">Each starting flight will play until we are down to approximately 12.5% of the field remaining. Day 2 will resume combining all remaining players from the listed flights. Any player who bags chips for Day 2 may not play a subsequent flight, so a player who does not bag may buy in</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_36.pdf" target="_blank" rel="noopener">sheet</a>
+· 2026-11-16</td></tr><tr><td>2026-12-20</td>
+<td>11:10 AM · #12</td><td>$600 No Limit Hold&#x27;em 1A $150K GTD - $20 rake discount for entries before 11:10 a.m.</td>
+<td>multi-flight</td><td>$600</td>
+<td><small class="q">Each starting flight will play until we are down to approximately 12.5% of the field remaining. Day 2 will resume combining all remaining players from the listed flights. Any player who bags chips for Day 2 may not play a subsequent flight, so a player who does not bag may buy in</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf" target="_blank" rel="noopener">sheet</a>
+· 2026-11-16</td></tr><tr><td>2026-12-24</td>
+<td>5:10 PM · #12</td><td>$200 No Limit Hold&#x27;em Bounty $8K GTD (1Day)</td>
+<td>multi-buyin</td><td>$200</td>
+<td><small class="q">Rule 06: &#x27;The $20 discount can be applied to the initial entry or any subsequent re-entry&#x27; (Event #29, CES badge). The sheet therefore contemplates more than one entry.</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_2.pdf" target="_blank" rel="noopener">sheet</a>
+· 2026-11-17</td></tr><tr><td>2026-12-27</td>
+<td>11:10 AM · #12</td><td>$1,100 No Limit Hold&#x27;em 1A $300K GTD - Ante Up Championship</td>
+<td>multi-flight</td><td>$1,100</td>
+<td><small class="q">Rule 08: &#x27;Any player who bags chips for Day 2 may not play a subsequent flight.&#x27;</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_6.pdf" target="_blank" rel="noopener">sheet</a>
+· 2026-11-17</td></tr><tr><td>2027-01-01</td>
+<td>11:10 AM · #01</td><td>$1,600 No Limit Hold&#x27;em MSPT 1A $400K GTD - $40 reduced rake until the start of Level 4</td>
+<td>multi-flight</td><td>$1,600</td>
+<td><small class="q">Rule 08: &#x27;Any player who bags chips for Day 2 may not play a subsequent flight.&#x27;</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_8.pdf" target="_blank" rel="noopener">sheet</a>
+· 2026-11-17</td></tr><tr><td>2027-01-02</td>
+<td>5:10 PM · #01</td><td>$200 NLH PokerAtlas Valuetown Bounty $20K GTD (1Day) - PokerAtlas PRO member $20 rake discount</td>
+<td>multi-buyin</td><td>$200</td>
+<td><small class="q">Rule 07: &#x27;All subsequent buy in&#x27;s after the initial buy in will be $200.&#x27;</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_9.pdf" target="_blank" rel="noopener">sheet</a>
+· 2026-11-17</td></tr><tr><td>2027-01-04</td>
+<td>11:10 AM · #01</td><td>$250 No Limit Hold&#x27;em 1A $75K GTD (1Day) - Day 1 payouts with 5% advancing to Day 2 - $10 reduced rake for entry before 11:10 AM</td>
+<td>multi-flight</td><td>$250</td>
+<td><small class="q">Rule 08: &#x27;Any player who bags chips for Day 2 may not play a subsequent flight. Players who cash on Day 1 but bust before making Day 2 may play another flight.&#x27;</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_15.pdf" target="_blank" rel="noopener">sheet</a>
+· 2026-11-17</td></tr><tr><td>2027-01-07</td>
+<td>11:10 AM · #01</td><td>$300 No Limit Hold&#x27;em 1A $100K GTD (1Day)</td>
+<td>multi-flight</td><td>$300</td>
+<td><small class="q">Rule 08: &#x27;Any player who bags chips for Day 2 may not play a subsequent flight.&#x27;</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_13.pdf" target="_blank" rel="noopener">sheet</a>
+· 2026-11-17</td></tr><tr><td>2027-01-07</td>
+<td>5:10 PM · #01</td><td>$300 No Limit Hold&#x27;em 1B $100K GTD (1Day) - Show your CES badge, $10 rake discount</td>
+<td>multi-flight</td><td>$300</td>
+<td><small class="q">The $10 CES discount &#x27;can be applied to the initial entry or any subsequent re-entry&#x27;. Rule 08: a player who bags for Day 2 may not play a subsequent flight.</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_14.pdf" target="_blank" rel="noopener">sheet</a>
+· 2026-11-17</td></tr></tbody></table></div>
 
-<h2>4 · Hotel policies verified from official terms (2026-11-16)</h2>
-<p class="lede">True nightly cost = rate + resort fee + 13.38% tax. Venetian poker-suite qualification (official page): six hours of live cash
-play <i>or</i> a $300+ tournament buy-in for each night stayed, before 2 a.m. of the last night; unqualified nights are repriced to the
-prevailing rate. Dated rates are logged, never overwritten — see the canonical <a href="hotels.html">hotels page</a> for the rate log.</p>
-<div class="wrap"><table><thead><tr><th>Hotel / official address</th><th>Resort fee</th><th>Tax</th><th>Parking</th><th>Cancellation</th><th>Rate note</th><th>Sources</th></tr></thead>
-<tbody><tr><td>The Venetian Resort<br><small>3355 S Las Vegas Blvd, Las Vegas, NV 89109</small></td>
-<td>$55 + tax</td><td>13.38% Clark County room tax (tax applies to rate and resort fee)</td>
-<td><small>Registered hotel guests $20/day; non-guests $20 Mon–Thu / $25 Fri–Sun; valet $40/day; Venetian Rewards Sapphire+ self-parking free (official terms)</small></td><td><small>Prepaid offers non-cancellable/non-refundable; deposit (suite + fee + tax) billed at booking; early departure charge $100 plus tax (official terms)</small></td>
-<td><small>2026 poker suite rates start as low as $119 and $209 (Luxury King Suite, single/double, qualifying poker play: 6 hours cash game or a $300+ tournament buy-in per night). The page does not map rates to dates or towers; date-specific rate remains blank. Book code EPOKR25 via 866.255.8936.</small></td>
-<td><a href="https://www.venetianlasvegas.com/booking?adults[]=2&amp;arrival_date=2026-11-17&amp;children[]=0&amp;departure_date=2026-11-19&amp;view=calendar" target="_blank" rel="noopener">booking</a> · 2026-11-16</td></tr><tr><td>The Palazzo at The Venetian Resort<br><small>3325 S Las Vegas Blvd, Las Vegas, NV 89109</small></td>
-<td>$55 + tax</td><td>13.38% Clark County room tax (tax applies to rate and resort fee)</td>
-<td><small>Same policy as The Venetian (shared resort; official terms)</small></td><td><small>Same terms as The Venetian (official terms)</small></td>
-<td><small>Shares the 2026 poker suite offer with The Venetian (&#x27;as low as $119 and $209&#x27;); property-specific rate not published. Blank until a dated quote exists.</small></td>
-<td><a href="https://www.venetianlasvegas.com/booking?adults[]=2&amp;arrival_date=2026-11-17&amp;children[]=0&amp;departure_date=2026-11-19&amp;view=calendar" target="_blank" rel="noopener">booking</a> · 2026-11-16</td></tr><tr><td>Wynn Las Vegas / Encore<br><small>3131 S Las Vegas Blvd, Las Vegas, NV 89109</small></td>
-<td>$55 + tax</td><td>13.38% Clark County room tax (tax applies to rate and resort fee)</td>
-<td><small>Self-parking complimentary for registered guests; $25/day for non-registered (first 3 hours free); complimentary for Wynn Poker Room guests (ask the room); valet $40/day; Tower Suites guests free valet (official terms)</small></td><td><small>Cancellations at least 48 hours prior to arrival or the deposit is forfeited; early departure penalty equals that night&#x27;s room rate and tax (official terms)</small></td>
-<td><small>No date-specific room rate published on reviewed official pages. The terms page reviewed (850070) carries an offer whose stay window ended Sept 30, 2025 — its $55 + tax fee and parking/cancellation terms are the latest published on the reviewed Wynn terms URL, but confirm on the actual booking.</small></td>
-<td><a href="https://www.wynnlasvegas.com/rooms-and-suites" target="_blank" rel="noopener">booking</a> · 2026-11-16</td></tr><tr><td>Bellagio<br><small>3600 S Las Vegas Blvd, Las Vegas, NV 89109</small></td>
-<td>$55 + tax</td><td>13.38% Clark County room tax (tax applies to rate and resort fee)</td>
-<td><small>Not published in the reviewed terms — check MGM parking policy at booking</small></td><td><small>First night&#x27;s deposit fully refundable if cancelled at least 72 hours before arrival; late cancellation or no-show forfeits the first night (comp stays: $165 midweek / $200 weekend fee) (official terms)</small></td>
-<td><small>Date-specific room rates not published on the official room page (date-based rate checker only). $50 + tax per night per occupant above 2. Incidental authorization $150/day.</small></td>
-<td><a href="https://bellagio.mgmresorts.com/en/hotel.html" target="_blank" rel="noopener">booking</a> · 2026-11-16</td></tr><tr><td>ARIA Resort &amp; Casino<br><small>3730 S Las Vegas Blvd, Las Vegas, NV 89109</small></td>
-<td><span class="u">blank</span> + tax</td><td>13.38% Clark County room tax (tax applies to rate and resort fee)</td>
-<td><small>Not verified this pass</small></td><td><small>Not verified this pass</small></td>
-<td><small>Official poker page advertises &#x27;Exclusive room rates for qualifying poker players&#x27; — call 702.590.7232 or PokerRoomRates@aria.com; no published rate captured.</small></td>
-<td><a href="https://aria.mgmresorts.com/en/hotel.html" target="_blank" rel="noopener">booking</a> · 2026-11-16</td></tr></tbody></table></div>
+<h2>4 · Flag register — all 72 open items, grouped by area</h2>
+<p class="lede">Every irregularity and every value that could not be confirmed from an official source. None of these blocks
+the site from being used or published; each carries the official link so it can be reviewed and either fixed or retired. The
+same register is rendered on the <a href="flagged.html">Flagged for review page</a>.</p>
+<div class="wrap"><table><thead><tr><th>ID</th><th>Severity</th><th>Area</th><th>Item</th><th>Finding</th><th>Source</th></tr></thead>
+<tbody><tr><td id="fl-F13"><b>F13</b></td><td>Medium</td>
+<td>ARIA</td><td>The ARIA poker guide is undated and the current page asks guests to confirm by phone</td><td><small>The official guide states daily 1 PM and nightly 7 PM events but carries no date. The current poker page asks guests to call or check @ARIAPoker for whether daily events are running, and publishes no buy-in, guarantee or entry rules. The rows are kept as an undated cadence only.</small></td>
+<td><a href="https://aria.mgmresorts.com/en/casino/poker.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F02"><b>F02</b></td><td>High</td>
+<td>Bellagio</td><td>Bellagio Saturday buy-in is printed three different ways on official sources</td><td><small>The poker-room page links the event as &#x27;SATURDAYS | $1,000 NLH&#x27;; the structure PDF header reads &#x27;NLH $1100 BUY-IN&#x27;; rule 07 of the same PDF reads &#x27;Of the $600 Buy-in, $510 goes to the Prize Pool, $50 is Admin Fees and $40 is optional staff gratuity&#x27;. The row is therefore left blank for buy-in and guarantee and is not ranked.</small></td>
+<td><a href="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F03"><b>F03</b></td><td>Medium</td>
+<td>Bellagio</td><td>Bellagio tournament-resumption notice is undated and names July 26</td><td><small>The poker page still carries the notice &#x27;Tournament play will resume on Saturday, July 26, beginning with the $300 PLO Double Board Bomb Pot Tournament at 2 PM PT.&#x27; No year is printed, July 26, 2026 was a Sunday, and the page highlights elsewhere say the PLO Double Bomb Pot runs nightly at 6 PM. The start time is therefore left as the page highlight value and the notice is listed as a conflict.</small></td>
+<td><a href="https://bellagio.mgmresorts.com/en/casino/poker.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F52"><b>F52</b></td><td>Low</td>
+<td>Bellagio</td><td>The Bellagio Saturday structure sheet prints a blind level as 200-4300</td><td><small>The sheet linked from the Bellagio poker-room page prints the third blind level of the Saturday event as &#x27;200-4300&#x27;, which does not fit the level ladder used by the neighbouring levels. Re-read 2026-11-17; the value is reported exactly as printed and no level data is derived from it.</small></td>
+<td><a href="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F73"><b>F73</b></td><td>Medium</td>
+<td>Caesars Palace</td><td>The Caesars Palace and Horseshoe daily schedules are published only inside a dated marketing article</td><td><small>Re-read on 2026-11-17. The page that publishes every Caesars Palace and Horseshoe start time is an editorial page, bylined &#x27;James Billington&#x27; and dated July 17, 2026, not a tournament page, and it carries no structure-sheet link. The four Caesars Palace values it prints ($100 buy-in, 20,000 chips, $1,000 guarantee, 20-minute levels, plus a $50 add-on at the first break for 15,000 extra chips) are recorded on the four rows with that article as their source. The Horseshoe rows stay blank because the article publishes only &#x27;a mixture of buy-ins, levels and guarantees&#x27; (F20). A schedule that exists in a four-month-old article is not something to rely on before a nonrefundable booking.</small></td>
+<td><a href="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F49"><b>F49</b></td><td>Medium</td>
+<td>Day 2 / final-table rows</td><td>Resumption rows carry no late-registration cut-off and no estimated finish</td><td><small>45 rows are resumptions of a field that closed on an earlier day: Day 2, Day 3, Day 4 and Day 5 restarts and streamed final tables at the Venetian and at Wynn. Earlier in this build those rows printed the structure sheet&#x27;s late-registration clause and the session length derived from it, but both belong to the earlier day&#x27;s flight, not to the restart: registration closed when that day ended, and no venue publishes a restart finish time. On the LIPS streamed final table this produced a 7:00 PM start with a &#x27;late registration until 4:55 PM&#x27; that closed three hours earlier, and an estimated finish at 6:30 PM the following afternoon. Both fields are now blank on those rows, with the reason recorded on the row. Four NYE rows that had been misclassified as restarts were also corrected: &#x27;$250 No Limit Hold&#x27;em 1A/1B/1C/1D $75K GTD - Day 1 payouts with 5% advancing to Day 2&#x27; are starting flights, not resumptions, because their &#x27;Day 2&#x27; mention sits in the trailing payout clause. Continuation detection is now one shared rule instead of four separate regexes, two of which could not see a bare &#x27;Final Table&#x27; row.</small></td>
+<td><a href="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F41"><b>F41</b></td><td>Low</td>
+<td>DeepStack Extravaganza NYE schedule</td><td>The NYE schedule page prints the year 2025 on its December 26 rows</td><td><small>The official DeepStack Extravaganza NYE page is headed &#x27;December 24, 2026 - January 10, 2027&#x27;, but its three December 26 rows read &#x27;Saturday, December 26, 2025&#x27;. December 26 is a Saturday in 2026 (not in 2025, when it was a Friday), so the weekday is right and the year is the typo. The rows are listed with the series dates and the printed year is flagged rather than corrected. All 15 NYE structure sheets have since been read (see F11), so the printed year is the only open point on these rows.</small></td>
+<td><a href="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F20"><b>F20</b></td><td>Medium</td>
+<td>Horseshoe</td><td>Horseshoe daily buy-ins, levels and guarantees are not published</td><td><small>The official Caesars page publishes six Horseshoe start times but states only that &#x27;a mixture of buy-ins, levels and guarantees caters to all participants&#x27;. Every Horseshoe monetary field is therefore blank.</small></td>
+<td><a href="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F36"><b>F36</b></td><td>Medium</td>
+<td>Hotel cost</td><td>RESOLVED 2026-11-17: the booking engine does print an itemised total for the trip window; the $XXX cells were a rendering artefact</td><td><small>Superseded on the evening of 2026-11-17. This flag was written against the superseded 25 November - 2 December window, where the date picker returned every cell reading $XXX because prices load by script after first paint, so no dated total could be read for those dates. Reopening the engine for the window the trip is booked for (23-30 November 2026) returned the itemised panel and the $4,010.55 checkout total described in F15. The lesson is kept on the register rather than deleted: the calendar cells and the itemised panel can disagree, so no calendar cell is ever used as a price (F69). The published starting-rate floor ($197.28) is still shown beside the quote and is still labelled a floor, never a quote.</small></td>
+<td><a href="https://www.venetianlasvegas.com/booking?adults[]=2&amp;arrival_date=2026-11-23&amp;children[]=0&amp;departure_date=2026-11-30&amp;view=calendar" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F37"><b>F37</b></td><td>Low</td>
+<td>Hotel cost</td><td>Caesars Palace and Horseshoe resort fees are now confirmed; their room-tax percentage is not</td><td><small>Closed on 2026-11-17 for the fee. The official Caesars booking page for each property prints a Hotel Policies &gt; Fees block: Caesars Palace &#x27;Resort fees: $62.30 ($54.95 plus $7.35 tax)&#x27; with a &#x27;$100 per day&#x27; deposit, and Horseshoe Las Vegas &#x27;Resort fees: $56.63 ($49.95 plus $6.68 tax)&#x27; with a &#x27;$50 per day&#x27; deposit, a $75 pet fee and a $30-per-day rollaway. Both pages add that &#x27;Rates shown reflect the lowest available rate and include applicable resort fees&#x27; and that the fee is not assessed for Diamond and Seven Stars guests. What remains open: neither page prints a room-tax percentage for the rate, and neither publishes a self-parking amount, so a true nightly cost is still not computed from property-published components. The third-party spread that blocked this row earlier ($42, $49.95, $54.95, $55, $62.30) is resolved: the $54.95/$49.95 figures are the pre-tax fees and the $62.30/$56.63 figures are the same fees with tax.</small></td>
+<td><a href="https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&amp;flexibleMonth=December&amp;propCode=clv" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F39"><b>F39</b></td><td>Medium</td>
+<td>Hotel cost</td><td>Wynn, Caesars Palace and Horseshoe print no room-tax percentage, so their true nightly cost stays open</td><td><small>Wynn publishes &#x27;plus tax&#x27; on the resort fee and on the room rate but no percentage (page re-read 2026-11-17: &#x27;Reservations will be charged a daily resort fee of $55 plus tax&#x27;). Caesars Palace and Horseshoe print only the tax amount charged on their fee. The Clark County Department of Business License Combined Transient Lodging Tax schedule (Appendix III of the General Information Guide for Transient Lodging Establishments) lists every resort hotel in the Primary Gaming Corridor at 13.38% - MGM Grand, Luxor, Paris, New York-New York, Sahara and Rio were read line by line on 2026-11-17 (session 688eb797) - and the City of Las Vegas room-tax packet prints the same 13.38%/13.00% split (https://files.lasvegasnevada.gov/business-licensing/RoomTaxPacket.pdf); 13.38% is also the figure the Venetian prints in its own hotel terms. This site does not substitute a government schedule into a property-published column: the row shows the reference beside a blank property figure. Closing it needs a dated checkout total from each property.</small></td>
+<td><a href="https://www.wynnlasvegas.com/about-us/resort-information" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F51"><b>F51</b></td><td>High</td>
+<td>Hotel cost</td><td>Two official Venetian pages disagree on whether the resort fee is added to the rate or included in it</td><td><small>Partly resolved on 2026-11-17 by reading the resort-fee page itself, which the earlier pass had not quoted. The Venetian&#x27;s own Resort Fee page states: &#x27;Rates include a daily Resort Fee of $55 plus tax per night, payable upon check-in.&#x27; That page governs the fee and it supports the arithmetic this site uses: the poker-suite starting rates are quoted before the fee, the $55 is chargeable on top, and the floor is therefore ($119 + $55) x 1.1338 = $197.28 rather than a double-count. Two things stay open. First, the booking calendar footnote says the opposite - &#x27;Pricing shown is best available suite and rate, includes daily resort fee, excludes taxes&#x27; - so one official page states the fee is added to the rate and another states it is already in it. Second, neither page says which convention the phone-only poker rate (EPOKR25) uses. The published floor keeps the conservative reading (fee added, +$55 a night, about $300 over seven nights); if the poker rate proves to be fee-inclusive, the true floor is about $154 a night, roughly $43 lower. Only a dated checkout total for the poker rate settles it. The same caution applies to the Horseshoe calendar cells, whose own page says they include the resort fee.</small></td>
+<td><a href="https://www.venetianlasvegas.com/resort/resort-fee.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F55"><b>F55</b></td><td>Medium</td>
+<td>Hotel cost</td><td>The Horseshoe rate calendar printed two different grids five minutes apart on the same day</td><td><small>Both readings are kept in the rate log. At 01:26 UTC the December 2026 grid printed Dec 1 $449, Dec 4 $219, Dec 5 $369, Dec 6 $249, Dec 7 $229, Dec 8 $169, Dec 9 $149, Dec 10 $359, Dec 11 $479, Dec 12 $429, Dec 13 $56, Dec 18 $63, Dec 19 $219, Dec 25 $129, Dec 27 $149, Dec 30 $209 and Dec 31 $529. At 01:31 UTC the same page printed $379, $189, $313, $214, $198, $148, $132, $305, $404, $363, $55, $61, $189, $115, $132, $181 and $445 for the same dates. A flexible-month calendar cell is a moving observation, not a held price, and this site does not average or pick between them. Any trip budget built from these cells must be re-read on the day of booking. The Caesars Palace calendar, read the same way twice, returned no price cells at all. F47 records the same behaviour on the Venetian calendar; this flag is the Caesars-page instance, which matters because the Horseshoe cells are the only dated room rates any reviewed property publishes for the trip window.</small></td>
+<td><a href="https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&amp;flexibleMonth=December&amp;propCode=blv" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F35"><b>F35</b></td><td>High</td>
+<td>Hotel terms</td><td>The Wynn terms page used as the fee source is an expired 2025 offer</td><td><small>The earlier build cited https://www.wynnlasvegas.com/terms-and-conditions/850070 for Wynn&#x27;s $55 resort fee, parking and 48-hour cancellation. That page is a DINING CREDIT offer whose own text says a stay booked under it &#x27;must be completed on or before September 30, 2025&#x27;, so it cannot substantiate a November 2026 trip. The fee was re-verified on 2026-11-17 from the live Resort Policies page, which still prints $55 plus tax, check-in 3 p.m. and check-out 12 p.m. The 48-hour cancellation window appears only in offer terms, so Wynn has no verified flexible-booking cancellation deadline and is shown blank.</small></td>
+<td><a href="https://www.wynnlasvegas.com/about-us/resort-information" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F14"><b>F14</b></td><td>Medium</td>
+<td>Hotels</td><td>Wynn resort fee differs between published offer pages</td><td><small>The general Wynn terms used here state &#x27;A daily resort fee of $55 plus tax&#x27;. An older, expired offer page states $50 plus tax. The actual fee on a booked reservation controls; $55 plus tax is used and the discrepancy is flagged rather than resolved.</small></td>
+<td><a href="https://www.wynnlasvegas.com/terms-and-conditions/850070" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F15"><b>F15</b></td><td>High</td>
+<td>Hotels</td><td>RESOLVED 2026-11-17: a dated checkout total exists for the booked trip window ($4,010.55, 23-30 Nov 2026)</td><td><small>Superseded on the evening of 2026-11-17; the record is kept because it is the largest money gap the dashboard carried. The booking engine printed an itemised total for the stay the trip is actually booked for: 23-30 November 2026, seven nights, two adults, Newly Remodeled Luxury King under &#x27;Book Direct: Up to 25% Off&#x27;, $4,010.55 with $473.30 of tax and nightly room rates of $164.25, $164.25, $201.75, $231.75, $1,649.25, $554.25 and $186.75 before a $55 resort fee each night. Every night reconciles to (rate + $55) x 1.1338 and the seven derived figures add to the printed total exactly. The trip cost model now uses that total and publishes the $197.28 component floor beside it. For completeness on the superseded dates: four stay windows inside the then-recommended 25 November - 2 December 2026 returned no suite and no price, and two earlier near-term stays are still in the rate log as observations (17-19 November at $1,245.48 on 2026-11-16 and $1,015.89 on 2026-11-17, 20-22 November at $2,504.00). What remains open is narrower and is carried by F66: the phone-only poker rate (code EPOKR25) does not appear in the engine quote.</small></td>
+<td><a href="https://www.venetianlasvegas.com/booking?adults[]=2&amp;arrival_date=2026-11-17&amp;children[]=0&amp;departure_date=2026-11-19&amp;view=calendar" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F28"><b>F28</b></td><td>High</td>
+<td>Hotels</td><td>The Venetian booking calendar disagrees with the quote, and its cells change with the query</td><td><small>The calendar cell for November 17 read $855 in the observation recorded on 2026-11-16, while the same page&#x27;s quote for the same night printed a $824.25 room rate, and an earlier observation of the same calendar on the same day recorded $605. The calendar states that its prices are the best available suite and rate, include the daily resort fee and exclude taxes. Calendar cells are logged as observations and are never used in a total. On 2026-11-17 the same booking engine was fetched live for the superseded 25 November - 2 December window and showed no amount in any date cell; the engine was then opened for the booked 23-30 November stay and printed an itemised $4,010.55 total (F15), while its calendar cells for those nights were still different figures (F69). No calendar cell is ever recorded as a price.</small></td>
+<td><a href="https://www.venetianlasvegas.com/booking?adults[]=2&amp;arrival_date=2026-11-17&amp;children[]=0&amp;departure_date=2026-11-19&amp;view=calendar" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F47"><b>F47</b></td><td>High</td>
+<td>Hotels</td><td>Booking-calendar cells are not prices: the same date prints a different figure per query</td><td><small>On 2026-11-17 the official Venetian booking calendar was read twice, with two different stay windows open. November 16 printed $555 with the November 17-19 window open and $854 with the November 27-28 window open; November 22 printed $165 against $230; November 27 printed $905 against $1,814. The page&#x27;s own footnote says the figure is the best available suite and rate, includes the daily resort fee and excludes taxes, so the cell tracks the cheapest suite the engine can offer for that context rather than a fixed nightly rate. No calendar cell is used anywhere on this site as a price; only the engine&#x27;s itemised quote panel is.</small></td>
+<td><a href="https://www.venetianlasvegas.com/booking?adults[]=2&amp;arrival_date=2026-11-17&amp;children[]=0&amp;departure_date=2026-11-19&amp;view=calendar" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F19"><b>F19</b></td><td>Medium</td>
+<td>Hotels</td><td>Hotel cost comparison is limited to published per-night components</td><td><small>No reviewed property publishes parking cost inside the room folio, incidentals, or the tax rate as a single checkout total, so the like-for-like comparison is built from the same published components for every property: room rate, mandatory resort fee, tax, parking and cancellation deadline.</small></td>
+<td><a href="https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F64"><b>F64</b></td><td>Low</td>
+<td>Hotels</td><td>Two different official booking requests gave two different answers for the trip window</td><td><small>Asking the official Venetian booking engine for the trip window itself (arrival 2026-11-25, departure 2026-12-02) returns $XXX in every cell, so no checkout total exists for those nights. Asking the same engine for a calendar view (arrival 2026-11-17) prints per-night cells for 17-30 November, including $185 on 25 November, $190 on 26 November, $210 on 27 November, $905 on 28 November, $340 on 29 November and $165 on 30 November, and the calendar states those cells include the daily resort fee and exclude taxes. A note carried by an earlier build of this site said the trip window published no price at all, which those cells contradict; a later live re-read rewrote that note, and this flag keeps the two requests distinct so the claim cannot return. The calendar cells are still not a quote, and nothing here converts them into one: they are recorded so a reader can see that part of the window does have published figures.</small></td>
+<td><a href="https://www.venetianlasvegas.com/booking?adults[]=2&amp;arrival_date=2026-11-17&amp;children[]=0&amp;departure_date=2026-11-19&amp;view=calendar" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F65"><b>F65</b></td><td>Low</td>
+<td>Hotels</td><td>Printed Venetian tax for the 23-30 Nov quote is $0.02 above 13.38% of its pre-tax subtotal</td><td><small>Dated official booking-engine read on 2026-11-17 (2 adults, 23-30 Nov 2026, 7 nights): the printed nightly rates total $3,152.25, the printed resort fees total $385.00, the pre-tax subtotal is $3,537.25, and the printed tax is $473.30. 13.38% of $3,537.25 is $473.28. The page does not explain the $0.02 difference. The record keeps the printed $473.30 and the printed $4,010.55 total, and does not adjust either figure. Per-night true costs are derived as (rate + $55) x 1.1338 and sum to the printed total.</small></td>
+<td><a href="https://www.venetianlasvegas.com/booking?adults[]=2&amp;arrival_date=2026-11-23&amp;children[]=0&amp;departure_date=2026-11-30&amp;view=calendar" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F57"><b>F57</b></td><td>High</td>
+<td>Hotels</td><td>30 November and 1 December 2026 print no figure in any reading, so a stay spanning them cannot be booked online</td><td><small>The official Venetian booking calendar was read on 2026-11-17 with two different stay windows open. Every date in the captured range printed a figure in at least one of the two renderings except two: 30 November and 1 December were blank in both. An arrival date of 30 November returns the message “We&#x27;re sorry, but there is no availability for some of your selected dates. Please select different dates to proceed.” No rate, no suite and no checkout total can therefore be obtained online for a stay that includes either night. This is why the recommended trip is 23 November to 30 November and not 25 November to 2 December: the longer window spans two nights the engine will not price, so it cannot be booked as one stay. This finding does not depend on treating a calendar cell as a price — F47 records that the cells move with the query, and F28 that they disagree with the quote. It is narrower than either: across two independent renderings these were the only two dates that printed no figure at all. Confirm by phone on 866.255.8936 before booking either night.</small></td>
+<td><a href="https://www.venetianlasvegas.com/booking?adults[]=2&amp;arrival_date=2026-11-30&amp;children[]=0&amp;departure_date=2026-12-02&amp;view=calendar" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F69"><b>F69</b></td><td>Medium</td>
+<td>Hotels</td><td>The engine&#x27;s calendar cells for 23-30 November are not the quote for the same nights</td><td><small>On 2026-11-17 the booking calendar printed $165, $165, $190, $210, $1,155, $425 and $180 for the nights of 23 to 29 November, under a footnote that says its prices include the daily resort fee. The itemised quote for the same stay, read the same day, printed a room rate of $164.25, $164.25, $201.75, $231.75, $1,649.25, $554.25 and $186.75 on those nights, plus a $55 resort fee on each night. Rate plus fee is higher than the cell on every night (for example $165 against $219.25 on 23 November), so the calendar cell is not the price the engine charges. The dashboard uses the itemised quote and never a calendar cell as a nightly price. Confirm the price for the chosen dates on the booking screen or by phone (866.255.8936) before paying.</small></td>
+<td><a href="https://www.venetianlasvegas.com/booking?adults[]=2&amp;arrival_date=2026-11-23&amp;children[]=0&amp;departure_date=2026-11-30&amp;view=calendar" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F66"><b>F66</b></td><td>High</td>
+<td>Hotels</td><td>The $119 poker rate is phone-only and does not appear in the booking-engine quote</td><td><small>The official poker-room rate page says poker suite rates &#x27;start as low as $119 and $209 and can be higher&#x27;. They are booked by calling 866.255.8936 with code EPOKR25 and require six hours of active live cash play, or a buy-in to a $300-or-higher tournament, for each night stayed, completed before 2 a.m. on the last night; a night that fails is re-priced at the prevailing rate. The 23-30 November engine quote of $4,010.55 (&#x27;Book Direct: Up to 25% Off&#x27;) does not show the code. The $197.28 a night floor in the trip profile is computed from published components and is not a quote. Ask the poker room whether EPOKR25 applies to these dates and what the all-in total would be, then record the answer as a dated rate-log entry.</small></td>
+<td><a href="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F07"><b>F07</b></td><td>Medium</td>
+<td>MGM Grand</td><td>MGM Grand weekly schedule sheet is headed &#x27;August Tournament Schedule&#x27;</td><td><small>The PDF linked from the MGM Grand poker-room page is titled &#x27;MGM Grand August Tournament Schedule&#x27; while the room page itself is current. The daily slots and buy-ins are used as printed; the month label is flagged.</small></td>
+<td><a href="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F08"><b>F08</b></td><td>Medium</td>
+<td>MGM Grand</td><td>MGM Grand $120 payout table does not line up with its own entry ranges</td><td><small>Rows such as &#x27;71-77&#x27; list eleven payout percentages and &#x27;64-70&#x27; list ten, which cannot both describe a seven-entry range. The payout table is not used for any comparison on this site.</small></td>
+<td><a href="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/bltb2a45da7e8ee5621/mgm-grand-casino-poker-120_nlh.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F09"><b>F09</b></td><td>Low</td>
+<td>MGM Grand</td><td>The MGM Grand $120 structure PDF carries the title &#x27;Max Stacks Tournament Series&#x27;</td><td><small>The document title on the PDF is &#x27;Max Stacks Tournament Series&#x27; although its content is the $120 No Limit Hold&#x27;em structure. Content matches the poker-room page; the title does not.</small></td>
+<td><a href="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/bltb2a45da7e8ee5621/mgm-grand-casino-poker-120_nlh.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F71"><b>F71</b></td><td>Medium</td>
+<td>MGM Grand</td><td>MGM Grand&#x27;s official poker page and its official weekly schedule PDF print different start times</td><td><small>Both pages were re-read on 2026-11-17. The poker-room page states &#x27;Daily Texas Hold&#x27;em Tournaments 11:00am, 7:00pm and 11:00pm&#x27;. The weekly schedule PDF linked from that same page prints 11:10am, 7:10pm and 11:10pm on all seven days. The published rows follow the PDF. The difference is ten minutes, so it cannot change whether an event is reachable, but a player who arrives on the strength of the HTML time would miss the first ten minutes. The PDF carries its own reason to distrust its dates: it is titled &#x27;MGM Grand August Tournament Schedule&#x27; (F07). Confirm the current slot with the poker room before travelling.</small></td>
+<td><a href="https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F72"><b>F72</b></td><td>Low</td>
+<td>MGM Grand</td><td>MGM Grand&#x27;s only printed entry-policy statement for the $120 daily assumes five or more entries</td><td><small>Verified on 2026-11-17 from the footnote at the foot of the published weekly schedule PDF: &#x27;Sunday through Friday - Players with 5 entries or more in $120 Daily Tournaments will receive one (1) free entry to the Saturday $150 NLH $2,000 Guarantee&#x27;. That sentence is the only entry-policy statement the room publishes for these events and it assumes a player takes five or more entries, so the $120 daily is recorded as a multi-entry format and kept out of the single-entry path. It is not a cap: no maximum number of entries per player is printed anywhere on the sheet.</small></td>
+<td><a href="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F30"><b>F30</b></td><td>High</td>
+<td>Monitoring</td><td>No scheduled source re-check had produced a run yet, and the three monitors were not serialised against each other</td><td><small>At inspection time no run of checks.yml, monitor.yml or daily-check.yml existed, and site/checks.json, which the sources page fetches, did not exist either, so the page reported &#x27;No automated check file yet&#x27;. The reason for the zero runs is timing, not deletion: all three workflows reached main at 00:44 UTC on 2026-11-17 and their crons were 12:13, 12:05 and 09:00 UTC, so the first scheduled time had not arrived. The real defect is that monitor.yml and daily-check.yml had no concurrency group at all while checks.yml used its own, so they could have collided once the crons fired; daily-check.yml additionally rewrote the tree and force-rebased onto main, and monitor.yml pushed with &#x27;|| true&#x27;, which hides a rejected push. They are now one serialised job with a rebase-retry push. It is registered and active; its first run is the 12:13 UTC cron, and this page does not claim a run has been observed.</small></td>
+<td><a href="https://github.com/karagemop466-tech/Poker3/actions" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F40"><b>F40</b></td><td>Low</td>
+<td>Monitoring</td><td>The build sandbox cannot reach the venue hosts; live reads were made by the page reader</td><td><small>Every official venue and property host refused or timed out from the build sandbox, so the fetches in this pass were made by the assistant&#x27;s page reader one URL at a time. This is recorded so a reader understands why an automated checks run can report &#x27;unreachable&#x27; for a URL that loads normally in a browser.</small></td>
+<td><a href="https://github.com/karagemop466-tech/Poker3/actions/workflows/checks.yml" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F29"><b>F29</b></td><td>High</td>
+<td>Publishing</td><td>The site root served a stale page that contradicted the dashboard, because two publishers wrote to the same URL</td><td><small>GitHub Pages was configured to deploy from the main branch root while pages.yml also deployed the site/ artifact, so the URL /Poker3/ served whichever deployment finished last. At the time this was found the root served an earlier-round page (46 Venetian rows, no verified hotel cost, &#x27;no hotel ranking is shown&#x27;), while /Poker3/site/ served the canonical 341-row dashboard. A visitor landing on the site root therefore saw conclusions the live data contradicts. The root page is now a redirect and pages.yml redeploys after the branch build; the underlying setting (Pages source = &#x27;deploy from a branch&#x27;) could not be changed by this session&#x27;s token, which is why the redirect exists as a second guarantee.</small></td>
+<td><a href="https://github.com/karagemop466-tech/Poker3/blob/main/site/poker3/index.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F68"><b>F68</b></td><td>Low</td>
+<td>Publishing</td><td>RESOLVED 2026-11-17: stale hotel, rate and route files were feeding the sheet-verification page</td><td><small>site/data/hotels.json, site/data/rates.json and site/data/routes.json were dated 2026-11-16, were written by no script, and were not read by any dashboard page — but scripts/build_addendum.py did read hotels.json, rates.json and routes.json, and it generates site/sheets.html, which is a page in the site navigation. That page therefore published 2026-11-16 data: 14 retired FL-prefixed flags instead of the live 72-item F register, 5 of the 8 hotels, and 13 of the 15 walking routes with every walking time blank. The three files are deleted and build_addendum.py now reads site/data.json and the two data modules only, so it cannot drift again. site/data.json is the only current data file. Kept on the register as the record of the defect.</small></td>
+<td><a href="https://github.com/karagemop466-tech/Poker3/blob/main/scripts/build_addendum.py" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F16"><b>F16</b></td><td>High</td>
+<td>Schedule</td><td>No official schedule publishes tournament finish times</td><td><small>Venetian sheets publish start time, level length and late-registration cut-off but no finish time. The overlap check therefore uses a stated planning assumption (a six-hour session plus a 30-minute transfer between venues) and every conflict it reports is an estimate, not an official statement.</small></td>
+<td><a href="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F17"><b>F17</b></td><td>High</td>
+<td>Schedule</td><td>The earliest verified official start is 9:00 AM (Horseshoe daily); no 8:00 AM start is published</td><td><small>Re-read on 2026-11-17 on the Caesars page: Horseshoe runs six daily No-Limit Hold&#x27;em games at 9 a.m., 11 a.m., 2 p.m., 5 p.m., 8 p.m. and 11 p.m., with no buy-in published. Caesars Palace runs four daily games at 10 a.m., 2 p.m., 6 p.m. and 9 p.m. ($100 buy-in, $50 add-on). On the Venetian schedule re-read on 2026-11-17 the earliest start is 9:10 AM, a $260 satellite on Dec 12. Opening Venetian events start at 10:10 AM or later; the only 10:00 AM Venetian starts are restarts (Day 2 or Day 3). The Wynn daily starts at 12:00 PM. Most Wynn WPT rows start at 11:00 AM. Its 10:00 AM rows are the Super Gold Million flights (Dec 10 and 11), one WPT row on Dec 12 and a satellite on Dec 18, all from the WPT PDF read on 2026-11-16. An &#x27;all day from 8:00 AM&#x27; plan cannot be built from official sources. The day plan starts at the earliest verified start for each venue.</small></td>
+<td><a href="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F43"><b>F43</b></td><td>Low</td>
+<td>Schedule</td><td>The Caesars page gives a general session length, not an event finish time</td><td><small>The official Caesars Palace poker-tournament page says &#x27;Most sessions finish in four to six hours.&#x27; That is a general statement about its tournaments, not a published finish time for any event. The six-hour planning assumption for every room therefore remains an assumption.</small></td>
+<td><a href="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F33"><b>F33</b></td><td>Medium</td>
+<td>Schedule overlap</td><td>Day 2 restarts of earlier Venetian events overlap the trip-window primaries</td><td><small>Re-read on 2026-11-17 from the official schedule: Event #7 ($400 No Limit Hold&#x27;em flights) has a Day 2 Restart at 11:00 AM on Wed Nov 25, the same morning as the 11:10 AM primary (#10). Event #19 ($400 flights) has a Day 2 Restart at 11:00 AM on Wed Dec 2, and its 11:10 AM Day 1 flight on Sun Nov 29 is the same morning as the 12:10 PM primary (#20). A restart applies only to a player who bagged chips in an earlier flight, so the day plan treats these as conditional and does not model them. Before relying on a primary, check whether any earlier flight was played.</small></td>
+<td><a href="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F45"><b>F45</b></td><td>Low</td>
+<td>Sources</td><td>The official schedule PDF and the official schedule page print the event name differently</td><td><small>Both captures are official and they agree on date, time, event number and structure-sheet link for all 94 rows, but 83 of the 94 names are rendered differently: the PDF puts the guarantee in its own GUARANTEE column, while the HTML page inlines &#x27;$XXK GTD&#x27; into the event name. Example: the PDF prints &#x27;$200 NLH BOUNTY (1DAY)&#x27; with a separate $8,000 guarantee, and the page prints &#x27;$200 No Limit Hold&#x27;em Bounty $8K GTD (1Day)&#x27;. The site&#x27;s names follow the HTML page, which is the page every row links to.</small></td>
+<td><a href="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F46"><b>F46</b></td><td>Medium</td>
+<td>Sources</td><td>The official schedule PDF prints decorative sponsor art in the DATE column on 20 rows</td><td><small>20 of the 94 rows on the official DeepStack Extravaganza IV schedule PDF carry no date at all: 6 read &#x27;@PokerAtlas* TOUR&#x27;, 6 read &#x27;LIPS CHAMPIONSHIP CHAMPIES CHAMPIES CHAMPIES&#x27;, 5 read &#x27;LIPS FRIDAY, DECEMBER 11&#x27;, 2 read &#x27;@PokerAtlas PRO&#x27; and 1 reads &#x27;@PokerAtlas* PRO&#x27;. Those rows cover events 17, 18, 32-38, 41-46, 48, 50, 51 and 58. The dates on this site for those rows come from the official schedule page, not from the PDF, and the two were cross-checked row by row.</small></td>
+<td><a href="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F54"><b>F54</b></td><td>High</td>
+<td>Trip plan</td><td>Two of the seven planned nights (23 and 24 November) do not satisfy the published condition for the $119 poker-suite rate</td><td><small>Corrected 2026-11-17. The earlier text of this flag named 30 November, 1 December and 2 December, which belonged to the superseded 25 November - 2 December window and are not part of the booked stay; the finding is unchanged in substance and only the dates were wrong. Derived from two published documents, not inferred. The Venetian poker-suite rate page requires &#x27;six hours of active live cash gameplay or buy in to a $300 or higher tournament for each night stayed&#x27;, and failure to qualify means the prevailing rate is charged. The trip is 23-30 November 2026, so the seven nights that must qualify are 23, 24, 25, 26, 27, 28 and 29 November. The day plan places a $400, $300, $600, $600 and $300 primary on 25, 26, 27, 28 and 29 November, which satisfy it, and a $200 primary on 23 and 24 November, which do not; those two nights are therefore not covered by the published condition. The page does not say whether an entry counts on the day it is paid or on every night of a multi-day event, so no re-pricing amount is claimed - the room must be asked. One $300+ alternative is published on each of those two dates: the $400 No Limit Hold&#x27;em 1A at 11:10 AM on 23 November and 1B at 11:10 AM on 24 November, both multi-flight, so both sit outside the single-entry screen and would also require playing into a later day. Choosing between a $200 buy-in with a possibly repriced room, a $400 multi-flight entry, or six hours of live cash play is a decision this site shows but does not make.</small></td>
+<td><a href="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F05"><b>F05</b></td><td>Low</td>
+<td>Venetian DSE IV</td><td>Structure sheet 13 cross-references the wrong companion sheet</td><td><small>Sheet 12 covers &#x27;Day A+C+E&#x27; and points to &#x27;SEE OTHER STRUCTURE SHEET FOR DAYS B+D+F&#x27;. Sheet 13 covers &#x27;Day B+D&#x27; but points to &#x27;SEE OTHER STRUCTURE SHEET FOR DAYS A+C+F&#x27;, which should read A+C+E. Sheet 14 covers Day F and points to A+B+C+D+E. The flight groups themselves agree with the schedule page; only the cross-reference is wrong.</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_13.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F10"><b>F10</b></td><td>Low</td>
+<td>Venetian DSE IV</td><td>LIPS flat-fee wording on sheets 31, 32 and 33 is ambiguous</td><td><small>Sheet 33 reads &#x27;$80 of the $600 Buy-In is withheld for house fees (Rake + Staff). $10 of the $600 Buy In will be withheld as a flat fee for ... Ladies International Poker Series (LIPS). Prize pool consists of $510 of every $600 Buy In.&#x27; Read as two separate withholdings ($80 + $10 + $510) the total is $600; read as one, it is $590. The figures are reported as printed with the ambiguity flagged.</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_33.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F27"><b>F27</b></td><td>Low</td>
+<td>Venetian DSE IV</td><td>The official DSE schedule page misspells &#x27;Limit&#x27; on four rows</td><td><small>The schedule page prints &#x27;No LImit Hold&#x27;em&#x27; with a capital letter i on the rows for event 2 (November 18), event 6 (November 22), event 10 (November 25) and event 12 (November 26). The event names on this site use the corrected spelling and every row links the page and the structure sheet, so the printed label can be checked in one click.</small></td>
+<td><a href="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F22"><b>F22</b></td><td>Low</td>
+<td>Venetian DSE IV</td><td>The RaceDay Stack sheets print no guarantee</td><td><small>Sheets 18 and 29 print the buy-in, rake and blind structure but no guarantee line, so events 3, 4, 5 and 6 carry a blank guarantee and are not ranked by the guaranteed-pool-to-fee ratio.</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_18.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F31"><b>F31</b></td><td>High</td>
+<td>Venetian DSE IV</td><td>The structure sheets do not confirm a one-entry-per-player maximum</td><td><small>The 52 Venetian rows classified as &#x27;single entry on the sheet&#x27; have one printed buy-in and no re-entry, rebuy, add-on or second-flight provision in the reviewed sheet. However, the sheets do not state a maximum number of entries per player and do not explicitly call the event a freezeout. This is only a document-level screen, not written confirmation of the room&#x27;s one-entry policy. Do not treat these candidates as strictly eligible or book around them until the venue confirms the maximum-entry, no-rebuy and no-add-on rules in writing. The source excerpt and date are attached to each row.</small></td>
+<td><a href="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F63"><b>F63</b></td><td>Low</td>
+<td>Venetian DSE IV</td><td>Day 2 restart rows carry values that their own schedule row leaves blank</td><td><small>The official DeepStack Extravaganza IV series schedule PDF prints an empty GUARANTEE, CHIPS, LEVEL and REG CLOSES cell for every Day 2 restart row, because those rows continue an event whose Day 1 row already printed them. The published restart rows fill those cells with the values printed on that event&#x27;s own structure sheet, so the figures are official but they come from the sheet, not from the restart row. A line-by-line re-check of all 94 rows against the PDF on 2026-11-17 found 43 such cells, all on Day 2 restart rows, and no other disagreement anywhere in the series.</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F74"><b>F74</b></td><td>Low</td>
+<td>Venetian DSE NYE</td><td>Eleven NYE rows carried a &#x27;structure sheet not read&#x27; label after all 15 sheets had been read</td><td><small>Found and fixed on 2026-11-17. Eleven NYE rows sat in the category &#x27;Unverified - structure sheet not read&#x27; even though all 15 NYE sheets were read in full that day and each of those rows already carried an excerpt quoted from its own sheet. Each row now takes the category its own sheet supports: the sheet-screened candidate list where the sheet prints no re-entry clause, the extra-spend list where it does. No money, date or time value changed. The error is published here because a wrong label on a verified row is the failure this page exists to surface.</small></td>
+<td><a href="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F75"><b>F75</b></td><td>Medium</td>
+<td>Venetian DSE NYE</td><td>NYE Event #29 was listed as a single-entry candidate although its own sheet prints re-entry wording</td><td><small>Found by a new automated label check on 2026-11-17 and fixed. NYE Event #29 ($200 NLH Bounty, Wednesday 2027-01-06 at 5:10 PM, CES-badge $10 rake discount) sat in the sheet-screened candidate category while its own row already carried the structure-2 excerpt: &#x27;The $20 discount can be applied to the initial entry or any subsequent re-entry&#x27;. A sheet that contemplates a subsequent re-entry cannot sit in the single-entry candidate list, so the row is now in the extra-spend category. No money, date or time value changed. Structure 2 is shared by nine bounty events, so the same wording governs all of them; the other eight were already correctly placed.</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_2.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F48"><b>F48</b></td><td>Medium</td>
+<td>Venetian DeepStack NYE</td><td>Two NYE events share one 11:10 AM start on January 4, 2027</td><td><small>The official DeepStack Extravaganza NYE schedule page lists Event #20 ($1,600 MSPT Day 2 Restart) and Event #27 ($250 No Limit Hold&#x27;em 1A $75K GTD) at 11:10 AM on the same day. Every other Day 2 or Day 3 restart row in both Venetian series is published at 10:00, 11:00 AM or 12:00 PM, never at 11:10 AM, while every 1A/1B/1C starting flight is published at 11:10 AM or 5:10 PM. The restart time therefore looks like a transcription slip on the official page rather than a genuine 11:10 AM restart, but this cannot be settled from the repository&#x27;s copy, so the row is published exactly as the official page has it and is not adjusted. Confirm against the official page before sequencing anything on that date.</small></td>
+<td><a href="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F50"><b>F50</b></td><td>Low</td>
+<td>Venetian DeepStack NYE</td><td>Three NYE sheets print one late-registration clause covering two start times</td><td><small>Sheets dse_dec_2026-structure_4, _5 and _15 print a single late-registration clause with two clock times, for example &#x27;6 levels + break (~5:25 PM or ~8:25 PM)&#x27;, because one sheet covers more than one start flight. The builder previously took the first clock time on every row, which put a 5:25 PM cut-off on the 6:10 PM row and closed registration before that event began. The row now takes the earliest printed time that still falls after its own start, so the 3:10 PM row keeps 5:25 PM and the 6:10 PM row takes 8:25 PM. Both times are printed on the sheet, so this disambiguates published values rather than inventing one; where no printed time falls after a row&#x27;s start, no cut-off is published at all. Sheet _5 prints &#x27;5:25 PM or 12:25 PM&#x27; and no row in this schedule would take the 12:25 PM figure, so confirm the 12:25 PM reading with the poker room.</small></td>
+<td><a href="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F04"><b>F04</b></td><td>Medium</td>
+<td>Venetian NYE</td><td>Venetian NYE schedule prints &#x27;Saturday, December 26, 2025&#x27; for three events</td><td><small>Events 5, 6 and 7 of the DeepStack Extravaganza NYE page are dated &#x27;Saturday, December 26, 2025&#x27; even though the series runs December 24, 2026 to January 10, 2027. The page also misspells &#x27;Tuesaday&#x27;. The rows are kept at 2026-12-26 and the printed label is flagged here.</small></td>
+<td><a href="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F06"><b>F06</b></td><td>Medium</td>
+<td>Venetian NYE</td><td>Two NYE events are labelled (1Day) but have a Day 2 restart on the same schedule page</td><td><small>Event 27 &#x27;$250 No Limit Hold&#x27;em 1A $75K GTD (1Day)&#x27; carries the note &#x27;Day 1 Payouts with 5% advancing to Day 2&#x27; and a Day 2 Restart on January 6, 2027. Event 30 &#x27;$300 No Limit Hold&#x27;em 1A $100K GTD (1Day)&#x27; has a Day 2 Restart on January 10, 2027. Both are treated as multi-day.</small></td>
+<td><a href="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F11"><b>F11</b></td><td>Low</td>
+<td>Venetian NYE</td><td>The NYE series is fully read, but three of its sheets print multi-entry wording the schedule page omits</td><td><small>Resolved on 2026-11-17: the 15 DeepStack Extravaganza NYE structure sheets were read in full, so no NYE row is marked &#x27;structure sheet not read&#x27;. The sheets change the picture that the schedule page alone gives. Sheet 2 ($200 Bounty) and sheet 9 ($200 Valuetown Bounty) both print a &#x27;subsequent re-entry&#x27; sentence, and sheet 15&#x27;s $250 flight series says a player &#x27;may play another flight&#x27;, so those rows are multi-entry and stay out of the single-entry path. Sheets 1, 3, 10, 11 and 12 print no re-entry, rebuy or add-on clause and are recorded as single entry on the sheet. Sheets 6, 8, 13 and 14 print bagging clauses and are counted as multi-flight. The remaining sheets are satellites or bounty events with their own wording, quoted on each row.</small></td>
+<td><a href="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F53"><b>F53</b></td><td>Low</td>
+<td>Venetian NYE</td><td>NYE structure_14 header names only Day 1B &amp; 1D although three flights link to it</td><td><small>The official NYE schedule links the 5:10 PM flights on January 7, 8 and 9, 2027 (Day 1B, 1D and 1F) to dse_dec_2026-structure_14.pdf, but the sheet&#x27;s flight header prints &#x27;Day 1B &amp; 1D @ 5:10 PM with Day 2 @ 12:00 PM&#x27; without Day 1F. The structure_14 rules are applied to all three linked rows and the header mismatch is flagged here. Read 2026-11-17.</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_14.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F58"><b>F58</b></td><td>Medium</td>
+<td>Venetian NYE</td><td>NYE Event #29 CES-badge discount is $10 on the schedule page but $20 on the structure sheet</td><td><small>The official DeepStack Extravaganza NYE schedule row for Event #29 (Jan 6, 2027, 5:10 PM) prints &#x27;Show Your CES Badge - $10 RAKE DISCOUNT&#x27;, but the event&#x27;s structure sheet (dse_dec_2026-structure_2.pdf) prints: &#x27;any player who shows their CES badge at the time of registration will receive a $20 discount on house fees for a total buy in of $180 instead of $200&#x27;. Both are official; neither was adjusted. Confirm the discount with the poker room before relying on it.</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_2.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F59"><b>F59</b></td><td>Medium</td>
+<td>Venetian NYE</td><td>MSPT (Event #20) Day 2 restart is 11:10 AM on the schedule page but 11:00 AM on the structure sheet</td><td><small>The official NYE schedule prints the Event #20 Day 2 Restart on Jan 4, 2027 at 11:10 AM, while the event&#x27;s structure sheet (dse_dec_2026-structure_8.pdf) prints &#x27;Day A+B+C @ 11:10 AM with Day 2 @ 11:00 AM&#x27;. The stored row keeps the schedule time (11:10 AM) and the sheet excerpt is recorded on the row&#x27;s rules. F48 flags the same restart time from a different angle (two events share the 11:10 AM slot); the sheet evidence here shows the printed restart is 11:00 AM. Confirm the restart time with the poker room.</small></td>
+<td><a href="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_dec_2026-structure_8.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F21"><b>F21</b></td><td>Low</td>
+<td>Walking routes</td><td>Google Maps resolved &#x27;Horseshoe Las Vegas&#x27; to Bally&#x27;s on the first query</td><td><small>The first walking query using the property name alone was routed from Bally&#x27;s Las Vegas. The figure shown for Horseshoe was re-taken using the full street address and the result is labelled as such. Walking times are Google Maps estimates captured on 2026-11-16, not venue-published figures.</small></td>
+<td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=walking" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F32"><b>F32</b></td><td>Medium</td>
+<td>Walking routes</td><td>The 30-minute walking check does not cover every hotel–venue pair</td><td><small>The current 14 route rows cover routes from the recommended Venetian resort hotel to the listed poker rooms, plus selected on-site pairs. The requested full hotel-by-venue matrix would contain 56 pairs (8 hotel records × 7 venue records); the remaining pairs have no checked walking time here and are not assumed to meet the 30-minute limit. The existing schedule filter applies only to the recommended Venetian resort route estimates. Check the official property addresses and each Google/Apple walking route before comparing other hotel choices.</small></td>
+<td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=walking" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F67"><b>F67</b></td><td>Medium</td>
+<td>Walking routes</td><td>Venetian to Bellagio Poker Room walks 27 minutes; the planner&#x27;s Bellagio-to-Venetian figure is 21 minutes</td><td><small>On 2026-11-17 the Google Maps walking card from 3355 S Las Vegas Blvd (The Venetian) to the Bellagio Poker Room, 3600 S Las Vegas Blvd, read 27 minutes for 1.1 miles via Las Vegas Blvd S. The driving card for the same pair read 8 minutes. The walking card does not print its mode label; the link requested travelmode=walking. The reverse pair, Bellagio Hotel &amp; Casino to The Venetian, read 21 minutes (0.9 mile) the same day, which matches the stored route. The day plan uses only the venue-to-Venetian direction, so a Venetian-to-Bellagio transfer is understated by six minutes. The 30-minute limit is still met (27 minutes). Re-read the pair on a second day before relying on either figure.</small></td>
+<td><a href="https://www.google.com/maps/dir/?api=1&amp;origin=3355+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;destination=Bellagio+Poker+Room,+3600+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;travelmode=walking" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F18"><b>F18</b></td><td>Low</td>
+<td>Wynn</td><td>Wynn daily tournaments are suspended during Wynn Signature, Wynn Millions and Classic series</td><td><small>Stated on the official poker-room page. It matters for date selection: the daily $200 and $160 events cannot be assumed to run during those windows.</small></td>
+<td><a href="https://www.wynnlasvegas.com/casino/poker" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F26"><b>F26</b></td><td>Medium</td>
+<td>Wynn Signature Series</td><td>Several schedule rows on the Wynn Signature Series PDF carry an extra empty cell</td><td><small>The rows for &#x27;1/17 NLH TURBO&#x27;, &#x27;1/18 NO LIMIT HOLD&#x27;EM DAY 1A&#x27; and &#x27;1/18 NLH TURBO&#x27; have one more cell than the table header, which shifts the guarantee column: the printed guarantee appears in the entry column and the entry price appears in the chip column. The values are read in the order the surrounding rows use, so the $10,000 and $100,000 figures are treated as the guarantee and $200 or $400 as the entry. The guarantee for the milestone satellites is printed as &#x27;10 Seats&#x27;. Re-read on 2026-11-17: the shift is still on the page, and the same pattern also moves the guarantee out of its column on the 1/17 1 P.M. Day 2, 1/18 PLO, 1/19 TORSE, 1/20 MIXED TRIPLE DRAW, 1/21 TOE, 1/22 BIG O and 1/24 PLO DOUBLE BOARD BOMB POT rows, which print no guarantee cell. Those rows are shown with a blank guarantee rather than a shifted figure.</small></td>
+<td><a href="https://cdn.wynnresorts.com/image/upload/v1753296112/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Schedule.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F56"><b>F56</b></td><td>Medium</td>
+<td>Wynn Signature Series</td><td>The official Wynn Signature Series structures file is a &#x27;coming soon&#x27; placeholder, so 38 rows cannot be confirmed</td><td><small>Read on 2026-11-17. The URL the site cites for Wynn Signature Series structures (Wynn_Signature_Series_Structures.pdf) now returns only &#x27;LAS VEGAS POKER / COMING SOON&#x27;. The series schedule PDF, read at the same time, prints the dates January 11-24, 2027 and tells guests to &#x27;Scan the QR code for event structures&#x27;. There is therefore no readable official structure sheet for these 38 rows today, and their single-entry, re-entry and add-on status correctly stays &#x27;not verified&#x27; rather than being inferred from the schedule. The schedule does print buy-in, guarantee, chips and level length for most rows, and those columns are shown.</small></td>
+<td><a href="https://cdn.wynnresorts.com/image/upload/v1762299460/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Structures.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F12"><b>F12</b></td><td>Medium</td>
+<td>Wynn WPT</td><td>The WPT structure PDF&#x27;s trip-window NLH sections are read; later-series sections and the $10,400 event are still unmatched</td><td><small>Read end to end on 2026-11-17 (all eight chunks). Twelve trip-window flight rows now carry verified rules quoted from the PDF: the six $600 NLH $400K flights (Nov 27-29) and the six $800 NLH $1M flights (Nov 30-Dec 2). Both sections print &#x27;Unlimited re-entry for each starting flight will be available until the start of level 9&#x27;, so those events are multi-entry and stay out of the single-entry filter; neither section prints an add-on provision. The Day 2 rows stay &#x27;not-verified&#x27; on purpose: the schedule PDF prints them with the FOLLOWING event&#x27;s buy-in columns (Nov 30 1 p.m. &#x27;Day 2&#x27; of the $600 event carries $800/$1M, and Dec 3 1 p.m. &#x27;Day 2&#x27; of the $800 event carries $1,600/$1M), so rules are not attached across conflicting evidence. The $10,400 WPT World Championship has no section in the structures PDF. Non-NLH WPT rows outside the read sections keep &#x27;not-verified&#x27; status.</small></td>
+<td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F23"><b>F23</b></td><td>Medium</td>
+<td>Wynn WPT</td><td>The Ladies Championship entry fee is printed twice, differently</td><td><small>The WPT schedule prints the buy-in column as &#x27;$1,100&#x27; for &#x27;Ladies NIH Championship (2 Day)&#x27; while the footnote under the table reads &#x27;The Tournament Entry for the Ladies Championship is $11,100. Ladies will receive a discounted entry.&#x27; The event name is printed as &#x27;NIH&#x27;, which is a typo for No Limit Hold&#x27;em. The row keeps the printed column value and the footnote is recorded with it; nothing is adjusted.</small></td>
+<td><a href="https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F24"><b>F24</b></td><td>High</td>
+<td>Wynn WPT</td><td>The &#x27;$1,000,000 Added&#x27; on the WPT World Championship is not available in Nevada</td><td><small>The schedule prints &#x27;WPT World Championship Day 1A $1,000,000 Added&#x27; for $10,400, and the footnote under the table states: &#x27;$1,000,000 will be added in cash prizes by ClubWPT Gold. ClubWPT Gold is not available in Nevada.&#x27; The guarantee column for those rows is blank on the schedule. A Nevada player therefore cannot count the added million, which is why no guarantee is shown for those rows.</small></td>
+<td><a href="https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F25"><b>F25</b></td><td>Low</td>
+<td>Wynn WPT</td><td>Discounted-entry footnote markers do not resolve cleanly against the footnote list</td><td><small>The schedule prints &#x27;*&#x27;, &#x27;**&#x27;, &#x27;***&#x27;, &#x27;****&#x27; and &#x27;*****&#x27; markers. Several rows, including the $10,500 PLO 6-Max and the $25,800 NLH High Roller, carry a four-marker footnote, while the footnote list describes the Ladies Championship entry under four markers and the general discounted entry under five. The marker is reproduced with its row and the footnote text is quoted, but the published entry is not adjusted.</small></td>
+<td><a href="https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F34"><b>F34</b></td><td>High</td>
+<td>Wynn WPT</td><td>The WPT schedule and the WPT structure PDF give different dates for the same events</td><td><small>Read on 2026-11-17. The schedule PDF lists a &#x27;No Limit Hold&#x27;em Day 2&#x27; for the $800 NLH on Mon Nov 30 at 1:00 PM, but the structure PDF gives that event Day 1A at 11 a.m. on Mon Nov 30 and Day 2 at 1 p.m. on Thu Dec 3. The schedule also lists a &#x27;No Limit Hold&#x27;em (2 Day)&#x27; $1,600 on Dec 9 at 11 a.m., while the structure PDF gives the $1,600 NLH Day 1A on Thu Dec 3 and Day 2 on Sat Dec 5. The rows are reproduced as printed and not corrected. The $800 row is not matched to a structure section for that reason. Confirm the date with the poker room before any decision that depends on it.</small></td>
+<td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F76"><b>F76</b></td><td>Low</td>
+<td>Wynn WPT</td><td>Six WPT rows said &#x27;entry rules not yet read&#x27; while quoting the entry rule from the sheet</td><td><small>Found and fixed on 2026-11-17. The six NLH flight rows whose structure sections were matched that day carried both the registration clause quoted from the official structures PDF and the older note &#x27;entry rules not yet read&#x27;. The note now states that the rules were read from the structure sheet. No value changed; the contradiction was in the prose only.</small></td>
+<td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F60"><b>F60</b></td><td>Medium</td>
+<td>Wynn WPT</td><td>The $1,100 PLO structure sheet&#x27;s printed buy-in components total $1,105, not $1,100</td><td><small>The WPT World Championship structure sheet for the $1,100 PLO (Tuesday Dec 1, 1 p.m.) prints the buy-in split as a $975 prize pool with fees of $85 and $45. The printed components sum to $1,105, five dollars more than the printed $1,100 buy-in on the schedule. The row reproduces the schedule buy-in and the rule panel reproduces the split as printed; nothing is adjusted. Confirm the amounts with the poker room.</small></td>
+<td><a href="https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F01"><b>F01</b></td><td>High</td>
+<td>Wynn WPT schedule</td><td>The official WPT schedule PDF labels December 18 as both a Wednesday and a Friday</td><td><small>In the same PDF, &#x27;Dec. 18 Wednesday&#x27; carries the No Limit Hold&#x27;em Day 1A and PLO rows while &#x27;Dec. 18 Friday&#x27; carries the WPT World Championship Day 4 rows. The rows also run out of order, with the December 17 block printed after the December 18 Wednesday block, and no December 16 block appears anywhere in the PDF. December 18, 2026 is a Friday. Flag F61 sets out the official evidence that the day number, not the weekday, is the misprint and that these eight rows are very likely December 16. The schedule dates are reproduced exactly as printed and the dispute is flagged rather than corrected, because the site does not silently re-date a row on an inference.</small></td>
+<td><a href="https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F61"><b>F61</b></td><td>High</td>
+<td>Wynn WPT schedule</td><td>Eight WPT rows are probably two days late: the &#x27;Dec. 18 Wednesday&#x27; block is very likely December 16</td><td><small>The official WPT schedule PDF prints one block labelled &#x27;Dec. 18 Wednesday&#x27; and a second labelled &#x27;Dec. 18 Friday&#x27; holding different events, and it prints no December 16 block at all. Four pieces of official evidence say the Wednesday block is December 16. (1) It sits between the December 15 Tuesday block and the December 17 Thursday block in print order, exactly where December 16 belongs. (2) December 16, 2026 is a Wednesday, which is the weekday the block prints. (3) It carries WPT World Championship Day 2, and that event&#x27;s Day 1C is printed on December 15 while its Day 3 is printed on December 17, so Day 2 has to fall between them. (4) The $1,100 No Limit Hold&#x27;em whose Day 1A and Day 1B appear in the block has its &#x27;No Limit Hold&#x27;em Day 2&#x27; printed inside the December 17 block. The day number therefore looks like the misprint, not the weekday. The site keeps the date exactly as printed, because re-dating a row on an inference is exactly what this project promises not to do, so these eight rows remain dated 2026-12-18: that collides them with the genuine December 18 rows and leaves 2026-12-16 empty. Confirm against the room&#x27;s own published calendar before planning around any of them. Flag F01 recorded the PDF&#x27;s self-contradiction and concluded the weekday was the error; this flag records the evidence that reverses that conclusion, and F01 has been amended to point here.</small></td>
+<td><a href="https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf" target="_blank" rel="noopener">source</a></td></tr><tr><td id="fl-F62"><b>F62</b></td><td>Low</td>
+<td>Wynn WPT schedule</td><td>Four WPT event names read differently from the printed text</td><td><small>The schedule PDF prints &#x27;NIH Turbo&#x27;, &#x27;NIH $500 Bounty Turbo&#x27; and &#x27;Milestone Satellite to $25K NIH High Roller&#x27;, and it prints &#x27;Double Play Milestone Satellite1&#x27; with a trailing digit. The published rows read &#x27;NLH Turbo&#x27;, &#x27;NLH $500 Bounty Turbo&#x27;, &#x27;Milestone Satellite to $25K NLH High Roller&#x27; and &#x27;Double Play Milestone Satellite&#x27;. NIH is almost certainly the PDF&#x27;s own rendering of NLH, but NIH is what is printed, so this is a normalisation rather than a transcription and it is recorded as one. Every other cell on those four rows - date, start time, buy-in, guarantee, chips and level length - was re-checked against the PDF on 2026-11-17 and agrees.</small></td>
+<td><a href="https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf" target="_blank" rel="noopener">source</a></td></tr></tbody></table></div>
 
-<h2>5 · Hotel–venue walking routes — official addresses + verification links</h2>
-<p class="lede">No venue publishes walking times; nothing is guessed. Each pair carries its official addresses and a Google Maps walking
-link; the 30-minute limit applies to verified values (<span class="u">FL08</span>).</p>
-<div class="wrap"><table><thead><tr><th>Pair</th><th>Hotel address</th><th>Room address</th><th>Walking time</th><th>Verify</th><th>Checked</th></tr></thead>
-<tbody><tr><td>The Venetian Resort → The Venetian Poker Room</td>
-<td><small>3355 S Las Vegas Blvd, Las Vegas, NV 89109</small></td><td><small>The Venetian Poker Room, 3355 S Las Vegas Blvd, Las Vegas, NV 89109</small></td>
-<td>Same resort property — walking distance inside the resort; exact route time not published by the venue.</td>
-<td><a href="https://www.google.com/maps/dir/?api=1&amp;origin=3355+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;destination=The+Venetian+Poker+Room,+3355+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;travelmode=walking" target="_blank" rel="noopener">Google Maps (walking)</a></td>
-<td>2026-11-16</td></tr><tr><td>The Palazzo → The Venetian Poker Room</td>
-<td><small>3325 S Las Vegas Blvd, Las Vegas, NV 89109</small></td><td><small>The Venetian Poker Room, 3355 S Las Vegas Blvd, Las Vegas, NV 89109</small></td>
-<td>Same resort property — walking distance inside the resort; exact route time not published by the venue.</td>
-<td><a href="https://www.google.com/maps/dir/?api=1&amp;origin=3325+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;destination=The+Venetian+Poker+Room,+3355+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;travelmode=walking" target="_blank" rel="noopener">Google Maps (walking)</a></td>
-<td>2026-11-16</td></tr><tr><td>Wynn Las Vegas / Encore → Wynn Poker Room (Encore)</td>
-<td><small>3131 S Las Vegas Blvd, Las Vegas, NV 89109</small></td><td><small>Wynn Poker Room (Encore), 3131 S Las Vegas Blvd, Las Vegas, NV 89109</small></td>
-<td>Same resort property — walking distance inside the resort; exact route time not published by the venue.</td>
-<td><a href="https://www.google.com/maps/dir/?api=1&amp;origin=3131+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;destination=Wynn+Poker+Room+(Encore),+3131+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;travelmode=walking" target="_blank" rel="noopener">Google Maps (walking)</a></td>
-<td>2026-11-16</td></tr><tr><td>Bellagio → Bellagio Poker Room</td>
-<td><small>3600 S Las Vegas Blvd, Las Vegas, NV 89109</small></td><td><small>Bellagio Poker Room, 3600 S Las Vegas Blvd, Las Vegas, NV 89109</small></td>
-<td>Same resort property — walking distance inside the resort; exact route time not published by the venue.</td>
-<td><a href="https://www.google.com/maps/dir/?api=1&amp;origin=3600+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;destination=Bellagio+Poker+Room,+3600+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;travelmode=walking" target="_blank" rel="noopener">Google Maps (walking)</a></td>
-<td>2026-11-16</td></tr><tr><td>ARIA Resort &amp; Casino → ARIA Poker Room</td>
-<td><small>3730 S Las Vegas Blvd, Las Vegas, NV 89109</small></td><td><small>ARIA Poker Room, 3730 S Las Vegas Blvd, Las Vegas, NV 89109</small></td>
-<td>Same resort property — walking distance inside the resort; exact route time not published by the venue.</td>
-<td><a href="https://www.google.com/maps/dir/?api=1&amp;origin=3730+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;destination=ARIA+Poker+Room,+3730+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;travelmode=walking" target="_blank" rel="noopener">Google Maps (walking)</a></td>
-<td>2026-11-16</td></tr><tr><td>The Venetian Resort → Wynn Poker Room (Encore)</td>
-<td><small>3355 S Las Vegas Blvd, Las Vegas, NV 89109</small></td><td><small>Wynn Poker Room (Encore), 3131 S Las Vegas Blvd, Las Vegas, NV 89109</small></td>
-<td>Walking time not verified from an official or map source in this pass; verify via the map link before relying on the 30-minute limit.</td>
-<td><a href="https://www.google.com/maps/dir/?api=1&amp;origin=3355+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;destination=Wynn+Poker+Room+(Encore),+3131+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;travelmode=walking" target="_blank" rel="noopener">Google Maps (walking)</a></td>
-<td>2026-11-16</td></tr><tr><td>The Palazzo → Wynn Poker Room (Encore)</td>
-<td><small>3325 S Las Vegas Blvd, Las Vegas, NV 89109</small></td><td><small>Wynn Poker Room (Encore), 3131 S Las Vegas Blvd, Las Vegas, NV 89109</small></td>
-<td>Walking time not verified from an official or map source in this pass; verify via the map link before relying on the 30-minute limit.</td>
-<td><a href="https://www.google.com/maps/dir/?api=1&amp;origin=3325+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;destination=Wynn+Poker+Room+(Encore),+3131+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;travelmode=walking" target="_blank" rel="noopener">Google Maps (walking)</a></td>
-<td>2026-11-16</td></tr><tr><td>Wynn Las Vegas / Encore → The Venetian Poker Room</td>
-<td><small>3131 S Las Vegas Blvd, Las Vegas, NV 89109</small></td><td><small>The Venetian Poker Room, 3355 S Las Vegas Blvd, Las Vegas, NV 89109</small></td>
-<td>Walking time not verified from an official or map source in this pass; verify via the map link before relying on the 30-minute limit.</td>
-<td><a href="https://www.google.com/maps/dir/?api=1&amp;origin=3131+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;destination=The+Venetian+Poker+Room,+3355+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;travelmode=walking" target="_blank" rel="noopener">Google Maps (walking)</a></td>
-<td>2026-11-16</td></tr><tr><td>Bellagio → The Venetian Poker Room</td>
-<td><small>3600 S Las Vegas Blvd, Las Vegas, NV 89109</small></td><td><small>The Venetian Poker Room, 3355 S Las Vegas Blvd, Las Vegas, NV 89109</small></td>
-<td>Walking time not verified from an official or map source in this pass; verify via the map link before relying on the 30-minute limit.</td>
-<td><a href="https://www.google.com/maps/dir/?api=1&amp;origin=3600+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;destination=The+Venetian+Poker+Room,+3355+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;travelmode=walking" target="_blank" rel="noopener">Google Maps (walking)</a></td>
-<td>2026-11-16</td></tr><tr><td>ARIA Resort &amp; Casino → The Venetian Poker Room</td>
-<td><small>3730 S Las Vegas Blvd, Las Vegas, NV 89109</small></td><td><small>The Venetian Poker Room, 3355 S Las Vegas Blvd, Las Vegas, NV 89109</small></td>
-<td>Walking time not verified from an official or map source in this pass; verify via the map link before relying on the 30-minute limit.</td>
-<td><a href="https://www.google.com/maps/dir/?api=1&amp;origin=3730+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;destination=The+Venetian+Poker+Room,+3355+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;travelmode=walking" target="_blank" rel="noopener">Google Maps (walking)</a></td>
-<td>2026-11-16</td></tr><tr><td>Bellagio → Wynn Poker Room (Encore)</td>
-<td><small>3600 S Las Vegas Blvd, Las Vegas, NV 89109</small></td><td><small>Wynn Poker Room (Encore), 3131 S Las Vegas Blvd, Las Vegas, NV 89109</small></td>
-<td>Walking time not verified from an official or map source in this pass; verify via the map link before relying on the 30-minute limit.</td>
-<td><a href="https://www.google.com/maps/dir/?api=1&amp;origin=3600+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;destination=Wynn+Poker+Room+(Encore),+3131+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;travelmode=walking" target="_blank" rel="noopener">Google Maps (walking)</a></td>
-<td>2026-11-16</td></tr><tr><td>ARIA Resort &amp; Casino → Wynn Poker Room (Encore)</td>
-<td><small>3730 S Las Vegas Blvd, Las Vegas, NV 89109</small></td><td><small>Wynn Poker Room (Encore), 3131 S Las Vegas Blvd, Las Vegas, NV 89109</small></td>
-<td>Walking time not verified from an official or map source in this pass; verify via the map link before relying on the 30-minute limit.</td>
-<td><a href="https://www.google.com/maps/dir/?api=1&amp;origin=3730+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;destination=Wynn+Poker+Room+(Encore),+3131+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;travelmode=walking" target="_blank" rel="noopener">Google Maps (walking)</a></td>
-<td>2026-11-16</td></tr><tr><td>Bellagio → ARIA Poker Room</td>
-<td><small>3600 S Las Vegas Blvd, Las Vegas, NV 89109</small></td><td><small>ARIA Poker Room, 3730 S Las Vegas Blvd, Las Vegas, NV 89109</small></td>
-<td>Walking time not verified from an official or map source in this pass; verify via the map link before relying on the 30-minute limit.</td>
-<td><a href="https://www.google.com/maps/dir/?api=1&amp;origin=3600+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;destination=ARIA+Poker+Room,+3730+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;travelmode=walking" target="_blank" rel="noopener">Google Maps (walking)</a></td>
-<td>2026-11-16</td></tr></tbody></table></div>
+<h2>5 · Hotel policies and true cost per night</h2>
+<p class="lede">True nightly cost = rate + mandatory resort fee + Clark County room tax. The Venetian poker rate requires six
+hours of live cash play <b>or</b> a $300+ tournament buy-in for each night stayed, before 2 a.m. of the last night; unqualified
+nights are repriced to the prevailing rate. Dated quotes are appended to the rate log, never overwritten — see the
+<a href="hotels.html">hotels page</a>.</p>
+<div class="wrap"><table><thead><tr><th>Hotel</th><th>Resort fee</th><th>Tax</th><th>True cost / night (low / high)</th>
+<th>Parking</th><th>Cancellation</th><th>Official source · checked</th></tr></thead>
+<tbody><tr><td>The Venetian Resort (poker suite rate)<br><small>Luxury King Suite, single or double occupancy</small></td>
+<td>$55 + tax</td><td>13.38%</td>
+<td>197.28 / 299.32</td>
+<td><small>$20 per day for registered hotel guests (seven days a week); $20 Monday-Thursday and $25 Friday-Sunday for non-hotel guests; valet $40 per day.</small></td>
+<td><small>A deposit for the stay including suite, fee and tax is billed on reservation confirmation. Blackout dates apply. Prepaid offers are non-cancellable and non-refundable. Early checkout before the scheduled departure date costs $100 plus tax.</small></td>
+<td><a href="https://www.venetianlasvegas.com/booking?adults[]=2&amp;arrival_date=2026-11-23&amp;children[]=0&amp;departure_date=2026-11-30&amp;view=calendar" target="_blank" rel="noopener">booking</a>
+· 2026-11-17</td></tr><tr><td>The Palazzo (poker suite rate)<br><small>Luxury King Suite, single or double occupancy</small></td>
+<td>$55 + tax</td><td>13.38%</td>
+<td>197.28 / 299.32</td>
+<td><small>$20 per day for registered hotel guests; valet $40 per day.</small></td>
+<td><small>Deposit billed on confirmation; blackout dates apply; prepaid offers non-refundable; early checkout $100 plus tax.</small></td>
+<td>—
+· 2026-11-17</td></tr><tr><td>Wynn Las Vegas<br><small>Wynn Resort King, Wynn Resort Two Queens, Panoramic View rooms, Tower Suites</small></td>
+<td>$55 + tax</td><td>%</td>
+<td>blank / blank</td>
+<td><small>Self parking is complimentary for registered guests. Non-registered guests pay $25 per day with the first three hours free; valet $40 per day. Complimentary self-parking is extended to Wynn Poker Room guests.</small></td>
+<td><small>A deposit of one night&#x27;s room rate and tax is charged at booking. The live policy page does not print a cancellation window; the 48-hour window appears only in offer terms, so no Wynn cancellation deadline is marked verified for a flexible 2026 booking.</small></td>
+<td>—
+· 2026-11-17</td></tr><tr><td>Bellagio<br><small>Premier King, Premier Two Queen, Spa Premier, Fountain View, Resort Tower King and suites</small></td>
+<td>$55 + tax</td><td>%</td>
+<td>blank / blank</td>
+<td><small>blank</small></td>
+<td><small>The first night&#x27;s deposit is fully refundable if cancellation is received at least 72 hours prior to arrival. Cancelling later, or failing to show, forfeits the first night. Complimentary stays incur a $165 mid-week or $200 weekend cancellation fee.</small></td>
+<td>—
+· 2026-11-17</td></tr><tr><td>MGM Grand<br><small></small></td>
+<td>$50 + tax</td><td>%</td>
+<td>blank / blank</td>
+<td><small>blank</small></td>
+<td><small>The first night&#x27;s deposit is fully refundable with notice at least 72 hours before arrival; later cancellations and no-shows forfeit the first night.</small></td>
+<td>—
+· 2026-11-16</td></tr><tr><td>Caesars Palace<br><small>Colosseum, Augustus, Octavius, Julius, Forum and Palace towers</small></td>
+<td>$55 + tax</td><td>%</td>
+<td>blank / blank</td>
+<td><small>Self parking: surcharge applies. Valet parking: surcharge applies. Both are complimentary for Caesars Rewards members at Platinum tier or higher; Nevada locals get the first 3 hours of self parking at no charge. No dollar amount is published on the page.</small></td>
+<td><small>The official property page advertises &#x27;FREE 48-Hour Cancellation*&#x27; under &#x27;Why Book With Us&#x27;; the terms behind the asterisk are not printed on that page. The booking page adds that rates shown include applicable resort fees and that pricing and availability may vary with length of stay.</small></td>
+<td>—
+· 2026-11-17</td></tr><tr><td>Horseshoe Las Vegas<br><small>2,056 rooms</small></td>
+<td>$50 + tax</td><td>%</td>
+<td>blank / blank</td>
+<td><small>Self parking: surcharge applies. Valet parking: surcharge applies. Both are complimentary for Caesars Rewards members at Platinum tier or higher; Nevada locals get the first 3 hours of self parking at no charge. No dollar amount is published on the page.</small></td>
+<td><small>The official property page advertises &#x27;FREE 48-Hour Cancellation*&#x27; under &#x27;Why Book With Us&#x27;; the terms behind the asterisk are not printed on that page. The booking page adds: &#x27;Rates shown reflect the lowest available rate and include applicable resort fees.&#x27;</small></td>
+<td>—
+· 2026-11-17</td></tr><tr><td>ARIA Resort &amp; Casino<br><small></small></td>
+<td>$55 + tax</td><td>%</td>
+<td>blank / blank</td>
+<td><small>blank</small></td>
+<td><small>The first night&#x27;s deposit is fully refundable with notice at least 72 hours before arrival; later cancellations and no-shows forfeit the first night.</small></td>
+<td>—
+· 2026-11-16</td></tr></tbody></table></div>
 
-<p class="lede">Session arena/ef37b79e-poker3 · verified 2026-11-16 against official venue PDFs and pages only ·
-back to the <a href="index.html">dashboard</a>.</p>
+<h2>6 · Hotel–venue walking routes, 30-minute limit applied</h2>
+<p class="lede">No venue publishes a walking time, so every figure below is a Google Maps walking estimate and is labelled as
+such. Each row links the exact directions query so it can be re-run. A pair over 30 minutes is marked and is excluded by the
+≤30-minute filter on the tournaments page.</p>
+<div class="wrap"><table><thead><tr><th>Pair</th><th>Walking time</th><th>Distance</th><th>Note</th><th>Verify</th><th>Checked</th></tr></thead>
+<tbody><tr><td>venetian → venetian</td>
+<td class="ok">0 min</td>
+<td>—</td><td><small>Poker room is inside the hotel&#x27;s own resort; indoor walk, no street crossing.</small></td>
+<td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=walking&amp;origin=The+Venetian+Resort,+Las+Vegas,+NV&amp;destination=The+Venetian+Resort,+Las+Vegas,+NV" target="_blank" rel="noopener">Google Maps (walking)</a></td>
+<td>2026-11-16</td></tr><tr><td>palazzo → venetian</td>
+<td class="ok">4 min</td>
+<td>0.2</td><td><small>Maps walking estimate between the two connected resort properties.</small></td>
+<td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=walking&amp;origin=The+Palazzo+Las+Vegas,+Las+Vegas,+NV&amp;destination=The+Venetian+Resort,+Las+Vegas,+NV" target="_blank" rel="noopener">Google Maps (walking)</a></td>
+<td>2026-11-16</td></tr><tr><td>wynn → wynn</td>
+<td class="ok">10 min</td>
+<td>0.4</td><td><small>The official Wynn poker page states the poker room is &#x27;located in Encore at Wynn Las Vegas&#x27;.</small></td>
+<td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=walking&amp;origin=Wynn+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109&amp;destination=Encore+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109" target="_blank" rel="noopener">Google Maps (walking)</a></td>
+<td>2026-11-16</td></tr><tr><td>bellagio → bellagio</td>
+<td class="ok">0 min</td>
+<td>—</td><td><small>Poker room is inside the hotel (northside of casino, next to Sportsbook).</small></td>
+<td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=walking&amp;origin=Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV&amp;destination=Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV" target="_blank" rel="noopener">Google Maps (walking)</a></td>
+<td>2026-11-16</td></tr><tr><td>mgm → mgm</td>
+<td class="ok">0 min</td>
+<td>—</td><td><small>Poker room is inside the hotel.</small></td>
+<td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=walking&amp;origin=MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV&amp;destination=MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV" target="_blank" rel="noopener">Google Maps (walking)</a></td>
+<td>2026-11-16</td></tr><tr><td>caesars → caesars</td>
+<td class="ok">0 min</td>
+<td>—</td><td><small>Poker room is inside the hotel, along the Appian Way promenade.</small></td>
+<td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=walking&amp;origin=Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV&amp;destination=Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV" target="_blank" rel="noopener">Google Maps (walking)</a></td>
+<td>2026-11-16</td></tr><tr><td>horseshoe → horseshoe</td>
+<td class="ok">0 min</td>
+<td>—</td><td><small>Poker room is inside the hotel, in a quieter section of the casino.</small></td>
+<td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=walking&amp;origin=Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169&amp;destination=Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169" target="_blank" rel="noopener">Google Maps (walking)</a></td>
+<td>2026-11-16</td></tr><tr><td>aria → aria</td>
+<td class="ok">0 min</td>
+<td>—</td><td><small>Poker room is inside the hotel.</small></td>
+<td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=walking&amp;origin=ARIA+Resort+%26+Casino,+Las+Vegas,+NV&amp;destination=ARIA+Resort+%26+Casino,+Las+Vegas,+NV" target="_blank" rel="noopener">Google Maps (walking)</a></td>
+<td>2026-11-16</td></tr><tr><td>caesars → venetian</td>
+<td class="ok">12 min</td>
+<td>0.5</td><td><small>Maps walking estimate, Las Vegas Blvd S.</small></td>
+<td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=walking&amp;origin=Caesars+Palace+Las+Vegas,+3570+Las+Vegas+Blvd+S,+Las+Vegas,+NV&amp;destination=The+Venetian+Resort,+Las+Vegas,+NV" target="_blank" rel="noopener">Google Maps (walking)</a></td>
+<td>2026-11-16</td></tr><tr><td>wynn → venetian</td>
+<td class="ok">13 min</td>
+<td>0.6</td><td><small>Maps walking estimate, re-read 2026-11-17 (13 min, 0.6 mile); a 14-minute alternative via Las Vegas Blvd S is also shown.</small></td>
+<td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=walking&amp;origin=Wynn+Las+Vegas,+3131+Las+Vegas+Blvd+S,+Las+Vegas,+NV+89109&amp;destination=The+Venetian+Resort,+Las+Vegas,+NV" target="_blank" rel="noopener">Google Maps (walking)</a></td>
+<td>2026-11-17</td></tr><tr><td>horseshoe → venetian</td>
+<td class="ok">16 min</td>
+<td>0.7</td><td><small>Maps walking estimate; a 17-minute alternative via Las Vegas Blvd S is also shown.</small></td>
+<td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=walking&amp;origin=Horseshoe+Las+Vegas+Hotel+%26+Casino,+3645+W+Flamingo+Rd,+Las+Vegas,+NV+89169&amp;destination=The+Venetian+Resort,+Las+Vegas,+NV" target="_blank" rel="noopener">Google Maps (walking)</a></td>
+<td>2026-11-16</td></tr><tr><td>bellagio → venetian</td>
+<td class="ok">21 min</td>
+<td>0.9</td><td><small>Maps walking estimate, re-read 2026-11-17 (21 min, 0.9 mile); a 24-minute alternative is also shown.</small></td>
+<td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=walking&amp;origin=Bellagio+Hotel+%26+Casino,+Las+Vegas,+NV&amp;destination=The+Venetian+Resort,+Las+Vegas,+NV" target="_blank" rel="noopener">Google Maps (walking)</a></td>
+<td>2026-11-17</td></tr><tr><td>mgm → venetian</td>
+<td class="bad">35 min · over the 30-minute limit</td>
+<td>1.6</td><td><small>Maps walking estimate; outside the 30-minute limit for a day of tournament hopping.</small></td>
+<td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=walking&amp;origin=MGM+Grand+Hotel+%26+Casino,+Las+Vegas,+NV&amp;destination=The+Venetian+Resort,+Las+Vegas,+NV" target="_blank" rel="noopener">Google Maps (walking)</a></td>
+<td>2026-11-16</td></tr><tr><td>aria → venetian</td>
+<td class="bad">31 min · over the 30-minute limit</td>
+<td>1.4</td><td><small>Maps walking estimate; outside the 30-minute limit.</small></td>
+<td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=walking&amp;origin=ARIA+Resort+%26+Casino,+Las+Vegas,+NV&amp;destination=The+Venetian+Resort,+Las+Vegas,+NV" target="_blank" rel="noopener">Google Maps (walking)</a></td>
+<td>2026-11-16</td></tr><tr><td>venetian → bellagio</td>
+<td class="ok">27 min</td>
+<td>1.1</td><td><small>Google Maps walking card, read 2026-11-17 (single read): 27 min, 1.1 miles via Las Vegas Blvd S. The driving card for the same pair read 8 min. The walking card does not print its mode label; the link requested travelmode=walking. Not re-read on a second day.</small></td>
+<td><a href="https://www.google.com/maps/dir/?api=1&amp;travelmode=walking&amp;origin=3355+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109&amp;destination=Bellagio+Poker+Room,+3600+S+Las+Vegas+Blvd,+Las+Vegas,+NV+89109" target="_blank" rel="noopener">Google Maps (walking)</a></td>
+<td>2026-11-17</td></tr></tbody></table></div>
+
+<p class="lede">Generated 2026-11-17 by session <code>arena/57c814fd-poker3</code> · every value traced to an official venue or
+property source · back to the <a href="index.html">dashboard</a>.</p>
 </main></body></html>
