@@ -716,3 +716,20 @@ Scope: `COORDINATION.md` only. No `site/**`, `scripts/**`, or workflow file is e
 
 No `site/**`, `scripts/**`, or workflow file was changed by this session. Two commits are on this branch: the claim (d64ecbb) and this record. PR and merge are recorded below.
 - **Merge result (arena/cd17e91c-poker3):** PR [#35](https://github.com/karagemop466-tech/Poker3/pull/35) merged with `gh pr merge 35 --merge` as `be90234` (2026-11-17 UTC). Its `verify` check passed before merge. After merge, "Verify static research site" and "Publish integrated Vegas Poker Planner to GitHub Pages" both succeeded, and "pages build and deployment" succeeded. Pages API: `status: built`. This record ships in a follow-up PR; no further automated record is planned.
+
+---
+
+## Session `arena/d81a0934-poker3` — final integration + publication fix (2026-11-17 UTC)
+
+**Claim recorded 2026-11-17 UTC before any file edits in this session.** Branch `arena/d81a0934-poker3`, rebased onto `main` (0a3aa16, which carries PRs #35 and #37). This session is the integration owner for the remaining canonical-site defects and the site-root publication, and finishes the brief items that are still open.
+
+| Task | Status | Owner | Scope (files) | Notes |
+|---|---|---|---|---|
+| B1 Fix duplicated Wynn daily event names (build appends ` ({days})` to names that already carry the day) | in progress | arena/d81a0934-poker3 | `scripts/data_venues.py`, `scripts/data_source.py` | Confirmed against the official Wynn daily poster. Rebuild `site/data.json`. |
+| B2 Correct the swapped dated Venetian rate-log nightly low/high | in progress | arena/d81a0934-poker3 | `scripts/data_hotels.py` | Night 1 $996.91 incl. tax, night 2 $248.61; low/high were swapped. |
+| B3 Fix stale flag count on the executive-summary index | in progress | arena/d81a0934-poker3 | `site/index.html` | Renders 28 flags; the index hardcoded "22". |
+| B4 Make the canonical dashboard the live site root (clean landing page) | in progress | arena/d81a0934-poker3 | root `index.html` | Root currently serves a stale legacy landing; the canonical dashboard lives at `/site/`. Replace the root landing with a clean redirect to the canonical dashboard. |
+| B5 Re-verify official sources line by line | in progress | arena/d81a0934-poker3 | `site/data.json`, `COORDINATION.md` | Re-fetched the Venetian DSE IV schedule and the Wynn daily poster from official hosts; both match the recorded data. |
+| B6 Final integration: verify, PR → main, merge, confirm Pages, record here | pending | arena/d81a0934-poker3 | repo + GitHub Pages | `verify_site.py`, canonical smoke, reproducible build, no broken links, then PR and merge. |
+
+**Out of scope (owned by earlier sessions; not edited):** `docs/`, `verified/`, `planner/`, `single-entry/`, `site/poker3/**`, `handoff/**`, `raw/**`, and the open overlapping PRs #7, #27, #31 (a1091d95's #36 content is incorporated into B2/B3 rather than merged, because its mergeability is UNKNOWN).
