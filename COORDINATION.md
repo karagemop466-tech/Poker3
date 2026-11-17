@@ -2783,13 +2783,14 @@ literal — `none` → `single`, `multi-flight` → `flight`, `multi-buyin` → 
 - Full CI-equivalent suite green: `verify_site.py` PASS (341 events), `audit_951cd431.py` 0 failures,
   `verify_live_official.py` OK, `audit_data.py` PASS, `verify_live.py` "matches on every field",
   `verify_transcription.py` 44/44, `canonical_smoke.py` and `smoke.py` PASS, `node --check` on all JS,
-  `python3 -m json.tool` valid, 99 unit tests OK.
+  `python3 -m json.tool` valid, 102 unit tests OK on the rebased combined tree (the branch was rebased onto
+  `main` @ `7578cb7`, which carries the dated-quote work and its extra tests).
 - `scripts/data_source.py` rebuild is deterministic (rebuild reproduces `site/data.json` exactly).
 
 ### Irregularities
-- None introduced. The README's stale counts were corrected (flagged page "31 items" → 61; sheet-screened
+- None introduced. The README's stale counts were corrected (flagged page "31 items" → 62; sheet-screened
   candidates "45" → 52; the stale "14 published rows carry the Unverified label" sentence removed). The pre-existing
-  flags F01–F61 remain unchanged and none blocks publication.
+  flags F01–F62 remain unchanged and none blocks publication.
 
 ### Result
 - Committed and pushed on `arena/ab5d9d7d-poker3`; PR opened to `main` and merged (recorded below).
