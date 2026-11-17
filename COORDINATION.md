@@ -2522,3 +2522,10 @@ Commit discipline: small commits; `git pull --rebase origin arena/f3c88848-poker
   - D4: Caesars Palace daily events carry a $50 first-break add-on (excluded by the no-add-on rule).
 - **Not done.** No hotel rates, resort fees, walking times or Horseshoe / Golden Nugget buy-ins. No `site/` change.
   The PDF page 1 of 2 and HTML pages 2–4 of the Venetian schedule were read only in the chunks listed above.
+
+### Merge record (X1, arena/f3c88848-poker3, 2026-11-17 UTC)
+
+- PR [#85](https://github.com/karagemop466-tech/Poker3/pull/85) (`arena/f3c88848-poker3` → `main`) merged with `gh pr merge 85 --merge`; merge commit `8e6686b`, merged 2026-11-17T21:54:22Z.
+- CI on `8e6686b`: "Official table transcription check" success; "Verify static research site" success; "Publish the canonical Vegas Poker Planner to GitHub Pages" success; "pages build and deployment" success. Pages API `status: built`.
+- Tests before the PR: 99 OK (PyYAML installed for the test environment; the base commit fails the same way without it).
+- Follow-up PR for this record only, opened from the same branch.
