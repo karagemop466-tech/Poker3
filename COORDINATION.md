@@ -2452,3 +2452,18 @@ on a bigger roster.
 change; the raw difference is still recorded for audit and rendered as "Baseline re-seeded (text comparison began)".
 Two tests pin it: a legacy record must not flag every page, and a record with a text hash must still detect a real
 change. Full suite: **97 tests OK**.
+
+### The basis change did flag every page once; the record now carries its own basis
+
+The record the bot wrote at 2026-11-17T02:16Z reported **79 of 80 fetched URLs as changed**. That is the transition, not
+the web: the stored record was written by the previous code, so it carried a raw-byte hash and no `textHash`, and every
+comparison crossed two hash bases. `basisReset` did not fire because a `textHash` key was absent rather than different.
+
+Fixed properly: the record now states its own `hashBasis`, per URL and at the top level, and a URL whose stored basis
+differs from the basis this run uses **seeds a fresh baseline instead of reporting a change**. Two tests pin it: a record
+from a different basis must not be reported as a change, and a record from the same basis must still detect one. Full
+suite: **99 tests OK**.
+
+Honest note on the published record: `site/checks.json` on `main` at that moment carries 79 changed flags from the
+transition run. The next run against a same-basis record will report the true number, and the sources page shows the
+`hashBasis` field so a reader can see which comparison produced each figure.

@@ -1,6 +1,6 @@
 import unittest
 
-from scripts.check_sources import compare_check, official_targets
+from scripts.check_sources import HASH_BASIS, compare_check, official_targets
 
 
 class CompareCheckTests(unittest.TestCase):
@@ -26,7 +26,8 @@ class CompareCheckTests(unittest.TestCase):
         self.assertFalse(result["unavailable"])
 
     def test_same_body_is_unchanged(self):
-        old = {"hash": "rawabc", "textHash": "abc", "status": "HTTP 200", "checked": "2026-11-16"}
+        old = {"hash": "rawabc", "textHash": "abc", "hashBasis": HASH_BASIS,
+               "status": "HTTP 200", "checked": "2026-11-16"}
         result = compare_check(old, "HTTP 200", "abc")
         self.assertFalse(result["baseline"])
         self.assertFalse(result["changed"])
@@ -34,7 +35,8 @@ class CompareCheckTests(unittest.TestCase):
         self.assertFalse(result["statusChanged"])
 
     def test_different_body_is_a_change(self):
-        old = {"hash": "rawold", "textHash": "old", "status": "HTTP 200", "checked": "2026-11-16"}
+        old = {"hash": "rawold", "textHash": "old", "hashBasis": HASH_BASIS,
+               "status": "HTTP 200", "checked": "2026-11-16"}
         result = compare_check(old, "HTTP 200", "new")
         self.assertTrue(result["changed"])
         self.assertFalse(result["unavailable"])
@@ -83,7 +85,7 @@ class VisibleTextTests(unittest.TestCase):
     def test_a_record_without_a_text_hash_seeds_a_new_baseline(self):
         """Rolling this change out must not flag all 79 pages at once."""
         from scripts.check_sources import compare_check
-        legacy = {"hash": "rawabc", "status": "HTTP 200", "checked": "2026-11-17"}
+        legacy = {"hash": "rawabc", "status": "HTTP 200", "checked": "2026-11-17"}  # no hashBasis at all
         result = compare_check(legacy, "HTTP 200", "brand-new-text-hash")
         self.assertFalse(result["changed"])
         self.assertTrue(result["basisReset"])
@@ -91,6 +93,24 @@ class VisibleTextTests(unittest.TestCase):
 
     def test_compare_check_uses_the_text_hash_it_is_given(self):
         from scripts.check_sources import compare_check
-        old = {"hash": "raw-old", "textHash": "text-1", "status": "HTTP 200"}
+        old = {"hash": "raw-old", "textHash": "text-1", "hashBasis": HASH_BASIS, "status": "HTTP 200"}
         self.assertFalse(compare_check(old, "HTTP 200", "text-1")["changed"])
         self.assertTrue(compare_check(old, "HTTP 200", "text-2")["changed"])
+
+
+class HashBasisTransitionTests(unittest.TestCase):
+    """Changing how a page is hashed must never be reported as the page changing."""
+
+    def test_a_record_from_a_different_hash_basis_seeds_a_baseline(self):
+        from scripts.check_sources import compare_check
+        older = {"hash": "rawbytes", "hashBasis": "raw body sha256", "status": "HTTP 200"}
+        result = compare_check(older, "HTTP 200", "text-hash")
+        self.assertFalse(result["changed"], "a basis change is not a content change")
+        self.assertTrue(result["baseline"])
+        self.assertTrue(result["basisReset"])
+
+    def test_a_record_from_the_same_basis_still_detects_change(self):
+        from scripts.check_sources import compare_check
+        current = {"hash": "rawbytes", "textHash": "t1", "hashBasis": HASH_BASIS, "status": "HTTP 200"}
+        self.assertFalse(compare_check(current, "HTTP 200", "t1")["changed"])
+        self.assertTrue(compare_check(current, "HTTP 200", "t2")["changed"])
