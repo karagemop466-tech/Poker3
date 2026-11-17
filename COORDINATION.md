@@ -3255,7 +3255,7 @@ Branch: `arena/7529044d-poker3` (platform-bound; the `session-<id>/<task>` namin
 |---|---|---|---|---|
 | T1 Resolve F39 room-tax % (Wynn, Caesars, Horseshoe) | done (reference only; `taxRate` stays blank) | arena/5b8ce14d-poker3 | `scripts/data_hotels.py`, `scripts/data_source.py` (F39), `site/data.json` | commits `39ea638`, `b3477cc`; unread values removed (see log) |
 | T2 Strip room coverage and earliest-start check (F17, F21) | done (F17 stands; F79 and F80 added) | arena/5b8ce14d-poker3 | `scripts/data_source.py` (F79, F80), `raw/official_excerpts_5b8ce14d_2026-11-17.md` | commit `da255ae`; Paris and Flamingo unresolved |
-| T3 Integration, PR, merge, Pages check | in progress | arena/5b8ce14d-poker3 | whole repo | PR and merge result recorded below |
+| T3 Integration, PR, merge, Pages check | done | arena/5b8ce14d-poker3 | whole repo | PR #116 merged as `1f7532d` on 2026-11-17 UTC; see record below |
 
 ## Session arena/37292d23-poker3 — live re-check, gap closure and final integration (2026-11-17 UTC)
 
@@ -3484,3 +3484,12 @@ rebuild from `scripts/data_source.py` byte-reproducible.
    (PR #118 re-read all 17 by hand and corroborated every published value).
 3. No dated room rate for Palazzo (only a 2026-11-17 $3,823.46 total, F78), Caesars Palace, Horseshoe or ARIA.
 4. Bellagio check-in/check-out is blank because its own reservation-terms page prints no clock time.
+### Integration record (session `arena/5b8ce14d-poker3`)
+
+- **PR:** [#116](https://github.com/karagemop466-tech/Poker3/pull/116) (`arena/5b8ce14d-poker3` → `main`), merged with `gh pr merge 116 --merge` as merge commit `1f7532d` on 2026-11-17 22:35 UTC.
+- **Checks on the PR head (`3a92908`):** `verify` (verify_site.py + unittest) pass; `transcription` pass. No merge conflicts after the final rebase.
+- **Changes merged:** T1 F39 county room-tax reference (taxRate blank by policy; unread values removed); T2 Caesars and Horseshoe official article re-read (F17 stands; no event rows changed); new flags **F79** (Planet Hollywood poker room closed 31 January 2026) and **F80** (Resorts World: no official poker schedule found); `rwlasvegas.com` and `clarkcountynv.gov` added to the official-host allowlist; `raw/official_excerpts_5b8ce14d_2026-11-17.md` (quotes and paraphrases labelled).
+- **Flag-id collisions handled:** this session's flags began as F77 (taken by PR #108) and F78 (taken on `main` by the Venetian booking-engine flag), and were renumbered to F79 and F80.
+- **Pages:** the Pages build for `46cf326` (current `main`) reports `built`. The live `site/flagged.html` on `https://karagemop466-tech.github.io/Poker3/` shows F79 with its source link.
+- **Open items (do not block merge; published on the Flagged for Review page):** F17 (no official 8 AM start), F39 (room-tax % blank; county reference only; the county listing is dated July 2021), F79, F80. Paris and Flamingo are unresolved.
+
