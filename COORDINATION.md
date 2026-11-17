@@ -2082,3 +2082,11 @@ record was already committed locally, so the failure was in the publication retr
 eight attempts with a rebase of only the bot's own record commit, and — because the record is a derived artefact that
 the next scheduled run regenerates — a still-failing push reports `::warning::` and passes, while a genuine recorder
 error still fails the steps above. `tests/test_workflows.py` keeps the file strictly valid.
+
+**Rebase onto `main` at `87f9fee` (PRs #71, #74 base, #75, #76).** `main` advanced four more times. Two changes clashed
+with this branch and were resolved in `main`'s favour or by keeping both, never by overwriting:
+
+- `checks.yml` concurrency group: `main` now uses `scheduled-source-checks` because `source-monitor.yml` holds
+  `scheduled-source-review`. This branch carried the old shared name; it now uses `main`'s group. The two scheduled
+  writers therefore run in parallel again, and `main`'s own section records that trade-off.
+- `COORDINATION.md`: both records kept, `main`'s newest block first, this session's appended.
