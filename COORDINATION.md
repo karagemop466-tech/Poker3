@@ -1258,3 +1258,33 @@ dropped, because `main`'s F30 already records the same defect with a better expl
 - The WPT per-event structure sheets (three events fall inside the trip window) are the cheapest remaining gap (S17).
 - A dated checkout total for 2026-11-25 → 2026-12-02 needs a browser or a phone call (S14). That is the single change that
   would replace the $197.28 floor with a real number.
+
+### Result (session `arena/52e02b46-poker3`)
+
+- **PR:** [#52](https://github.com/karagemop466-tech/Poker3/pull/52) (`arena/52e02b46-poker3` → `main`), merged
+  with `gh pr merge 52 --merge` as merge commit `01ebb9e59c62a8400521dee6a7457223af259615` at
+  **2026-11-17 01:07:50 UTC**. The `verify` check on the PR head (`c5a0114`) passed
+  ([run 43993087883](https://github.com/karagemop466-tech/Poker3/actions/runs/43993087883)) before the merge.
+- **Rebases during the merge:** `main` advanced twice while this PR was open (PR #47 → `0779803`, then PR #53 →
+  `408243c` and PR #51 → `a7ab1a4`). Each time this branch was rebased onto the new `main` and both `COORDINATION.md`
+  records were kept; no other session's work was discarded, and the one real collision (my new records reusing
+  F31-F38 / Q13-Q17, which `main` had already taken) was resolved by renumbering, not by overwriting.
+- **Pages deployment confirmed:** "Publish the canonical Vegas Poker Planner to GitHub Pages"
+  [run 43993166438](https://github.com/karagemop466-tech/Poker3/actions/runs/43993166438) → **success** on `01ebb9e`,
+  and the Pages API reports `status: built`, source `main /`.
+- **Follow-up defect found and fixed after the merge** (`8851e85`, pushed straight to `main` because it is a
+  two-file CI/data contract fix, matching this repository's existing convention for scheduled-job repairs):
+  `scripts/check_sources.py` and `scripts/verify_transcription.py` both write `site/checks.json`, but only the second
+  wrote the `summary`/`generatedAt`/`mode` keys that `site/assets/app.js` reads. The first *real* scheduled run would
+  therefore have published a full URL table with an empty summary panel. Both now write one shape, `check_sources.py`
+  preserves an existing transcription record instead of dropping it, and `tests/test_checks_schema.py` (6 tests) pins
+  the contract between the two scripts, the committed file and the page. Verify, Pages and the legacy build all passed
+  on `8851e85`; Pages again reports `built`.
+- **Scheduled workflow status, stated honestly:** `checks.yml` (workflow `420529628`) is `active` but still shows **no
+  run**. Its only trigger is the 12:10 UTC cron, and this session's token cannot dispatch it
+  (`HTTP 403: Resource not accessible by integration`), which is a GitHub App permission limit, not a workflow defect.
+  The scheduled job's logic is therefore exercised by unit tests and by `check_sources.py --dry-run` (which correctly
+  recorded every venue URL as `unavailable` from this sandbox, confirming flag F40), but its **first live run is still
+  the next 12:10 UTC cron**. Until that run lands, `site/checks.json` on `main` is the offline record dated
+  `2026-11-17T00:59:12Z` (`mode: "offline (transcription re-check only)"`): 88 URLs known, 0 fetched, 44/44 transcribed
+  rows matched. The sources page states that mode exactly, so nothing is overclaimed.
