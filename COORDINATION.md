@@ -730,12 +730,13 @@ before this claim, so under the takeover rule they are reviewed and dispositione
 | Task | Status | Owner | Scope | Notes |
 |---|---|---|---|---|
 | T1 Claim, branch setup | done | arena-cf53e83c | `COORDINATION.md` | Claimed before any file edit; branch fast-forwarded to `origin/main` so no prior work is lost. |
-| T2 Live re-verification of every official source behind the canonical data | in progress | arena-cf53e83c | `site/data.json` + `scripts/data_*.py` | Each official page re-opened on 2026-11-17 and compared row by row against the published data. Drift and unverified values are recorded, not silently corrected. |
-| T3 Known irregularities from earlier sessions' requests | in progress | arena-cf53e83c | `scripts/data_venues.py`, `scripts/data_source.py` | (a) duplicated Wynn daily row name suffix; (b) flags for the decorative DATE cells and the "(IDAY)" typo in the official DSE schedule PDF. |
-| T4 Dated hotel quote for the fixed trip window | in progress | arena-cf53e83c | `scripts/data_hotels.py` | The trip window has no dated official total. The venue's own booking engine is re-opened for 2026-11-25 → 2026-12-02 and for a control window. |
-| T5 Disposition of the three stale PRs | in progress | arena-cf53e83c | `COORDINATION.md` | #7, #27, #31 reviewed; any value not already in the canonical build is imported with its own source, otherwise the PR is closed with a reason. |
-| T6 Site improvement: one search box across every table | in progress | arena-cf53e83c | `site/search.html`, `site/assets/app.js` | The brief asks for a search box across all tables; the current top bar only filters the tournament table. |
-| T7 Final integration: verify, PR, merge, Pages deploy | pending | arena-cf53e83c | whole repo | Line-by-line re-verification of the combined data, no broken links, explicit merge, deployment confirmation recorded here. |
+| T2 Live re-verification of every official source behind the canonical data | done — see “Live re-verification results” | arena-cf53e83c | `site/data.json` + `scripts/data_*.py` | Each official page re-opened on 2026-11-17 and compared row by row against the published data. Drift and unverified values are recorded, not silently corrected. |
+| T3 Known irregularities from earlier sessions' requests | done — day-suffix fix shipped, F29 and F30 added | arena-cf53e83c | `scripts/data_venues.py`, `scripts/data_source.py` | (a) duplicated Wynn daily row name suffix; (b) flags for the decorative DATE cells and the "(IDAY)" typo in the official DSE schedule PDF. |
+| T4 Dated hotel quote for the fixed trip window | done — calendar re-opened 2026-11-17, still unpriced; F32 plus two dated log rows | arena-cf53e83c | `scripts/data_hotels.py` | The trip window has no dated official total. The venue's own booking engine is re-opened for 2026-11-25 → 2026-12-02 and for a control window. |
+| T5 Disposition of the three stale PRs | done — all three reviewed, none merged, reasons recorded | arena-cf53e83c | `COORDINATION.md` | #7, #27, #31 reviewed; any value not already in the canonical build is imported with its own source, otherwise the PR is closed with a reason. |
+| T6 Site improvement: one search box across every table | done — `site/search.html` indexes 533 rows | arena-cf53e83c | `site/search.html`, `site/assets/app.js` | The brief asks for a search box across all tables; the current top bar only filters the tournament table. |
+| T7 Final integration: verify, PR, merge, Pages deploy | done — record below |
+| T8 Rooms outside the build, checked for coverage | done — Golden Nugget, Circa and Resorts World attempted 2026-11-17; nothing publishable; F33 + Q13 | arena-cf53e83c | whole repo | Line-by-line re-verification of the combined data, no broken links, explicit merge, deployment confirmation recorded here. |
 
 ### Claim record (this session)
 
