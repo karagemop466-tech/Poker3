@@ -932,6 +932,77 @@ Branch: `arena/45cfee0b-poker3`, branched from `main` at `2649b47`. Scope: `scri
 
 **Result (session 45cfee0b).** PR [#42](https://github.com/karagemop466-tech/Poker3/pull/42) merged to `main` with `gh pr merge 42 --merge` at 2026-11-17 00:51 UTC (merge commit `0380b72`). Verify workflow on `main`: success. Pages build and deployment: success, Pages status `built`, site https://karagemop466-tech.github.io/Poker3/ . This record is in follow-up PR (see below).
 
+#### Correction (2026-11-17, arena/b1fadb7e-poker3) — B3 reason restated, and an error of mine recorded
+
+The B3 finding above said `checks.yml`, `monitor.yml` and `daily-check.yml` "deleted each other's work".
+**That was an inference, not an observation, and it is wrong.** Restated from the files:
+
+- Observed (facts): `gh run list` showed **0 runs** for all three workflows. `site/checks.json` did not
+  exist on `main`, so the Sources page had no automated check file.
+- Cause of the 0 runs: the workflows reached `main` at 00:44 UTC on 2026-11-17, and their crons were
+  `13 12 * * *` (12:13 UTC), `5 12 * * *` (12:05 UTC) and `0 9 * * *` (09:00 UTC). At the time of
+  inspection (about 00:40 UTC) every one of those times was still **in the future**. They had not run
+  because their first scheduled time had not arrived. That is all. Nothing had been deleted.
+- The race risk was real but hypothetical: `monitor.yml` and `daily-check.yml` had **no concurrency
+  group at all**, and `checks.yml` used `source-checks`, so the three were serialised against nothing.
+  `daily-check.yml` also ran `git pull --rebase origin main && git push origin main` over a working tree
+  it had just regenerated, and `monitor.yml` pushed with `|| true`, which hides a rejected push. So a
+  future collision was plausible, and the consolidation removes the risk, but no collision was observed.
+
+What remains true and useful: three committers that wrote overlapping records on overlapping crons was
+the wrong design, and it is now one serialised job that also keeps `site/checks.json` and the rate of
+change honest. The correction is recorded here rather than quietly edited so the earlier claim stays
+auditable.
+
+**My own error, recorded for audit.** I triggered PR #41 with a description saying it added
+`.github/workflows/checks.yml` to the `source-monitor.yml` push path filter. The commit was
+comment-only; the description overstated it. PR #44 then made the change the description described. Both
+are merged; this note is the correction. Separately, the "triggered" expectations of PRs #41/#44 did not
+produce a run of `checks.yml`, because `source-monitor.yml` writes nothing to the tracked tree on a run
+where `site/poker3/data/source-monitor.json` is unchanged, and `checks.yml` has no `push` trigger. The
+honest state is: **`checks.yml` is registered and active, and its first run will be its 12:13 UTC cron.**
+It has not been observed running yet, and this record does not claim that it has.
+
+
+#### Final integration record (2026-11-17 UTC, arena/b1fadb7e-poker3)
+
+Every task claimed at the top of this section is now **done**. Sequence, with the evidence:
+
+| PR | What it did | Merge commit | Checks |
+|---|---|---|---|
+| [#38](https://github.com/karagemop466-tech/Poker3/pull/38) | Root redirect + `pages.yml` redeploy after the branch build; three racing monitors consolidated into one serialised job; Wynn doubled-name bug; dated-quote night order; `tests/test_integrity.py`; flags F29/F30 | `739b301` | verify ✅, publish ✅, pages build ✅ |
+| [#41](https://github.com/karagemop466-tech/Poker3/pull/41) | Comment only — its description overstated it (recorded as my error above) | `1f8c045` | verify ✅ |
+| [#44](https://github.com/karagemop466-tech/Poker3/pull/44) | The `checks.yml` push-path trigger that #41 should have been | `51da229` | verify ✅ |
+| [#45](https://github.com/karagemop466-tech/Poker3/pull/45) | Corrects F30 from an inference to the observed facts; records my own errors | `a6ba599` | verify ✅, publish ✅, pages build ✅ |
+
+**Deployed URL — confirmed by fetching it, not by trusting the API.**
+
+- `https://karagemop466-tech.github.io/Poker3/` now serves the canonical dashboard: it returns "One Strip trip,
+  built only from what the venues publish", 341 rows, the $197.28 nightly floor and the eight-day candidate path.
+  Before this round the same URL returned the earlier 46-row page with "0 hotels with a verified nightly total".
+- The earlier-round page is gone from the served output. GitHub's CDN served cached copies for a few minutes, which
+  is why the first reads still showed the stale page; the same URL with a cache-busting query returned the new one.
+- `…/Poker3/site/hotels.html` shows the corrected rate log: "observed nights: \$248.59 and \$996.89 … not a price
+  range and not a floor", and "add to \$1,245.48, the printed total exactly".
+- `…/Poker3/site/flagged.html` publishes the full register, now 32 flags after another session added F31 and F32.
+- Pages API: `status: built`. All three workflows on `a6ba599` are `success`.
+
+**What this round actually changed in the data**, as opposed to the presentation:
+
+1. The dated Venetian quote nights were `996.91`/`248.61` and 2 cents wrong; they are `996.89`/`248.59`, which
+   reconcile to the printed `$1,245.48` exactly. The old note excused a 4-cent gap that did not exist.
+2. Wynn daily rows no longer print their day range twice.
+3. The rate log no longer labels the most expensive observed night a "floor".
+
+**What is still not verified, and is intentionally left blank and flagged:** date-specific hotel totals for the trip
+window; hotel fee/tax terms for MGM Grand, Caesars Palace, Horseshoe and ARIA; published finish times; any start
+before 9:10 AM; walking times (Maps estimates only); the NYE and WPT structure rules. F31 is the important one for
+the user's original goal: no reviewed sheet states a maximum entries per player, so "strict single entry" is not
+confirmed anywhere and the site now says "sheet-screened candidate" instead of implying otherwise.
+
+**Open PRs left deliberately unmerged:** #31 and #27 (verdict in B5 above) and #7. None of them is required for the
+brief, and each rewrites shared outputs that this round verified.
+
 ## Session `arena/cf53e83c-poker3` — live re-verification, cross-table search, integration with `main` (2026-11-17 UTC)
 
 Base when this session started: `main` at `b30841e`. While this session worked, `main` advanced through PRs

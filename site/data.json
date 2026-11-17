@@ -21451,8 +21451,8 @@
    "id": "F30",
    "area": "Monitoring",
    "severity": "High",
-   "title": "No scheduled source re-check had ever run, so nothing on the site was being monitored",
-   "detail": "Three workflows (checks.yml, monitor.yml, daily-check.yml) were scheduled to commit source re-checks to main on daily crons under three different concurrency groups, so they deleted each other's work, and none of the three had ever produced a run. site/checks.json, which the sources page fetches, did not exist, so the page reported 'No automated check file yet'. The three are now one serialised job. The first real run is triggered by the merge of this change; its result is recorded on the sources page when it lands.",
+   "title": "No scheduled source re-check had produced a run yet, and the three monitors were not serialised against each other",
+   "detail": "At inspection time no run of checks.yml, monitor.yml or daily-check.yml existed, and site/checks.json, which the sources page fetches, did not exist either, so the page reported 'No automated check file yet'. The reason for the zero runs is timing, not deletion: all three workflows reached main at 00:44 UTC on 2026-11-17 and their crons were 12:13, 12:05 and 09:00 UTC, so the first scheduled time had not arrived. The real defect is that monitor.yml and daily-check.yml had no concurrency group at all while checks.yml used its own, so they could have collided once the crons fired; daily-check.yml additionally rewrote the tree and force-rebased onto main, and monitor.yml pushed with '|| true', which hides a rejected push. They are now one serialised job with a rebase-retry push. It is registered and active; its first run is the 12:13 UTC cron, and this page does not claim a run has been observed.",
    "source": "https://github.com/karagemop466-tech/Poker3/actions"
   },
   {
