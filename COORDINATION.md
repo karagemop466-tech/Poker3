@@ -2318,8 +2318,6 @@ duplicates, and `main`'s F43 (Schedule/Caesars), F45 (Sources), F46 and F47 are 
 - **Environment note for whoever runs the tests next:** `tests/test_workflows.py` imports `yaml`, which the sandbox
   image does not provide. `pip install --break-system-packages pyyaml` makes the full suite (92 tests) pass locally.
   The GitHub runner image ships PyYAML, so CI is unaffected — `verify` passed on the PR head without any change.
-<<<<<<< HEAD
-
 
 ### The live record's first comparison was noise; the hash now tracks visible text
 
@@ -2340,8 +2338,8 @@ still raises the flag.
 value change must, two PDFs differing only in binary stream must agree, and `compare_check` must use the text hash it is
 given. The comparison also falls back to the old raw hash when a record predates the switch, so the first run after
 this change does not report 79 false changes.
-=======
-· 0 broken local links · every `F##` citation on every page resolves to a published flag.
+
+
 ---
 
 
@@ -2376,10 +2374,6 @@ head immediately before merging. If any of those branches moves after this claim
 and re-assess before integrating.
 
 **Commit discipline:** small frequent commits; `git pull --rebase origin arena/688eb797-poker3` before every push.
-<<<<<<< HEAD
->>>>>>> 816cff9 (COORDINATION: claim final-integration scope for session arena/688eb797-poker3)
-=======
-
 ### Closing the superseded open PRs (I1/I2, session 688eb797, 2026-11-17)
 
 Four open PRs are superseded rebuilds or fully-covered fix sets. Their canonical-site rewrites must not be
@@ -2426,4 +2420,3 @@ suite-rate pages) matches today's records. **Closed as fully superseded.**
 These closures do not discard work: the superseding verified data, the monitoring consolidation and the
 verification suite on `main` implement (or improve on) everything each of these PRs introduced, and the
 branches remain reachable for audit.
->>>>>>> 91eec2e (COORDINATION: preserve the records of PRs #7/#27/#31/#39 before closing them as superseded)
