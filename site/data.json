@@ -26381,6 +26381,20 @@
     "quote": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar",
     "resortFee": "https://www.venetianlasvegas.com/resort/resort-fee.html",
     "tax": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html"
+   },
+   "perNight": {
+    "property": "The Venetian Resort - venetian Newly Remodeled Luxury King suite",
+    "guests": 2,
+    "offer": "Book Direct: Up to 25% Off",
+    "nightlyRates": [164.25, 164.25, 201.75, 231.75, 1649.25, 554.25, 186.75],
+    "resortFeePerNight": 55.0,
+    "nightlyTrueCostDerived": [248.59, 248.59, 291.1, 325.12, 1932.28, 690.77, 274.1],
+    "printedTaxes": 473.30,
+    "printedTotal": 4010.55,
+    "printedAverageRate": 505.32,
+    "observedOn": "2026-11-17",
+    "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar",
+    "note": "Re-read live from the official Venetian booking engine on 2026-11-17 for the exact trip window (2 adults, 7 nights). The per-night true costs are derived as (rate + $55) x 1.1338 and sum to the printed total. The engine's own 'Average Rate' line prints $505.32, which equals the average of (rate + $55 resort fee), confirming that its average-rate figure includes the resort fee. Printed tax is $0.02 above 13.38% of the printed pre-tax subtotal; the page does not explain the difference and the printed figures are kept as printed (flag F65). This is a dated observation, not a booking price: the engine's rates move between reads, and the poker-suite rate page adds a play-qualification condition and the EPOKR25 code."
    }
   }
  }
