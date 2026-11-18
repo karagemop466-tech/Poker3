@@ -4134,3 +4134,90 @@ Branch: `arena/51911864-poker3` (platform-bound; the `session-<id>/<task>` namin
 | S3 Verification of the S1/S2 claims against the live pages (re-fetch, compare), PR → `main`, merge, Pages check, record here | pending | arena/51911864-poker3 | this section | Flagged items do not block merge; they are published on `site/flagged.html` by the owner of that file. |
 
 Commit discipline: small commits; `git pull --rebase origin arena/51911864-poker3` before each push. Use `git merge origin/main` (not rebase) if the branch's base moves, per the note in the 4b9d6340 record.
+
+## Session arena/7465d531-poker3 — integration verification (2026-11-18)
+
+**Branch.** `arena/7465d531-poker3`, branched from `main` at `9ff9ae9` (branch head == `main` head at claim time).
+
+**Verification performed.**
+- `python3 scripts/verify_site.py` → PASS (341 events · 8 hotels · 56 routes · 46 sources · 85 flags · 7 plan days · 16 pages).
+- Test suites: `test_integrity`, `test_checks_schema`, `test_label_integrity_2026_11_17`, `test_parking_waiver_and_candidate_disclosure_4fbf8168`, `test_recheck_ed1d2489`, `test_reread_2026_11_17`, `test_root_redirects`, `test_sheet_page_not_stale`, `test_trip_cost_reproducible`, `test_trip_window_consistency`, `test_walk_captures_2026_11_17`, `test_walk_filter_and_tax_evidence_4b9d6340`, `test_wpt_footnotes_2026_11_17`, `test_wpt_sections_2026_11_17`, `test_calculator_page`, `test_hotel_costs_and_qualification`, `test_daily_feed_snapshots` → all OK. (`test_check_sources` and `test_workflows` exercise modules not importable from the `tests/` cwd in this sandbox; they are not part of the build gate.)
+- Internal link audit over 25 HTML pages → 0 broken local links.
+- `node --check site/assets/app.js` → parses clean.
+- `python -m json.tool site/data.json` → valid.
+
+**Sources used.** All values in `site/data.json` link to official venue/property pages and official PDFs (Venetian DeepStack Extravaganza schedule + structure sheets, Wynn daily/WPT/Signature schedules, Bellagio weekly PDFs, MGM Grand $120 sheet, Caesars tournament page, each property's hotel terms and resort-fee pages). No third-party calendar substantiates a table row. Blank cells + flags are used wherever an official source does not publish a value; nothing is inferred.
+
+**Irregularities / flags (do not block merge).** F31: no reviewed sheet states a maximum of one entry per player, so the "Single-entry / freezeout confirmed" toggle correctly shows 0 rows until written venue confirmation; F16/F17: no venue publishes tournament finish times, so the all-day plan is estimated against a six-hour assumption and flagged; hotel room rates, checkout totals and walking minutes remain blank/flagged where not officially published (dated $4,010.55 Venetian quote for 23–30 Nov 2026 is captured in `tripCostModel.liveQuote` and flagged as a single engine read). Full register: `site/flagged.html` (rendered from `site/data.json`, count always current).
+
+**Scope delivered.** Every requested element is present in the canonical `site/` dashboard: landing/executive summary (`index.html`), per-venue pages (`venues.html`), global search (`search.html`), trip-cost calculator entries × buy-ins + nights × true hotel cost (`calculator.html`), date/venue/category/single-entry filters on the tournaments table (`tournaments.html`), one primary event per day plus conditional fallback (`schedule.html`), true-cost hotel table with resort fee + 13.38% tax, parking, cancellation deadline and dated rate log (`hotels.html`), dated structure-sheet read log (`sheets.html`), official source log and scheduled re-check results (`sources.html`), Q&A (`questions.html`), suggestions with decisions (`suggestions.html`), and the flag register (`flagged.html`).
+
+**Integration plan.** Commit this record on `arena/7465d531-poker3`, push, open a PR from `arena/7465d531-poker3` to `main`, merge with `gh pr merge <n> --merge`, confirm GitHub Pages deploys, then record the PR link and merge result below in a follow-up commit to `main`.
+
+**Pending.** PR link and merge result (to be filled in after the merge).
+
+---
+
+---
+
+## Session `arena/be8ef349-poker3` - line-by-line re-check of the Venetian trip window (2026-11-18 UTC)
+
+**Scope claimed and kept:** read-only verification of the Venetian DeepStack Extravaganza IV schedule rows inside the trip window (Nov 16 - Dec 2, 2026) against the official schedule page. No data, site or script file was changed.
+
+**Official source read (live, this session):** https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html (fetch chunks 0 and 1 of 4).
+
+**Result, row by row:**
+- Nov 16 - Nov 28 (chunks 0): 18 official event rows compared on date, time, event number, name, buy-in and printed guarantee. All match the published rows in `site/data.json`.
+- Nov 29 - Dec 2 (chunk 1): 10 official rows compared the same way. All match.
+- The "Day 2 Restart" rows (Nov 18 12:00 PM, Nov 25 11:00 AM, Dec 2 11:00 AM) print no guarantee on the official schedule. The published rows carry the guarantee of the event's own structure sheet, as already disclosed in **F63**. No new irregularity.
+
+**Checks run:**
+- `python3 -m unittest discover -s tests`: 193 tests OK (the one earlier error was only PyYAML missing from the sandbox, installed with `pip install --user --break-system-packages pyyaml`).
+- `python3 scripts/verify_site.py`: verification passed (341 events, 8 hotels, 56 routes, 46 sources, 85 flags, 7 plan days, 16 pages).
+
+**Live-state observations (not changed here):**
+- GitHub Pages: latest build `built` at commit `9ff9ae9`, the current `main` head.
+- Scheduled monitor (`site/checks.json`, 2026-11-17 23:02 UTC): 103 URLs, 83 fetched, 0 changed, 20 failed. The 20 failures are MGM Resorts pages (Bellagio, MGM Grand, Mandalay Bay, ARIA) reported "unreachable" and Caesars pages returning HTTP 403 or 302. They are already recorded as unavailable, not as content changes.
+- Open PRs from other sessions, left alone (not this session's scope): #130 (`arena/58e42dbd-poker3`) and #112 (`arena/d1a97472-poker3`).
+
+**Not verified in this session:** structure sheets beyond those already recorded, hotel rates and resort fees, walking times, the other venues' schedules, and the Wynn and Bellagio pages. Those keep the flags already on `site/flagged.html`.
+
+**Status:** done (verification only). Sources: the Venetian page above; the sources are otherwise those already listed in `site/sources.html`.
+
+---
+
+## Current session `arena/a6ca974f-poker3` — full acceptance audit (2026-11-18 UTC)
+
+| Task | Status | Owner session | Files in scope | Notes |
+|---|---|---|---|---|
+| Audit the current canonical dashboard against the complete brief; run the repository's independent verification suite and publish any remaining gaps without inventing values | done (gaps remain clearly flagged) | arena/a6ca974f-poker3 | `COORDINATION.md`, `research/audit_2026-11-18_a6ca974f.md` | 193 tests and the independent site/data/schedule/sheet/render checks passed. Seven room pages plus current Venetian and Wynn pages were re-read with the official-page fetcher. Full 103-URL check is still the Nov 17 snapshot; no source values were changed. |
+
+This task is a non-overlapping audit of the current integration at `9ff9ae9`; it does not take ownership of `site/data.json`, site navigation, source modules, or other sessions' work. The prior board entries already record the official source URLs and verification history. I will report which automated checks ran today and distinguish code/data coverage from current live-source confirmation.
+
+### Completion log — `arena/a6ca974f-poker3` (2026-11-18)
+
+- **Audit report:** [`research/audit_2026-11-18_a6ca974f.md`](research/audit_2026-11-18_a6ca974f.md). This session did not edit shared tournament/hotel data or the site navigation.
+- **Fresh official pages read for this audit:** Venetian DSE IV (`https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html`), Venetian DSE NYE (`https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html`), Wynn poker (`https://www.wynnlasvegas.com/casino/poker`), Bellagio poker (`https://bellagio.mgmresorts.com/en/casino/poker.html`), MGM Grand poker (`https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html`), Caesars poker article (`https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip`), ARIA poker (`https://aria.mgmresorts.com/en/casino/poker.html`), and Mandalay Bay poker (`https://mandalaybay.mgmresorts.com/en/casino/poker-tables.html`). Sources were fetched as current official pages; their absence of a schedule/cap is not treated as proof of a tournament fact.
+- **Not claimed:** the scheduled 103-URL recheck was not run end-to-end from this sandbox. `site/checks.json` remains the Nov 17 record (103 URLs: 83 fetched, 20 failed/unavailable, 0 changed among fetched). No per-row check dates were advanced. A helper verification rewrote the generated checks artifact temporarily; that change was reverted.
+- **Fresh-source observations:** the Venetian Nov 18 row values read on the live schedule agree with the canonical entries; the NYE Dec 26 “2025” typo remains F41; Bellagio's undated July 26 notice remains F03; Wynn's live page confirms its series dates and daily-tournament suspension note; MGM Grand's page lists 11 AM, 7 PM and 11 PM daily tournament starts; ARIA, Mandalay Bay and Caesars pages fetched here do not provide a dated public event schedule sufficient to verify those rows.
+- **Verification:** `python3 -m unittest discover -s tests -p 'test_*.py'` (**193 passed**, with workflow dependency installed in `.venv`); `scripts/verify_site.py`; `audit_951cd431.py`; `verify_live_official.py`; `audit_data.py`; `verify_entry_labels.py`; `verify_dse_full.py` (94/94); `verify_wpt_full.py` (136/136); `verify_sheets.py`; `tests/canonical_smoke.py`; `tests/smoke.py`; `node tests/walk_limit_render.js`; workflow YAML unit tests (6/6); JS syntax and JSON checks — all passed.
+- **Open/flagged:** no written one-entry maximum confirmed (0 strict passes); exact hotel totals beyond the dated Venetian observation remain unavailable; trip dates/budget/quality floor are scenario inputs, not user-provided choices; finish-time and 8 AM requirements remain unresolved; route times are third-party estimates. Existing flagged page entries remain the review surface; no value was filled by inference.
+- **Rebase/push note:** `origin/main` advanced to `128a36b` during this work and appended another session's Venetian audit to `COORDINATION.md`. The rebase conflict was resolved by preserving both that section and this session's claim/completion entry. The remote session branch still pointed at this session's original claim commit `0316c55`; the local rebased history includes that claim, the new main commit, and this audit. After checking the remote branch ref, its superseded claim-only history was replaced with the rebased current-branch history using a lease-protected push; no other session's work or branch was changed.
+## Session `arena/fd90af77-poker3` — live Venetian schedule re-check (2026-11-18)
+
+| Task | Status | Owner | Scope | Branch |
+|---|---|---|---|---|
+| Re-read the official Venetian schedule for the recommended 2026-11-23–30 window and compare the published rows with the canonical data | done | arena session fd90af77 | `research/venetian_trip_window_2026-11-18.md`, this section of `COORDINATION.md` only | `arena/fd90af77-poker3` |
+
+**Result:** fetched the [official Venetian DSE IV schedule](https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html) live on 2026-11-18. Compared all 19 schedule rows dated 2026-11-23 through 2026-11-30 with `site/data.json` for date, start time, event number, printed event name, buy-in and printed guarantee: no differences. This check covers schedule-page fields only; it does not advance the row-level `lastChecked` date because structure-sheet rules and hotel fields were not re-read. No data values were changed. Detailed record: `research/venetian_trip_window_2026-11-18.md`.
+
+**Verification:** after installing the missing sandbox-only PyYAML test dependency, `python3 -m unittest discover -s tests -p 'test_*.py'` (193 tests), `scripts/verify_site.py`, `scripts/verify_live_official.py`, `scripts/verify_entry_labels.py`, `scripts/audit_951cd431.py`, `scripts/audit_data.py`, `node tests/walk_limit_render.js`, and `tests/canonical_smoke.py` all passed. GitHub reports the latest published Pages build at main commit `128a36bb9afbff9ed10e1923a64c534672fafadb` as `built`; the corresponding site, verification and transcription workflows succeeded.
+
+---
+
+
+### PR and deployment result
+
+- **PR #137:** https://github.com/karagemop466-tech/Poker3/pull/137 — merged 2026-11-18 03:17:16 UTC with merge commit `beeecc587ba940c7ca9ed075e9fdd7a37c773547`.
+- **PR checks:** `Verify static research site` and `Official table transcription check` passed on the PR; both checks passed again on the merge commit.
+- **Pages:** `pages build and deployment` run [44229343346](https://github.com/karagemop466-tech/Poker3/actions/runs/44229343346) succeeded; canonical Pages deployment [44229344830](https://github.com/karagemop466-tech/Poker3/actions/runs/44229344830) succeeded. GitHub Pages API reports `status: built`, commit `beeecc587ba940c7ca9ed075e9fdd7a37c773547`, no error; site remains https://karagemop466-tech.github.io/Poker3/.
