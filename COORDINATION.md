@@ -4119,6 +4119,29 @@ column, and a mapped label for `one-flight-cap`.
    overwriting a neighbour's, and reconcile any census the prose quotes (F32/C14 now say 56 of 56 with the
    49/7 date split, and a test derives that split from the note itself so it cannot go stale silently).
 
+## Session arena/7465d531-poker3 — integration verification (2026-11-18)
+
+**Branch.** `arena/7465d531-poker3`, branched from `main` at `9ff9ae9` (branch head == `main` head at claim time).
+
+**Verification performed.**
+- `python3 scripts/verify_site.py` → PASS (341 events · 8 hotels · 56 routes · 46 sources · 85 flags · 7 plan days · 16 pages).
+- Test suites: `test_integrity`, `test_checks_schema`, `test_label_integrity_2026_11_17`, `test_parking_waiver_and_candidate_disclosure_4fbf8168`, `test_recheck_ed1d2489`, `test_reread_2026_11_17`, `test_root_redirects`, `test_sheet_page_not_stale`, `test_trip_cost_reproducible`, `test_trip_window_consistency`, `test_walk_captures_2026_11_17`, `test_walk_filter_and_tax_evidence_4b9d6340`, `test_wpt_footnotes_2026_11_17`, `test_wpt_sections_2026_11_17`, `test_calculator_page`, `test_hotel_costs_and_qualification`, `test_daily_feed_snapshots` → all OK. (`test_check_sources` and `test_workflows` exercise modules not importable from the `tests/` cwd in this sandbox; they are not part of the build gate.)
+- Internal link audit over 25 HTML pages → 0 broken local links.
+- `node --check site/assets/app.js` → parses clean.
+- `python -m json.tool site/data.json` → valid.
+
+**Sources used.** All values in `site/data.json` link to official venue/property pages and official PDFs (Venetian DeepStack Extravaganza schedule + structure sheets, Wynn daily/WPT/Signature schedules, Bellagio weekly PDFs, MGM Grand $120 sheet, Caesars tournament page, each property's hotel terms and resort-fee pages). No third-party calendar substantiates a table row. Blank cells + flags are used wherever an official source does not publish a value; nothing is inferred.
+
+**Irregularities / flags (do not block merge).** F31: no reviewed sheet states a maximum of one entry per player, so the "Single-entry / freezeout confirmed" toggle correctly shows 0 rows until written venue confirmation; F16/F17: no venue publishes tournament finish times, so the all-day plan is estimated against a six-hour assumption and flagged; hotel room rates, checkout totals and walking minutes remain blank/flagged where not officially published (dated $4,010.55 Venetian quote for 23–30 Nov 2026 is captured in `tripCostModel.liveQuote` and flagged as a single engine read). Full register: `site/flagged.html` (rendered from `site/data.json`, count always current).
+
+**Scope delivered.** Every requested element is present in the canonical `site/` dashboard: landing/executive summary (`index.html`), per-venue pages (`venues.html`), global search (`search.html`), trip-cost calculator entries × buy-ins + nights × true hotel cost (`calculator.html`), date/venue/category/single-entry filters on the tournaments table (`tournaments.html`), one primary event per day plus conditional fallback (`schedule.html`), true-cost hotel table with resort fee + 13.38% tax, parking, cancellation deadline and dated rate log (`hotels.html`), dated structure-sheet read log (`sheets.html`), official source log and scheduled re-check results (`sources.html`), Q&A (`questions.html`), suggestions with decisions (`suggestions.html`), and the flag register (`flagged.html`).
+
+**Integration plan.** Commit this record on `arena/7465d531-poker3`, push, open a PR from `arena/7465d531-poker3` to `main`, merge with `gh pr merge <n> --merge`, confirm GitHub Pages deploys, then record the PR link and merge result below in a follow-up commit to `main`.
+
+**Pending.** PR link and merge result (to be filled in after the merge).
+
+---
+
 ---
 
 ## Session `arena/be8ef349-poker3` - line-by-line re-check of the Venetian trip window (2026-11-18 UTC)
