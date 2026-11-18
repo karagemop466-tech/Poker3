@@ -4144,3 +4144,13 @@ column, and a mapped label for `one-flight-cap`.
 **Not verified in this session:** structure sheets beyond those already recorded, hotel rates and resort fees, walking times, the other venues' schedules, and the Wynn and Bellagio pages. Those keep the flags already on `site/flagged.html`.
 
 **Status:** done (verification only). Sources: the Venetian page above; the sources are otherwise those already listed in `site/sources.html`.
+
+---
+
+## Current session `arena/a6ca974f-poker3` — full acceptance audit (2026-11-18 UTC)
+
+| Task | Status | Owner session | Files in scope | Notes |
+|---|---|---|---|---|
+| Audit the current canonical dashboard against the complete brief; run the repository's independent verification suite and publish any remaining gaps without inventing values | in progress | arena/a6ca974f-poker3 | `COORDINATION.md`, `research/audit_2026-11-18_a6ca974f.md` | No tournament/hotel facts will be modified without a fresh official source check. Existing task evidence and published flags remain the baseline. |
+
+This task is a non-overlapping audit of the current integration at `9ff9ae9`; it does not take ownership of `site/data.json`, site navigation, source modules, or other sessions' work. The prior board entries already record the official source URLs and verification history. I will report which automated checks ran today and distinguish code/data coverage from current live-source confirmation.
