@@ -4219,3 +4219,15 @@ This task is a non-overlapping audit of the current integration at `9ff9ae9`; it
 - **PR #137:** https://github.com/karagemop466-tech/Poker3/pull/137 — merged 2026-11-18 03:17:16 UTC with merge commit `beeecc587ba940c7ca9ed075e9fdd7a37c773547`.
 - **PR checks:** `Verify static research site` and `Official table transcription check` passed on the PR; both checks passed again on the merge commit.
 - **Pages:** `pages build and deployment` run [44229343346](https://github.com/karagemop466-tech/Poker3/actions/runs/44229343346) succeeded; canonical Pages deployment [44229344830](https://github.com/karagemop466-tech/Poker3/actions/runs/44229344830) succeeded. GitHub Pages API reports `status: built`, commit `beeecc587ba940c7ca9ed075e9fdd7a37c773547`, no error; site remains https://karagemop466-tech.github.io/Poker3/.
+
+---
+
+### PR and deployment result (session `arena/ceb4182e-poker3`, final integration)
+
+- **PR #141:** https://github.com/karagemop466-tech/Poker3/pull/141 — `arena/ceb4182e-poker3` into `main`, merged 2026-11-18 03:20:38 UTC with merge commit `5980081625ea074892591f58f8bd484d822209ff` (`gh pr merge 141 --merge`, merged without waiting for approval, per the standing instruction). Summary, sources and flagged irregularities in the PR body.
+- **PR checks:** `Verify static research site`, `Official table transcription check` and the Pages publish workflows passed on the merge commit.
+- **Pages:** `GET /repos/karagemop466-tech/Poker3/pages/builds` latest build at commit `5980081625ea074892591f58f8bd484d822209ff`, status `built`, `error.message: null`; live site https://karagemop466-tech.github.io/Poker3/ serves `site/` from `main /`.
+- **Scope delivered:** landing page and category/venue subpages, tournament and hotel tables, trip-cost calculator (`entries × buy-ins + nights × true hotel cost`), dated rate log, last-checked/last-verified dates per row, search box, single-entry filter, walking-route (≤30 min) filter, scheduled official URL re-check (`.github/workflows/checks.yml`, 12:10 UTC), change flags, executive summary, Q&A, suggestions, and the Flagged for review page. Values come from official venue/property pages only; unconfirmed values are left blank and flagged, never inferred.
+- **Flagged irregularities (do not block merge):** 0 events confirmed strictly single-entry in writing; no verified start before 10:10 AM (no 8 AM all-day route); Nov–Dec 2026 hotel room rates unpublished (totals blank); walking minutes are Google Maps estimates; 20 official URLs unavailable in the scheduled re-check (recorded unavailable, not changed). Published on `site/flagged.html` with source links for manual review.
+
+**Status:** done — site live on GitHub Pages.
