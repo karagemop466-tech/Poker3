@@ -4138,7 +4138,7 @@ column, and a mapped label for `one-flight-cap`.
 
 **Integration plan.** Commit this record on `arena/7465d531-poker3`, push, open a PR from `arena/7465d531-poker3` to `main`, merge with `gh pr merge <n> --merge`, confirm GitHub Pages deploys, then record the PR link and merge result below in a follow-up commit to `main`.
 
-**Pending.** PR link and merge result (to be filled in after the merge).
+**Done.** PR #139: https://github.com/karagemop466-tech/Poker3/pull/139, merged into `main` as `f4ed67658b9d3b016c036a051a3000ce04da3535` (`gh pr merge 139 --merge`, no review awaited, mergeable before merging). GitHub Pages confirmed: `status: built`, published at https://karagemop466-tech.github.io/Poker3/ ; the `Publish the canonical Vegas Poker Planner to GitHub Pages` run completed `success` after the merge, and `verify_site.py` passes with 0 broken local links across the 25 HTML pages.
 
 ---
 
