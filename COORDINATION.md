@@ -4349,3 +4349,38 @@ F31, F17, F16, F39, F56, F15/F36/F57 as listed in V4. None of them was resolved 
 - R1. Close F31: obtain written maximum-entry / no-rebuy / no-add-on confirmation from the Venetian poker room (contact route already on site/questions.html). Until then, no row is promoted to "single entry confirmed" and the strict-entry filter correctly returns 0.
 - R2. Close F17/F16: confirm an official 8:00 AM start and published finish times from a Strip room before building the advertised 8 AM all-day plan.
 - R3. Close F15/F36/F57/F39: obtain date-specific hotel quotes and room-tax percentages for the trip window and the non-Venetian properties before presenting any true-cost total as a quote.
+
+
+---
+
+## Session `arena/a6d0d539-poker3` — claim: complete cross-table search and mobile access (2026-11-18 UTC)
+
+The platform binds this session to the existing branch `arena/a6d0d539-poker3`, so the requested per-task branch naming cannot be used. The canonical dashboard and its official-source evidence are already present on `main`; this claim is deliberately limited to the search experience and its regression checks. No tournament, hotel, rate, route, or policy values will be edited or newly asserted.
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| Make the global search cover every published data-backed table and keep search usable on narrow/mobile screens | done (2026-11-18; 198 tests pass) | `arena/a6d0d539-poker3` | `site/search.html`, new `site/assets/search.js`, `site/assets/site.css`, `tests/canonical_smoke.py`, `tests/canonical_render.js`, new `tests/test_global_search.py`, `COORDINATION.md` | Search indexes existing `site/data.json` and `site/checks.json` records; source links remain the recorded official URLs. No factual data is changed. |
+
+**Scope check before claim.** The two open pull requests at the time of this claim are #112 and #130. Their recorded file lists touch `site/assets/app.js` and `COORDINATION.md`; this task does not edit `app.js` or reuse their changed files. Their open PRs are not treated as evidence that their contents have merged. Any later integration conflict in the append-only board will be resolved by retaining both records.
+
+**Rebase conflict log.** The required `git pull --rebase origin main` first advanced the base from `9ff9ae9` to `128a36b` (PR #136) and found an end-of-file append conflict in this board. A later pull advanced it to `5980081` (PRs #141 and #143) and found a second append conflict. During final PR preparation, another pull advanced it from `28cdc30` to `0c22e9c` after PR #144 and later integration/audit records landed; replaying the initial claim commit conflicted in `COORDINATION.md`. Each conflict was resolved by retaining the complete current-main board and this session's records; no other session's work was discarded.
+
+**Result and verification (2026-11-18).** `site/assets/search.js` now indexes the canonical data-backed records: venues, tournaments and rule excerpts, hotels, rate logs, routes, official sources, structure sheets, morning-feed sources, room coverage, booking links, quotes, no-price windows, calendar observations, the primary/fallback day plan, overlap checks, flags, questions, suggestions, trip-cost model, automated URL checks, and the PDF transcription table. Search links use only stored HTTP(S) source URLs; route links identify Google Maps estimates separately, and editorial suggestions link to their own page. The shared header search is visible at narrow widths, with the compact navigation offset adjusted so the search row is not covered.
+
+- `node --check site/assets/search.js` and `node --check site/assets/app.js`: pass.
+- `node tests/canonical_render.js`: all pages render; the search assertion covers every listed result family against the checked-in catalog.
+- `python3 tests/canonical_smoke.py`: pass (11 main pages, 5 detail pages; 339 tournament rows by default, 333 with the walking limit from The Venetian).
+- `python3 -m unittest discover -s tests -v`: **198 tests pass** (PyYAML installed in the sandbox only; no dependency file changed).
+- Source basis: existing row URLs in `site/data.json`, monitoring entries in `site/checks.json`, and the official source register at `site/sources.html`. This UI task did not perform a new live fetch or alter any underlying factual value. At integration time, the last recorded source-monitor snapshot remained 2026-11-17; 20 URLs were marked unavailable, not changed, and remain open for the scheduled re-check.
+
+---
+
+## Session `arena/a6d0d539-poker3` — claim: exact trip-cost arithmetic (2026-11-18 UTC)
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| Correct the trip-cost calculator so tournament costs use the exact sum of published entry fees, and quantity columns display counts rather than subtotals | deferred (claim released) | `arena/a6d0d539-poker3` | `COORDINATION.md` | No calculator changes retained. Deferred to final integration because the still-open PR #112 owns overlapping shared files and the still-open PR #130 already covers calculator fixes. |
+
+**Disposition / handoff.** PR #130 (`arena/58e42dbd-poker3`) had no update since 2026-11-17 22:44:38 UTC when this claim was made. The intended takeover was limited to its calculator defects; its separate bot-block source-monitor work was excluded. Before retaining any implementation, a fresh PR #112 file-list check showed it is still open and actively includes `scripts/data_source.py`, `scripts/verify_site.py`, `site/assets/app.js`, and `site/data.json`—the shared files required for a reproducible exact-sum fix. In accordance with the standing instruction to leave other open PRs untouched and defer shared-data integration, all calculator code/data changes from this attempt were discarded. PR #112 and PR #130 remain open and untouched; no values or facts were changed by this attempt. The claim is released and the exact-sum fix is deferred to final integration after the overlapping work lands.
+
+PR #144 merged at 2026-11-18 03:24:20 UTC as `28cdc301`. The branch was later rebased onto `main` at `0c22e9c`, preserving the subsequent PR #145/#147/#148 integration and audit records. The active deliverable on this branch remains the already-completed global-search/mobile-usability task recorded immediately above; the calculator changes are not part of it.
