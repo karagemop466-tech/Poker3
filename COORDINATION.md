@@ -4118,3 +4118,19 @@ column, and a mapped label for `one-flight-cap`.
    `scripts/data_hotels.py`, `site/calculator.html`) → keep **both** sides by hand, renumber flags instead of
    overwriting a neighbour's, and reconcile any census the prose quotes (F32/C14 now say 56 of 56 with the
    49/7 date split, and a test derives that split from the note itself so it cannot go stale silently).
+
+---
+
+## Session `arena/51911864-poker3` — claim: Strip room census cross-check and the 8 AM question for the Caesars rooms (2026-11-18 UTC)
+
+Branch: `arena/51911864-poker3` (platform-bound; the `session-<id>/<task>` naming cannot be applied). Branched from `main` @ `9ff9ae9`. Claim written at 2026-11-18 03:16 UTC, before any data read is recorded.
+
+**Conflict check before claiming.** Open PRs at claim time: **#112** (`arena/d1a97472-poker3`, last update 2026-11-17 23:09Z) and **#130** (`arena/58e42dbd-poker3`, last update 22:44Z). Both are more than four hours idle and both edit `scripts/data_source.py` and `site/data.json`. **This session edits neither file.** Its output is a new research note plus this board entry; any `STRIP_ROOMS` change is logged as a request for the integration owner.
+
+| Task | Status | Owner | Files in scope | Notes |
+|---|---|---|---|---|
+| S1 Strip room census cross-check: each of the 10 `STRIP_ROOMS` rows checked against its official poker page (reachable or not, today) and against dated press reports of closures; closure dates reported by more than one outlet recorded with their links | claimed 2026-11-18 | arena/51911864-poker3 | `research/strip_census_2026-11-18_51911864.md` (new), this section | Press is evidence of a report, not of an official status; a closure is labelled \"press-reported\" until an official page confirms it. |
+| S2 8 AM question for the two Caesars-operated rooms (Caesars Palace, Horseshoe): read their official poker pages for any daily start before 10:10 AM | claimed 2026-11-18 | arena/51911864-poker3 | research note (S1 file, section S2) | Only values printed on the official page are recorded. The third-party listing that shows a Caesars 10:10 AM start is not evidence. |
+| S3 Verification of the S1/S2 claims against the live pages (re-fetch, compare), PR → `main`, merge, Pages check, record here | pending | arena/51911864-poker3 | this section | Flagged items do not block merge; they are published on `site/flagged.html` by the owner of that file. |
+
+Commit discipline: small commits; `git pull --rebase origin arena/51911864-poker3` before each push. Use `git merge origin/main` (not rebase) if the branch's base moves, per the note in the 4b9d6340 record.
