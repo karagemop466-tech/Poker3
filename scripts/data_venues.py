@@ -26,6 +26,9 @@ MGM_SCHED = "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f2
 MGM_STRUCT = "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/bltb2a45da7e8ee5621/mgm-grand-casino-poker-120_nlh.pdf"
 
 CAESARS_POKER = "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"
+# Official Caesars Palace daily No-Limit Hold'em flyer, linked from caesars.com/caesars-palace/casino ("View Schedule").
+# Read 2026-11-18: it prints the four start times, buy-ins, fees, re-entry, add-on and guarantee.
+CAESARS_FLYER = "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf"
 ARIA_POKER = "https://aria.mgmresorts.com/en/casino/poker.html"
 ARIA_GUIDE = "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf"
 
@@ -516,34 +519,37 @@ MGM_EVENTS = [
 # ------------------------------------------------- Caesars / Horseshoe / ARIA
 CAESARS_EVENTS = [
     dict(name="No Limit Hold'em", days="Daily", weekdays=[0,1,2,3,4,5,6], time="10:00 AM", buyIn=100, guarantee=1000, chips=20000,
-         levelMin=20, source=CAESARS_POKER, page=CAESARS_POKER, category="extra", venue="caesars", lateReg="",
+         levelMin=20, source=CAESARS_FLYER, page=CAESARS_POKER, category="extra", venue="caesars", lateReg="",
          rules=dict(
-             singleEntry=dict(status="multiple-entries", excerpt="A $50 add-on at the first break gives you an extra 15,000 chips if you want a deeper run."),
-             reEntry=dict(status="not-verified", excerpt="The official Caesars page describes the daily tournament but does not publish a re-entry clause."),
-             addOn=dict(status="allowed", excerpt="A $50 add-on at the first break gives you an extra 15,000 chips if you want a deeper run."),
-             fee=dict(status="confirmed", excerpt="Every event carries a $100 buy-in, starts you with 20,000 chips, and features a $1,000 guaranteed prize pool.")),
-         note="The official page publishes buy-in, chips and guarantee but no structure sheet link."),
-    dict(name="No Limit Hold'em", days="Daily", weekdays=[0,1,2,3,4,5,6], time="2:00 PM", buyIn=100, guarantee=1000, chips=20000,
-         levelMin=20, source=CAESARS_POKER, page=CAESARS_POKER, category="extra", venue="caesars", lateReg="",
+             singleEntry=dict(status="multiple-entries", excerpt="Participants may only register themselves, but may re-enter, by paying the entry fee, upon elimination within the first break of play.", source=CAESARS_FLYER, retrieved="2026-11-18"),
+             reEntry=dict(status="allowed", excerpt="Participants may only register themselves, but may re-enter, by paying the entry fee, upon elimination within the first break of play.", source=CAESARS_FLYER, retrieved="2026-11-18"),
+             addOn=dict(status="allowed", excerpt="All Tournaments feature a $50 add-on for 15,000 tournament chips that can only be taken at the first break.", source=CAESARS_FLYER, retrieved="2026-11-18"),
+             fee=dict(status="confirmed", excerpt="Of the $100 buy in, $70 goes to the prize pool and $30 is held by Caesars Palace as a maintenance fee.", source=CAESARS_FLYER, retrieved="2026-11-18")),
+         note="Official flyer: registration closes at the start of level seven (no clock time printed). The marketing article of 17 July 2026 says every event is $100; the flyer prices the 2 PM and 9 PM events at $160."),
+    dict(name="No Limit Hold'em", days="Daily", weekdays=[0,1,2,3,4,5,6], time="2:00 PM", buyIn=160, guarantee=1000, chips=20000,
+         levelMin=20, source=CAESARS_FLYER, page=CAESARS_POKER, category="extra", venue="caesars", lateReg="",
          rules=dict(
-             singleEntry=dict(status="multiple-entries", excerpt="A $50 add-on at the first break gives you an extra 15,000 chips if you want a deeper run."),
-             reEntry=dict(status="not-verified", excerpt="The official Caesars page describes the daily tournament but does not publish a re-entry clause."),
-             addOn=dict(status="allowed", excerpt="A $50 add-on at the first break gives you an extra 15,000 chips if you want a deeper run."),
-             fee=dict(status="confirmed", excerpt="Every event carries a $100 buy-in, starts you with 20,000 chips, and features a $1,000 guaranteed prize pool."))),
+             singleEntry=dict(status="multiple-entries", excerpt="Participants may only register themselves, but may re-enter, by paying the entry fee, upon elimination within the first break of play.", source=CAESARS_FLYER, retrieved="2026-11-18"),
+             reEntry=dict(status="allowed", excerpt="Participants may only register themselves, but may re-enter, by paying the entry fee, upon elimination within the first break of play.", source=CAESARS_FLYER, retrieved="2026-11-18"),
+             addOn=dict(status="allowed", excerpt="All Tournaments feature a $50 add-on for 15,000 tournament chips that can only be taken at the first break.", source=CAESARS_FLYER, retrieved="2026-11-18"),
+             fee=dict(status="confirmed", excerpt="Of the $160 buy in, $115 goes to the prize pool and $45 is held by Caesars Palace as a maintenance fee.", source=CAESARS_FLYER, retrieved="2026-11-18")),
+         note="Official flyer: registration closes at the start of level seven (no clock time printed). The marketing article of 17 July 2026 says every event is $100; the flyer prices the 2 PM and 9 PM events at $160."),
     dict(name="No Limit Hold'em", days="Daily", weekdays=[0,1,2,3,4,5,6], time="6:00 PM", buyIn=100, guarantee=1000, chips=20000,
-         levelMin=20, source=CAESARS_POKER, page=CAESARS_POKER, category="extra", venue="caesars", lateReg="",
+         levelMin=20, source=CAESARS_FLYER, page=CAESARS_POKER, category="extra", venue="caesars", lateReg="",
          rules=dict(
-             singleEntry=dict(status="multiple-entries", excerpt="A $50 add-on at the first break gives you an extra 15,000 chips if you want a deeper run."),
-             reEntry=dict(status="not-verified", excerpt="The official Caesars page describes the daily tournament but does not publish a re-entry clause."),
-             addOn=dict(status="allowed", excerpt="A $50 add-on at the first break gives you an extra 15,000 chips if you want a deeper run."),
-             fee=dict(status="confirmed", excerpt="Every event carries a $100 buy-in, starts you with 20,000 chips, and features a $1,000 guaranteed prize pool."))),
-    dict(name="No Limit Hold'em", days="Daily", weekdays=[0,1,2,3,4,5,6], time="9:00 PM", buyIn=100, guarantee=1000, chips=20000,
-         levelMin=20, source=CAESARS_POKER, page=CAESARS_POKER, category="extra", venue="caesars", lateReg="",
+             singleEntry=dict(status="multiple-entries", excerpt="Participants may only register themselves, but may re-enter, by paying the entry fee, upon elimination within the first break of play.", source=CAESARS_FLYER, retrieved="2026-11-18"),
+             reEntry=dict(status="allowed", excerpt="Participants may only register themselves, but may re-enter, by paying the entry fee, upon elimination within the first break of play.", source=CAESARS_FLYER, retrieved="2026-11-18"),
+             addOn=dict(status="allowed", excerpt="All Tournaments feature a $50 add-on for 15,000 tournament chips that can only be taken at the first break.", source=CAESARS_FLYER, retrieved="2026-11-18"),
+             fee=dict(status="confirmed", excerpt="Of the $100 buy in, $70 goes to the prize pool and $30 is held by Caesars Palace as a maintenance fee.", source=CAESARS_FLYER, retrieved="2026-11-18")),
+         note="Official flyer: registration closes at the start of level seven (no clock time printed). The marketing article of 17 July 2026 says every event is $100; the flyer prices the 2 PM and 9 PM events at $160."),
+    dict(name="No Limit Hold'em", days="Daily", weekdays=[0,1,2,3,4,5,6], time="9:00 PM", buyIn=160, guarantee=1000, chips=20000,
+         levelMin=20, source=CAESARS_FLYER, page=CAESARS_POKER, category="extra", venue="caesars", lateReg="",
          rules=dict(
-             singleEntry=dict(status="multiple-entries", excerpt="A $50 add-on at the first break gives you an extra 15,000 chips if you want a deeper run."),
-             reEntry=dict(status="not-verified", excerpt="The official Caesars page describes the daily tournament but does not publish a re-entry clause."),
-             addOn=dict(status="allowed", excerpt="A $50 add-on at the first break gives you an extra 15,000 chips if you want a deeper run."),
-             fee=dict(status="confirmed", excerpt="Every event carries a $100 buy-in, starts you with 20,000 chips, and features a $1,000 guaranteed prize pool."))),
+             singleEntry=dict(status="multiple-entries", excerpt="Participants may only register themselves, but may re-enter, by paying the entry fee, upon elimination within the first break of play.", source=CAESARS_FLYER, retrieved="2026-11-18"),
+             reEntry=dict(status="allowed", excerpt="Participants may only register themselves, but may re-enter, by paying the entry fee, upon elimination within the first break of play.", source=CAESARS_FLYER, retrieved="2026-11-18"),
+             addOn=dict(status="allowed", excerpt="All Tournaments feature a $50 add-on for 15,000 tournament chips that can only be taken at the first break.", source=CAESARS_FLYER, retrieved="2026-11-18"),
+             fee=dict(status="confirmed", excerpt="Of the $160 buy in, $115 goes to the prize pool and $45 is held by Caesars Palace as a maintenance fee.", source=CAESARS_FLYER, retrieved="2026-11-18")),
+         note="Official flyer: registration closes at the start of level seven (no clock time printed). The marketing article of 17 July 2026 says every event is $100; the flyer prices the 2 PM and 9 PM events at $160."),
 ]
 
 HORSESHOE_EVENTS = [
