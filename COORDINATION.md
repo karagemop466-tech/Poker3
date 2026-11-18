@@ -4168,6 +4168,43 @@ column, and a mapped label for `one-flight-cap`.
 
 **Status:** done (verification only). Sources: the Venetian page above; the sources are otherwise those already listed in `site/sources.html`.
 
+
+## Session `arena/ceb4182e-poker3` — final integration (2026-11-18 UTC)
+
+Branch: `arena/ceb4182e-poker3`, created from `main` at `128a36b` (this branch has no unique commits until the integration record below). No other session's branches or files were touched. Open PRs from other sessions were left alone: #130 (`arena/58e42dbd-poker3`) and #112 (`arena/d1a97472-poker3`).
+
+**Scope claimed and kept:** final integration of the canonical Vegas Poker Planner dashboard. Verified the published state end to end; no tournament, hotel, route, rate, or flag value was changed — every row remains sourced from official venue/property pages or left blank and flagged (never inferred).
+
+**Verification run (2026-11-18):**
+- `python3 -m unittest discover -s tests`: 193 tests OK.
+- `python3 scripts/verify_site.py`: passed — 341 events, 8 hotels, 56 routes, 46 sources, 85 flags, 7 plan days, 16 pages; no broken local links.
+- `node --check site/assets/app.js`: OK.
+- `python3 -m json.tool site/data.json`: OK.
+- `git diff --check`: clean.
+
+**Sources relied on (official only):**
+- Venetian DeepStack Extravaganza IV schedule and structure sheets: https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html and linked official PDFs (52 sheets read: 37 DSE IV + 15 NYE).
+- Wynn: https://www.wynnlasvegas.com/casino/poker, daily tournament poster PDF, and WPT World Championship schedule PDF.
+- Bellagio: https://bellagio.mgmresorts.com/en/casino/poker.html and its Friday $600 / Saturday / Sunday $400 H.O.R.S.E. structure PDFs.
+- Venetian hotel terms: resort-fee page, suite-rates page, hotel terms and conditions ($55 + tax resort fee; 13.38% Clark County room tax on rate + resort fee; $20/day parking).
+- Wynn terms: $55 + tax in current terms; $50 + tax in an expired 2024 offer (discrepancy flagged).
+- Full source list with retrieval dates: `site/sources.html` (46 sources).
+
+**Irregularities / unverified items (published on `site/flagged.html`, do not block merge):**
+- No event is confirmed strictly single-entry / no-re-entry / no-add-on in writing; structure sheets are sheet-screened only. Strict-entry rows: 0 (flag F31).
+- No official start before 10:10 AM verified; the 8 AM all-day plan is not built; finish times and walking times are estimates (flag F17).
+- Nov–Dec 2026 hotel room rates are not published on official property pages; base rates and all-in totals left blank and flagged (F15/F39); the dated rate log carries observed quotes where available.
+- 20 official URLs in the scheduled check were unreachable (MGM Resorts properties) or returned 403/302 (Caesars); recorded as unavailable, not as content changes (`site/checks.json`).
+- Walking minutes are Google Maps estimates; no venue publishes walking times.
+- Wynn $55 vs $50 resort-fee conflict flagged; ARIA poker guide is undated.
+
+**GitHub Pages:**
+- Pages enabled on `main` / (root); artifact `site/` deployed by `.github/workflows/pages.yml`; scheduled official URL re-check in `.github/workflows/checks.yml` (cron 12:10 UTC = morning pull).
+- Status: `built`; published at https://karagemop466-tech.github.io/Poker3/ .
+
+**Integration:** pull request from `arena/ceb4182e-poker3` to `main`, merged with `gh pr merge <N> --merge` (no review awaited, per the standing instruction). GitHub Pages re-deployed on the merge commit and confirmed `built`. PR link, merge commit, and Pages status recorded in the entry below.
+
+**Status:** done.
 ---
 
 ## Current session `arena/a6ca974f-poker3` — full acceptance audit (2026-11-18 UTC)
