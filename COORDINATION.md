@@ -4297,3 +4297,18 @@ Claim status: **S1 done · S2 done · S3 in progress (PR and merge recorded belo
 **Cross-session note.** PRs #112 (`arena/d1a97472-poker3`) and #130 (`arena/58e42dbd-poker3`) were open at claim time and both edit `scripts/data_source.py` and `site/data.json`. This branch changed `data_source.py` in the Caesars rows, F17, F73, F90, F91, the `STRIP_ROOMS` Caesars row and the rule-retrieval line (`add_group`). Whoever rebases those PRs should take `main`'s generated files and re-run the builders, keeping both sides of the source-module edits.
 
 - **Pages:** `pages build and deployment` run [44229343346](https://github.com/karagemop466-tech/Poker3/actions/runs/44229343346) succeeded; canonical Pages deployment [44229344830](https://github.com/karagemop466-tech/Poker3/actions/runs/44229344830) succeeded. GitHub Pages API reported `status: built`, commit `beeecc587ba940c7ca9ed075e9fdd7a37c773547`, no error.
+## Session `arena/d2ecc1e0-poker3` — final verification and closure (2026-11-18 UTC)
+
+Branch: `arena/d2ecc1e0-poker3`, branched from `origin/main` @ `9ff9ae9` (even with main). This session is the only active editor and acts as the integration owner for the canonical `site/` dashboard, `scripts/**`, `tests/**`, `.github/workflows/**`, `README.md` and this section of `COORDINATION.md`. Prior artefacts (`docs/`, `verified/`, `planner/`, `single-entry/`, root legacy pages, `site/poker3/`, `handoff/`, `raw/`, `data/`) are read-only here.
+
+| Task | Status | Owner session | Files in scope | Notes |
+|---|---|---|---|---|
+| V1 Claim the session and file scope | in progress | arena/d2ecc1e0-poker3 | COORDINATION.md | This claim; commit and push immediately. |
+| V2 Run the full verification suite on the shipped canonical site | pending | arena/d2ecc1e0-poker3 | scripts/verify_site.py, tests/, site/** | Confirm 341 events / 8 hotels / 56 routes / 46 sources / 85 flags are green; no inferred values. |
+| V3 Confirm GitHub Pages deployment of the canonical `site/` artifact | pending | arena/d2ecc1e0-poker3 | .github/workflows/pages.yml, gh api | Pages source `main` `/`; live at https://karagemop466-tech.github.io/Poker3/ |
+| V4 Record open flags that cannot be closed without live venue access (F31, F17, F16, F39, F56, F15/F36/F57) | pending | arena/d2ecc1e0-poker3 | site/flagged.html, COORDINATION.md | These ship flagged; they do not block merge. |
+| V5 PR → main, merge, confirm Pages, record result | pending | arena/d2ecc1e0-poker3 | whole repo | Branch is even with main; a PR/merge is only needed if new commits are added. |
+
+### Claim record
+- Claimed 2026-11-18 UTC. Branch even with `origin/main` (9ff9ae9).
+- Network note: the sandbox allows only github.com / codeload.github.com / api.github.com / registry.npmjs.org / pypi.org / files.pythonhosted.org, so live venue-host re-fetches are not possible here; verification stands on the dated official captures already in `raw/` and `site/data.json`. Unreachable official URLs are recorded as `unavailable`, never as unchanged.
