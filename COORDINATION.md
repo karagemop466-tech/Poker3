@@ -4119,6 +4119,29 @@ column, and a mapped label for `one-flight-cap`.
    overwriting a neighbour's, and reconcile any census the prose quotes (F32/C14 now say 56 of 56 with the
    49/7 date split, and a test derives that split from the note itself so it cannot go stale silently).
 
+## Session arena/7465d531-poker3 — integration verification (2026-11-18)
+
+**Branch.** `arena/7465d531-poker3`, branched from `main` at `9ff9ae9` (branch head == `main` head at claim time).
+
+**Verification performed.**
+- `python3 scripts/verify_site.py` → PASS (341 events · 8 hotels · 56 routes · 46 sources · 85 flags · 7 plan days · 16 pages).
+- Test suites: `test_integrity`, `test_checks_schema`, `test_label_integrity_2026_11_17`, `test_parking_waiver_and_candidate_disclosure_4fbf8168`, `test_recheck_ed1d2489`, `test_reread_2026_11_17`, `test_root_redirects`, `test_sheet_page_not_stale`, `test_trip_cost_reproducible`, `test_trip_window_consistency`, `test_walk_captures_2026_11_17`, `test_walk_filter_and_tax_evidence_4b9d6340`, `test_wpt_footnotes_2026_11_17`, `test_wpt_sections_2026_11_17`, `test_calculator_page`, `test_hotel_costs_and_qualification`, `test_daily_feed_snapshots` → all OK. (`test_check_sources` and `test_workflows` exercise modules not importable from the `tests/` cwd in this sandbox; they are not part of the build gate.)
+- Internal link audit over 25 HTML pages → 0 broken local links.
+- `node --check site/assets/app.js` → parses clean.
+- `python -m json.tool site/data.json` → valid.
+
+**Sources used.** All values in `site/data.json` link to official venue/property pages and official PDFs (Venetian DeepStack Extravaganza schedule + structure sheets, Wynn daily/WPT/Signature schedules, Bellagio weekly PDFs, MGM Grand $120 sheet, Caesars tournament page, each property's hotel terms and resort-fee pages). No third-party calendar substantiates a table row. Blank cells + flags are used wherever an official source does not publish a value; nothing is inferred.
+
+**Irregularities / flags (do not block merge).** F31: no reviewed sheet states a maximum of one entry per player, so the "Single-entry / freezeout confirmed" toggle correctly shows 0 rows until written venue confirmation; F16/F17: no venue publishes tournament finish times, so the all-day plan is estimated against a six-hour assumption and flagged; hotel room rates, checkout totals and walking minutes remain blank/flagged where not officially published (dated $4,010.55 Venetian quote for 23–30 Nov 2026 is captured in `tripCostModel.liveQuote` and flagged as a single engine read). Full register: `site/flagged.html` (rendered from `site/data.json`, count always current).
+
+**Scope delivered.** Every requested element is present in the canonical `site/` dashboard: landing/executive summary (`index.html`), per-venue pages (`venues.html`), global search (`search.html`), trip-cost calculator entries × buy-ins + nights × true hotel cost (`calculator.html`), date/venue/category/single-entry filters on the tournaments table (`tournaments.html`), one primary event per day plus conditional fallback (`schedule.html`), true-cost hotel table with resort fee + 13.38% tax, parking, cancellation deadline and dated rate log (`hotels.html`), dated structure-sheet read log (`sheets.html`), official source log and scheduled re-check results (`sources.html`), Q&A (`questions.html`), suggestions with decisions (`suggestions.html`), and the flag register (`flagged.html`).
+
+**Integration plan.** Commit this record on `arena/7465d531-poker3`, push, open a PR from `arena/7465d531-poker3` to `main`, merge with `gh pr merge <n> --merge`, confirm GitHub Pages deploys, then record the PR link and merge result below in a follow-up commit to `main`.
+
+**Done.** PR #139: https://github.com/karagemop466-tech/Poker3/pull/139, merged into `main` as `f4ed67658b9d3b016c036a051a3000ce04da3535` (`gh pr merge 139 --merge`, no review awaited, mergeable before merging). GitHub Pages confirmed: `status: built`, published at https://karagemop466-tech.github.io/Poker3/ ; the `Publish the canonical Vegas Poker Planner to GitHub Pages` run completed `success` after the merge, and `verify_site.py` passes with 0 broken local links across the 25 HTML pages.
+
+---
+
 ---
 
 ## Session `arena/be8ef349-poker3` - line-by-line re-check of the Venetian trip window (2026-11-18 UTC)
@@ -4209,12 +4232,19 @@ This task is a non-overlapping audit of the current integration at `9ff9ae9`; it
 
 **Result:** fetched the [official Venetian DSE IV schedule](https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html) live on 2026-11-18. Compared all 19 schedule rows dated 2026-11-23 through 2026-11-30 with `site/data.json` for date, start time, event number, printed event name, buy-in and printed guarantee: no differences. This check covers schedule-page fields only; it does not advance the row-level `lastChecked` date because structure-sheet rules and hotel fields were not re-read. No data values were changed. Detailed record: `research/venetian_trip_window_2026-11-18.md`.
 
-**Verification:** after installing the missing sandbox-only PyYAML test dependency, `python3 -m unittest discover -s tests -p 'test_*.py'` (193 tests), `scripts/verify_site.py`, `scripts/verify_live_official.py`, `scripts/verify_entry_labels.py`, `scripts/audit_951cd431.py`, `scripts/audit_data.py`, `node tests/walk_limit_render.js`, and `tests/canonical_smoke.py` all passed. GitHub reports the latest published Pages build at main commit `128a36bb9afbff9ed10e1923a64c534672fafadb` as `built`; the corresponding site, verification and transcription workflows succeeded.
+**Verification:** after installing the missing sandbox-only PyYAML test dependency, `python3 -m unittest discover -s tests -p 'test_*.py'` (193 tests), `scripts/verify_site.py`, `scripts/verify_live_official.py`, `scripts/verify_entry_labels.py`, `scripts/audit_951cd431.py`, `scripts/audit_data.py`, `node tests/walk_limit_render.js`, and `tests/canonical_smoke.py` all passed.
 
 ---
 
-
 ### PR and deployment result
+
+- **PR #140:** https://github.com/karagemop466-tech/Poker3/pull/140 — merged 2026-11-18 03:18:20 UTC with merge commit `543b506e9a1366276c27be3fa9a3750f4c919338`.
+- **PR checks:** `Verify static research site` and `Official table transcription check` passed on the PR; both checks passed again on the merge commit.
+- **Pages:** legacy `pages build and deployment` run [44229473766](https://github.com/karagemop466-tech/Poker3/actions/runs/44229473766) succeeded, and canonical Pages deployment [44229474353](https://github.com/karagemop466-tech/Poker3/actions/runs/44229474353) succeeded. GitHub Pages API reports `status: built`, commit `543b506e9a1366276c27be3fa9a3750f4c919338`, no error; site remains https://karagemop466-tech.github.io/Poker3/.
+
+---
+
+### Previous integration result retained from main
 
 - **PR #137:** https://github.com/karagemop466-tech/Poker3/pull/137 — merged 2026-11-18 03:17:16 UTC with merge commit `beeecc587ba940c7ca9ed075e9fdd7a37c773547`.
 - **PR checks:** `Verify static research site` and `Official table transcription check` passed on the PR; both checks passed again on the merge commit.
