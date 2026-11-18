@@ -4118,3 +4118,29 @@ column, and a mapped label for `one-flight-cap`.
    `scripts/data_hotels.py`, `site/calculator.html`) → keep **both** sides by hand, renumber flags instead of
    overwriting a neighbour's, and reconcile any census the prose quotes (F32/C14 now say 56 of 56 with the
    49/7 date split, and a test derives that split from the note itself so it cannot go stale silently).
+
+---
+
+## Session `arena/be8ef349-poker3` - line-by-line re-check of the Venetian trip window (2026-11-18 UTC)
+
+**Scope claimed and kept:** read-only verification of the Venetian DeepStack Extravaganza IV schedule rows inside the trip window (Nov 16 - Dec 2, 2026) against the official schedule page. No data, site or script file was changed.
+
+**Official source read (live, this session):** https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html (fetch chunks 0 and 1 of 4).
+
+**Result, row by row:**
+- Nov 16 - Nov 28 (chunks 0): 18 official event rows compared on date, time, event number, name, buy-in and printed guarantee. All match the published rows in `site/data.json`.
+- Nov 29 - Dec 2 (chunk 1): 10 official rows compared the same way. All match.
+- The "Day 2 Restart" rows (Nov 18 12:00 PM, Nov 25 11:00 AM, Dec 2 11:00 AM) print no guarantee on the official schedule. The published rows carry the guarantee of the event's own structure sheet, as already disclosed in **F63**. No new irregularity.
+
+**Checks run:**
+- `python3 -m unittest discover -s tests`: 193 tests OK (the one earlier error was only PyYAML missing from the sandbox, installed with `pip install --user --break-system-packages pyyaml`).
+- `python3 scripts/verify_site.py`: verification passed (341 events, 8 hotels, 56 routes, 46 sources, 85 flags, 7 plan days, 16 pages).
+
+**Live-state observations (not changed here):**
+- GitHub Pages: latest build `built` at commit `9ff9ae9`, the current `main` head.
+- Scheduled monitor (`site/checks.json`, 2026-11-17 23:02 UTC): 103 URLs, 83 fetched, 0 changed, 20 failed. The 20 failures are MGM Resorts pages (Bellagio, MGM Grand, Mandalay Bay, ARIA) reported "unreachable" and Caesars pages returning HTTP 403 or 302. They are already recorded as unavailable, not as content changes.
+- Open PRs from other sessions, left alone (not this session's scope): #130 (`arena/58e42dbd-poker3`) and #112 (`arena/d1a97472-poker3`).
+
+**Not verified in this session:** structure sheets beyond those already recorded, hotel rates and resort fees, walking times, the other venues' schedules, and the Wynn and Bellagio pages. Those keep the flags already on `site/flagged.html`.
+
+**Status:** done (verification only). Sources: the Venetian page above; the sources are otherwise those already listed in `site/sources.html`.
