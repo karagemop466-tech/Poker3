@@ -4372,3 +4372,15 @@ The platform binds this session to the existing branch `arena/a6d0d539-poker3`, 
 - `python3 tests/canonical_smoke.py`: pass (11 main pages, 5 detail pages; 339 tournament rows by default, 333 with the walking limit from The Venetian).
 - `python3 -m unittest discover -s tests -v`: **198 tests pass** (PyYAML installed in the sandbox only; no dependency file changed).
 - Source basis: existing row URLs in `site/data.json`, monitoring entries in `site/checks.json`, and the official source register at `site/sources.html`. This UI task did not perform a new live fetch or alter any underlying factual value. At integration time, the last recorded source-monitor snapshot remained 2026-11-17; 20 URLs were marked unavailable, not changed, and remain open for the scheduled re-check.
+
+---
+
+## Session `arena/a6d0d539-poker3` — claim: exact trip-cost arithmetic (2026-11-18 UTC)
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| Correct the trip-cost calculator so tournament costs use the exact sum of published entry fees, and quantity columns display counts rather than subtotals | in progress | `arena/a6d0d539-poker3` | `scripts/trip_cost.py`, `site/calculator.html`, `site/assets/app.js`, `scripts/verify_site.py`, `tests/test_calculator_page.py`, `tests/test_integrity.py`, new calculator regression test(s), `COORDINATION.md` | Takeover of the calculator-specific portion of stale PR #130; no tournament or hotel price changes. |
+
+**Handoff and non-overlap.** PR #130 (`arena/58e42dbd-poker3`) has had no update since 2026-11-17 22:44:38 UTC, more than 60 minutes before this claim. This session takes over only its calculator correctness defects: a rounded average produced a one-cent overstatement ($2,600.01 instead of the seven published primary buy-ins' $2,600.00), and the `Nights` / `Entries` comparison columns displayed money instead of counts. The separate bot-block source-monitor labeling changes from #130 are not part of this claim.
+
+The exact buy-in sum must be generated from the selected day-plan rows in `scripts/data_source.py` and published to `site/data.json`. Those two shared files are currently in the active scope of PR #144 (`arena/51911864-poker3`, updated 2026-11-18 03:22 UTC), so they are **excluded from this claim and will not be edited while that task remains active**. Coordination request: preserve/coordinate the exact-sum field when PR #144 regenerates `site/data.json`; this session will integrate the model field only after the active claim releases those files. Until then, calculator-only edits will not pretend the generated model has been corrected.
