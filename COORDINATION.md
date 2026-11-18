@@ -4349,3 +4349,18 @@ F31, F17, F16, F39, F56, F15/F36/F57 as listed in V4. None of them was resolved 
 - R1. Close F31: obtain written maximum-entry / no-rebuy / no-add-on confirmation from the Venetian poker room (contact route already on site/questions.html). Until then, no row is promoted to "single entry confirmed" and the strict-entry filter correctly returns 0.
 - R2. Close F17/F16: confirm an official 8:00 AM start and published finish times from a Strip room before building the advertised 8 AM all-day plan.
 - R3. Close F15/F36/F57/F39: obtain date-specific hotel quotes and room-tax percentages for the trip window and the non-Venetian properties before presenting any true-cost total as a quote.
+
+
+---
+
+## Session `arena/a6d0d539-poker3` — claim: complete cross-table search and mobile access (2026-11-18 UTC)
+
+The platform binds this session to the existing branch `arena/a6d0d539-poker3`, so the requested per-task branch naming cannot be used. The canonical dashboard and its official-source evidence are already present on `main`; this claim is deliberately limited to the search experience and its regression checks. No tournament, hotel, rate, route, or policy values will be edited or newly asserted.
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| Make the global search cover every published data-backed table and keep search usable on narrow/mobile screens | in progress | `arena/a6d0d539-poker3` | `site/search.html`, new `site/assets/search.js`, `site/assets/site.css`, `tests/canonical_smoke.py`, `tests/canonical_render.js`, new `tests/test_global_search.py`, `COORDINATION.md` | Search indexes existing `site/data.json` and `site/checks.json` records; source links remain the recorded official URLs. No factual data is changed. |
+
+**Scope check before claim.** The two open pull requests at the time of this claim are #112 and #130. Their recorded file lists touch `site/assets/app.js` and `COORDINATION.md`; this task does not edit `app.js` or reuse their changed files. Their open PRs are not treated as evidence that their contents have merged. Any later integration conflict in the append-only board will be resolved by retaining both records.
+
+**Rebase conflict log.** The required `git pull --rebase origin main` advanced the base from `9ff9ae9` to `128a36b` (PR #136) and found an end-of-file append conflict in this board. Resolved by keeping the complete `arena/be8ef349` read-only verification record from `main` and re-appending this claim; no other session's work was discarded.
