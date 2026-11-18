@@ -4119,6 +4119,22 @@ column, and a mapped label for `one-flight-cap`.
    overwriting a neighbour's, and reconcile any census the prose quotes (F32/C14 now say 56 of 56 with the
    49/7 date split, and a test derives that split from the note itself so it cannot go stale silently).
 
+---
+
+## Session `arena/51911864-poker3` — claim: Strip room census cross-check and the 8 AM question for the Caesars rooms (2026-11-18 UTC)
+
+Branch: `arena/51911864-poker3` (platform-bound; the `session-<id>/<task>` naming cannot be applied). Branched from `main` @ `9ff9ae9`. Claim written at 2026-11-18 03:16 UTC, before any data read is recorded.
+
+**Conflict check before claiming.** Open PRs at claim time: **#112** (`arena/d1a97472-poker3`, last update 2026-11-17 23:09Z) and **#130** (`arena/58e42dbd-poker3`, last update 22:44Z). Both are more than four hours idle and both edit `scripts/data_source.py` and `site/data.json`. **This session edits neither file.** Its output is a new research note plus this board entry; any `STRIP_ROOMS` change is logged as a request for the integration owner.
+
+| Task | Status | Owner | Files in scope | Notes |
+|---|---|---|---|---|
+| S1 Strip room census cross-check: each of the 10 `STRIP_ROOMS` rows checked against its official poker page (reachable or not, today) and against dated press reports of closures; closure dates reported by more than one outlet recorded with their links | claimed 2026-11-18 | arena/51911864-poker3 | `research/strip_census_2026-11-18_51911864.md` (new), this section | Press is evidence of a report, not of an official status; a closure is labelled \"press-reported\" until an official page confirms it. |
+| S2 8 AM question for the two Caesars-operated rooms (Caesars Palace, Horseshoe): read their official poker pages for any daily start before 10:10 AM | claimed 2026-11-18 | arena/51911864-poker3 | research note (S1 file, section S2) | Only values printed on the official page are recorded. The third-party listing that shows a Caesars 10:10 AM start is not evidence. |
+| S3 Verification of the S1/S2 claims against the live pages (re-fetch, compare), PR → `main`, merge, Pages check, record here | pending | arena/51911864-poker3 | this section | Flagged items do not block merge; they are published on `site/flagged.html` by the owner of that file. |
+
+Commit discipline: small commits; `git pull --rebase origin arena/51911864-poker3` before each push. Use `git merge origin/main` (not rebase) if the branch's base moves, per the note in the 4b9d6340 record.
+
 ## Session arena/7465d531-poker3 — integration verification (2026-11-18)
 
 **Branch.** `arena/7465d531-poker3`, branched from `main` at `9ff9ae9` (branch head == `main` head at claim time).
@@ -4261,3 +4277,34 @@ This task is a non-overlapping audit of the current integration at `9ff9ae9`; it
 - **Flagged irregularities (do not block merge):** 0 events confirmed strictly single-entry in writing; no verified start before 10:10 AM (no 8 AM all-day route); Nov–Dec 2026 hotel room rates unpublished (totals blank); walking minutes are Google Maps estimates; 20 official URLs unavailable in the scheduled re-check (recorded unavailable, not changed). Published on `site/flagged.html` with source links for manual review.
 
 **Status:** done — site live on GitHub Pages.
+### Result (session `arena/51911864-poker3`, 2026-11-18 UTC)
+
+Claim status: **S1 done · S2 done · S3 in progress (PR and merge recorded below when they land).**
+
+**S1 — Strip census, each `STRIP_ROOMS` row read today.** Full table, verbatim quotes and press links: `research/strip_census_2026-11-18_51911864.md`.
+- Venetian, Wynn, Bellagio, MGM Grand, ARIA and Mandalay Bay poker pages read live. Wynn values compared with the rows (Super Gold Million $400 / $3,000,000 guarantee, WPT from Nov 27, Signature to Jan 24, 2027, Friday $40,000 rebuy): all match. Venetian NYE series dates (Dec 24, 2026 – Jan 10, 2027): match.
+- Planet Hollywood's official pages returned HTTP 500 on every attempt; its closure stays press-only (F79).
+- Resorts World's official poker-room page still shows poker dining; the closure (March 30, 2026) is press-reported with a spokesperson statement quoted by Fox News Digital, and stays press-only (F80).
+- No other Strip room was found open on an official page. Flamingo's poker URL redirects away; Excalibur's returns "Page not found".
+
+**S2 — 8 AM question for the Caesars rooms.** Official Caesars Palace daily flyer (2026) read in full. It prints four events, and the repo's rows disagreed with it on two of them (see the correction below). Horseshoe's six starts (9, 11, 2, 5, 8, 11) are in the official Caesars article; its buy-ins are not printed there. **Answer unchanged:** earliest official start is 9:00 AM (Horseshoe); no 8:00 AM start is published. F17 text updated.
+
+**Correction shipped (the only data value changed).** The Caesars Palace rows at 2 PM and 9 PM were $100; the official flyer prints **$160** for both. The four rows now take the flyer as their source and record its re-entry, optional first-break $50 add-on, fee split and "registration closes at the start of level seven" terms, each with `retrieved` 2026-11-18. The rows stay multi-entry, so the single-entry list is unchanged. A new test (`tests/test_caesars_flyer_2026_11_18.py`, 6 tests) pins the values.
+
+**Flags.**
+- **F73** (Caesars schedule only in a marketing article) — retitled: the Caesars Palace schedule is now read from the official flyer; Horseshoe's times remain article-only.
+- **F90** (new, Medium) — the 2 PM and 9 PM events are $160 on the flyer and $100 in the July 2026 article.
+- **F91** (new, Low) — the official Venetian poker page places the room at The Palazzo, level 2, Grand Canal Shoppes; the walking captures measure to the resort address. No minute changed.
+- F17 and F20 text updated to match. Flag register: 87 flags, unique ids.
+
+**Sources read (official, 2026-11-18):** venetianlasvegas.com poker page; wynnlasvegas.com/casino/poker; bellagio.mgmresorts.com poker page; mgmgrand.mgmresorts.com poker-tables; aria.mgmresorts.com poker page; mandalaybay.mgmresorts.com poker-tables; caesars.com/caesars-palace/casino (poker text and "View Schedule"); the Caesars Palace 2026 daily NLH flyer (PDF); caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip (article, dated 17 July 2026); caesars.com/horseshoe-las-vegas/casino (poker text); rwlasvegas.com/gaming/poker-room/ (dining page). Press, not used as official status: Yogonet, Vegas Advantage, Casino.org, WFMD/Fox News, PokerFlops, pokerclubgames (listed in the research note).
+
+**Verification on the merged tree (after regenerating from modules):** `python3 -m unittest discover -s tests -p 'test_*.py'` → 199 tests OK (PyYAML installed in the sandbox for `test_workflows`); `verify_site`, `verify_entry_labels`, `audit_data`, `audit_951cd431`, `verify_nye_live`, `verify_sheets`, `verify_dse_full`, `verify_wpt_full` → all exit 0; `node --check site/assets/app.js` OK; `data.json` reproduces byte-identically from `scripts/data_source.py` + `build_addendum.py` + `coverage.py`.
+
+**Irregularities for the Flagged for Review page (all published via the register):** F90 (Caesars buy-in conflict between the official flyer and the July 2026 article); F79/F80 (closures press-only; Resorts World's official page not updated); Planet Hollywood's official pages unreachable; F91 (room location); the undated Bellagio "July 26" notice (a Sunday in 2026, and the notice says Saturday — already on the board); MGM Grand HTML vs PDF times (D1, already on the board).
+
+**Open, not blocking.** F31 (no written one-entry rule), F17 (no official 8 AM start), F20 (Horseshoe buy-ins), F39 (room-tax % unpublished at several venues), F66/F67 — all unchanged and already published.
+
+**Cross-session note.** PRs #112 (`arena/d1a97472-poker3`) and #130 (`arena/58e42dbd-poker3`) were open at claim time and both edit `scripts/data_source.py` and `site/data.json`. This branch changed `data_source.py` in the Caesars rows, F17, F73, F90, F91, the `STRIP_ROOMS` Caesars row and the rule-retrieval line (`add_group`). Whoever rebases those PRs should take `main`'s generated files and re-run the builders, keeping both sides of the source-module edits.
+
+- **Pages:** `pages build and deployment` run [44229343346](https://github.com/karagemop466-tech/Poker3/actions/runs/44229343346) succeeded; canonical Pages deployment [44229344830](https://github.com/karagemop466-tech/Poker3/actions/runs/44229344830) succeeded. GitHub Pages API reported `status: built`, commit `beeecc587ba940c7ca9ed075e9fdd7a37c773547`, no error.
