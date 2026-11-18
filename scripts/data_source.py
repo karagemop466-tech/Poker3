@@ -391,6 +391,9 @@ SOURCES = [
     dict(id="caesars-poker", name="Caesars Palace and Horseshoe poker tournament page",
          url="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
          type="official room page", checked=LAST_PASS),
+    dict(id="caesars-flyer", name="Caesars Palace daily No-Limit Hold'em tournament flyer 2026 (linked from the official Caesars Palace casino page, 'View Schedule')",
+         url="https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
+         type="official tournament flyer", checked="2026-11-18"),
     dict(id="aria-poker", name="ARIA poker room page", url="https://aria.mgmresorts.com/en/casino/poker.html",
          type="official room page", checked=LAST_PASS),
     dict(id="aria-guide", name="ARIA official poker guide (undated)",
@@ -581,7 +584,7 @@ FLAGS = [
          title="The earliest verified official start is 9:00 AM (Horseshoe daily); no 8:00 AM start is published",
          detail=("Re-read on 2026-11-17 on the Caesars page: Horseshoe runs six daily No-Limit Hold'em games at 9 a.m., "
                  "11 a.m., 2 p.m., 5 p.m., 8 p.m. and 11 p.m., with no buy-in published. Caesars Palace runs four daily games "
-                 "at 10 a.m., 2 p.m., 6 p.m. and 9 p.m. ($100 buy-in, $50 add-on). On the Venetian schedule re-read on "
+                 "at 10 a.m., 2 p.m., 6 p.m. and 9 p.m. (the official flyer prints $100 buy-ins at 10 a.m. and 6 p.m. and $160 at 2 p.m. and 9 p.m., with an optional $50 add-on; read 2026-11-18, F90). On the Venetian schedule re-read on "
                  "2026-11-17 the earliest start is 9:10 AM, a $260 satellite on Dec 12. Opening Venetian events start at "
                  "10:10 AM or later; the only 10:00 AM Venetian starts are restarts (Day 2 or Day 3). The Wynn daily starts at 12:00 PM. "
                  "Most Wynn WPT rows start at 11:00 AM. Its 10:00 AM rows are the Super Gold Million flights (Dec 10 and 11), one WPT "
@@ -1056,15 +1059,34 @@ FLAGS = [
                  "maximum number of entries per player is printed anywhere on the sheet."),
          source="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf"),
     dict(id="F73", area="Caesars Palace", severity="Medium",
-         title="The Caesars Palace and Horseshoe daily schedules are published only inside a dated marketing article",
-         detail=("Re-read on 2026-11-17. The page that publishes every Caesars Palace and Horseshoe start time is an "
-                 "editorial page, bylined 'James Billington' and dated July 17, 2026, not a tournament page, and it "
-                 "carries no structure-sheet link. The four Caesars Palace values it prints ($100 buy-in, 20,000 "
-                 "chips, $1,000 guarantee, 20-minute levels, plus a $50 add-on at the first break for 15,000 extra "
-                 "chips) are recorded on the four rows with that article as their source. The Horseshoe rows stay blank "
-                 "because the article publishes only 'a mixture of buy-ins, levels and guarantees' (F20). A schedule "
-                 "that exists in a four-month-old article is not something to rely on before a nonrefundable booking."),
-         source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"),
+         title="The Caesars Palace daily schedule is now read from its official flyer; the Horseshoe schedule is still published only inside a dated marketing article",
+         detail=("Updated on 2026-11-18. The official Caesars Palace casino page links a 2026 daily No-Limit Hold'em flyer "
+                 "('View Schedule'). That flyer prints the four Caesars Palace start times (10 AM, 2 PM, 6 PM, 9 PM), the "
+                 "buy-in of each, the $1,000 guarantee, 20,000 chips, 20-minute levels, a $50 optional add-on at the first "
+                 "break, re-entry within the first break, and registration closing at the start of level seven. The four "
+                 "Caesars Palace rows now take the flyer as their source. The 17 July 2026 marketing article still says every "
+                 "Caesars Palace event is $100; the flyer prices the 2 PM and 9 PM events at $160 (see F90). The Horseshoe "
+                 "start times (9 AM, 11 AM, 2 PM, 5 PM, 8 PM, 11 PM) appear only in that article; its buy-ins are not printed "
+                 "there, so the Horseshoe rows stay blank (F20)."),
+         source="https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf"),
+    dict(id="F90", area="Caesars Palace", severity="Medium",
+         title="The 2 PM and 9 PM Caesars Palace events are $160 buy-ins on the official flyer; the marketing article and the earlier rows say $100",
+         detail=("Found on 2026-11-18. The official flyer lists the Caesars Palace daily No-Limit Hold'em events as 10 AM $100, "
+                 "2 PM $160, 6 PM $100 and 9 PM $160, each with a $1,000 guarantee, and prices the $160 events at $115 to the "
+                 "prize pool and $45 maintenance fee. The 17 July 2026 article says every event is $100, and the earlier rows "
+                 "followed it. The rows are corrected to the flyer, which is the room's own schedule document. Both sources are "
+                 "official-domain pages; the article is the less specific one. All four events stay in the multi-entry category "
+                 "(re-entry within the first break and an optional $50 add-on), so the correction does not change the single-entry list. "
+                 "Check the buy-in printed on the booking or sign-up sheet before paying."),
+         source="https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf"),
+    dict(id="F91", area="Walking routes", severity="Low",
+         title="The official Venetian poker page places the room at The Palazzo, level 2, Grand Canal Shoppes; the walking captures measure to the Venetian",
+         detail=("Read on 2026-11-18 from the Venetian poker page: 'LOCATION: The Palazzo, level 2, Grand Canal Shoppes', with "
+                 "directions from the Venetian lobby (escalator from the Waterfall Atrium) and from the Palazzo lobby (self-parking "
+                 "elevators). The Google Maps walking captures on file (F84) and the 'Venetian' venue row use the resort address. "
+                 "No minute value is changed by this flag. Before a walking-limit decision, re-measure to the room's own entrance on "
+                 "level 2 of Grand Canal Shoppes."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker.html"),
     dict(id="F74", area="Venetian DSE NYE", severity="Low",
          title="Eleven NYE rows carried a 'structure sheet not read' label after all 15 sheets had been read",
          detail=("Found and fixed on 2026-11-17. Eleven NYE rows sat in the category 'Unverified - structure sheet not "
@@ -1891,9 +1913,10 @@ STRIP_ROOMS = [
     dict(id="mgm", name="MGM Grand", status="Open (on record)", statusBasis="Official poker page on record with a daily schedule sheet; not re-read on 2026-11-17",
          read="2026-11-16", official="https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html", inFeed=True, flag="",
          evidence="mgmgrand.mgmresorts.com poker page (base read)"),
-    dict(id="caesars", name="Caesars Palace", status="Open (no schedule read)", statusBasis="Caesars poker-tournaments page fetched 2026-11-17 is a marketing article with no schedule or fee data; the room name is not confirmed in this pass",
-         read=STRIP_ROOMS_READ, official="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip", inFeed=True, flag="",
-         evidence="caesars.com poker-tournaments-las-vegas-strip (shared with Horseshoe)"),
+    dict(id="caesars", name="Caesars Palace", status="Open (daily schedule read from official flyer)",
+         statusBasis="Official Caesars Palace casino page (read 2026-11-18) says the poker room is open 24/7 with cash games and daily tournaments, and links the 2026 daily No-Limit Hold'em flyer, which prints four events (10 AM, 2 PM, 6 PM, 9 PM).",
+         read="2026-11-18", official="https://www.caesars.com/caesars-palace/casino", inFeed=True, flag="F90",
+         evidence="caesars.com/caesars-palace/casino; clv-poker-daily-nlh-tournament-flyer-2026.pdf"),
     dict(id="horseshoe", name="Horseshoe Las Vegas", status="Open (no schedule read)", statusBasis="Room name from the prior-session Horseshoe casino page (Hall of Fame Poker Room); not re-read 2026-11-17; no schedule read",
          read=STRIP_ROOMS_READ, official="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip", inFeed=True, flag="",
          evidence="caesars.com poker-tournaments-las-vegas-strip (shared with Caesars Palace)"),
@@ -2389,7 +2412,7 @@ def build():
     # --- Other venues ----------------------------------------------------
     def add_group(group, venue, prefix, last_checked=ASOF):
         for i, d in enumerate(group):
-            rules = {k: dict(v, source=v.get("source", d["source"]), retrieved=ASOF) for k, v in d["rules"].items()}
+            rules = {k: dict(v, source=v.get("source", d["source"]), retrieved=v.get("retrieved", ASOF)) for k, v in d["rules"].items()}
             st = rules["singleEntry"]["status"]
             entry_type = ("none" if st == "single-entry-on-sheet"
                           else ("not-verified" if "not-verified" in st else "multi-buyin"))
@@ -2407,7 +2430,7 @@ def build():
 
     add_group(N.BELLAGIO_EVENTS, "bellagio", "bell")
     add_group(N.MGM_EVENTS, "mgm", "mgm")
-    add_group(N.CAESARS_EVENTS, "caesars", "caes", last_checked=CHECKED_TODAY)
+    add_group(N.CAESARS_EVENTS, "caesars", "caes", last_checked="2026-11-18")  # flyer read 2026-11-18
     add_group(N.HORSESHOE_EVENTS, "horseshoe", "horse", last_checked=CHECKED_TODAY)
     add_group(N.ARIA_EVENTS, "aria", "aria")
 
