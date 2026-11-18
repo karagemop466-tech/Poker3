@@ -30,7 +30,7 @@ PAGES = {
     "suggestions.html": "suggestions",
     "flagged.html": "flagged",
     "sources.html": "sources",
-    "search.html": "search",
+    "search.html": "global-search",
 }
 
 # Detailed pages that use their own data attributes instead of data-page.
@@ -107,6 +107,8 @@ def main() -> int:
             errors.append(f"{page}: data-page is {parser.page!r}, expected {expected!r}")
         if "assets/app.js" not in parser.scripts:
             errors.append(f"{page}: does not load assets/app.js")
+        if page == "search.html" and "assets/search.js" not in parser.scripts:
+            errors.append("search.html: does not load the complete cross-table search index")
         if not parser.title:
             errors.append(f"{page}: no title")
         for hook in REQUIRED_HOOKS.get(page, []):

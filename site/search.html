@@ -7,10 +7,10 @@
 <title>Vegas Poker Planner · Search all tables</title>
 <link rel="stylesheet" href="assets/site.css">
 </head>
-<body data-page="search">
+<body data-page="global-search">
 <header class="topbar">
   <a class="brand" href="index.html"><span class="brand-mark">♠</span><span>Vegas Poker Planner</span></a>
-  <form class="top-search" data-search-form><input type="search" placeholder="Search every table…" aria-label="Search all tables"><button class="btn" type="submit">Search</button></form>
+  <form class="top-search" data-search-form><input type="search" name="q" placeholder="Search every table…" aria-label="Search all tables"><button class="btn" type="submit">Search</button></form>
   <span class="top-tag">Official sources only · verified <span data-asof></span></span>
 </header>
 <nav class="mobile-nav" data-mobile-nav></nav>
@@ -18,21 +18,26 @@
   <aside class="sidebar">
     <div class="side-label">Plan your trip</div>
     <nav class="nav" data-nav></nav>
-    <div class="side-note"><strong>Cross-table search</strong>Searches the published tournament, hotel, dated rate, walking route, source, question and flagged-review records. Each fact result links to its cited source.</div>
+    <div class="side-note"><strong>Cross-table search</strong>Fact rows link to their recorded sources; editorial suggestion results link to the Suggestions page. Search never upgrades an unverified value.</div>
   </aside>
   <main class="main">
     <section class="hero">
       <div class="eyebrow">Search · all published data tables</div>
       <h1>Find a fact across the planner.</h1>
-      <p>Matches include event names and rule excerpts, hotel cost terms, dated rate observations, walking routes, official source titles, open questions and review flags. Search does not change or infer any data.</p>
+      <p>Search the same records used by the planner’s tables: tournaments and structure-sheet excerpts, venues, hotels, dated rate observations and checkout quotes, booking links, walking routes, day-plan entries and overlap checks, official sources, open questions, suggestions, flags, the PDF transcription check and the automated source-monitor log. Search is read-only; it does not change or infer any data.</p>
+      <form class="global-search-form" data-global-search-form role="search">
+        <label for="global-query">Search all published data</label>
+        <div class="global-search-controls"><input id="global-query" type="search" name="q" autocomplete="off" placeholder="Event, hotel, date, rule, source status, or flag ID…"><button class="btn" type="submit">Search</button></div>
+      </form>
     </section>
     <section class="section">
-      <div class="section-head"><div><h2>Matching rows</h2><p data-search-summary>Enter a query above.</p></div></div>
-      <div data-search-results></div>
+      <div class="section-head"><div><h2>Matching rows</h2><p data-search-summary aria-live="polite">Enter a query above.</p></div></div>
+      <div data-search-results aria-live="polite"></div>
     </section>
     <div class="footer"><a href="tournaments.html">Tournament filters</a> · <a href="flagged.html">Flagged for review</a> · <a href="sources.html">Source log</a></div>
   </main>
 </div>
 <script src="assets/app.js"></script>
+<script src="assets/search.js"></script>
 </body>
 </html>

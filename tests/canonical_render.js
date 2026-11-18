@@ -77,14 +77,15 @@ function runPage(page, search) {
     querySelectorAll(sel) { return [hook(sel)]; },
   };
   const location = {
-    pathname: '/' + (page === 'home' ? 'index.html' : page + '.html'),
+    pathname: '/' + (page === 'home' ? 'index.html' : page === 'global-search' ? 'search.html' : page + '.html'),
     search: search || '',
-    href: '',
+    href: 'https://example.test/' + (page === 'global-search' ? 'search.html' : page + '.html') + (search || ''),
   };
   const sandbox = {
     document,
     location,
     URLSearchParams,
+    URL,
     console,
     fetch: (url) => {
       if (String(url).endsWith('data.json')) {
@@ -100,7 +101,11 @@ function runPage(page, search) {
   vm.createContext(sandbox);
   const code = fs.readFileSync(path.join(ROOT, 'site', 'assets', 'app.js'), 'utf8');
   vm.runInContext(code, sandbox, { filename: 'app.js' });
-  return new Promise((resolve) => setTimeout(() => resolve(registry), 60));
+  if (page === 'global-search') {
+    const searchCode = fs.readFileSync(path.join(ROOT, 'site', 'assets', 'search.js'), 'utf8');
+    vm.runInContext(searchCode, sandbox, { filename: 'search.js' });
+  }
+  return new Promise((resolve) => setTimeout(() => resolve(registry), 100));
 }
 
 const PAGES = [
@@ -115,7 +120,7 @@ const PAGES = [
   ['suggestions', ''],
   ['flagged', ''],
   ['sources', ''],
-  ['search', '?q=venetian'],
+  ['global-search', '?q=venetian'],
   ['calculator', ''],
 ];
 
@@ -219,10 +224,17 @@ function runVenuePage(venueAttr) {
         failures++;
       }
     }
-    if (page === 'search') {
+    if (page === 'global-search') {
       const results = reg.get('[data-search-results]');
-      if (!results || !results.html.includes('Tournament') || !results.html.includes('Hotel') || !results.html.includes('Last checked')) {
-        console.log(`FAIL  ${label}: cross-table search did not render tournament and hotel rows`);
+      const wanted = ['Tournament', 'Hotel', 'Hotel rate log', 'Walking route', 'Official source',
+        'Structure sheet', 'Morning schedule feed', 'Strip poker room coverage', 'Dated hotel booking link',
+        'Dated hotel checkout quote', 'Hotel stay with no published quote', 'Hotel booking-calendar observation',
+        'Per-date hotel booking link', 'Primary day-plan event', 'Conditional fallback event', 'Schedule overlap check',
+        'Flag ·', 'Open question', 'Improvement suggestion', 'Trip cost model',
+        'Automated official-source re-check', 'Official PDF transcription check', 'Source changed · review'];
+      const missing = wanted.filter((labelText) => !results || !results.html.includes(labelText));
+      if (missing.length) {
+        console.log(`FAIL  ${label}: cross-table search missed ${missing.join(', ')}`);
         failures++;
       }
     }
