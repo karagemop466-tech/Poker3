@@ -6266,3 +6266,64 @@ checkout total was obtained (the engine printed no price again, F93); the 15 NYE
 Signature schedule and structures PDF, the Bellagio weekly PDFs and the MGM Grand weekly PDF were not
 re-read and keep their earlier `lastChecked` dates; and no tournament, hotel, rate, route or rule value
 was changed anywhere in this session.
+
+---
+
+While this branch was open, three other sessions landed on `main`: **#207** and **#210** (`arena/80a6f5df-poker3` —
+the 19-row trip-window re-read, then a real-HTML fix for the Q&A worksheet page, adding flags F106–F108) and **#211**
+(`arena/4475a074-poker3` — a fresh read of all 94 DeepStack Extravaganza IV rows). This branch was rebased onto the
+resulting `main` tip.
+
+**Conflict and resolution.** One append-only conflict, in this file only. Resolved by keeping `main`'s sections in full
+(all 160 lines, including F106–F108 and the 80a6f5df records) and appending this session's record beneath a separator.
+No text was discarded. No code file conflicted: the other sessions touched `site/q-and-a.html`, `scripts/coverage.py`
+and `site/data.json`; this branch's changes to `site/calculator.html`, `site/assets/app.js`, `scripts/trip_cost.py` and
+the tests applied cleanly. `site/data.json` was regenerated from the merged source modules and is byte-identical to the
+committed artifact.
+
+**Re-verification on the merged tree (all green):** **356 unit tests OK** (341 on this branch before the rebase plus
+the other sessions' 15), `verify_site.py` (341 events / 8 hotels / 56 routes / 50 sources / **104 flags** / 7 plan days /
+18 pages), `audit_951cd431.py` (0 failures, 0 warnings), `audit_data.py`, `verify_live_official.py`,
+`verify_entry_labels.py`, `verify_transcription.py --dry-run` (44/44), `canonical_smoke.py`, `canonical_render.js`,
+`walk_limit_render.js`, the two new Node harnesses, and a byte-identical `data_source.py` rebuild.
+
+**Their findings are kept, not overwritten.** F106–F108 are the other session's; this branch does not renumber, merge or
+edit them, and they remain on the Flagged for review page. Where their work and this branch's overlap — both re-read the
+trip window on 2026-11-19 — the two reads agree with each other and with the official page, which is a useful
+independent confirmation rather than a duplicate to delete.
+
+### T4 result — PR, merge and GitHub Pages (session `arena/03d48a10-poker3`, 2026-11-19 UTC)
+
+| Item | Result |
+|---|---|
+| PR | [#209](https://github.com/karagemop466-tech/Poker3/pull/209) — `arena/03d48a10-poker3` → `main` |
+| PR checks | `verify` **pass** ([run 44513397913](https://github.com/karagemop466-tech/Poker3/actions/runs/44513397913)); `transcription` **pass** ([run 44513397976](https://github.com/karagemop466-tech/Poker3/actions/runs/44513397976)) |
+| Merge | `gh pr merge 209 --merge` at **2026-11-19T11:19:34Z**, merge commit [`18ceb1d`](https://github.com/karagemop466-tech/Poker3/commit/18ceb1d485e1bec2d0a131b9020ca457b8941d27). No approval wait: the brief requires the integration owner to merge without waiting. |
+| Pages | `pages build and deployment` **success** and `Publish the canonical Vegas Poker Planner to GitHub Pages` **success** on the merge commit; `GET /pages/builds/latest` reported `status: "built"`, `commit: 18ceb1d…`, `error: null` (created 11:19:35Z, updated 11:19:52Z). |
+| Live read-back | `/Poker3/site/calculator.html` serves the unknown-not-zero rule and the exact sums ($2,600.00, $197.28, $1,380.96, $4,120.96); `/Poker3/site/schedule.html` serves the per-event timing labels and extra-spend badges; `/Poker3/site/search.html` serves the cross-table search page. |
+| Follow-up PR | [#217](https://github.com/karagemop466-tech/Poker3/pull/217) (copy fix for an awkward unpublished-figure note), checks `verify` + `transcription` **pass**, merged **2026-11-19T11:22:17Z**, merge commit [`b3e84c2`](https://github.com/karagemop466-tech/Poker3/commit/b3e84c250b55838bec9437c5d1cfc2f827d3731e). |
+
+**Rebase log (three rebases, one append-only conflict each, all in this file only).** While the branch was open, seven
+other PRs landed on `main`: **#207**, **#210**, **#211**, **#212**, **#213**, **#214** and **#215**. Each rebase kept
+`main`'s sections in full and appended this session's record beneath a separator; no other session's text, flag id or
+code was discarded. After each rebase every gate was re-run on the merged tree, and they passed each time (341 → 356 →
+360 tests as the other sessions' tests arrived). No code file conflicted: this branch's changes are confined to
+`site/calculator.html`, `site/assets/app.js`, `scripts/trip_cost.py`, `tests/**`, `README.md` and this file, and the
+other sessions' work touched `site/q-and-a.html`, `scripts/coverage.py`, `scripts/data_source.py`, `site/data.json`,
+`.github/workflows/checks.yml` and their own research records. `site/data.json` is byte-identical to a fresh
+`scripts/data_source.py` rebuild on the merged tree.
+
+**Final state of `main` verified independently (clean worktree at `origin/main`):** **379 unit tests OK**,
+`verify_site.py` (341 events / 8 hotels / 56 routes / 50 sources / **111 flags** / 7 plan days / 18 pages), `audit_951cd431.py`
+(0 failures, 0 warnings), `canonical_render.js`, `walk_limit_render.js` and both of this session's new harnesses green.
+The two earlier builders (`pages.yml`, `verify.yml`) now run the calculator and day-plan harnesses on every
+publication, so neither defect can return silently.
+
+**Open PRs left untouched:** **#184** (the calculator fix this session re-implemented after it sat conflicting and idle
+past the 60-minute takeover threshold) and **#173** (a trip-window re-read superseded by this session's own 64-fact
+read). Neither was merged, closed, edited or pushed to. **#208** (`arena/3b5f21ac-poker3`) was also open at merge time
+and was not touched.
+
+**Flagged irregularities remain published and do not block the merge**, per the standing protocol: F02, F03, F07, F16,
+F17, F31, F39, F51, F56, F72, F90, F93 and the flags other sessions added while this branch was open (F106–F111), all on
+the Flagged for review page with their official source links.
