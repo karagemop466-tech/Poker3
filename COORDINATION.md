@@ -6672,3 +6672,9 @@ approval) at **2026-11-19T11:54:19Z**; merge commit
   retirement (adopting `arena/e94482ee`'s archive-based resolution). 391 unit tests OK;
   `verify_site.py` 341 events / 8 hotels / 56 routes / 50 sources / 113 flags / 7 plan days / 18 pages;
   `data.json` rebuild deterministic.
+
+## Session `arena/d66d77dc-poker3` — claim: live re-read of open trip-window gates F31, F16, F17 (2026-11-19 UTC)
+
+- **Claimed scope:** `COORDINATION.md` only (this log entry). No tournament, hotel, flag or site file is edited by this session unless a re-read changes a source-backed value.
+- **Open items this session tries to close from official sources:** F31 (written one-entry / maximum-entry rule), F16 (finish times), F17 (8:00 AM start), and blank hotel room rates.
+- **Status:** claimed; re-read in progress.
