@@ -1,0 +1,241 @@
+{
+ "_about": "Rows transcribed from the official Venetian DeepStack Extravaganza IV schedule page, read 2026-11-19 UTC through the platform page reader (chunks 0 and 1 of 4). Trip window 23 Nov - 2 Dec 2026 (the 22 Nov row is included because the page lists it on the same run). Fields: date, time as printed, event number as printed, printed name (verbatim, including the page's 'No LImit' typo), printed buy-in, printed guarantee (null when none is printed), structure-sheet number from the sheet link.",
+ "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+ "captured": "2026-11-19",
+ "fields": [
+  "date",
+  "time",
+  "eventNumber",
+  "printedName",
+  "buyIn",
+  "guarantee",
+  "sheetNumber"
+ ],
+ "rows": [
+  [
+   "2026-11-22",
+   "11:10 AM",
+   6,
+   "$200 No LImit Hold'em (1Day)",
+   200,
+   null,
+   29
+  ],
+  [
+   "2026-11-23",
+   "11:10 AM",
+   7,
+   "$400 No Limit Hold'em 1A $75K GTD",
+   400,
+   75000,
+   2
+  ],
+  [
+   "2026-11-23",
+   "5:10 PM",
+   8,
+   "$200 No Limit Hold'em $8K GTD (1Day) - PKO",
+   200,
+   8000,
+   30
+  ],
+  [
+   "2026-11-24",
+   "11:10 AM",
+   7,
+   "$400 No Limit Hold'em 1B $75K GTD",
+   400,
+   75000,
+   2
+  ],
+  [
+   "2026-11-24",
+   "5:10 PM",
+   9,
+   "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+   200,
+   8000,
+   1
+  ],
+  [
+   "2026-11-25",
+   "11:00 AM",
+   7,
+   "$400 No Limit Hold'em Day 2 Restart",
+   400,
+   null,
+   2
+  ],
+  [
+   "2026-11-25",
+   "11:10 AM",
+   10,
+   "$400 No LImit Hold'em $15K GTD (1Day)",
+   400,
+   15000,
+   6
+  ],
+  [
+   "2026-11-25",
+   "5:10 PM",
+   11,
+   "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+   200,
+   8000,
+   1
+  ],
+  [
+   "2026-11-26",
+   "11:10 AM",
+   12,
+   "$300 No LImit Hold'em $10K GTD (1Day)",
+   300,
+   10000,
+   5
+  ],
+  [
+   "2026-11-26",
+   "5:10 PM",
+   13,
+   "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+   200,
+   8000,
+   1
+  ],
+  [
+   "2026-11-27",
+   "11:10 AM",
+   14,
+   "$600 No Limit Hold'em $30K GTD (1Day)",
+   600,
+   30000,
+   7
+  ],
+  [
+   "2026-11-27",
+   "5:10 PM",
+   15,
+   "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+   200,
+   8000,
+   1
+  ],
+  [
+   "2026-11-28",
+   "11:10 AM",
+   16,
+   "$600 No Limit Hold'em Bounty $30K GTD (1Day)",
+   600,
+   30000,
+   11
+  ],
+  [
+   "2026-11-28",
+   "12:10 PM",
+   17,
+   "$400 Pot Limit Omaha Bounty $15K GTD (1Day)",
+   400,
+   15000,
+   26
+  ],
+  [
+   "2026-11-28",
+   "5:10 PM",
+   18,
+   "$200 NLH PokerAtlas Valuetown Bounty $20K GTD (1Day)",
+   200,
+   20000,
+   8
+  ],
+  [
+   "2026-11-29",
+   "11:10 AM",
+   19,
+   "$400 No Limit Hold'em 1A $75K GTD",
+   400,
+   75000,
+   3
+  ],
+  [
+   "2026-11-29",
+   "12:10 PM",
+   20,
+   "$300 Pot Limit Omaha $10K GTD (1Day)",
+   300,
+   10000,
+   22
+  ],
+  [
+   "2026-11-29",
+   "5:10 PM",
+   21,
+   "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+   200,
+   8000,
+   1
+  ],
+  [
+   "2026-11-30",
+   "11:10 AM",
+   19,
+   "$400 No Limit Hold'em 1B $75K GTD",
+   400,
+   75000,
+   3
+  ],
+  [
+   "2026-11-30",
+   "5:10 PM",
+   22,
+   "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+   200,
+   8000,
+   1
+  ],
+  [
+   "2026-12-01",
+   "11:10 AM",
+   19,
+   "$400 No Limit Hold'em 1C $75K GTD",
+   400,
+   75000,
+   3
+  ],
+  [
+   "2026-12-01",
+   "5:10 PM",
+   23,
+   "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+   200,
+   8000,
+   1
+  ],
+  [
+   "2026-12-02",
+   "10:10 AM",
+   24,
+   "$600 No Limit Hold'em Seniors $40K GTD (1Day)",
+   600,
+   40000,
+   17
+  ],
+  [
+   "2026-12-02",
+   "11:00 AM",
+   19,
+   "$400 No Limit Hold'em Day 2 Restart",
+   400,
+   null,
+   3
+  ],
+  [
+   "2026-12-02",
+   "5:10 PM",
+   25,
+   "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+   200,
+   8000,
+   1
+  ]
+ ]
+}

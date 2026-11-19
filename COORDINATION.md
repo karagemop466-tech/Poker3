@@ -7039,3 +7039,33 @@ Branch: `arena/45f09a98-poker3`, set to `origin/main` at 40a1d5ed28b54a30af86c27
 **Pull request:** #237 (arena/45f09a98-poker3 -> main), created 2026-11-19: https://github.com/karagemop466-tech/Poker3/pull/237 — summary, sources and carried-forward irregularities above.
 **Merge:** pending (`gh pr merge 237 --merge`).
 **GitHub Pages:** deploy to be confirmed at the merge commit (build status recorded below).
+## Session `arena/1234c474-poker3` — claim: dated live re-read of the 25 trip-window DSE IV rows, regression pin (2026-11-19 UTC)
+
+Claimed 2026-11-19 19:45 UTC, before any file edit on this branch (branched from `main` at `e668e08`).
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| T1 Live re-read of the official Venetian DeepStack Extravaganza IV schedule page (chunks 0–1), row-by-row against `site/data.json` for the trip window 23 Nov – 2 Dec 2026 | in progress | `arena/1234c474-poker3` | `research/reread_2026-11-19_arena-1234c474.md` (new), `research/reread_2026-11-19_arena-1234c474.json` (new), `tests/test_trip_window_reread_1234c474.py` (new), this board | Platform reader only. No value in `site/data.json` is changed; no structure sheet is re-read, so `lastVerified` does not move. |
+| T2 Attempt a dated Venetian booking total for 23–30 Nov (2 adults) | in progress | `arena/1234c474-poker3` | same research file | Platform reader on the official booking URL. Result is recorded whatever it is. |
+| T3 Integration: full gate set, PR to `main`, merge without waiting, Pages confirmation, record here | in progress | `arena/1234c474-poker3` | whole repo (integration), this board | Flagged and unverified items do not block merge; they stay on Flagged for review. |
+
+### Result (session `arena/1234c474-poker3`, 2026-11-19 UTC)
+
+**T1 — done.** Live read of the official Venetian DeepStack Extravaganza IV schedule page, chunks 0–1 of 4, through the platform page reader. **24 of 24 in-window rows (23 Nov – 2 Dec) agree** with `site/data.json` on date, start time, buy-in, guarantee and structure-sheet number. Two of them (25 Nov and 2 Dec, 11:00 AM "Day 2 Restart") match only if the inherited guarantee below is accepted, because the official row prints no guarantee. The 22 Nov row also matches (outside the window). Verbatim capture: `research/reread_2026-11-19_arena-1234c474.json`; narrative: `research/reread_2026-11-19_arena-1234c474.md`. Regression test: `tests/test_trip_window_reread_1234c474.py` (4 tests).
+
+**T2 — no dated total.** The official booking calendar for 23–30 Nov, 2 adults, returned only its loading shell ("Your Venice meets Vegas getaway is loading") with no rate, fee or tax. The 2026-11-17 Venetian totals remain the latest dated figures; nothing new was adopted.
+
+**Inherited guarantee, already disclosed as F63 (no new flag).** The two "Day 2 Restart" rows carry the parent $400 flight's $75,000 guarantee (ratio 187.5, multi-flight, excluded from ranking). The official rows print no guarantee; F63 already records that these restart rows take their values from the event's structure sheet. It was **not** changed because it feeds a descriptive ratio. Manual decision: keep it under F63's note or blank it on those two rows.
+
+**Overlap.** Session `arena/d2f205b3-poker3` (PR #227, merged before this PR) re-read the same 23 Nov – 2 Dec rows on the same day and recorded 19 of 19 matches on date, time and buy-in. This session's added fields are the printed guarantee, the structure-sheet number and the names. The overlap was not seen when this claim was posted.
+
+**Data changes.** None. This session adds research records and one regression test only. `site/data.json`, `site/coverage.json`, `site/sheets.html` and `scripts/data_source.py` are identical to `main`. A first draft added an F124 entry; it was withdrawn during the rebase because F63 already covers it, so no flag ID was consumed.
+
+**Checks run on this branch before the pull request.**
+- `python3 -m unittest discover -s tests -p 'test_*.py'`: **438 tests OK**, run in a venv with `PyYAML==6.0.3`, the version the Pages workflow installs. (The system Python lacks PyYAML, so three workflow-test modules fail to import there; that is a sandbox setting, not a repo defect.)
+- `scripts/verify_site.py`: events 341, hotels 8, routes 56, sources 50, **flags 114**, plan days 7, pages 19, verification passed.
+- `audit_951cd431`, `verify_live_official`, `audit_data`, `verify_entry_labels`, `verify_nye_live_2026_11_19`, `tests/canonical_smoke.py` (14 main pages, 5 detail pages), `canonical_render.js`, `test_calculator_unknown_inputs.js`, `test_day_plan_ordering.js`, `sheet_recheck_render.js`, `node --check` on the four site scripts, and `json` validation of `site/data.json`: all pass.
+
+**Not done, and still open.** No structure sheet re-read. No walking time re-read (Google Maps routes unchanged). No written one-entry confirmation (F31). No 8 AM start is published (F17). No finish times (F16). Standing decision unchanged: **HOLD** on any nonrefundable payment.
+
+**Flag number.** No new flag is issued by this session.
