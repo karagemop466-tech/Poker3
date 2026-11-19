@@ -6713,3 +6713,10 @@ approval) at **2026-11-19T11:54:19Z**; merge commit
 **Verification performed.** Live fetch of all four schedule chunks; line-by-line compare of the 19 trip-window rows against `site/data.json`; booking-engine fetch; unit tests (new test file run alone and in the full suite); `verify_site.py`.
 
 **Decision.** Standing HOLD on any nonrefundable payment is unchanged: the hotel total is dated 2026-11-17, the 8 AM start is unpublished, and no walking route or entry cap was verified in this pass.
+
+## Session `arena/f5a04e69-poker3` — claim: official rules-page probe for F31 (one-entry rule), 2026-11-19 UTC
+
+- **Branch:** `arena/f5a04e69-poker3`, reset onto `origin/main` (`54c1a50`) before this claim. Session IDs in the brief cannot be applied; the platform binds one branch.
+- **Claimed task:** F31 only. Look for a written maximum-entry / no-rebuy / no-add-on rule on the Venetian's official poker pages (poker landing page, DeepStack series page). Record what is and is not printed. No tournament, hotel or site value is edited.
+- **Claimed files:** `research/rules_probe_2026-11-19_f5a04e69.md` (new), `COORDINATION.md` (this entry only).
+- **Status:** in progress.
