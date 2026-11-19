@@ -1231,6 +1231,19 @@ FLAGS = [
                  "read 2026-11-17. This flag is the mechanism. A row that is re-read by hand on a later date must keep "
                  "that date, and a pass that edits only dates must never reach back over a newer one."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
+    dict(id="F100", area="Publishing", severity="Low",
+         title=("Two static venue pages carried an incorrect read date and an incorrect unverified label "
+                "(found and fixed 2026-11-19)"),
+         detail=("Found on 2026-11-19 by the independent re-verification session (arena/cce0b8d3-poker3) while "
+                 "re-reading the official sources behind the trip window. (1) site/venues/venetian.html said all "
+                 "52 official structure sheets were read on 2026-11-16; the 37 DeepStack Extravaganza IV sheets "
+                 "were read that day and the 15 DeepStack NYE sheets on 2026-11-17, as the structure-sheet "
+                 "register in site/data.json records. (2) site/venues/index.html said 'the NYE rows stay "
+                 "unverified'; the NYE rows are not all unverified - seven carry the sheet-screened single-entry "
+                 "label from their own sheets, and the rows that stay unverified are the 38 Wynn Signature Series "
+                 "rows whose structures file is still 'coming soon' (F56). Both statements were corrected to the "
+                 "register's own dates and labels. No tournament, hotel, rate, fee or policy value changed."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
     dict(id="F74", area="Venetian DSE NYE", severity="Low",
          title="Eleven NYE rows carried a 'structure sheet not read' label after all 15 sheets had been read",
          detail=("Found and fixed on 2026-11-17. Eleven NYE rows sat in the category 'Unverified - structure sheet not "
