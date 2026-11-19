@@ -4623,3 +4623,20 @@ Overlap check: no other open PR at the time of claim (`gh pr list --state open` 
 3. The 17 Nov and 18 Nov poker-page captures differ only in the series banner (F92). Change badges remain until the monitor is re-baselined.
 
 **Not verified this session:** Wynn, Bellagio, MGM Grand, Caesars Palace, Horseshoe, ARIA and the Palazzo rates and structures; finish times (F16); written entry caps (F31); any current booking price (F93); Apple Maps walking times (not reachable from this sandbox).
+---
+
+## Session `arena/ffe8f597-poker3` — line-by-line audit and day-plan consistency fix (2026-11-19 UTC)
+
+Branch is fixed by the platform: `arena/ffe8f597-poker3`, branched from `main` at `23ad5d8`.
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| A1 Independent line-by-line audit of the published dataset against its own stated rules | in progress | arena/ffe8f597-poker3 | `scripts/data_source.py` (day-plan builder), `site/data.json` (rebuilt), `tests/`, `site/schedule.html`, `COORDINATION.md` | Read-only elsewhere. Does not touch calculator, hotels data, calculator page, or another session's files. |
+
+**Claim.** This session edits only the day-plan builder inside `scripts/data_source.py`, the regenerated
+`site/data.json`, a new regression test, the schedule page copy, and this board. No other file is changed.
+
+**Defect found and being fixed (see F93).** On five of the seven trip days the published fallback event is the
+same event the site simultaneously publishes as an "impossible sequence" against that day's primary. The written
+fallback rule ("starts after the primary's estimated finish plus a 30-minute transfer") was not applied when
+choosing the fallback.
