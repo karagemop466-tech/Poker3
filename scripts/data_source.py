@@ -835,7 +835,7 @@ FLAGS = [
                  "strength of the failed read. A fourth read on 2026-11-19 repeated the failure in the same way: the 23-30 "
                  "November booking URL returned the reservation shell and the rewards panel with no suite price and no "
                  "checkout total. A fifth read later the same day did render the itemised panel, and it is published as "
-                 "its own dated total ($3,619.39 for a Palazzo suite, F110), so the engine is intermittent rather than "
+                 "its own dated total ($3,619.39 for a Palazzo suite, F120), so the engine is intermittent rather than "
                  "unavailable. Two dated totals for the same stay now exist - $4,010.55 read 2026-11-17 and $3,619.39 read "
                  "2026-11-19 - and neither is a booking price."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar"),
@@ -1167,13 +1167,13 @@ FLAGS = [
                  "each printing exactly as recorded, and the 2026-11-19 05:33 UTC check no longer lists this URL as changed."),
          source="https://www.venetianlasvegas.com/resort/casino/poker.html"),
     dict(id="F93", area="Hotels", severity="High",
-         title="Partially resolved 2026-11-19: the Venetian booking engine DID print a dated checkout total for 23-30 November on a later read that day ($3,619.39, F110); the earlier loading-shell reads on the same day are kept",
+         title="Partially resolved 2026-11-19: the Venetian booking engine DID print a dated checkout total for 23-30 November on a later read that day ($3,619.39, F120); the earlier loading-shell reads on the same day are kept",
          detail=("Updated 2026-11-19 after a later read the same day. Earlier reads of the official booking link for 2 adults, "
                  "arrival 23 Nov 2026, departure 30 Nov 2026 returned only the page text 'Your Venice meets Vegas getaway is "
                  "loading', with no rate, resort fee, tax or checkout total - the same result as the 2026-11-17 and 2026-11-18 "
                  "attempts recorded in research/reread_2026-11-19.md. A subsequent read on 2026-11-19 DID render the full "
                  "itemised panel for the same query: a palazzo Luxury King suite at $3,619.39 with taxes of $427.14, now "
-                 "published as its own dated observation (F110). So the engine does price this window; it serves the panel "
+                 "published as its own dated observation (F120). So the engine does price this window; it serves the panel "
                  "intermittently, and it returned a different suite and a different total from the 2026-11-17 read. The point "
                  "that survives every read is that neither figure is a price for today: the 2026-11-17 $4,010.55 and the "
                  "2026-11-19 $3,619.39 both remain dated log entries, and the engine must be re-read at the moment of booking. "
@@ -1587,7 +1587,7 @@ FLAGS = [
                  "assert that the landing-page date is backed by a fetched HTTP 200 row rather than by an unchanged row. "
                  "tests/test_workflows.py now pins all four workflow properties."),
          source="https://github.com/karagemop466-tech/Poker3/actions/runs/44482186623"),
-    dict(id="F112", area="Venetian DSE IV", severity="High",
+    dict(id="F122", area="Venetian DSE IV", severity="High",
          title="The structure sheet linked from the schedule page for Event 17 prints House Fee as $60, but the published row quotes $60 against a $400 buy-in whose companion sheet prints $60 of a different event",
          detail=("Re-read 2026-11-19 (session arena/c336248a-poker3). The official schedule row 'Saturday, November 28, 2026 | 12:10 PM | 17 | "
                  "$400 Pot Limit Omaha Bounty $15K GTD (1Day)' links dse_nov_2026-structure_26.pdf. That sheet prints "
@@ -1598,7 +1598,7 @@ FLAGS = [
                  "the $15,000 guarantee (prize pool plus total $100 bounties) appears only in rule 10. A reader comparing the "
                  "header with the schedule page sees no guarantee. Reported as printed, not adjusted."),
          source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_26.pdf"),
-    dict(id="F113", area="Hotel cost", severity="Medium",
+    dict(id="F118", area="Hotel cost", severity="Medium",
          title="The Venetian resort-fee page and the hotel terms disagree about whether the $55 fee is inside or outside the quoted room rate",
          detail=("Re-read 2026-11-19 (session arena/c336248a-poker3). The official Resort Fee page prints 'Rates include a daily "
                  "Resort Fee of $55 plus tax per night, payable upon check-in.' The official Hotel Terms and Conditions page prints "
@@ -1609,7 +1609,7 @@ FLAGS = [
                  "recommended seven nights is $55 x 7 x 1.1338 = $436.51. The dated 23-30 November quote ($4,010.55) is unaffected: "
                  "it is a checkout total printed by the booking engine, not a rate plus a fee."),
          source="https://www.venetianlasvegas.com/resort/resort-fee.html"),
-    dict(id="F109", area="Schedule", severity="Medium",
+    dict(id="F121", area="Schedule", severity="Medium",
          title="The day plan is titled as a full-day plan but six of the seven primaries are the only published one-buy-in event on their date, and the plan makes no claim that a full day of play is available",
          detail=("Checked 2026-11-19 (session arena/c336248a-poker3) against the published rows. The brief asks for a schedule that can be "
                  "played all day from 8 a.m. Two facts limit that and are stated on the page rather than hidden: no official Strip room "
@@ -3512,7 +3512,7 @@ def with_live_quote(model):
                "not a guarantee."),
         sources=dict(quote=q["source"], resortFee=H.VENETIAN_RESORT_FEE, tax=H.VENETIAN_HOTEL_TERMS),
         # A later dated read of the SAME stay, kept beside the 2026-11-17 read rather than replacing it.
-        # Both are printed checkout totals; they differ on suite, nightly rates and total (flags F78/F110).
+        # Both are printed checkout totals; they differ on suite, nightly rates and total (flags F78/F120).
         laterRead=later_read_quote(),
         # The per-night breakdown of the same quote. It was added to site/data.json by hand in 5a9269d, which
         # made the committed file differ from what this builder writes (see the reproducibility check).

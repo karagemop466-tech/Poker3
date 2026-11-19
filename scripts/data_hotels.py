@@ -302,7 +302,7 @@ VENETIAN_QUOTE_TRIP = dict(
 # Second dated checkout total for the SAME trip stay, printed by the official booking engine on 2026-11-19
 # (session arena/e94482ee-poker3). Every money figure below is printed on the page; nothing is inferred.
 # It is kept BESIDE the 2026-11-17 read, never in place of it, because the two reads differ on the suite,
-# the nightly rates and the total (flag F78 records the earlier drift; F110 records this read).
+# the nightly rates and the total (flag F78 records the earlier drift; F120 records this read).
 # Arithmetic check on the printed figures:
 #   nightly room rates         204.25 + 204.25 + 204.25 + 309.25 + 1119.25 + 561.75 + 204.25 = 2,807.25
 #   resort fee                 7 x 55.00                                                   =   385.00

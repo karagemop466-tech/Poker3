@@ -394,7 +394,7 @@ NEW_FLAGS = [
                  "confirm the checkout total in the cart before payment, exactly as F88 and F93 require for the Venetian "
                  "engine."),
          source=REPO + "site/checks.json"),
-    dict(id="F109", area="Monitoring", severity="Low",
+    dict(id="F119", area="Monitoring", severity="Low",
          title=("The corrected official-source re-check has never run on a schedule: the scheduled record in "
                 "site/checks.json predates the PDF-hash fix"),
          detail=("site/checks.json is dated 2026-11-19T07:34:30Z and its summary counts 108 URLs with 23 failed reads. "
@@ -404,7 +404,7 @@ NEW_FLAGS = [
                  "guarantee value (see the evidence policy in README). The corrected run is the next scheduled one; the "
                  "gap changes no published row."),
          source=REPO + "site/checks.json"),
-    dict(id="F110", area="Booking", severity="Medium",
+    dict(id="F120", area="Booking", severity="Medium",
          title=("A second dated checkout total for the trip stay ($3,619.39 on 2026-11-19) is now on record beside the "
                 "$4,010.55 read of 2026-11-17, for a different suite tower"),
          detail=("The official Venetian booking engine was read live on 2026-11-19 with the identical query used on "

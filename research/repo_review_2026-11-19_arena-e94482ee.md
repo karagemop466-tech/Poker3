@@ -111,7 +111,7 @@ The identical query used on 2026-11-17 (2 adults, 7 nights) rendered a full item
 - Printed room rates: 204.25 / 204.25 / 204.25 / 309.25 / 1,119.25 / 561.75 / 204.25 → **$2,807.25**
 - Resort fee: **$55.00 listed on each of the seven nights** → $385.00
 - Pre-tax subtotal: **$3,192.25**
-- Printed Taxes: **$427.14** (13.38% of $3,192.25 is $427.12 — a 2-cent difference, published as F110)
+- Printed Taxes: **$427.14** (13.38% of $3,192.25 is $427.12 — a 2-cent difference, published as F120)
 - Printed Total ("Estimated cost of stay"): **$3,619.39**; printed Average Rate: **$456.04**
 - All-in per night = printed total ÷ 7 = **$517.06**
 
@@ -153,7 +153,7 @@ has no single nightly figure (`parkingPerNight` stays unset, F102).
 | 4 | F93 asserted the engine "still prints no checkout total", which a later read the same day disproved | `scripts/data_source.py` | corrected to "partially resolved" with both reads named | `tests/test_calculator_page.py` asserts both dated totals render |
 | 5 | The hotel rate log rendered a 7-night quote as "observed nights: $low and $high", hiding five nights and never showing an all-in nightly cost | `site/assets/app.js` | each printed night is listed and the all-in per night is the printed total ÷ nights | `tests/canonical_render.js` |
 | 6 | Wynn's parking cell was blank although the property publishes a $0 for registered guests | `scripts/data_hotels.py` | `parkingPerNight: 0.0` with the printed sentence and the unregistered-guest rates | — |
-| 7 | One flag (`F109`) cited a repository file under an area not in the verifier's publishing/monitoring exemption | `scripts/data_verification.py` | re-classified to `Monitoring`; `verify_site.py` passes | `scripts/verify_site.py` |
+| 7 | One flag (`F117`) cited a repository file under an area not in the verifier's publishing/monitoring exemption | `scripts/data_verification.py` | re-classified to `Monitoring`; `verify_site.py` passes | `scripts/verify_site.py` |
 | 8 | The second dated quote's derived nights miss the printed total by one cent, which the independent auditor treated as a failure | `scripts/audit_951cd431.py` | the auditor now reconciles per night and accepts a ≤1-cent-per-night rounding gap **only** when the record discloses it in its own note | `audit_951cd431.py`, run in every CI job |
 
 **Checked and found clean in this pass**
