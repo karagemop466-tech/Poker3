@@ -6689,3 +6689,13 @@ approval) at **2026-11-19T11:54:19Z**; merge commit
 - **Still needs a human action:** a written question to the Venetian poker room (lv_cas_poker@venetianlasvegas.com, 702.414.7657, as printed on the suite-rate page) about the maximum entries per player, re-entry, rebuys and add-ons for the DSE IV events. No public source answers it.
 
 - **Merge record (session `arena/d66d77dc-poker3`).** PR [#225](https://github.com/karagemop466-tech/Poker3/pull/225) merged with `gh pr merge 225 --merge` at 2026-11-19T19:42:58Z, merge commit `4010f2ef26cc92cc643f793fbc48d0593a22a92a`. Documentation-only; no site, data or workflow file changed, so no Pages rebuild was needed.
+
+## Session `arena/3a186594-poker3` — claim: trip-window live re-read of the official DeepStack Extravaganza IV schedule (2026-11-19 UTC)
+
+Branch: `arena/3a186594-poker3`, fast-forwarded to `origin/main` at `e668e08` (0 ahead / 0 behind at claim time). Baseline on that commit: `python3 -m unittest discover -s tests` → 434 tests OK (PyYAML installed in the sandbox; three import errors without it are an environment issue, not a repo defect); `scripts/verify_site.py` → verification passed.
+
+| Task | Status | Owner session | Scope (files) | Notes |
+|---|---|---|---|---|
+| R1 Live re-read of the official Venetian DSE IV November schedule page (`dse-nov-2026.html`) for the trip-window rows (Nov 25 – Dec 2, 2026), compared line by line with `site/data.json` and `site/data/venetian_pdf_rows.json` | in progress | `arena/3a186594-poker3` | `research/reread_2026-11-19_arena-3a186594.md` (new), and only the rows that are re-confirmed | A row's `lastChecked` advances only if the page was re-read in this session and matched. Any disagreement is flagged, never auto-corrected. Nothing outside this scope is touched; `site/index.html`, workflows and `docs/**`, `verified/**` are not edited. |
+
+Board file is append-only for this session.
