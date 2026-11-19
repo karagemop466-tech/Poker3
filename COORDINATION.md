@@ -5721,7 +5721,7 @@ Branch: `arena/770f7725-poker3`, branched from `main` at `e79f5a62c41ef164882f1c
 |---|---|---|---|---|
 | T1 Audit the existing canonical dashboard, data pipeline, tests, workflows and board against the full requirement list; identify stale/unverified/contradictory rows and any committed merge artefacts | done | `arena/770f7725` | whole repo (read first), `research/` (new dated audit record), `COORDINATION.md` | Official-source re-reads via the platform fetch tools; no value inferred or filled in. |
 | T2 Close verifiable gaps (site, calculator, filters, dated logs, change monitoring, flags, per-row sources) and re-verify line by line | done | `arena/770f7725` | `site/**`, `scripts/**`, `data/**`, `tests/**`, `docs/**` (only if required), `COORDINATION.md` | Small frequent commits; `git pull --rebase` before each push. |
-| T3 Final verification, PR from this branch to `main`, merge, GitHub Pages deploy confirmation, board record | in progress | `arena/770f7725` | whole repo (integration), `COORDINATION.md` | Flagged/unverified items do not block merge; they are published on Flagged for review. |
+| T3 Final verification, PR from this branch to `main`, merge, GitHub Pages deploy confirmation, board record | done | `arena/770f7725` | whole repo (integration), `COORDINATION.md` | Flagged/unverified items do not block merge; they are published on Flagged for review. |
 
 **Scope protocol.** No tournament, hotel, rate, walking, duration or policy value is inferred. Every edited data value must point to an official source read in this session, with its retrieval date; anything else stays blank and is flagged. Other sessions' board sections and code are preserved; conflicts are resolved without discarding their work and logged here.
 
@@ -5782,3 +5782,27 @@ was open and its work was preserved.
 **T3.** In progress: create the integration PR from this branch to `main`, merge it without waiting for approval,
 confirm both GitHub Pages deploy paths and live pages, then append the PR link, merge commit and deploy result here in
 a documentation-only follow-up PR.
+
+### Final publication record (session `arena/770f7725-poker3`, 2026-11-19 UTC)
+
+**T3 — done.** Integration PR [#203](https://github.com/karagemop466-tech/Poker3/pull/203),
+`arena/770f7725-poker3` → `main`, was merged with `gh pr merge 203 --merge` at **2026-11-19 07:26:13 UTC**;
+merge commit **`31b2c5863fd4877727b341f737dddac76bca878d`**. It was not held for approval.
+
+- **PR-head checks:** `verify` **pass** (26s, run [44479479473](https://github.com/karagemop466-tech/Poker3/actions/runs/44479479473)),
+  `transcription` **pass** (5s, run [44479479534](https://github.com/karagemop466-tech/Poker3/actions/runs/44479479534)).
+- **Merge-commit checks:** "Publish the canonical Vegas Poker Planner to GitHub Pages" **success** (build and deploy,
+  run [44479608468](https://github.com/karagemop466-tech/Poker3/actions/runs/44479608468)); legacy
+  `pages build and deployment` **success** (run [44479607114](https://github.com/karagemop466-tech/Poker3/actions/runs/44479607114));
+  "Verify static research site" **success** (run [44479608581](https://github.com/karagemop466-tech/Poker3/actions/runs/44479608581));
+  "Official table transcription check" **success** (run [44479608535](https://github.com/karagemop466-tech/Poker3/actions/runs/44479608535)).
+  GitHub emitted only Node.js 20 deprecation annotations on third-party actions; no step failed.
+- **GitHub Pages API:** `status: built`, `commit: 31b2c5863fd4877727b341f737dddac76bca878d`, `error: null`, build created
+  `07:26:14Z` and updated `07:26:50Z`; source remains legacy `main /`.
+- **Live read-back (fetched, not assumed), with a cache-busting query:** `/Poker3/` serves the executive summary with
+  the ranked-candidates link; `/Poker3/calculator.html`, `/Poker3/venues/wynn.html` and `/Poker3/ranking.html` serve
+  their real pages rather than 404; `/Poker3/flagged.html` serves the "Operational review · canonical page paths
+  returned 404" section, the fix note for all 18 canonical pages and the live flag register. No broken root path was
+  observed in this read-back. The underlying settings change that would remove the two-publisher race remains F29.
+- **Documentation-only delivery:** this final record is transported to `main` by a follow-up PR from the same branch;
+  it changes no source-backed value, page, script or workflow. Open PRs #173 and #184 remain untouched.
