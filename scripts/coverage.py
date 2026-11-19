@@ -33,7 +33,7 @@ ITEMS = [
      "All 52 official sheets read (37 DSE IV + 15 NYE). No sheet prints a one-entry-per-player cap, so no row is labelled 'single entry confirmed'; sheet-screened candidates show the printed excerpt, source and retrieval date."),
     ("C4", "'Last checked' date on every row",
      "shipped", "site/data.json (lastChecked / lastVerified) + per-row display", [],
-     "Every tournament, hotel, walking-route and source record carries a retrieval date; 301 of 341 event rows last checked 2026-11-17, the rest 2026-11-16."),
+     "Every tournament, hotel, walking-route and source record carries a retrieval date; the 32 trip-window rows were re-read on 2026-11-19, 265 event rows last checked 2026-11-17, 4 on 2026-11-18, and the rest 2026-11-16."),
     ("C5", "Hotel rates kept as a dated log, not a single value",
      "shipped", "site/data.json (rateLog) + site/hotels.html", [],
      "Append-only rate log; each observation carries observedOn, source, fee, tax, quote type. Dated Venetian checkout quote 23-30 Nov 2026 ($4,010.55) logged; calendar cells explicitly not treated as prices (F47/F69)."),
@@ -130,7 +130,7 @@ def main():
     for _id, _req, status, _loc, _flags, _note in ITEMS:
         by_status[status] = by_status.get(status, 0) + 1
     payload = {
-        "generated": "2026-11-17",
+        "generated": "2026-11-19",
         "dataCounts": counts,
         "coverageByStatus": by_status,
         "items": [

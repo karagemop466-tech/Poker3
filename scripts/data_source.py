@@ -40,6 +40,16 @@ REREAD_SHEETS = set(REREAD["sheets"].keys())
 WPT_REREAD = REREAD["wpt"]
 WPT_ROWS = {r["id"]: r for r in WPT_REREAD["rows"]}
 
+# Fresh trip-window re-read, session arena/a33db3c1-poker3, 2026-11-19. Every official source behind the
+# 2026-11-23..2026-11-30 window was fetched again and read line by line: the Venetian DeepStack IV schedule
+# page, the eleven structure sheets the window's rows link to, the Wynn WPT schedule PDF and structures PDF,
+# the Venetian poker-suite rate and resort-fee pages, the poker-room page (F92) and the booking engine (F88).
+# All 32 rows matched the published data with no value changed. The record is the single source for the
+# 2026-11-19 dates on those rows; tests/test_reread_2026_11_19.py checks the published rows against it.
+REREAD_19 = "2026-11-19"
+REREAD_19_REC = json.loads((ROOT / "research" / "reread_2026-11-19_tripwindow.json").read_text(encoding="utf-8"))
+REREAD_19_ROWS = {r["id"]: r for r in REREAD_19_REC["rows"]}
+
 # ---------------------------------------------------------------------------
 # Live re-verification record (session arena/52e02b46-poker3, 2026-11-17).
 #
@@ -2814,6 +2824,42 @@ def build():
     for h in hotels:
         if h.get("id") in ("venetian", "palazzo", "wynn", "bellagio"):
             h["lastChecked"] = RECHECKED
+
+    # 2026-11-19 trip-window re-read (session arena/a33db3c1-poker3). The 32 rows inside the fixed trip window
+    # were re-read against their live official pages/PDFs on 2026-11-19 and matched exactly, so their
+    # lastChecked and lastVerified both advance to that date. Only rows whose own source was re-read move;
+    # every row outside the window keeps the date of the pass that last read it. No value is changed here:
+    # the record records that the published value was re-confirmed, and the re-read is the evidence.
+    REREAD_19_URLS = {
+        REREAD_19_REC["scheduleUrl"],
+        REREAD_19_REC["wynnScheduleUrl"],
+        REREAD_19_REC["wynnStructuresUrl"],
+        REREAD_19_REC["hotel"]["suiteRatesUrl"],
+        REREAD_19_REC["hotel"]["resortFeeUrl"],
+        REREAD_19_REC["pokerRoomPage"]["url"],
+    }
+    n19 = 0
+    for e in events:
+        r19 = REREAD_19_ROWS.get(e["id"])
+        if not r19:
+            continue
+        e["lastChecked"] = REREAD_19
+        e["lastVerified"] = REREAD_19
+        e["recheck"] = dict(date=REREAD_19, source=REREAD_19_REC["scheduleUrl"],
+                            result="matched line by line against the live official source read 2026-11-19")
+        n19 += 1
+    assert n19 == len(REREAD_19_ROWS), (
+        f"2026-11-19 re-read: expected {len(REREAD_19_ROWS)} trip-window rows to be re-read, matched {n19}. "
+        "The record and the published rows must agree one-for-one.")
+    # Hotel facts behind the trip (poker-suite rate, resort fee) were re-read on 2026-11-19.
+    for h in hotels:
+        if h.get("id") in ("venetian", "palazzo"):
+            h["lastChecked"] = REREAD_19
+            h["lastVerified"] = REREAD_19
+    # Sources whose own URL was re-read on 2026-11-19 advance their checked date.
+    for src in SOURCES:
+        if src["url"] in REREAD_19_URLS:
+            src["checked"] = REREAD_19
 
     recurring_events = [e for e in events if not e["date"] and e.get("weekdays")]
     plan, conflicts = build_day_plan(events, TRIP["start"], TRIP.get("playableEnd", TRIP["end"]), recurring_events)
