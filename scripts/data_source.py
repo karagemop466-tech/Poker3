@@ -1087,6 +1087,16 @@ FLAGS = [
                  "No minute value is changed by this flag. Before a walking-limit decision, re-measure to the room's own entrance on "
                  "level 2 of Grand Canal Shoppes."),
          source="https://www.venetianlasvegas.com/resort/casino/poker.html"),
+    dict(id="F92", area="Change monitoring", severity="Medium",
+         title="The scheduled re-check flagged a wording change on the Venetian poker page on 2026-11-18 at 20:24 UTC; a manual re-read is still required",
+         detail=("The scheduled source re-check (site/checks.json, run 2026-11-18T20:24:36Z) recorded a visible-text change on "
+                 "https://www.venetianlasvegas.com/resort/casino/poker.html against the previous run at 2026-11-18T03:24:32Z "
+                 "(wordingChanged: true). Flag F91 records a 2026-11-18 read of the same page (the Palazzo level 2 location), but "
+                 "this session could not confirm whether that read covers the 20:24 change, and the sandbox cannot fetch venue "
+                 "sites, so no value was changed by the automation and none is asserted here. A human must re-read the page and "
+                 "confirm whether any published value behind it moved before the next nonrefundable payment. The change badge is "
+                 "shown on every row that links this URL."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker.html"),
     dict(id="F74", area="Venetian DSE NYE", severity="Low",
          title="Eleven NYE rows carried a 'structure sheet not read' label after all 15 sheets had been read",
          detail=("Found and fixed on 2026-11-17. Eleven NYE rows sat in the category 'Unverified - structure sheet not "
@@ -2715,8 +2725,10 @@ def build():
         verifiedOn=VERIFIED_ON,
         liveFacts=LIVE_FACTS_2026_11_17,
         # entries x buy-in + nights x (rate + resort fee) x (1 + tax), computed
-        # from the eight primary entries and the seven recommended nights.
-        tripCostModel=with_live_quote(published_model(len([p for p in plan if p.get("primary")]), _avg_primary_buyin(plan), TRIP["nights"])),
+        # from the seven primary entries and the seven recommended nights. The
+        # tournament total is the exact sum of the chosen buy-ins (bankroll),
+        # not entries x a rounded mean, so no phantom cent appears.
+        tripCostModel=with_live_quote(published_model(len([p for p in plan if p.get("primary")]), _avg_primary_buyin(plan), TRIP["nights"], buy_in_exact=bankroll)),
     )
     return data
 
@@ -2776,7 +2788,7 @@ def _avg_primary_buyin(plan):
     """Average buy-in of the recommended primary events.
 
     Every primary is a different price, so the calculator is published with the
-    average of the eight chosen entries. The sum is in TRIP["primaryBuyIns"], so a
+    average of the seven chosen entries. The sum is in TRIP["primaryBuyIns"], so a
     reader can check the average against it.
     """
     buys = [p["primaryBuyIn"] for p in plan if isinstance(p.get("primaryBuyIn"), (int, float))]

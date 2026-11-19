@@ -1,6 +1,6 @@
 import unittest
 
-from scripts.check_sources import HASH_BASIS, compare_check, official_targets
+from scripts.check_sources import HASH_BASIS, classify_outcome, compare_check, official_targets
 
 
 class CompareCheckTests(unittest.TestCase):
@@ -55,6 +55,26 @@ class CompareCheckTests(unittest.TestCase):
         result = compare_check(old, "unreachable", None)
         self.assertFalse(result["changed"])
         self.assertTrue(result["unavailable"])
+
+
+class ClassifyOutcomeTests(unittest.TestCase):
+    """A bot block is an observation about the runner, not a page failure."""
+
+    def test_http_2xx_is_fetched(self):
+        self.assertEqual(classify_outcome("HTTP 200"), "fetched")
+
+    def test_bot_refusals_are_blocked_not_failed(self):
+        for status in ("HTTP 403", "HTTP 401", "HTTP 429"):
+            self.assertEqual(classify_outcome(status), "blocked", status)
+
+    def test_redirects_are_redirected(self):
+        self.assertEqual(classify_outcome("HTTP 302"), "redirected")
+
+    def test_timeout_is_unreachable(self):
+        self.assertEqual(classify_outcome("unreachable"), "unreachable")
+
+    def test_other_errors_are_error(self):
+        self.assertEqual(classify_outcome("HTTP 500"), "error")
 
 
 if __name__ == "__main__":

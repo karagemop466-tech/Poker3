@@ -4464,3 +4464,26 @@ Branch: `arena/16cd67ca-poker3`, branched from `main` at `864dc18`. This session
 | Verification, PR → `main`, merge, Pages deploy confirmation | pending | `arena/16cd67ca-poker3` | whole repo | Flagged items do not block merge. |
 
 **Scope protocol.** Only this session edits the claimed files. No tournament, hotel, rate, route or policy value is inferred or newly asserted; blanks stay blank.
+
+### Result (session `arena/16cd67ca-poker3`, 2026-11-19 UTC)
+
+All five fixes implemented on `arena/16cd67ca-poker3` (re-implemented on current `main`, not cherry-picked from PR #130, whose base predates the F86 parking waiver and the completed walk matrix):
+
+- **Phantom cent.** `scripts/trip_cost.py` now takes `buy_in_exact` and publishes `primaryBuyInSum` + `buyInNote`; `scripts/data_source.py` passes the exact sum of the seven primary buy-ins ($200+$200+$400+$300+$600+$600+$300 = $2,600.00); `scripts/verify_site.py` checks the exact-sum identity. Published totals: tournament $2,600.01 → **$2,600.00**, trip $4,120.97 → **$4,120.96**, alternate $4,835.25 → $4,835.24, dated-quote all-in $6,750.56 → **$6,750.55**. The parking waiver (F86) is untouched.
+- **Count columns.** `site/calculator.html` like-for-like table now leads with the count: `7 nights = $1,380.97`, `7 entries = $2,600.00` (DOM-shim render verified), and reads `model.tournamentTotal` instead of recomputing from the rounded average.
+- **Bot blocks.** `scripts/check_sources.py` classifies fetched/blocked/redirected/unreachable/error, publishes `blocked` + `unavailable` separately with `failed` as the legacy alias; `site/assets/app.js` labels blocked rows "Blocked for the robot, not missing · read by hand" checked before "Unavailable" (both the row badges and the Sources autochecks table). The next scheduled run repopulates `site/checks.json` with the new fields; the committed record is left as-is (no hand-edited hashes).
+- **Walk direction.** `walkToVenetian()` now looks up venue → Venetian (Wynn 13 min, not the reverse 19 min) under its "Walk to the Venetian poker room" label.
+- **F92.** New flag records the scheduled re-check's 2026-11-18 20:24 UTC wording change on the Venetian poker page; manual re-read required before nonrefundable payment. No value changed by automation. `site/sheets.html` regenerated (88 flags).
+
+**Verification:** `verify_site.py` passed (341 events / 8 hotels / 56 routes / 47 sources / 88 flags / 7 plan days / 16 pages); `python3 -m unittest discover` **220 tests OK** (PyYAML installed in sandbox only); `verify_entry_labels.py`, `audit_data.py`, `verify_transcription.py --dry-run` (44/44) passed; `node --check` on app.js/search.js/calculator inline script passed; `data.json` rebuild is byte-identical (reproducible); `canonical_smoke.py` + `canonical_render.js` passed (339 rows default, 333 with walk limit). No tournament, hotel, rate, route or policy value was inferred or newly asserted.
+
+**Open irregularities (published on `site/flagged.html`; do not block merge):** F31 (no written one-entry cap → strict-entry filter returns 0), F17 (no official 8 AM start), F16 (no published finish times → overlap estimates), F39 (room-tax % unpublished at several properties), F56 (Wynn Signature structures unpublished), F15/F36/F57 (no dated hotel quote for non-Venetian properties), F92 (Venetian poker page wording change, manual re-read pending).
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| Phantom cent: exact-sum tournament total | done | `arena/16cd67ca-poker3` | `scripts/trip_cost.py`, `scripts/data_source.py`, `scripts/verify_site.py`, `site/data.json`, `tests/` | $2,600.00 / $4,120.96 / $6,750.55 |
+| Calculator count columns | done | `arena/16cd67ca-poker3` | `site/calculator.html`, `tests/` | `7 nights = …`, `7 entries = …` |
+| Bot-block classification | done | `arena/16cd67ca-poker3` | `scripts/check_sources.py`, `site/assets/app.js`, `tests/` | `failed` kept as legacy alias |
+| `walkToVenetian()` direction | done | `arena/16cd67ca-poker3` | `site/assets/app.js`, `tests/` | Wynn 13, not 19 |
+| F92 change-monitoring flag | done | `arena/16cd67ca-poker3` | `scripts/data_source.py`, `site/data.json`, `site/sheets.html` | Manual re-read pending |
+| Verification, PR → `main`, merge, Pages | in progress | `arena/16cd67ca-poker3` | whole repo | PR opened from this branch |

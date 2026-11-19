@@ -186,7 +186,13 @@ def main() -> int:
                         * (1 + model["taxPct"] / 100), 2)
         if abs(nightly - model["trueCostPerNight"]) > 0.01:
             fail(f"tripCostModel: true nightly {model['trueCostPerNight']} != {nightly}", errors)
-        total = round(model["entries"] * model["buyIn"] + model["nights"] * model["trueCostPerNight"]
+        # The tournament total is the exact sum of the chosen buy-ins, not entries x a
+        # rounded mean. Seven primaries summing to $2,600 have a mean of $371.428571...,
+        # so entries x buyIn prints $2,600.01. Check the exact sum when it is published.
+        entry_basis = model.get("primaryBuyInSum")
+        if not isinstance(entry_basis, (int, float)):
+            entry_basis = model["entries"] * model["buyIn"]
+        total = round(entry_basis + model["nights"] * model["trueCostPerNight"]
                       + model["parkingTotal"], 2)
         if abs(total - model["tripTotal"]) > 0.01:
             fail(f"tripCostModel: trip total {model['tripTotal']} != entries x buy-in + nights x nightly + parking ({total})",
