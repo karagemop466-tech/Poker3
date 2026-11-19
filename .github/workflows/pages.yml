@@ -39,19 +39,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          ref: main
+          ref: ${{ github.event_name == 'workflow_run' && 'main' || github.sha }}
           persist-credentials: false
-
-      - name: Validate dashboard and feed links
-        run: |
-          python3 scripts/verify_site.py
-          python3 tests/canonical_smoke.py
-          python3 tests/test_feed_publication.py
-
-      - name: Stage both public dashboard paths
-        run: |
-          cp -a site _pages
-          cp -a site _pages/site
 
       - uses: actions/setup-python@v5
         with:
@@ -83,6 +72,12 @@ jobs:
           node --check site/assets/app.js
           node --check site/assets/venue.js
           node --check site/assets/search.js
+          node --check site/assets/feed.js
+
+      - name: Stage both public dashboard paths
+        run: |
+          cp -a site _pages
+          cp -a site _pages/site
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
