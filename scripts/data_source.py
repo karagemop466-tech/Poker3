@@ -1166,6 +1166,30 @@ FLAGS = [
                  "an event it overlaps. This does not resolve the underlying limit: no venue publishes finish times (F16), "
                  "so the replaced-or-after judgement still rests on an estimate."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
+    dict(id="F95", area="Integration spot check", severity="Info",
+         title=("2026-11-19 spot check: F92 re-read and cleared, F31 and F16 reconfirmed, F56 still open, and the "
+                "official booking engine still returns no checkout total"),
+         detail=("An independent read of the official pages on 2026-11-19 by the integration session "
+                 "(arena/3dae36ec-poker3), after the automated re-check could only hash page text. This is the same "
+                 "engine read recorded as F93 above and adds only what F93 does not cover. "
+                 "(1) F92 cleared: the Venetian poker-room page still places the room at The Palazzo, level 2, Grand "
+                 "Canal Shoppes, open 24 hours, and its DeepStack Extravaganza IV block still reads 'November 16 - "
+                 "December 23, 2026' and 'More than $3.6 Million in guaranteed tournament prize pools'. No published "
+                 "value behind the 2026-11-18 wording change moved. "
+                 "(2) F31 reconfirmed, not resolved: neither that page nor the DSE IV schedule page prints a maximum "
+                 "number of entries per player, a rebuy clause, an add-on clause or freezeout wording. "
+                 "(3) F16 reconfirmed: the DSE IV schedule page still prints no finish time. "
+                 "(4) F56 still open: the official Wynn Signature Series structures link still resolves to a page "
+                 "whose only text is 'LAS VEGAS / POKER / COMING SOON'. "
+                 "(5) The Wynn WPT World Championship schedule PDF was re-read in both chunks and every official "
+                 "row is already published: no row is missing and none was invented. "
+                 "(6) The player-parking page and the Caesars/Horseshoe Strip article were re-read and every figure "
+                 "the site publishes from them still matches verbatim, including the $20 registered-guest fee, the "
+                 "three-hour waiver and the 9 a.m. earliest Horseshoe start behind F17. "
+                 "(7) The DSE IV schedule page's 94 rows were transcribed again and matched the catalog on date, start "
+                 "time and structure sheet; four paraphrased names were corrected to the page's own wording. "
+                 "No value was changed or inferred by this read."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
     dict(id="F74", area="Venetian DSE NYE", severity="Low",
          title="Eleven NYE rows carried a 'structure sheet not read' label after all 15 sheets had been read",
          detail=("Found and fixed on 2026-11-17. Eleven NYE rows sat in the category 'Unverified - structure sheet not "
@@ -1948,11 +1972,14 @@ PLAN_NOTES = {
                     "among venues within a 30-minute walk of the recommended hotel, excluding age-restricted, female-only "
                     "and team formats. This is not confirmation of a one-entry-per-player cap; written venue rules are required."),
     "fallbackRule": ("Fallback = the next sheet-screened candidate on the same date, ranked after the primary, chosen as an "
-                     "alternative to it and never in addition to it. Where the fallback starts before the primary's "
-                     "estimated finish plus a 30-minute transfer, it is marked 'replaces the primary' and the same pair "
-                     "also appears under the impossible-sequence flags; it can only be played if the player is out of the "
-                     "primary in time to register. Where it starts later, it is marked 'playable after the primary'. The "
-                     "fallback is conditional on written confirmation of entry rules and fit."),
+                     "alternative to it and never in addition to it. It is labelled in one of two ways, and the label is "
+                     "generated from the two published start times rather than asserted: 'playable after the primary' "
+                     "when it starts at or after the primary's estimated finish plus a 30-minute transfer, and 'replaces "
+                     "the primary' when it starts inside that session, in which case it can only be played if the player "
+                     "is out of the primary in time to register. When no published event on the date starts late enough "
+                     "to follow the primary, the plan names that out loud and marks the next-best row as a same-day "
+                     "alternative rather than presenting an impossible sequence. Every fallback is conditional on "
+                     "written confirmation of entry rules and fit."),
     "transfer": 30,
     "walkLimit": 30,
     "pokerRateRule": ("The hotel rate the budget is built on is conditional. Each night stayed needs either six hours "
@@ -2130,6 +2157,22 @@ def _fallback_reason(primary, alt):
     return "Next sheet-screened candidate on this date; entry cap still needs written confirmation."
 
 
+def _starts_after_primary_finish(primary, alt):
+    """Does `alt` start after the primary's estimated finish plus the transfer?
+
+    No venue publishes a finish time, so the primary's end is the session-length
+    assumption. A candidate that starts before that end cannot be played after the
+    primary, so it is not a fallback for the day - it is a same-day *alternative*.
+    """
+    start_alt = clock_minutes(alt["time"])
+    start_primary = clock_minutes(primary["time"])
+    end_primary = primary.get("endEstimateMin")
+    if start_alt is None or start_primary is None or end_primary is None:
+        return False
+    return start_alt >= end_primary + PLAN_NOTES["transfer"]
+
+
+
 def build_day_plan(events, start_date, end_date, recurring=()):
     """Build the one-primary-per-day plan plus the impossible-sequence flags."""
     by_date = {}
@@ -2142,20 +2185,42 @@ def build_day_plan(events, start_date, end_date, recurring=()):
         eligible = sorted([e for e in by_date[date] if _plan_eligible(e)], key=_plan_rank)
         primary = eligible[0] if eligible else None
         fallback = None
+        fallback_alternative = None
         fallback_reason = ""
         if primary:
-            rest = [e for e in eligible[1:]]
+            rest = eligible[1:]
+            # Fallback rule, applied literally: the fallback must start after the primary's
+            # estimated finish plus the transfer. A row that starts inside the primary's
+            # session is published separately as a same-day alternative, because calling it a
+            # fallback would contradict the rule printed directly beneath the plan.
             if rest:
-                fallback = rest[0]
-                fallback_reason = _fallback_reason(primary, fallback)
+                after = [e for e in rest if _starts_after_primary_finish(primary, e)]
+                if after:
+                    fallback = after[0]
+                    fallback_reason = _fallback_reason(primary, fallback)
+                else:
+                    fallback_alternative = rest[0]
+                    fallback_reason = (
+                        f"No published event on this date starts after the primary's estimated finish "
+                        f"({primary['endEstimate']}) plus the {PLAN_NOTES['transfer']}-minute transfer. The next-best "
+                        f"candidate, {rest[0]['name']} at {rest[0]['time']}, starts inside the primary's session and is "
+                        f"therefore a same-day alternative, not a fallback: it can only be played if the player is out "
+                        f"of the primary in time to register for it.")
             else:
                 others = [e for e in by_date[date]
                           if e["id"] != primary["id"] and not e["isContinuation"]
                           and e["entryType"] == "none" and not e["eligibility"]]
                 if others:
                     others.sort(key=lambda x: (not isinstance(x["guarantee"], (int, float)), x["time"]))
-                    fallback = others[0]
-                    fallback_reason = _fallback_reason(primary, fallback)
+                    if _starts_after_primary_finish(primary, others[0]):
+                        fallback = others[0]
+                        fallback_reason = _fallback_reason(primary, fallback)
+                    else:
+                        fallback_alternative = others[0]
+                        fallback_reason = (
+                            f"The only other sheet-screened candidate on this date is {others[0]['name']} at "
+                            f"{others[0]['time']}, which starts inside the primary's estimated session. It is a "
+                            f"same-day alternative, not a fallback. {_fallback_reason(primary, others[0])}")
                 else:
                     fallback_reason = ("No other sheet-screened candidate is published for this date. The multi-flight "
                                        "and series rows for this date are listed in the tournaments table.")
@@ -2186,6 +2251,10 @@ def build_day_plan(events, start_date, end_date, recurring=()):
                         detail=(f"{first['name']} at {first['time']} is estimated to end at {first['endEstimate']}; "
                                 f"{second['name']} starts at {second['time']}, which is inside the estimated session "
                                 f"plus the 30-minute transfer.")))
+        # One call, two readings: the other session's 'after/replaces' classification is
+        # derived from the same two printed clock times as the selection above, so the label
+        # on the page is generated rather than asserted.
+        sequence_status, sequence_note = _fallback_sequence(primary, fallback) if fallback else ("", "")
         plan.append(dict(
             date=date,
             weekday=datetime.date.fromisoformat(date).strftime("%A"),
@@ -2215,8 +2284,11 @@ def build_day_plan(events, start_date, end_date, recurring=()):
             fallbackWalk=WALK.get(fallback["venue"], "") if fallback else "",
             fallbackFormat=fallback["format"] if fallback else "",
             fallbackReason=fallback_reason,
-            fallbackSequence=_fallback_sequence(primary, fallback)[0],
-            fallbackSequenceNote=_fallback_sequence(primary, fallback)[1],
+            fallbackSequence=sequence_status,
+            fallbackSequenceNote=sequence_note,
+            fallbackAlternativeId=fallback_alternative["id"] if fallback_alternative else "",
+            fallbackAlternativeName=fallback_alternative["name"] if fallback_alternative else "",
+            fallbackAlternativeTime=fallback_alternative["time"] if fallback_alternative else "",
             candidates=len(eligible),
             primaryGuaranteeNote=_pool_note(primary) if primary else "",
             fallbackGuaranteeNote=_pool_note(fallback) if fallback else "",
