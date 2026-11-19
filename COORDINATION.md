@@ -6978,3 +6978,10 @@ Standing decision: **HOLD** on any nonrefundable payment, unchanged. Re-read the
 **Integration.** PR [#232](https://github.com/karagemop466-tech/Poker3/pull/232) (`arena/68df29f4-poker3` → `main`) is the integration PR for this session, merged with `gh pr merge 232 --merge`. Documentation-only (COORDINATION.md record); no site, data or workflow file changed, so no content-driven Pages rebuild was needed. GitHub Pages re-deploys on the push to `main`; Pages deploy result confirmed below.
 
 **Merge record (session `arena/68df29f4-poker3`).** PR [#232](https://github.com/karagemop466-tech/Poker3/pull/232) merged with `gh pr merge 232 --merge`; merge commit and Pages deploy result recorded below once the merge completes.
+
+### Integration record (session arena/98fa400f-poker3)
+
+- PR: [#229](https://github.com/karagemop466-tech/Poker3/pull/229) (`arena/98fa400f-poker3` into `main`). Merged with `gh pr merge 229 --merge` at 2026-11-19T19:47:48Z; merge commit `76354da`. Two rebases were needed while other sessions merged (#226, #227, #230, #231, #234). The only conflict was in this file, resolved by keeping main's log and appending this session's section.
+- PR-head checks: `transcription` pass, `verify` pass. Local: 437 tests OK; `verify_site.py` passed; `canonical_smoke.py` passed.
+- Pages: the merged state is contained in main head `6cc6404`. Workflows on that head succeeded (`pages build and deployment`, `Publish the canonical Vegas Poker Planner to GitHub Pages`, `Verify static research site`, `Official table transcription check`). Pages API: `status: built`, source `main /`, site https://karagemop466-tech.github.io/Poker3/ (the sandbox cannot load github.io directly; status confirmed through the API and run results).
+- Flag F124 is live on the flagged register (`site/flagged.html`, rendered from `site/data.json`). Open-item status: F124 open; F31, F16, F17 and the items in "Not done" above remain open.
