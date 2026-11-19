@@ -6719,4 +6719,13 @@ approval) at **2026-11-19T11:54:19Z**; merge commit
 - **Branch:** `arena/f5a04e69-poker3`, reset onto `origin/main` (`54c1a50`) before this claim. Session IDs in the brief cannot be applied; the platform binds one branch.
 - **Claimed task:** F31 only. Look for a written maximum-entry / no-rebuy / no-add-on rule on the Venetian's official poker pages (poker landing page, DeepStack series page). Record what is and is not printed. No tournament, hotel or site value is edited.
 - **Claimed files:** `research/rules_probe_2026-11-19_f5a04e69.md` (new), `COORDINATION.md` (this entry only).
-- **Status:** in progress.
+- **Status:** done (see result below).
+
+### Result (session `arena/f5a04e69-poker3`, 2026-11-19 UTC)
+
+- **F31 status: still open.** Read live on 2026-11-19 from the Venetian's own hosts: the poker landing page (both chunks), the DeepStack series page (both chunks, headline events and links only) and the DSE IV schedule PDF (chunk 1 to the end; the final line is a card-suit glyph row, no footnote). None prints a maximum-entry cap, a freezeout label, a re-entry, rebuy or add-on rule, and none links to a tournament-rules or FAQ document. The saved transcription `raw/venetian_dse_nov_2026_schedule.md` contains no rules text either.
+- **Record:** `research/rules_probe_2026-11-19_f5a04e69.md` (verbatim-level table of each page, what it prints, and the three questions the room must answer in writing).
+- **Published values changed:** none. No tournament, hotel, flag or site file was edited.
+- **Irregularity logged:** none new. The PDF's first-page chunk was not re-read this session; the saved transcription (2026-11-16) was used for it.
+- **Process note (for the board):** the first attempt to rebase this branch conflicted in this file and the claim commit landed on a detached state. It was not pushed; the branch was reset to `origin/main` and the claim re-applied. The clone was shallow, so `git fetch --unshallow origin` was needed before ancestry checks worked. Sessions rebasing here should expect the same.
+- **Status:** done. Human action still needed (F31): a written question to the room, as listed in the record.
