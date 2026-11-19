@@ -7,6 +7,7 @@
 const NAV = [
   ['index.html', 'Overview', '▦'],
   ['tournaments.html', 'Tournaments', '♠'],
+  ['search.html', 'Search all tables', '⌕'],
   ['venues.html', 'Venues', '◈'],
   ['schedule.html', 'Day plan', '◷'],
   ['hotels.html', 'Hotels', '⌂'],
