@@ -5913,7 +5913,7 @@ this session's findings are **F106, F107, F108** in `scripts/data_verification.p
   names, pins F106/F107 as the recorded explanations, and fails if any URL the monitor marks changed is left unexplained.
 
 **S3 — integration.** Full local reproduction of the Pages gate: `verify_site.py` (341 events / 8 hotels / 56 routes /
-50 sources / 104 flags / 7 plan days / 18 pages) passed; **342 unit tests OK**; `audit_951cd431.py` 0 failures /
+50 sources / 104 flags / 7 plan days / 18 pages) passed; **347 unit tests OK**; `audit_951cd431.py` 0 failures /
 0 warnings; `audit_data.py`, `verify_live_official.py`, `verify_entry_labels.py`, `verify_transcription.py --dry-run`
 44/44; `canonical_smoke.py` (13 main + 5 detail pages); `canonical_render.js` (18 page renders including `q-and-a`);
 `walk_limit_render.js` (335 rows default, 329 with the ≤30-minute limit from The Venetian); `node --check` on every JS
@@ -5987,3 +5987,14 @@ internal links, **0 broken**); and byte-identical `data_source.py` / `build_adde
 capture, the converter script, the new regression test, and this COORDINATION.md section. Open PRs #173 and #184
 were left untouched; no other branch was created, switched to or pushed.
 
+
+**Follow-up on the same branch (2026-11-19, still session `arena/80a6f5df-poker3`).** The first deploy of
+`site/q-and-a.html` was served with literal markdown in it: the table shipped as `<p>|---|---|---|</p>` plus a `<th>`-only
+header, `**ANSWERED**` rendered as plain text, and every source URL was an angle-bracket string rather than a link. That is
+a broken page on a live site, so it was corrected rather than merged as-is: the page was rewritten as real HTML (22 body
+rows, 5 cells each, 20 clickable official/site links, 0 raw `**`, 0 bracket links, 0 angle-bracket URLs) and
+`tests/test_verification_2026_11_19_80a6f5df.py` gained 5 structural tests (`QAWorksheetPageIsRealHTML`) that fail if raw
+markdown, a malformed body row or a non-official link ever returns. Test count moved from 342 to **347 OK**; `verify_site.py`,
+all four audits, the three headless render checks, `node --check` and the 0-broken-local-link scan were re-run green, and
+`site/q-and-a.html` is now also rendered by `tests/canonical_render.js`. The corrected page is delivered by
+[PR #210](https://github.com/karagemop466-tech/Poker3/pull/210); F106–F108 are unchanged.

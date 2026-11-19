@@ -152,5 +152,64 @@ class MonitorChangeFlagsAreExplained(unittest.TestCase):
                               f"{row['url']} is recorded as changed but no flag explains it")
 
 
+class QAWorksheetPageIsRealHTML(unittest.TestCase):
+    """The Q&A worksheet must be rendered HTML, not markdown that leaked into the page.
+
+    The first version of this page shipped with literal ``**labels**``, square-bracket
+    links and angle-bracket URLs in the published HTML: it rendered as plain text and
+    the source links were not clickable. This test fails if that regresses.
+    """
+
+    @classmethod
+    def setUpClass(cls) -> None:
+        cls.path = ROOT / "site" / "q-and-a.html"
+        cls.text = cls.path.read_text(encoding="utf-8")
+
+    def test_page_exists_and_is_linked(self) -> None:
+        self.assertTrue(self.path.is_file())
+        nav = (ROOT / "site" / "assets" / "app.js").read_text(encoding="utf-8")
+        self.assertIn("q-and-a.html", nav, "the Q&A worksheet is not in the navigation")
+        self.assertTrue((ROOT / "q-and-a.html").is_file(), "no root-level compatibility redirect")
+        questions = (ROOT / "site" / "questions.html").read_text(encoding="utf-8")
+        self.assertIn("q-and-a.html", questions, "the questions page does not link the worksheet")
+
+    def test_no_raw_markdown_survives(self) -> None:
+        body = self.text.split("<body", 1)[1]
+        self.assertNotIn("**", body, "raw markdown bold is published")
+        self.assertNotRegex(body, r"\[[^\]]+\]\([^)]+\)", "raw markdown link is published")
+        self.assertNotRegex(body, r"<https?://", "an angle-bracket URL is published instead of a link")
+
+    def test_table_is_well_formed(self) -> None:
+        body = self.text.split("<tbody>", 1)[1].split("</tbody>", 1)[0]
+        rows = re.findall(r"<tr>(.*?)</tr>", body, re.S)
+        self.assertEqual(len(rows), 22, "the worksheet no longer has 22 rows")
+        for index, row in enumerate(rows, start=1):
+            self.assertEqual(len(re.findall(r"<td>", row)), 5, f"row {index} does not have five cells")
+            self.assertNotIn("<th>", row, f"row {index} uses a header cell inside the body")
+        self.assertEqual(len(re.findall(r"<th>", self.text)), 5, "the header row is not five columns")
+
+    def test_every_open_row_names_what_would_close_it(self) -> None:
+        """A row marked OPEN must not be answered by a guess; it must name the next step."""
+        body = self.text.split("<tbody>", 1)[1].split("</tbody>", 1)[0]
+        for row in re.findall(r"<tr>(.*?)</tr>", body, re.S):
+            cells = re.findall(r"<td>(.*?)</td>", row, re.S)
+            self.assertEqual(len(cells), 5)
+            status, last = cells[3], cells[4]
+            if "OPEN" in status:
+                self.assertTrue(last.strip(), "an OPEN row has no next step or source in its last cell")
+
+    def test_official_links_only(self) -> None:
+        for href in re.findall(r'<a href="(https?://[^"]+)"', self.text):
+            with self.subTest(href=href):
+                self.assertTrue(
+                    any(host in href for host in (
+                        "venetianlasvegas.com", "wynnlasvegas.com", "wynnresorts.com",
+                        "caesars.com", "bellagio.mgmresorts.com", "mgmresorts.com",
+                        "karagemop466-tech.github.io", "github.com/karagemop466-tech",
+                    )),
+                    f"{href} is not an official venue/property page or this site's own publication",
+                )
+
+
 if __name__ == "__main__":
     unittest.main()
