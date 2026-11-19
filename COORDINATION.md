@@ -5835,3 +5835,27 @@ Branch: `arena/e830d773-poker3` (platform-bound single branch; `session-<id>/<ta
   - **GitHub Pages deployment:** `Publish the canonical Vegas Poker Planner to GitHub Pages` **success** ([run 44482186565](https://github.com/karagemop466-tech/Poker3/actions/runs/44482186565), build 18s + deploy 10s) and `pages build and deployment` **success** ([run 44482186298](https://github.com/karagemop466-tech/Poker3/actions/runs/44482186298)); `GET /repos/karagemop466-tech/Poker3/pages/builds/latest` returned `status: "built"`, `commit: "5f001742c69c7d9e6e5f891f3e45eaf735297bff"`, `error: null`.
   - **Live read-back:** Fetched <https://karagemop466-tech.github.io/Poker3/site/hotels.html> and <https://karagemop466-tech.github.io/Poker3/site/venues/others.html> after deployment; both serve the updated hero/dates, the five-room heading (`Bellagio, MGM Grand, Caesars Palace, Horseshoe & ARIA`), and the newly verified Caesars Palace and Horseshoe parking terms.
   - **Rebase log:** Three append-only `COORDINATION.md` rebases over PRs #200, #201–#203, and #204; all concurrent sessions' records and code were preserved in full. Open PRs `#173` and `#184` remain untouched.
+
+---
+
+## Session `arena/ec2e968c-poker3` — full-requirements audit, fresh 2026-11-19 official re-read, integration (2026-11-19 UTC)
+
+**Branch:** `arena/ec2e968c-poker3`, branched from `main` at `5c42d7f` (merge of PR #206). The platform binds this
+session to one branch, so the brief's `session-<id>/<task>` naming cannot be applied; prior sessions recorded the same
+constraint. **No new branch is created or switched to.** At claim time the open PRs were **#173** (`arena/a33db3c1-poker3`)
+and **#184** (`arena/5cfdd619-poker3`), both reported by GitHub as `CONFLICTING`; this session does not touch, close,
+merge or edit either branch or its files. No other session had committed since the branch point at claim time, so this
+session acts as **final integration owner** for the shared outputs (`site/**` index and navigation, `site/data.json`,
+`site/coverage.json`). If another session lands a claim while this branch is open, this session will rebase, keep every
+record, and log the handoff here.
+
+**Claim (committed and pushed before any other work).** Scope: `COORDINATION.md`, `site/**`, `scripts/**`, `tests/**`,
+`research/**`, `raw/**`, `README.md` — the whole repository, as integration owner. No other session's claimed files are
+being modified.
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| P1 Repo review: read the published data line by line against freshly fetched official sources; log every irregularity | in progress | `arena/ec2e968c` | `research/` (new dated record), `site/data.json` flag register | Live reads only; no value inferred; blanks stay blank. |
+| P2 Requirements audit: check every instruction in the brief against the shipped site; close any remaining gap | in progress | `arena/ec2e968c` | `site/**`, `scripts/**`, `tests/**` | Includes the date filter, structured rule fields, overlap check, walk check, scheduled change monitoring, last-checked dates, dated rate log, one page per venue, global search, calculator. |
+| P3 Advance `lastChecked` only where an official source was actually re-read today; leave the rest and say so | pending | `arena/ec2e968c` | `scripts/data_venetian.py`, `scripts/data_venues.py` | A date may not advance without a read behind it. |
+| P4 Final verification: unit suite, every verification script, link scan, reproducible rebuild, then PR → `main` → merge → Pages confirmation → record here | pending | `arena/ec2e968c` | whole repo (integration) | Flagged irregularities and unverified items do not block the merge; they stay published on the Flagged for review page. |
