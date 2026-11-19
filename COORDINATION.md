@@ -5096,3 +5096,4 @@ Calculator audit done: removed misleading single-night quote preset, rendered th
 | Task | Status | Owner session | Scope | Notes |
 |---|---|---|---|---|
 | Repair stray conflict-marker lines in the coordination board and add a regression check | in progress | `arena/5cfdd619-poker3` | `COORDINATION.md`, `tests/test_coordination_integrity.py` | Preserve all session records; integration and tournament-data work are outside this claim. Branch naming is fixed by the platform. |
+| Prevent incomplete calculator inputs from producing misleading totals and remove the one-night quote preset | in progress | `arena/5cfdd619-poker3` | `site/calculator.html`, `scripts/trip_cost.py`, `tests/test_calculator_missing_inputs.py`, `tests/test_calculator_page.py` | No dataset or sourced values change. Empty inputs are unknown, not zero; retain explicit zero. |
