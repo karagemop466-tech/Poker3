@@ -4529,3 +4529,9 @@ The documentation follow-up preserved both the #156 and #159 board entries when 
 - GitHub Pages: Pages API reports `status: built`, source `main` `/`, https://karagemop466-tech.github.io/Poker3/ . The "Publish the canonical Vegas Poker Planner to GitHub Pages" workflow completed `success` on the post-merge main tip.
 - PRs #112 and #130 closed as superseded with explanatory comments (both unmergeable — no merge base against `main`; #112's quote + walk matrix already on `main`, its walk-direction fix re-implemented in #153; #130's three fixes re-implemented in #153).
 - Open flags (published on `site/flagged.html`, do not block): F31, F17, F16, F39, F56, F15/F36/F57, F92. F92 (Venetian poker page wording change, 2026-11-18 20:24 UTC) still needs a manual re-read before nonrefundable payment.
+
+## Session `arena/7d533b48-poker3` — claim: fresh official re-read of the open pre-payment flags (2026-11-19 UTC)
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| Re-read the official Venetian poker page (F92 wording change), the primary DSE IV schedule rows for the 23–29 Nov trip window, the resort-fee/tax terms and the 8 AM question (F17); record the results with fetch dates and links; publish any change as a flag, never silently edit a value | in progress | `arena/7d533b48-poker3` | `research/reread_2026-11-19_7d533b48.md` (new), `site/flagged.html`, `COORDINATION.md` | Shared data (`scripts/data_*.py`, `site/data.json`), calculator, workflows and open PRs are not edited by this claim. Baseline on `main` 23ad5d8: 228 unit tests OK, `verify_site.py` passed. |
