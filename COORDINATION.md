@@ -4409,6 +4409,15 @@ No live official-source claim is made by this infrastructure task. Source verifi
 
 PRs #112 and #130 remain open and own the shared model, calculator, and several generator files; this claim does not edit their scopes (other than appending to the shared board). The canonical site and morning jobs already exist. Branch name is platform-assigned. No other sessions started here.
 
+6a0b16d7 scope clarification: replace the retired homepage trip-card / top-picks hook checks in `tests/canonical_smoke.py` with checks for the source-audited summary and evidence table. No open PR lists this file. The dated audit can be rendered as static HTML without a second JavaScript data loader.
+
+6a0b16d7 conflict log: simultaneous board appends; preserved both complete sections. The separate Nov 19 publication-verification note on the flags page is also preserved.
+
+**6a0b16d7 verification:** [Dated audit and official links](research/decision-audit-2026-11-19.md). Read all seven primary sheets against the current Venetian schedule, verified the poker-rate terms, attempted exact-stay checkout. No written cap or updated price. 209 unit tests, canonical smoke/render and link checks passed locally. No new verification date assigned to the rest of the catalog.
+
+Integration: [PR #157](https://github.com/karagemop466-tech/Poker3/pull/157). Concurrent board appends caused merge/rebase conflicts; aborted replay, integrated main, and retained all other session notes.
+
+
 - Integration conflict log: concurrent PR #150 appended to the same board. Aborted the initial rebase and merged current main; retained both complete append sections without discarding other work. Local `.venv/` is excluded through `.git/info/exclude` only.
 ## Session `arena/25d4bbd4-poker3` — publication verification (2026-11-19 UTC)
 
@@ -4427,9 +4436,22 @@ The board already exists on main. PRs #112 and #130 overlap the shared catalog a
 - Pages run [44465978020](https://github.com/karagemop466-tech/Poker3/actions/runs/44465978020) completed **success**: blocking evidence/link checks, regression/render checks, artifact upload and deployment all passed.
 - Published dashboard: https://karagemop466-tech.github.io/Poker3/ . Deployment confirmed through GitHub Actions; this sandbox cannot independently fetch github.io or official venue hosts. No fresh live verification is claimed.
 - A second concurrent append conflict while integrating main was also resolved by preserving both full records. All scopes completed; remaining factual gaps are the existing site flags, not resolved by this CI change.
+---
 
-6a0b16d7 scope clarification: replace the retired homepage trip-card / top-picks hook checks in `tests/canonical_smoke.py` with checks for the source-audited summary and evidence table. No open PR lists this file. The dated audit can be rendered as static HTML without a second JavaScript data loader.
+## Session `arena/b2b32640-poker3` — scheduled evidence publication (2026-11-19 UTC)
 
-6a0b16d7 conflict log: simultaneous board appends; preserved both complete sections. The separate Nov 19 publication-verification note on the flags page is also preserved.
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Audit the latest canonical monitoring record and verify that scheduled updates actually reach GitHub Pages; correct publication or verification defects without touching venue facts | in progress | `arena/b2b32640-poker3` | `.github/workflows/pages.yml`, `.github/workflows/checks.yml`, `.github/workflows/source-monitor.yml`, new publication tests or research audit, this board |
 
-**6a0b16d7 verification:** [Dated audit and official links](research/decision-audit-2026-11-19.md). Read all seven primary sheets against the current Venetian schedule, verified the poker-rate terms, attempted exact-stay checkout. No written cap or updated price. 209 unit tests, canonical smoke/render and link checks passed locally. No new verification date assigned to the rest of the catalog.
+Claim scoped against open PRs #112 and #130. Their shared data, calculator, monitoring implementation, hotel and UI files are not part of this claim. Using the platform-assigned branch; integration to `main` will be via PR, not a direct push.
+
+Scope clarification (no overlap with either open PR): `site/sources.html`, `site/assets/feed.js`, `site/assets/search.js`, and targeted tests may be used to surface the published feed index. Existing source-check logic, UI shared renderer, official data and rate evidence remain out of scope. Open handoff: the live landing page shows a one-cent rounding artifact and stale entry/day-count copy; exact arithmetic work is already in #130, and combined data/quote review in #112. Do not treat those open changes as published.
+
+**Implementation complete; integration checks passed locally.** Source log now displays each recorded feed attempt with timestamp, official link, HTTP outcome and saved text if available. Global search includes these records. The Pages publisher keeps the existing blocking gate from #152, follows successful same-repository monitor runs, and stages both public paths (the legacy branch build can still serve the redirect). Relied on #151 for the overlapping workflow scopes; did not modify either monitor's data or logic. Rebase conflicts from #150 and #151/#152 were resolved by retaining both board entries; all of #152's build checks were retained.
+
+**Evidence and irregularities.** The 2026-11-18 canonical monitor recorded 83 successful fetches and 21 unavailable out of 104 official URLs; only the [Venetian poker-room page](https://www.venetianlasvegas.com/resort/casino/poker.html) triggered a visible-text hash change. This does not prove that a tournament value changed. The feed recorded 13 attempts, 8 HTTP successes and 4 saved text snapshots across 7 configured rooms. Reopened the [official DSE IV schedule](https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html) and read the [#10 structure](https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_6.pdf) and [#14 structure](https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf) for spot checks: published fees, guarantees and registration terms agree with the catalog; neither sheet prints a maximum-entry rule or a committed finish time. The [official booking link](https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar) returned the reservation shell without a checkout total in this read. No historical quote was refreshed. The full offline DSE/WPT comparisons matched 94/94 and 136/136 captured rows, with 32 blank Venetian continuation cells and eight Wynn weekday conflicts already disclosed on the [review page](https://karagemop466-tech.github.io/Poker3/site/flagged.html). No tournament or hotel values were changed.
+
+**Checks:** 208 unit tests, canonical render and links, both full transcription comparisons, independent arithmetic/entry-label checks, and byte-identical staged feeds at both public paths.
+
+**Integration record:** [PR #154](https://github.com/karagemop466-tech/Poker3/pull/154) (main). Its timeline is the authoritative merge result; the [GitHub Pages environment](https://github.com/karagemop466-tech/Poker3/deployments/github-pages) records the deployment for the merge SHA. Public validation target: [Source log → Morning daily room feed](https://karagemop466-tech.github.io/Poker3/site/sources.html#morning-feed).

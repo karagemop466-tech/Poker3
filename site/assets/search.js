@@ -1,5 +1,5 @@
 /* Global search for every data-backed table in the canonical dashboard.
- * Values and URLs are read only from site/data.json and site/checks.json.
+ * Values and URLs are read only from the catalog, checks and feed records.
  */
 'use strict';
 
@@ -36,6 +36,7 @@
 
   let catalog = null;
   let checks = null;
+  let feedRecord = null;
   let records = [];
 
   function venueName(id) {
@@ -161,6 +162,16 @@
     (catalog.feed || []).forEach((feed) => addRecord({
       type: 'Morning schedule feed', title: feed.name, detail: 'Official schedule source and extra series pages',
       checked: catalog.asOf || '', sourceUrls: [feed.schedule, ...(feed.extra || [])], searchable: flatten(feed),
+    }));
+
+    (feedRecord && feedRecord.rooms || []).forEach((room) => (room.pages || []).forEach((page) => {
+      const fetched = /^HTTP 2\d\d$/.test(page.status);
+      addRecord({
+        type: 'Morning feed attempt', title: room.name, when: feedRecord.date || '',
+        detail: [fetched ? 'Fetched' : 'Unavailable to feed', page.status,
+          fetched && page.snapshot ? 'Text snapshot recorded' : 'No text captured'].filter(Boolean).join(' · '),
+        checked: room.fetched || feedRecord.generated || '', sourceUrls: [page.url],
+      });
     }));
 
     (catalog.stripRooms || []).forEach((room) => addRecord({
@@ -342,9 +353,11 @@
       return response.json();
     }),
     fetch('checks.json').then((response) => response.ok ? response.json() : null).catch(() => null),
-  ]).then(([data, checkData]) => {
+    fetch('feed/index.json').then((response) => response.ok ? response.json() : null).catch(() => null),
+  ]).then(([data, checkData, feedData]) => {
     catalog = data;
     checks = checkData;
+    feedRecord = feedData;
     indexCatalog();
     render(input.value);
   }).catch(() => {
