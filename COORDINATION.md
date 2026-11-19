@@ -5807,3 +5807,15 @@ merge commit **`31b2c5863fd4877727b341f737dddac76bca878d`**. It was not held for
 - **Documentation-only delivery:** this final record is transported to `main` by
   [PR #204](https://github.com/karagemop466-tech/Poker3/pull/204) from the same branch;
   it changes no source-backed value, page, script or workflow. Open PRs #173 and #184 remain untouched.
+
+---
+
+## Session `arena/e830d773-poker3` — official Caesars parking verification, 2026-11-16/17 non-Venetian source re-reads, and page/coverage accuracy (2026-11-19 UTC)
+
+Branch: `arena/e830d773-poker3` (platform-bound single branch; `session-<id>/<task>` branch naming cannot be applied). Claim committed and pushed immediately before any edits. Non-overlapping with open PRs `#173` (`arena/a33db3c1-poker3`) and `#184` (`arena/5cfdd619-poker3` — calculator/trip_cost).
+
+| Task | Status | Owner session | Scope (files) | Notes |
+|---|---|---|---|---|
+| E1 Official Caesars Entertainment parking verification + `hotels.html` / `venues.html` / `flagged.html` / `venues/others.html` line-by-line accuracy | in progress | `arena/e830d773-poker3` | `scripts/data_hotels.py`, `site/hotels.html`, `site/venues.html`, `site/flagged.html`, `site/venues/others.html` | Populate Caesars Palace ($20/day guest self-parking, $50/day valet) and Horseshoe ($20 Mon–Wed / $25 Thu–Sun self-parking, $40/day valet) from `https://www.caesars.com/parking`; fix `<span data-asof>` mis-stamping 2026-11-16/17 historical observations as 2026-11-19, hero self-contradiction on `hotels.html`, stale MGM/ARIA resort-fee claims, wrong flag citations (`F78/F79/F80` → `F79/F80/F85`) on `venues.html`, and `venues/others.html` five-room heading/copy mismatch. |
+| E2 Line-by-line 2026-11-19 official verification of remaining `2026-11-16` / `2026-11-17` non-Venetian sources | in progress | `arena/e830d773-poker3` | `research/reread_2026-11-19_arena-e830d773.md` (new), `scripts/data_venues.py` | Read and compare `Wynn_Signature_Series_Schedule.pdf` (38 rows currently at 2026-11-16), `Poker-All_Daily_Structures.pdf`, `WPT_World_Championship_Structures.pdf`, `bellagio.mgmresorts.com/en/hotel.html`, `mandalaybay.mgmresorts.com/en/casino/poker-tables.html`, `caesars.com/parking`, and official Planet Hollywood / Resorts World casino pages. Advance read dates only where confirmed; never infer missing values. |
+| E3 Traceability matrix & README sync, regression tests, integration, PR → `main`, merge, and GitHub Pages confirmation | pending | `arena/e830d773-poker3` | `scripts/coverage.py`, `site/coverage.json`, `README.md`, `tests/test_caesars_parking_and_page_accuracy_e830d773.py` (new), integration outputs (`scripts/data_source.py`, `site/data.json`, `site/sheets.html`, `COORDINATION.md`) | Fix `scripts/coverage.py` C9 flag citation (`F79` → `F86`); keep `README.md` and `site/coverage.json` synchronized; add page-accuracy and Caesars-parking regression tests; rebase cleanly onto `main` keeping all concurrent sessions' work intact. |
