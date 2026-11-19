@@ -461,7 +461,8 @@ FLAGS = [
          title="Venetian NYE schedule prints 'Saturday, December 26, 2025' for three events",
          detail=("Events 5, 6 and 7 of the DeepStack Extravaganza NYE page are dated 'Saturday, December 26, 2025' even though "
                  "the series runs December 24, 2026 to January 10, 2027. The page also misspells 'Tuesaday'. The rows are kept "
-                 "at 2026-12-26 and the printed label is flagged here."),
+                 "at 2026-12-26 and the printed label is flagged here. Re-read on 2026-11-19: both printed defects are still "
+                 "on the live page, unchanged, and all 49 rows on it matched the published catalog line by line."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html"),
     dict(id="F05", area="Venetian DSE IV", severity="Low",
          title="Structure sheet 13 cross-references the wrong companion sheet",
@@ -2984,6 +2985,31 @@ def build():
                                         "verified against two independent same-day captures; no value changed"))
             n_third += 1
     assert n_third == 94, f"2026-11-19 live pass: expected 94 DeepStack Extravaganza IV rows, got {n_third}"
+
+    # ------------------------------------------------------------ fourth live pass, 2026-11-19 (session arena/7d96049f)
+    # The DeepStack Extravaganza NYE page was read in full on 2026-11-19 (both chunks of the page
+    # reader's markdown) and transcribed in raw/venetian_dse_nye_live_2026-11-19_7d96049f.md; the
+    # verbatim reader output is in raw/venetian_dse_nye_schedule_live_2026-11-19_7d96049f.md.
+    # scripts/verify_nye_live_2026_11_19.py compares all 49 published rows with it on date, start
+    # time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link.
+    # All 49 agree and no value changed, so only the read date moves.
+    #
+    # lastVerified deliberately stays 2026-11-17 on these rows: the 15 NYE structure SHEETS were not
+    # re-read today, and a row may not claim a re-verification on a day its own sheet was not read.
+    # That is the same rule tests/test_index_evidence_labels.py enforces for the DeepStack IV rows.
+    NYE_URL = ("https://www.venetianlasvegas.com/resort/casino/poker/"
+               "deepstack-extravaganza-poker-tournament/dse-dec-2026.html")
+    n_fourth = 0
+    for e in events:
+        if e["venue"] == "venetian" and (e.get("scheduleUrl") or "") == NYE_URL:
+            e["lastChecked"] = LIVE_2026_11_19
+            e["recheck"] = dict(
+                date=LIVE_2026_11_19, source=NYE_URL,
+                result=("matched the live official page on date, start time, event number, printed name, "
+                       "printed buy-in, printed guarantee and structure-sheet link; the sheet behind this "
+                       "row was last read 2026-11-17 and was not re-read today, so lastVerified stays there"))
+            n_fourth += 1
+    assert n_fourth == 49, f"2026-11-19 NYE live pass: expected 49 rows, got {n_fourth}"
 
     SOURCES_2026_11_19 = {
         DSE_NOV_URL,

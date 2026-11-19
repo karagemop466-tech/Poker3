@@ -49,7 +49,7 @@
       "status": "shipped",
       "location": "site/data.json (lastChecked / lastVerified) + per-row display",
       "flags": [],
-      "note": "Every tournament, hotel, walking-route and source record carries a retrieval date, and the distribution is derived from site/data.json at build time so it cannot go stale: 49 of 341 event rows last checked 2026-11-17, 292 of 341 event rows last checked 2026-11-19."
+      "note": "Every tournament, hotel, walking-route and source record carries a retrieval date, and the distribution is derived from site/data.json at build time so it cannot go stale: 341 of 341 event rows last checked 2026-11-19."
     },
     {
       "id": "C5",
