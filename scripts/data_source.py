@@ -375,13 +375,13 @@ SOURCES = [
          type="official room page", checked=RECHECKED),
     dict(id="bell-fri", name="Bellagio Friday $600 No Limit Hold'em structure",
          url="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf",
-         type="official structure", checked=LAST_PASS),
+         type="official structure", checked=LAST_PASS_2026_11_19),
     dict(id="bell-sat", name="Bellagio Saturday No Limit Hold'em structure (buy-in conflict)",
          url="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf",
-         type="official structure", checked=LAST_PASS),
+         type="official structure", checked=LAST_PASS_2026_11_19),
     dict(id="bell-sun", name="Bellagio Sunday $400 H.O.R.S.E. structure",
          url="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt07fcf1244a6da661/6af491a339e2b4f6b76a86ad/mgm-bellagio-poker-sundays-$400-horse.pdf",
-         type="official structure", checked=LAST_PASS),
+         type="official structure", checked=LAST_PASS_2026_11_19),
     dict(id="bell-hotel", name="Bellagio hotel rooms and suites", url="https://bellagio.mgmresorts.com/en/hotel.html",
          type="official room page", checked=LAST_PASS),
     dict(id="bell-terms", name="Bellagio hotel reservation terms (resort fee, cancellation, taxes)",
@@ -389,24 +389,24 @@ SOURCES = [
     dict(id="mandalay-poker", name="Mandalay Bay poker room page (hours, price range; no tournament schedule printed)",
          url="https://mandalaybay.mgmresorts.com/en/casino/poker-tables.html", type="official poker page", checked="2026-11-17"),
     dict(id="mgm-poker", name="MGM Grand poker room page", url="https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
-         type="official room page", checked=LAST_PASS),
+         type="official room page", checked=LAST_PASS_2026_11_19),
     dict(id="mgm-sched", name="MGM Grand weekly tournament schedule sheet",
          url="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
-         type="official schedule", checked=LAST_PASS),
+         type="official schedule", checked=LAST_PASS_2026_11_19),
     dict(id="mgm-struct", name="MGM Grand $120 No Limit Hold'em structure",
          url="https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/bltb2a45da7e8ee5621/mgm-grand-casino-poker-120_nlh.pdf",
-         type="official structure", checked=LAST_PASS),
+         type="official structure", checked=LAST_PASS_2026_11_19),
     dict(id="caesars-poker", name="Caesars Palace and Horseshoe poker tournament page",
          url="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-         type="official room page", checked=LAST_PASS),
+         type="official room page", checked=LAST_PASS_2026_11_19),
     dict(id="caesars-flyer", name="Caesars Palace daily No-Limit Hold'em tournament flyer 2026 (linked from the official Caesars Palace casino page, 'View Schedule')",
          url="https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
-         type="official tournament flyer", checked="2026-11-18"),
+         type="official tournament flyer", checked=LAST_PASS_2026_11_19),
     dict(id="aria-poker", name="ARIA poker room page", url="https://aria.mgmresorts.com/en/casino/poker.html",
-         type="official room page", checked=LAST_PASS),
+         type="official room page", checked=LAST_PASS_2026_11_19),
     dict(id="aria-guide", name="ARIA official poker guide (undated)",
          url="https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
-         type="official guide", checked=ASOF),
+         type="official guide", checked=LAST_PASS_2026_11_19),
     # --- Added by the live re-verification of 2026-11-17 -------------------
     *[dict(name=v["name"], url=v["url"], type=v["type"], checked=v["checked"])
       for v in VERIFIED_SOURCES_2026_11_17],
@@ -2887,7 +2887,10 @@ def build():
         "https://aria.mgmresorts.com/en/casino/poker.html",
     }
     for src in SOURCES:
-        if src["url"] in RECHECKED_URLS:
+        # A source re-read again on 2026-11-19 (this session's pass and arena/827185f7's
+        # F95 batch) keeps the later date; this 2026-11-17 pass must not drag a newer
+        # manual read backwards.
+        if src["url"] in RECHECKED_URLS and src.get("checked") not in (LIVE_2026_11_19, LAST_PASS_2026_11_19):
             src["checked"] = RECHECKED
     for e in events:
         if e["scheduleUrl"] in RECHECKED_URLS or e["sheetUrl"] in RECHECKED_URLS:
@@ -2896,8 +2899,56 @@ def build():
             if body.get("source") in RECHECKED_URLS:
                 body["retrieved"] = RECHECKED
     for h in hotels:
-        if h.get("id") in ("venetian", "palazzo", "wynn", "bellagio"):
+        # Same guard: the 2026-11-19 pass above already moved these rows; do not drag
+        # lastChecked back to 2026-11-17.
+        if h.get("id") in ("venetian", "palazzo", "wynn", "bellagio") and h.get("lastChecked") != LIVE_2026_11_19:
             h["lastChecked"] = RECHECKED
+
+    # Fourth re-read pass (session arena/23505d42-poker3, 2026-11-19). These are exactly
+    # the URLs this session fetched and read by hand; every published value matched
+    # (verbatim record: research/reread_2026-11-19_arena-23505d42.md; flag F95 records
+    # the same six-URL batch read independently by arena/827185f7, and flags
+    # F92/F91/F56/F03/F90 were each re-confirmed). Rows whose schedule or sheet source
+    # is one of these URLs move their row dates to this pass; rules excerpts read from
+    # them move their retrieval date with them. The set is explicit rather than derived
+    # from `checked` dates so it cannot reach rows whose 2026-11-19 stamp comes from a
+    # different session's pass (e.g. the DSE IV schedule page, read again by session
+    # arena/9b858e66, whose 94 rows keep their own read dates). Row dates follow the
+    # row's primary sources only: the Wynn Signature structures file was re-read today
+    # (still "COMING SOON", F56), but those rows' values come from the schedule PDF, so
+    # citing the structures file in a rule body must not move the row. Only a manual
+    # read moves a date here — the scheduled monitor's byte-stable hashes stay in
+    # site/checks.json and deliberately do not touch these fields.
+    REREAD_2026_11_19_URLS = {
+        "https://www.venetianlasvegas.com/resort/casino/poker.html",
+        "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html",
+        "https://www.wynnlasvegas.com/casino/poker",
+        "https://www.wynnlasvegas.com/about-us/resort-information",
+        "https://www.wynnlasvegas.com/about-us/parking",
+        "https://www.wynnlasvegas.com/rooms-and-suites",
+        "https://www.wynnlasvegas.com/terms-and-conditions/850070",
+        "https://cdn.wynnresorts.com/image/upload/v1762299460/visitwynn_pdfs_files/Poker/"
+        "Wynn%20Signature%20Series/Wynn_Signature_Series_Structures.pdf",
+        "https://bellagio.mgmresorts.com/en/casino/poker.html",
+        "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf",
+        "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf",
+        "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt07fcf1244a6da661/6af491a339e2b4f6b76a86ad/mgm-bellagio-poker-sundays-$400-horse.pdf",
+        "https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
+        "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
+        "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/bltb2a45da7e8ee5621/mgm-grand-casino-poker-120_nlh.pdf",
+        "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
+        "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
+        "https://aria.mgmresorts.com/en/casino/poker.html",
+        "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
+    }
+    for e in events:
+        primary = {e.get("scheduleUrl") or "", e.get("sheetUrl") or ""} & REREAD_2026_11_19_URLS
+        if primary:
+            e["lastChecked"] = LAST_PASS_2026_11_19
+            e["lastVerified"] = LAST_PASS_2026_11_19
+            for body in e["rules"].values():
+                if body.get("source") in REREAD_2026_11_19_URLS:
+                    body["retrieved"] = LAST_PASS_2026_11_19
 
     recurring_events = [e for e in events if not e["date"] and e.get("weekdays")]
     plan, conflicts = build_day_plan(events, TRIP["start"], TRIP.get("playableEnd", TRIP["end"]), recurring_events)

@@ -19690,25 +19690,25 @@
      "status": "multiple-entries",
      "excerpt": "Players may buy-in and re-enter through the end of level 8 (Including Break).",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "reEntry": {
      "status": "allowed",
      "excerpt": "Players may buy-in and re-enter through the end of level 8 (Including Break).",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "addOn": {
      "status": "paid-chip-gratuity",
      "excerpt": "There is a voluntary Staff gratuity of $40, at registration only. The voluntary staff gratuity will grant players an extra 15,000 chips.",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "fee": {
      "status": "confirmed",
      "excerpt": "The $600 Buy-In is allocated as follows: $510 to Prize Pool; $50 House Fee; $40 Voluntary Staff Gratuity.",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     }
    },
    "category": "extra",
@@ -19730,8 +19730,8 @@
    "sheetUrl": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf",
    "scheduleUrl": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf",
    "structureUrl": "https://bellagio.mgmresorts.com/en/casino/poker.html",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "The optional $40 staff gratuity buys 15,000 extra chips, so paying more raises your stack. No guarantee is printed on the sheet.",
    "eligibility": "",
    "status": "recurring"
@@ -19751,25 +19751,25 @@
      "status": "source-conflict",
      "excerpt": "The PDF header reads 'NLH $1100 BUY-IN', the poker-room page link reads '$1,000 NLH', and rule 07 reads 'Of the $600 Buy-in, $510 goes to the Prize Pool, $50 is Admin Fees and $40 is optional staff gratuity.'",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "reEntry": {
      "status": "not-verified",
      "excerpt": "No re-entry clause appears on the sheet; the entry fee itself is in conflict, so the event is not ranked.",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "addOn": {
      "status": "paid-chip-gratuity",
      "excerpt": "There is a voluntary staff gratuity of $40, at registration only. The voluntary staff gratuity will grant players an extra 20,000 chips.",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "fee": {
      "status": "source-conflict",
      "excerpt": "Buy-in printed as $1,100 in the sheet header, $1,000 in the page link, and $600 in rule 07.",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     }
    },
    "category": "conflict",
@@ -19791,8 +19791,8 @@
    "sheetUrl": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf",
    "scheduleUrl": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf",
    "structureUrl": "https://bellagio.mgmresorts.com/en/casino/poker.html",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Not ranked: the official sources disagree on the buy-in. The sheet also references a 'Combined Final Day 2 (9/13/26)' date.",
    "eligibility": "",
    "status": "recurring"
@@ -19812,25 +19812,25 @@
      "status": "multiple-entries",
      "excerpt": "Players may buy-in and re-enter through the end of level 8 (Including Break).",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt07fcf1244a6da661/6af491a339e2b4f6b76a86ad/mgm-bellagio-poker-sundays-$400-horse.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "reEntry": {
      "status": "allowed",
      "excerpt": "Players may buy-in and re-enter through the end of level 8 (Including Break).",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt07fcf1244a6da661/6af491a339e2b4f6b76a86ad/mgm-bellagio-poker-sundays-$400-horse.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "addOn": {
      "status": "paid-chip-gratuity",
      "excerpt": "A voluntary Staff gratuity of $25, at registration only, will grant players an additional 15,000 in starting chips.",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt07fcf1244a6da661/6af491a339e2b4f6b76a86ad/mgm-bellagio-poker-sundays-$400-horse.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "fee": {
      "status": "confirmed",
      "excerpt": "The $400 Buy-In is allocated as follows: $340 to Prize Pool; $35 House Fee; $25 Voluntary Staff Gratuity.",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt07fcf1244a6da661/6af491a339e2b4f6b76a86ad/mgm-bellagio-poker-sundays-$400-horse.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     }
    },
    "category": "extra",
@@ -19852,8 +19852,8 @@
    "sheetUrl": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt07fcf1244a6da661/6af491a339e2b4f6b76a86ad/mgm-bellagio-poker-sundays-$400-horse.pdf",
    "scheduleUrl": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt07fcf1244a6da661/6af491a339e2b4f6b76a86ad/mgm-bellagio-poker-sundays-$400-horse.pdf",
    "structureUrl": "https://bellagio.mgmresorts.com/en/casino/poker.html",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Payout structure is approximately 12.5% of the field. No guarantee is printed on the sheet.",
    "eligibility": "",
    "status": "recurring"
@@ -19873,25 +19873,25 @@
      "status": "not-verified",
      "excerpt": "The poker-room page lists 'PLO Double Bomb Pot ... nightly at 6 PM' without a structure sheet, so entry terms are not published in the reviewed material.",
      "source": "https://bellagio.mgmresorts.com/en/casino/poker.html",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "reEntry": {
      "status": "not-verified",
      "excerpt": "No structure sheet was located for this event in the reviewed material.",
      "source": "https://bellagio.mgmresorts.com/en/casino/poker.html",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "addOn": {
      "status": "not-verified",
      "excerpt": "No structure sheet was located for this event in the reviewed material.",
      "source": "https://bellagio.mgmresorts.com/en/casino/poker.html",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "fee": {
      "status": "partial",
      "excerpt": "The $300 buy-in appears only in the page notice 'Tournament play will resume on Saturday, July 26, beginning with the $300 PLO Double Board Bomb Pot Tournament at 2 PM PT.'",
      "source": "https://bellagio.mgmresorts.com/en/casino/poker.html",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     }
    },
    "category": "recurring",
@@ -19919,8 +19919,8 @@
    "sheetUrl": "https://bellagio.mgmresorts.com/en/casino/poker.html",
    "scheduleUrl": "https://bellagio.mgmresorts.com/en/casino/poker.html",
    "structureUrl": "https://bellagio.mgmresorts.com/en/casino/poker.html",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Start-time conflict: the page highlights say 6 PM nightly, the page notice says 2 PM PT. The 'July 26' notice carries no year.",
    "eligibility": "",
    "status": "recurring"
@@ -19940,25 +19940,25 @@
      "status": "multiple-entries",
      "excerpt": "Sunday through Friday - All players with 5 entries into daily tournaments will receive one (1) free entry into the Saturday $150 NLH - $2,000 Guarantee.",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "reEntry": {
      "status": "implied-multiple",
      "excerpt": "The same promotion counts five entries into the daily tournaments, so repeated entries are expected and rewarded.",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "addOn": {
      "status": "paid-chip-gratuity",
      "excerpt": "Each initial $120 buy-in is allocated as follows: $92 to Prize Pool, $13 House Fee and a onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips.",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/bltb2a45da7e8ee5621/mgm-grand-casino-poker-120_nlh.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-19"
     },
     "fee": {
      "status": "confirmed",
      "excerpt": "Each initial $120 buy-in is allocated as follows: $92 to Prize Pool, $13 House Fee and a onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips. $4 will fund Tournament Promotions.",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/bltb2a45da7e8ee5621/mgm-grand-casino-poker-120_nlh.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-19"
     }
    },
    "category": "recurring",
@@ -19985,8 +19985,8 @@
    "sheetUrl": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
    "scheduleUrl": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
    "structureUrl": "https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "The published weekly schedule PDF is headed 'MGM Grand August Tournament Schedule', so the month on the sheet is not current.",
    "eligibility": "",
    "status": "recurring"
@@ -20006,25 +20006,25 @@
      "status": "multiple-entries",
      "excerpt": "Sunday through Friday - All players with 5 entries into daily tournaments will receive one (1) free entry into the Saturday $150 NLH - $2,000 Guarantee.",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "reEntry": {
      "status": "implied-multiple",
      "excerpt": "The promotion counts five entries into the daily tournaments.",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "addOn": {
      "status": "paid-chip-gratuity",
      "excerpt": "A onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips.",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/bltb2a45da7e8ee5621/mgm-grand-casino-poker-120_nlh.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-19"
     },
     "fee": {
      "status": "confirmed",
      "excerpt": "Each initial $120 buy-in is allocated as follows: $92 to Prize Pool, $13 House Fee and a onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips.",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/bltb2a45da7e8ee5621/mgm-grand-casino-poker-120_nlh.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-19"
     }
    },
    "category": "recurring",
@@ -20052,8 +20052,8 @@
    "sheetUrl": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
    "scheduleUrl": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
    "structureUrl": "https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Registration is open until Level 8 per the $120 structure sheet.",
    "eligibility": "",
    "status": "recurring"
@@ -20073,25 +20073,25 @@
      "status": "multiple-entries",
      "excerpt": "Sunday through Friday - All players with 5 entries into daily tournaments will receive one (1) free entry into the Saturday $150 NLH - $2,000 Guarantee.",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "reEntry": {
      "status": "implied-multiple",
      "excerpt": "The promotion counts five entries into the daily tournaments.",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "addOn": {
      "status": "paid-chip-gratuity",
      "excerpt": "A onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips.",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/bltb2a45da7e8ee5621/mgm-grand-casino-poker-120_nlh.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-19"
     },
     "fee": {
      "status": "confirmed",
      "excerpt": "Each initial $120 buy-in is allocated as follows: $92 to Prize Pool, $13 House Fee and a onetime, voluntary gratuity of $11 which grants players an extra 10,000 chips.",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/bltb2a45da7e8ee5621/mgm-grand-casino-poker-120_nlh.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-19"
     }
    },
    "category": "recurring",
@@ -20119,8 +20119,8 @@
    "sheetUrl": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
    "scheduleUrl": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
    "structureUrl": "https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "No guarantee is printed on the $120 sheet.",
    "eligibility": "",
    "status": "recurring"
@@ -20140,25 +20140,25 @@
      "status": "multiple-entries",
      "excerpt": "Sunday through Friday - All players with 5 entries into daily tournaments will receive one (1) free entry into the Saturday $150 NLH - $2,000 Guarantee.",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "reEntry": {
      "status": "implied-multiple",
      "excerpt": "The prize is earned by taking five entries in the daily tournaments.",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "addOn": {
      "status": "paid-chip-gratuity",
      "excerpt": "The $120 daily structure sheet provides a $11 optional gratuity for 10,000 extra chips; the $150 structure was not published on the poker-room page.",
      "source": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/bltb2a45da7e8ee5621/mgm-grand-casino-poker-120_nlh.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-19"
     },
     "fee": {
      "status": "not-verified",
      "excerpt": "The $150 structure sheet was not published on the MGM Grand poker-room page.",
      "source": "https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-19"
     }
    },
    "category": "recurring",
@@ -20180,8 +20180,8 @@
    "sheetUrl": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
    "scheduleUrl": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
    "structureUrl": "https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "20-minute levels on Saturday per the published weekly schedule.",
    "eligibility": "",
    "status": "recurring"
@@ -20201,25 +20201,25 @@
      "status": "multiple-entries",
      "excerpt": "Participants may only register themselves, but may re-enter, by paying the entry fee, upon elimination within the first break of play.",
      "source": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
-     "retrieved": "2026-11-18"
+     "retrieved": "2026-11-19"
     },
     "reEntry": {
      "status": "allowed",
      "excerpt": "Participants may only register themselves, but may re-enter, by paying the entry fee, upon elimination within the first break of play.",
      "source": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
-     "retrieved": "2026-11-18"
+     "retrieved": "2026-11-19"
     },
     "addOn": {
      "status": "allowed",
      "excerpt": "All Tournaments feature a $50 add-on for 15,000 tournament chips that can only be taken at the first break.",
      "source": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
-     "retrieved": "2026-11-18"
+     "retrieved": "2026-11-19"
     },
     "fee": {
      "status": "confirmed",
      "excerpt": "Of the $100 buy in, $70 goes to the prize pool and $30 is held by Caesars Palace as a maintenance fee.",
      "source": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
-     "retrieved": "2026-11-18"
+     "retrieved": "2026-11-19"
     }
    },
    "category": "extra",
@@ -20247,8 +20247,8 @@
    "sheetUrl": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
    "scheduleUrl": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
    "structureUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-   "lastChecked": "2026-11-18",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Official flyer: registration closes at the start of level seven (no clock time printed). The marketing article of 17 July 2026 says every event is $100; the flyer prices the 2 PM and 9 PM events at $160.",
    "eligibility": "",
    "status": "recurring"
@@ -20268,25 +20268,25 @@
      "status": "multiple-entries",
      "excerpt": "Participants may only register themselves, but may re-enter, by paying the entry fee, upon elimination within the first break of play.",
      "source": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
-     "retrieved": "2026-11-18"
+     "retrieved": "2026-11-19"
     },
     "reEntry": {
      "status": "allowed",
      "excerpt": "Participants may only register themselves, but may re-enter, by paying the entry fee, upon elimination within the first break of play.",
      "source": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
-     "retrieved": "2026-11-18"
+     "retrieved": "2026-11-19"
     },
     "addOn": {
      "status": "allowed",
      "excerpt": "All Tournaments feature a $50 add-on for 15,000 tournament chips that can only be taken at the first break.",
      "source": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
-     "retrieved": "2026-11-18"
+     "retrieved": "2026-11-19"
     },
     "fee": {
      "status": "confirmed",
      "excerpt": "Of the $160 buy in, $115 goes to the prize pool and $45 is held by Caesars Palace as a maintenance fee.",
      "source": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
-     "retrieved": "2026-11-18"
+     "retrieved": "2026-11-19"
     }
    },
    "category": "extra",
@@ -20314,8 +20314,8 @@
    "sheetUrl": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
    "scheduleUrl": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
    "structureUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-   "lastChecked": "2026-11-18",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Official flyer: registration closes at the start of level seven (no clock time printed). The marketing article of 17 July 2026 says every event is $100; the flyer prices the 2 PM and 9 PM events at $160.",
    "eligibility": "",
    "status": "recurring"
@@ -20335,25 +20335,25 @@
      "status": "multiple-entries",
      "excerpt": "Participants may only register themselves, but may re-enter, by paying the entry fee, upon elimination within the first break of play.",
      "source": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
-     "retrieved": "2026-11-18"
+     "retrieved": "2026-11-19"
     },
     "reEntry": {
      "status": "allowed",
      "excerpt": "Participants may only register themselves, but may re-enter, by paying the entry fee, upon elimination within the first break of play.",
      "source": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
-     "retrieved": "2026-11-18"
+     "retrieved": "2026-11-19"
     },
     "addOn": {
      "status": "allowed",
      "excerpt": "All Tournaments feature a $50 add-on for 15,000 tournament chips that can only be taken at the first break.",
      "source": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
-     "retrieved": "2026-11-18"
+     "retrieved": "2026-11-19"
     },
     "fee": {
      "status": "confirmed",
      "excerpt": "Of the $100 buy in, $70 goes to the prize pool and $30 is held by Caesars Palace as a maintenance fee.",
      "source": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
-     "retrieved": "2026-11-18"
+     "retrieved": "2026-11-19"
     }
    },
    "category": "extra",
@@ -20381,8 +20381,8 @@
    "sheetUrl": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
    "scheduleUrl": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
    "structureUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-   "lastChecked": "2026-11-18",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Official flyer: registration closes at the start of level seven (no clock time printed). The marketing article of 17 July 2026 says every event is $100; the flyer prices the 2 PM and 9 PM events at $160.",
    "eligibility": "",
    "status": "recurring"
@@ -20402,25 +20402,25 @@
      "status": "multiple-entries",
      "excerpt": "Participants may only register themselves, but may re-enter, by paying the entry fee, upon elimination within the first break of play.",
      "source": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
-     "retrieved": "2026-11-18"
+     "retrieved": "2026-11-19"
     },
     "reEntry": {
      "status": "allowed",
      "excerpt": "Participants may only register themselves, but may re-enter, by paying the entry fee, upon elimination within the first break of play.",
      "source": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
-     "retrieved": "2026-11-18"
+     "retrieved": "2026-11-19"
     },
     "addOn": {
      "status": "allowed",
      "excerpt": "All Tournaments feature a $50 add-on for 15,000 tournament chips that can only be taken at the first break.",
      "source": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
-     "retrieved": "2026-11-18"
+     "retrieved": "2026-11-19"
     },
     "fee": {
      "status": "confirmed",
      "excerpt": "Of the $160 buy in, $115 goes to the prize pool and $45 is held by Caesars Palace as a maintenance fee.",
      "source": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
-     "retrieved": "2026-11-18"
+     "retrieved": "2026-11-19"
     }
    },
    "category": "extra",
@@ -20448,8 +20448,8 @@
    "sheetUrl": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
    "scheduleUrl": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
    "structureUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-   "lastChecked": "2026-11-18",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Official flyer: registration closes at the start of level seven (no clock time printed). The marketing article of 17 July 2026 says every event is $100; the flyer prices the 2 PM and 9 PM events at $160.",
    "eligibility": "",
    "status": "recurring"
@@ -20469,25 +20469,25 @@
      "status": "not-verified",
      "excerpt": "The official Caesars page states that Horseshoe runs six daily No-Limit Hold'em games at 9 a.m., 11 a.m., 2 p.m., 5 p.m., 8 p.m. and 11 p.m., but publishes no buy-in, structure or entry terms for them.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "reEntry": {
      "status": "not-verified",
      "excerpt": "No entry terms are published on the official page.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "addOn": {
      "status": "not-verified",
      "excerpt": "No entry terms are published on the official page.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "fee": {
      "status": "not-verified",
      "excerpt": "No buy-in is published on the official page.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     }
    },
    "category": "recurring",
@@ -20515,8 +20515,8 @@
    "sheetUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "scheduleUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "structureUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Buy-in, level structure and guarantee are not published for this slot.",
    "eligibility": "",
    "status": "recurring"
@@ -20536,25 +20536,25 @@
      "status": "not-verified",
      "excerpt": "The official Caesars page lists this Horseshoe start time but publishes no buy-in, structure or entry terms for it.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "reEntry": {
      "status": "not-verified",
      "excerpt": "No entry terms are published on the official page.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "addOn": {
      "status": "not-verified",
      "excerpt": "No entry terms are published on the official page.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "fee": {
      "status": "not-verified",
      "excerpt": "No buy-in is published on the official page.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     }
    },
    "category": "recurring",
@@ -20582,8 +20582,8 @@
    "sheetUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "scheduleUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "structureUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Buy-in, level structure and guarantee are not published for this slot.",
    "eligibility": "",
    "status": "recurring"
@@ -20603,25 +20603,25 @@
      "status": "not-verified",
      "excerpt": "The official Caesars page lists this Horseshoe start time but publishes no buy-in, structure or entry terms for it.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "reEntry": {
      "status": "not-verified",
      "excerpt": "No entry terms are published on the official page.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "addOn": {
      "status": "not-verified",
      "excerpt": "No entry terms are published on the official page.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "fee": {
      "status": "not-verified",
      "excerpt": "No buy-in is published on the official page.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     }
    },
    "category": "recurring",
@@ -20649,8 +20649,8 @@
    "sheetUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "scheduleUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "structureUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Buy-in, level structure and guarantee are not published for this slot.",
    "eligibility": "",
    "status": "recurring"
@@ -20670,25 +20670,25 @@
      "status": "not-verified",
      "excerpt": "The official Caesars page lists this Horseshoe start time but publishes no buy-in, structure or entry terms for it.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "reEntry": {
      "status": "not-verified",
      "excerpt": "No entry terms are published on the official page.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "addOn": {
      "status": "not-verified",
      "excerpt": "No entry terms are published on the official page.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "fee": {
      "status": "not-verified",
      "excerpt": "No buy-in is published on the official page.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     }
    },
    "category": "recurring",
@@ -20716,8 +20716,8 @@
    "sheetUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "scheduleUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "structureUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Buy-in, level structure and guarantee are not published for this slot.",
    "eligibility": "",
    "status": "recurring"
@@ -20737,25 +20737,25 @@
      "status": "not-verified",
      "excerpt": "The official Caesars page lists this Horseshoe start time but publishes no buy-in, structure or entry terms for it.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "reEntry": {
      "status": "not-verified",
      "excerpt": "No entry terms are published on the official page.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "addOn": {
      "status": "not-verified",
      "excerpt": "No entry terms are published on the official page.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "fee": {
      "status": "not-verified",
      "excerpt": "No buy-in is published on the official page.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     }
    },
    "category": "recurring",
@@ -20783,8 +20783,8 @@
    "sheetUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "scheduleUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "structureUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Buy-in, level structure and guarantee are not published for this slot.",
    "eligibility": "",
    "status": "recurring"
@@ -20804,25 +20804,25 @@
      "status": "not-verified",
      "excerpt": "The official Caesars page lists this Horseshoe start time but publishes no buy-in, structure or entry terms for it.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "reEntry": {
      "status": "not-verified",
      "excerpt": "No entry terms are published on the official page.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "addOn": {
      "status": "not-verified",
      "excerpt": "No entry terms are published on the official page.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     },
     "fee": {
      "status": "not-verified",
      "excerpt": "No buy-in is published on the official page.",
      "source": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-     "retrieved": "2026-11-17"
+     "retrieved": "2026-11-19"
     }
    },
    "category": "recurring",
@@ -20850,8 +20850,8 @@
    "sheetUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "scheduleUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "structureUrl": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Buy-in, level structure and guarantee are not published for this slot.",
    "eligibility": "",
    "status": "recurring"
@@ -20871,25 +20871,25 @@
      "status": "not-verified",
      "excerpt": "The official guide is undated and the current poker page asks guests to call or check @ARIAPoker to confirm whether daily events are running.",
      "source": "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-19"
     },
     "reEntry": {
      "status": "not-verified",
      "excerpt": "No entry terms are published in the reviewed material.",
      "source": "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-19"
     },
     "addOn": {
      "status": "not-verified",
      "excerpt": "No entry terms are published in the reviewed material.",
      "source": "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-19"
     },
     "fee": {
      "status": "not-verified",
      "excerpt": "No buy-in is published in the reviewed material.",
      "source": "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-19"
     }
    },
    "category": "recurring",
@@ -20917,8 +20917,8 @@
    "sheetUrl": "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
    "scheduleUrl": "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
    "structureUrl": "https://aria.mgmresorts.com/en/casino/poker.html",
-   "lastChecked": "2026-11-16",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Undated cadence only. No date-specific event, buy-in or guarantee is published.",
    "eligibility": "",
    "status": "recurring"
@@ -20938,25 +20938,25 @@
      "status": "not-verified",
      "excerpt": "The official guide is undated and the current poker page asks guests to call or check @ARIAPoker to confirm whether daily events are running.",
      "source": "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-19"
     },
     "reEntry": {
      "status": "not-verified",
      "excerpt": "No entry terms are published in the reviewed material.",
      "source": "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-19"
     },
     "addOn": {
      "status": "not-verified",
      "excerpt": "No entry terms are published in the reviewed material.",
      "source": "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-19"
     },
     "fee": {
      "status": "not-verified",
      "excerpt": "No buy-in is published in the reviewed material.",
      "source": "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
-     "retrieved": "2026-11-16"
+     "retrieved": "2026-11-19"
     }
    },
    "category": "recurring",
@@ -20984,8 +20984,8 @@
    "sheetUrl": "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
    "scheduleUrl": "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
    "structureUrl": "https://aria.mgmresorts.com/en/casino/poker.html",
-   "lastChecked": "2026-11-16",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Undated cadence only.",
    "eligibility": "",
    "status": "recurring"
@@ -21478,7 +21478,7 @@
    "walkNote": "The poker room is inside the resort that owns this hotel; the Google Maps walking route from The Palazzo to The Venetian measures 4 minutes.",
    "trueNightlyLow": 197.28,
    "trueNightlyHigh": 299.32,
-   "lastChecked": "2026-11-17",
+   "lastChecked": "2026-11-19",
    "lastVerified": "2026-11-19",
    "parkingPerNight": 20.0,
    "parkingNote": "The daily fee for registered hotel guests is $20/day, seven days a week.",
@@ -21558,7 +21558,7 @@
    "bookingLinksNote": "The Palazzo is booked through the same official engine as The Venetian, so the same dated links apply. No per-property date-parameterised link was verified for The Palazzo specifically, so the engine's suite type for these links is whatever it offers, not a Palazzo-only quote.",
    "trueNightlyLow": 197.28,
    "trueNightlyHigh": 299.32,
-   "lastChecked": "2026-11-17",
+   "lastChecked": "2026-11-19",
    "lastVerified": "2026-11-19",
    "parkingPerNight": 20.0,
    "parkingNote": "The daily fee for registered hotel guests is $20/day, seven days a week.",
@@ -21605,7 +21605,7 @@
    "walkNote": "The poker room is in Encore at Wynn Las Vegas; Google Maps walking estimate 10 minutes (0.4 mile).",
    "trueNightlyLow": "",
    "trueNightlyHigh": "",
-   "lastChecked": "2026-11-17",
+   "lastChecked": "2026-11-19",
    "lastVerified": "2026-11-19",
    "registrationNote": "Registration for each WPT event opens four hours before the scheduled start (WPT general terms).",
    "registrationSource": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
@@ -21643,7 +21643,7 @@
    "walkNote": "Poker room is inside the property; Google Maps walking route to The Venetian measures 21 minutes.",
    "trueNightlyLow": "",
    "trueNightlyHigh": "",
-   "lastChecked": "2026-11-17",
+   "lastChecked": "2026-11-19",
    "lastVerified": "2026-11-19",
    "cancellationDetail": "The first night's deposit is refundable if Room Reservations receives notice at least 72 hours before arrival; later cancellations and no-shows forfeit the first night.",
    "cancellationDetailSource": "https://bellagio.mgmresorts.com/en/terms-and-conditions.html"
@@ -23193,14 +23193,14 @@
    "name": "Venetian DeepStack Extravaganza IV schedule and structure sheets (Nov 16 - Dec 23, 2026)",
    "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "type": "official schedule",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "id": "vl-dse-dec",
    "name": "Venetian DeepStack Extravaganza NYE schedule and structure sheets (Dec 24, 2026 - Jan 10, 2027)",
    "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html",
    "type": "official schedule",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "id": "clark-county-lodging-tax",
@@ -23249,28 +23249,28 @@
    "name": "Venetian poker-room suite rates and play requirements 2026",
    "url": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
    "type": "official rate page",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "id": "vl-resort-fee",
    "name": "Venetian resort fee page",
    "url": "https://www.venetianlasvegas.com/resort/resort-fee.html",
    "type": "official fee page",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "id": "vl-hotel-terms",
    "name": "Venetian hotel terms and conditions (tax, parking, cancellation)",
    "url": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
    "type": "official terms",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "id": "wynn-poker",
    "name": "Wynn Las Vegas poker room page",
    "url": "https://www.wynnlasvegas.com/casino/poker",
    "type": "official room page",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "id": "wynn-resort-info",
@@ -23333,7 +23333,7 @@
    "name": "Wynn Las Vegas terms (resort fee, cancellation, parking)",
    "url": "https://www.wynnlasvegas.com/terms-and-conditions/850070",
    "type": "official terms",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "id": "wynn-ibe-trip",
@@ -23347,28 +23347,28 @@
    "name": "Bellagio poker room page",
    "url": "https://bellagio.mgmresorts.com/en/casino/poker.html",
    "type": "official room page",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "id": "bell-fri",
    "name": "Bellagio Friday $600 No Limit Hold'em structure",
    "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf",
    "type": "official structure",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "id": "bell-sat",
    "name": "Bellagio Saturday No Limit Hold'em structure (buy-in conflict)",
    "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf",
    "type": "official structure",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "id": "bell-sun",
    "name": "Bellagio Sunday $400 H.O.R.S.E. structure",
    "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt07fcf1244a6da661/6af491a339e2b4f6b76a86ad/mgm-bellagio-poker-sundays-$400-horse.pdf",
    "type": "official structure",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "id": "bell-hotel",
@@ -23382,7 +23382,7 @@
    "name": "Bellagio hotel reservation terms (resort fee, cancellation, taxes)",
    "url": "https://bellagio.mgmresorts.com/en/terms-and-conditions.html",
    "type": "official terms",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "id": "mandalay-poker",
@@ -23396,49 +23396,49 @@
    "name": "MGM Grand poker room page",
    "url": "https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
    "type": "official room page",
-   "checked": "2026-11-16"
+   "checked": "2026-11-19"
   },
   {
    "id": "mgm-sched",
    "name": "MGM Grand weekly tournament schedule sheet",
    "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
    "type": "official schedule",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "id": "mgm-struct",
    "name": "MGM Grand $120 No Limit Hold'em structure",
    "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/bltb2a45da7e8ee5621/mgm-grand-casino-poker-120_nlh.pdf",
    "type": "official structure",
-   "checked": "2026-11-16"
+   "checked": "2026-11-19"
   },
   {
    "id": "caesars-poker",
    "name": "Caesars Palace and Horseshoe poker tournament page",
    "url": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
    "type": "official room page",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "id": "caesars-flyer",
    "name": "Caesars Palace daily No-Limit Hold'em tournament flyer 2026 (linked from the official Caesars Palace casino page, 'View Schedule')",
    "url": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
    "type": "official tournament flyer",
-   "checked": "2026-11-18"
+   "checked": "2026-11-19"
   },
   {
    "id": "aria-poker",
    "name": "ARIA poker room page",
    "url": "https://aria.mgmresorts.com/en/casino/poker.html",
    "type": "official room page",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "id": "aria-guide",
    "name": "ARIA official poker guide (undated)",
    "url": "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
    "type": "official guide",
-   "checked": "2026-11-16"
+   "checked": "2026-11-19"
   },
   {
    "name": "DeepStack Extravaganza IV official series schedule PDF (Nov 16 - Dec 23, 2026)",
@@ -23450,31 +23450,31 @@
    "name": "Venetian poker-room suite rates and 2026 play requirements",
    "url": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
    "type": "official rate page",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "name": "Venetian resort fee page",
    "url": "https://www.venetianlasvegas.com/resort/resort-fee.html",
    "type": "official fee page",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "name": "Venetian hotel terms: 13.38% Clark County room tax, parking, check-in and incidentals",
    "url": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
    "type": "official terms",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "name": "Bellagio hotel terms: $55 resort fee, 72-hour cancellation, taxes on the fee",
    "url": "https://bellagio.mgmresorts.com/en/terms-and-conditions.html",
    "type": "official terms",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "name": "Wynn general hotel terms: $55 resort fee, 48-hour cancellation, parking",
    "url": "https://www.wynnlasvegas.com/terms-and-conditions/850070",
    "type": "official terms",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "name": "Wynn WPT World Championship schedule PDF (Nov 27 - Dec 21, 2026)",
