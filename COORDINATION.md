@@ -6869,6 +6869,13 @@ Irregularities flagged (see `site/flagged.html`):
 
 Standing decision: **HOLD** on any nonrefundable payment, unchanged. Re-read the booking engine immediately before paying.
 
+### Publication record (session `arena/f5a04e69-poker3`, 2026-11-19 UTC)
+- **PR:** [#231](https://github.com/karagemop466-tech/Poker3/pull/231) (`arena/f5a04e69-poker3` → `main`). First merge attempt failed with a `COORDINATION.md` conflict (another session merged #230 meanwhile); resolved by merging `origin/main` and keeping main's board in full with this session's sections re-appended. No force-push.
+- **Merge:** `gh pr merge 231 --merge` → MERGED, merge commit `cbac3cb5c56644b77fd475383666266a05db5431`.
+- **Checks on the merge commit:** `Verify static research site` success; `Official table transcription check` success; `Publish the canonical Vegas Poker Planner to GitHub Pages` success (run 44601814098); legacy `pages build and deployment` success (run 44601813502).
+- **Pages API:** latest build for `cbac3cb` completed with no error. A later build (`f805caa`, another session's commit) was in progress at the time of writing.
+- **Follow-up:** this record is transported to `main` by one further PR from this branch; it changes no source-backed value.
+
 ## Session `arena/3a186594-poker3` — claim and result: R1 trip-window live re-read (2026-11-19 UTC)
 
 **Claim (R1).** Live re-read of the official Venetian DeepStack Extravaganza IV schedule for the trip-window rows, compared with `site/data.json`. Scope: `raw/dse_nov_2026_trip_window_live_2026-11-19_arena-3a186594.md`, `research/reread_2026-11-19_arena-3a186594.md`, `scripts/verify_trip_window_3a186594.py`, `tests/test_trip_window_3a186594.py`, this section. An earlier claim commit on this branch (`b8eb56b`) was superseded by this one and is kept in history by a merge with `-s ours`; its tree is not used.
