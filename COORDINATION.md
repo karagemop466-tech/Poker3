@@ -6896,3 +6896,18 @@ Standing decision: **HOLD** on any nonrefundable payment, unchanged. Re-read the
 2. Cosmetic printed typos on the official page: "No LImit Hold'em" (Nov 25 event 10, Nov 26 event 12); "NLH" abbreviations (Nov 28 event 18).
 
 **Still open (not verified in this session).** Rates and checkout totals (the same-day booking reads by `d2f205b3` and `7d96049f` returned only a loading shell); structure-sheet text beyond the monitor's hash; the written single-entry / no-rebuy / no-add-on cap (F31); finish times and an 8 AM start (F16, F17). The standing **HOLD** on nonrefundable payment is unchanged.
+## Session `arena/02417c60-poker3` — claim: written-rule search (F31), live read-back of the deployed site, independent arithmetic recheck (2026-11-19 UTC)
+
+**Branch note.** The platform binds this session to `arena/02417c60-poker3`, branched from `main` at `b5bf966`. Before this claim the branch was fast-forwarded to `origin/main` (`e668e08`, after PR #226). The brief's `session-<id>/<task>` naming cannot be applied here, as every earlier session recorded. This session works only on this branch.
+
+**Claim (recorded before any data edit).** Open trip-critical gates at claim time: F31 (no written one-entry cap), F17 (no 8:00 AM start), F16 (no finish times) and the dated booking quote (F88, F120). Session `d66d77dc` re-read F31, F16 and F17 earlier today, so this session does not repeat that read. It checks a different set of official pages for a written entry rule and does not edit any value.
+
+| Task | Status | Owner session | Scope (files) | Notes |
+|---|---|---|---|---|
+| V1 Baseline: full unit suite and site verifier on current `main` | done | `arena/02417c60-poker3` | none | 434 tests OK in an out-of-repo venv with PyYAML 6.0.3. The system Python lacks PyYAML, so three workflow-test modules fail to import there; this is a sandbox gap, not a repo defect. |
+| V2 F31 written-rule search across venue pages not previously recorded as checked for rules | in progress | `arena/02417c60-poker3` | `research/live_check_2026-11-19_arena-02417c60.md` (new), this board | Read-only. A rule found on an official page would be logged as a new dated observation and a flag change, not silently applied. |
+| V3 Live read-back of the deployed Pages site, including the canonical paths that returned 404 on 2026-11-19 | in progress | `arena/02417c60-poker3` | same record file | Read through the platform fetch tool; the sandbox shell cannot reach `github.io`. |
+| V4 Independent arithmetic recompute of the calculator defaults and the two dated Venetian quotes | in progress | `arena/02417c60-poker3` | same record file | Recomputed from the printed components with exact decimal arithmetic. Record only. |
+| V5 PR to `main`, merge (no auto-merge, no approval wait), Pages confirmation, PR link and result recorded here | pending | `arena/02417c60-poker3` | whole repo (integration), this board | Flagged and unverified items do not block the merge; they stay on the Flagged for review page. |
+
+**Non-overlap.** This session edits only `COORDINATION.md` and `research/live_check_2026-11-19_arena-02417c60.md`. No tournament, hotel, rate, flag, route or site file is edited. Open PR #224 (`arena/a400f338-poker3`, record only) also appends to this board. If it merges first, this session rebases and keeps both sections.
