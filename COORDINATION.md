@@ -5330,3 +5330,13 @@ Palace and Horseshoe rows keep the read dates their own sessions stamped.
   with its excerpt and corrected source, `parkingPerNight` for those three rows, a 2026-11-19 source entry for the MGM
   parking page, flags **F98** and **F99**, the 2026-11-19 read dates on those rows, the regenerated `site/data.json` and
   `site/sheets.html`, and the verbatim record `research/repo_review_2026-11-19_arena-f5ac4318.md`.
+
+### First corrected live run — completed and published (09d32ea7)
+
+- **Scheduled fetch + daily feed [run 44474853435](https://github.com/karagemop466-tech/Poker3/actions/runs/44474853435) succeeded**, including dashboard tests and publishing its record in commit `13cbb1c`. The earlier “in progress” observation above is superseded by this completion record.
+- Published `site/checks.json`: generated `2026-11-19T06:48:28+00:00`, **107 URL targets**, **85 fetched**, **2 changed**, **8 blocked**, **14 unavailable** (22 unsuccessful fetches total). **65 fetched PDFs** now explicitly carry `comparisonKind: pdf-bytes`; none differed from its saved complete-byte baseline. This is byte equality for the fetched PDFs, not new semantic verification and not a claim about the 22 unreadable URLs.
+- The two changed HTML sources are the official Wynn IBE booking URLs with and without the November 23–30 date parameters. They remain automated review alerts; this session did not infer a new rate or change any quote from a hash. The eight-room morning feed refreshed `site/feed/index.json` (`generated: 2026-11-19T06:55:49+00:00`).
+- The source-result-triggered canonical **[Pages run 44476020605](https://github.com/karagemop466-tech/Poker3/actions/runs/44476020605) succeeded** (including gated build and deploy). Thus the corrected live results were published, not just fetched. **273 unit tests passed again** after pulling the actual automated output.
+- **Documentation PR [#191](https://github.com/karagemop466-tech/Poker3/pull/191)** merged at `2026-11-19T06:56:53Z` as `ac1a50901f4809fa6a7344067ee781991563d03e`; its checks passed and its canonical [Pages run 44475887163](https://github.com/karagemop466-tech/Poker3/actions/runs/44475887163) also succeeded. Implementation PR #186, the disclosure, automated run and deployment are complete. Unresolved source evidence stays published for review.
+
+**Final record rebase (09d32ea7).** Main advanced to `1b09d41` with another session’s publication record; the append-only board conflict retained that complete section and this live-run result. No code or data conflict occurred.
