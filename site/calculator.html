@@ -39,10 +39,11 @@
     </section>
 
     <div class="notice" data-model-notice>
-      <strong>The rows below are a floor, not a quote.</strong> The official booking engine quoted a dated checkout total
-      for 23-30 November 2026 on 2026-11-17 ($4,010.55, shown separately below). The floor is built from
-      the published starting rate and is not a date-specific rate.
+      <strong>The rows below are a floor, not a quote.</strong> The official booking engine quoted dated checkout totals
+      for the same 23-30 November 2026 stay twice: $4,010.55 on 2026-11-17 and $3,619.39 on 2026-11-19 (both shown
+      below, F107). The floor is built from the published starting rate and is not a date-specific rate.
       <p data-dated-quote></p>
+      <p data-dated-quote-later></p>
     </div>
 
     <section class="section">
@@ -296,6 +297,22 @@
       // tripCostModel.tournamentTotal. Multiplying the rounded average by the entry
       // count would print a phantom cent (7 x $371.43 = $2,600.01 for a $2,600.00 sum).
       const tournament = model.tournamentTotal;
+      // A second dated read of the SAME stay, published beside the first rather than replacing it. Every
+      // figure is printed by the engine; the all-in per night is the printed total divided by the nights.
+      const later = liveQuote && liveQuote.laterRead;
+      const laterHost = document.querySelector('[data-dated-quote-later]');
+      if (later && laterHost) {
+        const laterLink = document.createElement('a');
+        laterLink.href = later.source;
+        laterLink.textContent = 'Official booking engine';
+        const tripLate = cents(tournament + later.checkoutTotal + (model.parkingTotal || 0));
+        laterHost.textContent = `Second dated read, ${later.quoteDate} (${later.property}): ` +
+          `${money(later.roomRatesTotal)} printed room rates + ${money(later.resortFeeTotal)} in $55 nightly resort fees = ` +
+          `${money(later.preTaxSubtotal)} before tax, + ${money(later.taxTotal)} printed tax = ${money(later.checkoutTotal)} ` +
+          `checkout, i.e. ${money(later.allInPerNight)} all-in per night (printed total ÷ ${later.nights}); ` +
+          `${money(tripLate)} with the same planned entries and parking. `;
+        laterHost.append(laterLink);
+      }
       const rows = [];
       rows.push({ hotel: 'The Venetian / The Palazzo — published starting rate (low)', rate: 119, fee: 55, tax: 13.38,
         sources: 'https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html' });
