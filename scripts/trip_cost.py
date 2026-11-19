@@ -12,8 +12,24 @@ calculator reads the numbers it publishes in ``site/data.json`` under
 """
 from __future__ import annotations
 
+import math
 
-MISSING = (None, "")
+
+def _optional_number(value, *, integer=False):
+    """Parse a non-negative published/input number; blanks and invalid values stay unknown."""
+    if value is None or (isinstance(value, str) and not value.strip()) or isinstance(value, bool):
+        return None
+    try:
+        number = float(value)
+    except (TypeError, ValueError, OverflowError):
+        return None
+    if not math.isfinite(number) or number < 0:
+        return None
+    if integer:
+        if not number.is_integer():
+            return None
+        return int(number)
+    return number
 
 
 def true_nightly(rate, resort_fee, tax_pct):
@@ -21,56 +37,54 @@ def true_nightly(rate, resort_fee, tax_pct):
 
     Tax is applied to the room rate and the resort fee, because every property
     terms page reviewed says the fee is "plus applicable tax" and Bellagio's
-    terms add that lodging taxes apply to the resort fee as well.
-
-    A component that was not published is **unknown**, not zero. Several
-    properties reviewed here publish a resort fee and no room-tax percentage
-    (flag F39), so treating the missing percentage as 0% would silently price
-    a night below the published charge. All three components are therefore
-    required; an explicit 0 is still accepted and still means zero.
+    terms add that lodging taxes apply to the resort fee as well. A missing,
+    invalid or negative component is unknown, not zero; explicit zero is valid.
     """
-    if any(value in MISSING for value in (rate, resort_fee, tax_pct)):
+    rate = _optional_number(rate)
+    resort_fee = _optional_number(resort_fee)
+    tax_pct = _optional_number(tax_pct)
+    if any(value is None for value in (rate, resort_fee, tax_pct)):
         return None
-    rate = float(rate)
-    resort_fee = float(resort_fee)
-    tax_pct = float(tax_pct)
     return round((rate + resort_fee) * (1 + tax_pct / 100), 2)
 
 
 def trip_cost(entries, buy_in, nights, rate, resort_fee, tax_pct,
-              parking_per_night=0, extra_nights_at=None, buy_in_exact=None):
+              parking_per_night=None, extra_nights_at=None, buy_in_exact=None):
     """Return the published-parts trip total with its breakdown.
 
     ``extra_nights_at`` lets a caller price the same stay at a second published
     rate (for example the $209 Palazzo starting rate) without inventing a
-    blended average.
-
-    A component that no official source published is left as ``None`` and
-    poisons only the totals that depend on it; it is never coerced to zero,
-    because "not published" is not "free". An explicit ``0`` is a real input
-    and is still honoured (parking is commonly waived for players, F86).
+    blended average. Missing or invalid inputs remain unknown; explicit zero is
+    allowed. ``tripTotal`` is the all-in total including parking, so it remains
+    unknown when any required component is unknown.
     """
-    entries = int(entries) if entries not in MISSING else None
-    buy_in = float(buy_in) if buy_in not in MISSING else None
-    nights = int(nights) if nights not in MISSING else None
-    parking = float(parking_per_night) if parking_per_night not in MISSING else None
+    entries = _optional_number(entries, integer=True)
+    buy_in = _optional_number(buy_in)
+    nights = _optional_number(nights, integer=True)
+    rate = _optional_number(rate)
+    resort_fee = _optional_number(resort_fee)
+    tax_pct = _optional_number(tax_pct)
+    parking = _optional_number(parking_per_night)
+    exact_buy_in = _optional_number(buy_in_exact)
 
     # The seven chosen primaries are $200, $200, $400, $300, $600, $600 and $300, which
     # sum to exactly $2,600. Their mean is $371.428571..., so multiplying the rounded
     # mean by seven prints a phantom cent ($2,600.01). When the caller can supply the
     # exact sum, use it, and publish the integer average beside it so a reader checking
     # 7 x $371.43 is not left thinking the page made an arithmetic error.
-    if buy_in_exact not in MISSING:
-        tournament_total = round(float(buy_in_exact), 2)
+    if exact_buy_in is not None:
+        tournament_total = round(exact_buy_in, 2)
     elif entries is not None and buy_in is not None:
         tournament_total = round(entries * buy_in, 2)
     else:
         tournament_total = None
     nightly = true_nightly(rate, resort_fee, tax_pct)
-    lodging_total = round(nights * nightly, 2) if (nights is not None and nightly is not None) else None
-    parking_total = round(nights * parking, 2) if (nights is not None and parking is not None) else None
+    lodging_total = (round(nights * nightly, 2)
+                     if nights is not None and nightly is not None else None)
+    parking_total = (round(nights * parking, 2)
+                     if nights is not None and parking is not None else None)
     grand = (round(tournament_total + lodging_total + parking_total, 2)
-             if None not in (tournament_total, lodging_total, parking_total) else None)
+             if all(value is not None for value in (tournament_total, lodging_total, parking_total)) else None)
 
     out = {
         "entries": entries,
@@ -87,14 +101,14 @@ def trip_cost(entries, buy_in, nights, rate, resort_fee, tax_pct,
         "tripTotal": grand,
         "formula": "entries x buy-in + nights x (room rate + resort fee) x (1 + tax)",
     }
-    if extra_nights_at not in MISSING:
-        alt = true_nightly(extra_nights_at, resort_fee, tax_pct)
-        out["alternateRatePerNight"] = extra_nights_at
+    if extra_nights_at is not None and not (isinstance(extra_nights_at, str) and not extra_nights_at.strip()):
+        alt_rate = _optional_number(extra_nights_at)
+        alt = true_nightly(alt_rate, resort_fee, tax_pct) if alt_rate is not None else None
+        out["alternateRatePerNight"] = alt_rate
         out["alternateTrueCostPerNight"] = alt
-        if None not in (tournament_total, nights, alt, parking_total):
-            out["alternateTripTotal"] = round(tournament_total + nights * alt + parking_total, 2)
-        else:
-            out["alternateTripTotal"] = None
+        out["alternateTripTotal"] = (round(tournament_total + nights * alt + parking_total, 2)
+                                     if all(value is not None for value in
+                                            (tournament_total, nights, alt, parking_total)) else None)
     return out
 
 
@@ -144,8 +158,9 @@ def published_model(entries, buy_in, nights, buy_in_exact=None):
     low = trip_cost(entries, buy_in, nights, v["startingRateLow"], v["resortFeePerNight"],
                     v["taxPct"], v["parkingPerNight"], extra_nights_at=v["startingRateHigh"],
                     buy_in_exact=buy_in_exact)
-    if buy_in_exact not in (None, ""):
-        low["primaryBuyInSum"] = round(float(buy_in_exact), 2)
+    exact_buy_in = _optional_number(buy_in_exact)
+    if exact_buy_in is not None:
+        low["primaryBuyInSum"] = round(exact_buy_in, 2)
         low["buyInNote"] = ("The published average is the exact mean of the chosen primaries, rounded to the cent "
                             "(sum $2,600.00 / 7 = $371.428571...). The tournament total uses the exact sum, so "
                             "7 x $371.43 lists as $2,600.00 rather than as a phantom $2,600.01.")

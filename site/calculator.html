@@ -78,7 +78,6 @@
           <div class="button-row">
             <button class="btn" type="button" data-preset="floor">Venetian floor · $119</button>
             <button class="btn" type="button" data-preset="high">Venetian high · $209</button>
-            <button class="btn" type="button" data-preset="quote">Dated quote · Nov 17-19</button>
           </div>
           <h4>Or load a property's own published components</h4>
           <p class="smallprint">Each button copies that property's published room rate, mandatory resort fee, tax rate
@@ -169,10 +168,9 @@
   const form = document.getElementById('tripForm');
   const out = document.getElementById('result');
   const brk = document.getElementById('breakdown');
-  // Every preset is a published figure, never a typed guess: $119 and $209 are the two
-  // published poker-suite starting rates, and $164.25 is the nightly room rate printed inside
-  // the dated 17-19 Nov checkout total.
-  const PRESETS = { floor: { rate: 119 }, high: { rate: 209 }, quote: { rate: 164.25 } };
+  // Only the two published poker-suite starting rates are presets. The dated checkout
+  // average stays separate because its stay window and fee basis differ from this estimate.
+  const PRESETS = { floor: { rate: 119 }, high: { rate: 209 } };
   const cents = (amount) => Math.round((amount + Number.EPSILON) * 100) / 100;
   let model;
   // Per-property loader built from site/data.json, so a button can only copy a value the
