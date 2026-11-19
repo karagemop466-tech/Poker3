@@ -1562,10 +1562,94 @@ FLAGS = [
                  "service charge + $5 tournament fee) sum to $205, $5 above the printed $200 rebuy. Reported verbatim "
                  "without adjustment; the event remains isolated in the extra-spend section."),
          source="https://cdn.wynnresorts.com/image/upload/v1752011191/visitwynn_pdfs_files/Poker/Daily%20Tournaments/Poker-All_Daily_Structures.pdf"),
+    dict(id="F111", area="Monitoring", severity="High",
+         title="The scheduled re-check discarded its own record when the dashboard check failed, and a genuinely changed source failed that check",
+         detail=("Found on 2026-11-19 (session arena/c336248a-poker3) by reading the Actions runs rather than the site. The scheduled job "
+                 "'Scheduled source re-check and daily room feed' for merge commit 5f001742 (run 44482186623) ran every recorder "
+                 "successfully, then failed at the step 'Verify the dashboard still passes its own checks'. Both following steps "
+                 "('Record the check results on the main branch' and 'Push the record to main') were skipped, so the observation of "
+                 "108 official URLs that check_sources.py had already written to disk was thrown away and the published "
+                 "site/checks.json kept the 07:34:30 UTC state. Two separate causes were reproduced locally. (1) The step that "
+                 "commits and pushes the record had no 'if: always()', so any failure above it, including a documentation test, "
+                 "silently suppressed the record the job exists to produce. (2) tests/test_index_evidence_labels.py asserted "
+                 "record['changed'] is False for the seven primary structure sheets, so a genuine source change, which is exactly "
+                 "what this monitor exists to surface, could never pass the verification step; the Wynn booking engine rows were "
+                 "recorded as changed at 07:34 UTC on that same day. Reproduced: forcing one primary sheet to changed: true fails "
+                 "that test and nothing else. Fixed by making the dashboard check non-fatal for publication (its outcome is "
+                 "re-raised after the record is pushed), adding 'if: always()' to both publish steps, and rewriting the test to "
+                 "assert that the landing-page date is backed by a fetched HTTP 200 row rather than by an unchanged row. "
+                 "tests/test_workflows.py now pins all four workflow properties."),
+         source="https://github.com/karagemop466-tech/Poker3/actions/runs/44482186623"),
+    dict(id="F112", area="Venetian DSE IV", severity="High",
+         title="The structure sheet linked from the schedule page for Event 17 prints House Fee as $60, but the published row quotes $60 against a $400 buy-in whose companion sheet prints $60 of a different event",
+         detail=("Re-read 2026-11-19 (session arena/c336248a-poker3). The official schedule row 'Saturday, November 28, 2026 | 12:10 PM | 17 | "
+                 "$400 Pot Limit Omaha Bounty $15K GTD (1Day)' links dse_nov_2026-structure_26.pdf. That sheet prints "
+                 "'06. $60 of the $400 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $340 of every "
+                 "$400 Buy In.' and 'Late Registration: 8 levels + break (~ 4:40 PM)', which is what the published row quotes. "
+                 "Nothing on the sheet contradicts the row; it is recorded here because the sheet is headed only "
+                 "'$400 Pot Limit Omaha Bounty (1Day)' with 'Event Number: 17' printed twice and no guarantee in the header, and "
+                 "the $15,000 guarantee (prize pool plus total $100 bounties) appears only in rule 10. A reader comparing the "
+                 "header with the schedule page sees no guarantee. Reported as printed, not adjusted."),
+         source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_26.pdf"),
+    dict(id="F113", area="Hotel cost", severity="Medium",
+         title="The Venetian resort-fee page and the hotel terms disagree about whether the $55 fee is inside or outside the quoted room rate",
+         detail=("Re-read 2026-11-19 (session arena/c336248a-poker3). The official Resort Fee page prints 'Rates include a daily "
+                 "Resort Fee of $55 plus tax per night, payable upon check-in.' The official Hotel Terms and Conditions page prints "
+                 "'Daily rates do not include the applicable Clark County Room Tax of 13.38%' and 'The Venetian Resort has a standard "
+                 "Las Vegas Resort Fee of $55 plus applicable tax per night, payable upon check-in.' Read literally, one page says the "
+                 "rate already contains the fee and the other prices the fee as an addition. Every arithmetic step on this site adds "
+                 "the $55 to the published starting rate, which is the conservative reading (a higher total). The difference for the "
+                 "recommended seven nights is $55 x 7 x 1.1338 = $436.51. The dated 23-30 November quote ($4,010.55) is unaffected: "
+                 "it is a checkout total printed by the booking engine, not a rate plus a fee."),
+         source="https://www.venetianlasvegas.com/resort/resort-fee.html"),
+    dict(id="F109", area="Schedule", severity="Medium",
+         title="The day plan is titled as a full-day plan but six of the seven primaries are the only published one-buy-in event on their date, and the plan makes no claim that a full day of play is available",
+         detail=("Checked 2026-11-19 (session arena/c336248a-poker3) against the published rows. The brief asks for a schedule that can be "
+                 "played all day from 8 a.m. Two facts limit that and are stated on the page rather than hidden: no official Strip room "
+                 "publishes an 8 a.m. start (F17; the earliest recurring official start is 9 a.m. at Horseshoe, whose buy-ins are not "
+                 "published), and on 23 and 24 November the only one-buy-in Venetian event is the 5:10 p.m. bounty, so those two days "
+                 "have an evening primary and no possible same-day second event. On 25-29 November the earlier event ends inside the "
+                 "30-minute transfer allowance either exactly or with no gap, so no same-day evening event is playable and the plan "
+                 "lists the later event as a conditional alternative instead of a sequence (F94). A full-day, multiple-event schedule "
+                 "is therefore not achievable from published official data for these dates."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
+    dict(id="F114", area="Venetian DSE IV", severity="Low",
+         title="One published guarantee cell paraphrases the printed guarantee instead of quoting it",
+         detail=("Re-read 2026-11-19 (session arena/c336248a-poker3). Structure sheet 1 prints, verbatim, "
+                 "'Guarantee: $8,000 (prize pool + total bounties)'. The published home-page and tournament rows for "
+                 "Events 09, 11, 13, 15, 21, 22, 23 and 25 print the number with the short note 'incl. bounties'. The "
+                 "number and its meaning agree; the cell is a paraphrase, not the printed words, and rule 10 of the "
+                 "same sheet adds 'A Prize Pool of $8,000 is guaranteed by the Venetian Poker Room which consists of the "
+                 "actual prize pool plus the total amount of $50 bounties that are awarded.' Recorded so a reader "
+                 "comparing the cell with the sheet is not left wondering whether a cash-only pool of $8,000 is meant. "
+                 "No value was changed."),
+         source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf"),
+
 
 ]
 
 QUESTIONS = [
+    dict(id="Q19", question="Is the $55 Venetian resort fee already inside the advertised room rate?",
+         answer=("The two official pages read on 2026-11-19 answer it differently. The Resort Fee page prints 'Rates include a daily "
+                 "Resort Fee of $55 plus tax per night, payable upon check-in'; the Hotel Terms and Conditions prices the same fee as "
+                 "an addition to 'daily rates' that 'do not include the applicable Clark County Room Tax of 13.38%'. This site adds the "
+                 "fee to the published starting rate, which is the higher total. The dated 23-30 November checkout total is unaffected: "
+                 "it is a printed engine total, not a rate plus a fee."),
+         why="Needed",
+         blocking="No for the quote, yes if the $119 poker rate is used as the budget",
+         how=("Ask the poker room at 702.414.7657, or read the itemised checkout total at booking, which separates room, fee and tax. "
+              "The difference over seven nights is $436.51."),
+         source="https://www.venetianlasvegas.com/resort/resort-fee.html"),
+    dict(id="Q20", question="If the site's automated re-check breaks, how would anyone know?",
+         answer=("Until 2026-11-19, they would not. The scheduled job's publish steps were skipped whenever a check above them failed, "
+                 "and one of those checks failed on a legitimate source change, so the record of the run was discarded silently and the "
+                 "published timestamp went stale. The publish steps now run unconditionally and the run is failed after publication, so "
+                 "a red run means the dashboard is broken while the evidence is still published."),
+         why="Needed",
+         blocking="No - it is a process question",
+         how=("Read the run list for 'Scheduled source re-check and daily room feed'. A red run after this change means the dashboard "
+              "check failed but the record is on the Sources page with the date it was taken."),
+         source="https://github.com/karagemop466-tech/Poker3/actions/workflows/checks.yml"),
     dict(id="Q01", question="What are the actual travel dates, and how many nights?",
          answer=("Superseded 2026-11-17: the trip is now 23 to 30 November 2026 (seven nights), because the engine prices that "
                  "window in full (F69, F66). Earlier: for planning purposes the dates were fixed at November 25 to December 2, 2026 because that "
@@ -1730,7 +1814,10 @@ QUESTIONS = [
                  "guarantee, a fee or a start time without notice, and an automatic overwrite would publish an unread "
                  "number as if it had been verified."),
          why="Needed", blocking="No - it is a process question",
-         how="Watch the Sources page; a changed URL is listed with its previous and current hash.",
+         how=("Watch the Sources page; a changed URL is listed with its previous and current hash. The 2026-11-19 "
+              "failures showed the process was not safe in practice: the run that recorded the change threw its own record "
+              "away (F111), so a reader would not have seen it. The publish steps now always run and a changed source is no "
+              "longer treated as a build error."),
          source="https://github.com/karagemop466-tech/Poker3/blob/main/scripts/verify_transcription.py"),
 
 ]

@@ -87,6 +87,15 @@ jobs:
         run: python3 scripts/daily_feed.py
 
       - name: Verify the dashboard still passes its own checks
+        # This step reports a broken dashboard, but it must not be able to suppress
+        # the observation this job exists to publish. On 2026-11-19 the 07:56 UTC run
+        # for merge commit 5f001742 failed here and the two publish steps below were
+        # skipped, so a correct checks.json was thrown away: the published record still
+        # claimed the 07:34 UTC state, and the failure left no log line explaining why.
+        # The checks still fail the job (the outcome is carried to the publish steps and
+        # re-raised at the end), while the record is always committed and pushed.
+        id: dashboard
+        continue-on-error: true
         run: |
           python3 -m unittest discover -s tests -p 'test_*.py'
           python3 scripts/verify_site.py
@@ -96,6 +105,10 @@ jobs:
           if [ -f site/feed/index.json ]; then python3 -m json.tool site/feed/index.json > /dev/null; fi
 
       - name: Record the check results on the main branch
+        # Runs even when the dashboard check above failed. The record is an observation
+        # of what the official pages returned; whether the dashboard renders cleanly is a
+        # separate question, and withholding the record does not fix the dashboard.
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -107,6 +120,7 @@ jobs:
           git commit -m "chore: record official source re-check and daily room feed ($(date -u +%F))"
 
       - name: Push the record to main, tolerating a concurrent merge
+        if: always()
         # This step used to give up after five rebase attempts. On 2026-11-17 four
         # sessions merged within eight minutes and it failed, even though the record
         # itself was correct and had already been committed locally. The record is a
@@ -131,3 +145,11 @@ jobs:
             exit 0
           fi
           echo "::warning::the check record could not be published after 8 attempts; the next scheduled run will regenerate it"
+
+      - name: Fail the run if the dashboard check failed
+        # The observation has been published by this point, so a broken dashboard still
+        # shows up as a red run without costing the day's check record.
+        if: steps.dashboard.outcome == 'failure'
+        run: |
+          echo "::error::the scheduled source re-check published its record, but the dashboard verification step failed"
+          exit 1

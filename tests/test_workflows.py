@@ -91,3 +91,56 @@ class WorkflowFiles(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+class ScheduledRecordPublishing(unittest.TestCase):
+    """The scheduled job must always publish the record it was run to produce.
+
+    On 2026-11-19 the run for merge commit 5f001742 executed every recorder, then
+    failed in the "Verify the dashboard still passes its own checks" step. The two
+    steps that commit and push the record were skipped, so a correct observation of
+    108 official URLs was discarded and the published site kept the previous run's
+    timestamp for another day. `check_sources.py` had already written the record to
+    disk; only the workflow threw it away.
+
+    The fix keeps the dashboard check as a failure signal but makes it unable to
+    block publication. These tests pin that ordering so it cannot silently revert.
+    """
+
+    def setUp(self):
+        raw = (ROOT / ".github" / "workflows" / "checks.yml").read_text(encoding="utf-8")
+        self.raw = raw
+        self.doc = yaml.load(raw, Loader=StrictLoader)
+        self.steps = self.doc["jobs"]["recheck"]["steps"]
+
+    def _step(self, fragment):
+        for step in self.steps:
+            if fragment in (step.get("name") or ""):
+                return step
+        self.fail(f"checks.yml has no step named like {fragment!r}")
+
+    def test_dashboard_check_cannot_suppress_the_record(self):
+        verify = self._step("Verify the dashboard still passes")
+        self.assertTrue(
+            verify.get("continue-on-error"),
+            "the dashboard check must not abort the job before the record is published",
+        )
+        self.assertEqual(verify.get("id"), "dashboard",
+                         "the outcome is re-raised at the end, so the step needs an id")
+
+    def test_record_and_push_steps_run_even_after_a_failed_check(self):
+        for name in ("Record the check results on the main branch",
+                     "Push the record to main"):
+            with self.subTest(step=name):
+                self.assertEqual(self._step(name).get("if"), "always()",
+                                 f"{name!r} must run even when the check above failed")
+
+    def test_the_job_still_goes_red_when_the_dashboard_is_broken(self):
+        gate = self._step("Fail the run if the dashboard check failed")
+        self.assertEqual(gate.get("if"), "steps.dashboard.outcome == 'failure'")
+        self.assertIn("exit 1", gate["run"])
+
+    def test_publishing_happens_before_the_failure_gate(self):
+        names = [s.get("name") or "" for s in self.steps]
+        push = names.index("Push the record to main, tolerating a concurrent merge")
+        gate = names.index("Fail the run if the dashboard check failed")
+        self.assertLess(push, gate, "the record must be pushed before the run is failed")
