@@ -4405,7 +4405,7 @@ No live official-source claim is made by this infrastructure task. Source verifi
 
 | Task | Status | Owner | File scope |
 |---|---|---|---|
-| Audit the canonical landing page against the current trip and official evidence; remove impossible or stale recommendations; publish source-linked decision gates, verification results and outstanding gaps | in progress | arena/6a0b16d7-poker3 (integration for this scope) | `site/index.html`, `site/assets/decision-summary.js`, `site/assets/decision-summary.css`, `site/flagged.html`, `tests/test_decision_summary.py`, `research/decision-audit-2026-11-19.md`, this board |
+| Audit the canonical landing page against the current trip and official evidence; remove impossible or stale recommendations; publish source-linked decision gates, verification results and outstanding gaps | done; evidence gaps published for review | arena/6a0b16d7-poker3 (integration for this scope) | `site/index.html`, `site/assets/decision-summary.js`, `site/assets/decision-summary.css`, `site/flagged.html`, `tests/test_decision_summary.py`, `research/decision-audit-2026-11-19.md`, this board |
 
 PRs #112 and #130 remain open and own the shared model, calculator, and several generator files; this claim does not edit their scopes (other than appending to the shared board). The canonical site and morning jobs already exist. Branch name is platform-assigned. No other sessions started here.
 
@@ -4422,4 +4422,14 @@ The board already exists on main. PRs #112 and #130 overlap the shared catalog a
 - **Rebase:** Main advanced with #150; resolved the append-only board conflict by retaining both entries. No catalog or other session's changes were discarded.
 - **Remaining review:** no confirmed written single-entry cap, official finish times or full like-for-like fresh checkout set. The automated check distinguishes page changes and failed retrievals; it does not confirm event fields. GitHub records the merge and deployment independently of this board.
 
+### Publication confirmed (2026-11-19 UTC)
+- PR [#152](https://github.com/karagemop466-tech/Poker3/pull/152) merged using `gh pr merge 152 --merge` at 05:33:24 UTC, merge commit `746d85e7b6e9959e98e159a7783b8765d12ad6aa`.
+- Pages run [44465978020](https://github.com/karagemop466-tech/Poker3/actions/runs/44465978020) completed **success**: blocking evidence/link checks, regression/render checks, artifact upload and deployment all passed.
+- Published dashboard: https://karagemop466-tech.github.io/Poker3/ . Deployment confirmed through GitHub Actions; this sandbox cannot independently fetch github.io or official venue hosts. No fresh live verification is claimed.
+- A second concurrent append conflict while integrating main was also resolved by preserving both full records. All scopes completed; remaining factual gaps are the existing site flags, not resolved by this CI change.
+
 6a0b16d7 scope clarification: replace the retired homepage trip-card / top-picks hook checks in `tests/canonical_smoke.py` with checks for the source-audited summary and evidence table. No open PR lists this file. The dated audit can be rendered as static HTML without a second JavaScript data loader.
+
+6a0b16d7 conflict log: simultaneous board appends; preserved both complete sections. The separate Nov 19 publication-verification note on the flags page is also preserved.
+
+**6a0b16d7 verification:** [Dated audit and official links](research/decision-audit-2026-11-19.md). Read all seven primary sheets against the current Venetian schedule, verified the poker-rate terms, attempted exact-stay checkout. No written cap or updated price. 209 unit tests, canonical smoke/render and link checks passed locally. No new verification date assigned to the rest of the catalog.
