@@ -4712,3 +4712,17 @@ The irregularity recorded above as "found and NOT fixed" was taken on after conf
   explanatory note, that `site/checks.json` really does carry a 2026-11-19 `changed: false` record for each
   of the seven sheets, and that each planned primary still carries `lastChecked`/`lastVerified` 2026-11-17.
 - **Verification:** 246 unit tests OK; `verify_site.py`, `canonical_smoke.py` and `canonical_render.js` pass.
+
+### Integration record — `arena/ffe8f597-poker3`
+
+- **Rendered check (not just a DOM stub):** `site/assets/app.js` was executed against the real
+  `site/data.json` in a `vm` sandbox built like `tests/canonical_render.js`. The schedule page rendered
+  57,756 characters, seven day articles, five "replaces the primary" badges and zero "playable after the
+  primary" badges, with the explanatory sentence and the impossible-sequence block both present. This is the
+  visible proof that the fix reaches the page, not only the JSON.
+- **Published-site pre-check:** a local server over `site/` returned HTTP 200 for `index.html`,
+  `schedule.html`, `tournaments.html`, `flagged.html`, `hotels.html` and `calculator.html`; an independent
+  link crawler over 25 local pages found 0 broken local links; every `site/assets/*.js` and
+  `site/poker3/assets/*.js` passes `node --check`; `site/data.json` parses.
+- **Merge-history hygiene:** the rebase conflict was append-only in this board and was resolved by keeping
+  both records complete (PR #164's session and this one). No other session's work was discarded.
