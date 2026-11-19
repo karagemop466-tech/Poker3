@@ -5068,3 +5068,9 @@ changed.** Verbatim excerpts and per-URL comparisons: `research/reread_2026-11-1
 - **Rebase log.** Two concurrent merges landed while this session was working: #174/#177 (arena/827185f7, the parallel six-URL re-read) and #178 (arena/3dae36ec). Each rebase kept both board sections and both sessions' code; no other session's work was discarded. The final integrated head passed 260 unit tests, `verify_site.py` (341/8/56/48/92/7/16), transcription 44/44, canonical smoke + DOM renders, byte-identical rebuild.
 - **What this PR added to main:** the backwards-drag fix (the 2026-11-17 pass no longer overwrites 2026-11-19 source/hotel stamps — `wynn-poker` and the Wynn hotel row now publish `2026-11-19`), ten additional sources stamped from this session's hand reads, the 20 recurring room rows' `lastChecked`/`lastVerified` completed to 2026-11-19, the independent verbatim re-read record `research/reread_2026-11-19_arena-23505d42.md`, and the flyer-retrieval test widening.
 - **GitHub Pages:** the publish workflow ran for the merge; status recorded in the follow-up commit (see below).
+
+## Session arena/621aeb99-poker3
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Audit trip-cost calculator quote presentation and arithmetic | in progress | arena/621aeb99 | site/calculator.html, tests/test_calculator_page.py |
