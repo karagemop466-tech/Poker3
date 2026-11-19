@@ -4385,6 +4385,22 @@ The platform binds this session to the existing branch `arena/a6d0d539-poker3`, 
 
 PR #144 merged at 2026-11-18 03:24:20 UTC as `28cdc301`. The branch was later rebased onto `main` at `0c22e9c`, preserving the subsequent PR #145/#147/#148 integration and audit records. The active deliverable on this branch remains the already-completed global-search/mobile-usability task recorded immediately above; the calculator changes are not part of it.
 
+## Session arena/84bd554a-poker3 — deployment verification gate (2026-11-19 UTC)
+
+Platform constraint: work stays on `arena/84bd554a-poker3`; no new branches or direct main pushes. Existing open PRs #112 and #130 own calculator/data integration; those files are not edited by this session.
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Require canonical data, local links, render and regression validation before Pages uploads; independently audit existing features | in progress | arena/84bd554a-poker3 | `.github/workflows/pages.yml`, `tests/test_pages_gate.py`, `COORDINATION.md` |
+
+No live official-source claim is made by this infrastructure task. Source verification cannot be substituted by domain allowlisting or a successful build. Unavailable sources remain flagged.
+
+### Result — Pages gate implementation
+- Added blocking validation before artifact upload: official-domain/local-link schema checks, independent arithmetic audit, archived official-capture comparisons, structure-sheet/entry-label integrity, full unit suite, rendered dashboard and walking-filter checks, and client syntax checks. These are offline evidence checks, **not a fresh verification of official websites**.
+- Added `tests/test_pages_gate.py`: asserts required checks precede upload, cannot be skipped/soft-failed, dependency installation precedes tests, and deploy requires successful build.
+- Local validation: **207 tests pass** using a local ignored virtualenv with PyYAML 6.0.3; canonical smoke/render pass; evidence/arithmetic/entry-label audits pass; `git diff --check` clean. Initial system-Python test run lacked PyYAML; resolved with the isolated virtualenv, not by changing system Python.
+- Audit snapshot: 341 events, 8 hotels, 56 route records, 47 sources, 87 flags, 7 provisional plan days. 52 sheet-screened candidates, **zero written single-entry-cap confirmations**. No event promoted to verified; no factual data changed. Existing official links and irregularities remain on `site/sources.html`, `site/sheets.html`, `site/flagged.html`.
+- Existing calculator/data PRs #112/#130 remain untouched. Claim status: done; publication result follows below.
 ## Session 6a0b16d7 · decision-ready executive summary · 2026-11-19 UTC
 
 | Task | Status | Owner | File scope |
@@ -4393,6 +4409,7 @@ PR #144 merged at 2026-11-18 03:24:20 UTC as `28cdc301`. The branch was later re
 
 PRs #112 and #130 remain open and own the shared model, calculator, and several generator files; this claim does not edit their scopes (other than appending to the shared board). The canonical site and morning jobs already exist. Branch name is platform-assigned. No other sessions started here.
 
+- Integration conflict log: concurrent PR #150 appended to the same board. Aborted the initial rebase and merged current main; retained both complete append sections without discarding other work. Local `.venv/` is excluded through `.git/info/exclude` only.
 ## Session `arena/25d4bbd4-poker3` — publication verification (2026-11-19 UTC)
 
 | Task | Status | Owner session | Scope |
