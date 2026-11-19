@@ -4421,3 +4421,9 @@ The board already exists on main. PRs #112 and #130 overlap the shared catalog a
 - **Done — PR [#151](https://github.com/karagemop466-tech/Poker3/pull/151).** Local checks: 204 unit tests, canonical and companion smoke/render, reproducible catalog and official-capture comparisons. The Venetian PDF matched 94/94 rows with 32 blank continuation cells; Wynn matched 136/136 with eight conflicting printed weekdays. Both official PDFs and the live Venetian poker-room page reread on November 19 are linked on Flagged for Review. This was not a fresh live reread of every individual structure sheet or checkout.
 - **Rebase:** Main advanced with #150; resolved the append-only board conflict by retaining both entries. No catalog or other session's changes were discarded.
 - **Remaining review:** no confirmed written single-entry cap, official finish times or full like-for-like fresh checkout set. The automated check distinguishes page changes and failed retrievals; it does not confirm event fields. GitHub records the merge and deployment independently of this board.
+
+### Publication confirmed (2026-11-19 UTC)
+- PR [#152](https://github.com/karagemop466-tech/Poker3/pull/152) merged using `gh pr merge 152 --merge` at 05:33:24 UTC, merge commit `746d85e7b6e9959e98e159a7783b8765d12ad6aa`.
+- Pages run [44465978020](https://github.com/karagemop466-tech/Poker3/actions/runs/44465978020) completed **success**: blocking evidence/link checks, regression/render checks, artifact upload and deployment all passed.
+- Published dashboard: https://karagemop466-tech.github.io/Poker3/ . Deployment confirmed through GitHub Actions; this sandbox cannot independently fetch github.io or official venue hosts. No fresh live verification is claimed.
+- A second concurrent append conflict while integrating main was also resolved by preserving both full records. All scopes completed; remaining factual gaps are the existing site flags, not resolved by this CI change.
