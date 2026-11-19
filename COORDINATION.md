@@ -4529,3 +4529,18 @@ The documentation follow-up preserved both the #156 and #159 board entries when 
 - GitHub Pages: Pages API reports `status: built`, source `main` `/`, https://karagemop466-tech.github.io/Poker3/ . The "Publish the canonical Vegas Poker Planner to GitHub Pages" workflow completed `success` on the post-merge main tip.
 - PRs #112 and #130 closed as superseded with explanatory comments (both unmergeable — no merge base against `main`; #112's quote + walk matrix already on `main`, its walk-direction fix re-implemented in #153; #130's three fixes re-implemented in #153).
 - Open flags (published on `site/flagged.html`, do not block): F31, F17, F16, F39, F56, F15/F36/F57, F92. F92 (Venetian poker page wording change, 2026-11-18 20:24 UTC) still needs a manual re-read before nonrefundable payment.
+
+---
+
+## Session `arena/827185f7-poker3` — live manual re-reads, dated quote attempts, publication (2026-11-19 UTC)
+
+Branch note: the platform binds this session to `arena/827185f7-poker3` (branched from `main` at `23ad5d8`); the `session-<id>/<task>` naming from the brief cannot be applied. This claim was committed before any other work, per protocol. No open PRs existed at claim time, so the scopes below do not overlap any active work.
+
+**This session's page reader can reach venue hosts** (unlike most prior sessions), so the outstanding *manual* re-reads flagged on 2026-11-18/19 are the work claimed here. No value is asserted without printed text from the official page; blanks stay blank.
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| M1 F92 manual re-read of the official Venetian poker page; compare every recorded value behind it; date the result on the flag | claimed 2026-11-19 | arena/827185f7-poker3 | `scripts/data_source.py` (flag F92/F91 text only), regenerated `site/data.json` | Page read live today; result recorded with quotes. |
+| M2 Manual re-read of the six URLs the 2026-11-19 05:33 UTC check marked changed (Venetian series index; Wynn poker, resort policies, parking, rooms, expired terms 850070); compare each recorded value | claimed 2026-11-19 | arena/827185f7-poker3 | `scripts/data_hotels.py` (Wynn value fields only where the live page contradicts), `scripts/data_source.py` (flag text), regenerated `site/data.json` | Only a printed contradiction changes a value; otherwise the re-read result is recorded on a flag. |
+| M3 Dated official quote attempts for 23–30 Nov 2026 at the properties with no checkout total (Wynn, Bellagio, MGM, Caesars, Horseshoe, ARIA); append printed figures to the dated rate log only | claimed 2026-11-19 | arena/827185f7-poker3 | `scripts/data_hotels.py` (RATE_LOG append + attempt notes), regenerated `site/data.json` | An engine that prints nothing is recorded as a dated attempt, not a price. |
+| M4 Verification suite, PR → `main`, merge, Pages confirmation, record here | claimed 2026-11-19 | arena/827185f7-poker3 | `COORDINATION.md`, whole repo | Flagged irregularities do not block merge. |
