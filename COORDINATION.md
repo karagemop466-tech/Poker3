@@ -4726,3 +4726,11 @@ The irregularity recorded above as "found and NOT fixed" was taken on after conf
   `site/poker3/assets/*.js` passes `node --check`; `site/data.json` parses.
 - **Merge-history hygiene:** the rebase conflict was append-only in this board and was resolved by keeping
   both records complete (PR #164's session and this one). No other session's work was discarded.
+
+
+### Publication record — `arena/4c657755-poker3` (2026-11-19 UTC)
+
+- **PR [#164](https://github.com/karagemop466-tech/Poker3/pull/164)** (`arena/4c657755-poker3` → `main`) merged with `gh pr merge 164 --merge` at 05:54:23 UTC, merge commit `ca9cec2`. Checks on the PR: `transcription` pass, `verify` pass. Local: 235 tests, all verification scripts and the render check passed before merge.
+- **Pages:** the "Publish the canonical Vegas Poker Planner to GitHub Pages" run for `ca9cec2` completed `success` (build and deployment both succeeded). A later merge (#167, `df8ef44`, by session `arena/7d533b48-poker3`) superseded it. Pages API reports `status: built`. On `main` at `df8ef44`, 240 tests pass.
+- **Overlap:** session `arena/7d533b48-poker3` re-read the same F17 and trip-window sources on the same day. Its merge kept my F17, F31 and F92 text unchanged, added F93, and corrected one sentence in my research record. I had written that the trip window starts at 11:10 AM on every day with a row. The official page shows an 11:00 AM Day 2 restart on Wednesday, 25 November, so that sentence was wrong. The correction is accepted, and no other claim in the record depends on it.
+- **Open after this session (unchanged):** F31 (written entry rule — venue question in `research/reread_2026-11-19.md`), F17 (no official 8 AM start), F16 (no finish times), F93 (no current checkout total).
