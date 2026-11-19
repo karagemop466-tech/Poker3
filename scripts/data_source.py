@@ -1120,6 +1120,22 @@ FLAGS = [
                  "Before any nonrefundable payment, ask the poker room (702.414.7657, lv_cas_poker@venetianlasvegas.com, both printed on the "
                  "suite-rate page) for the all-in total in writing and record the answer with its date."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
+    dict(id="F94", area="Day plan", severity="High",
+         title="On five of the seven trip days the published fallback was the same event the site publishes as an "
+               "impossible sequence against that day's primary (found and fixed 2026-11-19)",
+         detail=("Found on 2026-11-19 by comparing site/data.json against its own stated fallback rule. The rule said the "
+                 "fallback 'starts after the primary's estimated finish plus a 30-minute transfer', but the builder selected "
+                 "the next-ranked candidate without applying that test. On 25, 26, 27, 28 and 29 November 2026 the fallback "
+                 "therefore started inside the primary's estimated session, and the same pair also appeared under "
+                 "planConflicts as an 'impossible sequence' on the schedule page. One block said the pair cannot be played; "
+                 "the other offered it as the plan. No official value was wrong and no tournament, fee, guarantee, hotel or "
+                 "walking figure changed. The fix adds an explicit sequence status to every fallback: 'replaces the primary' "
+                 "where it starts before the primary's estimated finish plus the transfer, and 'playable after the primary' "
+                 "where it starts later, each with a plain-language note on the schedule page. The stated rule now matches "
+                 "the code, and tests/test_fallback_sequencing.py fails if any fallback is again described as playable after "
+                 "an event it overlaps. This does not resolve the underlying limit: no venue publishes finish times (F16), "
+                 "so the replaced-or-after judgement still rests on an estimate."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
     dict(id="F74", area="Venetian DSE NYE", severity="Low",
          title="Eleven NYE rows carried a 'structure sheet not read' label after all 15 sheets had been read",
          detail=("Found and fixed on 2026-11-17. Eleven NYE rows sat in the category 'Unverified - structure sheet not "
@@ -1897,8 +1913,12 @@ PLAN_NOTES = {
     "primaryRule": ("Provisional primary candidate = the sheet-screened event on that date with the largest published guarantee, "
                     "among venues within a 30-minute walk of the recommended hotel, excluding age-restricted, female-only "
                     "and team formats. This is not confirmation of a one-entry-per-player cap; written venue rules are required."),
-    "fallbackRule": ("Fallback = the next sheet-screened candidate that starts after the primary's estimated finish plus a "
-                     "30-minute transfer. The fallback is conditional on written confirmation of entry rules and fit."),
+    "fallbackRule": ("Fallback = the next sheet-screened candidate on the same date, ranked after the primary, chosen as an "
+                     "alternative to it and never in addition to it. Where the fallback starts before the primary's "
+                     "estimated finish plus a 30-minute transfer, it is marked 'replaces the primary' and the same pair "
+                     "also appears under the impossible-sequence flags; it can only be played if the player is out of the "
+                     "primary in time to register. Where it starts later, it is marked 'playable after the primary'. The "
+                     "fallback is conditional on written confirmation of entry rules and fit."),
     "transfer": 30,
     "walkLimit": 30,
     "pokerRateRule": ("The hotel rate the budget is built on is conditional. Each night stayed needs either six hours "
@@ -2028,6 +2048,38 @@ def _plan_rank(e):
     return (-guarantee, WALK[e["venue"]], e["buyIn"], start)
 
 
+def _fallback_sequence(primary, alt):
+    """Can the fallback be played after the primary, under the disclosed estimates?
+
+    Returns (status, text). The status is "after" when the fallback starts at or
+    after the primary's estimated finish plus the transfer allowance, otherwise
+    "replaces". Both are honest readings of the same two printed clock times: a
+    fallback that starts first is an alternative to the primary, never a second
+    event on the same day.
+    """
+    if not primary or not alt:
+        return "", ""
+    p_start = clock_minutes(primary["time"])
+    p_end = primary.get("endEstimateMin")
+    a_start = clock_minutes(alt["time"])
+    if p_start is None or a_start is None or p_end is None:
+        return ("unknown",
+                "Timing not compared: a start time or the primary's estimated finish is not published.")
+    transfer = PLAN_NOTES["transfer"]
+    if a_start >= p_end + transfer:
+        return ("after",
+                f"Playable after the primary: it starts at {alt['time']}, after the primary's estimated "
+                f"{primary['endEstimate']} finish plus the {transfer}-minute transfer.")
+    if a_start > p_start:
+        return ("replaces",
+                f"Replaces the primary, not a second entry: it starts at {alt['time']}, before the primary's "
+                f"estimated {primary['endEstimate']} finish. It is only playable if the player is out of the primary "
+                f"in time to register, and it closes at {alt.get('lateRegEnd') or 'an unpublished time'}.")
+    return ("replaces",
+            f"Replaces the primary, not a second entry: it starts at {alt['time']}, before the primary starts at "
+            f"{primary['time']}.")
+
+
 def _fallback_reason(primary, alt):
     if alt["entryType"] != "none":
         return ("Different format: this row is a multi-flight, satellite or series event, so it is listed as an "
@@ -2129,6 +2181,8 @@ def build_day_plan(events, start_date, end_date, recurring=()):
             fallbackWalk=WALK.get(fallback["venue"], "") if fallback else "",
             fallbackFormat=fallback["format"] if fallback else "",
             fallbackReason=fallback_reason,
+            fallbackSequence=_fallback_sequence(primary, fallback)[0],
+            fallbackSequenceNote=_fallback_sequence(primary, fallback)[1],
             candidates=len(eligible),
             primaryGuaranteeNote=_pool_note(primary) if primary else "",
             fallbackGuaranteeNote=_pool_note(fallback) if fallback else "",

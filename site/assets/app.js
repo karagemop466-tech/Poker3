@@ -714,6 +714,7 @@ function renderSchedule() {
               · buy-in ${money(fallback.buyIn) || 'not published'} · guaranteed ${money(fallback.guarantee) || 'not published'}</p>
             ${p.fallbackGuaranteeNote ? `<p class="day-meta warn">Pool note: ${esc(p.fallbackGuaranteeNote)}.</p>` : ''}
             <p class="day-meta">${esc(p.fallbackReason)}</p>
+            ${p.fallbackSequenceNote ? `<p class="day-meta ${p.fallbackSequence === 'replaces' ? 'warn' : ''}"><span class="badge ${p.fallbackSequence === 'replaces' ? 'bad' : 'info'}">${p.fallbackSequence === 'replaces' ? 'replaces the primary' : p.fallbackSequence === 'after' ? 'playable after the primary' : 'timing not compared'}</span> ${esc(p.fallbackSequenceNote)}</p>` : ''}
             <p>${sourceLinks(fallback)}</p>` : `<p class="muted">${esc(p.fallbackReason)}</p>`}
           <ul class="recurring">${rec}</ul>
         </div>
