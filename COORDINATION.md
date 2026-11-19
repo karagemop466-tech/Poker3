@@ -6079,3 +6079,69 @@ Open PRs at claim time: **#173** (`arena/a33db3c1-poker3`) and **#184** (`arena/
 **Baseline at claim (verified locally, before any edit).** `scripts/verify_site.py` passes (341 events / 8 hotels / 56 routes / 50 sources /
 101 flags / 7 plan days / 18 pages); full unit suite **334 tests OK**; `audit_951cd431.py` 0 failures / 0 warnings; `audit_data.py`,
 `verify_entry_labels.py`, `verify_live_official.py` all pass. GitHub Pages reports `status: built` from legacy `main /`.
+
+### Result (session `arena/c336248a-poker3`, 2026-11-19 UTC)
+
+**S1 — done.** The canonical dashboard, data builder, monitors, tests and workflows were audited line
+by line against the 40-item brief. Baseline reproduced locally before any edit: `verify_site.py` pass,
+334 unit tests OK, `audit_951cd431.py` 0/0, `data_source.py` byte-identical on re-run, 164 local links
+0 broken. The dated verbatim record is
+[`research/audit_2026-11-19_arena-c336248a.md`](research/audit_2026-11-19_arena-c336248a.md).
+
+**The audit found the monitoring broken, not the data.** Run
+[44482186623](https://github.com/karagemop466-tech/Poker3/actions/runs/44482186623) — the scheduled job
+for merge commit `5f001742` — ran all three recorders successfully, failed at step 8
+("Verify the dashboard still passes its own checks"), and **skipped steps 9 and 10**, the ones that commit
+and push the record. The observation of 108 official URLs that `check_sources.py` had already written to
+disk was thrown away and the published `site/checks.json` kept its 07:34:30 UTC state. Two independent
+causes, both reproduced in a scratch copy:
+
+1. the record and push steps had no `if: always()`, so any failing step above them suppressed the record;
+2. `tests/test_index_evidence_labels.py` asserted `record["changed"] is False` for the seven primary
+   sheets, so a **genuine** source change — the one thing this monitor exists to surface — was a build
+   error. Forcing `changed: true` on one sheet failed that test and nothing else.
+
+**S2 — done.** The dashboard check is now `continue-on-error` with an id, both publish steps carry
+`if: always()`, and a final step re-raises the failure with `steps.dashboard.outcome == 'failure'`, so the
+record is always published and a broken dashboard still shows as a red run. The test now requires the
+landing-page date to be backed by a row that was actually fetched (HTTP 2xx, real ISO timestamp) rather
+than by an unchanged row. Four new assertions in `tests/test_workflows.py` pin the workflow properties.
+
+**Official re-reads this session (2026-11-19, verbatim):** all four chunks of the
+[DSE IV schedule](https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html)
+(19 trip-window Venetian rows, all match); eight structure sheets — 30, 1, 6, 5, 7, 11, 22 and 26 — every
+printed buy-in, fee split, chip count, level length, late-registration clock and guarantee matches;
+[resort fee](https://www.venetianlasvegas.com/resort/resort-fee.html),
+[poker suite rates](https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html),
+[player parking](https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html),
+[hotel terms](https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html),
+[poker room](https://www.venetianlasvegas.com/resort/casino/poker.html);
+the [Caesars/Horseshoe article](https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip)
+(all three chunks); the [WPT schedule PDF](https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf)
+(13 trip-window rows, all match); the [Wynn engine for 23–30 Nov 2026](https://reservations.wynnlasvegas.com/ibe/details.aspx?hotelID=13763&langID=1&rmID=68658&checkIn=11/23/2026&checkOut=11/30/2026)
+(Wynn Resort King, Flexible Getaway $495 avg/night, includes resort fee, excludes taxes);
+the [exact-stay Venetian booking engine](https://www.venetianlasvegas.com/booking?adults%5B%5D=2&arrival_date=2026-11-23&children%5B%5D=0&departure_date=2026-11-30&view=calendar),
+which again printed `$XXX` in every cell and "Your Venice meets Vegas getaway is loading" — **no new
+checkout total**, so F93/F88 persist and the $4,010.55 total still rests on its 2026-11-17 read.
+
+**No tournament, hotel, rate, route or rule value was changed.** Flagged irregularities added:
+**F109** (the all-day brief cannot be met from published data — no 8 a.m. start, and 23–24 Nov have only a
+5:10 p.m. one-buy-in event), **F112** (sheet 26 prints Event 17 twice and puts the guarantee only inside
+rule 10), **F113** (the resort-fee page says "Rates include a daily Resort Fee"; the terms price it as an
+addition — a $436.51 difference over seven nights, published with the conservative reading), **F114**
+(sheet 1's guarantee is paraphrased in the cell, same number). Two decision questions added: **Q19** (is
+the $55 fee inside the rate?) and **Q20** (how would a broken re-check be noticed?). **F111** records the
+monitor defect and its fix.
+
+**Conflict log.** `main` advanced to `2463afe` (PR #211, session `arena/4475a074`) while this branch was
+open. The `COORDINATION.md` conflict was append-only: both sessions' sections were kept. `site/coverage.json`,
+`site/data.json` and `site/sheets.html` were regenerated from the merged builders rather than hand-merged.
+Session `arena/80a6f5df` had independently published flags **F106, F107 and F108**; this session's four new
+flags were renumbered to **F109, F112, F113 and F114** so no ID collides, and the other session's IDs,
+tests and records are preserved exactly. No value from either session was discarded.
+
+**Verification after the rebase:** `verify_site.py` pass (341 events / 8 hotels / 56 routes / 50 sources /
+**109 flags** / 7 plan days / 18 pages), **348 unit tests OK**, `canonical_render.js`, `audit_951cd431.py`,
+`audit_data.py`, `verify_entry_labels.py`, `verify_live_official.py` and the reproducible rebuilds all pass.
+
+**S3 — in progress.** Opening the integration PR from this branch to `main` next.
