@@ -4592,3 +4592,34 @@ Overlap check: no other open PR at the time of claim (`gh pr list --state open` 
 - **Verification:** 235 unit tests pass (PyYAML 6.0.3 in an out-of-repo virtualenv; the system Python lacks it, so two workflow-test modules errored before that). `verify_site.py`, `audit_951cd431.py`, `verify_live_official.py`, `audit_data.py`, `verify_entry_labels.py`, `tests/canonical_smoke.py`, `canonical_render.js`, `node --check` on all four site scripts, `json.tool` on `site/data.json`, and `git diff --check` all pass. `build_addendum.py` reports 88 flags, 0 unexplained disagreements.
 - **Still open (not resolved here):** F31 (needs a written answer from the venue), F17 (no official 8 AM start exists), F16 (no published finish times), and the booking quote (needs a live checkout read).
 - **Question for the user / the venue:** the exact question to send is in `research/reread_2026-11-19.md`. It is not a value and is not asserted anywhere as confirmed.
+
+## Session `arena/7d533b48-poker3` — primary-sheet re-read, F93, Q14/Q15 corrections (2026-11-19 UTC)
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| Re-read the seven Venetian primary structure sheets, the trip-window schedule rows, the suite-rate and parking pages and the booking link, live; add the pre-payment price gap; correct stale answers | done | `arena/7d533b48-poker3` | `research/reread_2026-11-19_7d533b48.md` (new), `tests/test_reread_2026_11_19_7d533b48.py` (new), `scripts/data_source.py` (F93 added; F17 detail clarified; Q14, Q15 answers), regenerated `site/data.json` and `site/sheets.html`, `research/reread_2026-11-19.md` (one bullet corrected), this board | No venue value (date, time, fee, guarantee, rate, route) changed. |
+
+**Overlap, recorded honestly.** This claim was pushed at 05:50:39 UTC. Session `arena/4c657755-poker3` filed a claim for F17, F31 and F92 at 05:51:12 UTC, which overlapped on F92 and F17. That session merged first (PR #164). This branch was reset onto `main` (`ca9cec2`) and reapplied only its unique work: F93, the F17 trip-window clarification, the Q14 and Q15 answers, the primary-sheet record and a regression test. F92 and F31 text is theirs and is unchanged. Nothing from either session was discarded.
+
+**Official sources read live on 2026-11-19 (about 05:45–05:55 UTC):**
+- [Venetian poker room](https://www.venetianlasvegas.com/resort/casino/poker.html): banner, "Open 24 Hours", location.
+- [DSE IV schedule](https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html), all chunks: every row 23–29 Nov agrees with the stored data.
+- [Suite-rate terms](https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html): unchanged.
+- [Poker room parking](https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html): $20/day for registered guests (agrees with the model; F86 covers the three-hour waiver).
+- Primary structure sheets, read in full: [30](https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_30.pdf), [1](https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf), [6](https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_6.pdf), [5](https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf), [7](https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf), [11](https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf), [22](https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_22.pdf). All seven agree with the stored buy-in, guarantee, starting chips, level length, late-registration cut-off and start time. None prints a per-player entry maximum (F31 stands). Event 7's sheet [structure_2](https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_2.pdf) prints a bagging rule and stays multiple-entries.
+- [Booking link, 23–30 Nov, 2 adults](https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar): "loading" page, no total.
+
+**Changes:**
+- **F93 added (High).** No current nightly price for 23–30 Nov. The $4,010.55 total is the dated 17 Nov observation. Ask the poker room in writing before payment.
+- **F17 clarified.** The window has no opening Venetian event before 11:10 AM; the only earlier start is the 11:00 AM Day 2 restart on 25 Nov. The 4c657755 record's sentence omitted that restart and has been corrected in place.
+- **Q14 and Q15 answers.** Q15 had a leftover "printed $XXX" sentence. It now says the calendar showed a placeholder with no total (F57) and cites F93. Q14 states the trip-window start.
+- Regenerated `site/data.json` (only `flags` and `questions` differ from `main`) and `site/sheets.html` (89 flags).
+
+**Verification on the reconciled branch:** 240 unit tests OK (including 5 new in `tests/test_reread_2026_11_19_7d533b48.py`); `verify_site.py` (341 events, 8 hotels, 56 routes, 47 sources, 89 flags, 7 plan days, 16 pages) passed; `audit_data.py` passed; `verify_entry_labels.py` passed (0 written single-entry confirmations); `verify_transcription.py --dry-run` 44/44; `canonical_smoke.py` and `canonical_render.js` passed; `node --check app.js` passed.
+
+**Irregularities for manual review (none blocks merge):**
+1. Sheets 30, 1 and 11 print guarantees "(prize pool + total bounties)". The guarantee ÷ buy-in ratio therefore counts bounty money; rows carry "includes bounties".
+2. Flight events (event 7 on 23/24 Nov and the 29 Nov 1A) print as separate rows but come from one sheet with a bagging rule (already multiple-entries).
+3. The 17 Nov and 18 Nov poker-page captures differ only in the series banner (F92). Change badges remain until the monitor is re-baselined.
+
+**Not verified this session:** Wynn, Bellagio, MGM Grand, Caesars Palace, Horseshoe, ARIA and the Palazzo rates and structures; finish times (F16); written entry caps (F31); any current booking price (F93); Apple Maps walking times (not reachable from this sandbox).

@@ -589,7 +589,9 @@ FLAGS = [
                  "Re-read live on 2026-11-19 from the official DSE IV schedule page (all four chunks): the 9:10 AM row is Saturday, "
                  "December 12, Event 46; the two 10:00 AM Venetian rows are Friday, December 11 (Event 39, Day 2 Restart) and Tuesday, "
                  "December 15 (Event 49, Day 2 Restart); the earliest opening event is 10:10 AM. Opening Venetian events start at "
-                 "10:10 AM or later; the only 10:00 AM Venetian starts are restarts (Day 2 or Day 3). The Wynn daily starts at 12:00 PM. "
+                 "10:10 AM or later; the only 10:00 AM Venetian starts are restarts (Day 2 or Day 3). Inside the 23-29 November trip "
+                 "window no opening event starts before 11:10 AM; the only earlier start there is the Day 2 restart at 11:00 AM on "
+                 "25 November (read 2026-11-19). The Wynn daily starts at 12:00 PM. "
                  "Most Wynn WPT rows start at 11:00 AM. Its 10:00 AM rows are the Super Gold Million flights (Dec 10 and 11), one WPT "
                  "row on Dec 12 and a satellite on Dec 18, all from the WPT PDF read on 2026-11-16. An 'all day from 8:00 AM' plan cannot be built from official sources. The day plan starts at "
                  "the earliest verified start for each venue."),
@@ -1106,6 +1108,18 @@ FLAGS = [
                  "not proven byte for byte. Nothing on the page is a tournament value, so no row changed. The poker page still does not print "
                  "a dated room rate for a given night; the Venetian rate and fee flags (F51, F66, F69) are unchanged."),
          source="https://www.venetianlasvegas.com/resort/casino/poker.html"),
+    dict(id="F93", area="Hotels", severity="High",
+         title="Pre-payment reconfirmation on 2026-11-19: the Venetian booking engine still prints no checkout total for 23-30 November, so no current nightly price is on record",
+         detail=("Re-read live on 2026-11-19 (UTC). The official booking link for 2 adults, arrival 23 Nov 2026, departure 30 Nov 2026 "
+                 "returned only the page text 'Your Venice meets Vegas getaway is loading', with no rate, resort fee, tax or checkout "
+                 "total, the same result as the 2026-11-17 and 2026-11-18 attempts recorded in research/reread_2026-11-19.md. The "
+                 "$4,010.55 checkout total therefore remains the dated 2026-11-17 observation in the rate log, not a price for today. "
+                 "The suite-rate page (re-read 2026-11-19, unchanged) still states that the $119 and $209 poker rates are booked by "
+                 "telephone with code EPOKR25, require six hours of active live cash play or a buy-in to a $300-or-higher tournament for "
+                 "each night, and carry a $55 resort fee per night stayed. Whether EPOKR25 applies to these dates is not confirmed (F66). "
+                 "Before any nonrefundable payment, ask the poker room (702.414.7657, lv_cas_poker@venetianlasvegas.com, both printed on the "
+                 "suite-rate page) for the all-in total in writing and record the answer with its date."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
     dict(id="F74", area="Venetian DSE NYE", severity="Low",
          title="Eleven NYE rows carried a 'structure sheet not read' label after all 15 sheets had been read",
          detail=("Found and fixed on 2026-11-17. Eleven NYE rows sat in the category 'Unverified - structure sheet not "
@@ -1445,14 +1459,17 @@ QUESTIONS = [
                  "on the Caesars page (read 2026-11-17), which publishes no buy-in or structure. Caesars Palace starts at 10:00 AM. "
                  "The earliest Venetian start is 9:10 AM (a satellite on Dec 12), and the earliest non-satellite Venetian start is "
                  "10:10 AM. An all-day 8 AM plan therefore cannot be built from verified data; the day plan starts at the first "
-                 "verified open event for each venue."),
+                 "verified open event for each venue. For the trip window itself (23-29 November) no opening event starts before "
+                 "11:10 AM; the only earlier start there is a Day 2 restart at 11:00 AM on 25 November (F17, read 2026-11-19)."),
          why="Needed", blocking="Yes - the all-day schedule in the brief cannot be produced without it",
          how="Ask Horseshoe for the buy-in, structure and single-entry rule of its 9:00 AM game; ask each room for its earliest daily start.",
          source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"),
     dict(id="Q15", question="What is the real checkout total for the trip dates?",
          answer=("Partly answered 2026-11-17. The official Venetian booking engine printed an itemised checkout total of $4,010.55 "
                  "for 2026-11-23 to 2026-11-30 (two adults, Luxury King suite, best available rate; $55 resort fee each night and $473.30 tax). "
-                 "Earlier readings for 2026-11-25 to 2026-12-02 printed $XXX. No other property publishes a date-specific total in the data. "
+                 "Earlier readings for 2026-11-25 to 2026-12-02 showed the placeholder '$XXX' in every calendar cell and no total (F57). "
+                 "Re-read 2026-11-19: the same booking link still showed only a loading page with no total, so the $4,010.55 figure is "
+                 "not a price for today (F93). No other property publishes a date-specific total in the data. "
                  "The phone-only poker rate is not in the quote (F66)."),
          why="Needed", blocking="Yes - the engine total is now known, but the poker-rate total the budget is built on is not",
          how="Open the booking engine in a browser, select the dates and two adults, and read the checkout total; or call the "
