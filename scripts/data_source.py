@@ -588,8 +588,13 @@ FLAGS = [
          detail=("Re-read on 2026-11-17 on the Caesars page: Horseshoe runs six daily No-Limit Hold'em games at 9 a.m., "
                  "11 a.m., 2 p.m., 5 p.m., 8 p.m. and 11 p.m., with no buy-in published. Caesars Palace runs four daily games "
                  "at 10 a.m., 2 p.m., 6 p.m. and 9 p.m. (the official flyer prints $100 buy-ins at 10 a.m. and 6 p.m. and $160 at 2 p.m. and 9 p.m., with an optional $50 add-on; read 2026-11-18, F90). On the Venetian schedule re-read on "
-                 "2026-11-17 the earliest start is 9:10 AM, a $260 satellite on Dec 12. Opening Venetian events start at "
-                 "10:10 AM or later; the only 10:00 AM Venetian starts are restarts (Day 2 or Day 3). The Wynn daily starts at 12:00 PM. "
+                 "2026-11-17 the earliest start is 9:10 AM, a $260 satellite on Dec 12. "
+                 "Re-read live on 2026-11-19 from the official DSE IV schedule page (all four chunks): the 9:10 AM row is Saturday, "
+                 "December 12, Event 46; the two 10:00 AM Venetian rows are Friday, December 11 (Event 39, Day 2 Restart) and Tuesday, "
+                 "December 15 (Event 49, Day 2 Restart); the earliest opening event is 10:10 AM. Opening Venetian events start at "
+                 "10:10 AM or later; the only 10:00 AM Venetian starts are restarts (Day 2 or Day 3). Inside the 23-29 November trip "
+                 "window no opening event starts before 11:10 AM; the only earlier start there is the Day 2 restart at 11:00 AM on "
+                 "25 November (read 2026-11-19). The Wynn daily starts at 12:00 PM. "
                  "Most Wynn WPT rows start at 11:00 AM. Its 10:00 AM rows are the Super Gold Million flights (Dec 10 and 11), one WPT "
                  "row on Dec 12 and a satellite on Dec 18, all from the WPT PDF read on 2026-11-16. An 'all day from 8:00 AM' plan cannot be built from official sources. The day plan starts at "
                  "the earliest verified start for each venue."),
@@ -698,7 +703,10 @@ FLAGS = [
          source="https://github.com/karagemop466-tech/Poker3/actions"),
     dict(id="F31", area="Venetian DSE IV", severity="High",
          title="The structure sheets do not confirm a one-entry-per-player maximum",
-         detail=("The 52 Venetian rows classified as 'single entry on the sheet' have one printed buy-in and no re-entry, rebuy, add-on or second-flight provision in the reviewed sheet. However, the sheets do not state a maximum number of entries per player and do not explicitly call the event a freezeout. This is only a document-level screen, not written confirmation of the room's one-entry policy. Do not treat these candidates as strictly eligible or book around them until the venue confirms the maximum-entry, no-rebuy and no-add-on rules in writing. The source excerpt and date are attached to each row."),
+         detail=("The 52 Venetian rows classified as 'single entry on the sheet' have one printed buy-in and no re-entry, rebuy, add-on or second-flight provision in the reviewed sheet. However, the sheets do not state a maximum number of entries per player and do not explicitly call the event a freezeout. This is only a document-level screen, not written confirmation of the room's one-entry policy. Do not treat these candidates as strictly eligible or book around them until the venue confirms the maximum-entry, no-rebuy and no-add-on rules in writing. The source excerpt and date are attached to each row. "
+                 "Re-read 2026-11-19: the live official DSE IV schedule (all four chunks) prints no 'one entry', 'freezeout' or re-entry label on any row; its only entry wording is 'Direct Entry to Event #47 / #39' (satellites) and rake-discount notes. "
+                 "The venue does print one-entry wording on schedule rows in other series: the official DeepStack Extravaganza II page (April 2023, dse-apr-2023.html) prints 'One Entry Only with One Hour of Registration' on Event 13 (read live 2026-11-19). "
+                 "So the venue's schedule vocabulary includes a one-entry label, and the 2026 series prints none on any row. That is still not a written maximum-entry rule for the 2026 series, so F31 remains open. The question to put to the venue is in research/reread_2026-11-19.md."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
     dict(id="F61", area="Wynn WPT schedule", severity="High",
          title="Eight WPT rows are probably two days late: the 'Dec. 18 Wednesday' block is very likely December 16",
@@ -1089,31 +1097,59 @@ FLAGS = [
          title="The official Venetian poker page places the room at The Palazzo, level 2, Grand Canal Shoppes; the walking captures measure to the Venetian",
          detail=("Read on 2026-11-18 from the Venetian poker page: 'LOCATION: The Palazzo, level 2, Grand Canal Shoppes', with "
                  "directions from the Venetian lobby (escalator from the Waterfall Atrium) and from the Palazzo lobby (self-parking "
-                 "elevators). Re-read on 2026-11-19 (session arena/827185f7-poker3, the manual re-read recorded in F92): the same "
+                 "elevators). Re-read on 2026-11-19 (session arena/827185f7-poker3, the same session's F92 corroboration): the same "
                  "LOCATION line and both lobby direction sets still print exactly as recorded here. The Google Maps walking captures "
                  "on file (F84) and the 'Venetian' venue row use the resort address. "
                  "No minute value is changed by this flag. Before a walking-limit decision, re-measure to the room's own entrance on "
                  "level 2 of Grand Canal Shoppes."),
          source="https://www.venetianlasvegas.com/resort/casino/poker.html"),
     dict(id="F92", area="Change monitoring", severity="Low",
-         title="RESOLVED 2026-11-19: the required manual re-read of the Venetian poker page is done; no published value behind it moved",
-         detail=("The scheduled source re-check (site/checks.json, run 2026-11-18T20:24:36Z) recorded a visible-text change on "
-                 "https://www.venetianlasvegas.com/resort/casino/poker.html against the previous run at 2026-11-18T03:24:32Z "
-                 "(wordingChanged: true), and asked for a manual re-read. That re-read happened on 2026-11-19 by session "
-                 "arena/827185f7-poker3 (page reader, full page in two chunks). The live page prints, verbatim: 'LOCATION — The "
-                 "Palazzo, level 2, Grand Canal Shoppes'; the hours block '12:00 AM - 11:59 PM' for each of the seven weekdays "
-                 "with 'Open 24 hours daily.'; 'Our Poker Room is located at The Palazzo on level 2 of Grand Canal Shoppes. The "
-                 "Poker Room features 50 tables spread across 14,000 square feet of space, making it the largest room on the Las "
-                 "Vegas Strip.'; and the series block 'DeepStack Extravaganza IV / November 16 – December 23, 2026 / More than "
-                 "$3.6 Million in guaranteed tournament prize pools'. Every value this site records from that URL — F91's location "
-                 "wording (2026-11-18 read, re-confirmed today), the venue register's series line and $3.6M guarantee, and the "
-                 "room's 24-hour status — still prints exactly as recorded, so no data value changed. A text hash cannot say which "
-                 "words moved: the 20:24 change could not be attributed to any value this site cites, and the page carries "
-                 "marketing copy that no row depends on, so the change is treated as wording only. The 2026-11-19 05:33 UTC check "
-                 "no longer reports this URL as changed. Re-read the page again if a future check flags it, and before any "
-                 "nonrefundable payment."),
+         title="Re-read 2026-11-19: the flagged Venetian poker-page change is the series banner rolling from WPT Fall Festival to DeepStack Extravaganza IV; no tournament, rate or policy value on the page changed",
+         detail=("The scheduled re-check (site/checks.json, run 2026-11-18T20:24:36Z) recorded a visible-text change on "
+                 "https://www.venetianlasvegas.com/resort/casino/poker.html. The saved daily text snapshots show what changed. "
+                 "The 2026-11-17 snapshot reads 'Current Series: WPT Fall Festival October 28 - November 15, 2026 Nearly $4 Million'. "
+                 "The 2026-11-18 and 2026-11-19 snapshots read 'Current Series: DeepStack Extravaganza IV November 16 - December 23, 2026 "
+                 "More than $3.6 Million in guaranteed tournament prize pools'. That is the only text difference between those two days. "
+                 "Manual re-read on 2026-11-19 (live read) shows the same DeepStack Extravaganza IV banner, the Palazzo level 2 location (F91), "
+                 "'Open 24 Hours', the Player Suite rates link and the complimentary self-parking terms (three hours of play for non-registered guests). "
+                 "Limit of this check: the monitor stores only a hash of the 20:24 UTC run, not its text, so the match is by content, "
+                 "not proven byte for byte. Nothing on the page is a tournament value, so no row changed. The poker page still does not print "
+                 "a dated room rate for a given night; the Venetian rate and fee flags (F51, F66, F69) are unchanged. "
+                 "Corroboration: a second independent live re-read on 2026-11-19 by session arena/827185f7-poker3 (full page, two chunks) "
+                 "found the same DeepStack Extravaganza IV banner with the same dates and $3.6M guarantee, the same 'The Palazzo, level 2, "
+                 "Grand Canal Shoppes' location line and both lobby direction sets, the seven '12:00 AM - 11:59 PM' hours rows with "
+                 "'Open 24 hours daily.', and the '50 tables ... 14,000 square feet ... largest room on the Las Vegas Strip' sentence, "
+                 "each printing exactly as recorded, and the 2026-11-19 05:33 UTC check no longer lists this URL as changed."),
          source="https://www.venetianlasvegas.com/resort/casino/poker.html"),
-    dict(id="F93", area="Change monitoring", severity="Low",
+    dict(id="F93", area="Hotels", severity="High",
+         title="Pre-payment reconfirmation on 2026-11-19: the Venetian booking engine still prints no checkout total for 23-30 November, so no current nightly price is on record",
+         detail=("Re-read live on 2026-11-19 (UTC). The official booking link for 2 adults, arrival 23 Nov 2026, departure 30 Nov 2026 "
+                 "returned only the page text 'Your Venice meets Vegas getaway is loading', with no rate, resort fee, tax or checkout "
+                 "total, the same result as the 2026-11-17 and 2026-11-18 attempts recorded in research/reread_2026-11-19.md. The "
+                 "$4,010.55 checkout total therefore remains the dated 2026-11-17 observation in the rate log, not a price for today. "
+                 "The suite-rate page (re-read 2026-11-19, unchanged) still states that the $119 and $209 poker rates are booked by "
+                 "telephone with code EPOKR25, require six hours of active live cash play or a buy-in to a $300-or-higher tournament for "
+                 "each night, and carry a $55 resort fee per night stayed. Whether EPOKR25 applies to these dates is not confirmed (F66). "
+                 "Before any nonrefundable payment, ask the poker room (702.414.7657, lv_cas_poker@venetianlasvegas.com, both printed on the "
+                 "suite-rate page) for the all-in total in writing and record the answer with its date."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
+    dict(id="F94", area="Day plan", severity="High",
+         title="On five of the seven trip days the published fallback was the same event the site publishes as an "
+               "impossible sequence against that day's primary (found and fixed 2026-11-19)",
+         detail=("Found on 2026-11-19 by comparing site/data.json against its own stated fallback rule. The rule said the "
+                 "fallback 'starts after the primary's estimated finish plus a 30-minute transfer', but the builder selected "
+                 "the next-ranked candidate without applying that test. On 25, 26, 27, 28 and 29 November 2026 the fallback "
+                 "therefore started inside the primary's estimated session, and the same pair also appeared under "
+                 "planConflicts as an 'impossible sequence' on the schedule page. One block said the pair cannot be played; "
+                 "the other offered it as the plan. No official value was wrong and no tournament, fee, guarantee, hotel or "
+                 "walking figure changed. The fix adds an explicit sequence status to every fallback: 'replaces the primary' "
+                 "where it starts before the primary's estimated finish plus the transfer, and 'playable after the primary' "
+                 "where it starts later, each with a plain-language note on the schedule page. The stated rule now matches "
+                 "the code, and tests/test_fallback_sequencing.py fails if any fallback is again described as playable after "
+                 "an event it overlaps. This does not resolve the underlying limit: no venue publishes finish times (F16), "
+                 "so the replaced-or-after judgement still rests on an estimate."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
+    dict(id="F96", area="Change monitoring", severity="Low",
          title="RESOLVED 2026-11-19: the 05:33 UTC check marked six official URLs changed; the same-day manual re-read found no recorded value behind them had moved",
          detail=("The scheduled re-check of 2026-11-19T05:33:18Z (site/checks.json) reported six visible-text changes: the "
                  "Venetian DeepStack series index, the Wynn poker room page, Wynn Resort Policies, Wynn Parking, Wynn Rooms "
@@ -1133,7 +1169,9 @@ FLAGS = [
                  "'cancellations must be received at least 48 hours prior to arrival date or deposit (if applicable) will be "
                  "forfeited'. Because a hash cannot say which words changed, marketing wording is the most likely mover, but "
                  "no data value changed and none was edited. The source register's checked dates for these six URLs now read "
-                 "2026-11-19. If a future check flags any of them again, re-read before nonrefundable payment."),
+                 "2026-11-19. If a future check flags any of them again, re-read before nonrefundable payment. "
+                 "(Renumbered F93 -> F96 at merge: main had already taken F93/F94 for the hotel reconfirmation and day-plan "
+                 "flags, and open PR #165 announces F93-F95.)"),
          source="https://www.wynnlasvegas.com/about-us/parking"),
     dict(id="F74", area="Venetian DSE NYE", severity="Low",
          title="Eleven NYE rows carried a 'structure sheet not read' label after all 15 sheets had been read",
@@ -1474,14 +1512,17 @@ QUESTIONS = [
                  "on the Caesars page (read 2026-11-17), which publishes no buy-in or structure. Caesars Palace starts at 10:00 AM. "
                  "The earliest Venetian start is 9:10 AM (a satellite on Dec 12), and the earliest non-satellite Venetian start is "
                  "10:10 AM. An all-day 8 AM plan therefore cannot be built from verified data; the day plan starts at the first "
-                 "verified open event for each venue."),
+                 "verified open event for each venue. For the trip window itself (23-29 November) no opening event starts before "
+                 "11:10 AM; the only earlier start there is a Day 2 restart at 11:00 AM on 25 November (F17, read 2026-11-19)."),
          why="Needed", blocking="Yes - the all-day schedule in the brief cannot be produced without it",
          how="Ask Horseshoe for the buy-in, structure and single-entry rule of its 9:00 AM game; ask each room for its earliest daily start.",
          source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"),
     dict(id="Q15", question="What is the real checkout total for the trip dates?",
          answer=("Partly answered 2026-11-17. The official Venetian booking engine printed an itemised checkout total of $4,010.55 "
                  "for 2026-11-23 to 2026-11-30 (two adults, Luxury King suite, best available rate; $55 resort fee each night and $473.30 tax). "
-                 "Earlier readings for 2026-11-25 to 2026-12-02 printed $XXX. No other property publishes a date-specific total in the data. "
+                 "Earlier readings for 2026-11-25 to 2026-12-02 showed the placeholder '$XXX' in every calendar cell and no total (F57). "
+                 "Re-read 2026-11-19: the same booking link still showed only a loading page with no total, so the $4,010.55 figure is "
+                 "not a price for today (F93). No other property publishes a date-specific total in the data. "
                  "The phone-only poker rate is not in the quote (F66)."),
          why="Needed", blocking="Yes - the engine total is now known, but the poker-rate total the budget is built on is not",
          how="Open the booking engine in a browser, select the dates and two adults, and read the checkout total; or call the "
@@ -1909,8 +1950,12 @@ PLAN_NOTES = {
     "primaryRule": ("Provisional primary candidate = the sheet-screened event on that date with the largest published guarantee, "
                     "among venues within a 30-minute walk of the recommended hotel, excluding age-restricted, female-only "
                     "and team formats. This is not confirmation of a one-entry-per-player cap; written venue rules are required."),
-    "fallbackRule": ("Fallback = the next sheet-screened candidate that starts after the primary's estimated finish plus a "
-                     "30-minute transfer. The fallback is conditional on written confirmation of entry rules and fit."),
+    "fallbackRule": ("Fallback = the next sheet-screened candidate on the same date, ranked after the primary, chosen as an "
+                     "alternative to it and never in addition to it. Where the fallback starts before the primary's "
+                     "estimated finish plus a 30-minute transfer, it is marked 'replaces the primary' and the same pair "
+                     "also appears under the impossible-sequence flags; it can only be played if the player is out of the "
+                     "primary in time to register. Where it starts later, it is marked 'playable after the primary'. The "
+                     "fallback is conditional on written confirmation of entry rules and fit."),
     "transfer": 30,
     "walkLimit": 30,
     "pokerRateRule": ("The hotel rate the budget is built on is conditional. Each night stayed needs either six hours "
@@ -2040,6 +2085,38 @@ def _plan_rank(e):
     return (-guarantee, WALK[e["venue"]], e["buyIn"], start)
 
 
+def _fallback_sequence(primary, alt):
+    """Can the fallback be played after the primary, under the disclosed estimates?
+
+    Returns (status, text). The status is "after" when the fallback starts at or
+    after the primary's estimated finish plus the transfer allowance, otherwise
+    "replaces". Both are honest readings of the same two printed clock times: a
+    fallback that starts first is an alternative to the primary, never a second
+    event on the same day.
+    """
+    if not primary or not alt:
+        return "", ""
+    p_start = clock_minutes(primary["time"])
+    p_end = primary.get("endEstimateMin")
+    a_start = clock_minutes(alt["time"])
+    if p_start is None or a_start is None or p_end is None:
+        return ("unknown",
+                "Timing not compared: a start time or the primary's estimated finish is not published.")
+    transfer = PLAN_NOTES["transfer"]
+    if a_start >= p_end + transfer:
+        return ("after",
+                f"Playable after the primary: it starts at {alt['time']}, after the primary's estimated "
+                f"{primary['endEstimate']} finish plus the {transfer}-minute transfer.")
+    if a_start > p_start:
+        return ("replaces",
+                f"Replaces the primary, not a second entry: it starts at {alt['time']}, before the primary's "
+                f"estimated {primary['endEstimate']} finish. It is only playable if the player is out of the primary "
+                f"in time to register, and it closes at {alt.get('lateRegEnd') or 'an unpublished time'}.")
+    return ("replaces",
+            f"Replaces the primary, not a second entry: it starts at {alt['time']}, before the primary starts at "
+            f"{primary['time']}.")
+
+
 def _fallback_reason(primary, alt):
     if alt["entryType"] != "none":
         return ("Different format: this row is a multi-flight, satellite or series event, so it is listed as an "
@@ -2141,6 +2218,8 @@ def build_day_plan(events, start_date, end_date, recurring=()):
             fallbackWalk=WALK.get(fallback["venue"], "") if fallback else "",
             fallbackFormat=fallback["format"] if fallback else "",
             fallbackReason=fallback_reason,
+            fallbackSequence=_fallback_sequence(primary, fallback)[0],
+            fallbackSequenceNote=_fallback_sequence(primary, fallback)[1],
             candidates=len(eligible),
             primaryGuaranteeNote=_pool_note(primary) if primary else "",
             fallbackGuaranteeNote=_pool_note(fallback) if fallback else "",
