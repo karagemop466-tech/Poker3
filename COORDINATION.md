@@ -4401,3 +4401,12 @@ No live official-source claim is made by this infrastructure task. Source verifi
 - Local validation: **207 tests pass** using a local ignored virtualenv with PyYAML 6.0.3; canonical smoke/render pass; evidence/arithmetic/entry-label audits pass; `git diff --check` clean. Initial system-Python test run lacked PyYAML; resolved with the isolated virtualenv, not by changing system Python.
 - Audit snapshot: 341 events, 8 hotels, 56 route records, 47 sources, 87 flags, 7 provisional plan days. 52 sheet-screened candidates, **zero written single-entry-cap confirmations**. No event promoted to verified; no factual data changed. Existing official links and irregularities remain on `site/sources.html`, `site/sheets.html`, `site/flagged.html`.
 - Existing calculator/data PRs #112/#130 remain untouched. Claim status: done; publication result follows below.
+## Session 6a0b16d7 · decision-ready executive summary · 2026-11-19 UTC
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Audit the canonical landing page against the current trip and official evidence; remove impossible or stale recommendations; publish source-linked decision gates, verification results and outstanding gaps | in progress | arena/6a0b16d7-poker3 (integration for this scope) | `site/index.html`, `site/assets/decision-summary.js`, `site/assets/decision-summary.css`, `site/flagged.html`, `tests/test_decision_summary.py`, `research/decision-audit-2026-11-19.md`, this board |
+
+PRs #112 and #130 remain open and own the shared model, calculator, and several generator files; this claim does not edit their scopes (other than appending to the shared board). The canonical site and morning jobs already exist. Branch name is platform-assigned. No other sessions started here.
+
+- Integration conflict log: concurrent PR #150 appended to the same board. Aborted the initial rebase and merged current main; retained both complete append sections without discarding other work. Local `.venv/` is excluded through `.git/info/exclude` only.
