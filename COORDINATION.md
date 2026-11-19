@@ -5835,3 +5835,28 @@ Branch: `arena/e830d773-poker3` (platform-bound single branch; `session-<id>/<ta
   - **GitHub Pages deployment:** `Publish the canonical Vegas Poker Planner to GitHub Pages` **success** ([run 44482186565](https://github.com/karagemop466-tech/Poker3/actions/runs/44482186565), build 18s + deploy 10s) and `pages build and deployment` **success** ([run 44482186298](https://github.com/karagemop466-tech/Poker3/actions/runs/44482186298)); `GET /repos/karagemop466-tech/Poker3/pages/builds/latest` returned `status: "built"`, `commit: "5f001742c69c7d9e6e5f891f3e45eaf735297bff"`, `error: null`.
   - **Live read-back:** Fetched <https://karagemop466-tech.github.io/Poker3/site/hotels.html> and <https://karagemop466-tech.github.io/Poker3/site/venues/others.html> after deployment; both serve the updated hero/dates, the five-room heading (`Bellagio, MGM Grand, Caesars Palace, Horseshoe & ARIA`), and the newly verified Caesars Palace and Horseshoe parking terms.
   - **Rebase log:** Three append-only `COORDINATION.md` rebases over PRs #200, #201–#203, and #204; all concurrent sessions' records and code were preserved in full. Open PRs `#173` and `#184` remain untouched.
+
+---
+
+## Session `arena/4e26888a-poker3` — independent line-by-line re-verification, gap closure, final integration (2026-11-19 UTC)
+
+**Branch:** `arena/4e26888a-poker3`, branched from `main` at `5c42d7f` (PR #206, the current tip). The platform binds
+each session to exactly one branch, so the brief's `session-<id>/<task>` branch naming cannot be applied here; every
+prior session recorded the same constraint and worked on its own Arena branch instead. **No new branch is created,
+switched to, or pushed.** Two PRs were open at claim time — **#173** (`arena/a33db3c1-poker3`, read-only re-read) and
+**#184** (`arena/5cfdd619-poker3`, calculator/trip_cost). This session does not edit, close, rebase or otherwise touch
+either branch, and does not edit `scripts/trip_cost.py`, `site/calculator.html` or `tests/test_calculator_page.py`,
+which are #184's scope. No other session had committed since the branch point at claim time, so this session acts as
+**final integration owner** for the shared outputs.
+
+**Claim (committed and pushed before any other work).** Scope: `COORDINATION.md`, `research/**` (new dated audit
+records), `README.md`, and — as integration owner — `site/**`, `scripts/**`, `tests/**`, `.github/workflows/**`.
+No value is inferred: a value that cannot be confirmed from an official source stays blank and is published on the
+Flagged for review page with its source link.
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| V1 Repo review: independent line-by-line re-read of the published official values against the live official sources; log every irregularity | in progress | `arena/4e26888a` | `research/` (new dated record), `site/data.json` flag register, `site/flagged.html` | Fetches run through the platform fetch tool on 2026-11-19. Nothing is filled in that a source does not print. |
+| V2 Gap closure: work the brief line by line against the live site and close anything still missing | in progress | `arena/4e26888a` | `site/**`, `scripts/**`, `tests/**` | Targets: date filter, structured rule fields, overlap flags, primary/fallback day plan, per-venue pages, global search, rate log, last-checked dates, change monitoring, walk filter, trip-cost calculator, questions, suggestions. |
+| V3 Final verification: full unit suite, every verification script, local-link scan, reproducible rebuild, live site read-back | pending | `arena/4e26888a` | whole repo (integration) | Flagged irregularities and unverified items do not block the merge. |
+| V4 PR → `main` → merge → GitHub Pages confirmation → record the result here | pending | `arena/4e26888a` | whole repo (integration) | No approval wait; the brief requires the integration owner to merge without waiting. |
