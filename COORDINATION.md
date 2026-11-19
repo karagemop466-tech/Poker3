@@ -4427,3 +4427,12 @@ The board already exists on main. PRs #112 and #130 overlap the shared catalog a
 - Pages run [44465978020](https://github.com/karagemop466-tech/Poker3/actions/runs/44465978020) completed **success**: blocking evidence/link checks, regression/render checks, artifact upload and deployment all passed.
 - Published dashboard: https://karagemop466-tech.github.io/Poker3/ . Deployment confirmed through GitHub Actions; this sandbox cannot independently fetch github.io or official venue hosts. No fresh live verification is claimed.
 - A second concurrent append conflict while integrating main was also resolved by preserving both full records. All scopes completed; remaining factual gaps are the existing site flags, not resolved by this CI change.
+---
+
+## Session `arena/b2b32640-poker3` — scheduled evidence publication (2026-11-19 UTC)
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Audit the latest canonical monitoring record and verify that scheduled updates actually reach GitHub Pages; correct publication or verification defects without touching venue facts | in progress | `arena/b2b32640-poker3` | `.github/workflows/pages.yml`, `.github/workflows/checks.yml`, `.github/workflows/source-monitor.yml`, new publication tests or research audit, this board |
+
+Claim scoped against open PRs #112 and #130. Their shared data, calculator, monitoring implementation, hotel and UI files are not part of this claim. Using the platform-assigned branch; integration to `main` will be via PR, not a direct push.
