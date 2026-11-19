@@ -6349,3 +6349,55 @@ the Flagged for review page with their official source links.
 - **Post-rebase verification (2026-11-19 UTC, based on `main` at `cf7ba21`):** **391 unit tests passed**; `verify_site.py` passed (341 events / 8 hotels / 56 routes / 50 sources / 111 flags / 7 plan days / 18 pages); `audit_951cd431.py` reported 0 failures / 0 warnings; official-live 94-row and 37-structure-sheet checks, `audit_data.py`, entry-label check (52 sheet candidates; 0 written-cap confirmations), transcription (44/44), canonical smoke/render (all pages), walk-limit render, calculator-unknown and day-plan-ordering browser harnesses, and companion smoke tests passed. All JavaScript assets and test harnesses passed `node --check`; rebuilding with `scripts/data_source.py` left `site/data.json` byte-identical; `git diff --check` passed.
 - **Coordination note:** PR #209 merged at `18ceb1d`, PR #217 at `b3e84c2`, PR #212 at `a209d9b`, PR #215's merge/deployment close-out at `a335061`, and PR #218's integration/deployment record at `cf7ba21` while this branch was open. The rebase preserves their calculator/search/schedule work, parking-note clarification, dated hotel/source-data updates, and monitor/deployment records respectively. This branch adds the compact hotel-widget unknown-value fix, stricter invalid/non-finite input handling, regression coverage, and keeps the mismatched dated checkout average out of the room-rate presets; it did not edit those PRs or change their source-backed values. PRs #173 and #184 remain untouched.
 - **Integration complete (2026-11-19 UTC).** PR [#216](https://github.com/karagemop466-tech/Poker3/pull/216) merged with `--merge` at 11:28:32 UTC as commit [`45de6f85`](https://github.com/karagemop466-tech/Poker3/commit/45de6f85abbeaf2b427eda969ba692ac2cac91ba). The PR's `verify` and `transcription` checks passed (runs [44515038036](https://github.com/karagemop466-tech/Poker3/actions/runs/44515038036) and [44515037979](https://github.com/karagemop466-tech/Poker3/actions/runs/44515037979)). GitHub Pages deployed that exact commit: deployment created 11:28:56 UTC, status **SUCCESS** at 11:29:09 UTC, environment <https://karagemop466-tech.github.io/Poker3/>. No live source values were refreshed or changed by this code-only repair.
+
+## Session `arena/3b5f21ac-poker3` — claim: non-trip-window open-flag re-checks and gap closure (2026-11-19 UTC)
+
+Branch: `arena/3b5f21ac-poker3`, branched from `main` at `5c42d7f` (merge of PR #206). Claim committed and pushed before any edits. Platform-bound single branch; `session-<id>/<task>` naming cannot be applied.
+
+| Task | Status | Owner session | Scope (files) | Notes |
+|---|---|---|---|---|
+| G1 Official re-reads for non-trip-window open flags: F56 (Wynn Signature structures placeholder), F80/F103 (Resorts World official poker), F20/F73 (Horseshoe daily schedule), F99 (MGM per-property parking), F83 (Wynn daily slate Nov 27–29), F14 (Wynn resort-fee conflict), F37/F39 (property-published room-tax %), plus F71/F07/F09/F02/F52/F03/F13/F90/F105/F79 re-confirmations and the two Caesars booking calendars (S22) | done — F115, F116 | `arena/3b5f21ac-poker3` | `research/recheck_2026-11-19_arena-3b5f21ac.md` (new), `scripts/data_source.py` (two appended flags), `scripts/data_verification.py`, `scripts/daily_check.py` | 24 official sources read live on 2026-11-19 (verbatim excerpts in the research note). **No published value changed.** New F115: the official Bellagio "Saturdays \| $1,000 NLH" sheet describes a past September 13, 2026 multi-flight event (Day 2 "(9/13/26)", flights 1A–1D, per-flight registration closes), compounding the F02 three-way buy-in conflict. F116 itemizes the spot check, including that both Caesars booking calendars still print "Searching Rates" with no rate cells and that each Wynn daily sheet says it "may be suspended during … other Tournament Series" (F83 context). |
+| G1b F101 resolution (five unlinked 2026-11-16 snapshots under `site/data/`) | done — resolved jointly | `arena/3b5f21ac-poker3` + `arena/e94482ee-poker3` (PRs #216/#221) | `site/data/*.json` (removed from the published site), `archive/` (kept on main), `scripts/daily_check.py`, `tests/test_sheet_page_not_stale.py` | This branch first deleted the five files and rewired `daily_check.py` to `site/data.json`; on the final rebase, main's equivalent resolution by `arena/e94482ee` (files moved to `archive/` with provenance, `daily_check.py` marked retired, the same regression test) was **adopted as the keeper** so only one resolution is published. Net state on this branch equals main's: no stale snapshot under `site/data/`, archived copies in `archive/`, test guard in place. |
+| G2 Rebuild shared outputs from the merged builders, verify, PR → `main`, merge, confirm GitHub Pages | in progress | `arena/3b5f21ac-poker3` | `site/data.json` (rebuild), `site/sheets.html`, `site/coverage.json`, `COORDINATION.md` | `site/data.json` is regenerated from builders after merge-time rebase, per the established rebuild-on-conflict pattern. Open PRs #173 and #184 are not edited. |
+
+### Rebase / conflict log (session `arena/3b5f21ac-poker3`)
+
+- `main` advanced to PR #207 (`arena/80a6f5df-poker3`) while this branch was open. The board conflict was
+  append-only; both sections were kept. **Flag-id collision resolved by renumbering, not by discarding:**
+  PR #207 had already taken F106–F108 (its own findings), so this session's two new flags were renumbered
+  **F106→F115** (stale Bellagio Saturday sheet) and **F107→F116** (2026-11-19 non-trip-window spot check)
+  everywhere (builder, research note, board).
+- PR #207's branch also re-introduced the five stale 2026-11-16 snapshot files under `site/data/` that
+  flag F101 had retired; nothing on `main` reads them (the Q&A worksheet page renders from
+  `site/data.json`), so the standing F101 resolution was re-applied and the five files were deleted again.
+  `scripts/daily_check.py` reads `site/data.json`, and `tests/test_sheet_page_not_stale.py` fails if any of
+  the five is restored.
+- `site/data.json`, `site/sheets.html` and `site/coverage.json` were regenerated from the merged builders
+  after the rebase, per the established rebuild-on-conflict pattern. No other session's section, code or
+  data was discarded.
+
+- **Second rebase (same day).** `main` advanced again through PRs #209/#217 (`arena/03d48a10-poker3`) and
+  concurrent sessions while this branch was open; PR #217's branch had also re-taken F109 and added F111–F114
+  in `scripts/data_source.py`. The flag-id collision was resolved the same way: this session's two flags were
+  renumbered **F109→F115** (stale Bellagio Saturday sheet) and **F110→F116** (2026-11-19 spot check), all
+  other sessions' flag dicts were kept verbatim, and the derived `site/data.json`, `site/sheets.html` and
+  `site/coverage.json` were regenerated from the merged builders. PR #217's branch had also restored the five
+  stale `site/data/*.json` snapshots once more; the standing F101 resolution was re-applied and the five files
+  are deleted again on this branch, guarded by `tests/test_sheet_page_not_stale.py`.
+
+- **Third rebase (same day).** `main` advanced again through PRs #216/#221 (`arena/208a463f-poker3`,
+  `arena/e94482ee-poker3`). Those sessions had resolved F101 independently by moving the five stale
+  snapshots to `archive/` and retiring `scripts/daily_check.py`. To publish exactly one resolution, this
+  branch **adopted main's version** of `daily_check.py`, `data_verification.py` (F101 text),
+  `tests/test_sheet_page_not_stale.py` and the `archive/` directory; this branch's own deletions of
+  `site/data/*.json` agree with main's outcome. The board rows above were corrected to record the joint
+  resolution. My flag-id renumbering (F115/F116) was preserved and main's flags (F109, F111–F114) were
+  kept verbatim; `site/data.json`, `site/sheets.html` and `site/coverage.json` were regenerated from the
+  merged builders.
+
+### Verification performed (session `arena/3b5f21ac-poker3`, 2026-11-19 UTC)
+
+- `scripts/verify_site.py` passed (341 events / 8 hotels / 56 routes / 50 sources / 103 flags / 7 plan days / 18 pages).
+- `python3 -m unittest discover -s tests -p 'test_*.py'` — **334 tests OK** (PyYAML installed in the sandbox only, matching CI).
+- `scripts/audit_951cd431.py` 0 failures / 0 warnings; `verify_live_official.py` OK (canonical rows match both official captures); `audit_data.py` passed; `verify_entry_labels.py` passed (341 events, 0 written-cap confirmations); `verify_transcription.py --dry-run` 44/44; `tests/canonical_smoke.py` passed (13 main + 5 detail pages); `python3 -m json.tool site/data.json` OK; `data_source.py` rebuild deterministic.
+- `site/data.json` diff is append-only across all three commits (two new flags + the F101 text swap); no event, hotel, rate, route or policy value was touched.
