@@ -5,10 +5,9 @@ Run from the repository root:
 
     python3 scripts/daily_feed.py
 
-For every poker room in the canonical data it fetches the official schedule
-page, stores a dated snapshot under site/feed/ and writes site/feed/index.json
-with the summary.  The snapshot keeps the raw text and a content hash, so a
-morning run can be compared with the previous morning instead of replacing it.
+For each room with an official target it captures visible page text or a PDF
+fingerprint and writes the request outcomes to site/feed/index.json. Dated
+text snapshots allow comparing the same URL across runs.
 
 The feed never invents tournament rows.  It records what the official page
 contained on the morning it was fetched, which is what makes a change visible.
@@ -33,6 +32,38 @@ FEED = SITE / "feed"
 USER_AGENT = "Poker3DailyFeed/1.0 (+https://karagemop466-tech.github.io/Poker3/)"
 TIMEOUT = 30
 
+# Additional schedule/rule documents already verified in the official source
+# register. These are pointers into the catalog, not a second copy of the URLs.
+ROOM_DOCUMENTS = {
+    "wynn": ("wynn-sig-sched",),
+    "bellagio": ("bell-sat", "bell-sun"),
+    "mgm": ("mgm-sched",),
+    "caesars": ("caesars-flyer",),
+}
+
+
+def room_targets(data: dict) -> list[dict]:
+    sources = {row.get("id"): row.get("url") for row in data.get("sources", [])}
+    census = {row["id"]: row for row in data.get("stripRooms", [])}
+    targets = []
+    for room in data.get("feed", []):
+        room_id = room["id"]
+        urls = [room["schedule"], *room.get("extra", [])]
+        label = room["name"]
+        if room_id == "caesars" and census.get("caesars", {}).get("official"):
+            # The old combined target is a general article. Retain it for
+            # Horseshoe but use the property and its flyer for Caesars Palace.
+            if "horseshoe" in census:
+                targets.append({"id": "horseshoe", "name": census["horseshoe"]["name"],
+                                "urls": [room["schedule"]]})
+            urls = [census["caesars"]["official"], *room.get("extra", [])]
+            label = census["caesars"]["name"]
+        urls.extend(sources.get(key) for key in ROOM_DOCUMENTS.get(room_id, ()))
+        targets.append({"id": room_id, "name": label,
+                        "urls": list(dict.fromkeys(url for url in urls if url))})
+    return targets
+
+
 # Times and dollar amounts that appear on a published poker schedule page.
 TIME_RE = re.compile(r"\b(\d{1,2}:\d{2}\s*(?:AM|PM|am|pm)?)\b")
 MONEY_RE = re.compile(r"\$[\d,]+")
@@ -46,11 +77,10 @@ def fetch(url: str) -> tuple[int, str, bytes]:
 
 
 def visible_text(body: bytes, content_type: str) -> str:
-    raw = body.decode("utf-8", errors="replace")
-    if "pdf" in content_type.lower() or raw[:5] == "%PDF-":
-        # A PDF's text is not extracted here; the hash still proves the file is
-        # unchanged, and the page it is linked from is captured as well.
+    if "pdf" in content_type.lower() or body.startswith(b"%PDF-"):
+        # PDFs are fingerprinted, not transcribed by this job.
         return ""
+    raw = body.decode("utf-8", errors="replace")
     raw = re.sub(r"(?is)<(script|style)[^>]*>.*?</\1>", " ", raw)
     text = re.sub(r"(?s)<[^>]+>", " ", raw)
     text = re.sub(r"&nbsp;?", " ", text)
@@ -60,22 +90,30 @@ def visible_text(body: bytes, content_type: str) -> str:
 
 def main() -> int:
     data = json.loads(DATA.read_text(encoding="utf-8"))
-    rooms = data.get("feed", [])
+    rooms = room_targets(data)
     now = dt.datetime.now(dt.timezone.utc).replace(microsecond=0)
     stamp = now.strftime("%Y-%m-%d")
     FEED.mkdir(parents=True, exist_ok=True)
 
     summary = []
     for room in rooms:
-        urls = [room["schedule"]] + list(room.get("extra", []))
+        urls = room["urls"]
         entry = {"id": room["id"], "name": room["name"], "fetched": now.isoformat(), "pages": []}
         for url in urls:
             page = {"url": url}
             try:
                 status, ctype, body = fetch(url)
                 digest = hashlib.sha256(body).hexdigest()
-                text = visible_text(body, ctype)
                 page["status"] = f"HTTP {status}"
+                if not 200 <= status < 300:
+                    page["outcome"] = "unavailable"
+                    entry["pages"].append(page)
+                    print(f"{page['status']:>14}  {url}")
+                    continue
+                text = visible_text(body, ctype)
+                page["outcome"] = "text" if text else (
+                    "pdf-fingerprint" if "pdf" in ctype.lower() or body.startswith(b"%PDF-") else "no-text"
+                )
                 page["hash"] = digest
                 page["bytes"] = len(body)
                 page["contentType"] = ctype
@@ -94,9 +132,11 @@ def main() -> int:
                     page["snapshot"] = f"feed/{room['id']}-{stamp}-{slug}.txt"
             except urllib.error.HTTPError as exc:
                 page["status"] = f"HTTP {exc.code}"
+                page["outcome"] = "unavailable"
                 page["error"] = str(exc)
             except Exception as exc:  # noqa: BLE001 - one bad page must not stop the feed
                 page["status"] = "unreachable"
+                page["outcome"] = "unavailable"
                 page["error"] = f"{type(exc).__name__}: {exc}"
             entry["pages"].append(page)
             print(f"{page['status']:>14}  {url}")
