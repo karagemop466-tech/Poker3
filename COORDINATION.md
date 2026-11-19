@@ -5500,7 +5500,7 @@ branch. This session acts as the on-duty verification and integration session.
 | Task | Status | Owner session | Scope | Notes |
 |---|---|---|---|---|
 | Independent line-by-line re-read of the official trip-window sources (Venetian DSE IV schedule, all four chunks; the seven primary structure sheets; the Wynn WPT schedule PDF; the Venetian suite-rate, resort-fee and hotel-terms pages; the Wynn resort-policy page) and comparison with the published rows | done. 0 value differences. | `arena-cce0b8d3` | `research/verification_2026-11-19_arena-cce0b8d3.{md,json}`, `tests/test_verification_2026_11_19_cce0b8d3.py` | Reads via the platform fetch tool, dated 2026-11-19. No value changed. |
-| Correct two factual date/label statements found on the static venue pages | done | `arena-cce0b8d3` | `site/venues/index.html`, `site/venues/venetian.html`, `scripts/data_source.py` (flag F100), `site/data.json`, `site/sheets.html` | The 15 NYE sheets were read 2026-11-17, not 2026-11-16; the NYE rows are not all unverified. |
+| Correct two factual date/label statements found on the static venue pages | done | `arena-cce0b8d3` | `site/venues/index.html`, `site/venues/venetian.html`, `scripts/data_source.py` (the parallel-session flag for the same finding), `site/data.json`, `site/sheets.html` | The 15 NYE sheets were read 2026-11-17, not 2026-11-16; the NYE rows are not all unverified. |
 | Remove the two stray `>>>>>>>` conflict-marker lines this board carried | done | `arena-cce0b8d3` | `COORDINATION.md` | Cosmetic; no session record is lost. |
 | Final verification, PR → `main`, merge, GitHub Pages confirmation, board record | in progress | `arena-cce0b8d3` | whole repo (integration), this board | Flagged items do not block merge per the standing protocol. |
 
@@ -5637,7 +5637,7 @@ are marked as such instead of being filled in. The new page is in the shared nav
 parallel session already published the same finding as flag F98, so no duplicate flag was added here; the renumbering
 below follows the flag ids that landed on main while this branch was open (F97-F99 were taken).
 
-**Irregularities found.** F100 (four legacy venue subpages published stale hardcoded claims: "the NYE rows stay
+**Irregularities found.** the parallel-session flag (four legacy venue subpages published stale hardcoded claims: "the NYE rows stay
 unverified", "no date-specific room quote exists", "the only dated checkout total found is $1,245.48", and
 2026-11-16 dates) — corrected to match `site/data.json`, dated 2026-11-19, given official source links, and guarded
 by `tests/test_verification_audit.py`. the orphan conflict markers — fixed and already flagged on main as F98. F101 (five unlinked 2026-11-16 snapshot
@@ -5666,8 +5666,8 @@ keeping every other session's section in full and appending this session's claim
 subsequent `site/data.json` / `site/sheets.html` conflicts were resolved by taking the regenerated artifact from the
 integration build (`python3 scripts/data_source.py` and `python3 scripts/build_addendum.py` using the merged
 `data_source.py`), so neither session's published rows were lost: `main` gained a 49th official source and the
-MGM parking flags F97-F99, while this branch contributed the verification sections and F100-F101. Flag ids F97-F99
-were already taken by parallel sessions, so this branch's two distinct flags were renumbered to F100/F101 and its
+MGM parking flags F97-F99, while this branch contributed the verification sections and F101. Flag ids F97-F99
+were already taken by parallel sessions, so this branch's two distinct flags were renumbered to F101 and its
 duplicate F98 finding was dropped rather than published twice. The generated artifacts are byte-reproducible from
 the merged sources; no other session's work was overwritten.
 

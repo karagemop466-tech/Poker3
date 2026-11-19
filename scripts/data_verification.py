@@ -62,7 +62,7 @@ _REQ = [
      [VL_BOOK, VL_RATES]),
     ("R06", 'One page per venue (Venetian, Wynn, others), each with its events and hotels.',
      "done", ["venues/index.html", "venues/venetian.html", "venues/wynn.html", "venues/others.html"],
-     "Four venue pages render event and hotel rows from site/data.json via assets/venue.js; a headless render check asserts at least five event rows and one hotel row per page. Stale hardcoded claims were corrected this session (F100).",
+     "Four venue pages render event and hotel rows from site/data.json via assets/venue.js; a headless render check asserts at least five event rows and one hotel row per page. Stale hardcoded claims were corrected this session; a parallel session published the same finding, so no duplicate flag was added.",
      [VL_SCHED, WYNN_POKER, BELL_POKER]),
     ("R07", 'Add a search box across all tables.',
      "done", ["search.html"],
@@ -178,7 +178,7 @@ _REQ = [
      [REPO + "research/verification_2026-11-19_arena-8194609f.md"]),
     ("R35", 'Review the repo; provide links for manual review; flag any irregularities for review.',
      "done", ["flagged.html", "sources.html"],
-     "Every flag links the exact official page or repository file; the repo review found F100 (stale venue pages, fixed) and F101 (unlinked stale snapshot JSON files, published for a decision); the coordination-board marker finding was already published by a parallel session, so no duplicate flag was added.",
+     "Every flag links the exact official page or repository file; the repo review found the unlinked stale snapshot JSON files (F101, published for a decision); the stale venue pages and coordination-board markers were already published and fixed by parallel sessions, so no duplicate flags were added.",
      [REPO + "COORDINATION.md", BELL_POKER]),
     ("R36", 'Create a GitHub Pages live site with a clean landing page and category subpages, simple dashboard UI, all entries and findings in easy-to-read tables, plus analysis.',
      "done", ["index.html", "browse.html", "verification.html"],
@@ -332,21 +332,6 @@ NEW_FLAGS = [
                  "one of them; the integration owner should either retire them or add a dated note. No value was taken "
                  "from any stale snapshot: every published table row is rendered from site/data.json."),
          source=REPO + "site/data/flags.json"),
-    dict(id="F100", area="Site consistency", severity="Low",
-         title=("Four legacy venue subpages published stale hardcoded claims that contradicted the canonical dataset "
-                "(found and fixed 2026-11-19)"),
-         detail=("site/venues/index.html said 'the NYE rows stay unverified' although all 52 official structure sheets "
-                 "were read and zero published rows carry the unverified category. site/venues/venetian.html said "
-                 "'no date-specific room quote exists in the reviewed sources' and called the 2026-11-16 $1,245.48 "
-                 "two-night quote 'the only dated checkout total found', although the dated rate log also holds "
-                 "$1,015.89 for the same two nights (17 Nov), $4,010.55 for 23-30 Nov at the Venetian and $3,823.46 "
-                 "for the same window at the Palazzo (17 Nov). site/venues/wynn.html repeated the 'no quote exists' "
-                 "claim although the official Wynn reservations engine printed a dated 23-30 Nov 2026 quote on "
-                 "2026-11-19. All four pages carried footers or side notes dated 2026-11-16. The four pages were "
-                 "corrected to match site/data.json, dated 2026-11-19 and given official source links; "
-                 "tests/test_verification_audit.py fails if the stale phrases return. No tournament, fee, guarantee, "
-                 "hotel, rate, route or policy value was inferred or changed."),
-         source=VL_RATES),
 ]
 
 __all__ = ["REQUIREMENTS", "OFFICIAL_READS", "TRIP_ROWS", "NEW_FLAGS", "CHECKED", "SESSION"]

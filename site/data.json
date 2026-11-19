@@ -24304,14 +24304,6 @@
    "title": "Five unlinked 2026-11-16 snapshot JSON files are still published under site/data/ (flagged for review)",
    "detail": "The Pages artifact publishes the whole site/ directory, so site/data/flags.json, questions.json, sources.json, suggestions.json and tournaments.json are reachable at the live host. Each carries meta.asOf 2026-11-16 and builtAt 2026-11-16T19:50:18Z and is not read by any dashboard page or script (the live data is site/data.json; scripts/daily_check.py still names sources.json but is not the scheduled checker, which is scripts/check_sources.py). Their contents therefore give a second, stale answer to anyone who opens them directly. F68 removed three other stale snapshots for the same reason. These five are left in place rather than deleted because another session's script still names one of them; the integration owner should either retire them or add a dated note. No value was taken from any stale snapshot: every published table row is rendered from site/data.json.",
    "source": "https://github.com/karagemop466-tech/Poker3/blob/main/site/data/flags.json"
-  },
-  {
-   "id": "F100",
-   "area": "Site consistency",
-   "severity": "Low",
-   "title": "Four legacy venue subpages published stale hardcoded claims that contradicted the canonical dataset (found and fixed 2026-11-19)",
-   "detail": "site/venues/index.html said 'the NYE rows stay unverified' although all 52 official structure sheets were read and zero published rows carry the unverified category. site/venues/venetian.html said 'no date-specific room quote exists in the reviewed sources' and called the 2026-11-16 $1,245.48 two-night quote 'the only dated checkout total found', although the dated rate log also holds $1,015.89 for the same two nights (17 Nov), $4,010.55 for 23-30 Nov at the Venetian and $3,823.46 for the same window at the Palazzo (17 Nov). site/venues/wynn.html repeated the 'no quote exists' claim although the official Wynn reservations engine printed a dated 23-30 Nov 2026 quote on 2026-11-19. All four pages carried footers or side notes dated 2026-11-16. The four pages were corrected to match site/data.json, dated 2026-11-19 and given official source links; tests/test_verification_audit.py fails if the stale phrases return. No tournament, fee, guarantee, hotel, rate, route or policy value was inferred or changed.",
-   "source": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"
   }
  ],
  "questions": [
@@ -24850,7 +24842,7 @@
      "kind": "site page"
     }
    ],
-   "evidence": "Four venue pages render event and hotel rows from site/data.json via assets/venue.js; a headless render check asserts at least five event rows and one hotel row per page. Stale hardcoded claims were corrected this session (F100).",
+   "evidence": "Four venue pages render event and hotel rows from site/data.json via assets/venue.js; a headless render check asserts at least five event rows and one hotel row per page. Stale hardcoded claims were corrected this session; a parallel session published the same finding, so no duplicate flag was added.",
    "sources": [
     {
      "label": "Official source 1",
@@ -25708,7 +25700,7 @@
      "kind": "site page"
     }
    ],
-   "evidence": "Every flag links the exact official page or repository file; the repo review found F100 (stale venue pages, fixed) and F101 (unlinked stale snapshot JSON files, published for a decision); the coordination-board marker finding was already published by a parallel session, so no duplicate flag was added.",
+   "evidence": "Every flag links the exact official page or repository file; the repo review found the unlinked stale snapshot JSON files (F101, published for a decision); the stale venue pages and coordination-board markers were already published and fixed by parallel sessions, so no duplicate flags were added.",
    "sources": [
     {
      "label": "Official source 1",
