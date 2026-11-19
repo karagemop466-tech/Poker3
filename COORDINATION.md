@@ -7049,6 +7049,13 @@ Open PRs at claim time: `gh pr list --state open` → only #224 (`arena/a400f338
 
 **Irregularities.** No new source irregularity was found or created by this code-only change. Existing flags remain: the Wynn booking-engine URL change is not interpreted as a rate change, and the standing HOLD remains until F31 (written one-entry cap), F16 (finish times) and F17 (8 AM start) are resolved from official sources. PR #224 was open at claim time; its board record and subsequent main-branch logs were preserved through rebases.
 
+### Integration record — PR #243
+
+- PR [#243](https://github.com/karagemop466-tech/Poker3/pull/243) (`arena/9d81732f-poker3` → `main`) merged with `gh pr merge 243 --merge` at **2026-11-19T19:56:32Z**, merge commit **`e81682422f284311c678ba0dd17639a7307dcd45`**.
+- PR-head checks on `f1a2323`: [transcription](https://github.com/karagemop466-tech/Poker3/actions/runs/44603387612) and [verify](https://github.com/karagemop466-tech/Poker3/actions/runs/44603387575) passed. On the merge commit, [verify](https://github.com/karagemop466-tech/Poker3/actions/runs/44603506985) and [official transcription](https://github.com/karagemop466-tech/Poker3/actions/runs/44603506986) passed; the [canonical Pages publisher](https://github.com/karagemop466-tech/Poker3/actions/runs/44603507069) completed its build and deployment successfully.
+- **Pages confirmation:** the latest Pages API build record at closeout reported `status: built`, `error: null`, commit **`831cb1aba857e151447ba48c628f07b7a03ca285`** (the then-current `main` after PR #239). The [canonical publisher for that commit](https://github.com/karagemop466-tech/Poker3/actions/runs/44604323924) also passed, including its deployment job.
+- **Concurrent publisher note (F29).** The separate [GitHub Pages/Jekyll workflow](https://github.com/karagemop466-tech/Poker3/actions/runs/44604323271) built and reported successfully, but its deploy job failed. The API rate limit (HTTP 403) prevented retrieving the failed job's detail log, so no cause is inferred. The Pages API reported `built` with no error and the canonical publisher deployment passed for `831cb1`; the Jekyll workflow result remains logged as a dual-publisher irregularity, not attributed to this UI change.
+
 ### b3501a60 result record
 
 - PR [#230](https://github.com/karagemop466-tech/Poker3/pull/230) (`arena/b3501a60-poker3` → `main`), merged with `gh pr merge 230 --merge` on 2026-11-19 19:46:07 UTC. Merge commit `af87192`.
