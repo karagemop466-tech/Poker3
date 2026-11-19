@@ -41,5 +41,39 @@ class LiveCaptureMatchesCatalog(unittest.TestCase):
             self.assertIn(v.norm(e["name"]), cap, f"{e['id']} name is not the page's wording")
 
 
+SECOND_CAPTURE = ROOT / "raw" / "dse_schedule_live_2026-11-19_ade0718f.md"
+
+
+class SecondIndependentCapture(unittest.TestCase):
+    """A second read of the same page on the same day must agree, field for field.
+
+    Two independent captures make agreement evidence rather than an assumption, and either one
+    failing against the catalog is a finding. See flag F97 for why the rows' read dates are
+    asserted here as well.
+    """
+
+    def test_second_capture_has_the_full_series(self):
+        rows = v.read_capture(SECOND_CAPTURE)
+        self.assertEqual(94, len(rows), "the second capture must transcribe all 94 printed rows")
+
+    def test_catalog_matches_the_second_capture(self):
+        self.assertEqual(0, v.main(SECOND_CAPTURE))
+
+    def test_the_two_captures_agree_with_each_other(self):
+        first = [(r["date"], r["time"], r["number"], r["sheet"]) for r in v.read_capture()]
+        second = [(r["date"], r["time"], r["number"], r["sheet"]) for r in v.read_capture(SECOND_CAPTURE)]
+        self.assertEqual(first, second)
+
+    def test_every_dse_iv_row_carries_the_2026_11_19_read(self):
+        data = json.loads((ROOT / "site" / "data.json").read_text(encoding="utf-8"))
+        rows = [e for e in data["events"]
+                if e["venue"] == "venetian" and "dse-nov-2026" in (e.get("scheduleUrl") or "")]
+        self.assertEqual(94, len(rows))
+        for e in rows:
+            with self.subTest(event=e["id"]):
+                self.assertEqual("2026-11-19", e["lastChecked"], "flag F97: a later read must not be dragged back")
+                self.assertEqual("2026-11-19", e["lastVerified"])
+
+
 if __name__ == "__main__":
     unittest.main()

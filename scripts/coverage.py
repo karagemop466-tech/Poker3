@@ -33,7 +33,7 @@ ITEMS = [
      "All 52 official sheets read (37 DSE IV + 15 NYE). No sheet prints a one-entry-per-player cap, so no row is labelled 'single entry confirmed'; sheet-screened candidates show the printed excerpt, source and retrieval date."),
     ("C4", "'Last checked' date on every row",
      "shipped", "site/data.json (lastChecked / lastVerified) + per-row display", [],
-     "Every tournament, hotel, walking-route and source record carries a retrieval date; 301 of 341 event rows last checked 2026-11-17, the rest 2026-11-16."),
+     "Every tournament, hotel, walking-route and source record carries a retrieval date, and the distribution is derived from site/data.json at build time so it cannot go stale: {last_checked}."),
     ("C5", "Hotel rates kept as a dated log, not a single value",
      "shipped", "site/data.json (rateLog) + site/hotels.html", [],
      "Append-only rate log; each observation carries observedOn, source, fee, tax, quote type. Dated Venetian checkout quote 23-30 Nov 2026 ($4,010.55) logged; calendar cells explicitly not treated as prices (F47/F69)."),
@@ -101,7 +101,7 @@ ITEMS = [
      "Decision questions, each with the official source behind the answer; open items stay flagged rather than inferred."),
     ("U8", "Repo review line by line; verify from official sources; provide links for manual review; flag irregularities",
      "shipped", "site/flagged.html + site/sources.html + scripts/verify_site.py", [],
-     "72 flags, each with its official source link; verify_site.py enforces official-domain source links and intentional blanks for unverified values."),
+     "{flags} flags, each with its official source link; verify_site.py enforces official-domain source links and intentional blanks for unverified values."),
     ("U9", "GitHub Pages live site: clean landing page + category subpages, dashboard tables, analysis and findings",
      "shipped", "site/ (published at https://karagemop466-tech.github.io/Poker3/)", ["F29"],
      "Canonical dashboard in site/; root index.html redirects into it; Pages reports status: built from main /."),
@@ -124,13 +124,24 @@ def load_counts():
     }
 
 
+def last_checked_counts():
+    """Distribution of event-row read dates, as printed in the coverage note for C4."""
+    d = json.loads(DATA.read_text())
+    buckets = {}
+    for e in d.get("events", []):
+        buckets[e.get("lastChecked") or "blank"] = buckets.get(e.get("lastChecked") or "blank", 0) + 1
+    total = len(d.get("events", []))
+    parts = [f"{n} of {total} event rows last checked {date}" for date, n in sorted(buckets.items())]
+    return ", ".join(parts)
+
+
 def main():
     counts = load_counts()
     by_status = {}
     for _id, _req, status, _loc, _flags, _note in ITEMS:
         by_status[status] = by_status.get(status, 0) + 1
     payload = {
-        "generated": "2026-11-17",
+        "generated": counts["asOf"],
         "dataCounts": counts,
         "coverageByStatus": by_status,
         "items": [
@@ -140,7 +151,7 @@ def main():
                 "status": s,
                 "location": loc,
                 "flags": fl,
-                "note": n,
+                "note": n.format(flags=counts["flags"], last_checked=last_checked_counts()),
             }
             for i, r, s, loc, fl, n in ITEMS
         ],

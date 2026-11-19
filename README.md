@@ -301,11 +301,28 @@ A session with outbound network access re-read the official pages behind the tri
 
 Nothing was inferred from a page that did not print it, and no value moved without the source behind it moving.
 
+### Second independent read of the same page (2026-11-19)
+
+The DeepStack Extravaganza IV schedule page was read again, in full, by a second session on the same day:
+`raw/dse_schedule_live_2026-11-19_ade0718f.md` transcribes all 94 printed rows next to the first capture
+(`raw/venetian_dse_nov_2026_live_2026-11-19.md`). `scripts/verify_dse_live_2026_11_19.py` now takes a capture path as its
+first argument and compares **printed buy-in and printed guarantee** as well as date, start time, structure sheet and
+printed name (the guarantee is read from the printed name column; a Day 2 or final-table row does not repeat its event's
+GTD, so that field is skipped and counted for the 11 resumption rows). Both captures agree with the published rows on
+94 of 94 rows, and `tests/test_dse_live_2026_11_19.py` asserts that the two captures also agree with each other.
+
+That read also exposed a data-build defect, published as **flag F97**: the 2026-11-17 re-read pass overwrote the
+`lastChecked` of rows a later 2026-11-19 pass had just stamped, because the "never drag a newer manual read backwards"
+guard had been applied to the source loop and the hotel loop but not to the event loop. All 94 DeepStack IV rows now
+carry `lastChecked 2026-11-19` and `lastVerified 2026-11-19`, and no tournament, fee, guarantee, hotel or policy value
+changed — only read dates, and only forwards.
+
 ## Verification
 
 ```sh
 python3 scripts/verify_site.py      # official-source, blank-value and link checks over site/data.json
 python3 scripts/verify_live.py      # every published DSE IV row against the live official schedule capture
+python3 scripts/verify_dse_live_2026_11_19.py [raw/<capture>.md]  # any dated capture of the same page, incl. buy-in and guarantee
 python3 scripts/verify_sheets.py    # every sheet-screened row against facts read from its official structure PDF
 python3 scripts/audit_data.py       # all 37 structure sheets against the read log
 python3 tests/canonical_smoke.py    # page structure plus a headless render check of every page

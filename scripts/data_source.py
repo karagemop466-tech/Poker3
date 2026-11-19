@@ -1202,6 +1202,32 @@ FLAGS = [
                  "time and structure sheet; four paraphrased names were corrected to the page's own wording. "
                  "No value was changed or inferred by this read."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
+    dict(id="F97", area="Integration data check", severity="Low",
+         title=("The published rows' 'last checked' dates were silently dragged back a day by pass ordering; "
+                "all 94 DeepStack IV rows now carry the 2026-11-19 read they actually had"),
+         detail=("Found on 2026-11-19 while reviewing the data build line by line. The builder stamped 25 DeepStack "
+                 "Extravaganza IV rows with the 2026-11-19 live read, and a later 2026-11-17 pass then overwrote "
+                 "`lastChecked` back to 2026-11-17, because the 'do not drag a newer manual read backwards' guard had "
+                 "been added to the source loop and the hotel loop but not to the event loop. The published "
+                 "site/data.json therefore said 2026-11-17 for rows that had been read twice on 2026-11-19, and the "
+                 "landing page repeated that stale date. "
+                 "FIX (same day): the guard is on the event loop as well; the 2026-11-19 pass now covers all 94 rows "
+                 "whose schedule source is the DeepStack IV page and sets both lastChecked and lastVerified; rule "
+                 "excerpts read that day keep the 2026-11-19 retrieval date. "
+                 "EVIDENCE: two independent same-day captures of the official page "
+                 "(raw/venetian_dse_nov_2026_live_2026-11-19.md and raw/dse_schedule_live_2026-11-19_ade0718f.md) are "
+                 "compared with the published rows by scripts/verify_dse_live_2026_11_19.py, which now checks the "
+                 "printed buy-in and printed guarantee as well as date, start time, structure sheet and printed name. "
+                 "94 of 94 rows agree in both captures; the 11 resumption rows carry their event's guarantee because a "
+                 "Day 2 or final-table row does not repeat it. "
+                 "SCOPE: no tournament, fee, guarantee, hotel or policy value changed; only read dates moved, and they "
+                 "moved forward. The defect understated how recently the page had been read rather than claiming an "
+                 "unverified value as verified, but a date column that disagrees with the data beneath it is exactly "
+                 "what a 'last checked' column exists to prevent. "
+                 "RELATED: open PR #173 states that its 32 trip-window rows advanced to 2026-11-19; on merged main they "
+                 "read 2026-11-17. This flag is the mechanism. A row that is re-read by hand on a later date must keep "
+                 "that date, and a pass that edits only dates must never reach back over a newer one."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
     dict(id="F74", area="Venetian DSE NYE", severity="Low",
          title="Eleven NYE rows carried a 'structure sheet not read' label after all 15 sheets had been read",
          detail=("Found and fixed on 2026-11-17. Eleven NYE rows sat in the category 'Unverified - structure sheet not "
@@ -2819,16 +2845,25 @@ def build():
     #                                    72-hour cancellation unchanged.
     #   Wynn Signature Series structures PDF -> still the "COMING SOON" placeholder (F56).
     LIVE_2026_11_19 = "2026-11-19"
+    # Every DeepStack Extravaganza IV row, not only the trip window: the whole page was read
+    # again on 2026-11-19 (all four chunks) and transcribed in full. Two independent captures of
+    # that read exist, raw/venetian_dse_nov_2026_live_2026-11-19.md (session arena/3dae36ec) and
+    # raw/dse_schedule_live_2026-11-19_ade0718f.md (session arena/ade0718f), and
+    # scripts/verify_dse_live_2026_11_19.py compares both with the published rows on date, start
+    # time, structure sheet, printed name, printed buy-in and printed guarantee. 94 of 94 rows
+    # agree in both captures, so both read dates move and no value changes (flag F97 records why
+    # the earlier 25-row pass did not survive into the published file).
     n_third = 0
     for e in events:
-        if (e["venue"] == "venetian" and e["date"] and
-                ("2026-11-23" <= e["date"] <= "2026-12-02" or e["id"] == "vl-dse-2026-12-12-46-910am")):
+        if e["venue"] == "venetian" and e["date"] and (e.get("scheduleUrl") or "") == DSE_NOV_URL:
             e["lastChecked"] = LIVE_2026_11_19
+            e["lastVerified"] = LIVE_2026_11_19
             e["recheck"] = dict(date=LIVE_2026_11_19, source=DSE_NOV_URL,
                                 result=("matched the live official page on date, start time, event number, printed "
-                                        "buy-in and structure-sheet link; no value changed"))
+                                        "name, printed buy-in, printed guarantee and structure-sheet link; "
+                                        "verified against two independent same-day captures; no value changed"))
             n_third += 1
-    assert n_third == 25, f"2026-11-19 live pass: expected 25 rows, got {n_third}"
+    assert n_third == 94, f"2026-11-19 live pass: expected 94 DeepStack Extravaganza IV rows, got {n_third}"
 
     SOURCES_2026_11_19 = {
         DSE_NOV_URL,
@@ -2893,10 +2928,15 @@ def build():
         if src["url"] in RECHECKED_URLS and src.get("checked") not in (LIVE_2026_11_19, LAST_PASS_2026_11_19):
             src["checked"] = RECHECKED
     for e in events:
-        if e["scheduleUrl"] in RECHECKED_URLS or e["sheetUrl"] in RECHECKED_URLS:
+        # Same guard as the source and hotel loops above: a row re-read by hand on 2026-11-19
+        # keeps that date. Without it this 2026-11-17 pass silently dragged the 25 trip-window
+        # rows (and now all 94 DSE IV rows) back a day, so the published file understated how
+        # recently the schedule page had been read (flag F97).
+        if e.get("lastChecked") != LIVE_2026_11_19 and (
+                e["scheduleUrl"] in RECHECKED_URLS or e["sheetUrl"] in RECHECKED_URLS):
             e["lastChecked"] = RECHECKED
         for body in e["rules"].values():
-            if body.get("source") in RECHECKED_URLS:
+            if body.get("source") in RECHECKED_URLS and body.get("retrieved") != LIVE_2026_11_19:
                 body["retrieved"] = RECHECKED
     for h in hotels:
         # Same guard: the 2026-11-19 pass above already moved these rows; do not drag
@@ -3024,9 +3064,10 @@ def build():
         today=TODAY,
         bookingLinks=BOOKING_LINKS,
         scope=("Las Vegas Strip poker tournaments and Strip lodging, built only from official venue and property pages. "
-               "Snapshot date 2026-11-19. The schedule pages behind the trip window were re-read that day (29 rows compared "
-               "line by line, no value changed) and the Venetian, Wynn and Bellagio hotel terms pages again; every row carries "
-               "the date it was last read, and a row not re-read keeps an earlier date rather than inheriting today's."),
+               "Snapshot date 2026-11-19. The whole DeepStack Extravaganza IV schedule page was re-read that day and all 94 "
+               "of its rows were compared line by line against two independent same-day captures (no value changed), and the "
+               "Venetian, Wynn and Bellagio hotel terms pages were read again; every row carries the date it was last read, "
+               "and a row not re-read keeps an earlier date rather than inheriting today's."),
         policy=("Every row links the official page it came from. A value that could not be confirmed from an official source is "
                 "left blank and listed on the Flagged for review page. Walking minutes are Google Maps walking estimates and are "
                 "labelled as such. The guaranteed-pool-to-fee ratio is descriptive only and is not a forecast."),

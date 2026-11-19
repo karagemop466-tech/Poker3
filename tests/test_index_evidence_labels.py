@@ -41,9 +41,22 @@ class LandingEvidenceLabels(unittest.TestCase):
     def test_page_explains_the_date_is_an_automated_recheck(self):
         self.assertIn("What the date in the last column means", self.page)
         self.assertIn("last automated re-check", self.page)
-        self.assertIn("lastChecked 2026-11-17", self.page)
         # The distinction must be stated, not implied.
         self.assertIn("not re-verify a number by eye", self.page)
+
+    def test_page_states_the_dates_the_rows_actually_carry(self):
+        """Whatever the page says the rows' read dates are, the data must agree.
+
+        The page used to print a fixed `lastChecked 2026-11-17` line; when the 2026-11-19
+        full-page re-read moved 94 rows forward (flag F97) that line became a stale claim about
+        the data it sits above. This test ties the sentence to the data so it cannot drift again.
+        """
+        events = {e["id"]: e for e in self.data["events"]}
+        dates = {events[day["primary"]]["lastChecked"] for day in self.data["dayPlan"]
+                 if day["primary"] in events}
+        for date in dates:
+            with self.subTest(date=date):
+                self.assertIn(f"lastChecked {date}", self.page)
 
     def test_recheck_record_actually_supports_the_date(self):
         checks = json.loads((SITE / "checks.json").read_text())
@@ -58,14 +71,19 @@ class LandingEvidenceLabels(unittest.TestCase):
                 self.assertIs(record["changed"], False)
 
     def test_row_data_still_carries_its_own_read_and_verify_dates(self):
+        # The point of this test is that each row states the date ITS OWN value was read, which is
+        # later than or equal to the first re-read pass and is never borrowed from the automated
+        # hash check. The 2026-11-19 full-page re-read moved these rows forward (flag F97), so the
+        # assertion is on the ordering, not on one fixed date.
         events = {e["id"]: e for e in self.data["events"]}
         for day in self.data["dayPlan"]:
             if not day["primary"]:
                 continue
             event = events[day["primary"]]
             with self.subTest(event=event["id"]):
-                self.assertEqual(event["lastChecked"], "2026-11-17")
-                self.assertEqual(event["lastVerified"], "2026-11-17")
+                self.assertGreaterEqual(event["lastChecked"], "2026-11-17")
+                self.assertGreaterEqual(event["lastVerified"], "2026-11-17")
+                self.assertLessEqual(event["lastVerified"], self.data["today"])
 
 
 if __name__ == "__main__":

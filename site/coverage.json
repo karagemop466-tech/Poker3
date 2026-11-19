@@ -1,11 +1,11 @@
 {
-  "generated": "2026-11-17",
+  "generated": "2026-11-19",
   "dataCounts": {
     "events": 341,
     "hotels": 8,
     "routes": 56,
     "sources": 48,
-    "flags": 92,
+    "flags": 93,
     "planDays": 7,
     "asOf": "2026-11-19"
   },
@@ -49,7 +49,7 @@
       "status": "shipped",
       "location": "site/data.json (lastChecked / lastVerified) + per-row display",
       "flags": [],
-      "note": "Every tournament, hotel, walking-route and source record carries a retrieval date; 301 of 341 event rows last checked 2026-11-17, the rest 2026-11-16."
+      "note": "Every tournament, hotel, walking-route and source record carries a retrieval date, and the distribution is derived from site/data.json at build time so it cannot go stale: 38 of 341 event rows last checked 2026-11-16, 189 of 341 event rows last checked 2026-11-17, 114 of 341 event rows last checked 2026-11-19."
     },
     {
       "id": "C5",
@@ -227,7 +227,7 @@
       "status": "shipped",
       "location": "site/flagged.html + site/sources.html + scripts/verify_site.py",
       "flags": [],
-      "note": "72 flags, each with its official source link; verify_site.py enforces official-domain source links and intentional blanks for unverified values."
+      "note": "93 flags, each with its official source link; verify_site.py enforces official-domain source links and intentional blanks for unverified values."
     },
     {
       "id": "U9",
