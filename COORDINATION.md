@@ -5645,8 +5645,9 @@ JSON files still published under `site/data/`) — flagged for review rather tha
 `scripts/daily_check.py` still names `sources.json`; no dashboard page reads them. All three are on the Flagged for
 review page with links. Flagged items do not block the merge.
 
-**Verification performed before the PR (all green on this branch).** `verify_site.py` (341 events / 8 hotels /
-56 routes / 48 sources / 95 flags / 7 plan days / 17 pages at the time of this branch's local gate); **269 unit tests OK**; `canonical_smoke.py`;
+**Verification performed before the PR (all green on this branch, twice: once before the rebase and once after
+integration).** `verify_site.py` (341 events / 8 hotels / 56 routes / 49 sources / 97 flags / 7 plan days / 17 pages
+after integration; 48 sources / 95 flags before the rebase); **291 unit tests OK after integration** (269 before); `canonical_smoke.py`;
 `node tests/canonical_render.js` (14 page renders including `verification`); `node tests/walk_limit_render.js`;
 `node --check` on every JS asset; `audit_951cd431.py`, `audit_data.py`, `verify_live_official.py`,
 `verify_entry_labels.py`, `verify_transcription.py --dry-run` (44/44); a local-link scan over all 26 `site/**/*.html`
@@ -5658,6 +5659,17 @@ URL (the same exemption already allowed Publishing and Monitoring flags); an unc
 **Scope note.** Only the files listed in this claim were edited. PR #173 (`arena/a33db3c1-poker3`) was left open and
 untouched; no other branch was created, switched to or pushed. No other session landed a commit while this branch
 was open, so there was no merge conflict to resolve and no handoff to log.
+
+**Conflict and handoff log (rebase onto `eaff4d6`).** While this branch was open, PRs #180-#196 landed on `main`
+from seven other sessions. The first rebase hit one append-only conflict in `COORDINATION.md`; it was resolved by
+keeping every other session's section in full and appending this session's claim, with no text discarded. Three
+subsequent `site/data.json` / `site/sheets.html` conflicts were resolved by taking the regenerated artifact from the
+integration build (`python3 scripts/data_source.py` and `python3 scripts/build_addendum.py` using the merged
+`data_source.py`), so neither session's published rows were lost: `main` gained a 49th official source and the
+MGM parking flags F97-F99, while this branch contributed the verification sections and F100-F101. Flag ids F97-F99
+were already taken by parallel sessions, so this branch's two distinct flags were renumbered to F100/F101 and its
+duplicate F98 finding was dropped rather than published twice. The generated artifacts are byte-reproducible from
+the merged sources; no other session's work was overwritten.
 
 **Verification policy.** Every table row keeps its official source link. A value that cannot be confirmed from an
 official venue or property page/PDF is left blank and flagged. Third-party pages are cited only as conflicts, never as
