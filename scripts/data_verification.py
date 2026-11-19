@@ -386,6 +386,36 @@ NEW_FLAGS = [
                  "confirm the checkout total in the cart before payment, exactly as F88 and F93 require for the Venetian "
                  "engine."),
          source=REPO + "site/checks.json"),
+    dict(id="F109", area="Monitoring", severity="Low",
+         title=("The corrected official-source re-check has never run on a schedule: the scheduled record in "
+                "site/checks.json predates the PDF-hash fix"),
+         detail=("site/checks.json is dated 2026-11-19T07:34:30Z and its summary counts 108 URLs with 23 failed reads. "
+                 "The PDF comparison fix recorded in research/pdf-monitor-2026-11-19.md landed after that record, so no "
+                 "scheduled run has yet produced a record under the corrected PDF method. This is a monitoring gap, not "
+                 "a data error: a re-check only records an observation and never rewrites a tournament, fee, hotel or "
+                 "guarantee value (see the evidence policy in README). The corrected run is the next scheduled one; the "
+                 "gap changes no published row."),
+         source=REPO + "site/checks.json"),
+    dict(id="F110", area="Booking", severity="Medium",
+         title=("A second dated checkout total for the trip stay ($3,619.39 on 2026-11-19) is now on record beside the "
+                "$4,010.55 read of 2026-11-17, for a different suite tower"),
+         detail=("The official Venetian booking engine was read live on 2026-11-19 with the identical query used on "
+                 "2026-11-17 (2 adults, arrival 23 Nov 2026, departure 30 Nov 2026, 7 nights) and printed an itemised "
+                 "total of $3,619.39 for a palazzo Luxury King suite: nightly room rates "
+                 "204.25/204.25/204.25/309.25/1,119.25/561.75/204.25, a $55.00 resort fee on each of the seven nights, "
+                 "taxes $427.14 and an Average Rate line of $456.04. The 2026-11-17 read of the same query returned a "
+                 "venetian Newly Remodeled Luxury King at $4,010.55 with taxes of $473.30. Both are published as dated "
+                 "observations; neither replaces the other, and neither is a booking price. Two arithmetic irregularities "
+                 "are published with the record rather than silently smoothed: (1) the printed tax of $427.14 is two "
+                 "cents above 13.38% of the printed pre-tax subtotal of $3,192.25 ($427.12), while the printed total "
+                 "$3,619.39 does equal $3,192.25 + $427.14 exactly; (2) the seven per-night derivations "
+                 "(rate + $55) x 1.1338 add to $3,619.38, one cent under the printed total. The printed Average Rate "
+                 "$456.04 includes the resort fee but excludes tax, so the all-in figure a traveller pays per night is "
+                 "the printed total divided by seven, $517.06. This quote is the engine's best available rate, not the "
+                 "phone-only poker rate (code EPOKR25, F66), and the poker rate's play qualification is unchanged "
+                 "(F54)."),
+         source=("https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0"
+                 "&departure_date=2026-11-30&view=calendar")),
 ]
 
 __all__ = ["REQUIREMENTS", "OFFICIAL_READS", "TRIP_ROWS", "NEW_FLAGS", "CHECKED", "SESSION"]

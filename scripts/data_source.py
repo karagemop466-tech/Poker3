@@ -3446,6 +3446,40 @@ def build():
 PER_NIGHT_NOTE = "Re-read live from the official Venetian booking engine on 2026-11-17 for the exact trip window (2 adults, 7 nights). The per-night true costs are derived as (rate + $55) x 1.1338 and sum to the printed total. The engine's own 'Average Rate' line prints $505.32, which equals the average of (rate + $55 resort fee), confirming that its average-rate figure includes the resort fee. Printed tax is $0.02 above 13.38% of the printed pre-tax subtotal; the page does not explain the difference and the printed figures are kept as printed (flag F65). This is a dated observation, not a booking price: the engine's rates move between reads, and the poker-suite rate page adds a play-qualification condition and the EPOKR25 code."
 
 
+def later_read_quote():
+    """The second dated checkout total for the trip stay (2026-11-19), published beside the 2026-11-17 one.
+
+    Nothing here is derived from a guess: each figure is printed by the official booking engine, and the
+    two arithmetic checks that the page does not itself perform are published with the record.
+    """
+    q = H.VENETIAN_QUOTE_TRIP_2026_11_19
+    rates = [r for _, r in q["nightly"]]
+    nights = len(rates)
+    room_total = round(sum(rates), 2)
+    fee_total = round(q["resortFeePerNight"] * nights, 2)
+    pre_tax = round(room_total + fee_total, 2)
+    derived = [round((r + q["resortFeePerNight"]) * 1.1338, 2) for r in rates]
+    return dict(
+        quoteDate=q["observedOn"], checkIn=q["checkIn"], checkOut=q["checkOut"], nights=nights,
+        property=q["property"], offer=q["offer"], guests=q["guests"],
+        nightlyRates=rates, roomRatesTotal=room_total,
+        resortFeePerNight=q["resortFeePerNight"], resortFeeTotal=fee_total,
+        preTaxSubtotal=pre_tax, taxTotal=q["taxes"], checkoutTotal=q["total"],
+        printedAverageRate=q["averageRate"],
+        averageRateIncludesFee=True,
+        allInPerNight=round(q["total"] / nights, 2),
+        taxOnPreTaxPct=round(q["taxes"] / pre_tax * 100, 4),
+        taxExpected=round(pre_tax * 0.1338, 2),
+        taxDifference=round(q["taxes"] - round(pre_tax * 0.1338, 2), 2),
+        nightlyTrueCostDerived=derived,
+        derivedTotal=round(sum(derived), 2),
+        derivationNote=("Rate + $55 resort fee, then the Clark County room tax of 13.38% (printed on the hotel terms "
+                        "page). The seven derived figures add to $3,619.38, one cent under the printed $3,619.39."),
+        source=q["source"], note=q["note"],
+        sources=dict(quote=q["source"], resortFee=H.VENETIAN_RESORT_FEE, tax=H.VENETIAN_HOTEL_TERMS),
+    )
+
+
 def with_live_quote(model):
     """Adds the dated official quote for the trip stay beside the published-floor model.
 
@@ -3465,6 +3499,9 @@ def with_live_quote(model):
         basis=("Dated official booking-engine checkout total for two adults in a Luxury King suite, read 2026-11-17 after 21:54 UTC. It is the engine's best available rate, not the phone-only poker rate (F66), and it is one read, "
                "not a guarantee."),
         sources=dict(quote=q["source"], resortFee=H.VENETIAN_RESORT_FEE, tax=H.VENETIAN_HOTEL_TERMS),
+        # A later dated read of the SAME stay, kept beside the 2026-11-17 read rather than replacing it.
+        # Both are printed checkout totals; they differ on suite, nightly rates and total (flags F78/F110).
+        laterRead=later_read_quote(),
         # The per-night breakdown of the same quote. It was added to site/data.json by hand in 5a9269d, which
         # made the committed file differ from what this builder writes (see the reproducibility check).
         perNight=dict(

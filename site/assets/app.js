@@ -566,15 +566,32 @@ function renderHotels() {
   }
   const log = document.querySelector('[data-rate-log]');
   if (log) {
+    const money0 = (n) => '$' + Number(n).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    // A multi-night quote is shown night by night, and its all-in per-night figure is the printed
+    // checkout total divided by the number of nights. The printed room rates alone are not the
+    // cost of a night: the mandatory resort fee and tax are added to them, and the site never
+    // publishes a nightly figure it cannot derive from a printed amount.
+    const quoteNights = (r) => {
+      const nights = Number(r.nights) || (r.nightlyRates || []).length;
+      const rates = (r.nightlyRates || []).map(Number);
+      if (!nights || rates.length !== nights) return '';
+      const total = Number(r.total);
+      const allIn = total ? total / nights : null;
+      return `<div class="muted">Printed room rates per night: ${rates.map(money0).join(' · ')}</div>` +
+        `<div>All-in per night: <b>${allIn ? money0(allIn) : 'not derivable'}</b>` +
+        `<span class="muted">printed checkout total ${total ? money0(total) : 'blank'} ÷ ${nights} nights; ` +
+        `includes the printed resort fee and tax</span></div>`;
+    };
     const body = (db.rateLog || []).map((r) => `<tr>
       <td>${esc(r.hotel)}</td><td>${esc(r.observedOn)}</td>
       <td>${r.publishedStartingRates
         ? (/^[\d,.$]/.test(String(r.publishedStartingRates)) ? '$' + r.publishedStartingRates : esc(r.publishedStartingRates))
         : blank}</td>
       <td>${esc(r.resortFee || 'not published')}</td><td>${esc(r.tax || 'not published')}</td>
-      <td>${r.quoteType && r.quoteType.indexOf('Dated official checkout total') === 0
-        ? `observed nights: $${r.trueNightlyLow} and $${r.trueNightlyHigh}<span class="muted">one dated quote, two nights; not a price range and not a floor</span>`
-        : (r.trueNightlyLow ? '$' + r.trueNightlyLow : blank)}</td>
+      <td>${(r.nightlyRates || []).length ? quoteNights(r)
+        : (r.quoteType && r.quoteType.indexOf('Dated official checkout total') === 0
+          ? `observed nights: $${r.trueNightlyLow} and $${r.trueNightlyHigh}<span class="muted">one dated quote, two nights; not a price range and not a floor</span>`
+          : (r.trueNightlyLow ? '$' + r.trueNightlyLow : blank))}</td>
       <td>${esc(r.quoteType)}<span class="muted">${esc(r.note || '')}</span></td>
       <td><a href="${esc(r.source)}" target="_blank" rel="noopener">Official source</a></td></tr>`).join('');
     log.innerHTML = `<div class="table-wrap"><table><thead><tr><th>Property</th><th>Observed</th><th>Published rate</th>
