@@ -4,7 +4,7 @@ Every source below was fetched and read line by line on **2026-11-19 UTC** throu
 reader (the build sandbox's own egress to the venue hosts fails, flag F40). Scope: the open flags that
 are **outside** the fixed trip-window re-read claimed by open PR #173 (`arena/a33db3c1-poker3`) and
 outside the calculator scope claimed by open PR #184 (`arena/5cfdd619-poker3`). No published value
-changed; the findings are recorded as flag-text updates and two new flags (F106, F107).
+changed; the findings are recorded as flag-text updates and two new flags (F109, F110).
 
 ## Sources re-read (official)
 
@@ -68,7 +68,7 @@ changed; the findings are recorded as flag-text updates and two new flags (F106,
    receive one (1) free entry to the Saturday $150 NLH $2,000 Guarantee". The $120 structure PDF's
    document title is still "Max Stacks Tournament Series".
 
-5. **F02/F52 reconfirmed; F106 new.** The Bellagio Saturday sheet still prints the heading
+5. **F02/F52 reconfirmed; F109 new.** The Bellagio Saturday sheet still prints the heading
    "NLH $1100 BUY-IN" against rule 07 "Of the $600 Buy-in, $510 goes to the Prize Pool, $50 is Admin
    Fees and $40 is optional staff gratuity", and the 3rd level still prints blinds "200-4300". **New
    finding:** the same sheet's general rules print a combined final "Day 2 (9/13/26)" (September 13,
@@ -76,7 +76,7 @@ changed; the findings are recorded as flag-text updates and two new flags (F106,
    registration close times ("Approximately 5:15pm for Flights 1A, 1B, 4:15pm for 1C and 9:30pm for
    Flight D"), "Day 1D will have 25-minute levels", and "Each Flight would play until the money
    (12.5%)". The sheet is a stale copy of a past September multi-flight event, not the current weekly
-   Saturday schedule; recorded as **F106**.
+   Saturday schedule; recorded as **F109**.
 
 6. **F03 reconfirmed — still open.** The Bellagio poker page still prints "Tournament play will resume
    on Saturday, July 26, beginning with the $300 PLO Double Board Bomb Pot Tournament at 2 PM PT."
@@ -130,9 +130,9 @@ changed; the findings are recorded as flag-text updates and two new flags (F106,
 
 - **No published tournament, fee, guarantee, hotel, parking or policy value changed** on any of the 24
   sources re-read today.
-- **New irregularity F106:** the official Bellagio "Saturdays | $1,000 NLH" sheet is a stale copy of a
+- **New irregularity F109:** the official Bellagio "Saturdays | $1,000 NLH" sheet is a stale copy of a
   September 13, 2026 multi-flight event, compounding the F02 three-way buy-in conflict.
-- **New spot-check record F107** itemizes the twelve reconfirmations above with fresh 2026-11-19 dates.
+- **New spot-check record F110** itemizes the twelve reconfirmations above with fresh 2026-11-19 dates.
 - F56, F80, F103, F20, F71, F07, F09, F02, F52, F03, F13, F14, F39, F37, F83, F105, F79 remain open,
   now each re-confirmed live on 2026-11-19 by this session.
 
@@ -149,4 +149,4 @@ Both pages still print their fee blocks, and every figure matches the published 
 ($49.95 plus $6.68 tax)", "Pet fee: $75", "Deposit: $50 per day", "Rollaway bed fee: $30 per day", and
 "Rates shown reflect the lowest available rate and include applicable resort fees."
 
-Recorded as item (13) of flag F107. No dated rate is logged because the pages printed none.
+Recorded as item (13) of flag F110. No dated rate is logged because the pages printed none.

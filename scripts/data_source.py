@@ -1631,6 +1631,8 @@ FLAGS = [
                  "comparing the cell with the sheet is not left wondering whether a cash-only pool of $8,000 is meant. "
                  "No value was changed."),
          source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf"),
+
+
     dict(id="F115", area="Bellagio", severity="Medium",
          title=("The Bellagio Saturday structure sheet on the live poker page describes a past September "
                 "multi-flight event, not the current weekly Saturday"),
@@ -1694,7 +1696,6 @@ FLAGS = [
                  "re-entry-through-level-8 clauses. No published tournament, fee, guarantee, hotel, parking or "
                  "policy value moved."),
          source="https://cdn.wynnresorts.com/image/upload/v1762299460/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Structures.pdf"),
-
 ]
 
 QUESTIONS = [
