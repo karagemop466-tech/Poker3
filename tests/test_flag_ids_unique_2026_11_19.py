@@ -51,8 +51,9 @@ class FlagIdsAreUnique(unittest.TestCase):
         """
         numbers = sorted(int(f["id"][1:]) for f in DATA["flags"])
         # F123 (arena/a400f338-poker3) added the Venetian connecting-suite contradiction during
-        # integration; a new flag still goes at the end, above every id already issued.
-        self.assertEqual(numbers[-1], 123, "a new flag must be added at the end of the register")
+        # integration; F124 (arena/98fa400f-poker3) added the third same-day Palazzo quote drift.
+        # A new flag still goes at the end, above every id already issued.
+        self.assertEqual(numbers[-1], 124, "a new flag must be added at the end of the register")
 
     def test_every_cited_flag_exists(self):
         # The register numbers the first flags with two digits (F01, F02, ... F09) and everything from
