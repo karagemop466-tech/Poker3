@@ -9,13 +9,34 @@ A hash match proves the document did not change; it does not re-verify a number 
 
 These tests pin the distinction so it cannot silently collapse again. They assert no new
 tournament value.
+
+Second irregularity, found 2026-11-19 (session arena/7d96049f). The guard written to catch that drift
+asserted the literal date (`generatedAt.startswith("2026-11-19")`) and that no structure PDF had changed
+(`assertIs(record["changed"], False)`). `scripts/check_sources.py` rewrites `site/checks.json` inside the
+same scheduled job that runs these tests, so both assertions were time bombs: the first failed from the
+next day onwards, and the second failed whenever a venue re-published a sheet. Both sat in the job's
+verification gate, which sits before the step that commits the record, so a detected source change
+suppressed the publication of the record of that change (CI run 44482186623). The assertions below are
+relational instead, and the page now renders the date out of the record rather than from typed HTML.
 """
 import json
+import re
 import unittest
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 SITE = ROOT / "site"
+
+
+def iso_day(value):
+    """Return the YYYY-MM-DD part of an ISO timestamp, or '' when it is not one.
+
+    Deliberately not a fixed date: these tests must keep passing the day the scheduled monitor
+    rewrites site/checks.json, because that rewrite is the job working, not the job failing.
+    """
+    m = re.match(r"^(\d{4}-\d{2}-\d{2})T\d{2}:\d{2}:\d{2}", str(value or ""))
+    return m.group(1) if m else ""
+
 
 # The seven primary candidate sheets, in trip order.
 SHEETS = [
@@ -59,16 +80,69 @@ class LandingEvidenceLabels(unittest.TestCase):
                 self.assertIn(f"lastChecked {date}", self.page)
 
     def test_recheck_record_actually_supports_the_date(self):
+        """The record must cover each trip-window sheet, and stay self-consistent.
+
+        This test was written on 2026-11-19 as `checks["generatedAt"].startswith("2026-11-19")` plus
+        `assertIs(record["changed"], False)` for each of the seven sheets. Both were time bombs, and the
+        second was the worse one: `scripts/check_sources.py` re-runs every morning and rewrites
+        `site/checks.json` in the same job that runs these tests, so (a) from 2026-11-20 the literal date
+        could never match again, and (b) any venue that re-published a structure PDF — even for a
+        metadata-only reason — failed the gate. That gate sits before the job's "record the check results"
+        step, so the change monitor stopped publishing its own record precisely when a source changed
+        (CI run 44482186623, 2026-11-19: the URL re-check and transcription steps passed, the gate failed,
+        the record commit was skipped).
+
+        What the test can honestly require, on any day, is invariance: the record must exist, it must cover
+        the seven sheets, its own timestamps must be internally consistent, and a row that reports a change
+        must say what it compared. "The venue changed nothing" is not a requirement the site can impose on
+        the venues, and a detected change is the job's expected output, not its failure.
+        """
         checks = json.loads((SITE / "checks.json").read_text())
-        self.assertTrue(checks["generatedAt"].startswith("2026-11-19"))
+        generated = iso_day(checks["generatedAt"])
+        self.assertTrue(generated, f"generatedAt {checks['generatedAt']!r} is not an ISO timestamp")
         by_url = {u["url"]: u for u in checks["urls"]}
         for sheet in SHEETS:
             matches = [u for url, u in by_url.items() if url.endswith(sheet)]
             with self.subTest(sheet=sheet):
                 self.assertTrue(matches, f"{sheet} is not in the automated re-check record")
                 record = matches[0]
-                self.assertTrue(record["checked"].startswith("2026-11-19"))
-                self.assertIs(record["changed"], False)
+                checked = iso_day(record["checked"])
+                self.assertTrue(checked, f"{sheet}: checked {record['checked']!r} is not an ISO timestamp")
+                self.assertLessEqual(checked, generated,
+                                     f"{sheet}: checked {checked} is dated after the run that wrote it ({generated})")
+                self.assertIsInstance(record["changed"], bool, f"{sheet}: changed must be a recorded boolean")
+                if record["changed"]:
+                    # A change without its comparison basis is not reviewable by a human.
+                    self.assertTrue(record.get("hashBasis") or record.get("previousHash"),
+                                    f"{sheet}: a reported change must state what was compared")
+                    self.assertTrue(record.get("previousHash"),
+                                    f"{sheet}: a reported change must keep the hash it compared against")
+
+    def test_the_page_never_hardcodes_a_recheck_date(self):
+        """The column's date must come from the record, so it cannot go stale or get ahead of it."""
+        import re as _re
+        block = self.page[self.page.index("data-reviewed-candidates"):]
+        cells = _re.findall(r"<small data-sheet-recheck=\"([^\"]+)\">([^<]*)</small>", block)
+        self.assertEqual(len(SHEETS), len(cells), "one re-check cell per trip-window sheet")
+        for name, fallback in cells:
+            with self.subTest(sheet=name):
+                self.assertIn(name, [s.split("/")[-1] for s in SHEETS], "cell names a sheet outside the trip window")
+                self.assertNotRegex(fallback, r"20\d\d-\d\d-\d\d",
+                                    "a hardcoded date in the static page is the drift this guard exists to stop")
+
+    def test_the_app_reads_the_date_from_the_record(self):
+        """app.js must derive the cell from site/checks.json and label a change as a change."""
+        js = (SITE / "assets" / "app.js").read_text(encoding="utf-8")
+        self.assertIn("function renderSheetRechecks", js)
+        self.assertIn("data-sheet-recheck", js)
+        body = js[js.index("function renderSheetRechecks"):js.index("function renderHome")]
+        self.assertIn("checks.urls", body, "the cell must read the record, not the page")
+        self.assertIn("CHANGED", body, "a changed source must be labelled in the cell")
+        self.assertIn("does not re-verify any printed value", body,
+                      "the cell must say what a hash re-check does not prove")
+        # It must be wired into the landing-page render, or it never runs.
+        home = js[js.index("function renderHome"):]
+        self.assertIn("renderSheetRechecks();", home[:400])
 
     def test_row_data_still_carries_its_own_read_and_verify_dates(self):
         # Each row states the date ITS OWN value was read and the date that document was last

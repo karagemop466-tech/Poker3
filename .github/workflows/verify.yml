@@ -34,6 +34,8 @@ jobs:
           node --check tests/canonical_render.js
           node --check tests/walk_limit_render.js
           node tests/walk_limit_render.js
+          node --check tests/sheet_recheck_render.js
+          node tests/sheet_recheck_render.js
           python3 -m json.tool site/data.json > /dev/null
       - name: Install workflow test dependency
         run: python3 -m pip install --quiet pyyaml
