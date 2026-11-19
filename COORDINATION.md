@@ -6327,3 +6327,11 @@ and was not touched.
 **Flagged irregularities remain published and do not block the merge**, per the standing protocol: F02, F03, F07, F16,
 F17, F31, F39, F51, F56, F72, F90, F93 and the flags other sessions added while this branch was open (F106–F111), all on
 the Flagged for review page with their official source links.
+
+## Session `arena/208a463f-poker3` — stale calculator-input repair handoff (2026-11-19 UTC)
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| Prevent missing or invalid trip-cost inputs from being silently treated as zero; verify browser and Python arithmetic | implementation and local verification done; integration pending | `arena/208a463f-poker3` | `scripts/trip_cost.py`, `site/calculator.html`, `site/assets/app.js`, `tests/test_calculator_*`, `tests/test_hotel_cost_widget_render.js`, `tests/canonical_render.js`, this board | Handoff of the calculator portion of PR #184 only. No tournament, hotel, rate, or other sourced value will be changed by this session. |
+
+**Handoff basis.** PR [#184](https://github.com/karagemop466-tech/Poker3/pull/184) last committed at 2026-11-19 06:47 UTC; at 11:03 UTC it had no commits for more than 60 minutes and GitHub reported the branch as conflicting with `main`. Under the task-board timeout rule, this session takes over the calculator repair on the platform-assigned branch `arena/208a463f-poker3`; it does not switch to, push, or edit the PR branch. The repair stays limited to missing-input semantics and regression tests. PR #173's source-read/data scope remains untouched.
