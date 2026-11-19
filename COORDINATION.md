@@ -6401,3 +6401,16 @@ Branch: `arena/3b5f21ac-poker3`, branched from `main` at `5c42d7f` (merge of PR 
 - `python3 -m unittest discover -s tests -p 'test_*.py'` — **334 tests OK** (PyYAML installed in the sandbox only, matching CI).
 - `scripts/audit_951cd431.py` 0 failures / 0 warnings; `verify_live_official.py` OK (canonical rows match both official captures); `audit_data.py` passed; `verify_entry_labels.py` passed (341 events, 0 written-cap confirmations); `verify_transcription.py --dry-run` 44/44; `tests/canonical_smoke.py` passed (13 main + 5 detail pages); `python3 -m json.tool site/data.json` OK; `data_source.py` rebuild deterministic.
 - `site/data.json` diff is append-only across all three commits (two new flags + the F101 text swap); no event, hotel, rate, route or policy value was touched.
+
+## Session `arena/a400f338-poker3` — claim: independent line-by-line audit + final integration (2026-11-19 UTC)
+
+Branch: `arena/a400f338-poker3`, branched from `main` at `5c42d7f` (PR #206, the tip at claim time). Claim committed and
+pushed before any other edit, per protocol. At claim time the open PRs were **#173** (`arena/a33db3c1-poker3` — trip-window
+re-read; owns `scripts/data_source.py`, `scripts/coverage.py`, `site/data.json`, `site/sheets.html`, `site/coverage.json`,
+`README.md`, `raw/`, `research/reread_2026-11-19_tripwindow.json`) and **#184** (`arena/5cfdd619-poker3` — unknown trip costs;
+owns `scripts/trip_cost.py`, `site/calculator.html`). Neither branch is edited by this session.
+
+| Task | Status | Owner session | Scope (files) | Notes |
+|---|---|---|---|---|
+| I1 Independent line-by-line audit of the non-trip-window, non-calculator published surface (hotels, routes, venues, sources, flags, links, labels) against the official pages behind them | in progress | `arena/a400f338-poker3` | `research/audit_2026-11-19_arena-a400f338.md` (new), any defect fix confined to files no open PR owns | No value moves without an official read; blanks stay blank. |
+| I2 Final integration: re-verify combined data line by line, confirm the site builds with no broken links, PR → `main` → merge → GitHub Pages confirmation → record here | pending | `arena/a400f338-poker3` | whole repo (integration), this board | Open PRs #173/#184 are integrated by this session per the brief's integration rule; their records are kept in full. Flagged irregularities do not block the merge. |
