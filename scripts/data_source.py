@@ -329,7 +329,7 @@ SOURCES = [
          type="official structures file", checked=RECHECKED),
     dict(id="vl-series", name="Venetian DeepStack Poker Series index (current, next and future series)",
          url="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html",
-         type="official index", checked=LAST_PASS),
+         type="official index", checked="2026-11-19"),
     dict(id="vl-poker", name="Venetian poker room page", url="https://www.venetianlasvegas.com/resort/casino/poker.html",
          type="official room page", checked="2026-11-19"),
     dict(id="vl-suite-rates", name="Venetian poker-room suite rates and play requirements 2026",
@@ -339,11 +339,11 @@ SOURCES = [
     dict(id="vl-hotel-terms", name="Venetian hotel terms and conditions (tax, parking, cancellation)",
          url="https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html", type="official terms", checked=RECHECKED),
     dict(id="wynn-poker", name="Wynn Las Vegas poker room page", url="https://www.wynnlasvegas.com/casino/poker",
-         type="official room page", checked=LAST_PASS),
+         type="official room page", checked="2026-11-19"),
     dict(id="wynn-resort-info", name="Wynn Las Vegas Resort Policies (resort fee, check-in/out, reservation guarantee)",
-         url="https://www.wynnlasvegas.com/about-us/resort-information", type="official terms", checked=RECHECKED),
+         url="https://www.wynnlasvegas.com/about-us/resort-information", type="official terms", checked="2026-11-19"),
     dict(id="wynn-parking", name="Wynn Las Vegas Parking Information (self-parking and valet fees)",
-         url="https://www.wynnlasvegas.com/about-us/parking", type="official fee page", checked=RECHECKED),
+         url="https://www.wynnlasvegas.com/about-us/parking", type="official fee page", checked="2026-11-19"),
     dict(id="wynn-daily-poster", name="Wynn daily tournament poster",
          url="https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf",
          type="official schedule", checked=RECHECKED),
@@ -360,9 +360,9 @@ SOURCES = [
          url="https://cdn.wynnresorts.com/image/upload/v1753296112/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Schedule.pdf",
          type="official schedule", checked=LAST_PASS),
     dict(id="wynn-rooms", name="Wynn Las Vegas rooms and suites", url="https://www.wynnlasvegas.com/rooms-and-suites",
-         type="official room page", checked=LAST_PASS),
+         type="official room page", checked="2026-11-19"),
     dict(id="wynn-terms", name="Wynn Las Vegas terms (resort fee, cancellation, parking)",
-         url="https://www.wynnlasvegas.com/terms-and-conditions/850070", type="official terms", checked=LAST_PASS),
+         url="https://www.wynnlasvegas.com/terms-and-conditions/850070", type="official terms", checked="2026-11-19"),
     dict(id="bell-poker", name="Bellagio poker room page", url="https://bellagio.mgmresorts.com/en/casino/poker.html",
          type="official room page", checked=RECHECKED),
     dict(id="bell-fri", name="Bellagio Friday $600 No Limit Hold'em structure",
@@ -1107,6 +1107,28 @@ FLAGS = [
                  "no longer reports this URL as changed. Re-read the page again if a future check flags it, and before any "
                  "nonrefundable payment."),
          source="https://www.venetianlasvegas.com/resort/casino/poker.html"),
+    dict(id="F93", area="Change monitoring", severity="Low",
+         title="RESOLVED 2026-11-19: the 05:33 UTC check marked six official URLs changed; the same-day manual re-read found no recorded value behind them had moved",
+         detail=("The scheduled re-check of 2026-11-19T05:33:18Z (site/checks.json) reported six visible-text changes: the "
+                 "Venetian DeepStack series index, the Wynn poker room page, Wynn Resort Policies, Wynn Parking, Wynn Rooms "
+                 "and Suites, and the Wynn terms page 850070. Session arena/827185f7-poker3 re-read all six the same day "
+                 "against every value this site records from them. Results, verbatim comparisons: (1) Venetian series index "
+                 "still prints 'DeepStack Extravaganza IV / November 16 – December 23, 2026 / More than $3.6 Million in "
+                 "guaranteed tournament prize pools' and 'DeepStack Extravaganza NYE / December 24, 2026 - January 10, 2027'; "
+                 "(2) Wynn poker still prints 'November 27–December 21' for the WPT World Championship, 'New for 2026, the "
+                 "Super Gold Million brings a $400 buy-in featuring a $3,000,000 guarantee!', 'January 11–24. 2027' for the "
+                 "Signature Series, the daily-tournament $200,000 weekly guarantee text and the suspension note; (3) Wynn "
+                 "Resort Policies still prints 'daily resort fee of $55 plus tax' for standard and Tower Suites rooms, "
+                 "check-in 3 p.m., check-out 12 p.m. and the first-night guarantee; (4) Wynn Parking still prints '$25 per "
+                 "day with the first three (3) hours complimentary', free self-parking for registered guests and poker-room "
+                 "guests, and 'Valet parking is $40 per day up to 24 hours (no grace period, no re-entry)'; (5) Wynn Rooms "
+                 "still prints room categories with Book Now links and no room price; (6) Wynn terms 850070 still prints its "
+                 "'must be completed on or before September 30, 2025' expiry (flag F35) and the 'CANCELLATION POLICY' body "
+                 "'cancellations must be received at least 48 hours prior to arrival date or deposit (if applicable) will be "
+                 "forfeited'. Because a hash cannot say which words changed, marketing wording is the most likely mover, but "
+                 "no data value changed and none was edited. The source register's checked dates for these six URLs now read "
+                 "2026-11-19. If a future check flags any of them again, re-read before nonrefundable payment."),
+         source="https://www.wynnlasvegas.com/about-us/parking"),
     dict(id="F74", area="Venetian DSE NYE", severity="Low",
          title="Eleven NYE rows carried a 'structure sheet not read' label after all 15 sheets had been read",
          detail=("Found and fixed on 2026-11-17. Eleven NYE rows sat in the category 'Unverified - structure sheet not "

@@ -23107,7 +23107,7 @@
    "name": "Venetian DeepStack Poker Series index (current, next and future series)",
    "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html",
    "type": "official index",
-   "checked": "2026-11-16"
+   "checked": "2026-11-19"
   },
   {
    "id": "vl-poker",
@@ -23149,14 +23149,14 @@
    "name": "Wynn Las Vegas Resort Policies (resort fee, check-in/out, reservation guarantee)",
    "url": "https://www.wynnlasvegas.com/about-us/resort-information",
    "type": "official terms",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "id": "wynn-parking",
    "name": "Wynn Las Vegas Parking Information (self-parking and valet fees)",
    "url": "https://www.wynnlasvegas.com/about-us/parking",
    "type": "official fee page",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "id": "wynn-daily-poster",
@@ -23198,7 +23198,7 @@
    "name": "Wynn Las Vegas rooms and suites",
    "url": "https://www.wynnlasvegas.com/rooms-and-suites",
    "type": "official room page",
-   "checked": "2026-11-16"
+   "checked": "2026-11-19"
   },
   {
    "id": "wynn-terms",
@@ -23930,6 +23930,14 @@
    "title": "RESOLVED 2026-11-19: the required manual re-read of the Venetian poker page is done; no published value behind it moved",
    "detail": "The scheduled source re-check (site/checks.json, run 2026-11-18T20:24:36Z) recorded a visible-text change on https://www.venetianlasvegas.com/resort/casino/poker.html against the previous run at 2026-11-18T03:24:32Z (wordingChanged: true), and asked for a manual re-read. That re-read happened on 2026-11-19 by session arena/827185f7-poker3 (page reader, full page in two chunks). The live page prints, verbatim: 'LOCATION — The Palazzo, level 2, Grand Canal Shoppes'; the hours block '12:00 AM - 11:59 PM' for each of the seven weekdays with 'Open 24 hours daily.'; 'Our Poker Room is located at The Palazzo on level 2 of Grand Canal Shoppes. The Poker Room features 50 tables spread across 14,000 square feet of space, making it the largest room on the Las Vegas Strip.'; and the series block 'DeepStack Extravaganza IV / November 16 – December 23, 2026 / More than $3.6 Million in guaranteed tournament prize pools'. Every value this site records from that URL — F91's location wording (2026-11-18 read, re-confirmed today), the venue register's series line and $3.6M guarantee, and the room's 24-hour status — still prints exactly as recorded, so no data value changed. A text hash cannot say which words moved: the 20:24 change could not be attributed to any value this site cites, and the page carries marketing copy that no row depends on, so the change is treated as wording only. The 2026-11-19 05:33 UTC check no longer reports this URL as changed. Re-read the page again if a future check flags it, and before any nonrefundable payment.",
    "source": "https://www.venetianlasvegas.com/resort/casino/poker.html"
+  },
+  {
+   "id": "F93",
+   "area": "Change monitoring",
+   "severity": "Low",
+   "title": "RESOLVED 2026-11-19: the 05:33 UTC check marked six official URLs changed; the same-day manual re-read found no recorded value behind them had moved",
+   "detail": "The scheduled re-check of 2026-11-19T05:33:18Z (site/checks.json) reported six visible-text changes: the Venetian DeepStack series index, the Wynn poker room page, Wynn Resort Policies, Wynn Parking, Wynn Rooms and Suites, and the Wynn terms page 850070. Session arena/827185f7-poker3 re-read all six the same day against every value this site records from them. Results, verbatim comparisons: (1) Venetian series index still prints 'DeepStack Extravaganza IV / November 16 – December 23, 2026 / More than $3.6 Million in guaranteed tournament prize pools' and 'DeepStack Extravaganza NYE / December 24, 2026 - January 10, 2027'; (2) Wynn poker still prints 'November 27–December 21' for the WPT World Championship, 'New for 2026, the Super Gold Million brings a $400 buy-in featuring a $3,000,000 guarantee!', 'January 11–24. 2027' for the Signature Series, the daily-tournament $200,000 weekly guarantee text and the suspension note; (3) Wynn Resort Policies still prints 'daily resort fee of $55 plus tax' for standard and Tower Suites rooms, check-in 3 p.m., check-out 12 p.m. and the first-night guarantee; (4) Wynn Parking still prints '$25 per day with the first three (3) hours complimentary', free self-parking for registered guests and poker-room guests, and 'Valet parking is $40 per day up to 24 hours (no grace period, no re-entry)'; (5) Wynn Rooms still prints room categories with Book Now links and no room price; (6) Wynn terms 850070 still prints its 'must be completed on or before September 30, 2025' expiry (flag F35) and the 'CANCELLATION POLICY' body 'cancellations must be received at least 48 hours prior to arrival date or deposit (if applicable) will be forfeited'. Because a hash cannot say which words changed, marketing wording is the most likely mover, but no data value changed and none was edited. The source register's checked dates for these six URLs now read 2026-11-19. If a future check flags any of them again, re-read before nonrefundable payment.",
+   "source": "https://www.wynnlasvegas.com/about-us/parking"
   },
   {
    "id": "F74",
