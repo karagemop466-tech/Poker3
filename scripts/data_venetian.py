@@ -7,9 +7,9 @@ the official PDFs; see research/structure_notes.md for the read log.
 `entry` codes:
   none        - the sheet prints one buy-in, one start flight and no re-entry,
                 rebuy, add-on or second-flight provision.
-  multi-flight- the sheet prints separate starting flights (1A/1B/...) and says a
-                player who bags may not play a subsequent flight, so a player who
-                does not bag may buy into more than one flight.
+  multi-flight- the sheet prints separate starting flights (1A/1B/...) and rule 8
+                says a player who bags may not play a subsequent flight; that a player
+                who has not bagged may play one is an inference from rule 8.
   multi-buyin - the sheet explicitly allows more than one buy-in.
   satellite   - seat prize only, not a cash tournament.
   special     - team / restricted-entry format.
