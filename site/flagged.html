@@ -61,6 +61,34 @@
         <a href="sources.html">Official sheets and latest automated results</a></p>
     </section>
 
+    <section class="section" id="publishing-review">
+      <div class="section-head"><div><h2>Operational review · canonical page paths returned 404</h2><p>Detected November 19, 2026 by an independent live-site check. Not a new verification of any tournament, fee, guarantee or hotel value.</p></div></div>
+      <p>This repository's GitHub Pages source is still the legacy <em>deploy from a branch: main /</em> setting,
+        while <a href="https://github.com/karagemop466-tech/Poker3/blob/main/.github/workflows/pages.yml">pages.yml</a>
+        publishes the <code>site/</code> artifact at the same host (flag <strong>F29</strong>). Whichever publisher
+        finishes last serves the URL, so a path that exists in the artifact can be missing from the branch build.
+        On 2026-11-19 these canonical paths returned GitHub Pages <strong>404 File not found</strong> while the same
+        pages worked under <code>/Poker3/site/</code>:</p>
+      <ul>
+        <li><a href="https://karagemop466-tech.github.io/Poker3/calculator.html">/Poker3/calculator.html</a> — trip cost calculator</li>
+        <li><a href="https://karagemop466-tech.github.io/Poker3/browse.html">/Poker3/browse.html</a> — venue and category subpages</li>
+        <li><a href="https://karagemop466-tech.github.io/Poker3/venues.html">/Poker3/venues.html</a> — one page per venue</li>
+        <li><a href="https://karagemop466-tech.github.io/Poker3/search.html">/Poker3/search.html</a> ·
+            <a href="https://karagemop466-tech.github.io/Poker3/sheets.html">/Poker3/sheets.html</a> ·
+            <a href="https://karagemop466-tech.github.io/Poker3/sources.html">/Poker3/sources.html</a> — global search, sheet verification, source log</li>
+      </ul>
+      <p><strong>Fix applied.</strong> Every canonical page now has a root-level redirect stub, so the path serves
+        the real page under the Actions artifact and redirects into <code>site/</code> under the legacy branch build.
+        A regression test asserts the guard for all 17 published pages. No tournament, hotel, rate or route value
+        changed. <strong>Still open for a user decision:</strong> switching the Pages source to
+        <em>GitHub Actions</em> in repository settings removes the two-publisher race in one step; the API token
+        available to the integration sessions returns <code>403</code> for <code>PUT /pages</code>, so this remains a
+        settings change only. Verify by opening each link above after the deployment.</p>
+      <p><a href="https://github.com/karagemop466-tech/Poker3/blob/main/research/audit_2026-11-19_97eba119.md">Dated line-by-line audit and manual-review links</a> ·
+        <a href="https://github.com/karagemop466-tech/Poker3/blob/main/.github/workflows/pages.yml">Publishing workflow</a> ·
+        <a href="https://github.com/karagemop466-tech/Poker3/blob/main/tests/test_official_row_sources_97eba119.py">Independent row-source and path regression test</a></p>
+    </section>
+
     <section class="section">
       <div class="section-head"><div><h2>Flag register</h2><p>Ordered by severity, then by area.</p></div></div>
       <div data-flags></div>

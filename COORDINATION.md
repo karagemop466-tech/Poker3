@@ -5369,3 +5369,47 @@ the legacy `pages build and deployment` job (run
 ([44476103096](https://github.com/karagemop466-tech/Poker3/actions/runs/44476103096),
 [44476103111](https://github.com/karagemop466-tech/Poker3/actions/runs/44476103111)). One more concurrent merge (#191)
 landed during this PR; the board conflict was append-only and both records were kept.
+---
+
+## Session `arena/97eba119-poker3` — independent line-by-line audit + final integration (2026-11-19 UTC)
+
+**Branch note.** The platform binds this session to `arena/97eba119-poker3` (branched from `main` at `e79f5a6`); the brief's `session-<id>/<task>` naming cannot be applied here, as every earlier session recorded. This session is the on-duty verification + integration session and works only on this branch. The claim below was committed and pushed **before** any other edit, per protocol.
+
+**Claim (2026-11-19 UTC).** At claim time `origin/main` was `0ebc955` (PR #183 merged); open PRs were **#173** (`arena/a33db3c1-poker3` — trip-window re-read, `scripts/data_source.py`, `scripts/coverage.py`, `site/data.json`, `site/sheets.html`, `README.md`, `raw/`, `research/reread_2026-11-19_tripwindow.json`, tests) and **#182** (`arena/621aeb99-poker3` — `COORDINATION.md` only). Those scopes are **not** edited by this session. Shared output under those PRs is left alone; the only shared file this session touches is this board, append-only, so a concurrent merge is resolved by keeping both sections.
+
+| Task | Status | Owner session | Scope (files) | Notes |
+|---|---|---|---|---|
+| C1 Claim recorded and pushed before work | in progress → done | `arena/97eba119-poker3` | `COORDINATION.md` (this section) | Committed and pushed immediately. |
+| C2 Independent line-by-line verification: every published table row has an official source link; fresh official reads of the trip-window rows; official-URL liveness; full internal-link / no-broken-link scan of the canonical dashboard | pending | `arena/97eba119-poker3` | `research/audit_2026-11-19_97eba119.md` (new), `tests/test_official_row_sources_97eba119.py` (new) | No value is inferred; a value that cannot be confirmed from an official source stays blank and is flagged. |
+| C3 Repo irregularity review, line by line, with links for manual review | pending | `arena/97eba119-poker3` | `research/audit_2026-11-19_97eba119.md`, this board | Findings published on the Flagged for review page or recorded here with source links. |
+| C4 Final verification (full suite, verifiers, reproducibility, rendered-link check), PR → `main`, merge without approval, confirm GitHub Pages deploy, record PR link + merge result here | pending | `arena/97eba119-poker3` | whole repo (integration), this board | Flagged items and unverified values do not block the merge; site must build with no broken links first. |
+
+**Non-overlap.** `scripts/data_source.py`, `scripts/coverage.py`, `site/data.json`, `site/sheets.html`, `site/coverage.json`, `README.md`, `raw/trip_window_reread_2026-11-19.md`, `research/reread_2026-11-19_tripwindow.json` and the tests named in PR #173 are the other session's scope and are not edited here. If that PR merges first, this session rebases and keeps both records.
+
+### Result (session `arena/97eba119-poker3`, 2026-11-19 UTC)
+
+**Claim status: C1 done · C2 done · C3 done · C4 in progress (PR → `main`, merge, Pages confirmation, board record below).**
+
+**Sources read live on 2026-11-19 (official, venue/property-controlled; full excerpts and per-row links in
+`research/audit_2026-11-19_97eba119.md`):**
+
+- [Venetian DeepStack Extravaganza IV schedule](https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html), all four chunks. All **19 trip-window rows** (23–30 Nov 2026) compared line by line against `site/data.json`: date, start time, event number, printed buy-in, printed guarantee and structure-sheet link agree on 19/19. No published value changed.
+- [DSE IV structure sheet 6](https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_6.pdf) (25 Nov primary) and [sheet 30](https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_30.pdf) (23 Nov PKO primary): fee breakdown, $15,000 / $8,000 bounty-inclusive guarantee, 40,000 / 25,000 chips, 30-minute levels, late-registration cut-off and 12.5% payout all match the published rows. Neither sheet prints a maximum-entries-per-player or an explicit freezeout rule — F31 remains open rather than being closed by inference.
+- [Venetian 2026 Poker Suite Rate Information Guide](https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html): "$119 and $209", "150 days", "$55 resort fee per night stayed", "six hours of active live cash gameplay or buy in to a $300 or higher tournament for each night stayed" — all match the published hotel row.
+- [Live Flagged for review page](https://karagemop466-tech.github.io/Poker3/site/flagged.html), [Questions page](https://karagemop466-tech.github.io/Poker3/site/questions.html), [landing page](https://karagemop466-tech.github.io/Poker3/) and [`/Poker3/site/calculator.html`](https://karagemop466-tech.github.io/Poker3/site/calculator.html) fetched to check the deployed site, not just the local files.
+
+**Row-source audit (all rows, not a sample).** 341/341 events carry an official https source link, `lastChecked` and `lastVerified`, and four separately stored structured rules each with excerpt, official source and retrieval date; 0 events still carry an "unverified" label; 33 blank buy-ins and 89 blank guarantees are each explained by a note. 8/8 hotels, 34/34 dated rate-log entries, 56/56 routes, 49/49 sources, 52/52 structure sheets (all read), 95/95 flags and 18/18 questions carry source links and the dates their table requires. The 2 strip rooms with no retrieved official page keep a blank `official` field and flags F79/F80 and are excluded from the live feed. Every URL is on a venue/property-controlled host; `assets.contentstack.io` serves MGM Resorts' own PDFs. 0 broken local links across all 37 published HTML files.
+
+**Defect found and fixed (new; published on the Flagged for review page).** GitHub Pages reports `build_type: legacy`, `source: main /`, while `pages.yml` publishes the `site/` artifact at the same host (F29). On 2026-11-19 the live paths `/Poker3/calculator.html`, `/Poker3/browse.html`, `/Poker3/venues.html`, `/Poker3/search.html`, `/Poker3/sheets.html` and `/Poker3/sources.html` returned **404 File not found** while `/Poker3/site/…` rendered the real pages. Fixed by adding a root-level redirect stub for every canonical page (6 top-level + 4 `venues/` detail pages), so the path serves the real page under the Actions artifact and redirects into `site/` under the legacy branch build. A new section on `site/flagged.html#publishing-review` publishes the finding with the six live URLs, the workflow link and the audit link. **No tournament, fee, guarantee, hotel, rate or route value changed.** Switching the Pages source to *GitHub Actions* remains a repository-settings decision a user must make: `PUT /pages` returns 403 for the integration token.
+
+**Files added/changed in this session's scope:** `research/audit_2026-11-19_97eba119.md` (new, dated verbatim record), `tests/test_official_row_sources_97eba119.py` (new, 9 independent regression checks including the path guard), root `browse.html`, `calculator.html`, `search.html`, `sheets.html`, `sources.html`, `venues.html` and `venues/{index,venetian,wynn,others}.html` (new redirect stubs), `site/flagged.html` (new operational-review section), this board. Files owned by open PRs #173/#184/#187 (`scripts/data_source.py`, `scripts/coverage.py`, `scripts/trip_cost.py`, `scripts/data_hotels.py`, `site/data.json`, `site/sheets.html`, `site/calculator.html`, `README.md`, their tests) were **not** edited.
+
+**Verification performed on the final rebased base:** `verify_site.py` (341/8/56/49/95/7/16, passed); **282 unit tests OK**; `audit_951cd431.py`, `audit_data.py`, `verify_live_official.py`, `verify_entry_labels.py` all passed; `canonical_smoke.py`, `canonical_render.js`, `walk_limit_render.js`, `tests/smoke.py` rendered with no script errors; `node --check` on `app.js`/`venue.js`/`search.js`/`feed.js` OK; `data_source.py` rebuilds `site/data.json` byte-identically; independent broken-link scan 0 broken.
+
+**Irregularities published for review (do not block):** the six 404 paths (fixed, F29), F31 (no written one-entry cap — strict filter returns 0 rows), F16 (no published finish times, overlap flags are estimates), F17 (no 8 AM start), F39 (room-tax percentage unpublished for six properties), F51 (two official resort-fee wordings), F93/F96 (no current itemised checkout total), F79/F80 (two rooms with no retrieved official page). All carry official links on the Flagged for review page and in the audit record.
+
+**Rebase log.** One append-only conflict in `COORDINATION.md` after `main` advanced to `4359762` (PRs #184, #185, #186, #187). Resolved by keeping the other session's section in full and appending this session's claim; no text discarded. The earlier stray `>>>>>>>` markers seen on this session's original base were already removed on `main` by another session; a regression test now fails if any conflict marker returns.
+
+### Merge record
+
+_Appended after the pull request merges._
