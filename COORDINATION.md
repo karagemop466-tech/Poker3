@@ -5633,18 +5633,20 @@ R18 written maximum-entry rule, R27 a ranked "best" winner, R29 a ranked "best" 
 are marked as such instead of being filled in. The new page is in the shared nav, in `verify_site.py` PAGES,
 `tests/canonical_smoke.py` PAGES/REQUIRED_HOOKS, `tests/canonical_render.js` PAGES, and has a root redirect.
 
-**T3 Board defect: done.** Two orphan conflict-marker lines were removed (F98), keeping every session's text.
+**T3 Board defect: done.** Two orphan conflict-marker lines were removed, keeping every session's text. Main's
+parallel session already published the same finding as flag F98, so no duplicate flag was added here; the renumbering
+below follows the flag ids that landed on main while this branch was open (F97-F99 were taken).
 
-**Irregularities found.** F97 (four legacy venue subpages published stale hardcoded claims: "the NYE rows stay
+**Irregularities found.** F100 (four legacy venue subpages published stale hardcoded claims: "the NYE rows stay
 unverified", "no date-specific room quote exists", "the only dated checkout total found is $1,245.48", and
 2026-11-16 dates) — corrected to match `site/data.json`, dated 2026-11-19, given official source links, and guarded
-by `tests/test_verification_audit.py`. F98 (orphan conflict markers) — fixed. F99 (five unlinked 2026-11-16 snapshot
+by `tests/test_verification_audit.py`. the orphan conflict markers — fixed and already flagged on main as F98. F101 (five unlinked 2026-11-16 snapshot
 JSON files still published under `site/data/`) — flagged for review rather than deleted, because another session's
 `scripts/daily_check.py` still names `sources.json`; no dashboard page reads them. All three are on the Flagged for
 review page with links. Flagged items do not block the merge.
 
 **Verification performed before the PR (all green on this branch).** `verify_site.py` (341 events / 8 hotels /
-56 routes / 48 sources / 95 flags / 7 plan days / 17 pages); **269 unit tests OK**; `canonical_smoke.py`;
+56 routes / 48 sources / 95 flags / 7 plan days / 17 pages at the time of this branch's local gate); **269 unit tests OK**; `canonical_smoke.py`;
 `node tests/canonical_render.js` (14 page renders including `verification`); `node tests/walk_limit_render.js`;
 `node --check` on every JS asset; `audit_951cd431.py`, `audit_data.py`, `verify_live_official.py`,
 `verify_entry_labels.py`, `verify_transcription.py --dry-run` (44/44); a local-link scan over all 26 `site/**/*.html`

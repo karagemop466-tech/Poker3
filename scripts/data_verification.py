@@ -70,7 +70,7 @@ _REQ = [
      [VL_SCHED]),
     ("R08", 'Use one shared COORDINATION.md on main before parallel sessions start.',
      "done", ["repo:COORDINATION.md"],
-     "The board exists at the repo root on main and carries each task's status, owning session and file scope. This session claimed its task there and pushed the claim before any other work; two orphan conflict markers were removed (F98).",
+     "The board exists at the repo root on main and carries each task's status, owning session and file scope. This session claimed its task there and pushed the claim before any other work; two orphan conflict markers were removed (already recorded on main as F98 by a parallel session, so no duplicate flag was added).",
      [REPO + "COORDINATION.md"]),
     ("R09", 'For exact dates and occupancy, capture checkout total, nightly average, mandatory resort fee and tax, parking, cancellation deadline and rate timestamp; compare like-for-like.',
      "done", ["hotels.html", "calculator.html"],
@@ -178,7 +178,7 @@ _REQ = [
      [REPO + "research/verification_2026-11-19_arena-8194609f.md"]),
     ("R35", 'Review the repo; provide links for manual review; flag any irregularities for review.',
      "done", ["flagged.html", "sources.html"],
-     "Every flag links the exact official page or repository file; the repo review found F97 (stale venue pages) and F98 (orphan conflict markers), both fixed and published for review, plus F99 (unlinked stale snapshot JSON files) published for a decision.",
+     "Every flag links the exact official page or repository file; the repo review found F100 (stale venue pages, fixed) and F101 (unlinked stale snapshot JSON files, published for a decision); main already carries F98 for the orphan conflict markers, so no duplicate flag was added.",
      [REPO + "COORDINATION.md", BELL_POKER]),
     ("R36", 'Create a GitHub Pages live site with a clean landing page and category subpages, simple dashboard UI, all entries and findings in easy-to-read tables, plus analysis.',
      "done", ["index.html", "browse.html", "verification.html"],
@@ -320,7 +320,19 @@ TRIP_ROWS = [
 # New flags: repository irregularities found by this session's repo review.
 # --------------------------------------------------------------------------
 NEW_FLAGS = [
-    dict(id="F97", area="Site consistency", severity="Low",
+    dict(id="F101", area="Publishing", severity="Low",
+         title=("Five unlinked 2026-11-16 snapshot JSON files are still published under site/data/ (flagged for review)"),
+         detail=("The Pages artifact publishes the whole site/ directory, so site/data/flags.json, questions.json, "
+                 "sources.json, suggestions.json and tournaments.json are reachable at the live host. Each carries "
+                 "meta.asOf 2026-11-16 and builtAt 2026-11-16T19:50:18Z and is not read by any dashboard page or "
+                 "script (the live data is site/data.json; scripts/daily_check.py still names sources.json but is not "
+                 "the scheduled checker, which is scripts/check_sources.py). Their contents therefore give a second, "
+                 "stale answer to anyone who opens them directly. F68 removed three other stale snapshots for the same "
+                 "reason. These five are left in place rather than deleted because another session's script still names "
+                 "one of them; the integration owner should either retire them or add a dated note. No value was taken "
+                 "from any stale snapshot: every published table row is rendered from site/data.json."),
+         source=REPO + "site/data/flags.json"),
+    dict(id="F100", area="Site consistency", severity="Low",
          title=("Four legacy venue subpages published stale hardcoded claims that contradicted the canonical dataset "
                 "(found and fixed 2026-11-19)"),
          detail=("site/venues/index.html said 'the NYE rows stay unverified' although all 52 official structure sheets "
@@ -333,28 +345,9 @@ NEW_FLAGS = [
                  "2026-11-19. All four pages carried footers or side notes dated 2026-11-16. The four pages were "
                  "corrected to match site/data.json, dated 2026-11-19 and given official source links; "
                  "tests/test_verification_audit.py fails if the stale phrases return. No tournament, fee, guarantee, "
-                 "hotel, rate, route or policy value was inferred or changed."),
+                 "hotel, rate, route or policy value was inferred or changed. Flag ids F97-F99 were already taken on "
+                 "main by parallel sessions by the time this branch rebased, so this flag is F100."),
          source=VL_RATES),
-    dict(id="F99", area="Publishing", severity="Low",
-         title=("Five unlinked 2026-11-16 snapshot JSON files are still published under site/data/ (flagged for review)"),
-         detail=("The Pages artifact publishes the whole site/ directory, so site/data/flags.json, questions.json, "
-                 "sources.json, suggestions.json and tournaments.json are reachable at the live host. Each carries "
-                 "meta.asOf 2026-11-16 and builtAt 2026-11-16T19:50:18Z and is not read by any dashboard page or "
-                 "script (the live data is site/data.json; scripts/daily_check.py still names sources.json but is not "
-                 "the scheduled checker, which is scripts/check_sources.py). Their contents therefore give a second, "
-                 "stale answer to anyone who opens them directly. F68 removed three other stale snapshots for the same "
-                 "reason. These five are left in place rather than deleted because another session's script still names "
-                 "one of them; the integration owner should either retire them or add a dated note. No value was taken "
-                 "from any stale snapshot: every published table row is rendered from site/data.json."),
-         source=REPO + "site/data/flags.json"),
-    dict(id="F98", area="Repository", severity="Low",
-         title="COORDINATION.md carried two orphan git conflict-marker lines from a prior rebase",
-         detail=("Lines 5019 and 5062 of the shared task board began with '>>>>>>> 609f1ce ...' and "
-                 "'>>>>>>> c14bb08 ...'. They were inert in Markdown but were leftovers of an append-only conflict "
-                 "resolution and could mislead a reader or a diff tool. Both marker lines were removed in this "
-                 "session's claim commit; every session's text was kept verbatim and no claim or result was lost. "
-                 "A test asserts no conflict markers remain in the board."),
-         source=REPO + "COORDINATION.md"),
 ]
 
 __all__ = ["REQUIREMENTS", "OFFICIAL_READS", "TRIP_ROWS", "NEW_FLAGS", "CHECKED", "SESSION"]

@@ -103,8 +103,10 @@ class VerificationDataTests(unittest.TestCase):
         flags = DATA["flags"]
         ids = [f["id"] for f in flags]
         self.assertEqual(len(ids), len(set(ids)), "duplicate flag id in the register")
-        self.assertIn("F97", ids)
-        self.assertIn("F98", ids)
+        self.assertIn("F100", ids)
+        self.assertIn("F101", ids)
+        # F98 is owned by a parallel session on main; this branch must not duplicate it.
+        self.assertEqual(ids.count("F98"), 1, "F98 is duplicated")
         for f in flags:
             self.assertTrue(f.get("source"), f"{f['id']}: no source link")
             self.assertTrue(f.get("detail"), f"{f['id']}: no detail")
