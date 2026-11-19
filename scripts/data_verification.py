@@ -321,8 +321,16 @@ TRIP_ROWS = [
 # --------------------------------------------------------------------------
 NEW_FLAGS = [
     dict(id="F101", area="Publishing", severity="Low",
-         title=("Five unlinked 2026-11-16 snapshot JSON files are still published under site/data/ (flagged for review)"),
-         detail=("The Pages artifact publishes the whole site/ directory, so site/data/flags.json, questions.json, "
+         title=("RESOLVED 2026-11-19: five unlinked 2026-11-16 snapshot JSON files were published under site/data/ "
+                "and have been moved to archive/"),
+         detail=("Resolved by the 2026-11-19 integration session (arena/e94482ee-poker3): the five files were moved out "
+                 "of site/data/ into archive/ with a dated provenance README, so the Pages artifact no longer serves a "
+                 "second, stale answer; the dead script that wrote one of them (scripts/build_data.py, referenced by no "
+                 "workflow, page or test) was removed; and scripts/daily_check.py, the only other reader, is kept but "
+                 "marked retired and unused. They are archived rather than deleted for provenance, and "
+                 "tests/test_sheet_page_not_stale.py now asserts that none of the eight retired names sits under "
+                 "site/data/ any more. Original finding follows. "
+                 "The Pages artifact publishes the whole site/ directory, so site/data/flags.json, questions.json, "
                  "sources.json, suggestions.json and tournaments.json are reachable at the live host. Each carries "
                  "meta.asOf 2026-11-16 and builtAt 2026-11-16T19:50:18Z and is not read by any dashboard page or "
                  "script (the live data is site/data.json; scripts/daily_check.py still names sources.json but is not "

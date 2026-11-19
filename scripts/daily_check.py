@@ -1,7 +1,20 @@
 #!/usr/bin/env python3
-"""Daily official-source re-check.
+"""LEGACY / UNUSED. Retired on 2026-11-19; kept only for provenance. Do not schedule it.
 
-Runs on GitHub Actions (full network) every morning. For every URL in site/data/sources.json:
+The scheduled re-check is scripts/check_sources.py (workflow .github/workflows/checks.yml). The two
+tools differ in what they read and where they write:
+
+  * check_sources.py reads the live URL list out of site/data.json, writes site/checks.json, and
+    compares HTML on visible text and PDFs on all response bytes (see research/pdf-monitor-2026-11-19.md).
+  * this script read the retired 2026-11-16 snapshot site/data/sources.json, wrote
+    site/data/changes.json and pruned a snapshots/ directory. It was never referenced by any workflow.
+
+The snapshot it read has been moved to archive/daily_check_sources_2026-11-16.json so that the Pages
+artifact no longer publishes a second, stale answer at the live host (flag F101, resolved by this
+retirement). If this script is ever revived, point DATA at site/data.json first.
+
+Original docstring follows. Runs on GitHub Actions (full network) every morning. For every URL in
+site/data/sources.json:
   * fetch the page/PDF text, normalize it, hash it (sha256)
   * store a dated snapshot under snapshots/<YYYY-MM-DD>/<id>.txt (last 30 days kept)
   * compare with the previous hash in site/data/changes.json

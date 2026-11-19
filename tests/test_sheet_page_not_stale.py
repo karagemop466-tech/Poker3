@@ -24,13 +24,16 @@ SHEETS = (ROOT / "site" / "sheets.html").read_text(encoding="utf-8")
 BUILDER = (ROOT / "scripts" / "build_addendum.py").read_text(encoding="utf-8")
 
 # The retired 2026-11-16 snapshots. site/data.json is the only current data file.
+# flags/questions/suggestions/tournaments/sources were moved to archive/ on 2026-11-19 because the Pages
+# artifact publishes the whole site/ directory: while they sat under site/data/ they answered the same
+# questions with 2026-11-16 values (flag F101). They are archived, not deleted, for provenance.
 STALE_FILES = ["hotels.json", "rates.json", "routes.json", "flags.json",
                "tournaments.json", "questions.json", "suggestions.json", "sources.json"]
 
 
 class NoStaleSnapshotFiles(unittest.TestCase):
     def test_retired_snapshot_files_are_gone(self):
-        for name in ("hotels.json", "rates.json", "routes.json"):
+        for name in STALE_FILES:
             self.assertFalse(
                 (ROOT / "site" / "data" / name).exists(),
                 f"site/data/{name} was retired with flag F68; restoring it revives stale data",
