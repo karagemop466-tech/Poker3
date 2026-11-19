@@ -6210,3 +6210,27 @@ path; the Bellagio Friday $600 row's published fee split ($510/$50/$40) matches 
 editorial article dated 17 July 2026**, not a machine-generated schedule page. That has been true since those rows were
 first published; this pass states it explicitly because the article's own text ("every event carries a $100 buy-in")
 already conflicts with the flyer. No value was changed on the strength of a marketing article.
+
+### T3 result — calculator unknown-value repair + search discoverability (session `arena/03d48a10-poker3`)
+
+**Done. No sourced value changed.** Two defects were found by executing the page rather than reading it.
+
+| Defect | Evidence | Fix | Guard |
+|---|---|---|---|
+| A blank calculator field priced as **zero**. `Number(x) || 0` turned a missing room-tax percentage into 0%, so a property that publishes a resort fee and no percentage (F39) printed a nightly cost *below* its published charge; a blank entry count printed a `$0` tournament budget. | `site/calculator.html` inline script, `read()`; the same coercion in every hotel preset button | Blanks and invalid values are `null`; the core total is withheld and the missing field is named. An explicit `0` is still honoured (parking waived, F86). Preset buttons clear a figure the property does not publish instead of inheriting the previous property's. | `tests/test_calculator_unknown_inputs.js` (13 checks), `tests/test_trip_cost_unknown_inputs.py` (6 tests), both wired into `verify.yml` and `pages.yml` |
+| The Python model made the same assumption: `tax_pct = float(tax_pct or 0)` and `entries or 0`. | `scripts/trip_cost.py` | Same rule: a component that was not published is `None` and poisons only the totals that depend on it. | `tests/test_trip_cost_unknown_inputs.py::test_the_published_model_is_unchanged_by_the_repair` pins $2,600.00 / $197.28 / $1,380.96 / $140.00 / $4,120.96 |
+| Cross-table search existed but was reachable **only** from the small top-bar box; it was not in `NAV`. | `site/assets/app.js` `NAV` | Added as a navigation entry. | `tests/canonical_smoke.py`, `tests/canonical_render.js` |
+| Each day's recurring room events rendered as an **unordered list** with no relation to the primary, so a 6 p.m. event on a day whose primary starts at 5:10 p.m. read like an impossible parallel sequence. | `site/assets/app.js` `renderSchedule` | Each line states whether it starts before the primary, may overlap the estimated session, or is playable after the primary plus the 30-minute transfer, and multi-buy-in / multi-flight formats are marked as extra spend. Every timing word is labelled an estimate, because no venue publishes a finish time (F16). | `tests/test_day_plan_ordering.js` (6 checks), wired into both workflows |
+
+**This takes over open PR #184**, which carried the same calculator repair but has been `CONFLICTING` and idle since
+**2026-11-19T06:47:13Z** — over four hours at the time this session claimed, which is the standing protocol's threshold.
+PR #184 is **left open and untouched**; no commit was pushed to its branch. The two implementations can be compared, and
+if #184 is preferred the tests above still apply to it. Open PR #173 is likewise untouched and not merged; its
+trip-window re-read is superseded by this session's own 64-fact read (T2), which cites the official pages directly.
+
+**Verification of this branch (all green):** `verify_site.py` (341 events / 8 hotels / 56 routes / 50 sources / 101
+flags / 7 plan days / 18 pages), **341 unit tests OK**, `audit_951cd431.py` (0 failures, 0 warnings), `audit_data.py`,
+`verify_live_official.py`, `verify_entry_labels.py`, `verify_transcription.py --dry-run` (44/44), `canonical_smoke.py`,
+`canonical_render.js` (17 page renders), `walk_limit_render.js`, the two new Node harnesses, `node --check` on every JS
+asset, a byte-identical `data_source.py` rebuild (SHA-256 unchanged), and a local HTTP smoke test in which all 18 pages
+and `data.json` returned **200**. PyYAML 6.0.3 was installed in the sandbox for `test_workflows.py` / `test_pages_gate.py`.
