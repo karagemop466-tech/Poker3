@@ -4789,6 +4789,47 @@ The irregularity recorded above as "found and NOT fixed" was taken on after conf
 - **Merge-history hygiene:** the rebase conflict was append-only in this board and was resolved by keeping
   both records complete (PR #164's session and this one). No other session's work was discarded.
 
+### Merge and publication record — session `arena/7d533b48-poker3` (2026-11-19 UTC)
+
+- **PR [#167](https://github.com/karagemop466-tech/Poker3/pull/167)** (primary-sheet re-read, F93, F17 clarification, Q14/Q15) merged with `gh pr merge 167 --merge` at **05:57:47 UTC**, merge commit `df8ef44`. Before the merge: `Verify static research site` and `Official table transcription check` passed on the PR; the PR was mergeable and clean.
+- **Pages:** `Publish the canonical Vegas Poker Planner to GitHub Pages` (run 44468735690) and `pages build and deployment` (run 44468734706) both completed **success** for that merge. The live `site/sheets.html` serves the rebuilt page.
+- **Concurrent merge:** PR [#166](https://github.com/karagemop466-tech/Poker3/pull/166) (`arena/ffe8f597-poker3`, day-plan fallback fix) merged at 05:59:20 UTC on top of #167. Main at `0183a29` passes **251** unit tests, `verify_site.py`, `audit_951cd431.py` and `verify_entry_labels.py`.
+- **Monitor note:** the scheduled re-check triggered by #167 was cancelled by GitHub's concurrency group when #164's and #166's runs replaced it. The later push-triggered runs supersede it, so no re-check result is lost.
+- **Not claimed:** the live site shows the data as published on 19 Nov. It does not show that the booking price, the parking waiver, or the single-entry status has changed; F93, F31 and F66 remain open for the venue's written answers.
+
+### Publication record — `arena/4c657755-poker3` (2026-11-19 UTC)
+
+- **PR [#164](https://github.com/karagemop466-tech/Poker3/pull/164)** (`arena/4c657755-poker3` → `main`) merged with `gh pr merge 164 --merge` at 05:54:23 UTC, merge commit `ca9cec2`. Checks on the PR: `transcription` pass, `verify` pass. Local: 235 tests, all verification scripts and the render check passed before merge.
+- **Pages:** the "Publish the canonical Vegas Poker Planner to GitHub Pages" run for `ca9cec2` completed `success` (build and deployment both succeeded). A later merge (#167, `df8ef44`, by session `arena/7d533b48-poker3`) superseded it. Pages API reports `status: built`. On `main` at `df8ef44`, 240 tests pass.
+- **Overlap:** session `arena/7d533b48-poker3` re-read the same F17 and trip-window sources on the same day. Its merge kept my F17, F31 and F92 text unchanged, added F93, and corrected one sentence in my research record. I had written that the trip window starts at 11:10 AM on every day with a row. The official page shows an 11:00 AM Day 2 restart on Wednesday, 25 November, so that sentence was wrong. The correction is accepted, and no other claim in the record depends on it.
+- **Open after this session (unchanged):** F31 (written entry rule — venue question in `research/reread_2026-11-19.md`), F17 (no official 8 AM start), F16 (no finish times), F93 (no current checkout total).
+
+### Result — `arena/ffe8f597-poker3` merged and published
+
+- **PR:** [#166](https://github.com/karagemop466-tech/Poker3/pull/166) from `arena/ffe8f597-poker3` → `main`,
+  opened 2026-11-19, **merged** with `gh pr merge 166 --merge` as `0183a29c9eafd78ad8baea93384cc6a00d332882`
+  at 2026-11-19T05:59:20Z. Both required checks passed before the merge (`verify`, `transcription`).
+- **Two rebases were needed.** The first brought in PR #164; the second brought in PR #167, whose session had
+  independently taken the flag ID `F93` for a Hotels flag about the Venetian booking engine returning no total.
+  Resolution: their F93 was kept exactly as published, this session's day-plan flag was **renumbered F94**, and
+  the test docstring was updated to match. `site/data.json` now carries 90 flags with **no duplicate IDs**
+  (checked explicitly). Their `F93-Hotels` flag and this `F94-Day plan` flag coexist.
+- **Post-merge verification on `main` at `0183a29`:** 251 unit tests OK; `verify_site.py`, `audit_951cd431.py`
+  (0 failures, 0 warnings), `audit_data.py`, `verify_entry_labels.py`, `verify_live_official.py`,
+  `canonical_smoke.py`, `canonical_render.js` all pass; data build byte-identical across runs; 25 local pages
+  with 0 broken local links. `main`'s `site/data.json` carries `fallbackSequence` = replaces on 25-29 Nov,
+  `site/index.html` carries the relabelled column, `site/schedule.html` carries "Seven playable days", and both
+  new test files are on `main`.
+- **Pages:** workflow "Publish the canonical Vegas Poker Planner to GitHub Pages" on `0183a29` completed
+  `success`, with the `build` and `deploy` jobs each `success`
+  ([run 44468905733](https://github.com/karagemop466-tech/Poker3/actions/runs/44468905733)). The Pages API reports
+  `status: built`, source `main` `/`, at https://karagemop466-tech.github.io/Poker3/ . The sandbox cannot reach
+  `github.io` (TLS blocked), so publication was confirmed through the Actions and Pages APIs and by reading the
+  merged tree, not by fetching the public URL.
+- **Open flags left for review (do not block, all published on `site/flagged.html`):** F31 (no written
+  one-entry rule), F16 (no published finish times), F17 (no verified 8:00 AM start), F93 (booking engine returned
+  no total on 2026-11-19), F94 (the day-plan defect fixed here).
+
 ### PR, merge and deployment record (session `arena/9b858e66-poker3`)
 
 - **PR:** [#165](https://github.com/karagemop466-tech/Poker3/pull/165) — merged into `main` with
