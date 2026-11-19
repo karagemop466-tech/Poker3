@@ -708,7 +708,7 @@ function renderSchedule() {
             <p>${sourceLinks(primary)}</p>` : '<p class="muted">No sheet-screened candidate with a published fee and guarantee on this date.</p>'}
         </div>
         <div class="day-fallback">
-          <span class="pill warn">Conditional fallback</span>
+          <span class="pill warn">${fallback ? 'Conditional fallback' : (p.fallbackAlternativeId ? 'Same-day alternative · not a fallback' : 'Conditional fallback')}</span>
           ${fallback ? `<h4>${esc(fallback.name)}</h4>
             <p class="day-meta">${esc(venueName(fallback.venue))} · starts ${esc(fallback.time)}
               · buy-in ${money(fallback.buyIn) || 'not published'} · guaranteed ${money(fallback.guarantee) || 'not published'}</p>
