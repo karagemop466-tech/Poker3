@@ -17,9 +17,14 @@ import data_hotels as H  # noqa: E402
 
 ASOF = "2026-11-16"
 RECHECKED = "2026-11-17"
+# Third live pass: the official schedule pages and hotel terms were read again on 2026-11-19
+# (session arena/9b858e66-poker3, through the platform page reader - the build sandbox's own
+# egress to the venue hosts still fails, flag F40).  It is kept as its own date so a row can
+# say which pass last read it instead of inheriting a blanket "today".
+LAST_PASS_2026_11_19 = "2026-11-19"
 RECHECK_FROM, RECHECK_TO = "2026-11-16", "2026-12-23"
 DSE_NOV_URL = "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
-TODAY = "2026-11-17"
+TODAY = LAST_PASS_2026_11_19
 # Quoted from the official poker-suite rate page (re-read 2026-11-16, cited on every hotel row).
 RATE_QUALIFICATION_TEXT = ("six hours of active live cash gameplay or buy in to a $300 or higher tournament for each "
                            "night stayed")          # snapshot date of the live re-check; drives past / today / upcoming
@@ -594,7 +599,8 @@ FLAGS = [
                  "25 November (read 2026-11-19). The Wynn daily starts at 12:00 PM. "
                  "Most Wynn WPT rows start at 11:00 AM. Its 10:00 AM rows are the Super Gold Million flights (Dec 10 and 11), one WPT "
                  "row on Dec 12 and a satellite on Dec 18, all from the WPT PDF read on 2026-11-16. An 'all day from 8:00 AM' plan cannot be built from official sources. The day plan starts at "
-                 "the earliest verified start for each venue."),
+                 "the earliest verified start for each venue. Re-checked 2026-11-19: the 9:10 AM Venetian satellite and the "
+                 "9:00 AM Horseshoe daily are still the two earliest printed starts, and neither supports an 8:00 AM plan."),
          source="https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip"),
     dict(id="F18", area="Wynn", severity="Low",
          title="Wynn daily tournaments are suspended during Wynn Signature, Wynn Millions and Classic series",
@@ -703,8 +709,27 @@ FLAGS = [
          detail=("The 52 Venetian rows classified as 'single entry on the sheet' have one printed buy-in and no re-entry, rebuy, add-on or second-flight provision in the reviewed sheet. However, the sheets do not state a maximum number of entries per player and do not explicitly call the event a freezeout. This is only a document-level screen, not written confirmation of the room's one-entry policy. Do not treat these candidates as strictly eligible or book around them until the venue confirms the maximum-entry, no-rebuy and no-add-on rules in writing. The source excerpt and date are attached to each row. "
                  "Re-read 2026-11-19: the live official DSE IV schedule (all four chunks) prints no 'one entry', 'freezeout' or re-entry label on any row; its only entry wording is 'Direct Entry to Event #47 / #39' (satellites) and rake-discount notes. "
                  "The venue does print one-entry wording on schedule rows in other series: the official DeepStack Extravaganza II page (April 2023, dse-apr-2023.html) prints 'One Entry Only with One Hour of Registration' on Event 13 (read live 2026-11-19). "
-                 "So the venue's schedule vocabulary includes a one-entry label, and the 2026 series prints none on any row. That is still not a written maximum-entry rule for the 2026 series, so F31 remains open. The question to put to the venue is in research/reread_2026-11-19.md."),
+                 "So the venue's schedule vocabulary includes a one-entry label, and the 2026 series prints none on any row. That is still not a written maximum-entry rule for the 2026 series, so F31 remains open. The question to put to the venue is in research/reread_2026-11-19.md. "
+                 "This pass also read four more official pages in full (the DSE IV schedule all four chunks, the DeepStack series landing page, the poker-room page and the poker-room parking page) and none carries entry-rule prose; the schedule PDF was not re-read. Closing this needs a written answer from the room (lv_cas_poker@venetianlasvegas.com, 702.414.7657), not another schedule read."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
+    dict(id="F95", area="Change monitoring", severity="Low",
+         title="The 2026-11-18 monitor run flagged six changed official URLs; all six were re-read by hand on 2026-11-19 and no published value moved",
+         detail=("site/checks.json records a run at 2026-11-19T05:33Z in which six of the fetched official URLs had a "
+                 "different visible-text hash from the previous run: the Venetian DeepStack series landing page and five Wynn "
+                 "pages (the poker room, Resort Policies, Parking, Rooms & Suites and the /terms-and-conditions/850070 terms "
+                 "page). A hash change is a review signal, not a value change, so each was read in full through the page "
+                 "reader on 2026-11-19 and compared with what the site publishes. Results: the Venetian landing page now "
+                 "correctly names DeepStack Extravaganza IV as the Current Series (F82 resolved). The Wynn poker page still "
+                 "prints the four-event daily slate, the $200,000 weekly guarantee, the Friday $40,000 rebuy and the 'suspended "
+                 "during each Wynn Signature, Wynn Millions and Classic series' note, and still links the same schedule, "
+                 "structures and Signature files. Resort Policies still prints a $55 plus tax daily resort fee, check-in 3 p.m. "
+                 "and check-out 12 p.m. Parking still prints $25 per day for non-registered guests with the first three hours "
+                 "complimentary, $40 valet, and complimentary self-parking for Wynn Poker Room guests. Rooms & Suites prints "
+                 "room descriptions and no price. The terms page still prints the DEPOSIT POLICY, the 48-hour CANCELLATION "
+                 "POLICY, the $55 plus tax resort fee for both room classes and the parking section. No tournament, fee, rate, "
+                 "route or policy value on this site was changed by any of the six. Any future hash change is re-read the same "
+                 "way before a value is touched."),
+         source="https://www.wynnlasvegas.com/about-us/resort-information"),
     dict(id="F61", area="Wynn WPT schedule", severity="High",
          title="Eight WPT rows are probably two days late: the 'Dec. 18 Wednesday' block is very likely December 16",
          detail=("The official WPT schedule PDF prints one block labelled 'Dec. 18 Wednesday' and a second labelled "
@@ -790,7 +815,10 @@ FLAGS = [
                  "published total is dated, reproducible from the recorded nightly figures and internally consistent "
                  "(every night reconciles to (rate + $55) x 1.1338 and the seven figures add to the printed total), but it must be "
                  "re-read at the moment of booking before any non-refundable payment. Nothing on the site was revalued on the "
-                 "strength of the failed read."),
+                 "strength of the failed read. A fourth read on 2026-11-19 repeated the failure in the same way: the 23-30 "
+                 "November booking URL returned the reservation shell and the rewards panel with no suite price and no "
+                 "checkout total, so this pass adds no rate observation and the $4,010.55 record of 2026-11-17 stands as "
+                 "the only dated total."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar"),
     dict(id="F89", area="Verification", severity="Low",
          title="Sources re-read on 2026-11-17 (22:3x UTC) that match the published rows, recorded so the re-check date is not lost",
@@ -916,14 +944,16 @@ FLAGS = [
                  "only dated room rates any reviewed property publishes for the trip window."),
          source="https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=December&propCode=blv"),
     dict(id="F56", area="Wynn Signature Series", severity="Medium",
-         title="The official Wynn Signature Series structures file is a 'coming soon' placeholder, so 38 rows cannot be confirmed",
+         title="The official Wynn Signature Series structures file is still a 'coming soon' placeholder (re-read 2026-11-19), so 38 rows cannot be confirmed",
          detail=("Read on 2026-11-17. The URL the site cites for Wynn Signature Series structures "
                  "(Wynn_Signature_Series_Structures.pdf) now returns only 'LAS VEGAS POKER / COMING SOON'. The series "
                  "schedule PDF, read at the same time, prints the dates January 11-24, 2027 and tells guests to 'Scan the "
                  "QR code for event structures'. There is therefore no readable official structure sheet for these 38 "
                  "rows today, and their single-entry, re-entry and add-on status correctly stays 'not verified' rather "
                  "than being inferred from the schedule. The schedule does print buy-in, guarantee, chips and level "
-                 "length for most rows, and those columns are shown."),
+                 "length for most rows, and those columns are shown. Re-read on 2026-11-19 through the page reader: "
+                 "the file still returns only 'LAS VEGAS POKER / COMING SOON' and the Wynn poker page still links to "
+                 "it as the structures file, so the gap has not moved."),
          source="https://cdn.wynnresorts.com/image/upload/v1762299460/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Structures.pdf"),
 
     dict(id="F54", area="Trip plan", severity="High",
@@ -1280,14 +1310,18 @@ FLAGS = [
                  "is now F81; flag ids are kept unique across the whole repository, not per session."),
          source="https://bellagio.mgmresorts.com/book-room?property=bellagio&resort=66964e2b-2550-4476-84c3-1a4c0c5c067f"),
     dict(id="F82", area="Venetian series pages", severity="Low",
-         title="The DeepStack landing page still labels the ended WPT Fall Festival as the Current Series",
+         title="RESOLVED 2026-11-19: the DeepStack landing page again labels DeepStack Extravaganza IV as the Current Series",
          detail=("The official DeepStack Poker Series landing page was re-read on 2026-11-17 (session arena-1bbee97f), two days "
                  "after the festival's printed end date, and still heads its list with 'Current Series: WPT Fall Festival, "
                  "October 28 - November 15, 2026', while DeepStack Extravaganza IV (November 16 - December 23, 2026) is "
                  "labelled 'Next Series'. The series dates themselves agree with the DSE IV schedule page and the series is "
                  "live, so only the current/next label is stale. No published value depends on the label; recorded for manual "
                  "review so a reader does not conclude DSE IV has not started. Renumbered twice as other sessions published "
-                 "F81 first: flag ids are kept unique across the whole repository."),
+                 "F81 first: flag ids are kept unique across the whole repository. RESOLVED 2026-11-19: the landing page "
+                 "was re-read live and now heads the list with 'Current Series: DeepStack Extravaganza IV, November 16 - "
+                 "December 23, 2026', followed by 'Next Series: DeepStack Extravaganza NYE, December 24, 2026 - January 10, "
+                 "2027' and 'DeepStack Showdown (January), January 11 - February 14, 2027'. The label and the schedule page "
+                 "now agree, and no published value depended on it. Kept on the register as the record of the defect."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html"),
     dict(id="F83", area="Wynn", severity="Medium",
          title="Whether the Wynn daily slate runs on November 27-29 is not stated by any official page",
@@ -2673,6 +2707,73 @@ def build():
         if RECHECKED_TODAY in (e.get("scheduleUrl") or ""):
             e["lastChecked"] = RECHECKED
 
+    # ------------------------------------------------------------------ third live pass, 2026-11-19
+    # Read live on 2026-11-19 through the platform page reader (the build sandbox cannot open
+    # these hosts itself; F40).  The rows below were compared field by field with what the
+    # official pages printed, the comparison is asserted by
+    # scripts/verify_live_2026_11_19.py against raw/dse_schedule_live_2026_11_19_9b858e66.md,
+    # and NO value changed.  Only the read date moves.
+    #
+    #   dse-nov-2026.html  chunk 0-3  -> 29 rows (the 24-row trip window 23 Nov - 2 Dec, the
+    #                                    09:10 satellite that settles the 8 a.m. question, and
+    #                                    the NYE rows that print the year 2025) all agreed on
+    #                                    date, start time, event number, printed buy-in and
+    #                                    structure-sheet link.
+    #   dse-dec-2026.html  chunk 0    -> the 2025 year typo is still printed (F04/F41).
+    #   Venetian suite rates, resort fee and hotel terms -> $119/$209 starting rates, $55 resort
+    #                                    fee plus tax, 13.38% Clark County room tax, $20/day guest
+    #                                    self-parking, 3:00 p.m. check-in, 11:00 a.m. check-out,
+    #                                    $150 incidental and the $100 early-checkout charge all
+    #                                    reprinted unchanged.  The booking engine again returned
+    #                                    a reservation shell with no checkout total (F15 stays
+    #                                    resolved by the 2026-11-17 read; this pass adds none).
+    #   Wynn poker page, Resort Policies and Parking -> daily slate, $55 + tax resort fee,
+    #                                     check-in 3 p.m./check-out 12 p.m., $25 non-guest self
+    #                                    parking and $40 valet unchanged.
+    #   Bellagio poker page and reservation terms -> the same three weekly PDFs, the same undated
+    #                                    "July 26" resumption notice (F03), $55 + tax resort fee,
+    #                                    72-hour cancellation unchanged.
+    #   Wynn Signature Series structures PDF -> still the "COMING SOON" placeholder (F56).
+    LIVE_2026_11_19 = "2026-11-19"
+    n_third = 0
+    for e in events:
+        if (e["venue"] == "venetian" and e["date"] and
+                ("2026-11-23" <= e["date"] <= "2026-12-02" or e["id"] == "vl-dse-2026-12-12-46-910am")):
+            e["lastChecked"] = LIVE_2026_11_19
+            e["recheck"] = dict(date=LIVE_2026_11_19, source=DSE_NOV_URL,
+                                result=("matched the live official page on date, start time, event number, printed "
+                                        "buy-in and structure-sheet link; no value changed"))
+            n_third += 1
+    assert n_third == 25, f"2026-11-19 live pass: expected 25 rows, got {n_third}"
+
+    SOURCES_2026_11_19 = {
+        DSE_NOV_URL,
+        "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html",
+        "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
+        "https://www.venetianlasvegas.com/resort/resort-fee.html",
+        "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
+        "https://www.venetianlasvegas.com/resort/casino/poker.html",
+        "https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html",
+        "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html",
+        "https://www.wynnlasvegas.com/casino/poker",
+        "https://www.wynnlasvegas.com/about-us/resort-information",
+        "https://www.wynnlasvegas.com/about-us/parking",
+        "https://www.wynnlasvegas.com/terms-and-conditions/850070",
+        "https://www.wynnlasvegas.com/rooms-and-suites",
+        "https://bellagio.mgmresorts.com/en/casino/poker.html",
+        "https://bellagio.mgmresorts.com/en/terms-and-conditions.html",
+        "https://cdn.wynnresorts.com/image/upload/v1762299460/visitwynn_pdfs_files/Poker/"
+        "Wynn%20Signature%20Series/Wynn_Signature_Series_Structures.pdf",
+    }
+    for src in SOURCES:
+        if src["url"] in SOURCES_2026_11_19:
+            src["checked"] = LIVE_2026_11_19
+    for h in hotels:
+        # Only the properties whose own terms were opened again on 2026-11-19.
+        if h.get("id") in ("venetian", "palazzo", "wynn", "bellagio"):
+            h["lastChecked"] = LIVE_2026_11_19
+            h["lastVerified"] = LIVE_2026_11_19
+
     # Second 2026-11-17 re-read pass (session arena-196dc009): schedule pages and
     # hotel terms fetched again that day and compared with the published rows.
     # Advance a date only where the URL behind it was re-read; everything else
@@ -2788,7 +2889,9 @@ def build():
         today=TODAY,
         bookingLinks=BOOKING_LINKS,
         scope=("Las Vegas Strip poker tournaments and Strip lodging, built only from official venue and property pages. "
-               "Snapshot date 2026-11-17. Rows re-read that day carry 2026-11-17 as their last-checked date; every other row keeps the date it was last read."),
+               "Snapshot date 2026-11-19. The schedule pages behind the trip window were re-read that day (29 rows compared "
+               "line by line, no value changed) and the Venetian, Wynn and Bellagio hotel terms pages again; every row carries "
+               "the date it was last read, and a row not re-read keeps an earlier date rather than inheriting today's."),
         policy=("Every row links the official page it came from. A value that could not be confirmed from an official source is "
                 "left blank and listed on the Flagged for review page. Walking minutes are Google Maps walking estimates and are "
                 "labelled as such. The guaranteed-pool-to-fee ratio is descriptive only and is not a forecast."),

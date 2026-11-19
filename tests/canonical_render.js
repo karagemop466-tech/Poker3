@@ -13,7 +13,11 @@ const vm = require('vm');
 
 const ROOT = path.resolve(__dirname, '..');
 const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'site', 'data.json'), 'utf8'));
-const fixtureEvent = data.events.find((event) => event.venue === 'venetian' && event.scheduleUrl);
+// The fixture has to sit on a row the table actually shows. Past rows are hidden by default, so
+// pinning this to data.events[0] made the badge assertion depend on the snapshot date rather than
+// on the renderer (it broke when the snapshot moved from 2026-11-17 to 2026-11-19).
+const fixtureEvent = data.events.find((event) => event.venue === 'venetian' && event.scheduleUrl &&
+  event.status !== 'past');
 const transcriptionPath = path.join(ROOT, 'site', 'checks.json');
 const liveChecks = fs.existsSync(transcriptionPath) ? JSON.parse(fs.readFileSync(transcriptionPath, 'utf8')) : null;
 const feedPath = path.join(ROOT, 'site', 'feed', 'index.json');
