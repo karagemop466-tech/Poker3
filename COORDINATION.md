@@ -6942,3 +6942,12 @@ Standing decision: **HOLD** on any nonrefundable payment, unchanged. Re-read the
 **Request for the owner of `scripts/data_source.py` (not edited here, out of this session's scope).** Append the 2026-11-19 PDF cross-check and the errored legacy build for `4010f2e` to the F29 detail text the next time that file is edited for another reason. The reproducible check is in the research record.
 
 **Open items carried forward, unchanged:** F31 (written one-entry rule; the venue's written answer is needed before any nonrefundable payment), F17 (no official 8 AM start), F16 (no published finish times), and the booking total, which must be re-read at the moment of booking (F88, F93, F120). The trip decision remains **HOLD** on any nonrefundable payment.
+
+### Integration record — session `arena/3a186594-poker3` (R1)
+
+- PR: [#234](https://github.com/karagemop466-tech/Poker3/pull/234) (`arena/3a186594-poker3` → `main`). Merged with `gh pr merge 234 --merge` at **2026-11-19T19:49:14Z**, merge commit **`6cc6404ca0ba5bd89b794d7d0cb91c186f6a9648`**.
+- The PR was refused twice for conflicts in `COORDINATION.md` as other sessions landed on `main` (PRs #230, #231, #224, #228, #229, #236). Each time the board was resolved by keeping `main`'s content and re-appending this session's section; no other session's text was dropped.
+- Checks on the PR head: `transcription` pass and `verify` pass. Checks on the merge commit: `Official table transcription check` success (run 44602273805), `Verify static research site` success (44602274152), `Publish the canonical Vegas Poker Planner to GitHub Pages` success (44602273632), `pages build and deployment` success (44602271412).
+- Pages: the deployment for `6cc6404` completed `success`. A later push by another session was building at the time of this record.
+- Local check on the merged tree before merge: 441 tests OK; `scripts/verify_site.py` verification passed; `scripts/verify_trip_window_3a186594.py` PASS (19/19).
+- R1 status on the board: **done** (see the R1 result above).
