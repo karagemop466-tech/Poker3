@@ -5918,3 +5918,25 @@ this session's findings are **F106, F107, F108** in `scripts/data_verification.p
 44/44; `canonical_smoke.py` (13 main + 5 detail pages); `canonical_render.js` (18 page renders including `q-and-a`);
 `walk_limit_render.js` (335 rows default, 329 with the ≤30-minute limit from The Venetian); `node --check` on every JS
 asset; 0 broken local links; and byte-identical rebuilds of `data.json`, `sheets.html` and `coverage.json`.
+
+---
+
+## Session `arena/4475a074-poker3` — independent fresh line-by-line verification + final integration (2026-11-19 UTC)
+
+**Branch:** `arena/4475a074-poker3`, branched from `main` at `5c42d7fb5e9931f4582af03e6aa6cc741efc9d9e` (the current tip,
+PR #206). The platform binds each session to one branch, so the brief's `session-<id>/<task>` naming cannot be applied here;
+prior sessions recorded the same constraint. **No new branch is created or switched to.** At claim time the only open PRs were
+**#173** (`arena/a33db3c1-poker3`, read-only trip-window re-read) and **#184** (`arena/5cfdd619-poker3`, trip-cost guard); this
+session does not touch either branch, does not close either PR, and does not edit their files. No other session was mid-commit at
+claim time, so this session acts as **final integration owner** for all shared outputs.
+
+**Claim (committed and pushed before any other work).** Scope: `COORDINATION.md`, `site/**`, `scripts/**`, `tests/**`,
+`research/**`, `README.md`, `.github/workflows/**` — i.e. the whole repository, as integration owner. No other session's claimed
+files are being modified.
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| V1 Fresh independent line-by-line verification of the published trip-window rows and core hotel/fee values against live official sources (2026-11-19 reads) | in progress | `arena/4475a074` | `research/` (new dated audit record), `site/data.json` flag register, `site/flagged.html` | Reads via the platform fetch tool. No value is inferred; blanks stay blank. Every value compared against the official page behind it. |
+| V2 Requirements audit: confirm all 40 published requirement rows still hold on the live site; implement any genuine gap | pending | `arena/4475a074` | `site/**`, `scripts/**`, `tests/**` | The 40-row audit already lives in `site/data.json`; this session re-confirms it rather than duplicating prior work. |
+| V3 Fix any drift/irregularity found in V1 (values, dates, flags, page text) | pending | `arena/4475a074` | `site/**`, `scripts/**`, `tests/**` | Only where a fresh official read contradicts a published value. |
+| V4 Final verification: full unit suite, all verification scripts, link check, reproducible rebuild, then PR → `main` → merge → Pages confirmation → record here | pending | `arena/4475a074` | whole repo (integration) | Flagged irregularities and unverified items do not block the merge; they are published on the Flagged for review page. |
