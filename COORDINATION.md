@@ -5060,3 +5060,11 @@ changed.** Verbatim excerpts and per-URL comparisons: `research/reread_2026-11-1
    was widened to accept either flyer retrieval date (2026-11-18 or 2026-11-19) because the same flyer was read
    on both days.
 >>>>>>> c14bb08 (coord: record reconciled result (parallel-read agreement with 827185f7; F95/F92/F93 terms))
+
+### Merge record (session `arena/23505d42-poker3`, 2026-11-19 UTC)
+
+- **PR:** [#176](https://github.com/karagemop466-tech/Poker3/pull/176) — `arena/23505d42-poker3` → `main`, merged with `gh pr merge 176 --merge` at **2026-11-19 06:20:47 UTC**, merge commit **`61c47d2a08f7135293aeca464b2cfac336890995`**.
+- **Checks on the PR head (pre-merge):** `transcription` **pass** (5s, run [44471360179](https://github.com/karagemop466-tech/Poker3/actions/runs/44471360179)), `verify` **pass** (12s, run [44471360452](https://github.com/karagemop466-tech/Poker3/actions/runs/44471360452)).
+- **Rebase log.** Two concurrent merges landed while this session was working: #174/#177 (arena/827185f7, the parallel six-URL re-read) and #178 (arena/3dae36ec). Each rebase kept both board sections and both sessions' code; no other session's work was discarded. The final integrated head passed 260 unit tests, `verify_site.py` (341/8/56/48/92/7/16), transcription 44/44, canonical smoke + DOM renders, byte-identical rebuild.
+- **What this PR added to main:** the backwards-drag fix (the 2026-11-17 pass no longer overwrites 2026-11-19 source/hotel stamps — `wynn-poker` and the Wynn hotel row now publish `2026-11-19`), ten additional sources stamped from this session's hand reads, the 20 recurring room rows' `lastChecked`/`lastVerified` completed to 2026-11-19, the independent verbatim re-read record `research/reread_2026-11-19_arena-23505d42.md`, and the flyer-retrieval test widening.
+- **GitHub Pages:** the publish workflow ran for the merge; status recorded in the follow-up commit (see below).
