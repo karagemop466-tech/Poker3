@@ -5091,3 +5091,8 @@ Calculator audit done: removed misleading single-night quote preset, rendered th
 **Integration:** [PR #181](https://github.com/karagemop466-tech/Poker3/pull/181). Rebase over #180 conflicted only in this board; both sessions’ entries were retained. No calculator or research changes were overwritten.
 
 **Merge result:** #181 merged as `06a240525ec76087b2c9d15e9069927722f6ee48`; the gated [GitHub Pages deployment](https://github.com/karagemop466-tech/Poker3/actions/runs/44474549797) passed build and deploy. On the integrated calculator head, 261 unit tests passed; the board edit did not change site data. The published calculator implementation came from #180.
+## Session `arena/5cfdd619-poker3` — coordination integrity (2026-11-19 UTC)
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| Repair stray conflict-marker lines in the coordination board and add a regression check | in progress | `arena/5cfdd619-poker3` | `COORDINATION.md`, `tests/test_coordination_integrity.py` | Preserve all session records; integration and tournament-data work are outside this claim. Branch naming is fixed by the platform. |
