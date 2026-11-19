@@ -170,7 +170,7 @@ class CalculatorArithmetic(unittest.TestCase):
 class FreshnessAndBookingTests(unittest.TestCase):
     """Snapshot status, per-date booking link and the earliest-start claim (re-read 2026-11-17)."""
 
-    TODAY = "2026-11-17"
+    TODAY = "2026-11-19"
 
     def test_status_follows_the_snapshot_date(self):
         for event in DATA["events"]:
@@ -184,7 +184,8 @@ class FreshnessAndBookingTests(unittest.TestCase):
             else:
                 self.assertEqual(event.get("status"), "upcoming", event["id"])
 
-    def test_snapshot_date_is_2026_11_17(self):
+    def test_snapshot_date_is_the_last_live_pass(self):
+        """The snapshot date tracks the last live read of the official pages, not a fixed day."""
         self.assertEqual(DATA.get("today"), self.TODAY)
         self.assertEqual(DATA.get("asOf"), self.TODAY)
 

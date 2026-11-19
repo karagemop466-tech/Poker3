@@ -81,7 +81,12 @@ setTimeout(() => {
   vm.runInContext("state.walkOnly = true; state.hotelWalk = 'venetian'; applyTournamentFilters();", sandbox);
   const walkHtml = hook('[data-tournament-table]').html;
   const walkRows = rowCount(walkHtml);
-  expect('walk limit from the Venetian keeps 333 rows', walkRows, 333);
+  // Counted from the data so the snapshot date cannot silently change what is being asserted:
+  // every non-past row whose Venetian walk is measured at 30 minutes or less.
+  const routes = Object.fromEntries(data.routes.map((r) => [`${r.hotel}|${r.venue}`, r.minutes]));
+  const walk = (h, v) => (h === v ? 0 : (routes[`${h}|${v}`] ?? routes[`${v}|${h}`]));
+  const withinLimit = data.events.filter((e) => e.status !== 'past' && walk('venetian', e.venue) <= 30).length;
+  expect('walk limit from the Venetian keeps every measured row within 30 minutes', walkRows, withinLimit);
   expect('hidden rows equal the rows the data puts over 30 minutes', liveRows - walkRows, 6);
   const note = noteOf(walkHtml);
   expect('the note names the hotel it measures from', note.includes('from The Venetian Resort'), true);

@@ -84,14 +84,17 @@ class WalkingLimitControl(unittest.TestCase):
 
 class WalkingLimitAgainstData(unittest.TestCase):
     def test_unlimited_view_keeps_every_non_past_row(self):
-        self.assertEqual(len(LIVE), 339)
+        # Derived from the snapshot date carried by site/data.json, so advancing the live pass
+        # cannot silently make this assertion describe a different filter.
+        self.assertEqual(len(LIVE), len(DATA["events"]) - len([e for e in DATA["events"] if e.get("status") == "past"]))
         # Nothing else can be hidden at boot: past rows are the only default filter.
         self.assertEqual(len([e for e in DATA["events"] if e.get("status") == "past"]),
                          len(DATA["events"]) - len(LIVE))
 
     def test_limited_view_hides_only_measured_over_limit_rows(self):
         shown = [e for e in LIVE if (lambda m: m is not None and m <= 30)(walk_minutes("venetian", e["venue"]))]
-        self.assertEqual(len(shown), 333, "the Venetian view must keep every row measured within 30 minutes")
+        self.assertEqual(len(shown) + 6, len(LIVE),
+                         "the Venetian view must keep every row measured within 30 minutes, less the 6 over-limit rows")
         over = sorted({e["venue"] for e in LIVE if (lambda m: m is not None and m > 30)(
             walk_minutes("venetian", e["venue"]))})
         self.assertEqual(over, ["aria", "mgm"], "only the two venues measured over the limit may be removed")

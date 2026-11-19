@@ -5,9 +5,9 @@
     "hotels": 8,
     "routes": 56,
     "sources": 47,
-    "flags": 87,
+    "flags": 91,
     "planDays": 7,
-    "asOf": "2026-11-17"
+    "asOf": "2026-11-19"
   },
   "coverageByStatus": {
     "shipped": 22,
