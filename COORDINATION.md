@@ -4566,3 +4566,5 @@ The latest source evidence and known irregularities are linked from [`site/sourc
 | Audit existing dashboard implementation, tests, published blockers, and Pages deployment; preserve all unresolved factual gaps for review | done | `arena/1b4b21cc-poker3` | `COORDINATION.md` only |
 
 **Integration record:** documentation-only audit. No tournament, hotel, rate, route, or policy data changed. The open flags do not block publication; no new factual assertion is introduced.
+
+**PR and publication result:** PR [#162](https://github.com/karagemop466-tech/Poker3/pull/162) merged to `main` at 2026-11-19 05:51:18 UTC as `564de78e47ee144004f8564c133e9781fe877e0d`. GitHub Pages run [44468007077](https://github.com/karagemop466-tech/Poker3/actions/runs/44468007077) completed successfully for that merge SHA: evidence/link checks, regression/render checks, artifact upload, and deployment all passed. A non-blocking GitHub Actions annotation noted that several pinned actions target Node.js 20 and are being forced to Node.js 24 by the runner; deployment was successful.
