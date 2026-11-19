@@ -5183,3 +5183,60 @@ promo behind the recurring `bell-3` row).
 | `node --check` on app/venue/search/feed JS and both render tests | OK |
 | internal links across all 25 published HTML files | 0 broken |
 | `scripts/data_source.py` twice | byte-identical `site/data.json` (reproducible) |
+## Session `arena/f5ac4318-poker3` — repo review, blank-field completion and integration (2026-11-19 UTC)
+
+Branch: `arena/f5ac4318-poker3`, branched from `main` at `e79f5a6` (the tip at claim time). One other PR was open at
+claim time (`#173`, `arena/a33db3c1-poker3`, a fresh re-read of the trip-window sources). This session does **not**
+re-do that re-read; it works the gaps that PR leaves open. This session acts as the on-duty verification and
+integration session for its own merge.
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| Repo review: fix the two unresolved git conflict markers that shipped into `COORDINATION.md` on `main`, and check no session text was lost between them | done — F98 | `arena-f5ac4318` | `COORDINATION.md`, `research/` (new dated review record) | The markers were the two trailing `>>>>>>>` lines in the 23505d42 section. They were removed from `main` by PR #181 while this session was working; the text-loss check and the post-rebase scan are in the result below. |
+| Complete genuinely blank hotel fields from official pages only (ARIA parking; dated rate observations for the trip window at the properties that publish one) | done — F99 | `arena-f5ac4318` | `scripts/data_hotels.py`, `scripts/data_source.py` (flag register only), `site/data.json` + regenerated pages, `research/` | A blank stays blank unless the property's own page prints the value. A re-attempt that returns no price is recorded as a dated observation, not as a value. |
+| Re-confirm the earliest published start time behind flag F17 (the 8 a.m. requirement) against the official room schedules | done — F17 stays open (earliest is 9:00 AM, Horseshoe) | `arena-f5ac4318` | `research/` only, plus the F17 text if a start time moved | No value moves on an inference. |
+| Final verification pass (full test suite, site verifier, link/script checks), PR → `main`, merge, GitHub Pages confirmation, board record | pending | `arena-f5ac4318` | whole repo (integration), this board | Flagged items do not block merge per the standing protocol. |
+
+### Result (session `arena/f5ac4318-poker3`, 2026-11-19 UTC)
+
+**Task 1 — repo review: done.** `main` at `e79f5a6` carried two unresolved conflict markers inside this file (a
+trailing marker naming 609f1ce and one naming c14bb08, both in the 23505d42 section). Both came from merge commit
+`e79f5a6` (PR #179) and both were trailing markers with no opening marker or separator line. Before relying on their
+removal, every non-blank line of both parents of that merge (**c5b511a3**, 4,031 lines; **ee26288d**, 4,037 lines)
+was checked against the merged file: **0 lines missing from either parent**, so no session record was dropped. The
+markers were removed from `main` while this session was working, by PR [#181](https://github.com/karagemop466-tech/Poker3/pull/181)
+(session `96ff450a`), which records the same finding; this session's scan after rebasing onto that `main` returns
+zero. Published as flag **F98** (area *Publishing*, source: this file on GitHub).
+
+**Task 2 — blank hotel fields: done.** The Bellagio, MGM Grand and ARIA rows had a blank parking field; Bellagio's
+`parkingSource` pointed at a terms page that prints no parking figure at all (an empty field cited to a page that
+does not substantiate it). All three property-level parking URLs (`/en/amenities/parking.html`) were fetched on
+2026-11-19 and **all three serve one corporate page**, `https://www.mgmresorts.com/en/things-to-do/parking.html`,
+which prints the self-parking table for those three properties: **$20 a day registered-guest self-parking on
+weekdays and weekends**, $20 weekday / $25 weekend for non-guests, **$40 a day valet**, free self-parking for MGM
+Rewards Pearl+ tiers, and the page's own "prices may be higher during special events". The three rows now carry that
+figure with the excerpt, `parkingPerNight = 20.0`, the corrected source and a 2026-11-19 read date. The ARIA and MGM
+Grand reservation-terms pages were re-read in full the same day and every published value matched ($55 / $50 resort
+fees, 3:00 pm / 11:00 am, 72-hour cancellation, $150 / $100 incidental holds, no room-tax percentage printed). No
+tournament, rate, guarantee, rule or walking-time value moved. Remaining gap published as **F99** (MGM publishes no
+per-property parking table any more).
+
+**Task 3 — earliest start (F17): re-confirmed, still open.** The earliest recurring official start across the seven
+reviewed rooms is Horseshoe **9:00 AM** (then Caesars Palace 10:00 AM, Bellagio and Horseshoe 11:00 AM, MGM Grand
+11:10 AM, Wynn 12:00 PM). No reviewed room publishes an 8:00 AM event, so the "all day from 8 AM" requirement is still
+not satisfied and the day plan still starts at 9:00 AM. Nothing was invented to close it.
+
+**Task 4 — verification and integration.** `data_source.py` rebuilt `site/data.json` (341 events / 8 hotels / 56
+routes / 49 sources / 94 flags / 7 plan days); `build_addendum.py` rebuilt `site/sheets.html` (94 flags, 0
+unexplained disagreements) because that page embeds the flag register and a test fails if it is stale. Then:
+`verify_site.py` passed (16 pages), **260 unit tests OK**, `audit_951cd431.py` 0 failures, `verify_live_official.py`
+OK, `audit_data.py` passed (37 sheets / 94 rows), `verify_entry_labels.py` passed (341 events, 0 written-cap
+confirmations), `verify_transcription.py --dry-run` 44/44, `canonical_smoke.py` + `canonical_render.js` +
+`walk_limit_render.js` passed (335 rows by default, 329 with the walk limit from The Venetian), and `node --check`
+passed on app/venue/search/feed JS. Verbatim source record:
+`research/repo_review_2026-11-19_arena-f5ac4318.md`.
+
+**Not touched by this session (other sessions' open work).** PR [#173](https://github.com/karagemop466-tech/Poker3/pull/173)
+(`arena/a33db3c1-poker3`) is a separate fresh re-read of the trip-window sources and was still open at the time of
+this claim; this session did not duplicate it and did not edit its files. The Venetian, Palazzo, Wynn, Caesars
+Palace and Horseshoe rows keep the read dates their own sessions stamped.

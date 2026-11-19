@@ -50,6 +50,27 @@ WYNN_TERMS_CANCELLATION = "https://www.wynnlasvegas.com/terms-and-conditions/850
 WYNN_EXPIRED_OFFER = "https://www.wynnlasvegas.com/terms-and-conditions/850070"
 MGM_TERMS = "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html"
 ARIA_TERMS = "https://aria.mgmresorts.com/en/terms-and-conditions.html"
+# MGM Resorts parking: read 2026-11-19 (session arena/f5ac4318-poker3).  The three
+# property-level parking pages that a reader would guess
+# (bellagio|aria|mgmgrand.mgmresorts.com/en/amenities/parking.html) all serve this
+# corporate page, so this is the page MGM actually publishes the rates on.  It prints one
+# table for Bellagio, ARIA, Vdara, The Cosmopolitan, MGM Grand, Mandalay Bay, W Las Vegas,
+# Park MGM, New York-New York, Luxor and Excalibur: self-parking over 0 to 24 hours $20
+# weekday / $25 weekend, the same daily figure for each additional day, and a separate
+# "Registered Hotel Guest $20 / $20" line; valet $40 a day weekday and weekend.
+MGM_PARKING = "https://www.mgmresorts.com/en/things-to-do/parking.html"
+MGM_PARKING_READ = "2026-11-19"
+MGM_PARKING_NOTE = (
+    "The official MGM Resorts parking page (read 2026-11-19) prints one table for Bellagio, ARIA, Vdara, The "
+    "Cosmopolitan of Las Vegas, MGM Grand, Mandalay Bay, W Las Vegas, Park MGM, The Reserve at Park MGM, "
+    "New York-New York, Luxor and Excalibur: self-parking over 0 to 24 hours $20 Monday-Thursday and $25 "
+    "Friday-Sunday for non-guests, the same daily rate for each additional day, and a separate 'Registered "
+    "Hotel Guest $20 / $20' line, so a registered guest pays $20 a day on both weekdays and weekends. Valet is "
+    "$40 a day weekday and weekend. Self-parking is complimentary for MGM Rewards members at Pearl, Gold, "
+    "Platinum and NOIR tier, and Nevada residents park free for the first three hours. The page adds: 'Prices "
+    "may be higher during special events' and 'Parking fees are subject to change'. The property-level parking "
+    "URL for this hotel (/en/amenities/parking.html) serves this same corporate page, so no property-specific "
+    "table is published to cite.")
 BELLAGIO_HOTEL = "https://bellagio.mgmresorts.com/en/hotel.html"
 BELLAGIO_TERMS = "https://bellagio.mgmresorts.com/en/terms-and-conditions.html"
 MGM_HOTEL = "https://mgmgrand.mgmresorts.com/en/hotel.html"
@@ -519,8 +540,12 @@ HOTELS = [
                  "well as any other charges as required by applicable law.' The percentage is not printed on the page; the "
                  "Clark County rate of 13.38% is published in the Venetian hotel terms."),
         taxReference=BELLAGIO_COUNTY_REF, taxReferenceSource=ROOM_TAX_REFERENCE,
-        parking="",
-        parkingSource=BELLAGIO_TERMS,
+        parking=MGM_PARKING_NOTE,
+        parkingSource=MGM_PARKING,
+        parkingPerNight=20.0,
+        parkingNote=("Registered hotel guests pay $20 a day for self-parking on weekdays and weekends; valet is $40 a "
+                     "day. Read from the MGM Resorts parking page on 2026-11-19. Self-parking is free for MGM Rewards "
+                     "members at Pearl tier and above."),
         cancellation=("The first night's deposit is fully refundable if cancellation is received at least 72 hours prior to "
                       "arrival. Cancelling later, or failing to show, forfeits the first night. Complimentary stays incur a "
                       "$165 mid-week or $200 weekend cancellation fee."),
@@ -536,7 +561,8 @@ HOTELS = [
         qualification="",
         source=BELLAGIO_HOTEL, feeSource=BELLAGIO_TERMS, taxSource=BELLAGIO_TERMS,
         qualityNote="Not scored. No official, comparable quality metric was published in the reviewed material.",
-        status="On-property poker room with published weekly tournaments; no published room price.",
+        status=("On-property poker room with published weekly tournaments; no published room price. Parking is published: "
+                "$20 a day self-parking for registered hotel guests, $40 valet (MGM Resorts parking page, 2026-11-19)."),
         walkNote="Poker room is inside the property; Google Maps walking route to The Venetian measures 21 minutes.",
     ),
     dict(
@@ -550,7 +576,10 @@ HOTELS = [
         taxNote=("'Lodging taxes apply to the basic room rate, any resort fee...' The percentage is not printed; the "
                  "Clark County 13.38% rate is printed in the Venetian hotel terms."),
         taxReference=MGM_COUNTY_REF, taxReferenceSource=ROOM_TAX_REFERENCE,
-        parking="", parkingSource="",
+        parking=MGM_PARKING_NOTE, parkingSource=MGM_PARKING, parkingPerNight=20.0,
+        parkingNote=("Registered hotel guests pay $20 a day for self-parking on weekdays and weekends; valet is $40 a "
+                     "day. Read from the MGM Resorts parking page on 2026-11-19. Self-parking is free for MGM Rewards "
+                     "members at Pearl tier and above."),
         cancellation=("The first night's deposit is fully refundable with notice at least 72 hours before arrival; later "
                       "cancellations and no-shows forfeit the first night."),
         cancellationSource=MGM_TERMS,
@@ -558,7 +587,8 @@ HOTELS = [
         qualification="",
         source=MGM_HOTEL, feeSource=MGM_TERMS, taxSource=MGM_TERMS,
         qualityNote="Not scored.",
-        status="Fee terms verified; no published room price, and the walking route to the Venetian is outside the limit.",
+        status=("Fee and parking terms verified from the property's own pages; no published room price, and the walking "
+                "route to the Venetian is outside the limit."),
         walkNote="Poker room is inside the property; Google Maps walking route to The Venetian measures 35 minutes.",
     ),
     dict(
@@ -645,7 +675,10 @@ HOTELS = [
         taxNote=("Lodging taxes apply to the basic room rate and to any resort fee. The percentage is not printed; the "
                  "13.38% Clark County rate is printed in the Venetian hotel terms."),
         taxReference=ARIA_COUNTY_REF, taxReferenceSource=ROOM_TAX_REFERENCE,
-        parking="", parkingSource="",
+        parking=MGM_PARKING_NOTE, parkingSource=MGM_PARKING, parkingPerNight=20.0,
+        parkingNote=("Registered hotel guests pay $20 a day for self-parking on weekdays and weekends; valet is $40 a "
+                     "day. Read from the MGM Resorts parking page on 2026-11-19. Self-parking is free for MGM Rewards "
+                     "members at Pearl tier and above."),
         cancellation=("The first night's deposit is fully refundable with notice at least 72 hours before arrival; later "
                       "cancellations and no-shows forfeit the first night."),
         cancellationSource=ARIA_TERMS,
@@ -654,7 +687,8 @@ HOTELS = [
         checkInOut="Check-in 3:00 pm; check-out 11:00 am.", qualification="",
         source=ARIA_HOTEL, feeSource=ARIA_TERMS, taxSource=ARIA_TERMS,
         qualityNote="Not scored.",
-        status="Fee terms verified; the walking route to the Venetian is outside the limit, and no dated poker schedule was confirmed.",
+        status=("Fee and parking terms verified; the walking route to the Venetian is outside the limit, and no dated "
+                "poker schedule was confirmed."),
         walkNote="Google Maps walking route to The Venetian measures 31 minutes, which is outside the 30-minute limit.",
     ),
 ]

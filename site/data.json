@@ -21627,8 +21627,10 @@
    "taxNote": "'Lodging taxes apply to the basic room rate, any resort fee, additional per occupant charges, upgrades, as well as any other charges as required by applicable law.' The percentage is not printed on the page; the Clark County rate of 13.38% is published in the Venetian hotel terms.",
    "taxReference": "County per-property table, \"Bellagio\": 13.38% for a resort hotel in the Primary Gaming Corridor (PGC). The guide's Appendix III chart prints 13.38% for 'Resort Hotel in SD & PGC'. Shown as a reference only; the property's own page prints no room-tax percentage.",
    "taxReferenceSource": "https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf",
-   "parking": "",
-   "parkingSource": "https://bellagio.mgmresorts.com/en/terms-and-conditions.html",
+   "parking": "The official MGM Resorts parking page (read 2026-11-19) prints one table for Bellagio, ARIA, Vdara, The Cosmopolitan of Las Vegas, MGM Grand, Mandalay Bay, W Las Vegas, Park MGM, The Reserve at Park MGM, New York-New York, Luxor and Excalibur: self-parking over 0 to 24 hours $20 Monday-Thursday and $25 Friday-Sunday for non-guests, the same daily rate for each additional day, and a separate 'Registered Hotel Guest $20 / $20' line, so a registered guest pays $20 a day on both weekdays and weekends. Valet is $40 a day weekday and weekend. Self-parking is complimentary for MGM Rewards members at Pearl, Gold, Platinum and NOIR tier, and Nevada residents park free for the first three hours. The page adds: 'Prices may be higher during special events' and 'Parking fees are subject to change'. The property-level parking URL for this hotel (/en/amenities/parking.html) serves this same corporate page, so no property-specific table is published to cite.",
+   "parkingSource": "https://www.mgmresorts.com/en/things-to-do/parking.html",
+   "parkingPerNight": 20.0,
+   "parkingNote": "Registered hotel guests pay $20 a day for self-parking on weekdays and weekends; valet is $40 a day. Read from the MGM Resorts parking page on 2026-11-19. Self-parking is free for MGM Rewards members at Pearl tier and above.",
    "cancellation": "The first night's deposit is fully refundable if cancellation is received at least 72 hours prior to arrival. Cancelling later, or failing to show, forfeits the first night. Complimentary stays incur a $165 mid-week or $200 weekend cancellation fee.",
    "cancellationSource": "https://bellagio.mgmresorts.com/en/terms-and-conditions.html",
    "incidental": "$150 incidental authorisation per day at check-in.",
@@ -21639,7 +21641,7 @@
    "feeSource": "https://bellagio.mgmresorts.com/en/terms-and-conditions.html",
    "taxSource": "https://bellagio.mgmresorts.com/en/terms-and-conditions.html",
    "qualityNote": "Not scored. No official, comparable quality metric was published in the reviewed material.",
-   "status": "On-property poker room with published weekly tournaments; no published room price.",
+   "status": "On-property poker room with published weekly tournaments; no published room price. Parking is published: $20 a day self-parking for registered hotel guests, $40 valet (MGM Resorts parking page, 2026-11-19).",
    "walkNote": "Poker room is inside the property; Google Maps walking route to The Venetian measures 21 minutes.",
    "trueNightlyLow": "",
    "trueNightlyHigh": "",
@@ -21664,8 +21666,10 @@
    "taxNote": "'Lodging taxes apply to the basic room rate, any resort fee...' The percentage is not printed; the Clark County 13.38% rate is printed in the Venetian hotel terms.",
    "taxReference": "County per-property table, \"MGM Grand Hotel/Casino\": 13.38% for a resort hotel in the Primary Gaming Corridor (PGC). The guide's Appendix III chart prints 13.38% for 'Resort Hotel in SD & PGC'. Shown as a reference only; the property's own page prints no room-tax percentage.",
    "taxReferenceSource": "https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf",
-   "parking": "",
-   "parkingSource": "",
+   "parking": "The official MGM Resorts parking page (read 2026-11-19) prints one table for Bellagio, ARIA, Vdara, The Cosmopolitan of Las Vegas, MGM Grand, Mandalay Bay, W Las Vegas, Park MGM, The Reserve at Park MGM, New York-New York, Luxor and Excalibur: self-parking over 0 to 24 hours $20 Monday-Thursday and $25 Friday-Sunday for non-guests, the same daily rate for each additional day, and a separate 'Registered Hotel Guest $20 / $20' line, so a registered guest pays $20 a day on both weekdays and weekends. Valet is $40 a day weekday and weekend. Self-parking is complimentary for MGM Rewards members at Pearl, Gold, Platinum and NOIR tier, and Nevada residents park free for the first three hours. The page adds: 'Prices may be higher during special events' and 'Parking fees are subject to change'. The property-level parking URL for this hotel (/en/amenities/parking.html) serves this same corporate page, so no property-specific table is published to cite.",
+   "parkingSource": "https://www.mgmresorts.com/en/things-to-do/parking.html",
+   "parkingPerNight": 20.0,
+   "parkingNote": "Registered hotel guests pay $20 a day for self-parking on weekdays and weekends; valet is $40 a day. Read from the MGM Resorts parking page on 2026-11-19. Self-parking is free for MGM Rewards members at Pearl tier and above.",
    "cancellation": "The first night's deposit is fully refundable with notice at least 72 hours before arrival; later cancellations and no-shows forfeit the first night.",
    "cancellationSource": "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html",
    "incidental": "$100 incidental authorisation per day at check-in.",
@@ -21675,12 +21679,12 @@
    "feeSource": "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html",
    "taxSource": "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html",
    "qualityNote": "Not scored.",
-   "status": "Fee terms verified; no published room price, and the walking route to the Venetian is outside the limit.",
+   "status": "Fee and parking terms verified from the property's own pages; no published room price, and the walking route to the Venetian is outside the limit.",
    "walkNote": "Poker room is inside the property; Google Maps walking route to The Venetian measures 35 minutes.",
    "trueNightlyLow": "",
    "trueNightlyHigh": "",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17"
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19"
   },
   {
    "id": "caesars",
@@ -21786,8 +21790,10 @@
    "taxNote": "Lodging taxes apply to the basic room rate and to any resort fee. The percentage is not printed; the 13.38% Clark County rate is printed in the Venetian hotel terms.",
    "taxReference": "County per-property table, \"Aria Resort & Casino\", 3730 Las Vegas Blvd S: 13.38% for a resort hotel in the Primary Gaming Corridor (PGC). The guide's Appendix III chart prints 13.38% for 'Resort Hotel in SD & PGC'. Shown as a reference only; the property's own page prints no room-tax percentage.",
    "taxReferenceSource": "https://www.clarkcountynv.gov/adobe/assets/urn:aaid:aem:689ef54f-ec0d-4bb6-b8ea-05a82887561f/original/as/genl-info-guide-for-tles-july-2021.pdf",
-   "parking": "",
-   "parkingSource": "",
+   "parking": "The official MGM Resorts parking page (read 2026-11-19) prints one table for Bellagio, ARIA, Vdara, The Cosmopolitan of Las Vegas, MGM Grand, Mandalay Bay, W Las Vegas, Park MGM, The Reserve at Park MGM, New York-New York, Luxor and Excalibur: self-parking over 0 to 24 hours $20 Monday-Thursday and $25 Friday-Sunday for non-guests, the same daily rate for each additional day, and a separate 'Registered Hotel Guest $20 / $20' line, so a registered guest pays $20 a day on both weekdays and weekends. Valet is $40 a day weekday and weekend. Self-parking is complimentary for MGM Rewards members at Pearl, Gold, Platinum and NOIR tier, and Nevada residents park free for the first three hours. The page adds: 'Prices may be higher during special events' and 'Parking fees are subject to change'. The property-level parking URL for this hotel (/en/amenities/parking.html) serves this same corporate page, so no property-specific table is published to cite.",
+   "parkingSource": "https://www.mgmresorts.com/en/things-to-do/parking.html",
+   "parkingPerNight": 20.0,
+   "parkingNote": "Registered hotel guests pay $20 a day for self-parking on weekdays and weekends; valet is $40 a day. Read from the MGM Resorts parking page on 2026-11-19. Self-parking is free for MGM Rewards members at Pearl tier and above.",
    "cancellation": "The first night's deposit is fully refundable with notice at least 72 hours before arrival; later cancellations and no-shows forfeit the first night.",
    "cancellationSource": "https://aria.mgmresorts.com/en/terms-and-conditions.html",
    "incidental": "$150 per day incidental authorisation for Deluxe Rooms, $250 Tower Suites, $350 Sky Suites, $500 Villas.",
@@ -21797,12 +21803,12 @@
    "feeSource": "https://aria.mgmresorts.com/en/terms-and-conditions.html",
    "taxSource": "https://aria.mgmresorts.com/en/terms-and-conditions.html",
    "qualityNote": "Not scored.",
-   "status": "Fee terms verified; the walking route to the Venetian is outside the limit, and no dated poker schedule was confirmed.",
+   "status": "Fee and parking terms verified; the walking route to the Venetian is outside the limit, and no dated poker schedule was confirmed.",
    "walkNote": "Google Maps walking route to The Venetian measures 31 minutes, which is outside the 30-minute limit.",
    "trueNightlyLow": "",
    "trueNightlyHigh": "",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17"
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19"
   }
  ],
  "rateLog": [
@@ -23498,18 +23504,24 @@
    "name": "MGM Grand hotel reservation terms ($50 resort fee, 72-hour cancellation)",
    "url": "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html",
    "type": "official terms",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "name": "ARIA hotel reservation terms ($55 resort fee, 72-hour cancellation)",
    "url": "https://aria.mgmresorts.com/en/terms-and-conditions.html",
    "type": "official terms",
-   "checked": "2026-11-17"
+   "checked": "2026-11-19"
   },
   {
    "name": "Wynn resort policies (live, non-offer page: $55 resort fee, check-in/out)",
    "url": "https://www.wynnlasvegas.com/about-us/resort-information",
    "type": "official terms",
+   "checked": "2026-11-19"
+  },
+  {
+   "name": "MGM Resorts parking page (self-parking and valet rates for Bellagio, ARIA, MGM Grand; read 2026-11-19)",
+   "url": "https://www.mgmresorts.com/en/things-to-do/parking.html",
+   "type": "official parking page",
    "checked": "2026-11-19"
   }
  ],
@@ -24257,6 +24269,22 @@
    "title": "Three event names are re-cased against the schedule page, which prints those sub-lines in capital letters",
    "detail": "Found by re-reading the official schedule page at 2026-11-17T22:29Z and comparing the published rows line by line with the page text (24 rows, 16-28 November). 19 rows match character for character. Four differ only in the source's own typo 'No LImit', which F27 already discloses. Three rows differ in letter case, all from one shared sub-line, of which one is inside the 24 rows re-read this session and two are in the December and NYE captures: event #18 (Saturday 28 November, 5:10 PM, $200 NLH PokerAtlas Valuetown Bounty $20K GTD) prints its sub-line as 'POKERATLAS PRO MEMBER $20 RAKE DISCOUNT' on the page, while the site publishes 'PokerAtlas PRO member $20 rake discount'. The same re-casing covers event #58 (19 December) and NYE event #25 (2 January), which share that sub-line. No date, time, event number, buy-in, guarantee or structure-sheet link differs on any of the three rows, so no money or schedule value is affected. It is published because the site's rule is that a name is either the printed name or is marked as restyled, and this one was not marked. The choice is left to the user: print the capitals, or keep the title case and leave this flag on the register.",
    "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
+  },
+  {
+   "id": "F98",
+   "area": "Publishing",
+   "severity": "Low",
+   "title": "Two unresolved git conflict markers had been published inside COORDINATION.md",
+   "detail": "The merge commit e79f5a6 (PR #179) carried two stray conflict markers into the shared board: a trailing marker naming 609f1ce (the arena-23505d42 claim) and one naming c14bb08 (that session's reconciled-result commit). Each was a trailing marker with no matching opening marker or separator line, so the file reads continuously through both. Session arena/f5ac4318 checked, before anything was deleted, whether any session record had been lost: every non-blank line of both parents of that merge (c5b511a3, 4,031 lines; ee26288d, 4,037 lines) is present in the merged file, so nothing was dropped. The markers were removed from main on 2026-11-19 by PR #181 (session 96ff450a), which records the same finding; this session's repo-wide scan for an opening marker, a separator line or a trailing marker across .md, .py, .html, .json and .yml files returns zero, and the only remaining occurrence of the text is the quotation of both lines in research/repo_review_2026-11-19_arena-f5ac4318.md, inside backticks. No data value was affected; the defect was in the board file only. Kept on the register because a merge that publishes marker text is evidence the integration step is being done by hand, and the next one can lose text.",
+   "source": "https://github.com/karagemop466-tech/Poker3/blob/main/COORDINATION.md"
+  },
+  {
+   "id": "F99",
+   "area": "Hotels",
+   "severity": "Low",
+   "title": "MGM's property-level parking URLs all serve one corporate page, so no per-property parking table exists",
+   "detail": "Bellagio, ARIA and MGM Grand each publish an /en/amenities/parking.html URL, and on 2026-11-19 all three served www.mgmresorts.com/en/things-to-do/parking.html - the single corporate table that lists those three properties (with Vdara, The Cosmopolitan, Mandalay Bay, W Las Vegas, Park MGM, New York-New York, Luxor and Excalibur) at the same rates. Those three hotel rows therefore carried a blank parking field until 2026-11-19 even though the published figure was one click away. The rows now carry the printed registered-guest figure ($20 a day self-parking on weekdays and weekends; valet $40 a day) and cite the corporate page. What remains unverified: any property-specific difference, because the property pages no longer print one, and the page's own warning that 'prices may be higher during special events'.",
+   "source": "https://www.mgmresorts.com/en/things-to-do/parking.html"
   }
  ],
  "questions": [
