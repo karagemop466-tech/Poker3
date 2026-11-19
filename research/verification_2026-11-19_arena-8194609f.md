@@ -12,8 +12,8 @@ earlier sessions and are still flagged on the Flagged for review page.
 irregularities were found and fixed (see §4). Four legacy venue subpages carried stale hardcoded statements that
 contradicted the canonical data; they were corrected (see §4, flag F100). A third irregularity (five unlinked
 stale snapshot JSON files still published under `site/data/`) is flagged as F101 rather than deleted, because another
-session's script still names one of them. The orphan conflict markers were already recorded as F98 by a parallel
-session on main by the time this branch rebased, so no duplicate flag was added here.
+session's script still names one of them. The orphan conflict markers were already recorded by a parallel session on main
+by the time this branch rebased, so no duplicate flag was added here.
 
 ---
 

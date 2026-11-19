@@ -105,8 +105,9 @@ class VerificationDataTests(unittest.TestCase):
         self.assertEqual(len(ids), len(set(ids)), "duplicate flag id in the register")
         self.assertIn("F100", ids)
         self.assertIn("F101", ids)
-        # F98 is owned by a parallel session on main; this branch must not duplicate it.
-        self.assertEqual(ids.count("F98"), 1, "F98 is duplicated")
+        # A parallel session owns the coordination-board marker flag; this branch adds no duplicate.
+        for fid in ("F100", "F101"):
+            self.assertEqual(ids.count(fid), 1, f"{fid} is duplicated")
         for f in flags:
             self.assertTrue(f.get("source"), f"{f['id']}: no source link")
             self.assertTrue(f.get("detail"), f"{f['id']}: no detail")

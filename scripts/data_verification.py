@@ -62,7 +62,7 @@ _REQ = [
      [VL_BOOK, VL_RATES]),
     ("R06", 'One page per venue (Venetian, Wynn, others), each with its events and hotels.',
      "done", ["venues/index.html", "venues/venetian.html", "venues/wynn.html", "venues/others.html"],
-     "Four venue pages render event and hotel rows from site/data.json via assets/venue.js; a headless render check asserts at least five event rows and one hotel row per page. Stale hardcoded claims were corrected this session (F97).",
+     "Four venue pages render event and hotel rows from site/data.json via assets/venue.js; a headless render check asserts at least five event rows and one hotel row per page. Stale hardcoded claims were corrected this session (F100).",
      [VL_SCHED, WYNN_POKER, BELL_POKER]),
     ("R07", 'Add a search box across all tables.',
      "done", ["search.html"],
@@ -70,7 +70,7 @@ _REQ = [
      [VL_SCHED]),
     ("R08", 'Use one shared COORDINATION.md on main before parallel sessions start.',
      "done", ["repo:COORDINATION.md"],
-     "The board exists at the repo root on main and carries each task's status, owning session and file scope. This session claimed its task there and pushed the claim before any other work; two orphan conflict markers were removed (already recorded on main as F98 by a parallel session, so no duplicate flag was added).",
+     "The board exists at the repo root on main and carries each task's status, owning session and file scope. This session claimed its task there and pushed the claim before any other work; two orphan conflict markers were removed (the finding was already published by a parallel session, so no duplicate flag was added).",
      [REPO + "COORDINATION.md"]),
     ("R09", 'For exact dates and occupancy, capture checkout total, nightly average, mandatory resort fee and tax, parking, cancellation deadline and rate timestamp; compare like-for-like.',
      "done", ["hotels.html", "calculator.html"],
@@ -178,7 +178,7 @@ _REQ = [
      [REPO + "research/verification_2026-11-19_arena-8194609f.md"]),
     ("R35", 'Review the repo; provide links for manual review; flag any irregularities for review.',
      "done", ["flagged.html", "sources.html"],
-     "Every flag links the exact official page or repository file; the repo review found F100 (stale venue pages, fixed) and F101 (unlinked stale snapshot JSON files, published for a decision); main already carries F98 for the orphan conflict markers, so no duplicate flag was added.",
+     "Every flag links the exact official page or repository file; the repo review found F100 (stale venue pages, fixed) and F101 (unlinked stale snapshot JSON files, published for a decision); the coordination-board marker finding was already published by a parallel session, so no duplicate flag was added.",
      [REPO + "COORDINATION.md", BELL_POKER]),
     ("R36", 'Create a GitHub Pages live site with a clean landing page and category subpages, simple dashboard UI, all entries and findings in easy-to-read tables, plus analysis.',
      "done", ["index.html", "browse.html", "verification.html"],
@@ -345,8 +345,7 @@ NEW_FLAGS = [
                  "2026-11-19. All four pages carried footers or side notes dated 2026-11-16. The four pages were "
                  "corrected to match site/data.json, dated 2026-11-19 and given official source links; "
                  "tests/test_verification_audit.py fails if the stale phrases return. No tournament, fee, guarantee, "
-                 "hotel, rate, route or policy value was inferred or changed. Flag ids F97-F99 were already taken on "
-                 "main by parallel sessions by the time this branch rebased, so this flag is F100."),
+                 "hotel, rate, route or policy value was inferred or changed."),
          source=VL_RATES),
 ]
 
