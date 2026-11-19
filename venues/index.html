@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Vegas Poker Planner — opening this page</title>
+<!--
+  Canonical-page path guard, added 2026-11-19 by session arena/97eba119-poker3.
+
+  GitHub Pages for this repository is still the legacy "deploy from a branch:
+  main /" setting (the token cannot change it; PUT /pages returns 403), while
+  .github/workflows/pages.yml also publishes the site/ artifact at the same host.
+  Whichever publisher wins, /Poker3/<page> must not 404. Under the Actions
+  artifact this path serves the real page from site/; under the legacy branch
+  build this stub redirects into the same page inside site/. See flag F29 and
+  research/audit_2026-11-19_97eba119.md.
+
+  Root-level counterpart for site/venues/index.html (one page per venue).
+  Canonical target: ../site/venues/index.html
+-->
+<link rel="canonical" href="../site/venues/index.html">
+<meta http-equiv="refresh" content="0; url=../site/venues/index.html">
+<style>
+  :root{color-scheme:dark light}
+  body{margin:0;min-height:100vh;display:grid;place-items:center;background:#0d1117;color:#e6edf3;
+       font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;padding:24px}
+  main{max-width:34rem;text-align:center}
+  h1{font-size:1.25rem;margin:0 0 .5rem;font-weight:650}
+  p{margin:.5rem 0;color:#9aa7b4} a{color:#6ea8fe}
+</style>
+</head>
+<body>
+<main>
+  <h1>Opening the Vegas Poker Planner</h1>
+  <p>The current, source-linked page is loading. If nothing happens,
+     <a href="../site/venues/index.html">open it here</a>.</p>
+  <p>Every value on the dashboard links the official venue page it was read from;
+     blank cells are unverified values listed on the Flagged for review page.</p>
+</main>
+<script>location.replace('../site/venues/index.html' + location.search + location.hash);</script>
+</body>
+</html>
