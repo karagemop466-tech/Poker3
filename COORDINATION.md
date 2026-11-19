@@ -4394,3 +4394,10 @@ Platform constraint: work stays on `arena/84bd554a-poker3`; no new branches or d
 | Require canonical data, local links, render and regression validation before Pages uploads; independently audit existing features | in progress | arena/84bd554a-poker3 | `.github/workflows/pages.yml`, `tests/test_pages_gate.py`, `COORDINATION.md` |
 
 No live official-source claim is made by this infrastructure task. Source verification cannot be substituted by domain allowlisting or a successful build. Unavailable sources remain flagged.
+
+### Result — Pages gate implementation
+- Added blocking validation before artifact upload: official-domain/local-link schema checks, independent arithmetic audit, archived official-capture comparisons, structure-sheet/entry-label integrity, full unit suite, rendered dashboard and walking-filter checks, and client syntax checks. These are offline evidence checks, **not a fresh verification of official websites**.
+- Added `tests/test_pages_gate.py`: asserts required checks precede upload, cannot be skipped/soft-failed, dependency installation precedes tests, and deploy requires successful build.
+- Local validation: **207 tests pass** using a local ignored virtualenv with PyYAML 6.0.3; canonical smoke/render pass; evidence/arithmetic/entry-label audits pass; `git diff --check` clean. Initial system-Python test run lacked PyYAML; resolved with the isolated virtualenv, not by changing system Python.
+- Audit snapshot: 341 events, 8 hotels, 56 route records, 47 sources, 87 flags, 7 provisional plan days. 52 sheet-screened candidates, **zero written single-entry-cap confirmations**. No event promoted to verified; no factual data changed. Existing official links and irregularities remain on `site/sources.html`, `site/sheets.html`, `site/flagged.html`.
+- Existing calculator/data PRs #112/#130 remain untouched. Claim status: done; publication result follows below.

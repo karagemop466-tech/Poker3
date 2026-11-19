@@ -43,6 +43,37 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Install workflow validation dependency
+        run: python3 -m pip install 'PyYAML==6.0.3'
+
+      # Publication must not race an independent verification workflow. These
+      # offline checks validate recorded evidence, not live source availability;
+      # missing evidence remains flagged and is not promoted to verified here.
+      - name: Validate recorded evidence and local links before publication
+        run: |
+          python3 scripts/verify_site.py
+          python3 scripts/audit_951cd431.py
+          python3 scripts/verify_live_official.py
+          python3 scripts/audit_data.py
+          python3 scripts/verify_entry_labels.py
+
+      - name: Run regression and rendered-dashboard checks before publication
+        run: |
+          python3 -m unittest discover -s tests -p 'test_*.py' -v
+          python3 tests/canonical_smoke.py
+          node tests/canonical_render.js
+          node --check site/assets/app.js
+          node --check site/assets/venue.js
+          node --check site/assets/search.js
+
       - name: Configure Pages
         uses: actions/configure-pages@v5
 
