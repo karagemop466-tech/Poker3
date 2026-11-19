@@ -12,7 +12,7 @@ What was actually read live on 2026-11-19, and what each test below pins:
   * the Wynn resort-information and parking pages, and caesars.com/parking.
 
 No tournament, hotel, fee, guarantee or route VALUE changed in that pass. What changed is that:
-  * the second dated quote is published beside the first (flag F107);
+  * the second dated quote is published beside the first (flag F110);
   * F93 is corrected to "partially resolved", because a later read the same day disproved its claim;
   * the eleven sheets' re-read date is recorded on every rule panel (`rechecked`) without overwriting
     the original read date (`retrieved`), so a reader is not told a 2026-11-16 read was made today;
@@ -89,7 +89,7 @@ class SecondDatedQuote(unittest.TestCase):
         f93 = next(f for f in DATA["flags"] if f["id"] == "F93")
         self.assertIn("Partially resolved", f93["title"])
         self.assertIn("3,619.39", f93["detail"])
-        f107 = next(f for f in DATA["flags"] if f["id"] == "F107")
+        f107 = next(f for f in DATA["flags"] if f["id"] == "F110")
         self.assertIn("3,619.39", f107["detail"])
         self.assertEqual(f107["source"], self.later["source"])
 

@@ -6194,9 +6194,9 @@ evidence and per-item findings in [`research/repo_review_2026-11-19_arena-e94482
 - **F101 resolved**: the five 2026-11-16 snapshot JSON files moved from `site/data/` (where the Pages artifact served
   them) to `archive/` with a provenance README; the dead `scripts/build_data.py` that wrote one of them was removed;
   `scripts/daily_check.py` is kept but marked retired.
-- **F106** added: the corrected PDF monitor has not yet run on a schedule (the 07:34Z record predates the fix). A
+- **F109** added: the corrected PDF monitor has not yet run on a schedule (the 07:34Z record predates the fix). A
   monitoring gap only; it changes no published value.
-- **F107** added: the second dated trip-window total, with both arithmetic irregularities disclosed (printed tax 2
+- **F110** added: the second dated trip-window total, with both arithmetic irregularities disclosed (printed tax 2
   cents above 13.38% of the printed pre-tax subtotal; the seven per-night derivations one cent under the printed total).
 - **No tournament, fee, guarantee, hotel, rate or route value was changed by this pass.** The only data additions are
   the new dated observation and the Wynn $0 parking figure, both printed by an official page.
@@ -6213,3 +6213,13 @@ evidence and per-item findings in [`research/repo_review_2026-11-19_arena-e94482
 CONFLICTING. Neither was modified, rebased or merged here. Both carry work that this branch already supersedes on the
 trip-window re-read (this branch re-read the same sources live and published the result), and #184's
 unknown-cost-vs-zero fix addresses a calculator defect this branch did not reproduce on the current `main`.
+
+**Flag-id collision on rebase (resolved, nothing lost).** While this branch was open, PR #207 (`arena/80a6f5df-poker3`)
+merged and had already published its own **F106, F107 and F108** on `main` for different findings. This session's two new
+flags were renumbered to **F109** (the corrected PDF monitor has not yet run on a schedule) and **F110** (the second dated
+trip-window checkout total), and every reference in the data modules, pages, tests, README and research file was rewritten
+to match. The other session's F106 (finish-estimate break), F107 (no official street address) and F108 (Wynn engine churn)
+are untouched, including `site/q-and-a.html` and `tests/test_verification_2026_11_19_80a6f5df.py`, which cite them. Flag
+ids are now unique across the register (106 flags, 106 distinct ids). Two other `COORDINATION.md` conflicts and one
+`site/sheets.html` conflict were append-only; every other session's text and code were kept, and the generated artefacts
+(`site/data.json`, `site/sheets.html`, `site/coverage.json`) were regenerated from the merged sources rather than hand-merged.

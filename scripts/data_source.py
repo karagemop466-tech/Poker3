@@ -835,7 +835,7 @@ FLAGS = [
                  "strength of the failed read. A fourth read on 2026-11-19 repeated the failure in the same way: the 23-30 "
                  "November booking URL returned the reservation shell and the rewards panel with no suite price and no "
                  "checkout total. A fifth read later the same day did render the itemised panel, and it is published as "
-                 "its own dated total ($3,619.39 for a Palazzo suite, F107), so the engine is intermittent rather than "
+                 "its own dated total ($3,619.39 for a Palazzo suite, F110), so the engine is intermittent rather than "
                  "unavailable. Two dated totals for the same stay now exist - $4,010.55 read 2026-11-17 and $3,619.39 read "
                  "2026-11-19 - and neither is a booking price."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar"),
@@ -1167,13 +1167,13 @@ FLAGS = [
                  "each printing exactly as recorded, and the 2026-11-19 05:33 UTC check no longer lists this URL as changed."),
          source="https://www.venetianlasvegas.com/resort/casino/poker.html"),
     dict(id="F93", area="Hotels", severity="High",
-         title="Partially resolved 2026-11-19: the Venetian booking engine DID print a dated checkout total for 23-30 November on a later read that day ($3,619.39, F107); the earlier loading-shell reads on the same day are kept",
+         title="Partially resolved 2026-11-19: the Venetian booking engine DID print a dated checkout total for 23-30 November on a later read that day ($3,619.39, F110); the earlier loading-shell reads on the same day are kept",
          detail=("Updated 2026-11-19 after a later read the same day. Earlier reads of the official booking link for 2 adults, "
                  "arrival 23 Nov 2026, departure 30 Nov 2026 returned only the page text 'Your Venice meets Vegas getaway is "
                  "loading', with no rate, resort fee, tax or checkout total - the same result as the 2026-11-17 and 2026-11-18 "
                  "attempts recorded in research/reread_2026-11-19.md. A subsequent read on 2026-11-19 DID render the full "
                  "itemised panel for the same query: a palazzo Luxury King suite at $3,619.39 with taxes of $427.14, now "
-                 "published as its own dated observation (F107). So the engine does price this window; it serves the panel "
+                 "published as its own dated observation (F110). So the engine does price this window; it serves the panel "
                  "intermittently, and it returned a different suite and a different total from the 2026-11-17 read. The point "
                  "that survives every read is that neither figure is a price for today: the 2026-11-17 $4,010.55 and the "
                  "2026-11-19 $3,619.39 both remain dated log entries, and the engine must be re-read at the moment of booking. "
