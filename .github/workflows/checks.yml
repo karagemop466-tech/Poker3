@@ -105,11 +105,31 @@ jobs:
           if [ -f site/feed/index.json ]; then python3 -m json.tool site/feed/index.json > /dev/null; fi
 
       - name: Record the check results on the main branch
-        # Runs even when the dashboard check above failed. The record is an observation
-        # of what the official pages returned; whether the dashboard renders cleanly is a
-        # separate question, and withholding the record does not fix the dashboard.
+        # Runs even when the dashboard gate above was red: the record is an observation of what the
+        # official pages returned, and withholding it does not fix the dashboard. A cancelled run
+        # never reaches a publish step at all, so always() is enough here.
+        #
+        # Why this was added (2026-11-19): the gate used to fail because a regression test asserted
+        # that no structure PDF had changed and that the record was dated the day the test was
+        # written. The two fetch steps had already done their job, but the skipped commit meant the
+        # detected change was never published - the monitor went blind at exactly the moment it had
+        # detected something. A red run stays red; it can no longer silence the record. (F111)
         if: always()
         run: |
+          python3 - <<'PY'
+          import json, pathlib, sys
+          path = pathlib.Path("site/checks.json")
+          if not path.exists():
+              print("::warning::site/checks.json was not written this run; nothing to record")
+              sys.exit(0)
+          try:
+              doc = json.loads(path.read_text(encoding="utf-8"))
+          except ValueError as exc:
+              print(f"::warning::site/checks.json is not valid JSON ({exc}); not publishing a broken record")
+              sys.exit(0)
+          print(f"recording {len(doc.get('urls', []))} URL rows, {doc.get('changedCount', 0)} changed, "
+                f"generated {doc.get('generatedAt')}")
+          PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add site/checks.json site/feed 2>/dev/null || git add site/checks.json
@@ -120,6 +140,8 @@ jobs:
           git commit -m "chore: record official source re-check and daily room feed ($(date -u +%F))"
 
       - name: Push the record to main, tolerating a concurrent merge
+        # Must run even when the gate was red, or the commit the previous step made (with always())
+        # would sit unpublished on the runner and the record would still never land.
         if: always()
         # This step used to give up after five rebase attempts. On 2026-11-17 four
         # sessions merged within eight minutes and it failed, even though the record

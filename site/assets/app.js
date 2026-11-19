@@ -1153,7 +1153,46 @@ function costLine() {
     floor computed from the published components, not a quote.</span>${live}</p>`;
 }
 
+/* The landing page's "Source / sheet re-checked" column.
+ *
+ * It used to carry a date typed into index.html. That is how the defect this function removes
+ * happened: the page printed 2026-11-19 beside rows whose own record said 2026-11-17, and the
+ * guard the next session wrote to catch that pinned the literal date, so the scheduled monitor
+ * began to fail on any day a venue re-published a sheet - which is the one moment its record
+ * matters (CI run 44482186623). The date is therefore read from site/checks.json at render time:
+ * the page can only ever show a date the record actually carries, and a re-check that found a
+ * change says so in the same cell instead of looking like a clean re-read. */
+function renderSheetRechecks() {
+  document.querySelectorAll('[data-sheet-recheck]').forEach((cell) => {
+    const name = cell.dataset.sheetRecheck;
+    const rows = (checks && Array.isArray(checks.urls) ? checks.urls : [])
+      .filter((row) => String(row.url || '').endsWith('/' + name) || String(row.url || '').endsWith(name));
+    if (!rows.length) {
+      cell.textContent = 'no automated re-check recorded';
+      cell.className = 'muted';
+      return;
+    }
+    // Newest first: several runs of the monitor may be recorded for one URL over time.
+    rows.sort((a, b) => String(b.checked || '').localeCompare(String(a.checked || '')));
+    const latest = rows[0];
+    const day = String(latest.checked || '').slice(0, 10);
+    if (latest.changed) {
+      cell.textContent = 're-checked ' + (day || 'date unrecorded') + ' · CHANGED since the values were read — re-read by hand';
+      cell.className = 'badge danger';
+    } else if (isBlockedRow(latest)) {
+      cell.textContent = 're-check blocked for the robot on ' + (day || 'date unrecorded') + ' · not a source change';
+      cell.className = 'muted';
+    } else {
+      cell.textContent = 're-checked ' + (day || 'date unrecorded') + ' · document byte-for-byte unchanged';
+      cell.className = 'muted';
+    }
+    cell.title = 'From site/checks.json (' + String(checks.generatedAt || 'undated') + '). '
+      + 'A hash comparison shows whether the file changed; it does not re-verify any printed value.';
+  });
+}
+
 function renderHome() {
+  renderSheetRechecks();
   const stats = document.querySelector('[data-stats]');
   if (stats) {
     const evs = db.events || [];

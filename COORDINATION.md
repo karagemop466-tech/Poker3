@@ -6511,3 +6511,128 @@ search.js/feed.js passed; `data.json` rebuild is byte-identical across two runs 
 **Rebase conflict log.** Rebasing onto `main` (which had advanced through concurrent merges #164/#165/#166/#167/#170/#171 and a scheduled re-check record) conflicted in `COORDINATION.md`, `scripts/data_source.py`, `site/checks.json`, `site/coverage.json`, `site/data.json` and `site/sheets.html`. Resolved without discarding the other sessions' work: `COORDINATION.md` kept both append-only sections; `scripts/data_source.py` kept the concurrent session's `LAST_PASS_2026_11_19` block and its resolved F92/F88/F93 text and re-applied only this session's `REREAD_19` block (the 32-row date advancement, which the concurrent pass did not do); the derived `site/data.json`, `site/sheets.html` and `site/coverage.json` were regenerated from the resolved builder; `site/checks.json` took `main`'s record. To avoid an add/add collision with the concurrent session's same-named artefacts, this session's record and test were renamed to `research/reread_2026-11-19_tripwindow.json` and `tests/test_reread_2026_11_19_tripwindow.py`; the concurrent session's `research/reread_2026-11-19.md` and `tests/test_reread_2026_11_19.py` are kept alongside them.
 
 **Integration record.** PR and merge recorded below after the pull request is opened and merged.
+
+## Session `arena/7d96049f-poker3` — claim: scheduled-monitor reliability, trip-cost unknown handling, 2026-11-19 live re-reads (2026-11-19 UTC)
+
+Branch: `arena/7d96049f-poker3`, branched from `main` at `5c42d7f` (= `origin/main`, 0 ahead / 0 behind at claim
+time). The platform binds a session to one branch, so `session-<id>/<task>` naming cannot be applied. Claim
+written and pushed before any edit.
+
+| Task | Status | Owner session | Scope (files) | Notes |
+|---|---|---|---|---|
+| M1 Fix the scheduled source-monitor record publication: `tests/test_index_evidence_labels.py` hardcodes `2026-11-19` and asserts no structure PDF changed, so the nightly job fails exactly when a source *does* change and never commits `site/checks.json` | done | `arena/7d96049f-poker3` | `tests/test_index_evidence_labels.py`, (new) `tests/test_monitor_record_robustness.py` | CI evidence: run [44482186623](https://github.com/karagemop466-tech/Poker3/actions/runs/44482186623) failed at "Verify the dashboard still passes its own checks"; the following "Record the check results on the main branch" step was skipped. All 334 tests + `verify_site.py` pass on this commit locally, so the failure came from the CI-regenerated record, not from committed data. |
+| M2 Trip-cost arithmetic: blank or unverified inputs (tax %, resort fee, counts) must stay unknown, not be silently priced as $0 / tax-free | done | `arena/7d96049f-poker3` | `scripts/trip_cost.py`, `site/calculator.html`, `tests/test_calculator_page.py`, `tests/test_trip_cost_reproducible.py`, (new) `tests/test_calculator_missing_inputs.py` | **Takeover of a stalled claim.** PR [#184](https://github.com/karagemop466-tech/Poker3/pull/184) (`arena/5cfdd619-poker3`, session `5cfdd619`) claimed this exact defect at 06:47 UTC and has made no commit since; per the board's 60-minute rule this session takes it over. That PR is left open and untouched; its approach is credited in the code comment. `main`'s `true_nightly()` still does `float(tax_pct or 0)`, i.e. an unpublished tax percent is priced as zero tax. |
+| M3 Live 2026-11-19 re-read of the official pages behind the 49 event rows still dated 2026-11-17 (Venetian NYE series) plus a dated re-quote of the trip window at the Venetian and Wynn booking engines | done | `arena/7d96049f-poker3` | `research/reread_2026-11-19_arena-7d96049f.md` (new), `scripts/data_venetian.py`, `scripts/data_hotels.py`, `site/data.json`, `site/sheets.html`, `site/coverage.json` | Read through the platform page reader (the sandbox's own egress to venue hosts still fails, F40). A row's date advances only if its official page was re-read in this session and matched line by line; a disagreement is flagged, never auto-corrected. |
+| M4 Integration: rebase over any landing PR, full offline check suite, PR to `main`, merge, confirm Pages deploy, record here | done | `arena/7d96049f-poker3` | `COORDINATION.md`, generated artefacts via `scripts/data_source.py` / `scripts/build_addendum.py` / `scripts/coverage.py` | Flagged items do not block the merge. |
+
+**Stale-PR notes (no action taken against them).** PR [#173](https://github.com/karagemop466-tech/Poker3/pull/173)
+(`arena/a33db3c1-poker3`, last touched 06:12 UTC) re-read the trip window on 2026-11-19 and edited
+`tests/test_index_evidence_labels.py`, `scripts/coverage.py`, `site/data.json`; the same trip-window dates are
+already published on `main` (292 of 341 rows carry `lastChecked 2026-11-19`), so its data contribution appears
+superseded. It is left open and untouched; M3 does not duplicate its trip-window rows.
+
+**Not in this session's scope** (other sessions may still take them): `site/assets/**`, `site/index.html` prose,
+`.github/workflows/**`, `docs/**`, `verified/**`, `single-entry/**`, `poker3/**`, `planner/**`, `handoff/**`.
+Board file is append-only for this session.
+
+### Results — session `arena/7d96049f-poker3` (M1–M4), 2026-11-19 UTC
+
+**M1 — the scheduled monitor's record publication (`fd89441`…`128408d`).** Landed:
+`site/index.html` no longer hardcodes a re-check date. The seven trip-window cells are
+`<small data-sheet-recheck="<sheet>.pdf">` placeholders filled at render time by
+`renderSheetRechecks()` (first statement of `renderHome()` in `site/assets/app.js`), which reads
+`site/checks.json` → `checks.urls`, matches by URL suffix, takes the newest `checked`, and renders one of four
+states: `re-checked <day> · byte-for-byte unchanged`, `CHANGED since the values were read — re-read by hand`
+(styled `badge danger`), `re-check blocked for the robot` (a block is never called a source change), or
+`no automated re-check recorded`. A cell can therefore only ever display a date the record actually carries.
+`tests/test_index_evidence_labels.py` now asserts relationally (coverage of all seven sheets, ISO timestamps,
+`checked <= generatedAt`, `changed` is a recorded boolean, and a reported change must carry `hashBasis` **and**
+`previousHash` so a human can see what was compared). New `tests/test_monitor_record_robustness.py` (11 tests)
+pins three properties: the record is published whatever the gate does; `scripts/check_sources.py` writes only
+`site/checks.json` and never `site/data.json` (so a detected change is reported, never auto-applied); and **no
+test in the check path may assert a literal calendar date against a job-regenerated record** — the time bomb
+itself, with a self-check that its own pattern still detects one. New `tests/sheet_recheck_render.js` renders
+the seven cells against a *synthetic* record (the committed one moves by design) and asserts all four states;
+it is wired into `verify.yml`, `pages.yml` and `tests/canonical_smoke.py`.
+
+*Overlap, stated plainly.* `arena/c336248a-poker3` landed the workflow half of this same defect (flag **F111**,
+`73b4031`: gate made `continue-on-error` with its outcome re-raised after the publish steps, both publish steps
+`if: always()`, and the date test relaxed) while this branch was open, and `arena/03d48a10-poker3` (`612a4c0`)
+relaxed the same assertion further. This session's contribution is therefore the *page and data-flow* half plus
+the regression that keeps the whole class from coming back. During the merge this session **dropped** its own
+`if: always() && !cancelled()` in favour of main's exact `if: always()` contract (pinned by
+`tests/test_workflows.py`; a cancelled run never reaches a publish step anyway), and **dropped** its duplicated
+`scripts/trip_cost.py` / `site/calculator.html` rewrites in favour of `612a4c0`. Nothing from either session was
+reverted.
+
+**M2 — trip cost: an unpublished value is unknown, never zero.** `612a4c0` already fixes the blank case on main
+(the `MISSING` rule in `true_nightly()`, the `Number(value) || 0` reader in the calculator, and the hotel-preset
+boxes that used to inherit the previously loaded property's figure). **The gap this session closes is the other
+side of zero**: `float(value)` accepted *negative* components, so a resort fee of `-$55` or a room tax of
+`-13.38%` computed happily and printed a nightly cost **below** the published charge. `scripts/trip_cost.py` now
+routes every component through `_not_negative()`, which raises and names the offending field (a blank still
+returns `None` — unknown and negative are deliberately not conflated, asserted in
+`tests/test_trip_cost_negative_inputs.py`). No published figure moves: the model still prints $197.28 a night,
+$2,600 entries, $1,380.96 lodging, $4,120.96 all-in and $4,835.24 at the $209 rate.
+PR [#184](https://github.com/karagemop466-tech/Poker3/pull/184) is credited for the diagnosis and remains open
+and untouched.
+
+**M3 — live 2026-11-19 re-read of the 49 DeepStack NYE rows** (`fd89441`). The official page
+[`dse-dec-2026.html`](https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html)
+was read in full and **49 of 49 published rows agree** on date, start time, event number, printed name, printed
+buy-in, printed guarantee and sheet link — `scripts/verify_nye_live_2026_11_19.py` (exit 0) +
+`tests/test_nye_live_2026_11_19.py`. Captures in `raw/venetian_dse_nye_live_2026-11-19_7d96049f.md` and
+`raw/venetian_dse_nye_schedule_live_2026-11-19_7d96049f.md`. **Every event row on the site now carries
+`lastChecked 2026-11-19`** (341/341; main had 292/341 with the NYE block left at 11-17). `lastVerified`
+deliberately stays `2026-11-17` for those rows — their 15 structure sheets were not re-read — and a test pins
+that asymmetry in both directions plus `lastVerified ≤ lastChecked ≤ today`. Two defects the venue page itself
+prints are recorded by extending **F04** rather than raising new flags: three 26 Dec rows print
+`Saturday, December 26, 2025` inside a series headed `December 24, 2026 – January 10, 2027` (2026-12-26 is a
+Saturday), and both 5 Jan rows print `Tuesaday`. Nothing was corrected in the data. Results column: empty or
+`—` on all 49 rows, so the page publishes no results.
+
+**M4 — rate-log re-reads, integration** (`0c09441`, `de3e684`). Wynn: the property's own engine
+(`reservations.wynnlasvegas.com/ibe/details.aspx?…&checkIn=11/23/2026&checkOut=11/30/2026`) was re-requested
+with **`&adults=2` in the URL** and reproduced the recorded averages exactly — `$495` (Flexible Getaway) and
+`$405` ('Your Fall to Have It All'), both `Includes Resort Fee · Excludes taxes` — which **closes the occupancy
+caveat** on the earlier entry: the quote is a two-adult quote. Added as a third dated `2026-11-19` log entry,
+with the earlier entry's caveat rewritten to point at it. No nightly figure is derived from a fee-inclusive
+average (that is the F69 double-count trap; `true_nightly` also needs a tax percentage Wynn does not publish,
+F39). The Venetian engine was opened a third time for the same window and again returned the loading shell with
+every calendar cell rendered as `$XXX` while echoing the dates back correctly, so **no dated Venetian re-quote
+exists for 2026-11-19**; the 2026-11-17 totals ($4,010.55 / $3,823.46) remain the latest for the window. That
+same read prints two different connecting-suite charges (`+ $20 / Night` and `There is a $10 per suite, per
+night`) — published as **F115**, with neither figure adopted or averaged. Full narrative, verbatim excerpts and
+the human-only to-do list: `research/reread_2026-11-19_arena-7d96049f.md`.
+
+**Scope deviation, logged.** This session's claim excluded `site/assets/**`, `site/index.html` prose and
+`.github/workflows/**`, but the M1 defect lived in exactly those three places and no other session held an open
+claim on them at the time the fix was written (`check_sources.py`, `site/checks.json` and the two workflow files
+are this board's monitoring scope). `site/index.html` was touched only in the seven `<small>` cells and the
+`toolbar-note` that explains them; `site/assets/app.js` only by adding `renderSheetRechecks()`. If
+`arena/c336248a-poker3` or `arena/03d48a10-poker3` want the page-side wording changed, they should treat this
+session's edits as replaceable and re-apply their own.
+
+**Conflict / handoff log.** `git merge origin/main` (27 commits of other-session work, PRs #207, #210, #211,
+#213, #214, #215) produced 12 conflicted paths, resolved as: generated artefacts (`site/data.json`,
+`site/sheets.html`, `site/coverage.json`) regenerated from the merged builders rather than hand-merged;
+`scripts/trip_cost.py`, `site/calculator.html`, `tests/test_calculator_page.py` taken from **main** and this
+session's duplicates deleted; `tests/test_index_evidence_labels.py` taken from this session with main's
+`HTTP 2` requirement and main's 07:56-UTC Wynn narrative grafted in; `checks.yml` = main's `always()` +
+`continue-on-error`/re-raise shape with this session's JSON-validation preflight kept; `data_source.py` FLAGS =
+main's F109–F114 then this session's flag **renumbered F106 → F115** because flag IDs are global and contended;
+`COORDINATION.md` = main's block then this session's claim, both preserved. Flag IDs verified unique (110 flags,
+no duplicates).
+
+**Verification after the merge** (all re-run, offline): `python3 -m unittest discover -s tests -p 'test_*.py'`
+→ **Ran 385 tests / OK**; `scripts/verify_site.py` → `events: 341 hotels: 8 routes: 56 sources: 50 flags: 110
+plan days: 7 pages: 18 / verification passed`; `audit_951cd431`, `verify_live_official`, `audit_data`,
+`verify_entry_labels`, `verify_nye_live_2026_11_19`, `verify_dse_live_2026_11_19`, `verify_fresh_4475a074`,
+`verify_transcription --dry-run` all PASS; `tests/canonical_smoke.py` → `13 main pages, 5 detail pages` with
+`canonical_render.js` (all pages rendered), `walk_limit_render.js` (335 default / 329 limited) and
+`sheet_recheck_render.js` (7 cells, 4 record states) OK; `node --check` clean on `app.js` and both render
+checks; all three builders rebuild **byte-identically** to the committed artefacts.
+
+**Standing decision unchanged:** **HOLD** on any nonrefundable payment. 0 of 341 events carry a written
+one-entry cap (**F31**), no official source publishes an 8 AM start (**F17**) or a finish time (**F16**), and
+the trip window's Venetian checkout total is now 2 days stale with the engine unquoteable from this sandbox.
