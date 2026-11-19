@@ -6356,7 +6356,7 @@ Branch: `arena/3b5f21ac-poker3`, branched from `main` at `5c42d7f` (merge of PR 
 
 | Task | Status | Owner session | Scope (files) | Notes |
 |---|---|---|---|---|
-| G1 Official re-reads for non-trip-window open flags: F56 (Wynn Signature structures placeholder), F80/F103 (Resorts World official poker), F20/F73 (Horseshoe daily schedule), F99 (MGM per-property parking), F83 (Wynn daily slate Nov 27–29), F14 (Wynn resort-fee conflict), F37/F39 (property-published room-tax %), plus F71/F07/F09/F02/F52/F03/F13/F90/F105/F79 re-confirmations and the two Caesars booking calendars (S22) | done — F109, F110 | `arena/3b5f21ac-poker3` | `research/recheck_2026-11-19_arena-3b5f21ac.md` (new), `scripts/data_source.py` (two appended flags), `scripts/data_verification.py`, `scripts/daily_check.py` | 24 official sources read live on 2026-11-19 (verbatim excerpts in the research note). **No published value changed.** New F109: the official Bellagio "Saturdays \| $1,000 NLH" sheet describes a past September 13, 2026 multi-flight event (Day 2 "(9/13/26)", flights 1A–1D, per-flight registration closes), compounding the F02 three-way buy-in conflict. F110 itemizes the spot check, including that both Caesars booking calendars still print "Searching Rates" with no rate cells and that each Wynn daily sheet says it "may be suspended during … other Tournament Series" (F83 context). |
+| G1 Official re-reads for non-trip-window open flags: F56 (Wynn Signature structures placeholder), F80/F103 (Resorts World official poker), F20/F73 (Horseshoe daily schedule), F99 (MGM per-property parking), F83 (Wynn daily slate Nov 27–29), F14 (Wynn resort-fee conflict), F37/F39 (property-published room-tax %), plus F71/F07/F09/F02/F52/F03/F13/F90/F105/F79 re-confirmations and the two Caesars booking calendars (S22) | done — F115, F116 | `arena/3b5f21ac-poker3` | `research/recheck_2026-11-19_arena-3b5f21ac.md` (new), `scripts/data_source.py` (two appended flags), `scripts/data_verification.py`, `scripts/daily_check.py` | 24 official sources read live on 2026-11-19 (verbatim excerpts in the research note). **No published value changed.** New F115: the official Bellagio "Saturdays \| $1,000 NLH" sheet describes a past September 13, 2026 multi-flight event (Day 2 "(9/13/26)", flights 1A–1D, per-flight registration closes), compounding the F02 three-way buy-in conflict. F116 itemizes the spot check, including that both Caesars booking calendars still print "Searching Rates" with no rate cells and that each Wynn daily sheet says it "may be suspended during … other Tournament Series" (F83 context). |
 | G1b F101 resolution (retire the five unlinked 2026-11-16 snapshots under `site/data/`) | done — F101 marked RESOLVED | `arena/3b5f21ac-poker3` | `site/data/*.json` (five files deleted), `scripts/data_verification.py` (F101 text), `scripts/daily_check.py` (now reads `site/data.json`), `tests/test_sheet_page_not_stale.py` (regression guard extended) | Follows the flag's own recommendation. The two files live scripts read (`sheet_extracts.jsonl`, `venetian_pdf_rows.json`) were kept. |
 | G2 Rebuild shared outputs from the merged builders, verify, PR → `main`, merge, confirm GitHub Pages | in progress | `arena/3b5f21ac-poker3` | `site/data.json` (rebuild), `site/sheets.html`, `site/coverage.json`, `COORDINATION.md` | `site/data.json` is regenerated from builders after merge-time rebase, per the established rebuild-on-conflict pattern. Open PRs #173 and #184 are not edited. |
 
@@ -6365,7 +6365,7 @@ Branch: `arena/3b5f21ac-poker3`, branched from `main` at `5c42d7f` (merge of PR 
 - `main` advanced to PR #207 (`arena/80a6f5df-poker3`) while this branch was open. The board conflict was
   append-only; both sections were kept. **Flag-id collision resolved by renumbering, not by discarding:**
   PR #207 had already taken F106–F108 (its own findings), so this session's two new flags were renumbered
-  **F106→F109** (stale Bellagio Saturday sheet) and **F107→F110** (2026-11-19 non-trip-window spot check)
+  **F106→F115** (stale Bellagio Saturday sheet) and **F107→F116** (2026-11-19 non-trip-window spot check)
   everywhere (builder, research note, board).
 - PR #207's branch also re-introduced the five stale 2026-11-16 snapshot files under `site/data/` that
   flag F101 had retired; nothing on `main` reads them (the Q&A worksheet page renders from
@@ -6375,6 +6375,15 @@ Branch: `arena/3b5f21ac-poker3`, branched from `main` at `5c42d7f` (merge of PR 
 - `site/data.json`, `site/sheets.html` and `site/coverage.json` were regenerated from the merged builders
   after the rebase, per the established rebuild-on-conflict pattern. No other session's section, code or
   data was discarded.
+
+- **Second rebase (same day).** `main` advanced again through PRs #209/#217 (`arena/03d48a10-poker3`) and
+  concurrent sessions while this branch was open; PR #217's branch had also re-taken F109 and added F111–F114
+  in `scripts/data_source.py`. The flag-id collision was resolved the same way: this session's two flags were
+  renumbered **F109→F115** (stale Bellagio Saturday sheet) and **F110→F116** (2026-11-19 spot check), all
+  other sessions' flag dicts were kept verbatim, and the derived `site/data.json`, `site/sheets.html` and
+  `site/coverage.json` were regenerated from the merged builders. PR #217's branch had also restored the five
+  stale `site/data/*.json` snapshots once more; the standing F101 resolution was re-applied and the five files
+  are deleted again on this branch, guarded by `tests/test_sheet_page_not_stale.py`.
 
 ### Verification performed (session `arena/3b5f21ac-poker3`, 2026-11-19 UTC)
 
