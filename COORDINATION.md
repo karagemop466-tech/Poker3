@@ -5413,3 +5413,23 @@ landed during this PR; the board conflict was append-only and both records were 
 ### Merge record
 
 _Appended after the pull request merges._
+
+### Close-out numbers (session `arena/ade0718f-poker3`, 2026-11-19 UTC)
+
+- **Documentation PRs:** [#185](https://github.com/karagemop466-tech/Poker3/pull/185) (the work) merged at 06:49:49 UTC as
+  `4359762`; [#188](https://github.com/karagemop466-tech/Poker3/pull/188) merged at 06:54:27 UTC as `a9c9f3d`;
+  [#189](https://github.com/karagemop466-tech/Poker3/pull/189) (this record) merged at 07:00:54 UTC as
+  **`f37c7a07098284d3e2287cef05e0a0bfc9a5be8d`**.
+- **Checks on `f37c7a0`:** "Verify static research site" **success**, "Official table transcription check" **success**,
+  "Publish the canonical Vegas Poker Planner to GitHub Pages" **success**, "pages build and deployment" **success**.
+  Pages build API: `status: built`, `commit: f37c7a0…`, `error: null`.
+- **Live after the final deploy (fetched):** `/site/index.html` serves `lastChecked 2026-11-19` / `lastVerified 2026-11-19`
+  and the 94-row coverage sentence; `/site/flagged.html` serves the full register (14 chunks of tables today, including
+  F97 alongside F98/F99 from `arena/f5ac4318`). `/?v=f37c7a0` also returns the updated dashboard, so the plain `/` copy
+  that still reads `lastChecked 2026-11-17` is a CDN cache copy, not the deployed build.
+- **Rebase count:** six rebases over concurrent merges (#183, #186, #187, #190, #191, #192). Every conflict was
+  append-only in this board; the resolution script kept both sides each time and no session's record was dropped.
+- **Final local state before the last merge:** 273 unit tests OK, `verify_site.py` 341 events / 8 hotels / 56 routes /
+  49 sources / 95 flags / 7 plan days / 16 pages, `audit_951cd431.py` 0 failures, `audit_data.py`,
+  `verify_entry_labels.py`, `verify_live_official.py` and `verify_dse_live_2026_11_19.py` (94/94 on both captures) passed,
+  canonical smoke/renders passed, `data_source.py` reproduced `site/data.json` byte-identically.
