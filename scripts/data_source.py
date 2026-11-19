@@ -434,6 +434,44 @@ SOURCES = [
 ]
 
 FLAGS = [
+    dict(id="F127", area="Venetian DSE IV", severity="Medium",
+         title="The 'excerpt' stored for the single-entry rule on all 13 multi-flight Venetian structure sheets was a paraphrase with an added clause that the sheets do not print; it has been replaced with each sheet's printed wording",
+         detail=("Re-read 2026-11-19 (session arena/e5dca9a1-poker3). The rule text was one template for the 13 multi-flight sheets "
+                 "(2, 3, 4, 9, 10, 12, 13, 14, 20, 21, 35, 36, 37) and read: 'Day 2 will resume combining all remaining players from the "
+                 "listed flights. Any player who bags chips for Day 2 may not play a subsequent flight, so a player who does not bag may buy "
+                 "into another flight.' No sheet prints the words 'so a player who does not bag may buy into another flight' or 'from the "
+                 "listed flights'. Each sheet was read in full: rule 8 is printed verbatim on all 13 ('Any player who bags chips for Day 2 may "
+                 "not play a subsequent flight.'), and rule 3 names each sheet's own flights and Day 2 time (for example sheet 2: 'Day 2 will "
+                 "resume at 11:00 AM combining all remaining players from 1A and 1B'; sheet 20: 15% and 10:00 AM; sheet 9: 12:00 PM with 1A to 1D). "
+                 "The 'Multi-flight' category blurb carried the same inference as fact. Both now quote the printed text and label the "
+                 "'may play a later flight' reading as an inference from rule 8. The status (multiple-entries) is unchanged. The change is in "
+                 "the excerpt text and the blurb only; no fee, buy-in, guarantee or start time moved."),
+         source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_2.pdf"),
+    dict(id="F126", area="Hotel cost", severity="High",
+         title="The headline trip total prices all seven nights at the $119 poker-suite rate, but the plan's 23 and 24 Nov primaries are $200 entries, below the $300 play threshold, so those two nights do not qualify as the plan stands",
+         detail=("Re-read 2026-11-19 (session arena/e5dca9a1-poker3). The official Venetian poker-suite rate page (suite-rates.html) "
+                 "requires 'six hours of active live cash gameplay or buy in to a $300 or higher tournament for each night stayed', "
+                 "completed before 2 a.m. on the last night, and says 'For any nights you fail to complete these requirements, your nightly "
+                 "suite rate will be adjusted to the prevailing rate'. The live official schedule shows no single-entry event of $300 or more "
+                 "on 23 or 24 Nov: the $400 Event 7 flights (1A on 23 Nov, 1B on 24 Nov) are multi-flight (their structure sheet prints "
+                 "rule 8, 'Any player who bags chips for Day 2 may not play a subsequent flight.'), and the only single-entry rows on those dates are the $200 "
+                 "5:10 PM events. The day plan therefore marks both nights pokerRateSatisfied = False, and the trip page says they depend on "
+                 "six hours of live cash play or on the prevailing rate. The calculator headline ($4,120.96 floor = 7 x $119 plus fee and tax) "
+                 "still prices all seven nights at $119, and its note calls the figure 'a floor for a qualifying player'. The prevailing rate for "
+                 "these two nights is not published as a single figure on the rate page. Reported, not changed: a decision on these two nights "
+                 "needs a dated quote at the prevailing rate or a written decision to rely on six hours of cash play on each night."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"),
+    dict(id="F125", area="Venetian DSE IV", severity="Low",
+         title="The Day 2 restart row for Event 7 (Wed 25 Nov 2026, 11:00 AM) carries the parent flight's $75,000 guarantee, which the official restart row does not print",
+         detail=("Re-read 2026-11-19 (session arena/e5dca9a1-poker3). The live official schedule row "
+                 "'Wednesday, November 25, 2026 | 11:00 AM | 7 | $400 No Limit Hold'em Day 2 Restart' has no guarantee in its name; "
+                 "the '$75K GTD' appears only on the Event 7 flight rows (1A and 1B). The published row keeps guarantee 75000, "
+                 "marks itself isContinuation and says 'multi-flight' in its note, so the figure is the parent event's printed "
+                 "guarantee, labelled as such, not a value printed on the restart row. The event is multi-entry regardless: its "
+                 "structure sheet (dse_nov_2026-structure_2.pdf) prints separate flights 1A and 1B and rule 8, 'Any player who bags chips "
+                 "for Day 2 may not play a subsequent flight.' Reported, not changed. The same convention applies to "
+                 "every Day 2 restart row in the published table; only the 23-30 Nov trip-window rows were compared line by line in this re-read."),
+         source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
     dict(id="F01", area="Wynn WPT schedule", severity="High",
          title="The official WPT schedule PDF labels December 18 as both a Wednesday and a Friday",
          detail=("In the same PDF, 'Dec. 18 Wednesday' carries the No Limit Hold'em Day 1A and PLO rows while 'Dec. 18 Friday' "
@@ -2109,6 +2147,25 @@ WPT_MARK_NOTES = {
 }
 
 
+# Printed rule 3 on each multi-flight structure sheet (read verbatim 2026-11-19 from the official PDFs).
+# (approximate field remaining at which a flight stops, Day 2 start, flights combined on Day 2)
+MULTI_FLIGHT_RULE3 = {
+    2: ("12.5%", "11:00 AM", "1A and 1B"),
+    3: ("12.5%", "11:00 AM", "1A, 1B, and 1C"),
+    4: ("12.5%", "11:00 AM", "1A, 1B, and 1C"),
+    9: ("12.5%", "12:00 PM", "1A, 1B, 1C, and 1D"),
+    10: ("12.5%", "12:00 PM", "1A, 1B, 1C, and 1D"),
+    12: ("12.5%", "12:00 PM", "1A, 1B, 1C, 1D, 1E, and 1F"),
+    13: ("12.5%", "12:00 PM", "1A, 1B, 1C, 1D, 1E, and 1F"),
+    14: ("12.5%", "12:00 PM", "1A, 1B, 1C, 1D, 1E, and 1F"),
+    20: ("15%", "10:00 AM", "1A and 1B"),
+    21: ("12.5%", "1:00 PM", "1A and 1B"),
+    35: ("12.5%", "11:00 AM", "1A, 1B, 1C, 1D, and 1E"),
+    36: ("12.5%", "11:00 AM", "1A, 1B, 1C, 1D, and 1E"),
+    37: ("12.5%", "1:00 PM", "1A and 1B"),
+}
+
+
 def _rules_for_sheet(sheet_no):
     s = V.SHEETS[sheet_no]
     url = f"{V.BASE}/dse_nov_2026-structure_{sheet_no}.pdf"
@@ -2130,10 +2187,13 @@ def _rules_for_sheet(sheet_no):
         reentry = dict(status="none-printed", excerpt="No re-entry provision appears on this structure sheet.", **base)
         addon = dict(status="none-printed", excerpt="No add-on provision appears on this structure sheet.", **base)
     elif s["entry"] == "multi-flight":
+        pct, day2, flights = MULTI_FLIGHT_RULE3[sheet_no]
         single = dict(status="multiple-entries",
-                      excerpt=("Each starting flight will play until we are down to approximately 12.5% of the field remaining. Day 2 "
-                               "will resume combining all remaining players from the listed flights. Any player who bags chips for Day 2 "
-                               "may not play a subsequent flight, so a player who does not bag may buy into another flight."),
+                      excerpt=(f"Printed rule 3: \"Each starting flight will play until we are down to approximately {pct} of the field "
+                               f"remaining. Day 2 will resume at {day2} combining all remaining players from {flights}\" (the sentence "
+                               "continues beyond this point). Printed rule 8: \"Any player who bags chips for Day 2 may not "
+                               "play a subsequent flight.\" The sheet prints no maximum-entry count and no clause on buying into a later "
+                               "flight; that a player who has not bagged may play one is read from rule 8, not printed."),
                       **base)
         reentry = dict(status="separate-flights", excerpt="Separate starting flights (1A/1B/...) are published on the schedule page.", **base)
         addon = dict(status="none-printed", excerpt="No add-on provision appears on this structure sheet.", **base)
@@ -2223,8 +2283,9 @@ CATEGORIES = {
                    "fee split or chip count is confirmed. These rows keep the unverified label on purpose and are "
                    "never counted as single-entry events."},
     "flight": {"label": "Multi-flight", "blurb":
-               "The official schedule publishes separate start flights. A player who does not bag for Day 2 may buy into "
-               "another flight, so more than one entry is possible."},
+               "The official schedule publishes separate start flights. Rule 8 of each structure sheet bars a player who has bagged "
+               "chips for Day 2 from a later flight, which implies that a player who has not bagged may play one. The sheet prints no "
+               "maximum-entry count, so more than one entry is possible but not confirmed."},
     "satellite": {"label": "Satellite (seat prizes, not cash)", "blurb":
                   "Prizes are entries into another event, not cash. Different maths: see the ratio note."},
     "bounty": {"label": "Bounty / PKO", "blurb":
