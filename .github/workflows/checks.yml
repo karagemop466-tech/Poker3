@@ -86,6 +86,12 @@ jobs:
         continue-on-error: true
         run: python3 scripts/daily_feed.py
 
+      - name: Refresh the coverage record from the new check record
+        # site/coverage.json quotes the URL counts in site/checks.json, so it must be
+        # regenerated after the check record changes, or tests/test_caesars_parking...
+        # reports drift on every run that writes a new record.
+        run: python3 scripts/coverage.py
+
       - name: Verify the dashboard still passes its own checks
         # This step reports a broken dashboard, but it must not be able to suppress
         # the observation this job exists to publish. On 2026-11-19 the 07:56 UTC run
@@ -132,7 +138,7 @@ jobs:
           PY
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add site/checks.json site/feed 2>/dev/null || git add site/checks.json
+          git add site/checks.json site/coverage.json site/feed 2>/dev/null || git add site/checks.json site/coverage.json
           if git diff --cached --quiet; then
             echo "No change in the checked sources; nothing to publish."
             exit 0

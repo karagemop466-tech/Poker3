@@ -6714,6 +6714,47 @@ approval) at **2026-11-19T11:54:19Z**; merge commit
 
 **Decision.** Standing HOLD on any nonrefundable payment is unchanged: the hotel total is dated 2026-11-17, the 8 AM start is unpublished, and no walking route or entry cap was verified in this pass.
 
+---
+
+## Session b3501a60 (scheduled re-check gate repair)
+
+Branch: `arena/b3501a60-poker3` (fast-forwarded to `origin/main` 54c1a50 before any commit; no other branch touched).
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| Repair the red scheduled source re-check (`checks.yml`) | done (pending CI confirmation on `main`) | b3501a60 | `.github/workflows/checks.yml`, `tests/test_index_evidence_labels.py` | See the diagnosis below. |
+
+**Diagnosis.** The re-check job's last main-branch runs (44525667124 and others, 2026-11-19) failed in the step "Verify the dashboard still passes its own checks". Replaying the exact workflow sequence on a clean checkout of `main` with the official hosts unreachable reproduced it: `check_sources.py` correctly recorded every sheet as `unreachable`, but 8 tests then failed:
+- `test_recheck_record_actually_supports_the_date` (7 sheets) required every structure-sheet row to be `HTTP 2xx`. An unreachable row is a legitimate observation, not a monitor failure.
+- `test_coverage_c9_cites_f86_not_f79_and_is_fresh` required `site/coverage.json` to match a `checks.json` that the job had just rewritten, but nothing regenerated `coverage.json` in the job.
+
+**Fix.**
+1. The sheet test now accepts an unreachable row only when it says so (`unavailable: true`, `changed: false`, a recorded error). Every other row must still be a real HTTP 2xx fetch.
+2. `checks.yml` runs `scripts/coverage.py` after the recorders and commits `site/coverage.json` with the other records.
+
+**Verification.** Replay on a copy of this branch with no network to the official hosts: `check_sources.py`, `verify_transcription.py`, `daily_feed.py`, `coverage.py`, `python3 -m unittest discover -s tests -p 'test_*.py'` (437 tests, OK), `scripts/verify_site.py` (passed), `node --check`, JSON parse. Sources for the affected records: the Venetian structure sheets listed in `site/checks.json` (venetianlasvegas.com `dse_nov_2026-structure_*.pdf`), recorded by the job itself; no value was changed.
+
+**Irregularities for review.**
+- The two Wynn booking-engine URLs (`reservations.wynnlasvegas.com/ibe/details.aspx?...`) were marked changed on 2026-11-19 because the page re-renders its visible text on each request (wording change, no published value change). They are already labelled as noise in the test docstring. A person should still re-read the 23–30 Nov quote before booking.
+- The live re-check from the CI runner (`checks.json`, 2026-11-19 07:34 UTC) recorded 23 failed and 15 unavailable of 108 URLs. Those are reachability failures from the runner, not verified page changes. The Sources page lists the last manual result for each.
+- Pages API reports the legacy branch build as `errored` while the `pages.yml` artifact deploy is the one that serves the site. Not changed here.
+
+## Session `arena/f5a04e69-poker3` — claim: official rules-page probe for F31 (one-entry rule), 2026-11-19 UTC
+
+- **Branch:** `arena/f5a04e69-poker3`, reset onto `origin/main` (`54c1a50`) before this claim. Session IDs in the brief cannot be applied; the platform binds one branch.
+- **Claimed task:** F31 only. Look for a written maximum-entry / no-rebuy / no-add-on rule on the Venetian's official poker pages (poker landing page, DeepStack series page). Record what is and is not printed. No tournament, hotel or site value is edited.
+- **Claimed files:** `research/rules_probe_2026-11-19_f5a04e69.md` (new), `COORDINATION.md` (this entry only).
+- **Status:** done (see result below).
+
+### Result (session `arena/f5a04e69-poker3`, 2026-11-19 UTC)
+
+- **F31 status: still open.** Read live on 2026-11-19 from the Venetian's own hosts: the poker landing page (both chunks), the DeepStack series page (both chunks, headline events and links only) and the DSE IV schedule PDF (chunk 1 to the end; the final line is a card-suit glyph row, no footnote). None prints a maximum-entry cap, a freezeout label, a re-entry, rebuy or add-on rule, and none links to a tournament-rules or FAQ document. The saved transcription `raw/venetian_dse_nov_2026_schedule.md` contains no rules text either.
+- **Record:** `research/rules_probe_2026-11-19_f5a04e69.md` (verbatim-level table of each page, what it prints, and the three questions the room must answer in writing).
+- **Published values changed:** none. No tournament, hotel, flag or site file was edited.
+- **Irregularity logged:** none new. The PDF's first-page chunk was not re-read this session; the saved transcription (2026-11-16) was used for it.
+- **Process note (for the board):** the first attempt to rebase this branch conflicted in this file and the claim commit landed on a detached state. It was not pushed; the branch was reset to `origin/main` and the claim re-applied. The clone was shallow, so `git fetch --unshallow origin` was needed before ancestry checks worked. Sessions rebasing here should expect the same.
+- **Status:** done. Human action still needed (F31): a written question to the room, as listed in the record.
+
 ## Session `arena/3a186594-poker3` — claim and result: R1 trip-window live re-read (2026-11-19 UTC)
 
 **Claim (R1).** Live re-read of the official Venetian DeepStack Extravaganza IV schedule for the trip-window rows, compared with `site/data.json`. Scope: `raw/dse_nov_2026_trip_window_live_2026-11-19_arena-3a186594.md`, `research/reread_2026-11-19_arena-3a186594.md`, `scripts/verify_trip_window_3a186594.py`, `tests/test_trip_window_3a186594.py`, this section. An earlier claim commit on this branch (`b8eb56b`) was superseded by this one and is kept in history by a merge with `-s ours`; its tree is not used.
