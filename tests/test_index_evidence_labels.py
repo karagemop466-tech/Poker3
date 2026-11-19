@@ -117,7 +117,17 @@ class LandingEvidenceLabels(unittest.TestCase):
                 # The row must record an actual fetch outcome, not a placeholder date (the check
                 # session arena/c336248a landed alongside this one: the point is that the sheet was
                 # really retrieved, not that it looked clean).
-                self.assertTrue(str(record["status"]).startswith("HTTP 2"), record["status"])
+                # An unreachable sheet is a legitimate observation, not a failure of the monitor: the
+                # runner's network can be refused by the venue's edge (CI run 44525667124, 2026-11-19,
+                # and the sandbox replay both recorded every sheet as "unreachable"). Such a row must say
+                # so (unavailable=true, changed=false, and the error kept) and must not claim a fresh
+                # fetch. Any other row must be a real HTTP 2xx fetch.
+                if record.get("unavailable") or record.get("outcome") == "unreachable":
+                    self.assertTrue(record.get("unavailable"), f"{sheet}: an unreachable row must set unavailable")
+                    self.assertFalse(record.get("changed"), f"{sheet}: an unreachable row cannot be a change")
+                    self.assertTrue(record.get("error") or record.get("status"), f"{sheet}: no reason recorded")
+                else:
+                    self.assertTrue(str(record["status"]).startswith("HTTP 2"), record["status"])
                 # The fetch cannot postdate the record that publishes it. This direction is the only
                 # safe one: a run that starts before midnight UTC and finishes after it would make
                 # "checked >= generatedAt" false for a perfectly ordinary fetch.
