@@ -6896,3 +6896,20 @@ Standing decision: **HOLD** on any nonrefundable payment, unchanged. Re-read the
 2. Cosmetic printed typos on the official page: "No LImit Hold'em" (Nov 25 event 10, Nov 26 event 12); "NLH" abbreviations (Nov 28 event 18).
 
 **Still open (not verified in this session).** Rates and checkout totals (the same-day booking reads by `d2f205b3` and `7d96049f` returned only a loading shell); structure-sheet text beyond the monitor's hash; the written single-entry / no-rebuy / no-add-on cap (F31); finish times and an 8 AM start (F16, F17). The standing **HOLD** on nonrefundable payment is unchanged.
+
+---
+
+## Session `arena/e5dca9a1-poker3` — claim: live trip-window re-read, offline gate run, integration (2026-11-19 UTC)
+
+Branch: `arena/e5dca9a1-poker3`, branched from `main` at `b5bf966` (1 commit, `origin/main` in sync at claim time). The platform binds this session to one branch, so the `session-<id>/<task>` naming cannot be applied. Claim written and pushed before any other edit.
+
+Open PRs at claim time: `gh pr list --state open` → only #224 (`arena/a400f338-poker3`, coordination record). No other session holds an open claim on the trip-window files.
+
+| Task | Status | Owner session | Scope (files) | Notes |
+|---|---|---|---|---|
+| V1 Live re-read of the official Venetian DeepStack Extravaganza IV table (`dse-nov-2026.html`, all four chunks) compared with every published row dated 23–29 Nov 2026 | in progress | `arena/e5dca9a1-poker3` | read-only on `site/data.json`; record in `research/verify_2026-11-19_arena-e5dca9a1.md` (new) | Any mismatch is recorded as a flag, not silently overwritten. |
+| V2 Live re-read of the official Venetian poker-suite rate page, resort-fee page and hotel terms (13.38% Clark County room tax, $55 fee, parking, early-checkout charge) compared with the hotel row and the calculator inputs | in progress | `arena/e5dca9a1-poker3` | same research record | Read-only unless a published value is contradicted. |
+| V3 Offline gates on this branch: `scripts/verify_site.py`, full `unittest` suite (PyYAML 6.0.3 installed in a venv, as in CI) | in progress | `arena/e5dca9a1-poker3` | none (run only) | Environment note: the sandbox Python lacks PyYAML, so `test_workflows`, `test_pages_gate` and `test_monitor_record_robustness` fail to import without it. |
+| V4 Integration: commit, `git pull --rebase origin main`, push, PR to `main`, merge with `gh pr merge --merge`, confirm the Pages deploy, record here | in progress | `arena/e5dca9a1-poker3` | `COORDINATION.md`, the research record | Flagged and unverified items do not block the merge; they stay on the Flagged for review page. |
+
+**Not in this session's scope:** `site/**` values, `scripts/data_*.py`, `docs/**`, `verified/**`, `single-entry/**`, `poker3/**`, `planner/**`, `handoff/**`, `.github/workflows/**`.
