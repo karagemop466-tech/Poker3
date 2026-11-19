@@ -35,6 +35,7 @@ DATA = SITE / "data.json"
 CHECKS = SITE / "checks.json"
 
 HASH_BASIS = ("visible text (HTML tags, scripts and styles removed); the raw-byte hash is kept per URL as hash")
+PDF_HASH_BASIS = "PDF raw bytes SHA-256 (conservative review signal, not extracted text)"
 USER_AGENT = "Poker3SourceChecker/1.0 (+https://karagemop466-tech.github.io/Poker3/)"
 TIMEOUT = 30
 
@@ -87,35 +88,40 @@ def fetch(url: str) -> tuple[int, str, bytes]:
         return response.status, response.headers.get("Content-Type", ""), response.read()
 
 
-# A raw-byte hash of a venue page is not a useful change signal: those pages embed
-# booking banners, availability grids and per-request nonces, so 14 of 79 reachable URLs
-# flipped hash on 2026-11-17 with no change to any published value. The comparison below
-# hashes what a reader would actually read: the visible text of an HTML page, or the
-# extracted text of a PDF. The raw-byte digest is still recorded, so the noise is
-# visible rather than hidden, and a genuine editorial change still moves the text hash.
+# HTML scripts/nonces are noise, so HTML is compared on normalized text. PDF
+# text normally lives inside compressed streams: stripping streams silently hid
+# changes to fees and rules. Compare *all* PDF bytes instead. This deliberately
+# over-flags metadata-only changes, which require review but never mutate values.
 _SCRIPT_STYLE = re.compile(r"<(script|style|noscript|svg)\b[^>]*>.*?</\1>", re.IGNORECASE | re.DOTALL)
 _TAG = re.compile(r"<[^>]+>")
 _WS = re.compile(r"\s+")
 _ENTITY = {"&nbsp;": " ", "&amp;": "&", "&lt;": "<", "&gt;": ">", "&quot;": '"', "&#39;": "'"}
 
 
+def is_pdf(body: bytes, content_type: str) -> bool:
+    """Accept either a PDF MIME type or its signature (including generic MIME)."""
+    return "pdf" in (content_type or "").lower() or body.startswith(b"%PDF")
+
+
+def comparison_basis(body: bytes, content_type: str) -> str:
+    return PDF_HASH_BASIS if is_pdf(body, content_type) else HASH_BASIS
+
+
 def visible_text(body: bytes, content_type: str) -> str:
-    """The text a human would read from the response, whitespace-normalised."""
-    if "pdf" in (content_type or "").lower() or body[:4] == b"%PDF":
-        text = body.decode("latin-1", errors="ignore")
-        text = re.sub(r"stream.*?endstream", " ", text, flags=re.DOTALL)
-    else:
-        html = body.decode("utf-8", errors="ignore")
-        html = _SCRIPT_STYLE.sub(" ", html)
-        html = _TAG.sub(" ", html)
-        for entity, plain in _ENTITY.items():
-            html = html.replace(entity, plain)
-        text = html
-    return _WS.sub(" ", text).strip().lower()
+    """Normalize HTML text; PDF extraction is deliberately not claimed here."""
+    if is_pdf(body, content_type):
+        return ""
+    html = body.decode("utf-8", errors="ignore")
+    html = _SCRIPT_STYLE.sub(" ", html)
+    html = _TAG.sub(" ", html)
+    for entity, plain in _ENTITY.items():
+        html = html.replace(entity, plain)
+    return _WS.sub(" ", html).strip().lower()
 
 
 def content_hash(body: bytes, content_type: str) -> str:
-    return hashlib.sha256(visible_text(body, content_type).encode("utf-8")).hexdigest()
+    comparable = body if is_pdf(body, content_type) else visible_text(body, content_type).encode("utf-8")
+    return hashlib.sha256(comparable).hexdigest()
 
 
 # Hosts whose edges return 403/302/timeout to a datacenter runner while serving a normal
@@ -138,33 +144,28 @@ def classify_outcome(status: str) -> str:
     return "error"
 
 
-def compare_check(old: dict | None, status: str, digest: str | None) -> dict:
-    """Classify a fetch without conflating a failed request with changed content."""
+def compare_check(old: dict | None, status: str, digest: str | None,
+                  hash_basis: str = HASH_BASIS) -> dict:
+    """Compare like hash bases; a byte change in a PDF is not proof of wording."""
     available = status.startswith("HTTP 2")
-    # `digest` is the visible-text hash. A record written before the switch to text
-    # comparison carries only a raw body `hash`; comparing the two bases would report
-    # every page as changed, so that record seeds a fresh baseline instead (basisReset)
-    # and the difference is still recorded as rawOnly for audit.
-    # The record itself states which hash basis produced it. Comparing across two bases
-    # is meaningless, so when a URL's stored basis differs from the one this run uses,
-    # the run seeds a fresh baseline for that URL instead of reporting a change. Without
-    # this the first run after the switch flagged all 80 reachable URLs on 2026-11-17.
-    prior_text = (old or {}).get("textHash") if (old or {}).get("hashBasis") == HASH_BASIS else None
-    prior_raw = (old or {}).get("hash")
-    basis_reset = bool(available and prior_raw and not prior_text)
-    prior_hash = prior_text if prior_text else None
+    old = old or {}
+    prior_raw = old.get("hash")
+    prior_text = old.get("textHash") if old.get("hashBasis") == hash_basis else None
+    # Earlier runs already stored the complete raw-body digest alongside their
+    # flawed PDF text digest. Reuse that valid raw baseline, not the discarded-
+    # stream hash: the first fixed run must not miss a changed PDF or reset it.
+    prior_hash = prior_raw if hash_basis == PDF_HASH_BASIS else prior_text
+    basis_reset = bool(available and prior_raw and not prior_hash)
     changed = bool(available and prior_hash and digest and prior_hash != digest)
-    baseline = bool(available and not prior_hash)
-    wording = bool(available and prior_text and digest and prior_text != digest) if digest else False
     return {
         "changed": changed,
-        "wordingChanged": wording,
+        "wordingChanged": changed and hash_basis == HASH_BASIS,
         "unavailable": not available,
-        "baseline": baseline,
+        "baseline": bool(available and not prior_hash),
         "basisReset": basis_reset,
         "previousHash": prior_hash or None,
-        "previousTextHash": prior_text or None,
-        "previousChecked": (old or {}).get("checked", "") or None,
+        "previousTextHash": prior_text if hash_basis == HASH_BASIS else None,
+        "previousChecked": old.get("checked", "") or None,
         "statusChanged": bool(old and old.get("status") != status),
     }
 
@@ -201,9 +202,10 @@ def main() -> int:
             row["hash"] = hashlib.sha256(body).hexdigest()
             row["bytes"] = len(body)
             row["textHash"] = content_hash(body, ctype)
-            row["hashBasis"] = HASH_BASIS
-            row["textChars"] = len(visible_text(body, ctype))
-            digest = row["textHash"]
+            row["hashBasis"] = comparison_basis(body, ctype)
+            row["comparisonKind"] = "pdf-bytes" if is_pdf(body, ctype) else "html-text"
+            if not is_pdf(body, ctype):
+                row["textChars"] = len(visible_text(body, ctype))
         except urllib.error.HTTPError as exc:
             row["status"] = f"HTTP {exc.code}"
             row["error"] = str(exc)
@@ -214,10 +216,13 @@ def main() -> int:
         row["outcome"] = classify_outcome(row["status"])
         row["botBlocked"] = row["outcome"] in ("blocked", "redirected") and any(
             h in row["url"] for h in BOT_BLOCKED_HOSTS)
-        row.update(compare_check(old, row["status"], row.get("textHash")))
-        # The visible text is what matters; a raw-body difference with identical visible
-        # text is recorded so the noise is visible, but it is never a "changed" flag.
-        row["rawOnly"] = bool(row.get("hash") and (old or {}).get("hash")
+        row.update(compare_check(old, row["status"], row.get("textHash"),
+                                 row.get("hashBasis", HASH_BASIS)))
+        # Only comparable, identical HTML text hashes justify calling raw changes
+        # noise. A PDF-byte difference is always a review signal, never rawOnly.
+        row["rawOnly"] = bool(row.get("hashBasis") == HASH_BASIS
+                              and row.get("previousTextHash") == row.get("textHash")
+                              and row.get("hash") and (old or {}).get("hash")
                               and row["hash"] != old["hash"] and not row.get("changed"))
         if row["changed"]:
             changed.append(row)
@@ -247,10 +252,11 @@ def main() -> int:
         "urls": rows,
         "changedCount": len(changed),
         "changed": [r["url"] for r in changed],
-        "hashBasis": HASH_BASIS,
-        "note": ("Automated re-check of every official URL behind this dashboard. A changed flag means the visible text "
-                 "differs from the stored text hash and a human must re-read the source before any value is changed. "
-                 "A raw-body hash difference with identical visible text is recorded as noise, not as a change. "
+        "hashBasis": "Per URL: normalized HTML text or complete PDF bytes; see each row's hashBasis",
+        "note": ("Automated re-check of every official URL behind this dashboard. HTML changes compare normalized text. "
+                 "PDF changes compare all bytes, including compressed streams; a PDF flag may be metadata-only and "
+                 "does not prove a wording or value change. A human must re-read the source before any value is changed. "
+                 "Only an HTML raw-body difference with identical comparable text is recorded as noise. "
                  "A 'blocked' row means the venue's edge refused this datacenter runner (HTTP 403/401/429 or a bot "
                  "redirect); it does not mean the page is gone. Those URLs are covered by a manual read, and the last "
                  "manual result is on the Sources page."),

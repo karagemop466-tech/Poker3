@@ -96,11 +96,11 @@ class VisibleTextTests(unittest.TestCase):
         b = content_hash(b"<p>Guarantee: $20,000</p>", "text/html")
         self.assertNotEqual(a, b)
 
-    def test_pdf_bytes_are_compared_on_extracted_text(self):
+    def test_pdf_stream_changes_are_never_discarded(self):
         from scripts.check_sources import content_hash
         a = content_hash(b"%PDF-1.4\nstream binary-one endstream\nStart Time: 11:10 AM", "application/pdf")
         b = content_hash(b"%PDF-1.4\nstream binary-two endstream\nStart Time: 11:10 AM", "application/pdf")
-        self.assertEqual(a, b)
+        self.assertNotEqual(a, b, "PDF streams contain rules and fees; discarding them hides real changes")
 
     def test_a_record_without_a_text_hash_seeds_a_new_baseline(self):
         """Rolling this change out must not flag all 79 pages at once."""
