@@ -7018,3 +7018,24 @@ Standing decision: **HOLD** on any nonrefundable payment, unchanged. Re-read the
 - Scheduled re-check on `main` for `af87192` (run [44601739675](https://github.com/karagemop466-tech/Poker3/actions/runs/44601739675)): every step succeeded, including the dashboard gate. The job then published its record as `f8cbc1f`.
 - Pages: the deploy for `main` is picking up later commits from other sessions (latest `be5127f` deploy `success`). The GitHub Pages legacy build still reports `errored` in the API (flag above, not changed by this session).
 - Status: the scheduled re-check gate is repaired. Tasks in the broader brief that remain open (hotel rate capture per date, walking routes, an 8 AM all-day plan, other Strip rooms) are not addressed by this session.
+
+## Session `arena/45f09a98-poker3` — final integration and GitHub Pages closeout (2026-11-19 UTC)
+
+Branch: `arena/45f09a98-poker3`, set to `origin/main` at 40a1d5ed28b54a30af86c27a405e288952cdf877 (which includes merged PRs #224, #231, #232, #234, #235, #236 and #238). This session is the only active editor and acts as the integration owner for this closeout record. No tournament, hotel, flag, page or workflow file was changed by this session; the prior session (arena/98fa400f-poker3) already regenerated `site/data.json`, `site/coverage.json` and `site/sheets.html` and recorded flag F124.
+
+| Task | Status | Scope | Notes |
+|---|---|---|---|
+| Claim the closeout task on the shared board | done | `COORDINATION.md` (this section) | Recorded before any other change; committed and pushed immediately. |
+| Re-verify the complete repository | done | `site/`, `scripts/`, `tests/` | `python3 -m unittest discover -s tests`: 437 tests OK (run in a venv with pyyaml; CI installs pyyaml). `scripts/verify_site.py`: passed — 341 events, 8 hotels, 56 routes, 50 sources, 114 flags at the 2026-11-19 snapshot, 7 plan days, 19 pages. |
+| Confirm every required feature exists in the canonical dashboard | done | `site/` | Trip-cost calculator ("entries x buy-ins + nights x true hotel cost", computed from dated components), scheduled official-source re-check with changed/unavailable flags, per-row retrieval and rechecked dates, dated `rateLog` (not single values), per-venue pages (Venetian / Wynn / others), global search box across all tables, date filter, structured single-entry / re-entry / add-on / fee rule blocks each with source excerpt and retrieval date, overlap flags with a primary event and a conditional fallback per day, descriptive guaranteed-pool / entry-fee ratio (not a forecast) with bounty/flight rows labelled separately, walking-route check with the 30-minute limit, executive summary, Q&A worksheet, suggestions register, Flagged for review page. |
+| Confirm GitHub Pages publication | in progress | `.github/workflows/pages.yml`, Pages API | Legacy branch source `main /` plus the `site/` Actions artifact; live URL https://karagemop466-tech.github.io/Poker3/. Build status recorded below after the PR merge. |
+
+**What is intentionally NOT changed.** No "unverified" label is removed from any event: no official structure sheet prints a maximum entry count, so no row is promoted to confirmed single entry, freezeout or no-add-on. No hotel value is invented: date-specific checkout totals and nightly averages stay blank where the booking engine published nothing (latest dated reads kept as separate observations: $4,010.55 on 2026-11-17; $3,619.39 and $3,755.44 on 2026-11-19; neither is adopted or averaged). The 8:00 AM all-day start is not built: no official source publishes it (earliest verified main-list start 10:10 AM, flag F17). Walking times remain estimates labelled as such (the sandbox has no route to maps providers). Blank means unknown, never zero; nothing is inferred.
+
+**Sources.** Every row links the official venue page or PDF it was read from (Venetian DeepStack schedule and structure sheets; Wynn/WPT schedule and structures; Bellagio weekly PDFs; property hotel and terms pages). Retrieval dates are carried per row and per source (2026-11-16 and 2026-11-19). Third-party listings are not used for any value.
+
+**Irregularities carried forward (do not block merge; published on `site/flagged.html`):** no event confirmed strictly single entry; date-specific hotel totals blank; 8 AM start unpublished; walking times unverified; WPT Dec 18 weekday conflict (F01/F61); Bellagio Saturday buy-in conflict; sources unavailable in the last automated check are marked unavailable, not unchanged; the booking-engine drift is flagged F124.
+
+**Pull request:** #237 (arena/45f09a98-poker3 -> main), created 2026-11-19: https://github.com/karagemop466-tech/Poker3/pull/237 — summary, sources and carried-forward irregularities above.
+**Merge:** pending (`gh pr merge 237 --merge`).
+**GitHub Pages:** deploy to be confirmed at the merge commit (build status recorded below).
