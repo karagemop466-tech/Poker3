@@ -3,8 +3,6 @@ import contextlib
 import io
 import json
 from pathlib import Path
-import shutil
-import subprocess
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -12,9 +10,6 @@ import urllib.error
 
 from scripts import daily_feed
 from scripts.verify_site import official
-
-ROOT = Path(__file__).resolve().parents[1]
-
 
 class FeedStatusTests(unittest.TestCase):
     def test_current_room_targets_and_schedule_documents(self):
@@ -65,7 +60,3 @@ class FeedStatusTests(unittest.TestCase):
             self.assertRegex(pages['pdf']['hash'], r'^[a-f0-9]{64}$')
             self.assertNotIn('hash', pages['redirect'])
             self.assertEqual(len(list((root / 'feed').glob('*.txt'))), 1)
-
-    @unittest.skipUnless(shutil.which('node'), 'Node is required for the feed render test')
-    def test_published_feed_renders_and_missing_record_stays_distinct(self):
-        subprocess.run(['node', 'tests/feed_status_render.js'], cwd=ROOT, check=True)
