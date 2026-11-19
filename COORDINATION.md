@@ -4384,3 +4384,11 @@ The platform binds this session to the existing branch `arena/a6d0d539-poker3`, 
 **Disposition / handoff.** PR #130 (`arena/58e42dbd-poker3`) had no update since 2026-11-17 22:44:38 UTC when this claim was made. The intended takeover was limited to its calculator defects; its separate bot-block source-monitor work was excluded. Before retaining any implementation, a fresh PR #112 file-list check showed it is still open and actively includes `scripts/data_source.py`, `scripts/verify_site.py`, `site/assets/app.js`, and `site/data.json`—the shared files required for a reproducible exact-sum fix. In accordance with the standing instruction to leave other open PRs untouched and defer shared-data integration, all calculator code/data changes from this attempt were discarded. PR #112 and PR #130 remain open and untouched; no values or facts were changed by this attempt. The claim is released and the exact-sum fix is deferred to final integration after the overlapping work lands.
 
 PR #144 merged at 2026-11-18 03:24:20 UTC as `28cdc301`. The branch was later rebased onto `main` at `0c22e9c`, preserving the subsequent PR #145/#147/#148 integration and audit records. The active deliverable on this branch remains the already-completed global-search/mobile-usability task recorded immediately above; the calculator changes are not part of it.
+
+## Session 6a0b16d7 · decision-ready executive summary · 2026-11-19 UTC
+
+| Task | Status | Owner | File scope |
+|---|---|---|---|
+| Audit the canonical landing page against the current trip and official evidence; remove impossible or stale recommendations; publish source-linked decision gates, verification results and outstanding gaps | in progress | arena/6a0b16d7-poker3 (integration for this scope) | `site/index.html`, `site/assets/decision-summary.js`, `site/assets/decision-summary.css`, `site/flagged.html`, `tests/test_decision_summary.py`, `research/decision-audit-2026-11-19.md`, this board |
+
+PRs #112 and #130 remain open and own the shared model, calculator, and several generator files; this claim does not edit their scopes (other than appending to the shared board). The canonical site and morning jobs already exist. Branch name is platform-assigned. No other sessions started here.
