@@ -5017,3 +5017,46 @@ Branch: `arena/23505d42-poker3`, branched from `main` at `23ad5d8` (the current 
 
 **Scope protocol.** No tournament, hotel, rate, route or policy value is inferred. A page re-read that confirms existing values updates `lastVerified` dates and the flag register; anything else is flagged for review.
 >>>>>>> 609f1ce (coord: claim 2026-11-19 re-read + integration task (arena-23505d42))
+
+### Result (session `arena/23505d42-poker3`, 2026-11-19 UTC; reconciled with `arena/827185f7` after rebase)
+
+**Task 1 — manual re-read of changed and bot-blocked sources: done.** All seven pages in the change batch (the F92
+Venetian poker page plus the six pages the 2026-11-19 05:33 UTC scheduled run flagged `wordingChanged`) and every
+page/PDF the monitor's fetcher could not reach were fetched and read by hand on 2026-11-19. **No published value
+changed.** Verbatim excerpts and per-URL comparisons: `research/reread_2026-11-19_arena-23505d42.md`.
+
+- This work ran **in parallel with session `arena/827185f7-poker3`** (merged via PRs #174/#177 while this session
+  was reading); the overlap surfaced at rebase. Both records cover the same URLs and agree on every value. Main's
+  register entry for the batch is **F95** (their record: `research/reread_2026-11-19.md`); this session's file is
+  the independent second read. Main's F92 resolution (the change was the series banner rolling from WPT Fall
+  Festival to DeepStack Extravaganza IV) is corroborated by this session's read; main's F93 (Hotels — the Venetian
+  booking engine again printed no checkout total for the trip window) is likewise corroborated: this session's
+  attempt returned the same shell, so the 2026-11-17 itemised quote ($4,010.55) remains the latest dated quote.
+  **No duplicate flag was added**; this session's draft flag was dropped in favour of main's F95.
+- Re-confirmed still open with fresh reads: F56 (Wynn Signature structures file — still only "COMING SOON" under
+  the same v1762299460 URL), the Bellagio Saturday $1,100-header vs $600-body conflict, F90 (Caesars article
+  "every event $100" vs its flyer's $160), F41 (NYE 2025 print), F91/F17/F31 details.
+
+**Task 2 — final verification, reconciliation and integration: done (merge record below).** On the integrated base:
+
+1. **Backwards-drag defect fixed.** Main's `SOURCES_2026_11_19` pass stamped 16 sources `checked=2026-11-19`, but
+   the later 2026-11-17 `RECHECKED_URLS` pass (and the hotels `lastChecked` line under it) overwrote the newer
+   dates back to 2026-11-17 — main's published `site/data.json` carried e.g. `wynn-poker: checked 2026-11-17` and
+   Wynn hotel `lastChecked 2026-11-17` even though the 2026-11-19 pass had read them. The 2026-11-17 passes now
+   skip anything already stamped 2026-11-19; a newer manual read can no longer be dragged backwards.
+2. **Room-row read dates completed.** This session re-read, by hand, ten official sources main's pass does not
+   cover (Bellagio Fri/Sat/Sun PDFs, MGM poker page + weekly schedule + $120 structure, Caesars article + flyer,
+   ARIA poker page + guide) and stamped them `checked=2026-11-19`. A derived pass then moves `lastChecked`/
+   `lastVerified` (and the matching rule excerpts' `retrieved` dates) to 2026-11-19 for the **20 recurring room
+   rows** whose schedule or sheet source is one of the URLs read in this batch (bell-0..3, mgm-0..3, caes-0..3,
+   horse-0..5, aria-0..1). The URL set is explicit in the code so it cannot reach rows stamped 2026-11-19 by a
+   different session's pass (the 94 DSE IV rows keep their own read dates). Wynn Signature rows keep 2026-11-17:
+   their values come from the schedule PDF, which was not re-read; only their structures file was (still "COMING
+   SOON", F56).
+3. **Verification.** `verify_site.py` passed (341 events / 8 hotels / 56 routes / 48 sources / 92 flags / 7 plan
+   days / 16 pages); **260 unit tests OK**; `verify_entry_labels.py`, `audit_data.py`, `verify_transcription.py
+   --dry-run` (44/44) passed; canonical smoke + DOM renders + walk-limit render passed; `node --check` on
+   app.js/search.js OK; `data.json` rebuild byte-identical. One test (`tests/test_caesars_flyer_2026_11_18.py`)
+   was widened to accept either flyer retrieval date (2026-11-18 or 2026-11-19) because the same flyer was read
+   on both days.
+>>>>>>> c14bb08 (coord: record reconciled result (parallel-read agreement with 827185f7; F95/F92/F93 terms))
