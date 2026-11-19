@@ -5713,3 +5713,14 @@ the merged sources; no other session's work was overwritten.
 **Verification policy.** Every table row keeps its official source link. A value that cannot be confirmed from an
 official venue or property page/PDF is left blank and flagged. Third-party pages are cited only as conflicts, never as
 values. Any changed official page is flagged for a human re-read; automation never moves a published value.
+## Session `arena/770f7725-poker3` — line-by-line audit, gap closure, final integration (2026-11-19 UTC)
+
+Branch: `arena/770f7725-poker3`, branched from `main` at `e79f5a62c41ef164882f1c9d299659964a62e69a`. The platform binds a session to one branch, so the `session-<id>/<task>` branch naming cannot be applied here; this branch is this session's only working branch and this session is the integration/owner session for its shared outputs. Claim time: 2026-11-19 UTC.
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| T1 Audit the existing canonical dashboard, data pipeline, tests, workflows and board against the full requirement list; identify stale/unverified/contradictory rows and any committed merge artefacts | in progress | `arena/770f7725` | whole repo (read first), `research/` (new dated audit record), `COORDINATION.md` | Official-source re-reads via the platform fetch tools; no value inferred or filled in. |
+| T2 Close verifiable gaps (site, calculator, filters, dated logs, change monitoring, flags, per-row sources) and re-verify line by line | pending | `arena/770f7725` | `site/**`, `scripts/**`, `data/**`, `tests/**`, `docs/**` (only if required), `COORDINATION.md` | Small frequent commits; `git pull --rebase` before each push. |
+| T3 Final verification, PR from this branch to `main`, merge, GitHub Pages deploy confirmation, board record | pending | `arena/770f7725` | whole repo (integration), `COORDINATION.md` | Flagged/unverified items do not block merge; they are published on Flagged for review. |
+
+**Scope protocol.** No tournament, hotel, rate, walking, duration or policy value is inferred. Every edited data value must point to an official source read in this session, with its retrieval date; anything else stays blank and is flagged. Other sessions' board sections and code are preserved; conflicts are resolved without discarding their work and logged here.
