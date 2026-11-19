@@ -4400,3 +4400,7 @@ PRs #112 and #130 remain open and own the shared model, calculator, and several 
 | Run publication checks and record current source-access limitations | in progress | `arena/25d4bbd4-poker3` | `.github/workflows/verify.yml`, `.github/workflows/source-monitor.yml`, `.github/workflows/checks.yml`, `site/flagged.html`, `COORDINATION.md` |
 
 The board already exists on main. PRs #112 and #130 overlap the shared catalog and calculator; this session does not edit their files or merge their branches. No new source values will be inferred.
+
+- **Done — PR [#151](https://github.com/karagemop466-tech/Poker3/pull/151).** Local checks: 204 unit tests, canonical and companion smoke/render, reproducible catalog and official-capture comparisons. The Venetian PDF matched 94/94 rows with 32 blank continuation cells; Wynn matched 136/136 with eight conflicting printed weekdays. Both official PDFs and the live Venetian poker-room page reread on November 19 are linked on Flagged for Review. This was not a fresh live reread of every individual structure sheet or checkout.
+- **Rebase:** Main advanced with #150; resolved the append-only board conflict by retaining both entries. No catalog or other session's changes were discarded.
+- **Remaining review:** no confirmed written single-entry cap, official finish times or full like-for-like fresh checkout set. The automated check distinguishes page changes and failed retrievals; it does not confirm event fields. GitHub records the merge and deployment independently of this board.
