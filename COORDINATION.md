@@ -7011,3 +7011,10 @@ Standing decision: **HOLD** on any nonrefundable payment, unchanged. Re-read the
 **Verification.** 441 unit tests passed with PyYAML 6.0.3 installed in `/tmp` only. `verify_site.py`: 341 events / 8 hotels / 56 routes / 50 sources / 115 flags / 7 plan days / 19 pages. `audit_951cd431.py`, `verify_live_official.py`, `audit_data.py`, `verify_entry_labels.py`, DSE 94-row and WPT 136-row transcriptions, 44-row transcription check, canonical smoke (14 main + 5 detail pages), rendered dashboard and venue checks, walk-limit, calculator, day-plan, sheet-recheck and JavaScript syntax checks all passed. The rendered-change tests use synthetic fixtures; no live source values were changed.
 
 **Irregularities.** No new source irregularity was found or created by this code-only change. Existing flags remain: the Wynn booking-engine URL change is not interpreted as a rate change, and the standing HOLD remains until F31 (written one-entry cap), F16 (finish times) and F17 (8 AM start) are resolved from official sources. PR #224 was open at claim time; its board record and subsequent main-branch logs were preserved through rebases.
+
+### b3501a60 result record
+
+- PR [#230](https://github.com/karagemop466-tech/Poker3/pull/230) (`arena/b3501a60-poker3` → `main`), merged with `gh pr merge 230 --merge` on 2026-11-19 19:46:07 UTC. Merge commit `af87192`.
+- Scheduled re-check on `main` for `af87192` (run [44601739675](https://github.com/karagemop466-tech/Poker3/actions/runs/44601739675)): every step succeeded, including the dashboard gate. The job then published its record as `f8cbc1f`.
+- Pages: the deploy for `main` is picking up later commits from other sessions (latest `be5127f` deploy `success`). The GitHub Pages legacy build still reports `errored` in the API (flag above, not changed by this session).
+- Status: the scheduled re-check gate is repaired. Tasks in the broader brief that remain open (hotel rate capture per date, walking routes, an 8 AM all-day plan, other Strip rooms) are not addressed by this session.
