@@ -1,0 +1,39 @@
+{
+  "session": "arena/d2f205b3-poker3",
+  "readOn": "2026-11-19",
+  "method": "fetch_page (live) of https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html, chunks 0-3 (totalChunks 4)",
+  "pageTitle": "DeepStack Extravaganza - November 16 – December 23, 2026 | Poker Tournament | The Venetian Resort Las Vegas",
+  "tripWindowRows": [
+    {"date": "2026-11-23", "time": "11:10 AM", "eventNo": 7, "buyIn": 400},
+    {"date": "2026-11-23", "time": "5:10 PM", "eventNo": 8, "buyIn": 200},
+    {"date": "2026-11-24", "time": "11:10 AM", "eventNo": 7, "buyIn": 400},
+    {"date": "2026-11-24", "time": "5:10 PM", "eventNo": 9, "buyIn": 200},
+    {"date": "2026-11-25", "time": "11:00 AM", "eventNo": 7, "buyIn": 400},
+    {"date": "2026-11-25", "time": "11:10 AM", "eventNo": 10, "buyIn": 400},
+    {"date": "2026-11-25", "time": "5:10 PM", "eventNo": 11, "buyIn": 200},
+    {"date": "2026-11-26", "time": "11:10 AM", "eventNo": 12, "buyIn": 300},
+    {"date": "2026-11-26", "time": "5:10 PM", "eventNo": 13, "buyIn": 200},
+    {"date": "2026-11-27", "time": "11:10 AM", "eventNo": 14, "buyIn": 600},
+    {"date": "2026-11-27", "time": "5:10 PM", "eventNo": 15, "buyIn": 200},
+    {"date": "2026-11-28", "time": "11:10 AM", "eventNo": 16, "buyIn": 600},
+    {"date": "2026-11-28", "time": "12:10 PM", "eventNo": 17, "buyIn": 400},
+    {"date": "2026-11-28", "time": "5:10 PM", "eventNo": 18, "buyIn": 200},
+    {"date": "2026-11-29", "time": "11:10 AM", "eventNo": 19, "buyIn": 400},
+    {"date": "2026-11-29", "time": "12:10 PM", "eventNo": 20, "buyIn": 300},
+    {"date": "2026-11-29", "time": "5:10 PM", "eventNo": 21, "buyIn": 200},
+    {"date": "2026-11-30", "time": "11:10 AM", "eventNo": 19, "buyIn": 400},
+    {"date": "2026-11-30", "time": "5:10 PM", "eventNo": 22, "buyIn": 200}
+  ],
+  "earliestStartsOnPage": {
+    "earliestMainListStart": "10:00 AM (Event 39 Day 2 restart, Fri 2026-12-11)",
+    "earliestMainListFirstFlightStart": "10:10 AM (several dates)",
+    "earliestAnyRowStart": "9:10 AM (Event 46, $260 Turbo Milestone Satellite, Sat 2026-12-12, awards direct entry only)",
+    "eightAmRowsFound": 0
+  },
+  "bookingEngineRead": {
+    "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar",
+    "result": "Returned a page shell only ('Your Venice meets Vegas getaway is loading' plus Venetian Rewards marketing). No checkout total, nightly rate or calendar price was present in the fetched text.",
+    "quoteRefreshed": false,
+    "carriedForward": "Checkout total $4,010.55 for 2026-11-23 to 2026-11-30, read 2026-11-17 (rate log)."
+  }
+}

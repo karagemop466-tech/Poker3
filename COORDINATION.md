@@ -6689,3 +6689,27 @@ approval) at **2026-11-19T11:54:19Z**; merge commit
 - **Still needs a human action:** a written question to the Venetian poker room (lv_cas_poker@venetianlasvegas.com, 702.414.7657, as printed on the suite-rate page) about the maximum entries per player, re-entry, rebuys and add-ons for the DSE IV events. No public source answers it.
 
 - **Merge record (session `arena/d66d77dc-poker3`).** PR [#225](https://github.com/karagemop466-tech/Poker3/pull/225) merged with `gh pr merge 225 --merge` at 2026-11-19T19:42:58Z, merge commit `4010f2ef26cc92cc643f793fbc48d0593a22a92a`. Documentation-only; no site, data or workflow file changed, so no Pages rebuild was needed.
+---
+
+## Session `arena/d2f205b3-poker3` — live re-read of trip-window rows, 8 AM start check, booking-engine re-read (2026-11-19 UTC)
+
+**Claim.** Read-only on the published dataset. Files touched: `research/reread_2026-11-19_arena-d2f205b3.json` (new), `tests/test_reread_2026_11_19_d2f205b3.py` (new), this section. No value in `site/data.json`, no page and no workflow was changed.
+
+**Baseline.** `python -m unittest discover -s tests` in a venv with `pyyaml` installed: **434 tests OK**. Under the bare sandbox Python, 3 test modules (`test_monitor_record_robustness`, `test_pages_gate`, `test_workflows`) fail to import because `yaml` is missing. That is an environment gap, not a repo defect; CI installs `pyyaml`. `scripts/verify_site.py`: passes (341 events, 8 hotels, 56 routes, 50 sources, 114 flags, 7 plan days, 19 pages).
+
+**Official sources read live this session (fetch tool, 2026-11-19):**
+- Venetian DeepStack Extravaganza IV schedule: https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html (4 chunks, all read).
+- Venetian booking engine, 23–30 Nov 2026, 2 adults: https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar
+
+**Results.**
+1. **Trip-window schedule (Venetian, 23–30 Nov): 19 of 19 live rows match** the published events on date, time and buy-in (`tests/test_reread_2026_11_19_d2f205b3.py`). Names were compared by eye; buy-ins and times are the checked fields.
+2. **8 AM start (F17): still not published.** Across all four chunks, the earliest row is a 9:10 AM $260 Turbo Milestone Satellite (Event 46, Sat 12 Dec, awards direct entry only). The earliest main-list rows are 10:00 AM (Event 39 Day 2 restart, Fri 11 Dec) and 10:10 AM. F17 remains open; the all-day plan stays built from verified starts.
+3. **Venetian checkout total: not refreshed.** The booking URL returned only a loading shell ("Your Venice meets Vegas getaway is loading") with no price. The $4,010.55 quote dated 2026-11-17 stays the latest dated figure. It is two days old and is not a current quote.
+
+**Irregularities observed (for manual review, no new flag filed):**
+- The official page prints "No LImit Hold'em" (capital I) on the rows for Event 2 (Wed 18 Nov), Event 10 (Wed 25 Nov) and Event 12 (Thu 26 Nov), among others. Cosmetic; no value affected.
+- The page names Event 35 "LIPS Poker Jingle Tag Team" and Event 39 "LIPS Ladies", with the Event 39 Day 2 restart listed at 10:00 AM on 11 Dec. These are as printed, outside the trip window, and not used for any value.
+
+**Verification performed.** Live fetch of all four schedule chunks; line-by-line compare of the 19 trip-window rows against `site/data.json`; booking-engine fetch; unit tests (new test file run alone and in the full suite); `verify_site.py`.
+
+**Decision.** Standing HOLD on any nonrefundable payment is unchanged: the hotel total is dated 2026-11-17, the 8 AM start is unpublished, and no walking route or entry cap was verified in this pass.
