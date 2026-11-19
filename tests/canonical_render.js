@@ -13,6 +13,14 @@ const vm = require('vm');
 
 const ROOT = path.resolve(__dirname, '..');
 const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'site', 'data.json'), 'utf8'));
+const venetianHotel = (data.hotels || []).find((hotel) => hotel.id === 'venetian') || {};
+const widgetDefaults = {
+  'calc-rate': typeof venetianHotel.baseRateFloor === 'number' ? String(venetianHotel.baseRateFloor) : '',
+  'calc-fee': typeof venetianHotel.resortFee === 'number' ? String(venetianHotel.resortFee) : '',
+  'calc-tax': typeof venetianHotel.taxRate === 'number' ? String(venetianHotel.taxRate) : '',
+  'calc-nights': data.trip && data.trip.nights !== null && data.trip.nights !== undefined && data.trip.nights !== '' &&
+    Number.isInteger(Number(data.trip.nights)) && Number(data.trip.nights) >= 0 ? String(Number(data.trip.nights)) : ''
+};
 // The fixture has to sit on a row the table actually shows. Past rows are hidden by default, so
 // pinning this to data.events[0] made the badge assertion depend on the snapshot date rather than
 // on the renderer (it broke when the snapshot moved from 2026-11-17 to 2026-11-19).
@@ -52,6 +60,7 @@ function makeElement(selector) {
     hidden: true,
     dataset: {},
     value: '',
+    validity: { valid: true },
     checked: false,
     type: 'text',
     tagName: 'DIV',
@@ -81,6 +90,11 @@ function runPage(page, search) {
     body,
     querySelector(sel) { return hook(sel); },
     querySelectorAll(sel) { return [hook(sel)]; },
+    getElementById(id) {
+      const el = hook('#' + id);
+      if (Object.hasOwn(widgetDefaults, id) && el.value === '') el.value = widgetDefaults[id];
+      return el;
+    },
   };
   const location = {
     pathname: '/' + (page === 'home' ? 'index.html' : page === 'global-search' ? 'search.html' : page + '.html'),
@@ -208,6 +222,11 @@ function runVenuePage(venueAttr) {
       const pr = reg.get('[data-poker-rate]');
       if (!pr || !/poker-suite rate is held only if/.test(pr.html)) {
         console.log('FAIL  hotels: the poker-rate requirement card did not render');
+        failures++;
+      }
+      const hotelCost = reg.get('#calc-out');
+      if (!hotelCost || !hotelCost.html.includes('$197.28</strong> per night') || !hotelCost.html.includes('for 7 nights')) {
+        console.log('FAIL  hotels: the published-component calculator did not render its default estimate');
         failures++;
       }
     }

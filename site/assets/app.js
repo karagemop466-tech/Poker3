@@ -706,22 +706,42 @@ function renderHotels() {
 
   const calc = document.querySelector('[data-calculator]');
   if (calc) {
+    const venetian = (db.hotels || []).find((hotel) => hotel.id === 'venetian') || {};
+    const inputValue = (value) => typeof value === 'number' && Number.isFinite(value) && value >= 0 ? String(value) : '';
+    const rawNights = db.trip && db.trip.nights;
+    const parsedNights = rawNights === null || rawNights === undefined || rawNights === '' ? null : Number(rawNights);
+    const defaultNights = Number.isInteger(parsedNights) && parsedNights >= 0 ? String(parsedNights) : '';
     calc.innerHTML = `
       <div class="calc">
-        <label>Published room rate<input type="number" id="calc-rate" value="119" step="1"></label>
-        <label>Mandatory resort fee<input type="number" id="calc-fee" value="55" step="1"></label>
-        <label>Tax rate %<input type="number" id="calc-tax" value="13.38" step="0.01"></label>
-        <label>Nights<input type="number" id="calc-nights" value="${esc((db.trip && db.trip.nights) || 7)}" step="1"></label>
+        <label>Published room rate<input type="number" id="calc-rate" min="0" value="${esc(inputValue(venetian.baseRateFloor))}" step="0.01"></label>
+        <label>Mandatory resort fee<input type="number" id="calc-fee" min="0" value="${esc(inputValue(venetian.resortFee))}" step="0.01"></label>
+        <label>Tax rate %<input type="number" id="calc-tax" min="0" value="${esc(inputValue(venetian.taxRate))}" step="0.01"></label>
+        <label>Nights<input type="number" id="calc-nights" min="0" value="${esc(defaultNights)}" step="1"></label>
       </div>
-      <p class="calc-out" id="calc-out"></p>
-      <p class="muted">Formula: (room rate + mandatory resort fee) × (1 + tax rate). It is arithmetic on published components, not a quote.</p>`;
+      <p class="calc-out" id="calc-out" aria-live="polite"></p>
+      <p class="muted">Formula: (room rate + mandatory resort fee) × (1 + tax rate). Blank or invalid values stay unknown; enter 0 explicitly if it is confirmed. This is arithmetic on published components, not a quote.</p>`;
     const update = () => {
-      const rate = parseFloat(document.getElementById('calc-rate').value) || 0;
-      const fee = parseFloat(document.getElementById('calc-fee').value) || 0;
-      const tax = parseFloat(document.getElementById('calc-tax').value) || 0;
-      const nights = parseInt(document.getElementById('calc-nights').value, 10) || 0;
-      const per = (rate + fee) * (1 + tax / 100);
-      document.getElementById('calc-out').innerHTML =
+      const number = (id, integer = false) => {
+        const input = document.getElementById(id);
+        if (input.value.trim() === '' || !input.validity.valid) return null;
+        const value = Number(input.value);
+        return Number.isFinite(value) && value >= 0 && (!integer || Number.isInteger(value)) ? value : null;
+      };
+      const rate = number('calc-rate');
+      const fee = number('calc-fee');
+      const tax = number('calc-tax');
+      const nights = number('calc-nights', true);
+      const output = document.getElementById('calc-out');
+      if ([rate, fee, tax].some((value) => value === null)) {
+        output.textContent = 'True nightly cost unavailable: enter valid rate, fee and tax values.';
+        return;
+      }
+      const per = Math.round((rate + fee) * (1 + tax / 100) * 100) / 100;
+      if (nights === null) {
+        output.innerHTML = `<strong>$${per.toFixed(2)}</strong> per night · stay total unavailable: enter a valid night count.`;
+        return;
+      }
+      output.innerHTML =
         `<strong>$${per.toFixed(2)}</strong> per night · <strong>$${(per * nights).toFixed(2)}</strong> for ${nights} nights`;
     };
     calc.querySelectorAll('input').forEach((i) => i.addEventListener('input', update));
@@ -809,12 +829,14 @@ function renderSchedule() {
   const sum = document.querySelector('[data-plan-summary]');
   if (sum) {
     const t = db.trip || {};
+    const nightlyBudgetText = typeof t.nightlyBudget === 'number' && Number.isFinite(t.nightlyBudget) && t.nightlyBudget >= 0
+      ? '$' + t.nightlyBudget.toFixed(2) : 'Not published';
     sum.innerHTML = `
       <div class="detail-grid">
         <div><span class="label">Trip dates</span><span class="value">${esc(t.start)} → ${esc(t.end)}</span></div>
         <div><span class="label">Nights</span><span class="value">${esc(t.nights)}</span></div>
         <div><span class="label">Recommended hotel</span><span class="value">The Venetian / The Palazzo resort</span></div>
-        <div><span class="label">Nightly budget fixed at</span><span class="value">$${(t.nightlyBudget || 0).toFixed(2)}</span></div>
+        <div><span class="label">Nightly budget fixed at</span><span class="value">${esc(nightlyBudgetText)}</span></div>
         <div><span class="label">Primary buy-ins</span><span class="value">${money(t.primaryBuyIns) || 'not computed'}</span></div>
         <div><span class="label">Bankroll with a 25% buffer</span><span class="value">${money(t.bankrollWithBuffer) || 'not computed'}</span></div>
       </div>
@@ -1154,13 +1176,17 @@ function renderHome() {
   const trip = document.querySelector('[data-trip-card]');
   if (trip) {
     const t = db.trip || {};
+    const nightlyBudgetIsKnown = typeof t.nightlyBudget === 'number' && Number.isFinite(t.nightlyBudget) && t.nightlyBudget >= 0;
+    const nightlyBudgetNote = nightlyBudgetIsKnown
+      ? `Nightly budget fixed at $${t.nightlyBudget.toFixed(2)} (the published floor).`
+      : 'Nightly budget not published; no amount is inferred.';
     trip.innerHTML = `
       <div class="kicker">Recommended trip · fixed by this session</div>
       <h3>${esc(t.start)} → ${esc(t.end)} · ${esc(t.nights)} nights · ${esc(t.days)} days</h3>
       <p>Stay on the Venetian / Palazzo resort. The poker room is on site, the published poker-suite rate starts at
          $119 before the $55 mandatory resort fee and 13.38% Clark County room tax, and the walk to any other
          Strip room on the list is inside 30 minutes.</p>
-      <p class="muted">Nightly budget fixed at $${(t.nightlyBudget || 0).toFixed(2)} (the published floor).
+      <p class="muted">${esc(nightlyBudgetNote)}
          The ${db.dayPlan.length} planned primary candidates total ${money(t.primaryBuyIns)} in buy-ins; with a 25% buffer, plan on
          ${money(t.bankrollWithBuffer)}.</p>
       ${costLine()}

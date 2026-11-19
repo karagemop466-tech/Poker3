@@ -7,6 +7,7 @@ import unittest
 
 ROOT = Path(__file__).resolve().parents[1]
 PAGE = (ROOT / "site" / "calculator.html").read_text(encoding="utf-8")
+APP = (ROOT / "site" / "assets" / "app.js").read_text(encoding="utf-8")
 DATA = json.loads((ROOT / "site" / "data.json").read_text(encoding="utf-8"))
 
 
@@ -46,6 +47,27 @@ class CalculatorPageTests(unittest.TestCase):
         self.assertIn("if (!input || input.value.trim() === '') return null;", PAGE)
         self.assertNotIn("Number(form.taxRate.value) || 0", PAGE)
         self.assertNotIn("parseFloat(document.getElementById('calc-tax').value) || 0", PAGE)
+
+    def test_hotel_widget_defaults_come_from_published_property_components(self):
+        self.assertIn("(db.hotels || []).find((hotel) => hotel.id === 'venetian')", APP)
+        self.assertIn("inputValue(venetian.baseRateFloor)", APP)
+        self.assertIn("inputValue(venetian.resortFee)", APP)
+        self.assertIn("inputValue(venetian.taxRate)", APP)
+        self.assertIn("defaultNights", APP)
+        self.assertNotIn('id="calc-rate" min="0" value="119"', APP)
+        self.assertNotIn('id="calc-fee" min="0" value="55"', APP)
+
+    def test_unknown_nightly_budget_is_not_displayed_as_zero(self):
+        self.assertNotIn("t.nightlyBudget || 0", APP)
+        self.assertIn("'Nightly budget not published; no amount is inferred.'", APP)
+        self.assertIn("? '$' + t.nightlyBudget.toFixed(2) : 'Not published'", APP)
+
+    def test_missing_hotel_components_are_cleared_not_reused_or_zeroed(self):
+        self.assertIn("form.rate.value = b.dataset.rate", PAGE)
+        self.assertIn("form.resortFee.value = b.dataset.fee", PAGE)
+        self.assertIn("form.taxRate.value = b.dataset.tax", PAGE)
+        self.assertIn("form.parking.value = b.dataset.parking", PAGE)
+        self.assertNotIn("data-preset=\"quote\"", PAGE)
 
     def test_render_uses_exact_plan_and_keeps_quote_separate(self):
         script = PAGE.split("<script>")[-1].split("</script>")[0]
