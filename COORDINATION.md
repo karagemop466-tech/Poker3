@@ -4636,7 +4636,7 @@ Branch: `arena/9b858e66-poker3`, branched from `main` @ `23ad5d8` (branch head e
 | A2 Live re-read of the Venetian DeepStack Extravaganza IV and NYE schedule pages; compare every row field-by-field with `site/data.json` | done — 29/29 rows matched, no value changed | arena/9b858e66-poker3 | `raw/dse_schedule_live_2026-11-19_9b858e66.md`, `scripts/verify_live_2026_11_19.py`, `scripts/data_source.py` | Only rows actually re-read get a 2026-11-19 check date (25 Venetian rows). |
 | A3 Live re-read of the hotel evidence (suite rates, resort fee, hotel terms, booking engine) and an exact-date checkout attempt for 2026-11-23 → 2026-11-30 | done — components unchanged, exact stay still unpriced | arena/9b858e66-poker3 | `scripts/data_source.py`, `site/data.json` | The engine returned no checkout total for the fourth time; no rate-log row was invented. |
 | A4 Re-read the other Strip rooms' official pages and re-confirm the open blocking flags (F31 written entry cap, F17 8 AM start, F16 finish times) | done — Wynn (5 pages) and Bellagio (2 pages) unchanged; F56 and F83 re-confirmed | arena/9b858e66-poker3 | `scripts/data_source.py`, `site/data.json` | The 2026-11-18 monitor's six changed URLs were all re-read by hand (new flag F95). |
-| A5 Full verification suite, PR → `main`, merge, Pages deploy confirmation, record result | in progress | arena/9b858e66-poker3 | whole repo | Flagged items do not block the merge; they ship on `site/flagged.html`. |
+| A5 Full verification suite, PR → `main`, merge, Pages deploy confirmation, record result | done (merged; Pages result recorded in the PR and in the section below) | arena/9b858e66-poker3 | whole repo | Flagged items do not block the merge; they ship on `site/flagged.html`. |
 
 **Scope protocol.** This session is the only active editor, so it acts as integration owner for the shared outputs (`site/**`, `scripts/**`, `tests/**`, `.github/workflows/**`, `README.md`, this file). Prior artefacts (`docs/`, `verified/`, `planner/`, `single-entry/`, `handoff/`, `pages/`, root legacy HTML, `site/poker3/**`) stay read-only. No tournament, hotel, rate, route or policy value is inferred: a blank stays blank and is flagged.
 
@@ -4675,8 +4675,9 @@ Full record: `research/live_recheck_2026-11-19_9b858e66.md`. Capture: `raw/dse_s
 - **Tests repaired, not weakened.** Three checks hard-coded a snapshot-dependent count ("339 live rows", "333 with the
   walk limit") or pinned the render fixture to `data.events[0]`, which is hidden once its date is in the past. Each now
   derives the number from `site/data.json`, so advancing the live pass cannot silently rebase what it asserts.
-- **Suite on the merged tree:** `python3 -m unittest discover -s tests` → **228 tests OK**; `verify_site.py` → passed
-  (341 events, 8 hotels, 56 routes, 47 sources, 89 flags, 7 plan days, 16 pages); `verify_live_2026_11_19.py`,
+- **Suite on the merged tree:** `python3 -m unittest discover -s tests` → **251 tests OK** after the second and third
+  merges; `verify_site.py` → passed
+  (341 events, 8 hotels, 56 routes, 47 sources, 91 flags, 7 plan days, 16 pages); `verify_live_2026_11_19.py`,
   `verify_dse_full.py`, `verify_wpt_full.py`, `verify_entry_labels.py`, `audit_data.py`, `verify_transcription.py
   --dry-run` (44/44) → pass; `canonical_smoke.py`, `smoke.py`, `canonical_render.js`, `walk_limit_render.js` → pass;
   `data_source.py` + `build_addendum.py` + `coverage.py` rebuild byte-identical; `git diff --check` clean.
