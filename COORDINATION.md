@@ -5383,13 +5383,13 @@ landed during this PR; the board conflict was append-only and both records were 
 | C1 Claim recorded and pushed before work | in progress → done | `arena/97eba119-poker3` | `COORDINATION.md` (this section) | Committed and pushed immediately. |
 | C2 Independent line-by-line verification: every published table row has an official source link; fresh official reads of the trip-window rows; official-URL liveness; full internal-link / no-broken-link scan of the canonical dashboard | pending | `arena/97eba119-poker3` | `research/audit_2026-11-19_97eba119.md` (new), `tests/test_official_row_sources_97eba119.py` (new) | No value is inferred; a value that cannot be confirmed from an official source stays blank and is flagged. |
 | C3 Repo irregularity review, line by line, with links for manual review | pending | `arena/97eba119-poker3` | `research/audit_2026-11-19_97eba119.md`, this board | Findings published on the Flagged for review page or recorded here with source links. |
-| C4 Final verification (full suite, verifiers, reproducibility, rendered-link check), PR → `main`, merge without approval, confirm GitHub Pages deploy, record PR link + merge result here | pending | `arena/97eba119-poker3` | whole repo (integration), this board | Flagged items and unverified values do not block the merge; site must build with no broken links first. |
+| C4 Final verification (full suite, verifiers, reproducibility, rendered-link check), PR → `main`, merge without approval, confirm GitHub Pages deploy, record PR link + merge result here | done | `arena/97eba119-poker3` | whole repo (integration), this board | Flagged items and unverified values did not block the merge; the site built with 0 broken local links. |
 
 **Non-overlap.** `scripts/data_source.py`, `scripts/coverage.py`, `site/data.json`, `site/sheets.html`, `site/coverage.json`, `README.md`, `raw/trip_window_reread_2026-11-19.md`, `research/reread_2026-11-19_tripwindow.json` and the tests named in PR #173 are the other session's scope and are not edited here. If that PR merges first, this session rebases and keeps both records.
 
 ### Result (session `arena/97eba119-poker3`, 2026-11-19 UTC)
 
-**Claim status: C1 done · C2 done · C3 done · C4 in progress (PR → `main`, merge, Pages confirmation, board record below).**
+**Claim status: C1 done · C2 done · C3 done · C4 done (PR #195 merged, Pages deployed, live site read back).**
 
 **Sources read live on 2026-11-19 (official, venue/property-controlled; full excerpts and per-row links in
 `research/audit_2026-11-19_97eba119.md`):**
@@ -5411,7 +5411,7 @@ landed during this PR; the board conflict was append-only and both records were 
 
 **Rebase log.** One append-only conflict in `COORDINATION.md` after `main` advanced to `4359762` (PRs #184, #185, #186, #187). Resolved by keeping the other session's section in full and appending this session's claim; no text discarded. The earlier stray `>>>>>>>` markers seen on this session's original base were already removed on `main` by another session; a regression test now fails if any conflict marker returns.
 
-### Merge record
+### Merge record (session `arena/97eba119-poker3`, 2026-11-19 UTC)
 
 _Appended after the pull request merges._
 
@@ -5533,3 +5533,44 @@ resort-fee and hotel-terms pages and the Wynn resort-policy page match every pub
   `verify_live_official.py`, `verify_dse_live_2026_11_19.py`, `verify_live_2026_11_19.py` all passed;
   `canonical_smoke.py`, `canonical_render.js`, `walk_limit_render.js`, `tests/smoke.py` and `node --check` on all
   site scripts passed; `data_source.py` reproduced `site/data.json` byte-identically.
+- **PR:** [#195](https://github.com/karagemop466-tech/Poker3/pull/195) — `arena/97eba119-poker3` → `main`,
+  merged with `gh pr merge 195 --merge` (no approval, no `--auto`) at **2026-11-19 07:04:38 UTC**, merge
+  commit **`792e790f9f7185af14a639da20feec430b9b96f5`**.
+- **Checks on the PR head (pre-merge, both green):** `verify` **pass** (10s, run
+  [44476778021](https://github.com/karagemop466-tech/Poker3/actions/runs/44476778021)) and `transcription`
+  **pass** (3s, run [44476777997](https://github.com/karagemop466-tech/Poker3/actions/runs/44476777997)).
+- **Local gates on the merged head:** `verify_site.py` (341 events / 8 hotels / 56 routes / 49 sources /
+  95 flags / 7 plan days / 16 pages), **282 unit tests OK**, the four audits, canonical smoke + both DOM
+  renders + companion smoke, `node --check` on all four JS files, byte-identical `site/data.json` rebuild,
+  **0 broken local links across 37 published HTML files**.
+- **GitHub Pages: deployed successfully, confirmed by both publishers and by live read-back.**
+  `Publish the canonical Vegas Poker Planner to GitHub Pages` run
+  [44476835979](https://github.com/karagemop466-tech/Poker3/actions/runs/44476835979) completed
+  **success** (build 30s + deploy 10s, every validation step passed); the legacy
+  `pages build and deployment` branch job [44476834243](https://github.com/karagemop466-tech/Poker3/actions/runs/44476834243)
+  also completed **success**; the Pages API reports `status: built`, source `main /`.
+- **Live read-back after the deploy (the fix verified, not assumed).** The six paths that returned 404
+  before the merge now serve content: `/Poker3/calculator.html` and `/Poker3/browse.html` render the real
+  pages from the Actions artifact; `/Poker3/search.html`, `/Poker3/sheets.html`, `/Poker3/sources.html`
+  and `/Poker3/venues/venetian.html` resolve into the canonical `/Poker3/site/` copies; the new
+  `Operational review · canonical page paths returned 404` section is present on the live
+  [Flagged for review page](https://karagemop466-tech.github.io/Poker3/flagged.html). One transient
+  observation: the bare `https://karagemop466-tech.github.io/Poker3/venues.html` still returned a cached
+  GitHub Pages 404 in the reader, while the same URL with `#top` or a cache-busting query resolved to
+  `/Poker3/site/venues.html` and rendered the full Venues dashboard — i.e. the published root stub works
+  and the bare-URL response is a negative-cache artefact from the pre-fix read, not a missing file.
+  Live site root: https://karagemop466-tech.github.io/Poker3/ .
+- **Rebase log.** Six append-only conflicts in this board were resolved while `main` advanced through
+  PRs #181, #183, #185, #186, #187, #189, #190, #192, #194 and #196 (concurrent sessions). Every conflict
+  was at the tail of `COORDINATION.md`; each was resolved by keeping the other session's section in full
+  and appending this session's, with `test_flag_ids_are_unique` and the new conflict-marker regression test
+  guarding the result. No other session's text, code or flag was discarded. Open PRs at merge time
+  (#173, #184, #193, #197) were not touched.
+- **Open after merge (do not block; all published on the Flagged for review page with official links):**
+  F29 (switch the Pages source to *GitHub Actions* in repository settings — `PUT /pages` returns 403 for
+  the integration token), F31 (no written one-entry cap; strict filter returns 0 rows), F16/F17 (no
+  published finish times or 8 AM start), F39, F51, F56, F93/F96 (no current itemised checkout total),
+  F79/F80 (two rooms with no retrieved official page). Flagged irregularities and unverified values did
+  not block the merge, and the site built with no broken links.
+- **Follow-up.** This merge record is published to `main` by a documentation-only PR from this same branch
+  (no data or page value changes), so every push in this session goes only to `arena/97eba119-poker3`.
