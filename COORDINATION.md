@@ -5380,9 +5380,9 @@ landed during this PR; the board conflict was append-only and both records were 
 
 | Task | Status | Owner session | Scope (files) | Notes |
 |---|---|---|---|---|
-| C1 Claim recorded and pushed before work | in progress → done | `arena/97eba119-poker3` | `COORDINATION.md` (this section) | Committed and pushed immediately. |
-| C2 Independent line-by-line verification: every published table row has an official source link; fresh official reads of the trip-window rows; official-URL liveness; full internal-link / no-broken-link scan of the canonical dashboard | pending | `arena/97eba119-poker3` | `research/audit_2026-11-19_97eba119.md` (new), `tests/test_official_row_sources_97eba119.py` (new) | No value is inferred; a value that cannot be confirmed from an official source stays blank and is flagged. |
-| C3 Repo irregularity review, line by line, with links for manual review | pending | `arena/97eba119-poker3` | `research/audit_2026-11-19_97eba119.md`, this board | Findings published on the Flagged for review page or recorded here with source links. |
+| C1 Claim recorded and pushed before work | done | `arena/97eba119-poker3` | `COORDINATION.md` (this section) | Committed and pushed immediately. |
+| C2 Independent line-by-line verification: every published table row has an official source link; fresh official reads of the trip-window rows; official-URL liveness; full internal-link / no-broken-link scan of the canonical dashboard | done | `arena/97eba119-poker3` | `research/audit_2026-11-19_97eba119.md` (new), `tests/test_official_row_sources_97eba119.py` (new) | No value is inferred; a value that cannot be confirmed from an official source stays blank and is flagged. |
+| C3 Repo irregularity review, line by line, with links for manual review | done | `arena/97eba119-poker3` | `research/audit_2026-11-19_97eba119.md`, this board | Findings published on the Flagged for review page or recorded here with source links. |
 | C4 Final verification (full suite, verifiers, reproducibility, rendered-link check), PR → `main`, merge without approval, confirm GitHub Pages deploy, record PR link + merge result here | done | `arena/97eba119-poker3` | whole repo (integration), this board | Flagged items and unverified values did not block the merge; the site built with 0 broken local links. |
 
 **Non-overlap.** `scripts/data_source.py`, `scripts/coverage.py`, `site/data.json`, `site/sheets.html`, `site/coverage.json`, `README.md`, `raw/trip_window_reread_2026-11-19.md`, `research/reread_2026-11-19_tripwindow.json` and the tests named in PR #173 are the other session's scope and are not edited here. If that PR merges first, this session rebases and keeps both records.
@@ -5572,5 +5572,15 @@ resort-fee and hotel-terms pages and the Wynn resort-policy page match every pub
   published finish times or 8 AM start), F39, F51, F56, F93/F96 (no current itemised checkout total),
   F79/F80 (two rooms with no retrieved official page). Flagged irregularities and unverified values did
   not block the merge, and the site built with no broken links.
-- **Follow-up.** This merge record is published to `main` by a documentation-only PR from this same branch
-  (no data or page value changes), so every push in this session goes only to `arena/97eba119-poker3`.
+- **Follow-up.** This merge record was published to `main` by documentation-only PR
+  [#198](https://github.com/karagemop466-tech/Poker3/pull/198) from this same branch, merged with
+  `gh pr merge 198 --merge` at **2026-11-19 07:11:50 UTC** as merge commit
+  **`e134472873a6779ce261d8315a9cd2e9032c5ff5`**. Its `verify` and `transcription` checks passed, and the
+  Pages workflow for that merge (run [44477748112](https://github.com/karagemop466-tech/Poker3/actions/runs/44477748112))
+  completed **success** with the Pages API reporting `status: built`. No data or page value changed, and
+  every push in this session went only to `arena/97eba119-poker3`.
+- **Final status.** C1, C2, C3 and C4 are all **done**. The live dashboard is at
+  https://karagemop466-tech.github.io/Poker3/ ; the executive summary, tournaments, ranking, venues (one
+  page per venue), day plan, hotels, trip-cost calculator, global search, questions, suggestions, sources,
+  sheet verification and Flagged for review pages all render. Flagged irregularities remain published for
+  review and do not block anything.
