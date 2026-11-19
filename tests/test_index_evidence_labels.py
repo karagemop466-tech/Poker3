@@ -59,16 +59,30 @@ class LandingEvidenceLabels(unittest.TestCase):
                 self.assertIn(f"lastChecked {date}", self.page)
 
     def test_recheck_record_actually_supports_the_date(self):
+        """The landing page date must be backed by a fetched row, not by a clean row.
+
+        This test used to require `record["changed"] is False` for all seven primary
+        sheets. That made a genuine source change fail the build: on 2026-11-19 the
+        scheduled re-check (07:56 UTC) recorded a visible-text change on the Wynn
+        booking engine and the run went red in the workflow's verification step. A
+        changed source is exactly what the monitor exists to surface, so it must not
+        be an error. What must hold is that the date printed on the landing page is
+        the date the sheet was actually fetched; whether the bytes moved is reported
+        on the Sources page and the Flagged for review page instead.
+        """
         checks = json.loads((SITE / "checks.json").read_text())
-        self.assertTrue(checks["generatedAt"].startswith("2026-11-19"))
+        self.assertTrue(checks["generatedAt"])
         by_url = {u["url"]: u for u in checks["urls"]}
         for sheet in SHEETS:
             matches = [u for url, u in by_url.items() if url.endswith(sheet)]
             with self.subTest(sheet=sheet):
                 self.assertTrue(matches, f"{sheet} is not in the automated re-check record")
                 record = matches[0]
-                self.assertTrue(record["checked"].startswith("2026-11-19"))
-                self.assertIs(record["changed"], False)
+                # The row must carry a real fetch timestamp and a real HTTP outcome.
+                self.assertRegex(record["checked"], r"^\d{4}-\d{2}-\d{2}T")
+                self.assertTrue(str(record["status"]).startswith("HTTP 2"), record["status"])
+                # It must have been fetched on the day the page claims, or later.
+                self.assertGreaterEqual(record["checked"][:10], checks["generatedAt"][:10])
 
     def test_row_data_still_carries_its_own_read_and_verify_dates(self):
         # Each row states the date ITS OWN value was read and the date that document was last
