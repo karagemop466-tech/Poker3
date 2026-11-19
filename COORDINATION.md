@@ -6357,7 +6357,7 @@ Branch: `arena/3b5f21ac-poker3`, branched from `main` at `5c42d7f` (merge of PR 
 | Task | Status | Owner session | Scope (files) | Notes |
 |---|---|---|---|---|
 | G1 Official re-reads for non-trip-window open flags: F56 (Wynn Signature structures placeholder), F80/F103 (Resorts World official poker), F20/F73 (Horseshoe daily schedule), F99 (MGM per-property parking), F83 (Wynn daily slate Nov 27–29), F14 (Wynn resort-fee conflict), F37/F39 (property-published room-tax %), plus F71/F07/F09/F02/F52/F03/F13/F90/F105/F79 re-confirmations and the two Caesars booking calendars (S22) | done — F115, F116 | `arena/3b5f21ac-poker3` | `research/recheck_2026-11-19_arena-3b5f21ac.md` (new), `scripts/data_source.py` (two appended flags), `scripts/data_verification.py`, `scripts/daily_check.py` | 24 official sources read live on 2026-11-19 (verbatim excerpts in the research note). **No published value changed.** New F115: the official Bellagio "Saturdays \| $1,000 NLH" sheet describes a past September 13, 2026 multi-flight event (Day 2 "(9/13/26)", flights 1A–1D, per-flight registration closes), compounding the F02 three-way buy-in conflict. F116 itemizes the spot check, including that both Caesars booking calendars still print "Searching Rates" with no rate cells and that each Wynn daily sheet says it "may be suspended during … other Tournament Series" (F83 context). |
-| G1b F101 resolution (retire the five unlinked 2026-11-16 snapshots under `site/data/`) | done — F101 marked RESOLVED | `arena/3b5f21ac-poker3` | `site/data/*.json` (five files deleted), `scripts/data_verification.py` (F101 text), `scripts/daily_check.py` (now reads `site/data.json`), `tests/test_sheet_page_not_stale.py` (regression guard extended) | Follows the flag's own recommendation. The two files live scripts read (`sheet_extracts.jsonl`, `venetian_pdf_rows.json`) were kept. |
+| G1b F101 resolution (five unlinked 2026-11-16 snapshots under `site/data/`) | done — resolved jointly | `arena/3b5f21ac-poker3` + `arena/e94482ee-poker3` (PRs #216/#221) | `site/data/*.json` (removed from the published site), `archive/` (kept on main), `scripts/daily_check.py`, `tests/test_sheet_page_not_stale.py` | This branch first deleted the five files and rewired `daily_check.py` to `site/data.json`; on the final rebase, main's equivalent resolution by `arena/e94482ee` (files moved to `archive/` with provenance, `daily_check.py` marked retired, the same regression test) was **adopted as the keeper** so only one resolution is published. Net state on this branch equals main's: no stale snapshot under `site/data/`, archived copies in `archive/`, test guard in place. |
 | G2 Rebuild shared outputs from the merged builders, verify, PR → `main`, merge, confirm GitHub Pages | in progress | `arena/3b5f21ac-poker3` | `site/data.json` (rebuild), `site/sheets.html`, `site/coverage.json`, `COORDINATION.md` | `site/data.json` is regenerated from builders after merge-time rebase, per the established rebuild-on-conflict pattern. Open PRs #173 and #184 are not edited. |
 
 ### Rebase / conflict log (session `arena/3b5f21ac-poker3`)
@@ -6384,6 +6384,16 @@ Branch: `arena/3b5f21ac-poker3`, branched from `main` at `5c42d7f` (merge of PR 
   `site/coverage.json` were regenerated from the merged builders. PR #217's branch had also restored the five
   stale `site/data/*.json` snapshots once more; the standing F101 resolution was re-applied and the five files
   are deleted again on this branch, guarded by `tests/test_sheet_page_not_stale.py`.
+
+- **Third rebase (same day).** `main` advanced again through PRs #216/#221 (`arena/208a463f-poker3`,
+  `arena/e94482ee-poker3`). Those sessions had resolved F101 independently by moving the five stale
+  snapshots to `archive/` and retiring `scripts/daily_check.py`. To publish exactly one resolution, this
+  branch **adopted main's version** of `daily_check.py`, `data_verification.py` (F101 text),
+  `tests/test_sheet_page_not_stale.py` and the `archive/` directory; this branch's own deletions of
+  `site/data/*.json` agree with main's outcome. The board rows above were corrected to record the joint
+  resolution. My flag-id renumbering (F115/F116) was preserved and main's flags (F109, F111–F114) were
+  kept verbatim; `site/data.json`, `site/sheets.html` and `site/coverage.json` were regenerated from the
+  merged builders.
 
 ### Verification performed (session `arena/3b5f21ac-poker3`, 2026-11-19 UTC)
 
