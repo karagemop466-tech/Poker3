@@ -5112,3 +5112,21 @@ Claim made on the platform-assigned branch before implementation. The platform p
 - **Claim publication note:** the initial pull of the assigned branch returned “remote ref not found” because it was new. Pulled/rebased against origin/main instead and pushed the claim to the assigned branch before implementation. No other branch was created or pushed.
 
 **Integration rebase (09d32ea7).** Rebased onto `origin/main` `0ebc955` after concurrent PRs #180–183. Only the append-only claim in this board conflicted; retained both other sessions' complete records and this claim, then continued. Their calculator improvements and board-marker cleanup are preserved. On the integrated base, **268 unit tests** and the full offline verification/render/transcription/reproducibility suite passed again. This branch alone is force-with-lease updated after the rebase; no other session branch is modified.
+
+---
+
+## Session `arena/ade0718f-poker3` — repo review, independent non-trip-window re-read, integration (2026-11-19 UTC)
+
+Branch: `arena/ade0718f-poker3`, branched from `main` at `e79f5a62c41ef164882f1c9d299659964a62e69a`. The board's
+`session-<id>/<task>` naming cannot be used on this platform (one branch per session, recorded in earlier sections);
+this session keeps its work on its assigned branch and only edits files inside the scope below.
+
+| # | Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|---|
+| A1 | Repo review line by line: leftover merge-conflict markers, stale generated artefacts, cross-page number consistency, internal links | in progress | `arena-ade0718f` | `COORDINATION.md`, `site/**` (generated), `scripts/**`, `research/**` | Two stray `>>>>>>>` marker lines found in this board (commits `e751b6f`, `7bab360`) and removed; the surrounding sections were checked and are complete. |
+| A2 | Independent live re-read of the official DeepStack Extravaganza IV schedule page for the rows **outside** the 23 Nov – 2 Dec trip window (16–22 Nov, 30 Nov, 1 Dec) and a dated capture | in progress | `arena-ade0718f` | `raw/dse_schedule_live_2026-11-19_ade0718f.md` (new), `scripts/data_source.py` (read-date stamping only), `site/data.json` + regenerated pages | The trip window itself is claimed by open PR **#173** (`arena/a33db3c1-poker3`, last commit 06:12 UTC). This session does **not** duplicate that read and does not touch `research/reread_2026-11-19.json` or `raw/trip_window_reread_2026-11-19.md`. |
+| A3 | Final verification pass, PR → `main`, merge, GitHub Pages confirmation, record result here | pending | `arena-ade0718f` | whole repo (integration), this board | Flagged items do not block merge (standing protocol). |
+
+**Scope protocol.** No tournament, hotel, rate, route or policy value is inferred. A confirmed re-read may only move a
+read date (`lastChecked` / `lastVerified` / `sources[].checked`); any value that differs from what is published is flagged
+for review, never silently replaced.
