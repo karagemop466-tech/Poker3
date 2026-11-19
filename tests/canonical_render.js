@@ -16,6 +16,8 @@ const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'site', 'data.json'), 'u
 const fixtureEvent = data.events.find((event) => event.venue === 'venetian' && event.scheduleUrl);
 const transcriptionPath = path.join(ROOT, 'site', 'checks.json');
 const liveChecks = fs.existsSync(transcriptionPath) ? JSON.parse(fs.readFileSync(transcriptionPath, 'utf8')) : null;
+const feedPath = path.join(ROOT, 'site', 'feed', 'index.json');
+const feed = JSON.parse(fs.readFileSync(feedPath, 'utf8'));
 const checksFixture = {
   transcription: liveChecks && liveChecks.transcription,
   lastRun: '2026-11-17T13:00:00+00:00',
@@ -94,6 +96,9 @@ function runPage(page, search) {
       if (String(url).endsWith('checks.json')) {
         return Promise.resolve({ ok: true, json: () => Promise.resolve(checksFixture) });
       }
+      if (url === 'feed/index.json') {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(feed) });
+      }
       return Promise.resolve({ ok: false, json: () => Promise.resolve(null) });
     },
   };
@@ -101,6 +106,10 @@ function runPage(page, search) {
   vm.createContext(sandbox);
   const code = fs.readFileSync(path.join(ROOT, 'site', 'assets', 'app.js'), 'utf8');
   vm.runInContext(code, sandbox, { filename: 'app.js' });
+  if (page === 'sources') {
+    const feedCode = fs.readFileSync(path.join(ROOT, 'site', 'assets', 'feed.js'), 'utf8');
+    vm.runInContext(feedCode, sandbox, { filename: 'feed.js' });
+  }
   if (page === 'global-search') {
     const searchCode = fs.readFileSync(path.join(ROOT, 'site', 'assets', 'search.js'), 'utf8');
     vm.runInContext(searchCode, sandbox, { filename: 'search.js' });
@@ -174,6 +183,20 @@ function runVenuePage(venueAttr) {
     reg.forEach((el) => { total += el.html.length + el.text.length; });
     const label = page + (search ? search : '');
     // Content assertions: a page that renders but omits a card is still a failure.
+    if (page === 'sources') {
+      const rendered = reg.get('[data-feed-results]').html;
+      const feedPages = feed.rooms.flatMap((room) => room.pages);
+      if (!rendered.includes(feed.generated) || (rendered.match(/<tr>/g) || []).length !== feedPages.length + 1 ||
+          (rendered.match(/Open text snapshot/g) || []).length !== feedPages.filter((page) => page.snapshot).length ||
+          (rendered.match(/Unavailable to feed/g) || []).length !== feedPages.filter((page) => !/^HTTP 2\d\d$/.test(page.status)).length) {
+        console.log('FAIL  sources: morning feed row count, timestamps, availability, or evidence links are wrong');
+        failures++;
+      }
+    }
+    if (page === 'global-search' && !reg.get('[data-search-results]').html.includes('Morning feed attempt')) {
+      console.log('FAIL  search: the morning feed attempt did not render');
+      failures++;
+    }
     if (page === 'hotels') {
       const pr = reg.get('[data-poker-rate]');
       if (!pr || !/poker-suite rate is held only if/.test(pr.html)) {

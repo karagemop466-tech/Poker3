@@ -49,9 +49,12 @@
 
     <section class="section">
       <div class="section-head"><div><h2>Morning daily room feed</h2><p>The sources a scheduled job re-reads every morning for each Strip poker room.</p></div></div>
-      <div data-feed></div>
-      <p class="toolbar-note">The scheduled feed writes a dated snapshot of each room’s schedule page into
-      <code>site/feed/</code> so a change can be seen after the fact instead of being overwritten.</p>
+      <p class="toolbar-note">Fetch status is not a fact check. These responses are evidence for review, not a source of new event rows.
+        Availability here applies to the crawler, not necessarily to a visitor opening the official link.</p>
+      <div id="morning-feed" data-feed-results aria-live="polite">Loading the last recorded feed…</div>
+      <details><summary>Configured official feed sources</summary><div data-feed></div></details>
+      <p class="toolbar-note"><a href="feed/index.json">Download the latest feed record (JSON)</a> ·
+        <a href="flagged.html">Flagged for review</a></p>
     </section>
 
     <section class="section">
@@ -70,5 +73,6 @@
   </main>
 </div>
 <script src="assets/app.js"></script>
+<script src="assets/feed.js"></script>
 </body>
 </html>
