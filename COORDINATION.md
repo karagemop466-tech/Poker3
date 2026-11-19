@@ -6896,3 +6896,49 @@ Standing decision: **HOLD** on any nonrefundable payment, unchanged. Re-read the
 2. Cosmetic printed typos on the official page: "No LImit Hold'em" (Nov 25 event 10, Nov 26 event 12); "NLH" abbreviations (Nov 28 event 18).
 
 **Still open (not verified in this session).** Rates and checkout totals (the same-day booking reads by `d2f205b3` and `7d96049f` returned only a loading shell); structure-sheet text beyond the monitor's hash; the written single-entry / no-rebuy / no-add-on cap (F31); finish times and an 8 AM start (F16, F17). The standing **HOLD** on nonrefundable payment is unchanged.
+## Session `arena/02417c60-poker3` — claim: written-rule search (F31), live read-back of the deployed site, independent arithmetic recheck (2026-11-19 UTC)
+
+**Branch note.** The platform binds this session to `arena/02417c60-poker3`, branched from `main` at `b5bf966`. Before this claim the branch was fast-forwarded to `origin/main` (`e668e08`, after PR #226). The brief's `session-<id>/<task>` naming cannot be applied here, as every earlier session recorded. This session works only on this branch.
+
+**Claim (recorded before any data edit).** Open trip-critical gates at claim time: F31 (no written one-entry cap), F17 (no 8:00 AM start), F16 (no finish times) and the dated booking quote (F88, F120). Session `d66d77dc` re-read F31, F16 and F17 earlier today, so this session does not repeat that read. It checks a different set of official pages for a written entry rule and does not edit any value.
+
+| Task | Status | Owner session | Scope (files) | Notes |
+|---|---|---|---|---|
+| V1 Baseline: full unit suite and site verifier on current `main` | done | `arena/02417c60-poker3` | none | 434 tests OK in an out-of-repo venv with PyYAML 6.0.3. The system Python lacks PyYAML, so three workflow-test modules fail to import there; this is a sandbox gap, not a repo defect. |
+| V2 F31 written-rule search across venue pages not previously recorded as checked for rules | in progress | `arena/02417c60-poker3` | `research/live_check_2026-11-19_arena-02417c60.md` (new), this board | Read-only. A rule found on an official page would be logged as a new dated observation and a flag change, not silently applied. |
+| V3 Live read-back of the deployed Pages site, including the canonical paths that returned 404 on 2026-11-19 | in progress | `arena/02417c60-poker3` | same record file | Read through the platform fetch tool; the sandbox shell cannot reach `github.io`. |
+| V4 Independent arithmetic recompute of the calculator defaults and the two dated Venetian quotes | in progress | `arena/02417c60-poker3` | same record file | Recomputed from the printed components with exact decimal arithmetic. Record only. |
+| V5 PR to `main`, merge (no auto-merge, no approval wait), Pages confirmation, PR link and result recorded here | pending | `arena/02417c60-poker3` | whole repo (integration), this board | Flagged and unverified items do not block the merge; they stay on the Flagged for review page. |
+
+**Non-overlap.** This session edits only `COORDINATION.md` and `research/live_check_2026-11-19_arena-02417c60.md`. No tournament, hotel, rate, flag, route or site file is edited. Open PR #224 (`arena/a400f338-poker3`, record only) also appends to this board. If it merges first, this session rebases and keeps both sections.
+
+### Result (session `arena/02417c60-poker3`, 2026-11-19 UTC)
+
+**Claim status: V1 done · V2 done (F31 still open) · V3 done · V4 done · V5 done. PR and merge recorded below.**
+
+**Files added in this session's scope:** `research/live_check_2026-11-19_arena-02417c60.md` (new, dated record with the reproducible check) and `raw/venetian_dse_nov_2026_schedule_pdf_trip_window_2026-11-19_arena-02417c60.md` (new, the 19 trip-window rows copied verbatim from the official PDF). `COORDINATION.md` (this section only). No tournament, hotel, rate, route, flag, script or site file was edited, and no value changed.
+
+**Official sources read live on 2026-11-19 (fetch tool, dated, verbatim excerpts in the record):**
+
+- [Venetian poker room page](https://www.venetianlasvegas.com/resort/casino/poker.html), both chunks: no tournament entry rule; advertises DSE IV, November 16 – December 23, 2026.
+- [DeepStack series page](https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html), both chunks: links the schedule PDF and the structure sheets; no entry rule.
+- [DSE IV schedule PDF](https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf), both chunks, read to the end: no footnote, no entry-rule wording on any row.
+- [Venetian Terms of Use](https://www.venetianlasvegas.com/legal/terms-of-use.html), chunk 1 of 6 only (last updated July 8, 2026): section 3 lists the additional policies it governs; no poker-room or tournament rules document is listed. The other five chunks were not read.
+- [Venetian suite-rate page](https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html) and [calculator](https://karagemop466-tech.github.io/Poker3/calculator.html) (the deployed canonical path): read back; the defaults match the recompute below.
+- [Flag register on the deployed site](https://karagemop466-tech.github.io/Poker3/site/flagged.html): served, latest automated check and register present.
+
+**Verification performed.**
+
+- **V1:** `python3 -m unittest discover -s tests -p 'test_*.py'` in a virtualenv with `PyYAML==6.0.3` → **434 tests OK**. `scripts/verify_site.py` → 341 events / 8 hotels / 56 routes / 50 sources / 114 flags / 7 plan days / 19 pages, passed. `git diff --check` clean.
+- **V2 (F31):** no official page read this session states a maximum number of entries, a re-entry rule, a rebuy rule or an add-on rule for a DSE IV event. F31 stays **open** and needs the venue's written answer.
+- **V3 (Pages):** the Pages API reports `built` for `e668e08`. The legacy build for `4010f2e` (19:43:00Z) had reported `errored`; the next build (`e668e08`, 19:43:14Z) succeeded and is what is served. This is additional evidence for **F29** (two publishers), not a new fault.
+- **V4 (arithmetic):** recomputed with exact decimal arithmetic. Floor $197.28/night, $1,380.96 for seven nights, core $3,980.96, with parking $4,120.96; 2026-11-17 total $4,010.55 and 2026-11-19 total $3,619.39 both reconcile. The two $0.02 tax differences are already on record (F65, F120).
+- **V5 (trip-window PDF):** all 19 rows for 23–30 November copied verbatim and compared with the 19 published Venetian events. 18 of 19 agree on date, time, buy-in and guarantee. The one residual, the 25 November 11:00 AM Day 2 restart's guarantee, is **F63** (already recorded). The sponsor-art DATE cells on the 28 November rows are **F46** (already recorded).
+
+**Overlap with concurrent sessions (same day, disclosed).** `arena/f5a04e69-poker3` (PR #231) probed the same three official pages for F31 and reached the same answer; `arena/d2f205b3-poker3` (PR #227) matched the same 19 trip-window rows on the schedule page. This session corroborates both with the schedule PDF (a separate official document) and one extra page (Terms of Use, chunk 1). It does not claim the F31 result as new.
+
+**Irregularities.** No new flag is raised by this session. F29 gains one observation (the errored legacy build above). F31, F17, F16, F63 and F46 are confirmed as still present on the official sources read today.
+
+**Request for the owner of `scripts/data_source.py` (not edited here, out of this session's scope).** Append the 2026-11-19 PDF cross-check and the errored legacy build for `4010f2e` to the F29 detail text the next time that file is edited for another reason. The reproducible check is in the research record.
+
+**Open items carried forward, unchanged:** F31 (written one-entry rule; the venue's written answer is needed before any nonrefundable payment), F17 (no official 8 AM start), F16 (no published finish times), and the booking total, which must be re-read at the moment of booking (F88, F93, F120). The trip decision remains **HOLD** on any nonrefundable payment.
