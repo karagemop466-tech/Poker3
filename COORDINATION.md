@@ -5089,3 +5089,5 @@ Calculator audit done: removed misleading single-night quote preset, rendered th
 **Official check:** The [Venetian booking engine](https://www.venetianlasvegas.com/booking?adults%5B%5D=2&arrival_date=2026-11-23&children%5B%5D=0&departure_date=2026-11-30&view=calendar) returned the specified November 23–30 dates and two adults but a loading shell, not a new checkout total. The archived November 17 observation is not a current price; existing flag F93 remains applicable. No values or evidence dates changed.
 
 **Integration:** [PR #181](https://github.com/karagemop466-tech/Poker3/pull/181). Rebase over #180 conflicted only in this board; both sessions’ entries were retained. No calculator or research changes were overwritten.
+
+**Merge result:** #181 merged as `06a240525ec76087b2c9d15e9069927722f6ee48`; the gated [GitHub Pages deployment](https://github.com/karagemop466-tech/Poker3/actions/runs/44474549797) passed build and deploy. On the integrated calculator head, 261 unit tests passed; the board edit did not change site data. The published calculator implementation came from #180.
