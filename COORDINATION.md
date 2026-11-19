@@ -6672,3 +6672,18 @@ approval) at **2026-11-19T11:54:19Z**; merge commit
   retirement (adopting `arena/e94482ee`'s archive-based resolution). 391 unit tests OK;
   `verify_site.py` 341 events / 8 hotels / 56 routes / 50 sources / 113 flags / 7 plan days / 18 pages;
   `data.json` rebuild deterministic.
+
+## Session `arena/d66d77dc-poker3` — claim: live re-read of open trip-window gates F31, F16, F17 (2026-11-19 UTC)
+
+- **Claimed scope:** `COORDINATION.md` only (this log entry). No tournament, hotel, flag or site file is edited by this session unless a re-read changes a source-backed value.
+- **Open items this session tries to close from official sources:** F31 (written one-entry / maximum-entry rule), F16 (finish times), F17 (8:00 AM start), and blank hotel room rates.
+- **Status:** done (record only; no published value changed).
+
+### Result (session `arena/d66d77dc-poker3`, 2026-11-19 UTC)
+
+- **Official live reads (2026-11-19, via the platform fetch tool):**
+  - Venetian DSE IV schedule, `dse-nov-2026.html` chunk 1 of 4 (https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html). Event 1 starts 11:10 AM on Nov 16; the earliest opening rows are 10:10 AM on Nov 19, 20 and 21; the Day 2 restart is 11:00 AM on Nov 25. No row prints "one entry", "freezeout" or a re-entry label. This matches the stored rows, so **F16/F17 are unchanged**: no 8:00 AM start and no finish time is published.
+  - Venetian 2026 poker suite rates (https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html): rates "start as low as $119 and $209 and can be higher", are not dated, carry a **$55 resort fee per night**, and require six hours of live cash play or a $300+ tournament buy-in each night (code EPOKR25 by phone). The stored data already holds these terms; no dated room total is published, so the hotel rate blanks stay blank.
+- **F31 (written one-entry rule):** still open. A search for official 2026 one-entry wording found none. Results from other repositories were not used.
+- **Test baseline:** `python3 -m unittest discover -s tests` run in a virtualenv with `pyyaml` gives **434 tests, OK**. The system Python lacks `pyyaml`, so `test_workflows`, `test_pages_gate` and `test_monitor_record_robustness` fail to import there. This is an environment gap in the sandbox, not a repository defect.
+- **Still needs a human action:** a written question to the Venetian poker room (lv_cas_poker@venetianlasvegas.com, 702.414.7657, as printed on the suite-rate page) about the maximum entries per player, re-entry, rebuys and add-ons for the DSE IV events. No public source answers it.
