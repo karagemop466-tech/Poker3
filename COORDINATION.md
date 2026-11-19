@@ -5835,3 +5835,25 @@ Branch: `arena/e830d773-poker3` (platform-bound single branch; `session-<id>/<ta
   - **GitHub Pages deployment:** `Publish the canonical Vegas Poker Planner to GitHub Pages` **success** ([run 44482186565](https://github.com/karagemop466-tech/Poker3/actions/runs/44482186565), build 18s + deploy 10s) and `pages build and deployment` **success** ([run 44482186298](https://github.com/karagemop466-tech/Poker3/actions/runs/44482186298)); `GET /repos/karagemop466-tech/Poker3/pages/builds/latest` returned `status: "built"`, `commit: "5f001742c69c7d9e6e5f891f3e45eaf735297bff"`, `error: null`.
   - **Live read-back:** Fetched <https://karagemop466-tech.github.io/Poker3/site/hotels.html> and <https://karagemop466-tech.github.io/Poker3/site/venues/others.html> after deployment; both serve the updated hero/dates, the five-room heading (`Bellagio, MGM Grand, Caesars Palace, Horseshoe & ARIA`), and the newly verified Caesars Palace and Horseshoe parking terms.
   - **Rebase log:** Three append-only `COORDINATION.md` rebases over PRs #200, #201–#203, and #204; all concurrent sessions' records and code were preserved in full. Open PRs `#173` and `#184` remain untouched.
+
+---
+
+## Session `arena/e15010b8-poker3` — live line-by-line verification, open-PR integration, final publication (2026-11-19 UTC)
+
+Branch: `arena/e15010b8-poker3`, branched from `main` at `5c42d7f` (the tip at claim time). The platform binds each
+session to one branch, so the brief's `session-<id>/<task>` naming cannot be applied here — every earlier session on
+this board recorded the same constraint. This session is the **final integration session** for this round: it
+re-verifies the published data against live official pages, integrates the two open pull requests, fixes any defect
+it finds, then pulls to `main`, merges, confirms GitHub Pages and records the result here.
+
+**Claim (committed and pushed before any other edit).** Scope: `COORDINATION.md`, `research/` (new dated verification
+record), `site/**`, `scripts/**`, `tests/**`, `README.md`, `.github/workflows/**`. No other session is active, so no
+file owned by another live session is edited. Open PRs `#173` and `#184` are **reviewed** here, not edited on their
+branches; their content is integrated on this branch by the integration owner and the outcome is recorded below.
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| V1 Line-by-line re-verification of the published dataset against the live official pages (dates, start times, buy-ins, guarantees, structure links, hotel policy components) | in progress | `arena/e15010b8-poker3` | `research/`, `site/data.json` via `scripts/data_source.py` | This session's reader reaches the venue hosts, so every "unreachable" gap can be re-tested live. No value is inferred; blanks stay blank. |
+| V2 Close or refresh the open evidence gaps that a live read can settle (booking-engine total, Wynn Signature structures, room-tax percentages, earliest published start) | pending | `arena-e15010b8` | `scripts/data_hotels.py`, `scripts/data_venues.py`, flag register | A value moves only if the official page prints it today. |
+| V3 Integrate open PR `#184` (calculator: keep unknown costs unknown) and `#173` (trip-window re-read record), or record why not | pending | `arena-e15010b8` | `scripts/trip_cost.py`, `site/calculator.html`, `raw/`, `research/`, tests | Both branches are `CONFLICTING` against current `main`; the integration owner resolves the conflicts without discarding either session's work. |
+| V4 Final verification (full unit suite, all verifiers, link check, reproducible rebuild), PR → `main`, merge, GitHub Pages confirmation, board record | pending | `arena-e15010b8` | whole repo (integration), this board | Flagged irregularities and unverified values do not block the merge; they are published on the Flagged for review page. |
