@@ -555,12 +555,22 @@ HOTELS = [
         taxNote=("Wynn prints 'plus tax' without a percentage. The 13.38% Clark County room tax is the rate printed in the "
                  "Venetian hotel terms; applying it to Wynn's own total is an assumption and is labelled as one."),
         taxReference=WYNN_COUNTY_REF, taxReferenceSource=ROOM_TAX_REFERENCE,
-        parking=("Confirmed on the official Parking page: 'Self-parking garages at Wynn and Encore ... complimentary "
-                 "parking for all Wynn and Encore Resort and Tower Suite registered guests'; 'The daily parking fee for "
-                 "non-registered guests is $25 per day with the first three (3) hours complimentary'; 'Complimentary "
-                 "self-parking is extended to Wynn Poker Room guests'; 'Valet parking is $40 per day up to 24 hours (no "
-                 "grace period, no re-entry)'."),
         parkingSource=WYNN_PARKING,
+        # Re-read 2026-11-19: the official Parking page prints "complimentary parking for all Wynn and Encore Resort
+        # and Tower Suite registered guests", so a registered guest pays $0 a night and is therefore a published
+        # zero, not a blank. Unregistered guests ($25/day self, $40/day valet) are a different line and are kept in
+        # the parking note; the trip cost model is a registered-guest stay.
+        parkingPerNight=0.0,
+        # A published zero must not render as a blank cell, so the row carries a parking string that prints it and
+        # keeps the unregistered-guest rates in the same cell.
+        parking=("$0 a night for a registered guest (official Parking page: self-parking garages are "
+                 "'complimentary parking for all Wynn and Encore Resort and Tower Suite registered guests'). "
+                 "Unregistered guests pay $25/day self-parking with the first three hours complimentary, and $40/day "
+                 "valet; complimentary self-parking is also extended to Wynn Poker Room guests. Read 2026-11-19."),
+        parkingPerNightNote=("$0 for a registered guest: the official Parking page says self-parking garages 'are ... "
+                             "complimentary parking for all Wynn and Encore Resort and Tower Suite registered guests'. "
+                             "Unregistered guests pay $25/day self-parking (first three hours free) and $40/day valet; "
+                             "poker-room guests are also given complimentary self-parking. Read 2026-11-19."),
         cancellation=("A deposit of the first night's room rate and tax is charged at booking. The property's live "
                       "terms page prints a CANCELLATION POLICY section: \"cancellations must be received at least 48 "
                       "hours prior to arrival date or deposit (if applicable) will be forfeited\", and early departures "
