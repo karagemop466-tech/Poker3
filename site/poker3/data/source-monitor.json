@@ -1,13 +1,13 @@
 {
-  "checkedAt": "2026-11-19T11:18:15Z",
+  "checkedAt": "2026-11-19T12:38:13Z",
   "officialSourceCount": 52,
-  "changedCount": 15,
+  "changedCount": 13,
   "unavailableCount": 7,
   "checks": {
     "aria-fee": {
       "url": "https://aria.mgmresorts.com/en/terms-and-conditions.html",
       "name": "ARIA resort fee terms",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": null,
       "result": "unavailable",
       "httpStatus": null,
@@ -17,7 +17,7 @@
     "aria-poker": {
       "url": "https://aria.mgmresorts.com/en/casino/poker.html",
       "name": "ARIA poker room",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": null,
       "result": "unavailable",
       "httpStatus": null,
@@ -27,7 +27,7 @@
     "bellagio-fee": {
       "url": "https://bellagio.mgmresorts.com/en/terms-and-conditions.html",
       "name": "Bellagio resort fee terms",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": null,
       "result": "unavailable",
       "httpStatus": null,
@@ -37,7 +37,7 @@
     "bellagio-friday": {
       "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf",
       "name": "Bellagio Friday $600 NLH structure",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -47,7 +47,7 @@
     "bellagio-poker": {
       "url": "https://bellagio.mgmresorts.com/en/casino/poker.html",
       "name": "Bellagio poker room schedule",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": null,
       "result": "unavailable",
       "httpStatus": null,
@@ -57,7 +57,7 @@
     "bellagio-saturday-stale": {
       "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf",
       "name": "Bellagio Saturday structure (stale/conflicting)",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -67,7 +67,7 @@
     "bellagio-sunday": {
       "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt07fcf1244a6da661/6af491a339e2b4f6b76a86ad/mgm-bellagio-poker-sundays-$400-horse.pdf",
       "name": "Bellagio Sunday $400 H.O.R.S.E. structure",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -77,7 +77,7 @@
     "caesars-2025-structure": {
       "url": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-2025-poker-daily-nlh-tournament.pdf",
       "name": "Caesars Palace 2025 daily NLH flyer",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -87,9 +87,9 @@
     "caesars-article": {
       "url": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
       "name": "Caesars 2026 Las Vegas tournament guide",
-      "lastChecked": "2026-11-19T11:18:15Z",
-      "changed": true,
-      "result": "changed",
+      "lastChecked": "2026-11-19T12:38:13Z",
+      "changed": false,
+      "result": "unchanged",
       "httpStatus": 200,
       "contentHash": "7fcf9b1afdaf090885c2e644e2c4572591ab2584c4398ba75cba0ea1c98c0b9a",
       "error": null
@@ -97,7 +97,7 @@
     "golden-nugget": {
       "url": "https://www.goldennugget.com/las-vegas/casino/poker-room/daily-tournaments/",
       "name": "Golden Nugget daily poker tournaments",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": null,
       "result": "unavailable",
       "httpStatus": 403,
@@ -107,27 +107,27 @@
     "horseshoe-booking": {
       "url": "https://www.caesars.com/book/room-list?arrivalDate=12/10/2026&departureDate=12/14/2026&dateSearchFormat=exact-dates&propCode=blv&numAdults=2",
       "name": "Horseshoe dated booking search (Dec. 10–14, 2026)",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": true,
       "result": "changed",
       "httpStatus": 200,
-      "contentHash": "4a7291a2cded76941cfc4d9e46d037442d9d7a9823b312b84e94c36cce4764ab",
+      "contentHash": "28ddf2dfe63fa1616c9200a7b615dee15204ca12847adb8954b4b7471402cf3d",
       "error": null
     },
     "horseshoe-casino": {
       "url": "https://www.caesars.com/horseshoe-las-vegas/casino",
       "name": "Horseshoe Las Vegas casino and poker page",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": true,
       "result": "changed",
       "httpStatus": 200,
-      "contentHash": "cf5eddf8c87ca9bdecd3e2962e908cc9fddb535b39064f6206b5752f5508f212",
+      "contentHash": "6e17a3915edf0273437aa5c05ea4c666a9dcdd4b0bf62b55752fc4939d6e30e3",
       "error": null
     },
     "mgm-fee": {
       "url": "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html",
       "name": "MGM Grand resort fee terms",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": null,
       "result": "unavailable",
       "httpStatus": null,
@@ -137,7 +137,7 @@
     "mgm-poker": {
       "url": "https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
       "name": "MGM Grand poker room schedule",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": null,
       "result": "unavailable",
       "httpStatus": null,
@@ -147,7 +147,7 @@
     "mgm-structure": {
       "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/bltb2a45da7e8ee5621/mgm-grand-casino-poker-120_nlh.pdf",
       "name": "MGM Grand $120 NLH structure",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -157,27 +157,27 @@
     "southpoint-poker": {
       "url": "https://southpointcasino.com/casino/poker-room",
       "name": "South Point poker room",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": true,
       "result": "changed",
       "httpStatus": 200,
-      "contentHash": "2e2d8bab7931d8ab3ef4a2b7f7278eef93a914b929acb1e60f800b26a9b74c3f",
+      "contentHash": "9cdca2180115804bfacfb15d24976abff4e569a7a39fe8cbb2f46344bd36c014",
       "error": null
     },
     "southpoint-schedule": {
       "url": "https://southpointcasino.com/casino/poker-room/daily-tournament-schedule",
       "name": "South Point daily schedule and October 2026 rule sheets",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": true,
       "result": "changed",
       "httpStatus": 200,
-      "contentHash": "80955ca817b146e5466a6c9609777ce52ed261c093b2db62876c0ba53d9fad17",
+      "contentHash": "7ad1bdbf119497ffe80016c899638cfb67f9b8f6b02cc2fdfd7b07f1fe00af18",
       "error": null
     },
     "ti-nfr": {
       "url": "https://treasureisland.com/entertainment/events-headliners/nfr",
       "name": "Treasure Island 2026 NFR room offer",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -187,7 +187,7 @@
     "ti-rooms": {
       "url": "https://treasureisland.com/hotel/deluxe-rooms",
       "name": "Treasure Island room and resort-fee terms",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -197,7 +197,7 @@
     "venetian-1100": {
       "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
       "name": "Venetian $1,100 multi-flight structure (#35)",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -207,7 +207,7 @@
     "venetian-2200": {
       "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_21.pdf",
       "name": "Venetian $2,200 PokerAtlas Championship structure (#21)",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -217,7 +217,7 @@
     "venetian-300-day": {
       "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf",
       "name": "Venetian $300 one-day NLH structure (#5)",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -227,7 +227,7 @@
     "venetian-300-multi-a": {
       "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_10.pdf",
       "name": "Venetian $300 multi-flight NLH structure, Days A/C (#10)",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -237,7 +237,7 @@
     "venetian-300-multi-b": {
       "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_9.pdf",
       "name": "Venetian $300 multi-flight NLH structure, Days B/D (#9)",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -247,7 +247,7 @@
     "venetian-400-day": {
       "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_6.pdf",
       "name": "Venetian $400 one-day NLH structure (#6)",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -257,7 +257,7 @@
     "venetian-47-satellite": {
       "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_24.pdf",
       "name": "Venetian $260 NLH milestone satellite structure (#24)",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -267,7 +267,7 @@
     "venetian-600-day": {
       "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
       "name": "Venetian $600 one-day NLH structure (#7)",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -277,7 +277,7 @@
     "venetian-600-series": {
       "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
       "name": "Venetian $600 multi-flight structure (#4)",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -287,7 +287,7 @@
     "venetian-800-series": {
       "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_14.pdf",
       "name": "Venetian $800 NLH multi-flight structures (#12–14)",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -297,7 +297,7 @@
     "venetian-800-series-a": {
       "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
       "name": "Venetian $800 NLH multi-flight Day A/C/E structure (#12)",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -307,7 +307,7 @@
     "venetian-800-series-b": {
       "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_13.pdf",
       "name": "Venetian $800 NLH multi-flight Day B/D structure (#13)",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -317,7 +317,7 @@
     "venetian-800-series-f": {
       "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_14.pdf",
       "name": "Venetian $800 NLH multi-flight Day F structure (#14)",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -327,17 +327,17 @@
     "venetian-booking": {
       "url": "https://www.venetianlasvegas.com/book?adults%5B%5D=2&arrival_date=2026-12-10&children%5B%5D=0&departure_date=2026-12-14",
       "name": "Venetian booking search (Dec. 10–14, 2026)",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": true,
       "result": "changed",
       "httpStatus": 200,
-      "contentHash": "82298fec13e187daecf064e83932303ec39ae498d7e5e32da29a0f1f5b6ff3ae",
+      "contentHash": "cf7ab6e7ce0ad36145580f3678f1c9468661efc12ade5b8272b646fe5c4abf8f",
       "error": null
     },
     "venetian-bounty-300": {
       "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
       "name": "Venetian $300 NLH bounty structure (#15)",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -347,17 +347,17 @@
     "venetian-fee": {
       "url": "https://www.venetianlasvegas.com/resort/resort-fee.html",
       "name": "Venetian resort fee",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": true,
       "result": "changed",
       "httpStatus": 200,
-      "contentHash": "0840b4c8bbe00107bfacd4bdff4789c1b4ff1496a0d29f42b5fd74ef5233642f",
+      "contentHash": "4d1942522d8c0aafa898d6467fbd0d3664e807ef1ceeb26dd5ffc12bb7e64451",
       "error": null
     },
     "venetian-lips": {
       "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_32.pdf",
       "name": "Venetian LIPS Ladies event structure (#32)",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -367,7 +367,7 @@
     "venetian-plo-bounty": {
       "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_27.pdf",
       "name": "Venetian $600 PLO bounty structure (#27)",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -377,17 +377,17 @@
     "venetian-poker-suites": {
       "url": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
       "name": "Venetian poker suite rates",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": true,
       "result": "changed",
       "httpStatus": 200,
-      "contentHash": "7cb7d78acecd6157e52ddf9d18b3745a2dda6435249381f2ea9426a836f999b3",
+      "contentHash": "cca9d2a90c1e559649e1a6ce3882c71efee52da011260698f04fa2650567c9aa",
       "error": null
     },
     "venetian-raceday": {
       "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_18.pdf",
       "name": "Venetian RaceDay Stack structure (#18)",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -397,7 +397,7 @@
     "venetian-satellite": {
       "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
       "name": "Venetian $260 NLH Turbo milestone satellite structure (#25)",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -407,17 +407,17 @@
     "venetian-series": {
       "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
       "name": "Venetian DeepStack Extravaganza IV schedule",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": true,
       "result": "changed",
       "httpStatus": 200,
-      "contentHash": "a4a69287324a5e38904f0f67b94243e0ffe7fc4edc16e6e1ab106eee2d8f6f0b",
+      "contentHash": "fd378c009850e0dd46581b0dc02bfb6947a44417adb1a33cca2330dc0944a3b1",
       "error": null
     },
     "venetian-title-day1b": {
       "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_37.pdf",
       "name": "Venetian $2,200 PokerAtlas Championship Day 1B structure (#37)",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -427,9 +427,9 @@
     "westgate-events": {
       "url": "https://www.westgateresorts.com/hotels/nevada/las-vegas/westgate-las-vegas-resort-casino/casino/poker/events/",
       "name": "Westgate poker events page",
-      "lastChecked": "2026-11-19T11:18:15Z",
-      "changed": true,
-      "result": "changed",
+      "lastChecked": "2026-11-19T12:38:13Z",
+      "changed": false,
+      "result": "unchanged",
       "httpStatus": 200,
       "contentHash": "66b3579651bf8f4d4b7fa097d20947d4877e3492b746be9b8837443664943d54",
       "error": null
@@ -437,27 +437,27 @@
     "westgate-poker": {
       "url": "https://www.westgateresorts.com/hotels/nevada/las-vegas/westgate-las-vegas-resort-casino/casino/poker/",
       "name": "Westgate Las Vegas poker room",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": true,
       "result": "changed",
       "httpStatus": 200,
-      "contentHash": "ac17572a646bf7588dd9c6c041b175957b822b6ce5245b8b019aaf1a084767e7",
+      "contentHash": "e5a917923cfb8581dcd6d658a1516ee7188daa0b2c8ce694664007015b03f5a9",
       "error": null
     },
     "wpt-press": {
       "url": "https://www.worldpokertour.com/article/wpt-world-championship-at-wynn-las-vegas-set-for-season-24-finale-with-over-85-events-and-20m-in-gte/",
       "name": "WPT 2026 festival announcement and entry terms",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": true,
       "result": "changed",
       "httpStatus": 200,
-      "contentHash": "e8ef6f8ca600ab320e7ba2bf24da2efe7f9e308fcf7b1179810ffc8045597b97",
+      "contentHash": "db8cf020d10b44d46e8309118a77d945a1aaa3747d1a3dfa3da73f12121fbc09",
       "error": null
     },
     "wpt-schedule": {
       "url": "https://wptmedia-mig.s3.amazonaws.com/wp-content/uploads/2026/09/WPT-World-Championship-Festival-Schedule-Season-24.pdf",
       "name": "WPT World Championship Festival Schedule 2026",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -467,7 +467,7 @@
     "wpt-structures": {
       "url": "https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf",
       "name": "Wynn WPT World Championship 2026 structure sheets",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -477,17 +477,17 @@
     "wynn-booking": {
       "url": "https://reservations.wynnlasvegas.com/ibe/details.aspx?hotelID=13763&langID=1&rmID=68658&arrivalDate=2026-12-10&departureDate=2026-12-14&adults=2",
       "name": "Wynn booking search result",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": true,
       "result": "changed",
       "httpStatus": 200,
-      "contentHash": "65e48a23cc56f558fb92bb3ad34f83f0d037548bcec8b0a0ccc4406cf4c75e58",
+      "contentHash": "38995f81249efd40a1145152c522f29efa854b3bd3742dab033d5ea1121dcfe5",
       "error": null
     },
     "wynn-daily-poster": {
       "url": "https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf",
       "name": "Wynn daily tournament poster",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -497,7 +497,7 @@
     "wynn-daily-structures": {
       "url": "https://cdn.wynnresorts.com/image/upload/v1752011191/visitwynn_pdfs_files/Poker/Daily%20Tournaments/Poker-All_Daily_Structures.pdf",
       "name": "Wynn daily tournament structures",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": false,
       "result": "unchanged",
       "httpStatus": 200,
@@ -507,21 +507,21 @@
     "wynn-fee": {
       "url": "https://www.wynnlasvegas.com/about-us/resort-information",
       "name": "Wynn resort fee terms",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": true,
       "result": "changed",
       "httpStatus": 200,
-      "contentHash": "6e92207f9424d8c5c579518f2907b56428ef750c16348554cfd9b707c0cce79f",
+      "contentHash": "c27f3d582c54f0b7ddf42a7f644e977144e06d2b165ab5abc453796c2d7f9d7d",
       "error": null
     },
     "wynn-poker": {
       "url": "https://www.wynnlasvegas.com/casino/poker",
       "name": "Wynn poker room and daily tournament page",
-      "lastChecked": "2026-11-19T11:18:15Z",
+      "lastChecked": "2026-11-19T12:38:13Z",
       "changed": true,
       "result": "changed",
       "httpStatus": 200,
-      "contentHash": "f2e7fc0a39d87ad84e5200d5c80c52ec576f85697c0eeecf39684332146c10dd",
+      "contentHash": "9523c87074652665b98814a4739b698064b6c2a8ebada11856d6c60228c92d47",
       "error": null
     }
   }
