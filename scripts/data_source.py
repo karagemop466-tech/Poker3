@@ -423,6 +423,9 @@ SOURCES = [
          url="https://www.wynnlasvegas.com/about-us/resort-information",
          type="official terms", checked=VERIFIED_ON),
 
+    dict(name="MGM Resorts parking page (self-parking and valet rates for Bellagio, ARIA, MGM Grand; read 2026-11-19)",
+         url="https://www.mgmresorts.com/en/things-to-do/parking.html",
+         type="official parking page", checked=LAST_PASS_2026_11_19),
 ]
 
 FLAGS = [
@@ -1452,6 +1455,36 @@ FLAGS = [
                  "is either the printed name or is marked as restyled, and this one was not marked. The choice is left to the "
                  "user: print the capitals, or keep the title case and leave this flag on the register."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
+
+    # --- 2026-11-19 · session arena/f5ac4318-poker3 -------------------------------------------------
+    dict(id="F98", area="Publishing", severity="Low",
+         title="Two unresolved git conflict markers had been published inside COORDINATION.md",
+         detail=("The merge commit e79f5a6 (PR #179) carried two stray conflict markers into the shared board: a "
+                 "trailing marker naming 609f1ce (the arena-23505d42 claim) and one naming c14bb08 (that session's "
+                 "reconciled-result commit). Each was a trailing marker with no matching opening marker or separator "
+                 "line, so the file reads continuously through both. Session arena/f5ac4318 checked, before anything "
+                 "was deleted, whether any session record had been lost: every non-blank line of both parents of that "
+                 "merge (c5b511a3, 4,031 lines; ee26288d, 4,037 lines) is present in the merged file, so nothing was "
+                 "dropped. The markers were removed from main on 2026-11-19 by PR #181 (session 96ff450a), which "
+                 "records the same finding; this session's repo-wide scan for an opening marker, a separator line or a "
+                 "trailing marker across .md, .py, .html, .json and .yml files returns zero, and the only remaining "
+                 "occurrence of the text is the quotation of both lines in research/repo_review_2026-11-19_"
+                 "arena-f5ac4318.md, inside backticks. No data value was affected; the defect was in the board file "
+                 "only. Kept on the register because a merge that publishes marker text is evidence the integration "
+                 "step is being done by hand, and the next one can lose text."),
+         source="https://github.com/karagemop466-tech/Poker3/blob/main/COORDINATION.md"),
+    dict(id="F99", area="Hotels", severity="Low",
+         title="MGM's property-level parking URLs all serve one corporate page, so no per-property parking table exists",
+         detail=("Bellagio, ARIA and MGM Grand each publish an /en/amenities/parking.html URL, and on 2026-11-19 all "
+                 "three served www.mgmresorts.com/en/things-to-do/parking.html - the single corporate table that lists "
+                 "those three properties (with Vdara, The Cosmopolitan, Mandalay Bay, W Las Vegas, Park MGM, "
+                 "New York-New York, Luxor and Excalibur) at the same rates. Those three hotel rows therefore carried a "
+                 "blank parking field until 2026-11-19 even though the published figure was one click away. The rows now "
+                 "carry the printed registered-guest figure ($20 a day self-parking on weekdays and weekends; valet $40 "
+                 "a day) and cite the corporate page. What remains unverified: any property-specific difference, because "
+                 "the property pages no longer print one, and the page's own warning that 'prices may be higher during "
+                 "special events'."),
+         source="https://www.mgmresorts.com/en/things-to-do/parking.html"),
 
 ]
 
@@ -2989,6 +3022,26 @@ def build():
             for body in e["rules"].values():
                 if body.get("source") in REREAD_2026_11_19_URLS:
                     body["retrieved"] = LAST_PASS_2026_11_19
+
+    # Fifth pass (session arena/f5ac4318-poker3, 2026-11-19): the MGM Resorts parking page was
+    # read in full on 2026-11-19 and it prints the self-parking and valet table for Bellagio, ARIA
+    # and MGM Grand. Those three rows carried a blank parking field; they now carry the printed
+    # $20-a-day registered-guest self-parking figure with the page excerpt, so the parking line in
+    # the trip-cost comparison is no longer blank for an MGM property. The ARIA and MGM Grand
+    # reservation-terms pages were also read again the same day (resort fee, tax, deposit,
+    # incidental hold, cancellation window all unchanged). Only these three rows move.
+    MGM_PARKING_URLS = {
+        "https://www.mgmresorts.com/en/things-to-do/parking.html",
+        "https://aria.mgmresorts.com/en/terms-and-conditions.html",
+        "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html",
+    }
+    for h in hotels:
+        if h.get("id") in ("bellagio", "mgm", "aria") and h.get("parkingSource") in MGM_PARKING_URLS:
+            h["lastChecked"] = LAST_PASS_2026_11_19
+            h["lastVerified"] = LAST_PASS_2026_11_19
+    for src in SOURCES:
+        if src["url"] in MGM_PARKING_URLS:
+            src["checked"] = LAST_PASS_2026_11_19
 
     recurring_events = [e for e in events if not e["date"] and e.get("weekdays")]
     plan, conflicts = build_day_plan(events, TRIP["start"], TRIP.get("playableEnd", TRIP["end"]), recurring_events)
