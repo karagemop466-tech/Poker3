@@ -53,6 +53,7 @@ PAGES = (
     "index.html", "tournaments.html", "venues.html", "browse.html", "schedule.html",
     "hotels.html", "questions.html", "suggestions.html", "flagged.html", "sources.html", "search.html",
     "ranking.html",
+    "verification.html",
 )
 
 # Detailed pages that carry their own data attributes instead of data-page.
@@ -224,13 +225,13 @@ def main() -> int:
         if not f.get("source"):
             fail(f"flag {f.get('id')}: no source", errors)
         elif not official(f["source"]):
-            # A flag about this site's own publishing or its own automation cannot
-            # cite a casino page: the evidence is the repository or its Actions
-            # runs. Those flags must say so explicitly with area "Publishing" or
-            # "Monitoring" and cite a GitHub URL, so an uncited data flag can
-            # never slip through this exemption.
+            # A flag about this site's own publishing, its own automation or its
+            # own repository files cannot cite a casino page: the evidence is the
+            # repository or its Actions runs. Those flags must say so explicitly
+            # with area "Publishing", "Monitoring" or "Repository" and cite a
+            # GitHub URL, so an uncited data flag can never slip through.
             repo_hosted = str(f["source"]).startswith("https://github.com/karagemop466-tech/Poker3")
-            if not (f.get("area") in {"Publishing", "Monitoring"} and repo_hosted):
+            if not (f.get("area") in {"Publishing", "Monitoring", "Repository"} and repo_hosted):
                 fail(f"flag {f.get('id')}: non-official source outside the publishing/monitoring exemption", errors)
         if not f.get("detail"):
             fail(f"flag {f.get('id')}: no detail", errors)
