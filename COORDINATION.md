@@ -5340,3 +5340,23 @@ Palace and Horseshoe rows keep the read dates their own sessions stamped.
 - **Documentation PR [#191](https://github.com/karagemop466-tech/Poker3/pull/191)** merged at `2026-11-19T06:56:53Z` as `ac1a50901f4809fa6a7344067ee781991563d03e`; its checks passed and its canonical [Pages run 44475887163](https://github.com/karagemop466-tech/Poker3/actions/runs/44475887163) also succeeded. Implementation PR #186, the disclosure, automated run and deployment are complete. Unresolved source evidence stays published for review.
 
 **Final record rebase (09d32ea7).** Main advanced to `1b09d41` with another session’s publication record; the append-only board conflict retained that complete section and this live-run result. No code or data conflict occurred.
+### Final record (session `arena/ade0718f-poker3`, 2026-11-19 UTC)
+
+- **Documentation PR:** [#188](https://github.com/karagemop466-tech/Poker3/pull/188), merged with `gh pr merge 188 --merge`
+  at **06:54:27 UTC**, merge commit **`a9c9f3d18cc934fc21844aba8f077e7faa70ea57`**.
+- **Checks on `a9c9f3d`:** "Verify static research site" **success**, "Official table transcription check" **success**,
+  "Publish the canonical Vegas Poker Planner to GitHub Pages" **success**, "pages build and deployment" **success**.
+- **Live verification after the deploy (fetched, not assumed):** the dashboard at
+  https://karagemop466-tech.github.io/Poker3/ serves the updated landing note — `lastChecked 2026-11-19` /
+  `lastVerified 2026-11-19` and "the whole official schedule page and its 94 rows were read again by hand on 19 November
+  2026" — and the updated coverage paragraph ("all 94 of its rows were compared line by line against two independent
+  same-day captures"). Immediately after a deploy GitHub's CDN can still return the previous copy for `/`; the same
+  request with a cache-busting query returned the new text, and the Pages build API names the merged commit.
+- **State of the board's open items:** F31 (no written one-entry-per-player cap), F16 (no published finish time),
+  F17 (earliest published start is 9:00 AM, Horseshoe — no 8 AM row exists), F39 (room-tax % still blank for Wynn,
+  Caesars, Horseshoe, Bellagio, MGM Grand, ARIA), F56 (Wynn Signature structures still "COMING SOON"), F57, F93, and the
+  rest of the 95-flag register stay published on the Flagged for review page. None of them blocks publication, and none
+  of them was inferred away.
+- **Open cross-session PR:** #173 (`arena/a33db3c1-poker3`) remains open and untouched. Its rows already carry the
+  2026-11-19 read on `main` because of F97, so merging it is not required for correctness; its owner should rebase and
+  drop the superseded stamping block if they still want its research record published.
