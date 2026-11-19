@@ -5939,7 +5939,7 @@ files are being modified.
 | V1 Fresh independent line-by-line verification of the published trip-window rows and core hotel/fee values against live official sources (2026-11-19 reads) | done | `arena/4475a074` | `research/` (new dated audit record), `site/data.json` flag register, `site/flagged.html` | Reads via the platform fetch tool. No value is inferred; blanks stay blank. Every value compared against the official page behind it. |
 | V2 Requirements audit: confirm all 40 published requirement rows still hold on the live site; implement any genuine gap | done (no gap found) | `arena/4475a074` | `site/**`, `scripts/**`, `tests/**` | The 40-row audit already lives in `site/data.json`; this session re-confirmed it. No genuine gap found. |
 | V3 Fix any drift/irregularity found in V1 (values, dates, flags, page text) | done (no drift found) | `arena/4475a074` | `site/**`, `scripts/**`, `tests/**` | The fresh official reads agreed with every published value, so no value, date, flag or page text needed changing. |
-| V4 Final verification: full unit suite, all verification scripts, link check, reproducible rebuild, then PR → `main` → merge → Pages confirmation → record here | in progress | `arena/4475a074` | whole repo (integration) | Flagged irregularities and unverified items do not block the merge; they are published on the Flagged for review page. |
+| V4 Final verification: full unit suite, all verification scripts, link check, reproducible rebuild, then PR → `main` → merge → Pages confirmation → record here | done | `arena/4475a074` | whole repo (integration) | Flagged irregularities and unverified items do not block the merge; they are published on the Flagged for review page. |
 
 ### Result (session `arena/4475a074-poker3`, 2026-11-19 UTC)
 
@@ -5988,6 +5988,7 @@ capture, the converter script, the new regression test, and this COORDINATION.md
 were left untouched; no other branch was created, switched to or pushed.
 
 
+
 **Follow-up on the same branch (2026-11-19, still session `arena/80a6f5df-poker3`).** The first deploy of
 `site/q-and-a.html` was served with literal markdown in it: the table shipped as `<p>|---|---|---|</p>` plus a `<th>`-only
 header, `**ANSWERED**` rendered as plain text, and every source URL was an angle-bracket string rather than a link. That is
@@ -6034,3 +6035,25 @@ all four audits, the three headless render checks, `node --check` and the 0-brok
 - **This session is done.** S1 (independent re-verification), S2 (three flags, the Q&A page, the regression tests) and
   S3 (gate, PR, merge, deploy, read-back) are complete. Nothing was marked verified without an official read made on
   2026-11-19; F16, F31, F39, F91, F107 and F108 remain open by design and are published on the Flagged for review page.
+
+---
+
+---
+
+### PR, merge and GitHub Pages deployment (recorded 2026-11-19, session `arena/4475a074-poker3`)
+
+- **PR:** [#211](https://github.com/karagemop466-tech/Poker3/pull/211) — `arena/4475a074-poker3` → `main`. Created
+  with a summary of the fresh verification, the full official source list, and the note that no new irregularity
+  was found.
+- **Merge:** `gh pr merge 211 --merge` at **2026-11-19T11:12:26Z**, merge commit
+  [`2463afe1e9cacc4a2fa74ebd3a865f1729a869d4`](https://github.com/karagemop466-tech/Poker3/commit/2463afe1e9cacc4a2fa74ebd3a865f1729a869d4).
+  No approval wait; the brief requires the integration owner to merge without waiting.
+- **GitHub Pages:** the post-merge publish built and deployed successfully. `GET /repos/karagemop466-tech/Poker3/pages/builds/latest`
+  returned `status: "built"`, `commit: "2463afe1e9cacc4a2fa74ebd3a865f1729a869d4"`, `error: null`.
+- **Live read-back (fetched, not assumed):** `/Poker3/verification.html` serves the 40-row requirements audit with
+  the summary (40 requirements, 18 official reads, 19 trip-window rows compared, 104 flags, 341 published rows);
+  `/Poker3/calculator.html` serves the trip-cost calculator with the formula, the $197.28 floor, the like-for-like
+  comparison and every official source link. Both render correctly on the live site.
+- **Rebase log:** one append-only `COORDINATION.md` conflict during the rebase onto `main` (PR #207, session
+  `arena/80a6f5df-poker3`). It was resolved by keeping both sessions' records in full, separated by `---`, with no
+  text discarded; the two conflict-marker tests then passed. No other session's code or data was overwritten.
