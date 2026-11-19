@@ -4496,3 +4496,11 @@ All five fixes implemented on `arena/16cd67ca-poker3` (re-implemented on current
 | `walkToVenetian()` direction | done | `arena/16cd67ca-poker3` | `site/assets/app.js`, `tests/` | Wynn 13, not 19 |
 | F92 change-monitoring flag | done | `arena/16cd67ca-poker3` | `scripts/data_source.py`, `site/data.json`, `site/sheets.html` | Manual re-read pending |
 | Verification, PR → `main`, merge, Pages | in progress | `arena/16cd67ca-poker3` | whole repo | PR opened from this branch |
+
+
+
+## Session `arena/62967e7b-poker3` — decision-readiness and publication verification (2026-11-19 UTC)
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| Surface evidence freshness and booking blockers on the canonical landing page; verify saved data, existing deployment and monitoring | in progress | arena/62967e7b-poker3 | `site/index.html`, new `site/assets/readiness.js`, new readiness tests, `COORDINATION.md` | Fixed Arena branch; shared board already on main. No edits to overlapping files in open PRs #112/#130. Audit latest committed official-source checks and independently attempt official-page spot checks; no unverified values will be promoted. |
