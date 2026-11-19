@@ -1170,8 +1170,8 @@ FLAGS = [
                  "forfeited'. Because a hash cannot say which words changed, marketing wording is the most likely mover, but "
                  "no data value changed and none was edited. The source register's checked dates for these six URLs now read "
                  "2026-11-19. If a future check flags any of them again, re-read before nonrefundable payment. "
-                 "(Renumbered F93 -> F96 at merge: main had already taken F93/F94 for the hotel reconfirmation and day-plan "
-                 "flags, and open PR #165 announces F93-F95.)"),
+                 "(Renumbered F93 -> F96 at merge: main had already taken F93 and F94 for the hotel-reconfirmation and "
+                 "day-plan flags, and open PR #165 announces further IDs in that same block.)"),
          source="https://www.wynnlasvegas.com/about-us/parking"),
     dict(id="F74", area="Venetian DSE NYE", severity="Low",
          title="Eleven NYE rows carried a 'structure sheet not read' label after all 15 sheets had been read",
