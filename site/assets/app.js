@@ -11,6 +11,7 @@ const NAV = [
   ['schedule.html', 'Day plan', '◷'],
   ['hotels.html', 'Hotels', '⌂'],
   ['calculator.html', 'Trip cost', '∑'],
+  ['ranking.html', 'Ranking', '≡'],
   ['questions.html', 'Questions', '?'],
   ['suggestions.html', 'Suggestions', '✦'],
   ['flagged.html', 'Flagged for review', '⚑'],
@@ -236,6 +237,13 @@ function applyTournamentFilters() {
       <th>Buy-in</th><th>Guaranteed pool</th><th>Pool ÷ fee</th>
       <th>Format</th><th>Entry check</th><th>Late registration</th><th>Est. end</th><th>Last checked / verified</th><th>Sources</th>
     </tr></thead>`;
+  const quick = `<div class="pill-row">
+      <a class="pill" href="#" data-quick-from="${esc((db.trip || {}).start || '')}" data-quick-to="${esc((db.trip || {}).end || '')}">Trip window${(db.trip || {}).start ? ' ' + esc(db.trip.start) + ' → ' + esc(db.trip.end) : ''}</a>
+      <a class="pill" href="#" data-quick-today="1">Today onward</a>
+      <a class="pill" href="#" data-quick-clear="1">Clear dates</a>
+      <span class="muted">Showing ${state.from ? esc(state.from) : 'any date'} → ${state.to ? esc(state.to) : 'any date'}.
+      A date range hides the recurring room events, because those publish no date.</span>
+    </div>`;
   const body = rows.length ? rows.map((e) => `
     <tr class="row-click" data-id="${esc(e.id)}">
       <td>${e.date ? esc(e.date) : '<span class="muted">Recurring</span>'}${e.status === 'past' ? '<span class="muted">Past</span>' : ''}</td>
@@ -255,9 +263,29 @@ function applyTournamentFilters() {
   const walkNote = state.walkOnly
     ? ` Walking limit (${WALK_LIMIT_MIN} min from ${esc(hotelName(state.hotelWalk))}) hides ${walkOver + walkUnmeasured} further rows: ${walkOver} measured over the limit, ${walkUnmeasured} with no measured route (F32).`
     : '';
-  host.innerHTML = `<div class="table-wrap"><table>${head}<tbody>${body}</tbody></table></div>
+  host.innerHTML = `${quick}<div class="table-wrap"><table>${head}<tbody>${body}</tbody></table></div>
     <p class="toolbar-note">${rows.length} of ${(db.events || []).length} rows.${walkNote}
     Every row links the official page or PDF it came from. Blank cells are values no official source published.</p>`;
+  host.querySelectorAll('[data-quick-from]').forEach((a) => a.addEventListener('click', (ev) => {
+    ev.preventDefault();
+    state.from = a.dataset.quickFrom;
+    state.to = a.dataset.quickTo;
+    buildTournamentControls();
+    applyTournamentFilters();
+  }));
+  host.querySelectorAll('[data-quick-today]').forEach((a) => a.addEventListener('click', (ev) => {
+    ev.preventDefault();
+    state.from = db.today || db.asOf || '';
+    state.to = '';
+    buildTournamentControls();
+    applyTournamentFilters();
+  }));
+  host.querySelectorAll('[data-quick-clear]').forEach((a) => a.addEventListener('click', (ev) => {
+    ev.preventDefault();
+    state.from = ''; state.to = '';
+    buildTournamentControls();
+    applyTournamentFilters();
+  }));
   host.querySelectorAll('tr.row-click').forEach((tr) => {
     tr.addEventListener('click', () => showDetail(tr.dataset.id));
   });
@@ -457,7 +485,10 @@ function hotelCards(hotels) {
     <p class="muted">${esc(h.rooms || 'Room inventory not published in this pass')}</p>
     <p><strong>Published base rate:</strong> ${h.publishedStartingRates ? '$' + h.publishedStartingRates : 'not published'}</p>
     <p><strong>Mandatory resort fee:</strong> ${h.resortFee ? '$' + h.resortFee + ' plus tax' : 'not verified'}</p>
-    <p><strong>True cost per night:</strong> ${h.trueNightlyLow ? '$' + h.trueNightlyLow.toFixed(2) + ' – $' + h.trueNightlyHigh.toFixed(2) : 'cannot be computed without a published rate'}</p>
+    <p><strong>True cost per night:</strong> ${h.trueNightlyLow ? '$' + h.trueNightlyLow.toFixed(2) + ' – $' + h.trueNightlyHigh.toFixed(2)
+      : (h.derivedNightlyLow ? '$' + h.derivedNightlyLow.toFixed(2) + ' – $' + h.derivedNightlyHigh.toFixed(2) + ' (derived)'
+      : 'cannot be computed without a published rate')}</p>
+    ${h.derivedNightlyNote ? `<p class="muted">${esc(h.derivedNightlyNote)}</p>` : ''}
     <p><strong>Cancellation deadline:</strong> ${esc(h.cancellation || 'not published')}</p>
     <p><strong>Last checked:</strong> ${esc(h.lastChecked || 'Not recorded')}</p>
     <p class="muted">${esc(h.status || '')}</p>
@@ -484,7 +515,10 @@ function renderHotels() {
                 ${h.printedFeeAndTax.agreesWithModelTaxPct ? 'agrees with' : 'disagrees with'} the 13.38% the cost model applies ·
                 <a href="${esc(h.printedFeeAndTax.source)}" target="_blank" rel="noopener">printed ${esc(h.printedFeeAndTax.excerpt)}</a></span>`
             : ''}</td>
-        <td>${h.trueNightlyLow ? '$' + h.trueNightlyLow.toFixed(2) + ' – $' + h.trueNightlyHigh.toFixed(2) + '<span class="muted">floor computed from published components</span>' : blank}</td>
+        <td>${h.trueNightlyLow ? '$' + h.trueNightlyLow.toFixed(2) + ' – $' + h.trueNightlyHigh.toFixed(2) + '<span class="muted">floor computed from published components</span>'
+          : (h.derivedNightlyLow ? '$' + h.derivedNightlyLow.toFixed(2) + ' – $' + h.derivedNightlyHigh.toFixed(2) +
+            '<span class="muted">derived from the property\'s own dated average, fee included, plus 13.38% tax</span>'
+            : blank)}</td>
         <td>${esc(h.parking || 'Not published')}</td>
         <td>${esc(h.cancellation || 'Not published')}${h.cancellationDetail ? `<span class="muted">${esc(h.cancellationDetail)}</span>` : ''}${h.checkInOut ? `<span class="muted">${esc(h.checkInOut)}</span>` : ''}</td>
         <td>${esc(h.qualityNote || '')}</td>
@@ -778,6 +812,84 @@ function renderSuggestions() {
       <p class="next"><strong>Decision needed:</strong> ${esc(s.decision)}</p>
     </article>`).join('');
 }
+/* ----------------------------------------------------------------- ranking */
+/* A row earns a place here only when an official source prints BOTH the entry fee
+   (confirmed on a structure sheet, an itemised split or a printed buy-in line) and
+   the guaranteed prize pool. Rows with one of the two are left where they are, with
+   the blank cell and its flag. Nothing on this page is a forecast: the ratio is
+   published pool divided by published fee, printed as such. */
+function rankingEligible(e) {
+  if (!e.date) return false;                                     // recurring room events have no published fee
+  if (!(typeof e.buyIn === 'number' && e.buyIn > 0)) return false;
+  if (!(typeof e.guarantee === 'number' && e.guarantee > 0)) return false;
+  const fee = (e.rules || {}).fee || {};
+  return fee.status === 'confirmed';
+}
+function rankingGroup(e) {
+  const single = (e.rules || {}).singleEntry || {};
+  const kind = e.kind || '';
+  if (kind === 'bounty') return 'bounty';
+  if (e.entryType !== 'none' || ['flight', 'satellite'].includes(e.category)) return 'flight';
+  if (single.status !== 'single-entry-on-sheet') return 'flight';
+  return 'single';
+}
+function rankingTable(rows, opts) {
+  const o = opts || {};
+  if (!rows.length) return '<div class="empty"><strong>No row qualifies.</strong> Nothing in this group prints both a confirmed fee and a guarantee.</div>';
+  const body = rows.map((e, i) => `
+    <tr class="row-click" data-id="${esc(e.id)}">
+      <td>${i + 1}</td>
+      <td>${esc(e.date)}<span class="muted">${esc(e.time)}</span></td>
+      <td>${esc(venueName(e.venue))}</td>
+      <td class="event-name">${esc(e.name)}${e.eligibility ? `<span class="muted">Restricted: ${esc(e.eligibility)}</span>` : ''}</td>
+      <td>${money(e.buyIn)}</td>
+      <td>${money(e.guarantee)}${e.guaranteeNote ? `<span class="muted">${esc(e.guaranteeNote)}</span>` : ''}</td>
+      <td>${typeof e.ratio === 'number' && e.ratio ? e.ratio.toFixed(1) + '×' : blank}</td>
+      <td>${entryCheckCell(e)}</td>
+      <td>${e.lastChecked ? esc(e.lastChecked) : blank}</td>
+      <td>${sourceLinks(e)}</td>
+    </tr>`).join('');
+  return `<div class="table-wrap"><table><thead><tr><th>#</th><th>Date · start</th><th>Venue</th><th>Event</th>
+    <th>Entry fee</th><th>Guaranteed pool</th><th>Pool ÷ fee</th><th>Entry check</th><th>Read on</th><th>Sources</th>
+    </tr></thead><tbody>${body}</tbody></table></div>
+    <p class="toolbar-note">${rows.length} ranked rows${o.note ? ' · ' + esc(o.note) : ''}. Pool ÷ fee is the published
+    guarantee divided by the published fee: a description of two printed numbers, not a return or a forecast.</p>`;
+}
+function renderRanking() {
+  const all = (db.events || []).filter(rankingEligible);
+  const single = all.filter((e) => rankingGroup(e) === 'single')
+    .sort((a, b) => b.ratio - a.ratio || (a.buyIn - b.buyIn));
+  const bounty = all.filter((e) => rankingGroup(e) === 'bounty').sort((a, b) => b.ratio - a.ratio);
+  const flight = all.filter((e) => rankingGroup(e) === 'flight').sort((a, b) => b.ratio - a.ratio);
+  const unranked = (db.events || []).length - all.length;
+  const gate = document.querySelector('[data-ranking-gate]');
+  if (gate) {
+    const confirmed = (db.events || []).filter(hasConfirmedSingleEntryPolicy).length;
+    gate.innerHTML = `<strong>Every row on this page is conditional on one unanswered question.</strong>
+      ${all.length} of ${(db.events || []).length} published rows print both a confirmed fee and a guarantee and are
+      ranked here; the other ${unranked} stay on the tournament table with a blank cell and the flag that explains it.
+      <strong>${confirmed}</strong> rows carry a written one-entry-per-player cap, so no ranked row is an eligible
+      single-entry event yet: ask the room to confirm the maximum entries, no rebuy and no add-on in writing before
+      paying anything non-refundable (<a href="flagged.html">F31</a>).`;
+  }
+  const singleHost = document.querySelector('[data-ranking-single]');
+  if (singleHost) {
+    singleHost.innerHTML = rankingTable(single, {
+      note: 'single printed buy-in, no extra-entry clause printed, cap unconfirmed',
+    });
+  }
+  const bountyHost = document.querySelector('[data-ranking-bounty]');
+  if (bountyHost) bountyHost.innerHTML = rankingTable(bounty, { note: 'guarantee includes bounties' });
+  const flightHost = document.querySelector('[data-ranking-flight]');
+  if (flightHost) flightHost.innerHTML = rankingTable(flight, { note: 'multi-flight or multi-entry format' });
+  const count = document.querySelector('[data-ranking-count]');
+  if (count) count.textContent = String(all.length);
+  document.querySelectorAll('[data-ranking-single] tr.row-click, [data-ranking-bounty] tr.row-click, [data-ranking-flight] tr.row-click')
+    .forEach((tr) => tr.addEventListener('click', () => {
+      const e = (db.events || []).find((x) => x.id === tr.dataset.id);
+      if (e) window.location.href = 'tournaments.html?q=' + encodeURIComponent(e.name);
+    }));
+}
 function renderFlags() {
   const host = document.querySelector('[data-flags]');
   if (!host) return;
@@ -999,7 +1111,7 @@ function renderHome() {
          $119 before the $55 mandatory resort fee and 13.38% Clark County room tax, and the walk to any other
          Strip room on the list is inside 30 minutes.</p>
       <p class="muted">Nightly budget fixed at $${(t.nightlyBudget || 0).toFixed(2)} (the published floor).
-         The eight recommended entries total ${money(t.primaryBuyIns)} in buy-ins; with a 25% buffer, plan on
+         The ${db.dayPlan.length} planned primary candidates total ${money(t.primaryBuyIns)} in buy-ins; with a 25% buffer, plan on
          ${money(t.bankrollWithBuffer)}.</p>
       ${costLine()}
       <p><a class="card-link" href="schedule.html">Open the day plan →</a> · <a class="card-link" href="hotels.html">Open the hotel comparison →</a> · <a class="card-link" href="calculator.html">Change the numbers in the trip cost calculator →</a></p>`;
@@ -1045,6 +1157,7 @@ function boot() {
     if (PAGE === 'venues') { renderVenueIndex(); renderStripRooms(); }
     if (PAGE === 'browse') renderBrowse();
     if (PAGE === 'hotels') renderHotels();
+    if (PAGE === 'ranking') renderRanking();
     if (PAGE === 'schedule') renderSchedule();
     if (PAGE === 'questions') renderQuestions();
     if (PAGE === 'suggestions') renderSuggestions();

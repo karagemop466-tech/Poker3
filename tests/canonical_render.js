@@ -135,6 +135,7 @@ const PAGES = [
   ['sources', ''],
   ['global-search', '?q=venetian'],
   ['calculator', ''],
+  ['ranking', ''],
 ];
 
 /* The detailed venue pages use their own script and their own data attributes. */
@@ -241,6 +242,22 @@ function runVenuePage(venueAttr) {
       }
       if (!log || !log.html.includes('calendar cells for Nov. 16-30') || log.html.includes('$calendar')) {
         console.log(`FAIL  ${label}: dated rate-log observations did not render correctly`);
+        failures++;
+      }
+    }
+    if (page === 'ranking') {
+      const single = reg.get('[data-ranking-single]');
+      const gate = reg.get('[data-ranking-gate]');
+      if (!single || !/Pool \u00f7 fee/.test(single.html)) {
+        console.log(`FAIL  ${label}: the ranked single-buy-in table did not render`);
+        failures++;
+      }
+      if (!gate || !/one-entry-per-player cap/.test(gate.html)) {
+        console.log(`FAIL  ${label}: the ranking page does not disclose that no row has a written entry cap`);
+        failures++;
+      }
+      if (single && /\$75,000/.test(single.html) && single.html.indexOf('No Limit Hold\'em 1A') !== -1) {
+        console.log(`FAIL  ${label}: a multi-flight $75K event was ranked as a single-flight event`);
         failures++;
       }
     }

@@ -77,7 +77,14 @@
           <div class="button-row">
             <button class="btn" type="button" data-preset="floor">Venetian floor · $119</button>
             <button class="btn" type="button" data-preset="high">Venetian high · $209</button>
+            <button class="btn" type="button" data-preset="quote">Dated quote · Nov 17-19</button>
           </div>
+          <h4>Or load a property's own published components</h4>
+          <p class="smallprint">Each button copies that property's published room rate, mandatory resort fee, tax rate
+          and parking fee into the boxes above. No value is filled in that the property does not publish. A property
+          whose own quote already includes the resort fee is flagged instead of loaded, because this calculator adds the
+          fee itself from a fee-exclusive room rate.</p>
+          <div class="button-row" data-hotel-presets></div>
           <p class="smallprint">
             $119 and $209 are the two official starting rates on the poker rate page: "These rates will start as low as
             $119 and $209 and can be higher." The page does not say which figure belongs to which tower. $55 is the
@@ -161,9 +168,42 @@
   const form = document.getElementById('tripForm');
   const out = document.getElementById('result');
   const brk = document.getElementById('breakdown');
-  const PRESETS = { floor: { rate: 119 }, high: { rate: 209 } };
+  // Every preset is a published figure, never a typed guess: $119 and $209 are the two
+  // published poker-suite starting rates, and $164.25 is the nightly room rate printed inside
+  // the dated 17-19 Nov checkout total.
+  const PRESETS = { floor: { rate: 119 }, high: { rate: 209 }, quote: { rate: 164.25 } };
   const cents = (amount) => Math.round((amount + Number.EPSILON) * 100) / 100;
   let model;
+  // Per-property loader built from site/data.json, so a button can only copy a value the
+  // property publishes. A fee-inclusive quote is never pasted into the fee-exclusive rate box.
+  fetch('data.json').then((r) => r.json()).then((d) => buildHotelPresets(d))
+    .catch(() => { /* optional: the form still works without it */ });
+  function buildHotelPresets(db) {
+    const host = document.querySelector('[data-hotel-presets]');
+    if (!host || !db || !db.hotels) return;
+    host.innerHTML = db.hotels.map((h) => {
+      const feeInclusive = !h.baseRateFloor && !!h.derivedNightlyLow;
+      const rate = (typeof h.baseRateFloor === 'number' && !feeInclusive) ? h.baseRateFloor : '';
+      const fee = (typeof h.resortFee === 'number' && !feeInclusive) ? h.resortFee : '';
+      const tax = typeof h.taxRate === 'number' ? h.taxRate : '';
+      const parking = typeof h.parkingPerNight === 'number' ? h.parkingPerNight : '';
+      const missing = [];
+      if (feeInclusive) missing.push("no fee-exclusive room rate (its own quote already includes the resort fee)");
+      else if (rate === '') missing.push('no room rate');
+      if (fee === '') missing.push('no resort fee');
+      if (tax === '') missing.push('no tax percentage');
+      return `<button class="btn" type="button" data-hotel="${h.id}"
+        data-rate="${rate}" data-fee="${fee}" data-tax="${tax}" data-parking="${parking}">${h.name}</button>
+        ${missing.length ? `<span class="muted">${missing.join(' · ')} published</span>` : ''}`;
+    }).join('<br>');
+    host.querySelectorAll('[data-hotel]').forEach((b) => b.addEventListener('click', () => {
+      if (b.dataset.rate !== '') form.rate.value = b.dataset.rate;
+      if (b.dataset.fee !== '') form.resortFee.value = b.dataset.fee;
+      if (b.dataset.tax !== '') form.taxRate.value = b.dataset.tax;
+      form.parking.value = b.dataset.parking !== '' ? b.dataset.parking : 0;
+      calc();
+    }));
+  }
   const money = (n) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
   function read() {
     return {

@@ -511,6 +511,19 @@ HOTELS = [
         source=WYNN_ROOMS, feeSource=WYNN_TERMS, taxSource=WYNN_TERMS,
         bookingUrl=WYNN_IB_TRIP,
         bookingLinks=[dict(label="whole trip, 7 nights (quote read 2026-11-19)", url=WYNN_IB_TRIP)],
+        # The engine printed two dated average prices for the exact 7-night trip stay, each
+        # described as "Includes Resort Fee, Excludes taxes". A true nightly cost can therefore
+        # be derived for Wynn without inventing a rate: the average already contains the $55
+        # resort fee, so only the Clark County room tax is added. It is labelled derived, not
+        # quoted, because Wynn prints no tax amount and no checkout total of its own.
+        derivedNightlyLow=459.19, derivedNightlyHigh=561.23,
+        derivedNightlyNote=("Derived, not quoted. Wynn's own reservations engine printed, for the exact trip stay "
+                            "(23-30 Nov 2026, 7 nights), '$405 avg/night' and '$495 avg/night', each marked "
+                            "'Includes Resort Fee, Excludes taxes'. The resort fee is therefore already inside those "
+                            "figures; adding the 13.38% Clark County room tax printed in The Venetian's hotel terms "
+                            "gives $405 x 1.1338 = $459.19 and $495 x 1.1338 = $561.23 per night all-in. Wynn prints no "
+                            "tax amount and no checkout total, so this is arithmetic on its own published figures and "
+                            "is labelled as derived, not as a quote."),
         bookingLinksNote=(
             "This link opens the official Wynn reservations engine with the trip dates already selected "
             "(checkIn/checkOut are MM/DD/YYYY parameters). On 2026-11-19 that exact URL printed '7 Night Stay: "

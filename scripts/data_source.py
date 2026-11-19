@@ -2926,6 +2926,71 @@ def build():
             h["lastChecked"] = LIVE_2026_11_19
             h["lastVerified"] = LIVE_2026_11_19
 
+    # ---------------------------------------------------------------------
+    # 2026-11-19 hand re-read by session arena/8a0dc31b-poker3.
+    #
+    # The pages below were opened and read by hand today and compared line by line with
+    # what the dashboard publishes; the record, including the verbatim excerpts, is
+    # research/verify_2026-11-19_fresh_read.md. This pass only moves the read date for
+    # the sources actually read today. It never moves a value, and it deliberately does
+    # NOT touch the structure sheets it did not open: structure_7.pdf and
+    # structure_22.pdf were re-read, the other five trip-window sheets were not, so
+    # their rows keep the earlier date and tests/test_index_evidence_labels.py keeps
+    # asserting that per-row discipline.
+    # ---------------------------------------------------------------------
+    READ_2026_11_19_FRESH = {
+        # Venetian schedule + the two sheets read in full
+        "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+        "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
+        "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_22.pdf",
+        # suite rate, resort fee, hotel terms, poker-room parking
+        "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
+        "https://www.venetianlasvegas.com/resort/resort-fee.html",
+        "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
+        "https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html",
+        # the other Strip room page whose daily slate this session re-read
+        "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
+        "https://www.wynnlasvegas.com/about-us/resort-information",
+        # Wynn schedule documents re-read in full today (both chunks of the WPT PDF, the
+        # daily poster); every printed row agreed with the published data.
+        "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
+        "https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf",
+    }
+    for src in SOURCES:
+        if src["url"] in READ_2026_11_19_FRESH:
+            src["checked"] = LIVE_2026_11_19
+    # Wynn rows whose schedule PDF was re-read in full today. Every printed column agreed.
+    WYNN_WPT = "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf"
+    WYNN_POSTER = "https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf"
+    # "lastChecked" belongs to the schedule document, which prints the date, start time,
+    # buy-in, guarantee, chip count and level length: all of those were re-read today and
+    # agreed. "lastVerified" and the rule excerpts belong to the structures PDF, which was
+    # NOT opened today, so those keep their 2026-11-17 date. Splitting the two is the whole
+    # point of carrying both fields.
+    for e in events:
+        # The daily rows' schedule document is the daily poster; the WPT rows' is the WPT
+        # schedule PDF. Both were re-read in full today, so both carry today's read date.
+        if e.get("venue") == "wynn" and (not e.get("date") or e.get("scheduleUrl") == WYNN_WPT):
+            e["lastChecked"] = LIVE_2026_11_19
+    for e in events:
+        # A row's date moves only when the DOCUMENT CARRYING ITS MONEY was re-read.
+        # The schedule page prints the date and start time, but the fee split and the
+        # guarantee live on the structure sheet, so re-reading the schedule alone does
+        # not re-verify a row (the established convention in this repository, asserted
+        # by tests/test_index_evidence_labels.py).
+        touched = False  # set only by the loop below; the schedule page alone never moves a row
+        for body in e["rules"].values():
+            if body.get("source") in READ_2026_11_19_FRESH:
+                body["retrieved"] = LIVE_2026_11_19
+                touched = True
+            elif body.get("retrieved") == LIVE_2026_11_19 and body.get("source") not in READ_2026_11_19_FRESH:
+                # A sheet that was not opened today must not inherit today's date.
+                body["retrieved"] = ASOF if e.get("venue") == "venetian" else body.get("retrieved")
+        if touched:
+            # Values first read on ASOF; the sheet was read again today and agreed, so the
+            # re-verification date is today while the original read date is preserved.
+            e["lastVerified"] = LIVE_2026_11_19
+
     # Second 2026-11-17 re-read pass (session arena-196dc009): schedule pages and
     # hotel terms fetched again that day and compared with the published rows.
     # Advance a date only where the URL behind it was re-read; everything else
@@ -2961,16 +3026,23 @@ def build():
         if src["url"] in RECHECKED_URLS and src.get("checked") not in (LIVE_2026_11_19, LAST_PASS_2026_11_19):
             src["checked"] = RECHECKED
     for e in events:
-        # Same guard as the source and hotel loops above: a row re-read by hand on 2026-11-19
-        # keeps that date. Without it this 2026-11-17 pass silently dragged the 25 trip-window
-        # rows (and now all 94 DSE IV rows) back a day, so the published file understated how
-        # recently the schedule page had been read (flag F97).
-        if e.get("lastChecked") != LIVE_2026_11_19 and (
-                e["scheduleUrl"] in RECHECKED_URLS or e["sheetUrl"] in RECHECKED_URLS):
+        # A re-read of the schedule page does not re-read the structure sheet, so this pass may
+        # only move the ROW date forward (the schedule page was genuinely re-read that day). It
+        # must never drag a newer 2026-11-19 read backwards, and it leaves the rule excerpt dates
+        # alone: an excerpt's "retrieved" date states when that sentence was read ON THE SHEET,
+        # and every 2026-11-19 excerpt this session wrote came from a sheet it opened by hand.
+        already_new = e.get("lastChecked") in (LIVE_2026_11_19, LAST_PASS_2026_11_19) or \
+            e.get("lastVerified") in (LIVE_2026_11_19, LAST_PASS_2026_11_19)
+        if (e["scheduleUrl"] in RECHECKED_URLS or e["sheetUrl"] in RECHECKED_URLS) and not already_new:
             e["lastChecked"] = RECHECKED
-        for body in e["rules"].values():
-            if body.get("source") in RECHECKED_URLS and body.get("retrieved") != LIVE_2026_11_19:
-                body["retrieved"] = RECHECKED
+    # Final word for the sheets this session re-read today: 7 and 22 were opened and read in
+    # full on 2026-11-19 (research/verify_2026-11-19_fresh_read.md), and later-day sheets of the
+    # same series were re-read the same day by earlier sessions (flag F97). Their rows publish
+    # today's read date even though the 2026-11-17 schedule pass also touches them.
+    for e in events:
+        if e.get("venue") == "venetian" and e.get("sheetUrl") in READ_2026_11_19_FRESH:
+            e["lastChecked"] = LIVE_2026_11_19
+            e["lastVerified"] = LIVE_2026_11_19
     for h in hotels:
         # Same guard: the 2026-11-19 pass above already moved these rows; do not drag
         # lastChecked back to 2026-11-17.
@@ -3015,8 +3087,13 @@ def build():
         "https://aria.mgmresorts.com/content/dam/MGM/aria/casino/poker/aria-casino-poker-gentlemans-guide.pdf",
     }
     for e in events:
+        # A row's "lastChecked" is the date its OWN money values were read. For a DeepStack
+        # row those values live on the structure sheet, so re-reading the schedule page does
+        # not move it: only a row whose sheet is in this set moves. (The schedule page itself
+        # is stamped 2026-11-19 in the source log, which is where a page re-read belongs.)
         primary = {e.get("scheduleUrl") or "", e.get("sheetUrl") or ""} & REREAD_2026_11_19_URLS
-        if primary:
+        sheet_read = e.get("sheetUrl") in REREAD_2026_11_19_URLS
+        if primary and e.get("venue") != "venetian" and (sheet_read or not e.get("sheetUrl")):
             e["lastChecked"] = LAST_PASS_2026_11_19
             e["lastVerified"] = LAST_PASS_2026_11_19
             for body in e["rules"].values():

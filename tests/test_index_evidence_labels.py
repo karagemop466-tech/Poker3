@@ -71,10 +71,10 @@ class LandingEvidenceLabels(unittest.TestCase):
                 self.assertIs(record["changed"], False)
 
     def test_row_data_still_carries_its_own_read_and_verify_dates(self):
-        # The point of this test is that each row states the date ITS OWN value was read, which is
-        # later than or equal to the first re-read pass and is never borrowed from the automated
-        # hash check. The 2026-11-19 full-page re-read moved these rows forward (flag F97), so the
-        # assertion is on the ordering, not on one fixed date.
+        # Each row states the date ITS OWN value was read and the date that document was last
+        # confirmed still true. Both are floors: a later documented read may sit on top of the
+        # 2026-11-17 re-read pass, and the sheet behind the money values is what pins
+        # lastVerified. The dates are never borrowed from the automated hash check.
         events = {e["id"]: e for e in self.data["events"]}
         for day in self.data["dayPlan"]:
             if not day["primary"]:
@@ -84,6 +84,12 @@ class LandingEvidenceLabels(unittest.TestCase):
                 self.assertGreaterEqual(event["lastChecked"], "2026-11-17")
                 self.assertGreaterEqual(event["lastVerified"], "2026-11-17")
                 self.assertLessEqual(event["lastVerified"], self.data["today"])
+                # lastVerified must belong to the structure sheet this row's rules quote, and
+                # the excerpt date must agree with it. A row cannot claim a re-verification on a
+                # day its own sheet was not read.
+                self.assertTrue(event["sheetUrl"], event["id"])
+                if event["rules"]["fee"].get("retrieved") == "2026-11-19":
+                    self.assertEqual(event["lastVerified"], "2026-11-19", event["id"])
 
 
 if __name__ == "__main__":

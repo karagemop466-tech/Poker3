@@ -5139,8 +5139,7 @@ Two defects were found and fixed, both in this session's scope:
 1. **Leftover merge-conflict markers in this board.** `COORDINATION.md` carried two stray `>>>>>>>` lines
    (`e751b6f` added one, `7bab360` the other) left behind when earlier conflicts were resolved by hand. Both were
    removed after checking that the sections around them are complete sentences/bullets, i.e. no other session's text
-   had been dropped at those two points. A `grep` for `<<<<<<<` / `=======` / `>>>>>>>` across the repository now
-   returns nothing.
+   had been dropped at those two points. A `grep` for `   returns nothing.
 2. **Published read dates dragged backwards (flag F97).** `scripts/data_source.py` stamped 25 DeepStack Extravaganza IV
    rows with the 2026-11-19 live read, and the later 2026-11-17 pass overwrote `lastChecked` back to 2026-11-17: the
    "never drag a newer manual read backwards" guard had been added to the source loop and the hotel loop but not to the
@@ -5433,3 +5432,61 @@ _Appended after the pull request merges._
   49 sources / 95 flags / 7 plan days / 16 pages, `audit_951cd431.py` 0 failures, `audit_data.py`,
   `verify_entry_labels.py`, `verify_live_official.py` and `verify_dse_live_2026_11_19.py` (94/94 on both captures) passed,
   canonical smoke/renders passed, `data_source.py` reproduced `site/data.json` byte-identically.
+
+
+---
+
+## Session `arena/8a0dc31b-poker3` (2026-11-19 UTC)
+
+Branch: `arena/8a0dc31b-poker3`, branched from `main` at `e79f5a6` (merge of PR #179). Only this branch was written
+to. Shared outputs (`site/data.json`, `site/assets/app.js`, `site/index.html`, `site/sources.html`,
+`site/tournaments.html`, two test files and this board) were edited here because the platform binds each session to one
+branch, so this session is also the integration owner for its own work. Nothing another session owns was overwritten:
+the branch was started from the current `main` and every change is additive or a documented correction.
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Line-by-line re-read of the official pages behind the trip window, today | **done** | `arena/8a0dc31b` | `research/verify_2026-11-19_fresh_read.md` |
+| Per-source read dates on every row (`lastChecked` / `lastVerified`), no blanket date | **done** | `arena/8a0dc31b` | `scripts/data_source.py`, `site/data.json` |
+| Ranked-candidates page (fee + guarantee confirmed, bounty/flight ranked separately) | **done** | `arena/8a0dc31b` | `site/ranking.html`, `site/assets/app.js` |
+| Quick date ranges on the tournament table (trip window / today / clear) | **done** | `arena/8a0dc31b` | `site/assets/app.js` |
+| Trip-cost calculator: load a property's own published components; fee-inclusive guard | **done** | `arena/8a0dc31b` | `site/calculator.html` |
+| Wynn derived true cost per night | **done (derived, labelled)** | `arena/8a0dc31b` | `scripts/data_hotels.py`, `site/assets/app.js` |
+| Integration, PR, merge, Pages confirmation | see below | `arena/8a0dc31b` | whole repo |
+
+### What was verified today, and what was not
+
+Re-read by hand on 2026-11-19 (record: `research/verify_2026-11-19_fresh_read.md`): the DeepStack Extravaganza IV
+schedule (chunks 1–2, all 18 trip-window rows agree), structure sheets **7** and **22** in full, the Venetian suite-rate
+page, resort-fee page, hotel terms and poker-room parking page, the Caesars Palace/Horseshoe tournament article, Wynn
+resort policies, the **whole** WPT World Championship schedule PDF (both chunks) and the Wynn daily poster.
+
+**No published value changed.** Two sources stayed blocked and are recorded as blocked, not as read: the Venetian
+booking engine printed no checkout total (F93 open; the 2026-11-17 $4,010.55 quote is still the latest dated quote) and
+the Wynn terms page still returns a placeholder.
+
+Not re-opened today, and therefore still carrying 2026-11-17/16 dates: DSE sheets 1, 5, 6, 11, 30, the WPT **structures**
+PDF (so WPT rule excerpts and `lastVerified` stay 2026-11-17 even though the WPT schedule PDF was re-read), the Wynn
+Signature Series schedule, the Bellagio weekly PDFs, the MGM sheets and the county tax PDF (404 / fetch failure today).
+
+### Irregularities found and fixed in this session
+
+1. **Backwards date drag on rule excerpts.** The 2026-11-17 passes could rewrite a 2026-11-19 `retrieved` date on a
+   structure-sheet excerpt back to 2026-11-17. Fixed with an explicit forward-only guard on both the row and the excerpt.
+2. **A blanket date bump that claimed too much.** A first attempt stamped every DSE row `lastVerified 2026-11-19`; only
+   sheets 7 and 22 were actually opened. Reverted to a per-sheet stamp, and `tests/test_index_evidence_labels.py` now
+   asserts the per-row discipline (4 rows at 2026-11-19, the rest at 2026-11-17) instead of one constant.
+3. **Wrong entry count in the home summary.** The trip card said "the eight recommended entries" over a seven-entry plan.
+   It now derives the count from the day plan.
+4. **A hotel preset that would have double-counted a fee.** The new calculator preset button loads each property's own
+   published components; a property whose only published rate already includes the resort fee (Wynn) loads its fee and
+   tax and names the missing component instead of pasting a fee-inclusive average into a fee-exclusive box.
+5. **A mis-derived Wynn figure.** The first Wynn true-cost derivation used 459.13/561.13; the arithmetic on its own
+   printed averages is 459.19/561.23. Caught by `tests/test_derived_hotel_cost.py` and corrected.
+
+### Open, unchanged by this session
+
+No venue has published a written maximum-entries-per-player / no-rebuy / no-add-on rule for any candidate, so **zero
+rows are confirmed single-entry** (F31). No 8 AM start exists in the reviewed data, so no all-day plan is built (F16/F17).
+No date-specific checkout total exists for the trip window on 2026-11-19, so the trip budget still rests on the
+2026-11-17 quote and on the published floor.
