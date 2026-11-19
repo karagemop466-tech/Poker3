@@ -317,6 +317,28 @@ guard had been applied to the source loop and the hotel loop but not to the even
 carry `lastChecked 2026-11-19` and `lastVerified 2026-11-19`, and no tournament, fee, guarantee, hotel or policy value
 changed — only read dates, and only forwards.
 
+## Independent re-verification, 2026-11-19 (session `arena/cce0b8d3-poker3`)
+
+A second, independent session re-read the live official pages behind the trip window and compared them line by
+line with the published rows. Record: `research/verification_2026-11-19_arena-cce0b8d3.md` and
+`research/verification_2026-11-19_arena-cce0b8d3.json`; regression guard:
+`tests/test_verification_2026_11_19_cce0b8d3.py`.
+
+| Source | What was checked | Result |
+|---|---|---|
+| [DSE IV schedule](https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html) | All four chunks; the 19 trip-window rows | Date, start time, event name and structure-sheet link matched on all 19 |
+| Venetian structure sheets 1, 5, 6, 7, 11, 22, 30 | The seven sheets behind the day plan | Chips, level length, late-registration cut-off, guarantee and fee allocation all matched |
+| [Wynn WPT schedule PDF](https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf) | The 13 trip-window rows | Date, start time, event, buy-in, guarantee and chips all matched |
+| [Venetian suite rates](https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html), [resort fee](https://www.venetianlasvegas.com/resort/resort-fee.html), [hotel terms](https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html) | $119/$209 rates, $55 fee, 13.38% tax, $20 parking, check-in/out, cancellation, the six-hour/$300 condition | Every published figure still matches verbatim |
+| [Wynn resort policies](https://www.wynnlasvegas.com/about-us/resort-information) | $55 fee, check-in 3 p.m., check-out 12 p.m., one-night deposit | Every published figure still matches verbatim |
+| [Venetian booking engine, 23-30 Nov](https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar) | Exact trip window, 2 adults | Still only the loading shell, so F93 stands |
+| [Wynn Signature structures](https://cdn.wynnresorts.com/image/upload/v1762299460/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Structures.pdf) | Whole document | Still only "COMING SOON", so F56 stands |
+
+**0 value differences.** The pass also found and corrected two statements on the static venue pages that did not
+match the register's own dates and labels (flag F100): the 15 NYE sheets were read on 2026-11-17, not 2026-11-16,
+and the NYE rows are not all unverified — seven are sheet-screened candidates, while the unverified rows are the
+38 Wynn Signature Series rows.
+
 ## Verification
 
 ```sh

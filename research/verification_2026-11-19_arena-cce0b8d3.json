@@ -1,0 +1,568 @@
+{
+  "session": "arena-cce0b8d3-poker3",
+  "readOn": "2026-11-19",
+  "method": "platform page reader on the live official pages; no third-party source; no value inferred",
+  "sources": [
+    {
+      "id": "vl-dse-nov",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+      "read": "2026-11-19",
+      "chunks": "0-3 of 4"
+    },
+    {
+      "id": "vl-sheet-30",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_30.pdf",
+      "read": "2026-11-19"
+    },
+    {
+      "id": "vl-sheet-1",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "read": "2026-11-19"
+    },
+    {
+      "id": "vl-sheet-6",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_6.pdf",
+      "read": "2026-11-19"
+    },
+    {
+      "id": "vl-sheet-5",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf",
+      "read": "2026-11-19"
+    },
+    {
+      "id": "vl-sheet-7",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
+      "read": "2026-11-19"
+    },
+    {
+      "id": "vl-sheet-11",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf",
+      "read": "2026-11-19"
+    },
+    {
+      "id": "vl-sheet-22",
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_22.pdf",
+      "read": "2026-11-19"
+    },
+    {
+      "id": "wynn-wpt",
+      "url": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
+      "read": "2026-11-19",
+      "chunks": "0 of 2"
+    },
+    {
+      "id": "wynn-poker",
+      "url": "https://www.wynnlasvegas.com/casino/poker",
+      "read": "2026-11-19"
+    },
+    {
+      "id": "wynn-policies",
+      "url": "https://www.wynnlasvegas.com/about-us/resort-information",
+      "read": "2026-11-19"
+    },
+    {
+      "id": "vl-suite-rates",
+      "url": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
+      "read": "2026-11-19"
+    },
+    {
+      "id": "vl-resort-fee",
+      "url": "https://www.venetianlasvegas.com/resort/resort-fee.html",
+      "read": "2026-11-19"
+    },
+    {
+      "id": "vl-terms",
+      "url": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
+      "read": "2026-11-19",
+      "chunks": "0-1 of 2"
+    },
+    {
+      "id": "vl-booking",
+      "url": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar",
+      "read": "2026-11-19",
+      "result": "loading shell, no checkout total (F93 stands)"
+    },
+    {
+      "id": "wynn-sig-structures",
+      "url": "https://cdn.wynnresorts.com/image/upload/v1762299460/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Structures.pdf",
+      "read": "2026-11-19",
+      "result": "still 'LAS VEGAS POKER / COMING SOON' (F56 stands)"
+    }
+  ],
+  "venetian_schedule": [
+    {
+      "date": "2026-11-23",
+      "time": "11:10 AM",
+      "event": 7,
+      "name": "$400 No Limit Hold'em 1A $75K GTD",
+      "sheet": 2,
+      "buyIn": 400,
+      "guarantee": 75000
+    },
+    {
+      "date": "2026-11-23",
+      "time": "5:10 PM",
+      "event": 8,
+      "name": "$200 No Limit Hold'em $8K GTD (1Day) - Progressive Knock-Out Bounty (PKO)",
+      "sheet": 30,
+      "buyIn": 200,
+      "guarantee": 8000
+    },
+    {
+      "date": "2026-11-24",
+      "time": "11:10 AM",
+      "event": 7,
+      "name": "$400 No Limit Hold'em 1B $75K GTD",
+      "sheet": 2,
+      "buyIn": 400,
+      "guarantee": 75000
+    },
+    {
+      "date": "2026-11-24",
+      "time": "5:10 PM",
+      "event": 9,
+      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "sheet": 1,
+      "buyIn": 200,
+      "guarantee": 8000
+    },
+    {
+      "date": "2026-11-25",
+      "time": "11:00 AM",
+      "event": 7,
+      "name": "$400 No Limit Hold'em Day 2 Restart",
+      "sheet": 2,
+      "buyIn": 400,
+      "guarantee": 75000
+    },
+    {
+      "date": "2026-11-25",
+      "time": "11:10 AM",
+      "event": 10,
+      "name": "$400 No LImit Hold'em $15K GTD (1Day)",
+      "sheet": 6,
+      "buyIn": 400,
+      "guarantee": 15000
+    },
+    {
+      "date": "2026-11-25",
+      "time": "5:10 PM",
+      "event": 11,
+      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "sheet": 1,
+      "buyIn": 200,
+      "guarantee": 8000
+    },
+    {
+      "date": "2026-11-26",
+      "time": "11:10 AM",
+      "event": 12,
+      "name": "$300 No LImit Hold'em $10K GTD (1Day)",
+      "sheet": 5,
+      "buyIn": 300,
+      "guarantee": 10000
+    },
+    {
+      "date": "2026-11-26",
+      "time": "5:10 PM",
+      "event": 13,
+      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "sheet": 1,
+      "buyIn": 200,
+      "guarantee": 8000
+    },
+    {
+      "date": "2026-11-27",
+      "time": "11:10 AM",
+      "event": 14,
+      "name": "$600 No Limit Hold'em $30K GTD (1Day)",
+      "sheet": 7,
+      "buyIn": 600,
+      "guarantee": 30000
+    },
+    {
+      "date": "2026-11-27",
+      "time": "5:10 PM",
+      "event": 15,
+      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "sheet": 1,
+      "buyIn": 200,
+      "guarantee": 8000
+    },
+    {
+      "date": "2026-11-28",
+      "time": "11:10 AM",
+      "event": 16,
+      "name": "$600 No Limit Hold'em Bounty $30K GTD (1Day) - $200 bounties to start & $500 bounties in the money",
+      "sheet": 11,
+      "buyIn": 600,
+      "guarantee": 30000
+    },
+    {
+      "date": "2026-11-28",
+      "time": "12:10 PM",
+      "event": 17,
+      "name": "$400 Pot Limit Omaha Bounty $15K GTD (1Day)",
+      "sheet": 26,
+      "buyIn": 400,
+      "guarantee": 15000
+    },
+    {
+      "date": "2026-11-28",
+      "time": "5:10 PM",
+      "event": 18,
+      "name": "$200 NLH PokerAtlas Valuetown Bounty $20K GTD (1Day) - POKERATLAS PRO MEMBER $20 RAKE DISCOUNT",
+      "sheet": 8,
+      "buyIn": 200,
+      "guarantee": 20000
+    },
+    {
+      "date": "2026-11-29",
+      "time": "11:10 AM",
+      "event": 19,
+      "name": "$400 No Limit Hold'em 1A $75K GTD",
+      "sheet": 3,
+      "buyIn": 400,
+      "guarantee": 75000
+    },
+    {
+      "date": "2026-11-29",
+      "time": "12:10 PM",
+      "event": 20,
+      "name": "$300 Pot Limit Omaha $10K GTD (1Day) - Double Board Bomb Pot",
+      "sheet": 22,
+      "buyIn": 300,
+      "guarantee": 10000
+    },
+    {
+      "date": "2026-11-29",
+      "time": "5:10 PM",
+      "event": 21,
+      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "sheet": 1,
+      "buyIn": 200,
+      "guarantee": 8000
+    },
+    {
+      "date": "2026-11-30",
+      "time": "11:10 AM",
+      "event": 19,
+      "name": "$400 No Limit Hold'em 1B $75K GTD",
+      "sheet": 3,
+      "buyIn": 400,
+      "guarantee": 75000
+    },
+    {
+      "date": "2026-11-30",
+      "time": "5:10 PM",
+      "event": 22,
+      "name": "$200 No Limit Hold'em Bounty $8K GTD (1Day)",
+      "sheet": 1,
+      "buyIn": 200,
+      "guarantee": 8000
+    }
+  ],
+  "wynn_schedule": [
+    {
+      "date": "2026-11-27",
+      "time": "11:00 AM",
+      "event": "No Limit Hold'em Day 1A",
+      "buyIn": 600,
+      "guarantee": 400000,
+      "chips": 40000,
+      "levels": "30/40"
+    },
+    {
+      "date": "2026-11-27",
+      "time": "12:00 PM",
+      "event": "TORSE",
+      "buyIn": 600,
+      "guarantee": null,
+      "chips": 35000,
+      "levels": "30"
+    },
+    {
+      "date": "2026-11-27",
+      "time": "1:00 PM",
+      "event": "PLO",
+      "buyIn": 400,
+      "guarantee": null,
+      "chips": 30000,
+      "levels": "30"
+    },
+    {
+      "date": "2026-11-27",
+      "time": "5:00 PM",
+      "event": "No Limit Hold'em Day 1B",
+      "buyIn": 600,
+      "guarantee": 400000,
+      "chips": 40000,
+      "levels": "30/40"
+    },
+    {
+      "date": "2026-11-28",
+      "time": "11:00 AM",
+      "event": "No Limit Hold'em Day 1C",
+      "buyIn": 600,
+      "guarantee": 400000,
+      "chips": 40000,
+      "levels": "30/40"
+    },
+    {
+      "date": "2026-11-28",
+      "time": "12:00 PM",
+      "event": "Mixed Triple Draw (A-5, 2-7, BadugI)",
+      "buyIn": 600,
+      "guarantee": null,
+      "chips": 35000,
+      "levels": "30"
+    },
+    {
+      "date": "2026-11-28",
+      "time": "5:00 PM",
+      "event": "No Limit Hold'em Day 1D",
+      "buyIn": 600,
+      "guarantee": 400000,
+      "chips": 40000,
+      "levels": "30/40"
+    },
+    {
+      "date": "2026-11-29",
+      "time": "11:00 AM",
+      "event": "No Limit Hold'em Day 1E",
+      "buyIn": 600,
+      "guarantee": 400000,
+      "chips": 40000,
+      "levels": "30/40"
+    },
+    {
+      "date": "2026-11-29",
+      "time": "6:00 PM",
+      "event": "No Limit Hold'em Day 1F",
+      "buyIn": 600,
+      "guarantee": 400000,
+      "chips": 40000,
+      "levels": "20/40"
+    },
+    {
+      "date": "2026-11-30",
+      "time": "11:00 AM",
+      "event": "No Limit Hold'em Day 1A",
+      "buyIn": 800,
+      "guarantee": 1000000,
+      "chips": 40000,
+      "levels": "30/40"
+    },
+    {
+      "date": "2026-11-30",
+      "time": "12:00 PM",
+      "event": "Limit Omaha 8",
+      "buyIn": 600,
+      "guarantee": null,
+      "chips": 35000,
+      "levels": "30"
+    },
+    {
+      "date": "2026-11-30",
+      "time": "1:00 PM",
+      "event": "No Limit Hold'em Day 2",
+      "buyIn": 800,
+      "guarantee": 1000000,
+      "chips": 40000,
+      "levels": "30/40"
+    },
+    {
+      "date": "2026-11-30",
+      "time": "5:00 PM",
+      "event": "No Limit Hold'em Day 1B",
+      "buyIn": 800,
+      "guarantee": 1000000,
+      "chips": 40000,
+      "levels": "30/40"
+    }
+  ],
+  "structure_sheets": [
+    {
+      "sheet": 30,
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_30.pdf",
+      "events": [
+        8
+      ],
+      "start": "5:10 PM",
+      "chips": 25000,
+      "levelMin": 30,
+      "lateReg": "8 levels + Break (9:40 PM)",
+      "guarantee": "$8,000 (prize pool + total bounties)",
+      "fee": "$40 of the $200 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $160 of every $200 Buy In.",
+      "guaranteeByEvent": {
+        "8": 8000
+      }
+    },
+    {
+      "sheet": 1,
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
+      "events": [
+        9,
+        11,
+        13,
+        15,
+        21,
+        22,
+        23,
+        25,
+        60,
+        61,
+        62,
+        64
+      ],
+      "start": "5:10 PM",
+      "chips": 25000,
+      "levelMin": 30,
+      "lateReg": "8 levels + Break (9:40 PM)",
+      "guarantee": "$8,000 (prize pool + total bounties)",
+      "fee": "$40 of the $200 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $160 of every $200 Buy In.",
+      "guaranteeByEvent": {
+        "9": 8000,
+        "11": 8000,
+        "13": 8000,
+        "15": 8000,
+        "21": 8000,
+        "22": 8000,
+        "23": 8000,
+        "25": 8000,
+        "60": 8000,
+        "61": 8000,
+        "62": 8000,
+        "64": 8000
+      }
+    },
+    {
+      "sheet": 6,
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_6.pdf",
+      "events": [
+        10
+      ],
+      "start": "11:10 AM",
+      "chips": 40000,
+      "levelMin": 30,
+      "lateReg": "10 levels + Break (~ 4:55 PM)",
+      "guarantee": "$15,000",
+      "fee": "$65 of the $400 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $335 of every $400 Buy In.",
+      "guaranteeByEvent": {
+        "10": 15000
+      }
+    },
+    {
+      "sheet": 5,
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf",
+      "events": [
+        2,
+        12
+      ],
+      "start": "11:10 AM",
+      "chips": 40000,
+      "levelMin": 30,
+      "lateReg": "10 levels + Break (~ 4:55 PM)",
+      "guarantee": "$10,000",
+      "fee": "$58 of the $300 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $242 of every $300 Buy In.",
+      "guaranteeByEvent": {
+        "2": 10000,
+        "12": 10000
+      }
+    },
+    {
+      "sheet": 7,
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
+      "events": [
+        14,
+        28,
+        63
+      ],
+      "start": "11:10 AM",
+      "chips": 40000,
+      "levelMin": 30,
+      "lateReg": "10 levels + Break (~ 4:55 PM)",
+      "guarantee": "$30,000 for Event #14 and #63; $40,000 for Event #28",
+      "fee": "$90 of the $600 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $510 of every $600 Buy In.",
+      "guaranteeByEvent": {
+        "14": 30000,
+        "28": 40000,
+        "63": 30000
+      }
+    },
+    {
+      "sheet": 11,
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf",
+      "events": [
+        16,
+        30,
+        54
+      ],
+      "start": "11:10 AM",
+      "chips": 40000,
+      "levelMin": 30,
+      "lateReg": "10 levels + Break (4:55 PM)",
+      "guarantee": "$30,000 (prize pool + total bounties) Event #16; $40,000 Event #30; $50,000 Event #54",
+      "fee": "$90 of the $600 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $510 of every $600 Buy In.",
+      "guaranteeByEvent": {
+        "16": 30000,
+        "30": 40000,
+        "54": 50000
+      }
+    },
+    {
+      "sheet": 22,
+      "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_22.pdf",
+      "events": [
+        20
+      ],
+      "start": "12:10 PM",
+      "chips": 30000,
+      "levelMin": 30,
+      "lateReg": "8 levels + break (~ 4:40 PM)",
+      "guarantee": "$10,000",
+      "fee": "$58 of the $300 Buy-In is withheld for house fees (Rake + Staff). The prize pool consists of $242 of every $300 Buy In.",
+      "guaranteeByEvent": {
+        "20": 10000
+      }
+    }
+  ],
+  "hotel_facts": {
+    "venetian": {
+      "source": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
+      "startingRates": "$119 and $209",
+      "resortFee": 55,
+      "resortFeeNote": "There is a $55 resort fee per night stayed.",
+      "taxRate": 13.38,
+      "taxSource": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
+      "parkingRegisteredGuestPerDay": 20,
+      "checkIn": "3:00 p.m. to 11:59 p.m.",
+      "checkOut": "11:00 a.m.",
+      "cancellation": "A deposit for the stay, including suite, fee and tax, is billed upon reservation confirmation; prepaid offers are non-cancellable and non-refundable; early checkout costs $100 plus tax.",
+      "qualification": "Six hours of active live cash gameplay or a buy-in to a $300 or higher tournament for each night stayed, before 2 a.m. on the last night."
+    },
+    "wynn": {
+      "source": "https://www.wynnlasvegas.com/about-us/resort-information",
+      "resortFee": 55,
+      "resortFeeNote": "Reservations will be charged a daily resort fee of $55 plus tax.",
+      "checkIn": "3 p.m.",
+      "checkOut": "12 p.m.",
+      "guaranteePolicy": "A valid credit card is required to confirm a reservation. One night's room rate and tax will be charged at time of booking."
+    }
+  },
+  "result": {
+    "venetianScheduleRowsCompared": 19,
+    "wynnScheduleRowsCompared": 13,
+    "structureSheetsCompared": 7,
+    "valueDiffs": 0,
+    "notes": [
+      "Every trip-window Venetian row matches the live schedule on date, start time, event name and structure-sheet link.",
+      "Every trip-window Wynn WPT row matches the live schedule PDF on date, start time, event name, buy-in, guarantee and chips.",
+      "The seven primary structure sheets match the published chips, level length, late-registration cut-off, guarantee and fee allocation.",
+      "The live Wynn PDF prints 'BadugI' with a capital I on 28 November; the published row spells 'Badugi'. Rendering difference only, already recorded as F45.",
+      "The Venetian booking engine again returned only the loading shell for 23-30 November 2026, so F93 stands and the 2026-11-17 dated quote remains the latest.",
+      "The Wynn Signature Series structures file still returns only 'COMING SOON', so F56 stands.",
+      "Two factual statements on the static venue pages were wrong and are corrected in this session: the 15 NYE sheets were read 2026-11-17, not 2026-11-16, and the NYE rows are not all unverified."
+    ]
+  }
+}
