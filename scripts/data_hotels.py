@@ -31,6 +31,11 @@ VENETIAN_PARKING_WAIVER = (
     "confirm qualifications for complimentary self-parking."
 )
 WYNN_ROOMS = "https://www.wynnlasvegas.com/rooms-and-suites"
+# Official booking engine (SynXis IBE on the property's own reservations host).
+# The date parameters are checkIn/checkOut as MM/DD/YYYY; read 2026-11-19, the page
+# printed "7 Night Stay: Nov. 23 - Nov. 30, 2026" with dated rates for that window.
+WYNN_IB_TRIP = ("https://reservations.wynnlasvegas.com/ibe/details.aspx?hotelID=13763&langID=1&rmID=68658"
+                "&checkIn=11/23/2026&checkOut=11/30/2026")
 # The page the earlier build cited (terms-and-conditions/850070) is an expired
 # 2025 DINING CREDIT offer: its own text says a stay "must be completed on or
 # before September 30, 2025".  The live, non-offer policy page below is therefore
@@ -451,9 +456,13 @@ HOTELS = [
         id="wynn", name="Wynn Las Vegas", venue="Wynn poker room (located in Encore at Wynn Las Vegas)",
         property="Wynn Las Vegas", rooms="Wynn Resort King, Wynn Resort Two Queens, Panoramic View rooms, Tower Suites",
         baseRate="", baseRateFloor="", baseRateCeiling="",
-        baseRateNote=("The official rooms page lists room categories and a booking link but publishes no room price. No "
-                      "date-specific quote is published. The poker-room page links a 'Reserve your stay' contact for "
-                      "poker players, which was not published as a price."),
+        baseRateNote=("The official rooms page (re-read 2026-11-19) lists room categories and Book Now links and still "
+                       "publishes no room price on the page itself. The property's own booking engine does print dated "
+                       "rates: read 2026-11-19 for the trip window (Wynn Resort King, 7 nights, 23-30 Nov 2026) it printed "
+                       "$495 avg/night (Flexible Getaway Rate) and $405 avg/night ('Your Fall to Have It All'), each "
+                       "'Includes Resort Fee, Excludes taxes' - see the dated rate log. No checkout total and no tax "
+                       "amount print for those quotes, so no true nightly cost is computed. The poker-room page links a "
+                       "'Reserve your stay' contact for poker players, which was not published as a price."),
         resortFee=55,
         resortFeeNote=("Reservations are charged a daily resort fee of $55 plus tax for each room night, on both standard "
                        "rooms and Tower Suites."),
@@ -479,13 +488,23 @@ HOTELS = [
         checkInOut="Check-in 3 p.m.; check-out 12 p.m. (official resort policies page).",
         qualification="",
         source=WYNN_ROOMS, feeSource=WYNN_TERMS, taxSource=WYNN_TERMS,
+        bookingUrl=WYNN_IB_TRIP,
+        bookingLinks=[dict(label="whole trip, 7 nights (quote read 2026-11-19)", url=WYNN_IB_TRIP)],
+        bookingLinksNote=(
+            "This link opens the official Wynn reservations engine with the trip dates already selected "
+            "(checkIn/checkOut are MM/DD/YYYY parameters). On 2026-11-19 that exact URL printed '7 Night Stay: "
+            "Nov. 23 - Nov. 30, 2026' with dated rates ($495 and $405 avg/night, resort fee included, taxes "
+            "excluded; see the rate log). The link is not a price: the engine reprices on every read."),
         sourceNote=("The fee, parking and check-in times are read from the live Resort Policies page. The page the earlier "
                     "build cited (terms-and-conditions/850070) is an expired 2025 DINING CREDIT offer whose own text "
                     "requires a stay completed by September 30, 2025, so it cannot substantiate a 2026 trip."),
         qualityNote=("The rooms page states 'With 22 Five-Star awards across our hotels, spas and restaurants, Wynn Resorts "
                      "holds more Five-Star designations than any independent hotel company in the world' and links Forbes "
                      "Travel Guide. That is a publisher claim, not a comparable room-level score, so no numeric score is used."),
-        status="Strongest published fee transparency of the Strip properties reviewed, but no published room price.",
+        status=("Strongest published fee transparency of the Strip properties reviewed, and after 2026-11-19 the only "
+                "property besides the Venetian with a dated official quote for the trip window (avg/night including the "
+                "resort fee, taxes excluded). No checkout total and no room-tax percentage are printed, so no true "
+                "nightly cost is computed."),
         walkNote="The poker room is in Encore at Wynn Las Vegas; Google Maps walking estimate 10 minutes (0.4 mile).",
     ),
     dict(
@@ -917,6 +936,149 @@ RATE_LOG = [
          source="https://bellagio.mgmresorts.com/book-room?property=bellagio"
                 "&resort=66964e2b-2550-4476-84c3-1a4c0c5c067f",
          feeSource=BELLAGIO_TERMS, taxSource=BELLAGIO_TERMS),
+    # ---- 2026-11-19 pass (session 827185f7): dated trip-window attempts at every remaining
+    # property, plus the first dated Wynn engine quote. Appended; nothing above was edited. ----
+    dict(hotel="wynn", observedOn="2026-11-19", baseRate="",
+         publishedStartingRates=("Wynn Resort King, 7-night stay 23-30 Nov 2026, engine default occupancy: "
+                                 "Flexible Getaway Rate $495 avg/night; 'Your Fall to Have It All' $405 avg/night "
+                                 "- both printed 'Includes Resort Fee, Excludes taxes'"),
+         resortFee="55.00 per night (printed on the same page: 'A daily resort fee of $55 plus tax will be added "
+                   "to your room account for each ... room night')",
+         tax="not printed for this quote: the engine states 'Excludes taxes' and Wynn publishes no room-tax "
+             "percentage (F39)",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType=("Dated official engine quote (Wynn Resort King, 7 nights, 23-30 Nov 2026) - read 2026-11-19"),
+         note=("Read on the official Wynn reservations engine on 2026-11-19. The page heading prints '7 Night Stay: "
+               "Nov. 23 - Nov. 30, 2026' for the Wynn Resort King (640 sq ft). Two public rates print for that exact "
+               "window: Flexible Getaway at $495 avg/night and 'Your Fall to Have It All' at $405 avg/night (20% off, "
+               "'book by November 24, 2026'; the offer page also lists 'Additional savings available: November "
+               "22-26'). Both are footed 'Includes Resort Fee, Excludes taxes', so no checkout total and no tax "
+               "amount print, and no true nightly figure is derived (Wynn prints no room-tax percentage, F39). "
+               "Guarantee, both offers: 'A valid credit card is required to confirm your reservation. One night's "
+               "room rate and tax will be charged at time of booking.' Cancellation for this window, both offers: "
+               "'Cancel 72 hours prior to arrival to avoid penalty of one night's room rate and tax.' The same page "
+               "prints an offer-specific restriction for stays 15-21 Nov 2026 (cancel 21 days prior; non-refundable "
+               "if booked on or after 25 Oct 2026) - recorded as printed, it does not cover this window. The Wynn "
+               "Rewards Exclusive Rate and The Wonder of Wynn print no price without sign-in. Occupancy caveat: the "
+               "extracted page text does not expose the adults selector's selected value, so this is the engine's "
+               "default occupancy for 1 room (the URL carries rooms=1); confirm the guest count in the cart before "
+               "payment. Parking, printed on the page: self-parking complimentary to registered guests; valet "
+               "complimentary to Tower Suites registered guests. Extra guests: 'for rooms with more than two guests "
+               "a $50 per night per additional person fee is added'. Same day, the same engine with its default "
+               "1-night window (18-19 Nov 2026) printed $654 avg/night Flexible and $564 Fall, so the quotes move "
+               "with the stay window - which is why they are logged, not stored as one value."),
+         source=WYNN_IB_TRIP, feeSource=WYNN_TERMS, taxSource=WYNN_TERMS),
+    dict(hotel="wynn", observedOn="2026-11-19", baseRate="",
+         publishedStartingRates=("Context read the same minutes: engine default 1-night stay 18-19 Nov 2026, "
+                                 "Wynn Resort King - Flexible Getaway $654 avg/night, 'Your Fall to Have It All' "
+                                 "$564 avg/night, both 'Includes Resort Fee, Excludes taxes'"),
+         resortFee="55.00 per night (printed on the same page)",
+         tax="not printed for this quote ('Excludes taxes'; Wynn prints no percentage - F39)",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType="Dated official engine quote (default 1-night window 18-19 Nov 2026) - context read 2026-11-19",
+         note=("The same engine URL without date parameters opens on its default window, '1 Night Stay: Nov. 18 - "
+               "Nov. 19, 2026', and printed $654/$564 avg/night the same day the trip window printed $495/$405. "
+               "Kept beside the trip-window entry so the window dependence is visible; neither replaces the other. "
+               "For that default window the printed cancellation text was the offer's stay-restricted version "
+               "(stays 15-21 Nov: cancel 21 days prior, non-refundable if booked on or after 25 Oct 2026)."),
+         source="https://reservations.wynnlasvegas.com/ibe/details.aspx?hotelID=13763&langID=1&rmID=68658",
+         feeSource=WYNN_TERMS, taxSource=WYNN_TERMS),
+    dict(hotel="mgm", observedOn="2026-11-19", baseRate="",
+         publishedStartingRates=("MGM King calendar cells, November 2026 (2 guests): 19-21 Nov printed '--'; "
+                                 "22-25 $84, 26 $128, 27 $349, 28 $128, 29 $169, 30 $349. Trip nights 23-29 Nov: "
+                                 "$84, $84, $84, $128, $349, $128, $169 - the seven cells sum to $1,026.00 "
+                                 "before tax. December cells: 12-01 $548, 12-02 $1,049, 12-03 $1,149, 12-04 $299, "
+                                 "12-05 $349, 12-06 $429, 12-07 $210, 12-08 $210, 12-09 $91, 12-10 $249, "
+                                 "12-11 $579, 12-12 $449"),
+         resortFee="50.00 per night plus applicable tax (MGM Grand hotel reservation terms), already inside the "
+                   "calendar cell",
+         tax="not printed: the calendar states it excludes taxes and the terms print no percentage",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType=("Official booking-calendar cells (lowest available, resort-fee inclusive, tax exclusive; "
+                    "not a quote) - re-read 2026-11-19"),
+         note=("Second reading of the official MGM Grand room booking page, 2026-11-19, with the MGM King picker "
+               "selected, guests=2 in the URL, and 'MGM Grand Las Vegas Selected' in the resort picker, so the grid "
+               "is property-identified. Legend printed again: 'Calendar pricing includes avg. daily resort fee (if "
+               "applicable), excludes taxes. Rates are based on the lowest rate available. Rates and room "
+               "availability may vary based on the actual length of your stay.' Cells moved since 2026-11-17 and "
+               "both readings are kept: 26 Nov $149 -> $128, 28 Nov $149 -> $128, 29 Nov unavailable -> $169, "
+               "30 Nov $649 -> $349, 1 Dec $649 -> $548, 10 Dec $229 -> $249, 12 Dec $409 -> $449. All seven trip "
+               "nights now print a cell (29 Nov was unavailable before). No checkout total is printed for a dated "
+               "stay without completing a reservation, so no true-nightly figure is derived and the tax stays blank."),
+         source="https://mgmgrand.mgmresorts.com/book-room?property=mgmgrand&room=23f5bef8-63ea-4ba9-a290-13b5a3056595"
+                "&resort=66964e2b-2550-4476-84c3-1a4c0c5c067f",
+         feeSource=MGM_TERMS, taxSource=MGM_TERMS),
+    dict(hotel="bellagio", observedOn="2026-11-19", baseRate="",
+         publishedStartingRates="",
+         resortFee="55.00 per night plus applicable tax (Bellagio hotel reservation terms)",
+         tax="not printed: Bellagio's terms print no room-tax percentage",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType="No property-identified price captured; the redirected grid identifies MGM Grand in this read",
+         note=("Read 2026-11-19 on the recorded Bellagio book-room URL. The URL redirected to the generic "
+               "book-room/resort page with the property parameter dropped, no room picker ('Price on calendar "
+               "for' absent), and 'MGM Grand Las Vegas Selected' in the resort picker. The grid shown (19 Nov $129, "
+               "22-25 Nov $84, 26 Nov $128, 27 Nov $349, 28 Nov $128, 29 Nov $169, 30 Nov $349) is therefore not "
+               "attributable to Bellagio and is not recorded as a Bellagio price - the same rule as flag F81. The "
+               "Bellagio room rate stays blank and no nightly figure is derived."),
+         source="https://bellagio.mgmresorts.com/book-room?property=bellagio"
+                "&resort=66964e2b-2550-4476-84c3-1a4c0c5c067f",
+         feeSource=BELLAGIO_TERMS, taxSource=BELLAGIO_TERMS),
+    dict(hotel="aria", observedOn="2026-11-19", baseRate="",
+         publishedStartingRates="",
+         resortFee="55.00 per night plus applicable tax (ARIA hotel reservation terms)",
+         tax="not printed: ARIA's terms print no room-tax percentage",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType="No property-identified price captured; the redirected grid identifies MGM Grand in this read",
+         note=("Read 2026-11-19 on the official ARIA host's book-room path (same engine pattern as MGM Grand). The "
+               "URL redirected to the generic book-room/resort page with no property parameter and no room picker, "
+               "and the resort picker shows 'MGM Grand Las Vegas Selected'. Per the F81 rule a grid that can serve "
+               "another property's prices is not evidence of this property's rate, so the ARIA room rate stays "
+               "blank and no nightly figure is derived."),
+         source="https://aria.mgmresorts.com/book-room?property=aria"
+                "&resort=66964e2b-2550-4476-84c3-1a4c0c5c067f",
+         feeSource=ARIA_TERMS, taxSource=ARIA_TERMS),
+    dict(hotel="horseshoe", observedOn="2026-11-19", baseRate="",
+         publishedStartingRates="",
+         resortFee="49.95 per night plus $6.68 tax = $56.63 (re-printed on the page in this read)",
+         tax="not printed for room rates: the page prints only the tax charged on the resort fee ($6.68 on $49.95)",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType="No rate grid returned in this read; policy values re-confirmed",
+         note=("Read 2026-11-19 on the official Horseshoe booking calendar for November 2026. The rate grid did "
+               "not load: the page printed 'Sorry! Our website is currently experiencing technical difficulties. "
+               "Please try your search again...' and 'Searching Rates', so no dated rate was captured. Every "
+               "policy value the site records from this page re-printed verbatim in the same read: 'Resort fees: "
+               "$56.63 ($49.95 plus $6.68 tax)', 'Resort fees are not assessed for Diamond and Seven Stars "
+               "guests.', 'Deposit: $50 per day', check-in 4 PM / check-out 11 AM / 21+, 'Rates shown reflect the "
+               "lowest available rate and include applicable resort fees.', and 'Wifi included in Resort Fee'. "
+               "The 2026-11-17 dated cells remain the latest printed rates for this property."),
+         source=HORSESHOE_CALENDAR_NOV, feeSource=HORSESHOE_CALENDAR_NOV, taxSource=HORSESHOE_CALENDAR_NOV),
+    dict(hotel="caesars", observedOn="2026-11-19", baseRate="",
+         publishedStartingRates="",
+         resortFee="54.95 per night plus $7.35 tax = $62.30 (re-printed on the page in this read)",
+         tax="not printed for room rates: the page prints only the tax charged on the resort fee ($7.35 on $54.95)",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType="No rate grid returned in this read; policy values re-confirmed",
+         note=("Read 2026-11-19 on the official Caesars Palace booking calendar for December 2026. The rate grid "
+               "did not load: 'Sorry! Our website is currently experiencing technical difficulties...' and "
+               "'Searching Rates', no price cells - the same outcome as the 2026-11-17 read. Policy values "
+               "re-printed verbatim: 'Resort fees: $62.30 ($54.95 plus $7.35 tax)', 'Resort fees are not assessed "
+               "for Diamond and Seven Stars guests.', 'Deposit: $100 per day', check-in 4 PM / check-out 11 AM / "
+               "21+, 3,976 rooms, 11 restaurants. No room rate is captured and none is inferred."),
+         source=CAESARS_CALENDAR, feeSource=CAESARS_CALENDAR, taxSource=CAESARS_CALENDAR),
+    dict(hotel="venetian", observedOn="2026-11-19", baseRate="",
+         publishedStartingRates="",
+         resortFee="55.00 per night (no fee figure printed in this read)",
+         tax="not printed in this read",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType="No quote returned for the trip window in this read (engine showed loading text)",
+         note=("The official booking engine was opened twice on 2026-11-19 for the trip window (2 adults, arrival "
+               "23 Nov, departure 30 Nov, view=calendar). Both reads returned 'Your Venice meets Vegas getaway is "
+               "loading' plus the Venetian Rewards sign-up panel, with no calendar, no suite and no total. This is "
+               "a failed render, not evidence of a sold-out stay or a price change: no figure was printed, so none "
+               "is recorded. The printed totals from 2026-11-17 ($4,010.55 Venetian / $3,823.46 Palazzo) remain "
+               "the latest dated checkout totals for this window, and a working render should be re-checked before "
+               "nonrefundable payment."),
+         source=VENETIAN_CALENDAR_TRIP_URL, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
 ]
 
 MAPS = "https://www.google.com/maps/dir/?api=1&travelmode=walking&origin={o}&destination={d}"

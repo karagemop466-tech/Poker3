@@ -4,8 +4,8 @@
     "events": 341,
     "hotels": 8,
     "routes": 56,
-    "sources": 47,
-    "flags": 90,
+    "sources": 48,
+    "flags": 92,
     "planDays": 7,
     "asOf": "2026-11-19"
   },
@@ -95,7 +95,7 @@
         "F57",
         "F86"
       ],
-      "note": "Venetian dated checkout total $4,010.55 (23-30 Nov 2026) with per-night rates, $55 fee, 13.38% tax, $20/$25/$40 parking, 11 a.m. checkout, $100 early checkout, $150 incidental. The Venetian and Palazzo rows now also carry the venue's printed poker-room parking waiver (three or more hours of play = complimentary self-parking for the day, supervisor-confirmed), so all three recommended hotels state a parking rule on the same terms; the waiver is not netted off any total (F79). No property besides the Venetian publishes a date-specific quote for other hotels; Wynn/Caesars/Horseshoe print no room-tax %."
+      "note": "Venetian dated checkout total $4,010.55 (23-30 Nov 2026) with per-night rates, $55 fee, 13.38% tax, $20/$25/$40 parking, 11 a.m. checkout, $100 early checkout, $150 incidental. The Venetian and Palazzo rows now also carry the venue's printed poker-room parking waiver (three or more hours of play = complimentary self-parking for the day, supervisor-confirmed), so all three recommended hotels state a parking rule on the same terms; the waiver is not netted off any total (F79). On 2026-11-19 the Wynn engine printed a dated trip-window quote ($495/$405 avg/night including the resort fee, taxes excluded) with its guarantee, 72-hour cancellation and parking terms (rate log), but still no checkout total and no room-tax % for Wynn/Caesars/Horseshoe; the Venetian engine that day rendered loading text only."
     },
     {
       "id": "C10",
@@ -185,7 +185,7 @@
         "F51",
         "F66"
       ],
-      "note": "True cost/night = (rate + resort fee) x 1.1338 where published; walking estimates with 30-min filter; quality column blank because no official quality score exists (F19). Dated quote only for Venetian 23-30 Nov 2026."
+      "note": "True cost/night = (rate + resort fee) x 1.1338 where published; walking estimates with 30-min filter; quality column blank because no official quality score exists (F19). Dated quotes: Venetian 23-30 Nov 2026 (checkout total) and Wynn 23-30 Nov 2026 (avg/night incl. fee, taxes excluded, read 2026-11-19); other properties' engines returned no attributable grid on 2026-11-19."
     },
     {
       "id": "U4",

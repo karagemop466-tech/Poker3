@@ -329,14 +329,14 @@ SOURCES = [
     dict(id="blv-calendar", name="Horseshoe Las Vegas official booking page: fee block and dated Nov/Dec 2026 rate cells",
          url="https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=November&propCode=blv",
          type="official hotel page", checked=RECHECKED),
-    dict(id="wynn-sig-struct", name="Wynn Signature Series structures file (read 2026-11-17: 'LAS VEGAS POKER - COMING SOON')",
+    dict(id="wynn-sig-struct", name="Wynn Signature Series structures file (read 2026-11-19: 'LAS VEGAS POKER - COMING SOON')",
          url="https://cdn.wynnresorts.com/image/upload/v1762299460/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Structures.pdf",
-         type="official structures file", checked=RECHECKED),
+         type="official structures file", checked="2026-11-19"),
     dict(id="vl-series", name="Venetian DeepStack Poker Series index (current, next and future series)",
          url="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html",
-         type="official index", checked=LAST_PASS),
+         type="official index", checked="2026-11-19"),
     dict(id="vl-poker", name="Venetian poker room page", url="https://www.venetianlasvegas.com/resort/casino/poker.html",
-         type="official room page", checked=LAST_PASS),
+         type="official room page", checked="2026-11-19"),
     dict(id="vl-suite-rates", name="Venetian poker-room suite rates and play requirements 2026",
          url="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html", type="official rate page", checked=RECHECKED),
     dict(id="vl-resort-fee", name="Venetian resort fee page", url="https://www.venetianlasvegas.com/resort/resort-fee.html",
@@ -344,11 +344,11 @@ SOURCES = [
     dict(id="vl-hotel-terms", name="Venetian hotel terms and conditions (tax, parking, cancellation)",
          url="https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html", type="official terms", checked=RECHECKED),
     dict(id="wynn-poker", name="Wynn Las Vegas poker room page", url="https://www.wynnlasvegas.com/casino/poker",
-         type="official room page", checked=LAST_PASS),
+         type="official room page", checked="2026-11-19"),
     dict(id="wynn-resort-info", name="Wynn Las Vegas Resort Policies (resort fee, check-in/out, reservation guarantee)",
-         url="https://www.wynnlasvegas.com/about-us/resort-information", type="official terms", checked=RECHECKED),
+         url="https://www.wynnlasvegas.com/about-us/resort-information", type="official terms", checked="2026-11-19"),
     dict(id="wynn-parking", name="Wynn Las Vegas Parking Information (self-parking and valet fees)",
-         url="https://www.wynnlasvegas.com/about-us/parking", type="official fee page", checked=RECHECKED),
+         url="https://www.wynnlasvegas.com/about-us/parking", type="official fee page", checked="2026-11-19"),
     dict(id="wynn-daily-poster", name="Wynn daily tournament poster",
          url="https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf",
          type="official schedule", checked=RECHECKED),
@@ -365,9 +365,12 @@ SOURCES = [
          url="https://cdn.wynnresorts.com/image/upload/v1753296112/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Schedule.pdf",
          type="official schedule", checked=LAST_PASS),
     dict(id="wynn-rooms", name="Wynn Las Vegas rooms and suites", url="https://www.wynnlasvegas.com/rooms-and-suites",
-         type="official room page", checked=LAST_PASS),
+         type="official room page", checked="2026-11-19"),
     dict(id="wynn-terms", name="Wynn Las Vegas terms (resort fee, cancellation, parking)",
-         url="https://www.wynnlasvegas.com/terms-and-conditions/850070", type="official terms", checked=LAST_PASS),
+         url="https://www.wynnlasvegas.com/terms-and-conditions/850070", type="official terms", checked="2026-11-19"),
+    dict(id="wynn-ibe-trip", name="Wynn official booking engine, trip-window quote 23-30 Nov 2026 (read 2026-11-19)",
+         url="https://reservations.wynnlasvegas.com/ibe/details.aspx?hotelID=13763&langID=1&rmID=68658&checkIn=11/23/2026&checkOut=11/30/2026",
+         type="official booking engine", checked="2026-11-19"),
     dict(id="bell-poker", name="Bellagio poker room page", url="https://bellagio.mgmresorts.com/en/casino/poker.html",
          type="official room page", checked=RECHECKED),
     dict(id="bell-fri", name="Bellagio Friday $600 No Limit Hold'em structure",
@@ -953,7 +956,9 @@ FLAGS = [
                  "than being inferred from the schedule. The schedule does print buy-in, guarantee, chips and level "
                  "length for most rows, and those columns are shown. Re-read on 2026-11-19 through the page reader: "
                  "the file still returns only 'LAS VEGAS POKER / COMING SOON' and the Wynn poker page still links to "
-                 "it as the structures file, so the gap has not moved."),
+                 "it as the structures file, so the gap has not moved. A second independent read the same day by "
+                 "session arena/827185f7-poker3 returned the identical placeholder (document title 'Poker Tournament "
+                 "- Details Coming Soon'), so the flag stands and the 38 rows stay unverified."),
          source="https://cdn.wynnresorts.com/image/upload/v1762299460/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Structures.pdf"),
 
     dict(id="F54", area="Trip plan", severity="High",
@@ -1121,7 +1126,9 @@ FLAGS = [
          title="The official Venetian poker page places the room at The Palazzo, level 2, Grand Canal Shoppes; the walking captures measure to the Venetian",
          detail=("Read on 2026-11-18 from the Venetian poker page: 'LOCATION: The Palazzo, level 2, Grand Canal Shoppes', with "
                  "directions from the Venetian lobby (escalator from the Waterfall Atrium) and from the Palazzo lobby (self-parking "
-                 "elevators). The Google Maps walking captures on file (F84) and the 'Venetian' venue row use the resort address. "
+                 "elevators). Re-read on 2026-11-19 (session arena/827185f7-poker3, the same session's F92 corroboration): the same "
+                 "LOCATION line and both lobby direction sets still print exactly as recorded here. The Google Maps walking captures "
+                 "on file (F84) and the 'Venetian' venue row use the resort address. "
                  "No minute value is changed by this flag. Before a walking-limit decision, re-measure to the room's own entrance on "
                  "level 2 of Grand Canal Shoppes."),
          source="https://www.venetianlasvegas.com/resort/casino/poker.html"),
@@ -1136,7 +1143,12 @@ FLAGS = [
                  "'Open 24 Hours', the Player Suite rates link and the complimentary self-parking terms (three hours of play for non-registered guests). "
                  "Limit of this check: the monitor stores only a hash of the 20:24 UTC run, not its text, so the match is by content, "
                  "not proven byte for byte. Nothing on the page is a tournament value, so no row changed. The poker page still does not print "
-                 "a dated room rate for a given night; the Venetian rate and fee flags (F51, F66, F69) are unchanged."),
+                 "a dated room rate for a given night; the Venetian rate and fee flags (F51, F66, F69) are unchanged. "
+                 "Corroboration: a second independent live re-read on 2026-11-19 by session arena/827185f7-poker3 (full page, two chunks) "
+                 "found the same DeepStack Extravaganza IV banner with the same dates and $3.6M guarantee, the same 'The Palazzo, level 2, "
+                 "Grand Canal Shoppes' location line and both lobby direction sets, the seven '12:00 AM - 11:59 PM' hours rows with "
+                 "'Open 24 hours daily.', and the '50 tables ... 14,000 square feet ... largest room on the Las Vegas Strip' sentence, "
+                 "each printing exactly as recorded, and the 2026-11-19 05:33 UTC check no longer lists this URL as changed."),
          source="https://www.venetianlasvegas.com/resort/casino/poker.html"),
     dict(id="F93", area="Hotels", severity="High",
          title="Pre-payment reconfirmation on 2026-11-19: the Venetian booking engine still prints no checkout total for 23-30 November, so no current nightly price is on record",
