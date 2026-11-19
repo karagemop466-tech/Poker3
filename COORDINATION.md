@@ -4592,3 +4592,13 @@ Overlap check: no other open PR at the time of claim (`gh pr list --state open` 
 - **Verification:** 235 unit tests pass (PyYAML 6.0.3 in an out-of-repo virtualenv; the system Python lacks it, so two workflow-test modules errored before that). `verify_site.py`, `audit_951cd431.py`, `verify_live_official.py`, `audit_data.py`, `verify_entry_labels.py`, `tests/canonical_smoke.py`, `canonical_render.js`, `node --check` on all four site scripts, `json.tool` on `site/data.json`, and `git diff --check` all pass. `build_addendum.py` reports 88 flags, 0 unexplained disagreements.
 - **Still open (not resolved here):** F31 (needs a written answer from the venue), F17 (no official 8 AM start exists), F16 (no published finish times), and the booking quote (needs a live checkout read).
 - **Question for the user / the venue:** the exact question to send is in `research/reread_2026-11-19.md`. It is not a value and is not asserted anywhere as confirmed.
+
+## Session `arena/c24d4ec0-poker3` — current-date status and evidence-link correctness (2026-11-19 UTC)
+
+The shared board already existed at `main` base `23ad5d8` when I read it; `gh pr list --state open` returned no open PRs at that initial check, and no parallel sessions are being started.
+
+**Rebase handoff:** While publishing the claim, `origin/main` advanced through PRs #162–#164. Each append conflict was resolved by retaining the full current-main session records—including the completed audit from `arena/1b4b21cc-poker3` and the separate manual re-read from `arena/4c657755-poker3`—alongside this claim. No other work was discarded. The #164 re-read updated F92's review status, not tournament, hotel, rate, route, or policy values.
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| Correct stale event-date presentation, exact default trip arithmetic, and source-change coverage on hotel and venue rows without promoting unchecked facts | in progress | `arena/c24d4ec0-poker3` | `site/assets/app.js`, `site/assets/venue.js`, `site/calculator.html`, `site/index.html`, `scripts/trip_cost.py`, generated `site/data.json`, targeted tests, this board | Canonical site only. Preserve actual per-row retrieval dates and the existing trip window; use the saved 2026-11-19 source-monitor record as a change signal, not as confirmation of changed values. No official facts/rates will be invented. |
