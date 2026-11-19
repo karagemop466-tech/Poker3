@@ -10,6 +10,11 @@ because the commit step had no `if:`, the record of the change was never committ
 cannot survive a normal day of the job doing its work, because the same job rewrites that file every
 morning. A monitor whose test suite forbids change stops reporting change.
 
+Session arena/c336248a-poker3 landed the same repair from the other side (flag F111: the gate is now
+`continue-on-error` with its outcome re-raised after the publish steps, and `tests/test_workflows.py` pins
+that shape), and session arena/03d48a10-poker3 relaxed the date assertion. This file is the belt to that
+pair: it pins the properties rather than the step order, so the guarantee survives either layout.
+
 These tests pin the three properties that make that failure mode impossible to reintroduce:
 
 1. the record is committed and pushed on `always()`, so a red gate cannot silence it (and the gate still
@@ -51,14 +56,33 @@ class RecordPublication(unittest.TestCase):
                 self.assertIn("always()", condition,
                               f"{name} must carry an always() guard: without it a failing regression gate "
                               "skips the commit and the site never learns that a source changed")
-                self.assertIn("cancelled()", condition, "a cancelled run must not push")
+                # always() is the contract (tests/test_workflows.py pins it exactly); !cancelled() is an
+                # optional extra, so it is not demanded here.
+                self.assertNotIn("failure()", condition, "the record must not be gated on the job succeeding")
 
     def test_the_gate_still_gates(self):
-        """Publication is unconditional; the check is not made to lie about its result."""
+        """Publication is unconditional; the check is not made to lie about its result.
+
+        Two shapes are acceptable and both are the fix. Either the gate is fatal in place, or it is run
+        non-fatally *so that the record can be committed first* and its failure is re-raised by a later
+        step. What is not acceptable is a gate that a broken dashboard walks away green from — that is
+        how `continue-on-error` turns a monitor into a silent one. This test accepts either shape and
+        rejects only the lie, so the workflow can be reordered without loosening the guarantee.
+        """
         gate = self.steps["Verify the dashboard still passes its own checks"]
-        self.assertNotIn("continue-on-error", gate,
-                         "the gate must keep failing the run when a real regression appears")
         self.assertIsNone(gate.get("if"), "the gate must run normally on a green path")
+        if gate.get("continue-on-error"):
+            gate_id = gate.get("id")
+            self.assertTrue(gate_id, "a non-fatal gate must be named, or its outcome cannot be re-raised")
+            names = list(self.steps)
+            later = names[names.index("Verify the dashboard still passes its own checks") + 1:]
+            raisers = [self.steps[n] for n in later
+                       if gate_id in str(self.steps[n].get("if") or "")
+                       and "exit 1" in str(self.steps[n].get("run") or "")
+                       and not self.steps[n].get("continue-on-error")]
+            self.assertTrue(raisers,
+                            "the gate is continue-on-error, so a later step must fail the run on its outcome — "
+                            "otherwise a broken dashboard publishes a green check")
 
     def test_the_gate_runs_the_suite_and_the_verifier(self):
         run = self.steps["Verify the dashboard still passes its own checks"]["run"]

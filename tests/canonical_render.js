@@ -130,6 +130,7 @@ const PAGES = [
   ['hotels', ''],
   ['schedule', ''],
   ['questions', ''],
+  ['q-and-a', ''],
   ['suggestions', ''],
   ['flagged', ''],
   ['sources', ''],

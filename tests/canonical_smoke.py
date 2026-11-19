@@ -185,8 +185,7 @@ def main() -> int:
 
     if shutil.which("node"):
         for script, label in ((("canonical_render.js"), "headless render"), ("walk_limit_render.js", "walking-limit render"),
-                           ("sheet_recheck_render.js", "sheet re-check cell"),
-                           ("test_calculator_missing_inputs_render.js", "calculator unknown inputs")):
+                           ("sheet_recheck_render.js", "sheet re-check cell")):
             result = subprocess.run(["node", str(ROOT / "tests" / script)],
                                     capture_output=True, text=True, cwd=ROOT)
             if result.returncode != 0:

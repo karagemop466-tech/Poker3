@@ -92,6 +92,12 @@ class LandingEvidenceLabels(unittest.TestCase):
         (CI run 44482186623, 2026-11-19: the URL re-check and transcription steps passed, the gate failed,
         the record commit was skipped).
 
+        A change on a booking-engine URL is the expected case, not a failure: `reservations.wynnlasvegas.com`
+        re-renders its visible text on every request, so both of its rows were marked changed on 2026-11-19 at
+        07:56 UTC while no published value moved. `wordingChanged` is the field that separates that noise from
+        a venue re-publishing a document, and it is asserted on the Flagged-for-review and Sources pages rather
+        than demanded to be false here.
+
         What the test can honestly require, on any day, is invariance: the record must exist, it must cover
         the seven sheets, its own timestamps must be internally consistent, and a row that reports a change
         must say what it compared. "The venue changed nothing" is not a requirement the site can impose on
@@ -108,6 +114,13 @@ class LandingEvidenceLabels(unittest.TestCase):
                 record = matches[0]
                 checked = iso_day(record["checked"])
                 self.assertTrue(checked, f"{sheet}: checked {record['checked']!r} is not an ISO timestamp")
+                # The row must record an actual fetch outcome, not a placeholder date (the check
+                # session arena/c336248a landed alongside this one: the point is that the sheet was
+                # really retrieved, not that it looked clean).
+                self.assertTrue(str(record["status"]).startswith("HTTP 2"), record["status"])
+                # The fetch cannot postdate the record that publishes it. This direction is the only
+                # safe one: a run that starts before midnight UTC and finishes after it would make
+                # "checked >= generatedAt" false for a perfectly ordinary fetch.
                 self.assertLessEqual(checked, generated,
                                      f"{sheet}: checked {checked} is dated after the run that wrote it ({generated})")
                 self.assertIsInstance(record["changed"], bool, f"{sheet}: changed must be a recorded boolean")

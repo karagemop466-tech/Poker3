@@ -87,6 +87,15 @@ jobs:
         run: python3 scripts/daily_feed.py
 
       - name: Verify the dashboard still passes its own checks
+        # This step reports a broken dashboard, but it must not be able to suppress
+        # the observation this job exists to publish. On 2026-11-19 the 07:56 UTC run
+        # for merge commit 5f001742 failed here and the two publish steps below were
+        # skipped, so a correct checks.json was thrown away: the published record still
+        # claimed the 07:34 UTC state, and the failure left no log line explaining why.
+        # The checks still fail the job (the outcome is carried to the publish steps and
+        # re-raised at the end), while the record is always committed and pushed.
+        id: dashboard
+        continue-on-error: true
         run: |
           python3 -m unittest discover -s tests -p 'test_*.py'
           python3 scripts/verify_site.py
@@ -96,13 +105,16 @@ jobs:
           if [ -f site/feed/index.json ]; then python3 -m json.tool site/feed/index.json > /dev/null; fi
 
       - name: Record the check results on the main branch
-        # always(): the observation must reach main even when the gate above is red. On
-        # 2026-11-19 that gate failed because a regression test asserted that no structure PDF
-        # had changed and that the record was dated the day the test was written; the two fetch
-        # steps had already done their job, but the skipped commit meant the change was never
-        # published - the monitor went blind at exactly the moment it had detected something.
-        # A red run stays red (the failing gate is reported); it can no longer silence the record.
-        if: always() && !cancelled()
+        # Runs even when the dashboard gate above was red: the record is an observation of what the
+        # official pages returned, and withholding it does not fix the dashboard. A cancelled run
+        # never reaches a publish step at all, so always() is enough here.
+        #
+        # Why this was added (2026-11-19): the gate used to fail because a regression test asserted
+        # that no structure PDF had changed and that the record was dated the day the test was
+        # written. The two fetch steps had already done their job, but the skipped commit meant the
+        # detected change was never published - the monitor went blind at exactly the moment it had
+        # detected something. A red run stays red; it can no longer silence the record. (F111)
+        if: always()
         run: |
           python3 - <<'PY'
           import json, pathlib, sys
@@ -128,9 +140,9 @@ jobs:
           git commit -m "chore: record official source re-check and daily room feed ($(date -u +%F))"
 
       - name: Push the record to main, tolerating a concurrent merge
-        # Must run even when the gate above failed, or the commit the previous step made (with
-        # always()) would sit unpublished on the runner and the record would still never land.
-        if: always() && !cancelled()
+        # Must run even when the gate was red, or the commit the previous step made (with always())
+        # would sit unpublished on the runner and the record would still never land.
+        if: always()
         # This step used to give up after five rebase attempts. On 2026-11-17 four
         # sessions merged within eight minutes and it failed, even though the record
         # itself was correct and had already been committed locally. The record is a
@@ -155,3 +167,11 @@ jobs:
             exit 0
           fi
           echo "::warning::the check record could not be published after 8 attempts; the next scheduled run will regenerate it"
+
+      - name: Fail the run if the dashboard check failed
+        # The observation has been published by this point, so a broken dashboard still
+        # shows up as a red run without costing the day's check record.
+        if: steps.dashboard.outcome == 'failure'
+        run: |
+          echo "::error::the scheduled source re-check published its record, but the dashboard verification step failed"
+          exit 1

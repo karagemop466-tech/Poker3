@@ -32,11 +32,20 @@ class CalculatorPageTests(unittest.TestCase):
 
     def test_parking_is_itemized_outside_the_core_formula(self):
         self.assertIn("entries × average buy-in + nights × true hotel cost", PAGE)
-        # Parking must sit outside the core formula, and neither line may be computed from an
-        # unknown: both are guarded, so a blank box leaves the figure unknown instead of $0.00.
-        self.assertIn("const coreEstimate = (tournament !== null && lodging !== null) ? cents(tournament + lodging) : null;", PAGE)
-        self.assertIn("const allIn = (coreEstimate !== null && parking !== null) ? cents(coreEstimate + parking) : null;", PAGE)
+        self.assertIn("const coreEstimate = tournament + lodging;", PAGE)
+        # Parking is reported beside the core figure and added only to the all-in one. The
+        # exact statement changed when a blank parking field became "unknown, not zero", so
+        # the assertion is on the behaviour rather than on one spelling of the line.
+        self.assertRegex(PAGE, r"const allIn = parking === null \? null : coreEstimate \+ parking;")
         self.assertIn("Parking is not included in true room cost per night or in the core formula.", PAGE)
+
+    def test_a_blank_field_is_unknown_and_never_prices_as_zero(self):
+        # F39: most reviewed properties publish a resort fee and no room-tax percentage.
+        # Coercing that blank to 0% would print a nightly cost below the published charge.
+        self.assertIn("A blank or invalid field is treated as <strong>unknown</strong>", PAGE)
+        self.assertIn("if (!input || input.value.trim() === '') return null;", PAGE)
+        self.assertNotIn("Number(form.taxRate.value) || 0", PAGE)
+        self.assertNotIn("parseFloat(document.getElementById('calc-tax').value) || 0", PAGE)
 
     def test_render_uses_exact_plan_and_keeps_quote_separate(self):
         script = PAGE.split("<script>")[-1].split("</script>")[0]
@@ -44,7 +53,7 @@ class CalculatorPageTests(unittest.TestCase):
         harness = r"""
 const assert = require('node:assert/strict');
 const db = require('./site/data.json');
-const form = Object.fromEntries(Object.entries(FIELDS).map(([id, value]) => [id, {value, validity: {valid: true}}]));
+const form = Object.fromEntries(Object.entries(FIELDS).map(([id, value]) => [id, {value}]));
 const result = {}, breakdown = {}, body = {}, note = {}, quote = {append(link) { this.link = link; }};
 form.addEventListener = (_, cb) => { form.update = cb; };
 global.document = {

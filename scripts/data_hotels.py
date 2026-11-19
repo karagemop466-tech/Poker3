@@ -1189,7 +1189,7 @@ RATE_LOG = [
                "calendar printed the literal placeholder '$XXX' - the cells are filled by client-side script the "
                "reader does not execute. The same read printed two connecting-suite charges ten dollars apart with "
                "no explanation: 'Connecting Suites: + $20 / Night' and 'Connecting suites have a door between "
-               "suites. There is a $10 per suite, per night.', recorded as printed (flag F106)."),
+               "suites. There is a $10 per suite, per night.', recorded as printed (flag F115)."),
          source=VENETIAN_CALENDAR_TRIP_URL, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
 ]
 

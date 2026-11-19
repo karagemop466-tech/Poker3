@@ -5838,6 +5838,427 @@ Branch: `arena/e830d773-poker3` (platform-bound single branch; `session-<id>/<ta
 
 ---
 
+## Session `arena/80a6f5df-poker3` — independent line-by-line re-verification, 2026-11-19 (UTC)
+
+Branch: `arena/80a6f5df-poker3`, branched from `main` at `5c42d7fb5e9931f4582af03e6aa6cc741efc9d9e` (PR #206 merge).
+The platform binds a session to one branch, so the `session-<id>/<task>` branch naming cannot be applied; this is this
+session's only working branch. Claim written and pushed **before** any edit, per the protocol.
+
+| Task | Status | Owner session | Scope (files) | Notes |
+|---|---|---|---|---|
+| S1 Independent line-by-line re-verification of the published trip-window rows, hotel components, walking routes and rank ratios against the official sources, read live on 2026-11-19 | in progress | `arena/80a6f5df` | `research/verify_2026-11-19_arena-80a6f5df.md` (new) | Read-only on `site/data.json`; any discrepancy is recorded, not silently changed. |
+| S2 Publish this session's verification result, any new irregularity flag and the board record | unclaimed → will be this session | `arena/80a6f5df` | `research/verify_2026-11-19_arena-80a6f5df.md`, **only if a real defect is found** the owning module (`scripts/data_*.py`) plus its regenerated artifact, `COORDINATION.md` | Small frequent commits; `git pull --rebase` before every push. |
+| S3 Integration: run the full gate set, PR from this branch to `main`, merge without waiting, confirm the Pages deploy, record the result | in progress | `arena/80a6f5df` | whole repo (integration), `COORDINATION.md` | Flagged/unverified items do not block the merge; they are published on Flagged for review. |
+
+**Scope protocol.** No tournament, hotel, rate, walking, duration or policy value is inferred. A published value is only
+"confirmed" here if this session read it on an official venue or property page/PDF on 2026-11-19. Anything that disagrees
+stays published as-is until it is reconciled against a verbatim official excerpt, and the disagreement is flagged.
+Other sessions' board sections, code and data are preserved; conflicts are resolved without discarding their work.
+
+### Result (session `arena/80a6f5df-poker3`, 2026-11-19 UTC)
+
+**S1 — done. Independent line-by-line re-verification, read live on 2026-11-19.** The dated verbatim record is
+[`research/verify_2026-11-19_arena-80a6f5df.md`](research/verify_2026-11-19_arena-80a6f5df.md). It is a **read-only**
+pass against `site/data.json`: no tournament, fee, guarantee, hotel, rate, route or policy value was changed, and every
+comparison is quoted from the official page read that day.
+
+- **Venetian DSE IV schedule** (all four chunks,
+  [dse-nov-2026.html](https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html)):
+  the 19 trip-window rows (23–30 November 2026) matched on date, start time, printed buy-in, printed guarantee and
+  structure-sheet URL — **19/19**.
+- **Structure sheets read in full:** 30 (#8, $200 PKO: event 08, 5:10 PM, 25,000 chips, 30-minute levels, "8 levels +
+  Break (9:40 PM)", "$8,000 (prize pool + total bounties)", "$40 of the $200 Buy-In is withheld"), 1 (#9/11/13/15/21/22/
+  23/25/60–64, same terms), 22 (#20, 12:10 PM, 30,000 chips, "8 levels + break (~ 4:40 PM)", $10,000, "$58 of the $300
+  Buy-In is withheld"). None prints a finish time or a maximum entries per player — **F16 and F31 reconfirmed, not
+  resolved**.
+- **Hotel components:** `$119 / $209` starting rate, `$55` resort fee, `13.38%` Clark County tax, `$20/day`
+  registered-guest self-parking, `$40/day` valet, the three-hour poker parking waiver, check-in 3:00 p.m.–11:59 p.m. /
+  check-out 11:00 a.m., non-cancellable prepaid offers and the `$100 + tax` early check-out — all verbatim from
+  [suite-rates](https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html),
+  [resort-fee](https://www.venetianlasvegas.com/resort/resort-fee.html),
+  [hotel terms](https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html) and
+  [player-parking](https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html). The published floor
+  `($119+$55)×1.1338 = $197.28` and ceiling `($209+$55)×1.1338 = $299.32` both reproduce exactly.
+- **Wynn WPT schedule PDF** (both chunks): every trip-window row (27–29 November) matches, including the 6 p.m. Day 1F
+  turbo at 20/40 levels. The schedule's own "Nov. 30 Monday 1 p.m. Day 2" beside its own Day 1A, and "Dec. 5 11 a.m.
+  Day 2" beside the Prime Day 1A, are reproduced accurately — venue irregularities already on the register (F34, F61).
+- **Bellagio Friday $600** reads "Players may buy-in and re-enter through the end of level 8" plus the voluntary `$40`
+  gratuity that buys 15,000 extra chips, so it correctly stays outside the single-entry path. The **MGM Grand** sheet is
+  still titled "August Tournament Schedule" with no year and prints the "5 entries or more" bonus.
+- **Data/arithmetic audit:** 0 of 341 rows missing a read date; 0 rows without an official source link; every published
+  ratio consistent (34 blanks are seat prizes, not cash); 34 dated rate-log records across three observation dates;
+  0 duplicate or undefined flag ids; 0 of 101 flags without a URL; 0 broken local links across 27 pages; byte-identical
+  `data_source.py` rebuild.
+
+**S2 — done. Three new flags, one new page, one new test module.** Flag ids F102–F105 were already taken on `main`, so
+this session's findings are **F106, F107, F108** in `scripts/data_verification.py`, and no published value changed:
+
+- **F106 (Schedule, Low, opened):** the finish estimate is cut-off **plus two levels plus one 15-minute break**, while the
+  page text and flag F37 both say "cut-off plus two levels". With 30-minute levels the offset is 75 minutes and with
+  40-minute levels 95 minutes, so four of the seven day-plan rows carry a 15-minute offset the text does not describe
+  (`#8` 10:55 PM instead of 10:40 PM; `#10` 6:10 PM instead of 5:55 PM; same for `#9`, `#11`–`#16`, `#21`). The direction
+  is conservative, so no overlap flag was cleared. Fix by naming the break in the method text or dropping it.
+- **F107 (Repository, Low, opened):** no reviewed official source prints a street number or ZIP for any of the eight
+  properties; every route is a property-name Maps query, so the "official-address walking times" requirement stays
+  **partially met**, alongside F91 (room is at The Palazzo level 2) and F21 (Horseshoe resolved to Bally's).
+- **F108 (Monitoring, Low, opened):** the 2026-11-19 07:34Z run lists exactly two changed URLs, both the Wynn
+  reservation engine, because a live engine re-renders its prices on every request. No published Wynn figure is affected
+  (the Wynn column stays blank), but the alert is noise of the same class as the Venetian calendar (F28/F69).
+- **New page `site/q-and-a.html`** — the decision worksheet the brief asks for: 22 rows, each marked *answered*, *partly*
+  or *open*, with the official quote behind each answer or the exact sentence to ask the venue, plus the five answers that
+  unblock everything else. Linked from the nav and from `site/questions.html`, with a root-level redirect generated by
+  `scripts/build_legacy_redirects.py` and a README row.
+- **New test module `tests/test_verification_2026_11_19_80a6f5df.py`** (8 tests): pins the estimate arithmetic
+  (`2 × level + 15`) on every row that carries both a cut-off and an estimate, pins each day-plan field to the row it
+  names, pins F106/F107 as the recorded explanations, and fails if any URL the monitor marks changed is left unexplained.
+
+**S3 — integration.** Full local reproduction of the Pages gate: `verify_site.py` (341 events / 8 hotels / 56 routes /
+50 sources / 104 flags / 7 plan days / 18 pages) passed; **347 unit tests OK**; `audit_951cd431.py` 0 failures /
+0 warnings; `audit_data.py`, `verify_live_official.py`, `verify_entry_labels.py`, `verify_transcription.py --dry-run`
+44/44; `canonical_smoke.py` (13 main + 5 detail pages); `canonical_render.js` (18 page renders including `q-and-a`);
+`walk_limit_render.js` (335 rows default, 329 with the ≤30-minute limit from The Venetian); `node --check` on every JS
+asset; 0 broken local links; and byte-identical rebuilds of `data.json`, `sheets.html` and `coverage.json`.
+
+---
+
+## Session `arena/4475a074-poker3` — independent fresh line-by-line verification + final integration (2026-11-19 UTC)
+
+**Branch:** `arena/4475a074-poker3`, branched from `main` at `5c42d7fb5e9931f4582af03e6aa6cc741efc9d9e` (the current tip,
+PR #206). The platform binds each session to one branch, so the brief's `session-<id>/<task>` naming cannot be applied here;
+prior sessions recorded the same constraint. **No new branch is created or switched to.** At claim time the only open PRs were
+**#173** (`arena/a33db3c1-poker3`, read-only trip-window re-read) and **#184** (`arena/5cfdd619-poker3`, trip-cost guard); this
+session does not touch either branch, does not close either PR, and does not edit their files. No other session was mid-commit at
+claim time, so this session acts as **final integration owner** for all shared outputs.
+
+**Claim (committed and pushed before any other work).** Scope: `COORDINATION.md`, `site/**`, `scripts/**`, `tests/**`,
+`research/**`, `README.md`, `.github/workflows/**` — i.e. the whole repository, as integration owner. No other session's claimed
+files are being modified.
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| V1 Fresh independent line-by-line verification of the published trip-window rows and core hotel/fee values against live official sources (2026-11-19 reads) | done | `arena/4475a074` | `research/` (new dated audit record), `site/data.json` flag register, `site/flagged.html` | Reads via the platform fetch tool. No value is inferred; blanks stay blank. Every value compared against the official page behind it. |
+| V2 Requirements audit: confirm all 40 published requirement rows still hold on the live site; implement any genuine gap | done (no gap found) | `arena/4475a074` | `site/**`, `scripts/**`, `tests/**` | The 40-row audit already lives in `site/data.json`; this session re-confirmed it. No genuine gap found. |
+| V3 Fix any drift/irregularity found in V1 (values, dates, flags, page text) | done (no drift found) | `arena/4475a074` | `site/**`, `scripts/**`, `tests/**` | The fresh official reads agreed with every published value, so no value, date, flag or page text needed changing. |
+| V4 Final verification: full unit suite, all verification scripts, link check, reproducible rebuild, then PR → `main` → merge → Pages confirmation → record here | done | `arena/4475a074` | whole repo (integration) | Flagged irregularities and unverified items do not block the merge; they are published on the Flagged for review page. |
+
+### Result (session `arena/4475a074-poker3`, 2026-11-19 UTC)
+
+**V1 Fresh independent line-by-line verification: done.** Nine official URLs were fetched and read live on
+2026-11-19 with the platform fetch tool: the Venetian DSE IV schedule in all four chunks (all 94 rows), the
+suite-rates page, the resort-fee page, the hotel-terms page (both chunks), the poker player-parking page, two
+structure PDFs (structure_1 = $200 Bounty, structure_6 = $400 $15K GTD), and the Wynn resort-information page.
+Verbatim excerpts, the 19-row trip-window comparison table and the recomputed trip-cost arithmetic are in
+[`research/verification_2026-11-19_arena-4475a074.md`](research/verification_2026-11-19_arena-4475a074.md).
+
+- **All 19 trip-window rows (2026-11-23 → 2026-11-30) match** the live official schedule on date, start time,
+  event number, name, printed buy-in, printed guarantee and structure-sheet link. None missing, none invented.
+- **All core money values match verbatim:** poker-suite starting rate $119/$209 and the 150-day horizon, EPOKR25,
+  the six-hour/$300 qualification; resort fee $55/night plus tax; Clark County room tax 13.38%; guest self-parking
+  $20/day, non-guest $20-$25, valet $40, and the conditional three-hour poker waiver; Wynn resort fee $55/night
+  plus tax with complimentary self-parking.
+- **Both structure PDFs match the published rows:** structure_1 (5:10 PM, 25,000 chips, 30-min levels, late reg
+  9:40 PM, $8K GTD, $40 of $200 to fees) and structure_6 (11:10 AM, 40,000 chips, late reg ~4:55 PM, $15K GTD,
+  $65 of $400 to fees). The sheets print one buy-in, one start flight and no re-entry/rebuy/add-on clause, i.e.
+  they remain **sheet-screened**, not a written per-player cap (F31 stands).
+- **Trip-cost arithmetic recomputed by hand:** $197.28/night, $1,380.96 lodging, $140 parking, $4,120.96 total;
+  alternate $299.32/night, $4,835.24; live quote $4,010.55 (3152.25 + 385.00 + 473.30) and per-night true costs
+  (248.59, 1932.28) all reconcile.
+- **New regression guard:** this session's own 94-row capture
+  (`raw/dse_schedule_live_2026-11-19_4475a074.md`, canonicalised by `scripts/verify_fresh_4475a074.py`) verifies
+  the published catalog field for field with **0 mismatches**, and `tests/test_fresh_4475a074.py` asserts both
+  that the catalog matches it and that it agrees with the primary 2026-11-19 capture. **336 unit tests OK**.
+
+**V2 Requirements audit: done, no gap.** The 40-row requirement audit in `site/data.json` (rendered at
+`site/verification.html`) was re-confirmed against the live site. Every requirement is implemented; the items
+official evidence cannot support (written maximum-entry rule, verified finish times, an 8 a.m. all-day route, a
+ranked "best" winner/hotel) stay marked as such rather than being filled in. No genuine gap required new work.
+
+**V3 Drift/irregularity fix: done, no drift.** The fresh official reads agreed with every published value, so no
+value, date, flag or page text was changed. No new irregularity was found; no new flag was added.
+
+**Verification before the PR (all green):** `verify_site.py` (341 events / 8 hotels / 56 routes / 50 sources /
+101 flags / 7 plan days / 18 pages); **336 unit tests OK**; `audit_951cd431.py` (0 failures, 0 warnings);
+`verify_live_official.py`; `audit_data.py`; `verify_entry_labels.py`; `verify_transcription.py --dry-run` (44/44);
+`canonical_smoke.py`; `node tests/canonical_render.js` (all pages render); `node tests/walk_limit_render.js`;
+`tests/smoke.py`; `node --check` on every JS asset; a local-link scan over all 27 `site/**/*.html` pages (95
+internal links, **0 broken**); and byte-identical `data_source.py` / `build_addendum.py` / `coverage.py` rebuilds.
+
+**Scope note.** Only the files in this claim were edited: the new research record, the fresh capture + canonical
+capture, the converter script, the new regression test, and this COORDINATION.md section. Open PRs #173 and #184
+were left untouched; no other branch was created, switched to or pushed.
+
+
+
+**Follow-up on the same branch (2026-11-19, still session `arena/80a6f5df-poker3`).** The first deploy of
+`site/q-and-a.html` was served with literal markdown in it: the table shipped as `<p>|---|---|---|</p>` plus a `<th>`-only
+header, `**ANSWERED**` rendered as plain text, and every source URL was an angle-bracket string rather than a link. That is
+a broken page on a live site, so it was corrected rather than merged as-is: the page was rewritten as real HTML (22 body
+rows, 5 cells each, 20 clickable official/site links, 0 raw `**`, 0 bracket links, 0 angle-bracket URLs) and
+`tests/test_verification_2026_11_19_80a6f5df.py` gained 5 structural tests (`QAWorksheetPageIsRealHTML`) that fail if raw
+markdown, a malformed body row or a non-official link ever returns. Test count moved from 342 to **347 OK**; `verify_site.py`,
+all four audits, the three headless render checks, `node --check` and the 0-broken-local-link scan were re-run green, and
+`site/q-and-a.html` is now also rendered by `tests/canonical_render.js`. The corrected page is delivered by
+[PR #210](https://github.com/karagemop466-tech/Poker3/pull/210); F106–F108 are unchanged.
+
+### Final integration record (session `arena/80a6f5df-poker3`, 2026-11-19 UTC)
+
+- **PR [#207](https://github.com/karagemop466-tech/Poker3/pull/207)** — `arena/80a6f5df-poker3` → `main`: the independent
+  re-verification record, flags F106–F108, the Q&A worksheet page and the new test module. `verify` and `transcription`
+  checks **pass** (runs [44512162199](https://github.com/karagemop466-tech/Poker3/actions/runs/44512162199),
+  [44512162206](https://github.com/karagemop466-tech/Poker3/actions/runs/44512162206)); merged with
+  `gh pr merge 207 --merge` at **2026-11-19T11:09:45Z**, merge commit
+  [`f4ff7d7`](https://github.com/karagemop466-tech/Poker3/commit/f4ff7d7b14fc6acff90b4108f011dc4deb1e8d75). Pages
+  published `status: built` for that commit at 11:10:18Z.
+- **PR [#210](https://github.com/karagemop466-tech/Poker3/pull/210)** — the correction for the Q&A page: the first deploy
+  served literal markdown (a `|---|---|` paragraph, a `<th>`-only header, `**ANSWERED**` as plain text and every source
+  URL as an angle-bracket string instead of a link). The page was rewritten as real HTML (22 body rows × 5 cells, 20
+  clickable official/site links, 0 raw `**`) and five structural tests were added so it cannot regress. `verify` and
+  `transcription` **pass** (runs [44512803646](https://github.com/karagemop466-tech/Poker3/actions/runs/44512803646),
+  [44512803627](https://github.com/karagemop466-tech/Poker3/actions/runs/44512803627)); merged at **2026-11-19T11:13:29Z**,
+  merge commit [`6f8c49b`](https://github.com/karagemop466-tech/Poker3/commit/6f8c49b43ecc350f7d9513bcae78d86f240268c6).
+- **Merge conflict and handoff log.** PR #210 first reported `DIRTY`: while this branch was open, PR
+  [#211](https://github.com/karagemop466-tech/Poker3/pull/211) from session `arena/4475a074-poker3` landed a new
+  COORDINATION.md section. The rebase hit one append-only conflict in this file only. It was resolved by keeping
+  session 4475a074's whole section first and appending this session's follow-up note after it — no text from either
+  session was discarded, and no source, script or data file conflicted. The branch was force-pushed with
+  `--force-with-lease` after the rebase (its own history only), the PR re-checked `CLEAN`, and both checks passed again
+  before the merge.
+- **Final deploy verified by read-back, not assumed.** `GET /repos/…/pages/builds/latest` returned `status: built`,
+  `commit: 6f8c49b43ecc350f7d9513bcae78d86f240268c6`, `error: null`, updated 11:14:02Z, and the publish run
+  [44512871389](https://github.com/karagemop466-tech/Poker3/actions/runs/44512871389) completed **success**
+  (`pages build and deployment` [44512870265](https://github.com/karagemop466-tech/Poker3/actions/runs/44512870265)
+  also success). Reading <https://karagemop466-tech.github.io/Poker3/site/q-and-a.html> back returns the corrected page:
+  one well-formed table, a real header row, all 22 rows with five cells, clickable official links and no literal
+  markdown. The first fetch of `/Poker3/q-and-a.html` returned the earlier cached copy from the previous deployment,
+  which is why the read-back was repeated against `site/` with a cache-busting query; both publishers now serve the
+  corrected file (the root path is a redirect generated by `scripts/build_legacy_redirects.py`).
+- **This session is done.** S1 (independent re-verification), S2 (three flags, the Q&A page, the regression tests) and
+  S3 (gate, PR, merge, deploy, read-back) are complete. Nothing was marked verified without an official read made on
+  2026-11-19; F16, F31, F39, F91, F107 and F108 remain open by design and are published on the Flagged for review page.
+
+---
+
+---
+
+---
+
+### PR, merge and GitHub Pages deployment (recorded 2026-11-19, session `arena/4475a074-poker3`)
+
+- **PR:** [#211](https://github.com/karagemop466-tech/Poker3/pull/211) — `arena/4475a074-poker3` → `main`. Created
+  with a summary of the fresh verification, the full official source list, and the note that no new irregularity
+  was found.
+- **Merge:** `gh pr merge 211 --merge` at **2026-11-19T11:12:26Z**, merge commit
+  [`2463afe1e9cacc4a2fa74ebd3a865f1729a869d4`](https://github.com/karagemop466-tech/Poker3/commit/2463afe1e9cacc4a2fa74ebd3a865f1729a869d4).
+  No approval wait; the brief requires the integration owner to merge without waiting.
+- **GitHub Pages:** the post-merge publish built and deployed successfully. `GET /repos/karagemop466-tech/Poker3/pages/builds/latest`
+  returned `status: "built"`, `commit: "2463afe1e9cacc4a2fa74ebd3a865f1729a869d4"`, `error: null`.
+- **Live read-back (fetched, not assumed):** `/Poker3/verification.html` serves the 40-row requirements audit with
+  the summary (40 requirements, 18 official reads, 19 trip-window rows compared, 104 flags, 341 published rows);
+  `/Poker3/calculator.html` serves the trip-cost calculator with the formula, the $197.28 floor, the like-for-like
+  comparison and every official source link. Both render correctly on the live site.
+- **Rebase log:** one append-only `COORDINATION.md` conflict during the rebase onto `main` (PR #207, session
+  `arena/80a6f5df-poker3`). It was resolved by keeping both sessions' records in full, separated by `---`, with no
+  text discarded; the two conflict-marker tests then passed. No other session's code or data was overwritten.
+
+---
+
+## Session `arena/c336248a-poker3` — independent line-by-line audit, live official re-read, defect repair, integration (2026-11-19 UTC)
+
+Branch `arena/c336248a-poker3`, branched from `main` at `5c42d7fb5e9931f4582af03e6aa6cc741efc9d9e` (merge of PR #206). The platform binds a
+session to one branch, so the `session-<id>/<task>` branch naming cannot be applied; this branch is this session's only working branch and
+this session is the integration owner for its shared outputs. Claim committed and pushed immediately, before any edit.
+
+Open PRs at claim time: **#173** (`arena/a33db3c1-poker3`) and **#184** (`arena/5cfdd619-poker3`). Both are left untouched by this session.
+
+| Task | Status | Owner session | Scope (files) | Notes |
+|---|---|---|---|---|
+| S1 Independent line-by-line audit of the canonical dashboard (`site/`), data builder, monitors, tests and workflows against the full 40-item requirement list; re-read the official sources behind the trip window with dated verbatim quotes | in progress | `arena/c336248a-poker3` | read-only first, then `research/audit_2026-11-19_arena-c336248a.md` (new), `COORDINATION.md` | No value inferred. Platform reader only (`fetch_page`); the sandbox shell has no route to casino hosts. |
+| S2 Repair any defect found (site, data, calculator, filters, logs, monitoring, flags) and re-verify line by line | in progress | `arena/c336248a-poker3` | `site/**`, `scripts/**`, `data/**`, `tests/**`, `COORDINATION.md` | Small frequent commits; `git pull --rebase` before each push. |
+| S3 Final verification, PR this branch → `main`, merge without waiting, confirm both GitHub Pages deploy paths and live read-back, record PR link + merge + deploy here | in progress | `arena/c336248a-poker3` | whole repo (integration), `COORDINATION.md` | Flagged/unverified items do not block merge; they are published on the Flagged for review page. |
+
+**Baseline at claim (verified locally, before any edit).** `scripts/verify_site.py` passes (341 events / 8 hotels / 56 routes / 50 sources /
+101 flags / 7 plan days / 18 pages); full unit suite **334 tests OK**; `audit_951cd431.py` 0 failures / 0 warnings; `audit_data.py`,
+`verify_entry_labels.py`, `verify_live_official.py` all pass. GitHub Pages reports `status: built` from legacy `main /`.
+
+### Result (session `arena/c336248a-poker3`, 2026-11-19 UTC)
+
+**S1 — done.** The canonical dashboard, data builder, monitors, tests and workflows were audited line
+by line against the 40-item brief. Baseline reproduced locally before any edit: `verify_site.py` pass,
+334 unit tests OK, `audit_951cd431.py` 0/0, `data_source.py` byte-identical on re-run, 164 local links
+0 broken. The dated verbatim record is
+[`research/audit_2026-11-19_arena-c336248a.md`](research/audit_2026-11-19_arena-c336248a.md).
+
+**The audit found the monitoring broken, not the data.** Run
+[44482186623](https://github.com/karagemop466-tech/Poker3/actions/runs/44482186623) — the scheduled job
+for merge commit `5f001742` — ran all three recorders successfully, failed at step 8
+("Verify the dashboard still passes its own checks"), and **skipped steps 9 and 10**, the ones that commit
+and push the record. The observation of 108 official URLs that `check_sources.py` had already written to
+disk was thrown away and the published `site/checks.json` kept its 07:34:30 UTC state. Two independent
+causes, both reproduced in a scratch copy:
+
+1. the record and push steps had no `if: always()`, so any failing step above them suppressed the record;
+2. `tests/test_index_evidence_labels.py` asserted `record["changed"] is False` for the seven primary
+   sheets, so a **genuine** source change — the one thing this monitor exists to surface — was a build
+   error. Forcing `changed: true` on one sheet failed that test and nothing else.
+
+**S2 — done.** The dashboard check is now `continue-on-error` with an id, both publish steps carry
+`if: always()`, and a final step re-raises the failure with `steps.dashboard.outcome == 'failure'`, so the
+record is always published and a broken dashboard still shows as a red run. The test now requires the
+landing-page date to be backed by a row that was actually fetched (HTTP 2xx, real ISO timestamp) rather
+than by an unchanged row. Four new assertions in `tests/test_workflows.py` pin the workflow properties.
+
+**Official re-reads this session (2026-11-19, verbatim):** all four chunks of the
+[DSE IV schedule](https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html)
+(19 trip-window Venetian rows, all match); eight structure sheets — 30, 1, 6, 5, 7, 11, 22 and 26 — every
+printed buy-in, fee split, chip count, level length, late-registration clock and guarantee matches;
+[resort fee](https://www.venetianlasvegas.com/resort/resort-fee.html),
+[poker suite rates](https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html),
+[player parking](https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html),
+[hotel terms](https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html),
+[poker room](https://www.venetianlasvegas.com/resort/casino/poker.html);
+the [Caesars/Horseshoe article](https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip)
+(all three chunks); the [WPT schedule PDF](https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf)
+(13 trip-window rows, all match); the [Wynn engine for 23–30 Nov 2026](https://reservations.wynnlasvegas.com/ibe/details.aspx?hotelID=13763&langID=1&rmID=68658&checkIn=11/23/2026&checkOut=11/30/2026)
+(Wynn Resort King, Flexible Getaway $495 avg/night, includes resort fee, excludes taxes);
+the [exact-stay Venetian booking engine](https://www.venetianlasvegas.com/booking?adults%5B%5D=2&arrival_date=2026-11-23&children%5B%5D=0&departure_date=2026-11-30&view=calendar),
+which again printed `$XXX` in every cell and "Your Venice meets Vegas getaway is loading" — **no new
+checkout total**, so F93/F88 persist and the $4,010.55 total still rests on its 2026-11-17 read.
+
+**No tournament, hotel, rate, route or rule value was changed.** Flagged irregularities added:
+**F109** (the all-day brief cannot be met from published data — no 8 a.m. start, and 23–24 Nov have only a
+5:10 p.m. one-buy-in event), **F112** (sheet 26 prints Event 17 twice and puts the guarantee only inside
+rule 10), **F113** (the resort-fee page says "Rates include a daily Resort Fee"; the terms price it as an
+addition — a $436.51 difference over seven nights, published with the conservative reading), **F114**
+(sheet 1's guarantee is paraphrased in the cell, same number). Two decision questions added: **Q19** (is
+the $55 fee inside the rate?) and **Q20** (how would a broken re-check be noticed?). **F111** records the
+monitor defect and its fix.
+
+**Conflict log.** `main` advanced to `2463afe` (PR #211, session `arena/4475a074`) while this branch was
+open. The `COORDINATION.md` conflict was append-only: both sessions' sections were kept. `site/coverage.json`,
+`site/data.json` and `site/sheets.html` were regenerated from the merged builders rather than hand-merged.
+Session `arena/80a6f5df` had independently published flags **F106, F107 and F108**; this session's four new
+flags were renumbered to **F109, F112, F113 and F114** so no ID collides, and the other session's IDs,
+tests and records are preserved exactly. No value from either session was discarded.
+
+**Verification after the rebase:** `verify_site.py` pass (341 events / 8 hotels / 56 routes / 50 sources /
+**109 flags** / 7 plan days / 18 pages), **348 unit tests OK**, `canonical_render.js`, `audit_951cd431.py`,
+`audit_data.py`, `verify_entry_labels.py`, `verify_live_official.py` and the reproducible rebuilds all pass.
+
+**S3 — in progress.** Opening the integration PR from this branch to `main` next.
+
+---
+
+---
+
+## Session `arena/03d48a10-poker3` — independent 2026-11-19 line-by-line re-verification, calculator unknown-value repair, search discoverability, final integration (2026-11-19 UTC)
+
+**Branch:** `arena/03d48a10-poker3`, branched from `main` at `5c42d7f` (the current tip, PR #206 merged; GitHub Pages `status: built` at
+that same commit when this session claimed). The platform binds each session to one branch, so the brief's `session-<id>/<task>`
+naming cannot be applied here; prior sessions recorded the same constraint. **No new branch is created or switched to.**
+
+**Open PRs at claim time:** `#173` (`arena/a33db3c1-poker3`, last commit **2026-11-19T06:12:27Z**) and `#184`
+(`arena/5cfdd619-poker3`, last commit **2026-11-19T06:47:13Z**). Both are `CONFLICTING` and both were more than three hours idle
+at claim time (claim made 2026-11-19T11:0xZ). Under the standing protocol — "a claim more than 60 minutes old with no commits may be
+taken over, and the handoff noted" — item **B2 below takes over PR #184's calculator fix** by re-implementing it on this branch rather
+than leaving a known false-zero defect live. PR #184 and PR #173 are **left open and untouched**; no commit is pushed to their
+branches. The verification content PR #173 carries is superseded by this session's own independent read (T2), so no merge of #173 is
+assumed and its rows were **not** copied; every value below was re-read from the official page.
+
+**Claim (committed and pushed before any other work).** Scope: `COORDINATION.md`, `site/**`, `scripts/**`, `tests/**`,
+`research/**`, `README.md`, `.github/workflows/**` — the whole repository, as integration owner for this session. No other session has
+committed to `main` since the branch point at claim time.
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| T1 Claim recorded and pushed before any edit | done | `arena/03d48a10` | this section | Branch fixed by the platform; no other branch created or pushed. |
+| T2 Independent line-by-line re-read of the official sources behind every value the dashboard acts on, dated 2026-11-19 | in progress | `arena/03d48a10` | `research/` (new dated record), `scripts/data_source.py` (read-date stamping only) | Reads via the platform fetch tool. Official sources only. A value that cannot be confirmed stays blank. |
+| T3 Repair the calculator's blank-input defect so an unpublished value can never price as zero, and make search reachable from the navigation | pending | `arena/03d48a10` | `site/calculator.html`, `scripts/trip_cost.py`, `site/assets/app.js`, `tests/**` | Takes over open PR #184 (idle >4 h, conflicting) as recorded above. No sourced value changes. |
+| T4 Verification, PR → `main`, merge, GitHub Pages confirmation and record | pending | `arena/03d48a10` | whole repo (integration) | Flagged irregularities and unverified items do not block the merge; they remain published on the Flagged for review page. |
+
+**Scope note.** PR #173's branch is not touched. Where PR #173 made the same trip-window re-read, this session performs its own read
+and does not merge #173; the two records can be compared, and neither is treated as authoritative without the official page.
+
+### T2 result — independent 2026-11-19 re-read (session `arena/03d48a10-poker3`)
+
+**Done. 64 official facts compared line by line against site/data.json; 64 matched; 0 values changed.**
+Full record with verbatim excerpts and the manual-review links: [`research/reverification_2026-11-19_arena-03d48a10.md`](research/reverification_2026-11-19_arena-03d48a10.md).
+
+| Official source read today | Compared | Matched |
+|---|---|---|
+| [Venetian DSE IV schedule](https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html) (all 4 chunks) | 24 trip-window rows on date, start time, buy-in, description | 24 |
+| [Venetian suite rates](https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html), [resort fee](https://www.venetianlasvegas.com/resort/resort-fee.html), [hotel terms](https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html), [player parking](https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html) | 10 hotel facts + 4 arithmetic identities ($197.28, $299.32, $1,380.96, $4,120.96) | 10 + 4 |
+| [Wynn daily poster PDF](https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf), [Wynn resort policies](https://www.wynnlasvegas.com/about-us/resort-information), [Wynn poker](https://www.wynnlasvegas.com/casino/poker) | 4 daily rows + 5 policy facts | 9 |
+| [Wynn Signature structures PDF](https://cdn.wynnresorts.com/image/upload/v1762299460/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Structures.pdf) | placeholder text only — confirms F56 | 1 |
+| [Bellagio poker](https://bellagio.mgmresorts.com/en/casino/poker.html) + [Friday $600 structure PDF](https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf) | 7 structure facts | 7 |
+| [Caesars/Horseshoe Strip article](https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip) (chunks 0–1) | 4 daily-schedule facts | 4 |
+| [MGM Grand schedule PDF](https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf) | 6 facts incl. the only printed entry-policy sentence | 6 |
+
+**Irregularities re-confirmed against live pages (none resolved, none can be resolved by re-reading):** F02 Bellagio
+Saturday prints $1,000 / $1,100 / $600 on three surfaces; F03 the Bellagio resumption notice still says "July 26" with
+no year while the page says the bomb pot is nightly at 6 PM; F07 the MGM PDF heading still says "August" with no year;
+F17 the earliest start anywhere in the reviewed set is 10:10 AM, so no 8 AM plan is buildable; F31 no reviewed sheet
+states a maximum number of entries per player; F51 the resort-fee page and the booking calendar still describe the $55
+fee differently; F56 the Signature structures file is still "COMING SOON", re-checked today; F72 the MGM entry-policy
+sentence still assumes five or more entries; F90 Caesars still prints "every event carries a $100 buy-in" against a
+flyer's $100/$160; F93 the booking engine still returned no dated price today.
+
+**Also confirmed correct (no action taken):** the 38 Signature Series rows and their count; the Wynn Friday $240 rebuy
+and the Caesars $50 add-on and the Bellagio re-entry plus optional paid gratuity are all kept outside the single-entry
+path; the Bellagio Friday $600 row's published fee split ($510/$50/$40) matches its PDF.
+
+**One new observation, flagged for review rather than fixed:** the Caesars/Horseshoe rows rest on a **Caesars-published
+editorial article dated 17 July 2026**, not a machine-generated schedule page. That has been true since those rows were
+first published; this pass states it explicitly because the article's own text ("every event carries a $100 buy-in")
+already conflicts with the flyer. No value was changed on the strength of a marketing article.
+
+### T3 result — calculator unknown-value repair + search discoverability (session `arena/03d48a10-poker3`)
+
+**Done. No sourced value changed.** Two defects were found by executing the page rather than reading it.
+
+| Defect | Evidence | Fix | Guard |
+|---|---|---|---|
+| A blank calculator field priced as **zero**. `Number(x) || 0` turned a missing room-tax percentage into 0%, so a property that publishes a resort fee and no percentage (F39) printed a nightly cost *below* its published charge; a blank entry count printed a `$0` tournament budget. | `site/calculator.html` inline script, `read()`; the same coercion in every hotel preset button | Blanks and invalid values are `null`; the core total is withheld and the missing field is named. An explicit `0` is still honoured (parking waived, F86). Preset buttons clear a figure the property does not publish instead of inheriting the previous property's. | `tests/test_calculator_unknown_inputs.js` (13 checks), `tests/test_trip_cost_unknown_inputs.py` (6 tests), both wired into `verify.yml` and `pages.yml` |
+| The Python model made the same assumption: `tax_pct = float(tax_pct or 0)` and `entries or 0`. | `scripts/trip_cost.py` | Same rule: a component that was not published is `None` and poisons only the totals that depend on it. | `tests/test_trip_cost_unknown_inputs.py::test_the_published_model_is_unchanged_by_the_repair` pins $2,600.00 / $197.28 / $1,380.96 / $140.00 / $4,120.96 |
+| Cross-table search existed but was reachable **only** from the small top-bar box; it was not in `NAV`. | `site/assets/app.js` `NAV` | Added as a navigation entry. | `tests/canonical_smoke.py`, `tests/canonical_render.js` |
+| Each day's recurring room events rendered as an **unordered list** with no relation to the primary, so a 6 p.m. event on a day whose primary starts at 5:10 p.m. read like an impossible parallel sequence. | `site/assets/app.js` `renderSchedule` | Each line states whether it starts before the primary, may overlap the estimated session, or is playable after the primary plus the 30-minute transfer, and multi-buy-in / multi-flight formats are marked as extra spend. Every timing word is labelled an estimate, because no venue publishes a finish time (F16). | `tests/test_day_plan_ordering.js` (6 checks), wired into both workflows |
+
+**This takes over open PR #184**, which carried the same calculator repair but has been `CONFLICTING` and idle since
+**2026-11-19T06:47:13Z** — over four hours at the time this session claimed, which is the standing protocol's threshold.
+PR #184 is **left open and untouched**; no commit was pushed to its branch. The two implementations can be compared, and
+if #184 is preferred the tests above still apply to it. Open PR #173 is likewise untouched and not merged; its
+trip-window re-read is superseded by this session's own 64-fact read (T2), which cites the official pages directly.
+
+**Verification of this branch (all green):** `verify_site.py` (341 events / 8 hotels / 56 routes / 50 sources / 101
+flags / 7 plan days / 18 pages), **341 unit tests OK**, `audit_951cd431.py` (0 failures, 0 warnings), `audit_data.py`,
+`verify_live_official.py`, `verify_entry_labels.py`, `verify_transcription.py --dry-run` (44/44), `canonical_smoke.py`,
+`canonical_render.js` (17 page renders), `walk_limit_render.js`, the two new Node harnesses, `node --check` on every JS
+asset, a byte-identical `data_source.py` rebuild (SHA-256 unchanged), and a local HTTP smoke test in which all 18 pages
+and `data.json` returned **200**. PyYAML 6.0.3 was installed in the sandbox for `test_workflows.py` / `test_pages_gate.py`.
+
+### Rebase over main (`#207`, `#210`, `#211`) — session `arena/03d48a10-poker3`
+
+While this branch was open, three other sessions landed on `main`: **#207** and **#210** (`arena/80a6f5df-poker3` —
+the 19-row trip-window re-read, then a real-HTML fix for the Q&A worksheet page, adding flags F106–F108) and **#211**
+(`arena/4475a074-poker3` — a fresh read of all 94 DeepStack Extravaganza IV rows). This branch was rebased onto the
+resulting `main` tip.
+
+**Conflict and resolution.** One append-only conflict, in this file only. Resolved by keeping `main`'s sections in full
+(all 160 lines, including F106–F108 and the 80a6f5df records) and appending this session's record beneath a separator.
+No text was discarded. No code file conflicted: the other sessions touched `site/q-and-a.html`, `scripts/coverage.py`
+and `site/data.json`; this branch's changes to `site/calculator.html`, `site/assets/app.js`, `scripts/trip_cost.py` and
+the tests applied cleanly. `site/data.json` was regenerated from the merged source modules and is byte-identical to the
+committed artifact.
+
+**Re-verification on the merged tree (all green):** **356 unit tests OK** (341 on this branch before the rebase plus
+the other sessions' 15), `verify_site.py` (341 events / 8 hotels / 56 routes / 50 sources / **104 flags** / 7 plan days /
+18 pages), `audit_951cd431.py` (0 failures, 0 warnings), `audit_data.py`, `verify_live_official.py`,
+`verify_entry_labels.py`, `verify_transcription.py --dry-run` (44/44), `canonical_smoke.py`, `canonical_render.js`,
+`walk_limit_render.js`, the two new Node harnesses, and a byte-identical `data_source.py` rebuild.
+
+**Their findings are kept, not overwritten.** F106–F108 are the other session's; this branch does not renumber, merge or
+edit them, and they remain on the Flagged for review page. Where their work and this branch's overlap — both re-read the
+trip window on 2026-11-19 — the two reads agree with each other and with the official page, which is a useful
+independent confirmation rather than a duplicate to delete.
 ## Session `arena/7d96049f-poker3` — claim: scheduled-monitor reliability, trip-cost unknown handling, 2026-11-19 live re-reads (2026-11-19 UTC)
 
 Branch: `arena/7d96049f-poker3`, branched from `main` at `5c42d7f` (= `origin/main`, 0 ahead / 0 behind at claim
@@ -5846,10 +6267,10 @@ written and pushed before any edit.
 
 | Task | Status | Owner session | Scope (files) | Notes |
 |---|---|---|---|---|
-| M1 Fix the scheduled source-monitor record publication: `tests/test_index_evidence_labels.py` hardcodes `2026-11-19` and asserts no structure PDF changed, so the nightly job fails exactly when a source *does* change and never commits `site/checks.json` | in progress | `arena/7d96049f-poker3` | `tests/test_index_evidence_labels.py`, (new) `tests/test_monitor_record_robustness.py` | CI evidence: run [44482186623](https://github.com/karagemop466-tech/Poker3/actions/runs/44482186623) failed at "Verify the dashboard still passes its own checks"; the following "Record the check results on the main branch" step was skipped. All 334 tests + `verify_site.py` pass on this commit locally, so the failure came from the CI-regenerated record, not from committed data. |
-| M2 Trip-cost arithmetic: blank or unverified inputs (tax %, resort fee, counts) must stay unknown, not be silently priced as $0 / tax-free | in progress | `arena/7d96049f-poker3` | `scripts/trip_cost.py`, `site/calculator.html`, `tests/test_calculator_page.py`, `tests/test_trip_cost_reproducible.py`, (new) `tests/test_calculator_missing_inputs.py` | **Takeover of a stalled claim.** PR [#184](https://github.com/karagemop466-tech/Poker3/pull/184) (`arena/5cfdd619-poker3`, session `5cfdd619`) claimed this exact defect at 06:47 UTC and has made no commit since; per the board's 60-minute rule this session takes it over. That PR is left open and untouched; its approach is credited in the code comment. `main`'s `true_nightly()` still does `float(tax_pct or 0)`, i.e. an unpublished tax percent is priced as zero tax. |
-| M3 Live 2026-11-19 re-read of the official pages behind the 49 event rows still dated 2026-11-17 (Venetian NYE series) plus a dated re-quote of the trip window at the Venetian and Wynn booking engines | in progress | `arena/7d96049f-poker3` | `research/reread_2026-11-19_arena-7d96049f.md` (new), `scripts/data_venetian.py`, `scripts/data_hotels.py`, `site/data.json`, `site/sheets.html`, `site/coverage.json` | Read through the platform page reader (the sandbox's own egress to venue hosts still fails, F40). A row's date advances only if its official page was re-read in this session and matched line by line; a disagreement is flagged, never auto-corrected. |
-| M4 Integration: rebase over any landing PR, full offline check suite, PR to `main`, merge, confirm Pages deploy, record here | in progress | `arena/7d96049f-poker3` | `COORDINATION.md`, generated artefacts via `scripts/data_source.py` / `scripts/build_addendum.py` / `scripts/coverage.py` | Flagged items do not block the merge. |
+| M1 Fix the scheduled source-monitor record publication: `tests/test_index_evidence_labels.py` hardcodes `2026-11-19` and asserts no structure PDF changed, so the nightly job fails exactly when a source *does* change and never commits `site/checks.json` | done | `arena/7d96049f-poker3` | `tests/test_index_evidence_labels.py`, (new) `tests/test_monitor_record_robustness.py` | CI evidence: run [44482186623](https://github.com/karagemop466-tech/Poker3/actions/runs/44482186623) failed at "Verify the dashboard still passes its own checks"; the following "Record the check results on the main branch" step was skipped. All 334 tests + `verify_site.py` pass on this commit locally, so the failure came from the CI-regenerated record, not from committed data. |
+| M2 Trip-cost arithmetic: blank or unverified inputs (tax %, resort fee, counts) must stay unknown, not be silently priced as $0 / tax-free | done | `arena/7d96049f-poker3` | `scripts/trip_cost.py`, `site/calculator.html`, `tests/test_calculator_page.py`, `tests/test_trip_cost_reproducible.py`, (new) `tests/test_calculator_missing_inputs.py` | **Takeover of a stalled claim.** PR [#184](https://github.com/karagemop466-tech/Poker3/pull/184) (`arena/5cfdd619-poker3`, session `5cfdd619`) claimed this exact defect at 06:47 UTC and has made no commit since; per the board's 60-minute rule this session takes it over. That PR is left open and untouched; its approach is credited in the code comment. `main`'s `true_nightly()` still does `float(tax_pct or 0)`, i.e. an unpublished tax percent is priced as zero tax. |
+| M3 Live 2026-11-19 re-read of the official pages behind the 49 event rows still dated 2026-11-17 (Venetian NYE series) plus a dated re-quote of the trip window at the Venetian and Wynn booking engines | done | `arena/7d96049f-poker3` | `research/reread_2026-11-19_arena-7d96049f.md` (new), `scripts/data_venetian.py`, `scripts/data_hotels.py`, `site/data.json`, `site/sheets.html`, `site/coverage.json` | Read through the platform page reader (the sandbox's own egress to venue hosts still fails, F40). A row's date advances only if its official page was re-read in this session and matched line by line; a disagreement is flagged, never auto-corrected. |
+| M4 Integration: rebase over any landing PR, full offline check suite, PR to `main`, merge, confirm Pages deploy, record here | done | `arena/7d96049f-poker3` | `COORDINATION.md`, generated artefacts via `scripts/data_source.py` / `scripts/build_addendum.py` / `scripts/coverage.py` | Flagged items do not block the merge. |
 
 **Stale-PR notes (no action taken against them).** PR [#173](https://github.com/karagemop466-tech/Poker3/pull/173)
 (`arena/a33db3c1-poker3`, last touched 06:12 UTC) re-read the trip window on 2026-11-19 and edited
@@ -5860,3 +6281,105 @@ superseded. It is left open and untouched; M3 does not duplicate its trip-window
 **Not in this session's scope** (other sessions may still take them): `site/assets/**`, `site/index.html` prose,
 `.github/workflows/**`, `docs/**`, `verified/**`, `single-entry/**`, `poker3/**`, `planner/**`, `handoff/**`.
 Board file is append-only for this session.
+
+### Results — session `arena/7d96049f-poker3` (M1–M4), 2026-11-19 UTC
+
+**M1 — the scheduled monitor's record publication (`fd89441`…`128408d`).** Landed:
+`site/index.html` no longer hardcodes a re-check date. The seven trip-window cells are
+`<small data-sheet-recheck="<sheet>.pdf">` placeholders filled at render time by
+`renderSheetRechecks()` (first statement of `renderHome()` in `site/assets/app.js`), which reads
+`site/checks.json` → `checks.urls`, matches by URL suffix, takes the newest `checked`, and renders one of four
+states: `re-checked <day> · byte-for-byte unchanged`, `CHANGED since the values were read — re-read by hand`
+(styled `badge danger`), `re-check blocked for the robot` (a block is never called a source change), or
+`no automated re-check recorded`. A cell can therefore only ever display a date the record actually carries.
+`tests/test_index_evidence_labels.py` now asserts relationally (coverage of all seven sheets, ISO timestamps,
+`checked <= generatedAt`, `changed` is a recorded boolean, and a reported change must carry `hashBasis` **and**
+`previousHash` so a human can see what was compared). New `tests/test_monitor_record_robustness.py` (11 tests)
+pins three properties: the record is published whatever the gate does; `scripts/check_sources.py` writes only
+`site/checks.json` and never `site/data.json` (so a detected change is reported, never auto-applied); and **no
+test in the check path may assert a literal calendar date against a job-regenerated record** — the time bomb
+itself, with a self-check that its own pattern still detects one. New `tests/sheet_recheck_render.js` renders
+the seven cells against a *synthetic* record (the committed one moves by design) and asserts all four states;
+it is wired into `verify.yml`, `pages.yml` and `tests/canonical_smoke.py`.
+
+*Overlap, stated plainly.* `arena/c336248a-poker3` landed the workflow half of this same defect (flag **F111**,
+`73b4031`: gate made `continue-on-error` with its outcome re-raised after the publish steps, both publish steps
+`if: always()`, and the date test relaxed) while this branch was open, and `arena/03d48a10-poker3` (`612a4c0`)
+relaxed the same assertion further. This session's contribution is therefore the *page and data-flow* half plus
+the regression that keeps the whole class from coming back. During the merge this session **dropped** its own
+`if: always() && !cancelled()` in favour of main's exact `if: always()` contract (pinned by
+`tests/test_workflows.py`; a cancelled run never reaches a publish step anyway), and **dropped** its duplicated
+`scripts/trip_cost.py` / `site/calculator.html` rewrites in favour of `612a4c0`. Nothing from either session was
+reverted.
+
+**M2 — trip cost: an unpublished value is unknown, never zero.** `612a4c0` already fixes the blank case on main
+(the `MISSING` rule in `true_nightly()`, the `Number(value) || 0` reader in the calculator, and the hotel-preset
+boxes that used to inherit the previously loaded property's figure). **The gap this session closes is the other
+side of zero**: `float(value)` accepted *negative* components, so a resort fee of `-$55` or a room tax of
+`-13.38%` computed happily and printed a nightly cost **below** the published charge. `scripts/trip_cost.py` now
+routes every component through `_not_negative()`, which raises and names the offending field (a blank still
+returns `None` — unknown and negative are deliberately not conflated, asserted in
+`tests/test_trip_cost_negative_inputs.py`). No published figure moves: the model still prints $197.28 a night,
+$2,600 entries, $1,380.96 lodging, $4,120.96 all-in and $4,835.24 at the $209 rate.
+PR [#184](https://github.com/karagemop466-tech/Poker3/pull/184) is credited for the diagnosis and remains open
+and untouched.
+
+**M3 — live 2026-11-19 re-read of the 49 DeepStack NYE rows** (`fd89441`). The official page
+[`dse-dec-2026.html`](https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html)
+was read in full and **49 of 49 published rows agree** on date, start time, event number, printed name, printed
+buy-in, printed guarantee and sheet link — `scripts/verify_nye_live_2026_11_19.py` (exit 0) +
+`tests/test_nye_live_2026_11_19.py`. Captures in `raw/venetian_dse_nye_live_2026-11-19_7d96049f.md` and
+`raw/venetian_dse_nye_schedule_live_2026-11-19_7d96049f.md`. **Every event row on the site now carries
+`lastChecked 2026-11-19`** (341/341; main had 292/341 with the NYE block left at 11-17). `lastVerified`
+deliberately stays `2026-11-17` for those rows — their 15 structure sheets were not re-read — and a test pins
+that asymmetry in both directions plus `lastVerified ≤ lastChecked ≤ today`. Two defects the venue page itself
+prints are recorded by extending **F04** rather than raising new flags: three 26 Dec rows print
+`Saturday, December 26, 2025` inside a series headed `December 24, 2026 – January 10, 2027` (2026-12-26 is a
+Saturday), and both 5 Jan rows print `Tuesaday`. Nothing was corrected in the data. Results column: empty or
+`—` on all 49 rows, so the page publishes no results.
+
+**M4 — rate-log re-reads, integration** (`0c09441`, `de3e684`). Wynn: the property's own engine
+(`reservations.wynnlasvegas.com/ibe/details.aspx?…&checkIn=11/23/2026&checkOut=11/30/2026`) was re-requested
+with **`&adults=2` in the URL** and reproduced the recorded averages exactly — `$495` (Flexible Getaway) and
+`$405` ('Your Fall to Have It All'), both `Includes Resort Fee · Excludes taxes` — which **closes the occupancy
+caveat** on the earlier entry: the quote is a two-adult quote. Added as a third dated `2026-11-19` log entry,
+with the earlier entry's caveat rewritten to point at it. No nightly figure is derived from a fee-inclusive
+average (that is the F69 double-count trap; `true_nightly` also needs a tax percentage Wynn does not publish,
+F39). The Venetian engine was opened a third time for the same window and again returned the loading shell with
+every calendar cell rendered as `$XXX` while echoing the dates back correctly, so **no dated Venetian re-quote
+exists for 2026-11-19**; the 2026-11-17 totals ($4,010.55 / $3,823.46) remain the latest for the window. That
+same read prints two different connecting-suite charges (`+ $20 / Night` and `There is a $10 per suite, per
+night`) — published as **F115**, with neither figure adopted or averaged. Full narrative, verbatim excerpts and
+the human-only to-do list: `research/reread_2026-11-19_arena-7d96049f.md`.
+
+**Scope deviation, logged.** This session's claim excluded `site/assets/**`, `site/index.html` prose and
+`.github/workflows/**`, but the M1 defect lived in exactly those three places and no other session held an open
+claim on them at the time the fix was written (`check_sources.py`, `site/checks.json` and the two workflow files
+are this board's monitoring scope). `site/index.html` was touched only in the seven `<small>` cells and the
+`toolbar-note` that explains them; `site/assets/app.js` only by adding `renderSheetRechecks()`. If
+`arena/c336248a-poker3` or `arena/03d48a10-poker3` want the page-side wording changed, they should treat this
+session's edits as replaceable and re-apply their own.
+
+**Conflict / handoff log.** `git merge origin/main` (27 commits of other-session work, PRs #207, #210, #211,
+#213, #214, #215) produced 12 conflicted paths, resolved as: generated artefacts (`site/data.json`,
+`site/sheets.html`, `site/coverage.json`) regenerated from the merged builders rather than hand-merged;
+`scripts/trip_cost.py`, `site/calculator.html`, `tests/test_calculator_page.py` taken from **main** and this
+session's duplicates deleted; `tests/test_index_evidence_labels.py` taken from this session with main's
+`HTTP 2` requirement and main's 07:56-UTC Wynn narrative grafted in; `checks.yml` = main's `always()` +
+`continue-on-error`/re-raise shape with this session's JSON-validation preflight kept; `data_source.py` FLAGS =
+main's F109–F114 then this session's flag **renumbered F106 → F115** because flag IDs are global and contended;
+`COORDINATION.md` = main's block then this session's claim, both preserved. Flag IDs verified unique (110 flags,
+no duplicates).
+
+**Verification after the merge** (all re-run, offline): `python3 -m unittest discover -s tests -p 'test_*.py'`
+→ **Ran 385 tests / OK**; `scripts/verify_site.py` → `events: 341 hotels: 8 routes: 56 sources: 50 flags: 110
+plan days: 7 pages: 18 / verification passed`; `audit_951cd431`, `verify_live_official`, `audit_data`,
+`verify_entry_labels`, `verify_nye_live_2026_11_19`, `verify_dse_live_2026_11_19`, `verify_fresh_4475a074`,
+`verify_transcription --dry-run` all PASS; `tests/canonical_smoke.py` → `13 main pages, 5 detail pages` with
+`canonical_render.js` (all pages rendered), `walk_limit_render.js` (335 default / 329 limited) and
+`sheet_recheck_render.js` (7 cells, 4 record states) OK; `node --check` clean on `app.js` and both render
+checks; all three builders rebuild **byte-identically** to the committed artefacts.
+
+**Standing decision unchanged:** **HOLD** on any nonrefundable payment. 0 of 341 events carry a written
+one-entry cap (**F31**), no official source publishes an 8 AM start (**F17**) or a finish time (**F16**), and
+the trip window's Venetian checkout total is now 2 days stale with the engine unquoteable from this sandbox.
