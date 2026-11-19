@@ -4529,3 +4529,13 @@ The documentation follow-up preserved both the #156 and #159 board entries when 
 - GitHub Pages: Pages API reports `status: built`, source `main` `/`, https://karagemop466-tech.github.io/Poker3/ . The "Publish the canonical Vegas Poker Planner to GitHub Pages" workflow completed `success` on the post-merge main tip.
 - PRs #112 and #130 closed as superseded with explanatory comments (both unmergeable — no merge base against `main`; #112's quote + walk matrix already on `main`, its walk-direction fix re-implemented in #153; #130's three fixes re-implemented in #153).
 - Open flags (published on `site/flagged.html`, do not block): F31, F17, F16, F39, F56, F15/F36/F57, F92. F92 (Venetian poker page wording change, 2026-11-18 20:24 UTC) still needs a manual re-read before nonrefundable payment.
+
+## Session `arena/1b4b21cc-poker3` — canonical dashboard audit (2026-11-19 UTC)
+
+The platform-assigned branch is `arena/1b4b21cc-poker3`; the requested per-task branch name cannot be used here. The current task is limited to auditing the existing canonical dashboard against its saved official-source evidence and documenting verification; no tournament, hotel, rate, route, or policy values will be edited or newly asserted.
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Audit the current site and regression suite against the requested decision-support features; record evidence gaps and deployment status | in progress | `arena/1b4b21cc-poker3` | `COORDINATION.md` only |
+
+The latest source evidence and known irregularities are linked from [`site/sources.html`](site/sources.html) and [`site/flagged.html`](site/flagged.html). The actual official-source links, excerpts, retrieval dates, and historical read status remain in the site data and research captures; this documentation audit does not constitute a new live reread of those sources.
