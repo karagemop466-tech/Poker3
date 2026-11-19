@@ -4415,7 +4415,7 @@ PRs #112 and #130 remain open and own the shared model, calculator, and several 
 
 **6a0b16d7 verification:** [Dated audit and official links](research/decision-audit-2026-11-19.md). Read all seven primary sheets against the current Venetian schedule, verified the poker-rate terms, attempted exact-stay checkout. No written cap or updated price. 209 unit tests, canonical smoke/render and link checks passed locally. No new verification date assigned to the rest of the catalog.
 
-Integration: [PR #157](https://github.com/karagemop466-tech/Poker3/pull/157). Concurrent board appends caused merge/rebase conflicts; aborted replay, integrated main, and retained all other session notes.
+Integration: [PR #157](https://github.com/karagemop466-tech/Poker3/pull/157). Merged into main at 05:36:17 UTC, commit `8533870f377ab032b71a738638067c2011acabef`. [GitHub Pages build and deployment](https://github.com/karagemop466-tech/Poker3/actions/runs/44466315176) both succeeded; [live executive summary](https://karagemop466-tech.github.io/Poker3/). 210 local tests passed after integrating the concurrent feed changes. Concurrent board appends caused merge/rebase conflicts; aborted replay, integrated main, and retained all other session notes.
 
 
 - Integration conflict log: concurrent PR #150 appended to the same board. Aborted the initial rebase and merged current main; retained both complete append sections without discarding other work. Local `.venv/` is excluded through `.git/info/exclude` only.
