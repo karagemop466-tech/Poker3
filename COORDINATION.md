@@ -4857,6 +4857,80 @@ The irregularity recorded above as "found and NOT fixed" was taken on after conf
   Signature structures unpublished · F57 no online price for 30 Nov / 1 Dec · F66 phone-only poker rate · F88 one
   successful engine read only · F32/F84 walking minutes are map readings · F83 whether the Wynn daily slate runs
   27-29 Nov.
+---
+
+## Session `arena/3dae36ec-poker3` — live re-read, defect repair and publication (2026-11-19 UTC)
+
+Branch: `arena/3dae36ec-poker3`, branched from `main` at `23ad5d8`. The platform binds a session to one branch, so the
+`session-<id>/<task>` naming in the brief cannot be applied; this session works only on its own branch. No other branch
+was created, modified or pushed. Claimed when no other session held the files below.
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| Live re-read of every official source behind the trip, with a dated capture and a verifier | done | `arena/3dae36ec-poker3` | `raw/venetian_dse_nov_2026_live_2026-11-19.md` (new), `scripts/verify_dse_live_2026_11_19.py` (new), `tests/test_dse_live_2026_11_19.py` (new), `scripts/data_venetian.py`, `site/data.json` | 94 of 94 DSE IV rows matched the live page on date, start time and structure sheet. Four published names had been paraphrased; corrected to the page's own wording. |
+| Make every published fallback playable | done (reconciled with two concurrent sessions — see below) | `arena/3dae36ec-poker3` | `scripts/data_source.py`, `site/assets/app.js`, `site/schedule.html`, `tests/test_fallback_rule_2026_11_19.py` (new), `site/data.json` | Kept alongside `arena/ffe8f597-poker3`'s `_fallback_sequence()`; see the reconciliation note. |
+| Retire the three duplicate dashboards | done | `arena/3dae36ec-poker3` | `docs/**`, `planner/**`, `verified/**`, `scripts/build_legacy_redirects.py` (new), `tests/test_legacy_redirects_2026_11_19.py` (new), `README.md` | 30 legacy pages redirect into `site/`. |
+| Observe-only re-check record | done | `arena/3dae36ec-poker3` | `scripts/data_source.py` (flag F96), `site/sheets.html` (regenerated), `site/data.json` | Records exactly what today's spot check could and could not confirm. |
+
+**Sources read live (2026-11-19).** Also listed in `README.md` → *Live re-read, 2026-11-19* and behind flag F96. Nothing
+here is sourced to a third party, and nothing was inferred from a page that did not print it.
+
+- Venetian DeepStack Extravaganza IV schedule page, all four chunks, 94 rows.
+- Venetian poker-suite rate page, poker player-parking page, and the poker-room page.
+- Venetian official booking engine for 23–30 November 2026, two adults.
+- Wynn WPT World Championship schedule PDF, both chunks (54 non-satellite rows plus every satellite).
+- Wynn Signature Series structures link (still a "COMING SOON" placeholder).
+- Caesars Entertainment's Strip poker-tournament article covering Caesars Palace and Horseshoe.
+
+**Verification performed.** `verify_site.py`, `audit_951cd431.py`, `verify_live_official.py`, `audit_data.py`,
+`verify_entry_labels.py`, `verify_dse_live_2026_11_19.py`, `canonical_smoke.py`, `canonical_render.js`,
+`walk_limit_render.js`, `tests/smoke.py` and `python3 -m unittest discover` (**260 tests**) all pass on the rebased
+base, and `data_source.py` rebuilds `site/data.json` byte-identically.
+
+**Defect found and fixed.** The day plan printed "Fallback = the next sheet-screened candidate that starts after the
+primary's estimated finish plus a 30-minute transfer" but the builder never applied it. On 25, 26, 27, 28 and 29
+November the published fallback started inside the primary beside it, while the overlap check on the same page flagged
+the identical pair as an impossible sequence. No event, fee, guarantee, date or hotel value changed; only which row is
+labelled what.
+
+**Rebase conflict log (after `main` advanced to `f211708`).** Two other sessions had merged the same defect first:
+`814b5d7` (session `arena/ffe8f597-poker3`, PR #166) added `_fallback_sequence()` with an "after / replaces" label and
+flag **F94**, and session `arena/7d533b48-poker3` (PR #167) added flag **F93** for the booking-engine read. Nothing of
+theirs was discarded. How the overlap was reconciled:
+
+- **Both fixes kept.** Their `_fallback_sequence()` is called once per day and fills `fallbackSequence` /
+  `fallbackSequenceNote`; my `_starts_after_primary_finish()` drives the selection and adds
+  `fallbackAlternativeId/Name/Time`. They read the same two printed clock times, so the page now says "playable after
+  the primary" or "replaces the primary" *and* names a same-day alternative when nothing on the date starts late enough
+  to follow the primary.
+- **One rule text.** The published `fallbackRule` states both readings and says the label is generated from the two
+  start times rather than asserted.
+- **Flag IDs de-duplicated.** My two flags collided with flags that had just merged, and my provisional "F94" would have
+  duplicated an ID already on `main`. Both of my flag commits were dropped on rebase; the spot check is re-published as
+  **F96**, which adds the DSE IV row-by-row re-read, the WPT check and the parking/Caesars re-reads that F93 does not
+  cover, and the fallback defect stays as their **F94**, which this branch's code change now satisfies. F95 was taken
+  too by a third merge (PR #172, the six monitor-flagged 2026-11-18 URLs re-read by hand) between this branch's first
+  and second rebase, so the spot check moved to **F96**. The `test_flag_ids_are_unique` check caught both collisions
+  before publication: no ID is used twice and no flag text was lost.
+- **`site/schedule.html` copy:** `main`'s version was already more complete (it also says 30 November is an 11:00 a.m.
+  check-out day), so `main`'s text was kept and only the same-day-alternative sentence was added.
+- **Board:** both sessions' sections kept; this record and the reconciliation note added.
+
+**Page source question (needs a user decision; does not block).** The GitHub Pages source is still the legacy `main /`
+setting. `PUT /pages` returns **HTTP 403** for this token, so no session can change it, and every repository-root path is
+published. The retired dashboards were publishing older conclusions beside `site/` — `docs/` still said hotel rates and
+walking times were unverified, which `site/` contradicts with a dated rate log. They now redirect into `site/`. That fixes
+the contradictory answers but not the extra paths. Switching the source to **GitHub Actions** settles it in one click, in
+repository settings only.
+
+**Irregularities published on the Flagged for review page (do not block):** F31 (no written one-entry cap, so the
+strict-entry filter returns 0 rows), F17 (no official 8 a.m. start; earliest verified is 9 a.m.), F16 (no published
+finish times, so overlap flags are estimates), F39 (room-tax percentage unpublished for six of eight properties), F56
+(Wynn Signature structures still unpublished), F93 (no current checkout total), F94 (the fallback defect), F96 (today's
+spot check). F92 is cleared.
+
+**Merge record.** Appended after the pull request merges.
+
 
 ---
 
@@ -4889,5 +4963,5 @@ Branch note: the platform binds this session to `arena/827185f7-poker3` (branche
 - **Official sources used this session (all venue-host, read live 2026-11-19):** `venetianlasvegas.com/resort/casino/poker.html`, `.../deepstack-extravaganza-poker-tournament.html`, `venetianlasvegas.com/booking?...23–30 Nov`, `wynnlasvegas.com/casino/poker`, `/about-us/resort-information`, `/about-us/parking`, `/rooms-and-suites`, `/terms-and-conditions/850070`, `reservations.wynnlasvegas.com/ibe/details.aspx?...checkIn=11/23/2026&checkOut=11/30/2026`, `cdn.wynnresorts.com/.../Wynn_Signature_Series_Structures.pdf`, `caesars.com/book/hotel-calendar` (clv, blv), `mgmgrand.mgmresorts.com/book-room?...`, `bellagio.mgmresorts.com/book-room?...`, `aria.mgmresorts.com/book-room?...`.
 - **Verification (post-merge, on this branch):** `verify_site.py` (341 events / 8 hotels / 56 routes / **48 sources** / **91 flags** / 7 plan days / 16 pages), `audit_951cd431.py` 0 failures, `verify_live_official.py` OK, `audit_data.py` passed, `verify_entry_labels.py` passed, transcription 44/44, **`python3 -m unittest discover` 251 tests OK** (includes main's new fallback/reread/index tests), `canonical_smoke.py` passed, `canonical_render.js` passed (339 rows / 333 with walk limit), `node --check` on app/venue/search/feed JS. No tournament, fee, guarantee or policy value was invented; blanks stay blank.
 - **Merge-conflict log.** `origin/main` advanced 22 commits while M1–M3 were in flight (PRs #166/#169/#171 merged: F92 resolved with snapshot evidence, F93/F94 added, day-plan fallback fix + 23 new tests, board records). Resolved with **one merge** keeping *both* sides: main's F92/F93/F94 and full board retained; this session's register dates, F91/F56 corroboration and flag re-applied; derived files regenerated (byte-checked by the reproducibility tests). Nothing from any other session was discarded. A test-caught defect (this session's flag note cited `F95`, which does not exist on main) was reworded and re-verified.
-- **Cross-session warnings logged, not edited:** open PR **#165** announces `F93–F95` for its own flags — main has already taken F93/F94 and this session took F96, so #165's owner must renumber its block on rebase. Open PRs **#168** and **#170** were not touched. A second integration merge later brought PR **#172** (the #165 branch, F82 resolved, F95 added, checks.json/feed refreshed): this session's F96 duplicate was dropped in favour of main's F95, both F56 re-read sentences were kept, and nothing from either side was discarded.
+- **Cross-session warnings logged, not edited:** open PR **#165** announces `F93–F95` for its own flags — main has already taken F93/F94 and this session took F96, so #165's owner must renumber its block on rebase. Open PRs **#168** and **#170** were not touched. A second integration merge later brought PR **#172** (the #165 branch, F82 resolved, F95 added, checks.json/feed refreshed): this session's F96 duplicate was dropped in favour of main's F95, both F56 re-read sentences were kept, and nothing from either side was discarded. A third integration merge brought PR **#168** (live re-read, fallback-rule repair, legacy-dashboard redirects); only `COORDINATION.md` and the derived `site/sheets.html` conflicted — both board sections were kept and the derived files regenerated.
 - **Open flags published on `site/flagged.html` (do not block merge):** F16, F17, F31, F39, F56 (re-read today, stands), F57, F93, plus the resolved-today F92 and F95 (the six-URL re-read, published by main and independently corroborated by this session) which document the re-reads.
