@@ -4392,3 +4392,11 @@ PR #144 merged at 2026-11-18 03:24:20 UTC as `28cdc301`. The branch was later re
 | Audit the canonical landing page against the current trip and official evidence; remove impossible or stale recommendations; publish source-linked decision gates, verification results and outstanding gaps | in progress | arena/6a0b16d7-poker3 (integration for this scope) | `site/index.html`, `site/assets/decision-summary.js`, `site/assets/decision-summary.css`, `site/flagged.html`, `tests/test_decision_summary.py`, `research/decision-audit-2026-11-19.md`, this board |
 
 PRs #112 and #130 remain open and own the shared model, calculator, and several generator files; this claim does not edit their scopes (other than appending to the shared board). The canonical site and morning jobs already exist. Branch name is platform-assigned. No other sessions started here.
+
+## Session `arena/25d4bbd4-poker3` — publication verification (2026-11-19 UTC)
+
+| Task | Status | Owner session | Scope |
+|---|---|---|---|
+| Run publication checks and record current source-access limitations | in progress | `arena/25d4bbd4-poker3` | `.github/workflows/verify.yml`, `.github/workflows/source-monitor.yml`, `.github/workflows/checks.yml`, `site/flagged.html`, `COORDINATION.md` |
+
+The board already exists on main. PRs #112 and #130 overlap the shared catalog and calculator; this session does not edit their files or merge their branches. No new source values will be inferred.
