@@ -40,8 +40,9 @@
 
     <div class="notice" data-model-notice>
       <strong>The rows below are a floor, not a quote.</strong> The official booking engine quoted a dated checkout total
-      for 23-30 November 2026 on 2026-11-17 ($4,010.55, shown beside the floor under the trip cost). The floor is built from
-      the published starting rate and is labelled as a floor everywhere it appears.
+      for 23-30 November 2026 on 2026-11-17 ($4,010.55, shown separately below). The floor is built from
+      the published starting rate and is not a date-specific rate.
+      <p data-dated-quote></p>
     </div>
 
     <section class="section">
@@ -76,7 +77,6 @@
           <div class="button-row">
             <button class="btn" type="button" data-preset="floor">Venetian floor · $119</button>
             <button class="btn" type="button" data-preset="high">Venetian high · $209</button>
-            <button class="btn" type="button" data-preset="quote">Dated quote · Nov 17-19</button>
           </div>
           <p class="smallprint">
             $119 and $209 are the two official starting rates on the poker rate page: "These rates will start as low as
@@ -161,11 +161,9 @@
   const form = document.getElementById('tripForm');
   const out = document.getElementById('result');
   const brk = document.getElementById('breakdown');
-  const PRESETS = {
-    floor: { rate: 119, note: 'published starting rate, low end' },
-    high: { rate: 209, note: 'published starting rate, high end' },
-    quote: { rate: 164.25, note: 'second night of the dated Nov 17-19 quote' }
-  };
+  const PRESETS = { floor: { rate: 119 }, high: { rate: 209 } };
+  const cents = (amount) => Math.round((amount + Number.EPSILON) * 100) / 100;
+  let model;
   const money = (n) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
   function read() {
     return {
@@ -181,8 +179,9 @@
   function calc() {
     const v = read();
     const taxes = (v.rate + v.resortFee) * (v.taxRate / 100);
-    const trueNightly = v.rate + v.resortFee + taxes;
-    const tournament = v.entries * v.buyIn;
+    const trueNightly = cents(v.rate + v.resortFee + taxes);
+    const usesPlan = model && v.entries === model.entries && v.buyIn === model.buyIn;
+    const tournament = usesPlan ? model.tournamentTotal : cents(v.entries * v.buyIn);
     const lodging = v.nights * trueNightly;
     const parking = v.nights * v.parking;
     const coreEstimate = tournament + lodging;
@@ -191,7 +190,7 @@
       '<span class="muted"> · ' + money(allIn) + ' including parking</span>';
     brk.innerHTML =
       '<div><strong>Core formula</strong> entries × average buy-in + nights × true hotel cost</div>' +
-      '<div><strong>Entries</strong> ' + v.entries + ' × ' + money(v.buyIn) + ' = ' + money(tournament) + '</div>' +
+      '<div><strong>Entries</strong> ' + (usesPlan ? v.entries + ' planned buy-ins (exact sum)' : v.entries + ' × ' + money(v.buyIn)) + ' = ' + money(tournament) + '</div>' +
       '<div><strong>Hotel</strong> ' + v.nights + ' nights × ' + money(trueNightly) + ' true cost = ' + money(lodging) +
       ' <span class="muted">(rate ' + money(v.rate) + ' + resort fee ' + money(v.resortFee) + ' + tax ' + money(taxes) + ')</span></div>' +
       '<div><strong>Core estimate</strong> ' + money(tournament) + ' + ' + money(lodging) + ' = ' + money(coreEstimate) + '</div>' +
@@ -208,16 +207,24 @@
     const note = document.querySelector('[data-compare-note]');
     if (!body) return;
     fetch('data.json').then((r) => r.json()).then((db) => {
-      const model = db.tripCostModel || {};
-      const entries = model.entries || 8;
-      const buyIn = model.buyIn || 350;
-      const nights = model.nights || 7;
+      model = db.tripCostModel;
+      const { entries, nights, liveQuote } = model;
+      const quote = document.querySelector('[data-dated-quote]');
+      if (liveQuote) {
+        const link = document.createElement('a');
+        link.href = liveQuote.sources.quote;
+        link.textContent = 'Official booking engine';
+        quote.textContent = `${liveQuote.checkIn} to ${liveQuote.checkOut}: ${money(liveQuote.checkoutTotal)} checkout ` +
+          `(${money(liveQuote.nightlyAllInAverage)} per night on average); ${money(liveQuote.tripTotal)} with planned entries and parking. ` +
+          `${liveQuote.basis} `;
+        quote.append(link);
+      }
+      calc();
       // The tournament total is the exact sum of the chosen buy-ins, published in
       // tripCostModel.tournamentTotal. Multiplying the rounded average by the entry
       // count would print a phantom cent (7 x $371.43 = $2,600.01 for a $2,600.00 sum).
-      const tournament = (typeof model.tournamentTotal === 'number') ? model.tournamentTotal : entries * buyIn;
+      const tournament = model.tournamentTotal;
       const rows = [];
-      const money = (n) => (typeof n === 'number' && isFinite(n)) ? n.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) : '—';
       rows.push({ hotel: 'The Venetian / The Palazzo — published starting rate (low)', rate: 119, fee: 55, tax: 13.38,
         sources: 'https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html' });
       rows.push({ hotel: 'The Venetian / The Palazzo — published starting rate (high)', rate: 209, fee: 55, tax: 13.38,
@@ -232,7 +239,7 @@
         const rate = r.rate;
         const taxPct = r.tax;
         const closed = typeof rate === 'number' && typeof taxPct === 'number';
-        const nightly = closed ? (rate + r.fee) * (1 + taxPct / 100) : null;
+        const nightly = closed ? cents((rate + r.fee) * (1 + taxPct / 100)) : null;
         const lodging = closed ? nightly * nights : null;
         const total = closed ? tournament + lodging : null;
         return '<tr><td class="event-name">' + r.hotel +
@@ -246,7 +253,7 @@
           '<td>' + (total ? money(total) : '<span class="muted">Blank</span>') + '</td>' +
           '<td><a href="' + r.sources + '" target="_blank" rel="noopener">Official</a></td></tr>';
       }).join('');
-      note.textContent = 'Entry total is ' + entries + ' entries × ' + money(buyIn) + ' published average = ' + money(tournament) +
+      note.textContent = 'Entry total is ' + entries + ' planned buy-ins (exact sum) = ' + money(tournament) +
         '. A row is left blank rather than estimated when the property does not publish both a room rate and a tax rate. ' +
         'Both Venetian rows are published starting rates, not quotes. The official booking engine quoted a dated checkout total for 23-30 Nov 2026 on 2026-11-17 ' +
         '(see the hotels page and tripCostModel.liveQuote in data.json).';
