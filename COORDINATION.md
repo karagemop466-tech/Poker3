@@ -6234,3 +6234,28 @@ flags / 7 plan days / 18 pages), **341 unit tests OK**, `audit_951cd431.py` (0 f
 `canonical_render.js` (17 page renders), `walk_limit_render.js`, the two new Node harnesses, `node --check` on every JS
 asset, a byte-identical `data_source.py` rebuild (SHA-256 unchanged), and a local HTTP smoke test in which all 18 pages
 and `data.json` returned **200**. PyYAML 6.0.3 was installed in the sandbox for `test_workflows.py` / `test_pages_gate.py`.
+
+### Rebase over main (`#207`, `#210`, `#211`) — session `arena/03d48a10-poker3`
+
+While this branch was open, three other sessions landed on `main`: **#207** and **#210** (`arena/80a6f5df-poker3` —
+the 19-row trip-window re-read, then a real-HTML fix for the Q&A worksheet page, adding flags F106–F108) and **#211**
+(`arena/4475a074-poker3` — a fresh read of all 94 DeepStack Extravaganza IV rows). This branch was rebased onto the
+resulting `main` tip.
+
+**Conflict and resolution.** One append-only conflict, in this file only. Resolved by keeping `main`'s sections in full
+(all 160 lines, including F106–F108 and the 80a6f5df records) and appending this session's record beneath a separator.
+No text was discarded. No code file conflicted: the other sessions touched `site/q-and-a.html`, `scripts/coverage.py`
+and `site/data.json`; this branch's changes to `site/calculator.html`, `site/assets/app.js`, `scripts/trip_cost.py` and
+the tests applied cleanly. `site/data.json` was regenerated from the merged source modules and is byte-identical to the
+committed artifact.
+
+**Re-verification on the merged tree (all green):** **356 unit tests OK** (341 on this branch before the rebase plus
+the other sessions' 15), `verify_site.py` (341 events / 8 hotels / 56 routes / 50 sources / **104 flags** / 7 plan days /
+18 pages), `audit_951cd431.py` (0 failures, 0 warnings), `audit_data.py`, `verify_live_official.py`,
+`verify_entry_labels.py`, `verify_transcription.py --dry-run` (44/44), `canonical_smoke.py`, `canonical_render.js`,
+`walk_limit_render.js`, the two new Node harnesses, and a byte-identical `data_source.py` rebuild.
+
+**Their findings are kept, not overwritten.** F106–F108 are the other session's; this branch does not renumber, merge or
+edit them, and they remain on the Flagged for review page. Where their work and this branch's overlap — both re-read the
+trip window on 2026-11-19 — the two reads agree with each other and with the official page, which is a useful
+independent confirmation rather than a duplicate to delete.
