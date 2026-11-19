@@ -321,8 +321,16 @@ TRIP_ROWS = [
 # --------------------------------------------------------------------------
 NEW_FLAGS = [
     dict(id="F101", area="Publishing", severity="Low",
-         title=("Five unlinked 2026-11-16 snapshot JSON files are still published under site/data/ (flagged for review)"),
-         detail=("The Pages artifact publishes the whole site/ directory, so site/data/flags.json, questions.json, "
+         title=("RESOLVED 2026-11-19: five unlinked 2026-11-16 snapshot JSON files were published under site/data/ "
+                "and have been moved to archive/"),
+         detail=("Resolved by the 2026-11-19 integration session (arena/e94482ee-poker3): the five files were moved out "
+                 "of site/data/ into archive/ with a dated provenance README, so the Pages artifact no longer serves a "
+                 "second, stale answer; the dead script that wrote one of them (scripts/build_data.py, referenced by no "
+                 "workflow, page or test) was removed; and scripts/daily_check.py, the only other reader, is kept but "
+                 "marked retired and unused. They are archived rather than deleted for provenance, and "
+                 "tests/test_sheet_page_not_stale.py now asserts that none of the eight retired names sits under "
+                 "site/data/ any more. Original finding follows. "
+                 "The Pages artifact publishes the whole site/ directory, so site/data/flags.json, questions.json, "
                  "sources.json, suggestions.json and tournaments.json are reachable at the live host. Each carries "
                  "meta.asOf 2026-11-16 and builtAt 2026-11-16T19:50:18Z and is not read by any dashboard page or "
                  "script (the live data is site/data.json; scripts/daily_check.py still names sources.json but is not "
@@ -386,6 +394,36 @@ NEW_FLAGS = [
                  "confirm the checkout total in the cart before payment, exactly as F88 and F93 require for the Venetian "
                  "engine."),
          source=REPO + "site/checks.json"),
+    dict(id="F119", area="Monitoring", severity="Low",
+         title=("The corrected official-source re-check has never run on a schedule: the scheduled record in "
+                "site/checks.json predates the PDF-hash fix"),
+         detail=("site/checks.json is dated 2026-11-19T07:34:30Z and its summary counts 108 URLs with 23 failed reads. "
+                 "The PDF comparison fix recorded in research/pdf-monitor-2026-11-19.md landed after that record, so no "
+                 "scheduled run has yet produced a record under the corrected PDF method. This is a monitoring gap, not "
+                 "a data error: a re-check only records an observation and never rewrites a tournament, fee, hotel or "
+                 "guarantee value (see the evidence policy in README). The corrected run is the next scheduled one; the "
+                 "gap changes no published row."),
+         source=REPO + "site/checks.json"),
+    dict(id="F120", area="Booking", severity="Medium",
+         title=("A second dated checkout total for the trip stay ($3,619.39 on 2026-11-19) is now on record beside the "
+                "$4,010.55 read of 2026-11-17, for a different suite tower"),
+         detail=("The official Venetian booking engine was read live on 2026-11-19 with the identical query used on "
+                 "2026-11-17 (2 adults, arrival 23 Nov 2026, departure 30 Nov 2026, 7 nights) and printed an itemised "
+                 "total of $3,619.39 for a palazzo Luxury King suite: nightly room rates "
+                 "204.25/204.25/204.25/309.25/1,119.25/561.75/204.25, a $55.00 resort fee on each of the seven nights, "
+                 "taxes $427.14 and an Average Rate line of $456.04. The 2026-11-17 read of the same query returned a "
+                 "venetian Newly Remodeled Luxury King at $4,010.55 with taxes of $473.30. Both are published as dated "
+                 "observations; neither replaces the other, and neither is a booking price. Two arithmetic irregularities "
+                 "are published with the record rather than silently smoothed: (1) the printed tax of $427.14 is two "
+                 "cents above 13.38% of the printed pre-tax subtotal of $3,192.25 ($427.12), while the printed total "
+                 "$3,619.39 does equal $3,192.25 + $427.14 exactly; (2) the seven per-night derivations "
+                 "(rate + $55) x 1.1338 add to $3,619.38, one cent under the printed total. The printed Average Rate "
+                 "$456.04 includes the resort fee but excludes tax, so the all-in figure a traveller pays per night is "
+                 "the printed total divided by seven, $517.06. This quote is the engine's best available rate, not the "
+                 "phone-only poker rate (code EPOKR25, F66), and the poker rate's play qualification is unchanged "
+                 "(F54)."),
+         source=("https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0"
+                 "&departure_date=2026-11-30&view=calendar")),
 ]
 
 __all__ = ["REQUIREMENTS", "OFFICIAL_READS", "TRIP_ROWS", "NEW_FLAGS", "CHECKED", "SESSION"]

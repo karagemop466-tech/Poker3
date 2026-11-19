@@ -55,10 +55,12 @@ const assert = require('node:assert/strict');
 const db = require('./site/data.json');
 const form = Object.fromEntries(Object.entries(FIELDS).map(([id, value]) => [id, {value}]));
 const result = {}, breakdown = {}, body = {}, note = {}, quote = {append(link) { this.link = link; }};
+const quoteLater = {append(link) { this.link = link; }};
 form.addEventListener = (_, cb) => { form.update = cb; };
 global.document = {
   getElementById: id => ({tripForm: form, result, breakdown})[id],
-  querySelector: selector => ({'[data-cost-compare]': body, '[data-compare-note]': note, '[data-dated-quote]': quote})[selector],
+  querySelector: selector => ({'[data-cost-compare]': body, '[data-compare-note]': note,
+    '[data-dated-quote]': quote, '[data-dated-quote-later]': quoteLater})[selector],
   querySelectorAll: () => [], createElement: () => ({})
 };
 global.fetch = async () => ({json: async () => db});
@@ -68,6 +70,12 @@ setImmediate(() => {
   assert.match(breakdown.innerHTML, /\$2,600\.00/);
   assert.match(quote.textContent, /\$4,010\.55/);
   assert.equal(quote.link.href, db.tripCostModel.liveQuote.sources.quote);
+  // The second dated read is printed beside the first, never in place of it, and its all-in
+  // per-night figure is the printed checkout total divided by the nights.
+  assert.match(quoteLater.textContent, /\$3,619\.39/);
+  assert.match(quoteLater.textContent, /\$517\.06/);
+  assert.match(quoteLater.textContent, /\$2,807\.25/);
+  assert.equal(quoteLater.link.href, db.tripCostModel.liveQuote.laterRead.source);
   form.entries.value = '1';
   form.update();
   assert.match(breakdown.innerHTML, /1 × \$371\.43 = \$371\.43/);

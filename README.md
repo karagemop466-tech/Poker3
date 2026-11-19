@@ -274,7 +274,9 @@ price for every night; the previously recommended 25 November → 2 December win
 
 | Lodging figure | Value | Basis |
 |---|---|---|
-| Dated checkout total, 23–30 Nov, 2 adults, Luxury King | $4,010.55 | Official Venetian booking engine, read 2026-11-17 after 21:54 UTC (rate log, F65) |
+| Dated checkout total, 23–30 Nov, 2 adults, Venetian Luxury King | $4,010.55 | Official Venetian booking engine, read 2026-11-17 after 21:54 UTC (rate log, F65) |
+| Dated checkout total, 23–30 Nov, 2 adults, Palazzo Luxury King | $3,619.39 | Official Venetian booking engine, read 2026-11-19, same query (rate log, F107). Room rates $2,807.25 + fees $385.00 = $3,192.25 pre-tax, printed tax $427.14, all-in per night $517.06 |
+| Second read, tax check | 2 cents | 13.38% of the printed $3,192.25 pre-tax subtotal is $427.12 against the printed $427.14; the printed total ($3,619.39) still equals pre-tax + printed tax exactly (F107) |
 | Room rates + $55 resort fee, seven nights | $3,537.25 | Itemised on the same quote: rates $3,152.25 + resort fees $385.00 |
 | Clark County room tax 13.38% | $473.30 | Printed on the same quote; equals the per-night tax on (rate + fee) |
 | Average per night, all-in | $572.94 | $4,010.55 / 7 |

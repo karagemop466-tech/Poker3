@@ -299,7 +299,49 @@ VENETIAN_QUOTE_TRIP = dict(
           "rate for a Luxury King suite. It is not the phone-only poker rate (code EPOKR25; see F66)."),
     source=VENETIAN_CALENDAR_TRIP_URL, observedOn="2026-11-17")
 
-VENETIAN_QUOTES = [VENETIAN_QUOTE, VENETIAN_QUOTE_2026_11_17, VENETIAN_QUOTE_NOV_20, VENETIAN_QUOTE_TRIP]
+# Second dated checkout total for the SAME trip stay, printed by the official booking engine on 2026-11-19
+# (session arena/e94482ee-poker3). Every money figure below is printed on the page; nothing is inferred.
+# It is kept BESIDE the 2026-11-17 read, never in place of it, because the two reads differ on the suite,
+# the nightly rates and the total (flag F78 records the earlier drift; F120 records this read).
+# Arithmetic check on the printed figures:
+#   nightly room rates         204.25 + 204.25 + 204.25 + 309.25 + 1119.25 + 561.75 + 204.25 = 2,807.25
+#   resort fee                 7 x 55.00                                                   =   385.00
+#   pre-tax subtotal           2,807.25 + 385.00                                            = 3,192.25
+#   printed "Taxes"            427.14   (13.38% of 3,192.25 is 427.12, so the printed tax is 2 cents higher;
+#                                         3,192.25 + 427.14 = 3,619.39 is the printed total exactly)
+#   printed "Average Rate"     456.04   (= (2,807.25 + 385.00) / 7 = 456.036, the average rate INCLUDING the fee)
+#   checkout total / 7         3,619.39 / 7 = 517.06  <- the all-in figure a traveller actually pays per night
+# The page prints "includes daily resort fee, excludes taxes" on its calendar and lists the $55 fee as its own
+# line, while the separate resort-fee terms page says "Rates include a daily Resort Fee of $55 plus tax per
+# night" - the same contested wording already flagged as F51.
+VENETIAN_QUOTE_TRIP_2026_11_19 = dict(
+    property="The Palazzo - palazzo Luxury King suite",
+    checkIn="2026-11-23", checkOut="2026-11-30", guests=2, nights=7,
+    offer="Book Direct: Up to 25% Off",
+    suiteDetail="Approximately 720 square feet, king bed, sunken living room, Roman tub",
+    nightly=[("2026-11-23", 204.25), ("2026-11-24", 204.25), ("2026-11-25", 204.25), ("2026-11-26", 309.25),
+             ("2026-11-27", 1119.25), ("2026-11-28", 561.75), ("2026-11-29", 204.25)],
+    resortFeePerNight=55.00,
+    taxes=427.14, total=3619.39, averageRate=456.04,
+    derivedNightly=[293.94, 293.94, 293.94, 412.99, 1331.36, 699.27, 293.94], derivedTotal=3619.38,
+    note=("Printed by the official booking engine on 2026-11-19 for the identical query as the 2026-11-17 read "
+          "(2 adults, arrival 23 Nov 2026, departure 30 Nov 2026, 7 nights): a palazzo Luxury King suite, 'Estimated "
+          "cost of stay' $3,619.39, nightly rates 204.25/204.25/204.25/309.25/1,119.25/561.75/204.25, a $55.00 resort "
+          "fee listed on each of the seven nights, taxes $427.14 and an Average Rate line of $456.04. The 2026-11-17 "
+          "read of the same query returned a venetian Newly Remodeled Luxury King at $4,010.55 (kept in the log). Both "
+          "are dated observations; neither replaces the other and neither is a booking price. Arithmetic: the seven "
+          "printed room rates sum to $2,807.25, the seven $55 fees to $385.00, so the pre-tax subtotal is $3,192.25; "
+          "13.38% of that is $427.12, two cents below the printed $427.14, and $3,192.25 + $427.14 = $3,619.39, which is "
+          "the printed total exactly. The printed Average Rate of $456.04 is the average of (room rate + $55) and "
+          "therefore includes the resort fee, while the calendar footnote says its figures include the daily resort "
+          "fee and exclude taxes - the same wording conflict as flag F51. The all-in cost per night for this quote is "
+          "the printed total divided by seven, $517.06, and the seven per-night derivations above add to $3,619.38, "
+          "one cent under the printed total. This is not the phone-only poker rate (code EPOKR25, flag F66) and the "
+          "poker rate requires six hours of play or a $300+ tournament buy-in for each night stayed."),
+    source=VENETIAN_CALENDAR_TRIP_URL, observedOn="2026-11-19")
+
+VENETIAN_QUOTES = [VENETIAN_QUOTE, VENETIAN_QUOTE_2026_11_17, VENETIAN_QUOTE_NOV_20, VENETIAN_QUOTE_TRIP,
+                   VENETIAN_QUOTE_TRIP_2026_11_19]
 
 # Stay windows the engine was opened for on 2026-11-17 that returned no suite and no price.
 # Each is a dated observation of the official engine, not an inference.
@@ -513,12 +555,22 @@ HOTELS = [
         taxNote=("Wynn prints 'plus tax' without a percentage. The 13.38% Clark County room tax is the rate printed in the "
                  "Venetian hotel terms; applying it to Wynn's own total is an assumption and is labelled as one."),
         taxReference=WYNN_COUNTY_REF, taxReferenceSource=ROOM_TAX_REFERENCE,
-        parking=("Confirmed on the official Parking page: 'Self-parking garages at Wynn and Encore ... complimentary "
-                 "parking for all Wynn and Encore Resort and Tower Suite registered guests'; 'The daily parking fee for "
-                 "non-registered guests is $25 per day with the first three (3) hours complimentary'; 'Complimentary "
-                 "self-parking is extended to Wynn Poker Room guests'; 'Valet parking is $40 per day up to 24 hours (no "
-                 "grace period, no re-entry)'."),
         parkingSource=WYNN_PARKING,
+        # Re-read 2026-11-19: the official Parking page prints "complimentary parking for all Wynn and Encore Resort
+        # and Tower Suite registered guests", so a registered guest pays $0 a night and is therefore a published
+        # zero, not a blank. Unregistered guests ($25/day self, $40/day valet) are a different line and are kept in
+        # the parking note; the trip cost model is a registered-guest stay.
+        parkingPerNight=0.0,
+        # A published zero must not render as a blank cell, so the row carries a parking string that prints it and
+        # keeps the unregistered-guest rates in the same cell.
+        parking=("$0 a night for a registered guest (official Parking page: self-parking garages are "
+                 "'complimentary parking for all Wynn and Encore Resort and Tower Suite registered guests'). "
+                 "Unregistered guests pay $25/day self-parking with the first three hours complimentary, and $40/day "
+                 "valet; complimentary self-parking is also extended to Wynn Poker Room guests. Read 2026-11-19."),
+        parkingPerNightNote=("$0 for a registered guest: the official Parking page says self-parking garages 'are ... "
+                             "complimentary parking for all Wynn and Encore Resort and Tower Suite registered guests'. "
+                             "Unregistered guests pay $25/day self-parking (first three hours free) and $40/day valet; "
+                             "poker-room guests are also given complimentary self-parking. Read 2026-11-19."),
         cancellation=("A deposit of the first night's room rate and tax is charged at booking. The property's live "
                       "terms page prints a CANCELLATION POLICY section: \"cancellations must be received at least 48 "
                       "hours prior to arrival date or deposit (if applicable) will be forfeited\", and early departures "

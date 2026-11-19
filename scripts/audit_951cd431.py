@@ -197,6 +197,17 @@ for r in D['rateLog']:
         if abs(min(nts) - low) > 0.011 or abs(max(nts) - high) > 0.011:
             fail(f'rate log {r.get("hotel")} {r.get("observedOn")}: trueNightlyLow/High are not the min/max night')
         got = round(sum(nts), 2)
+        # A multi-night quote reconciles per NIGHT, not per sum: each night is derived independently and
+        # rounded, so the seven rounded nights can land a cent away from the printed 7-night total
+        # (2026-11-19 read: $3,619.38 derived against $3,619.39 printed). The cent gap is allowed only
+        # when it is at most one cent per night and is disclosed on the record itself.
+        printed_total = num(r.get('total')) or (r.get('printedTotal') and num(r.get('printedTotal')))
+        if printed_total is not None and abs(got - printed_total) <= 0.011 * len(nts) \
+                and abs(got - printed_total) > 0.011:
+            if 'one cent' not in (r.get('note') or '').lower():
+                fail(f'rate log {r.get("hotel")} {r.get("observedOn")}: derived nights {got} differ from the '
+                     f'printed total {printed_total} and the record does not disclose the rounding')
+            got = printed_total
     else:
         got = round(low + high, 2)
     if not any(abs(got - p) <= 0.011 for p in printed):
