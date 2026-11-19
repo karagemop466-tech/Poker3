@@ -45,7 +45,6 @@ on:
       - 'scripts/data_hotels.py'
       - 'scripts/verify_transcription.py'
       - 'site/data.json'
-      - 'scripts/verify_transcription.py'
   schedule:
     # 12:10 UTC = 04:10 PST / 05:10 PDT, the morning pull. Re-reads every official URL
     # and captures each room's daily schedule. GitHub Actions cron is UTC-only.
@@ -91,7 +90,6 @@ jobs:
         run: |
           python3 -m unittest discover -s tests -p 'test_*.py'
           python3 scripts/verify_site.py
-          python3 -m unittest discover -s tests -p 'test_*.py'
           node --check site/assets/app.js
           python3 -m json.tool site/data.json > /dev/null
           python3 -m json.tool site/checks.json > /dev/null

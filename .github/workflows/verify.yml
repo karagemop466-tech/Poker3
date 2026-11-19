@@ -35,6 +35,8 @@ jobs:
           node --check tests/walk_limit_render.js
           node tests/walk_limit_render.js
           python3 -m json.tool site/data.json > /dev/null
+      - name: Install workflow test dependency
+        run: python3 -m pip install --quiet pyyaml
       - name: Assert the corrected numbers and their arithmetic
         run: python3 -m unittest discover -s tests -p 'test_*.py' -v
 
@@ -42,7 +44,6 @@ jobs:
         # A duplicate key makes GitHub reject the whole workflow with zero jobs and no
         # log, which is how the scheduled re-check stayed dormant (flag F30).
         run: |
-          python3 -m pip install --quiet pyyaml
           python3 -m unittest tests.test_workflows -v
 
       - name: Validate Poker3 companion dashboard
