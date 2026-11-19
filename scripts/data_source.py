@@ -427,6 +427,10 @@ SOURCES = [
     dict(name="MGM Resorts parking page (self-parking and valet rates for Bellagio, ARIA, MGM Grand; read 2026-11-19)",
          url="https://www.mgmresorts.com/en/things-to-do/parking.html",
          type="official parking page", checked=LAST_PASS_2026_11_19),
+    dict(id="caesars-parking",
+         name="Caesars Entertainment Parking Policy (self-parking and valet rates for Caesars Palace and Horseshoe Las Vegas; read 2026-11-19)",
+         url="https://www.caesars.com/parking",
+         type="official parking page", checked=LAST_PASS_2026_11_19),
 ]
 
 FLAGS = [
@@ -1505,6 +1509,59 @@ FLAGS = [
                  "the property pages no longer print one, and the page's own warning that 'prices may be higher during "
                  "special events'."),
          source="https://www.mgmresorts.com/en/things-to-do/parking.html"),
+    dict(id="F102", area="Hotels", severity="Low",
+         title="Caesars Palace and Horseshoe parking dollar rates are published on caesars.com/parking; Horseshoe splits by weekday",
+         detail=("Read 2026-11-19 (session arena/e830d773-poker3). The flexible-dates booking calendars cited earlier "
+                 "for Caesars Palace (propCode=clv) and Horseshoe Las Vegas (propCode=blv) print only 'Self parking: "
+                 "surcharge applies. Valet parking: surcharge applies.' without a dollar figure. The official Caesars "
+                 "Entertainment Parking Policy page (https://www.caesars.com/parking) prints property-by-property Las "
+                 "Vegas rates: Caesars Palace self-parking is $20/day for Registered Hotel Guests ($25/day Gold and "
+                 "Non-member; Free for Platinum, Diamond and Seven Stars; complimentary through December 26 for Las "
+                 "Vegas locals with a valid Nevada driver's license) and valet is $50/day. Horseshoe Las Vegas "
+                 "self-parking for Non-member/Registered Hotel Guests and Gold is 'Monday - Wednesday $20/day | "
+                 "Thursday - Sunday $25/day' and valet is '$40/day (Rates may change for Special Events)'. Caesars "
+                 "Palace therefore carries parkingPerNight = 20.0, while Horseshoe's parkingPerNight is deliberately "
+                 "left unset because its registered-guest self-parking rate changes by day of week ($160 across the "
+                 "7-night 23-30 November 2026 stay) rather than being a single flat nightly constant."),
+         source="https://www.caesars.com/parking"),
+    dict(id="F103", area="Strip poker rooms", severity="Low",
+         title="Planet Hollywood and Resorts World official poker URLs redirect to casino or e-mail shells while stale poker text remains",
+         detail=("Read 2026-11-19 (session arena/e830d773-poker3). Two official-domain checks corroborate flags F79 and "
+                 "F80 without confirming a closure date on an official page: (1) requesting "
+                 "https://www.caesars.com/planet-hollywood/casino/poker redirects to "
+                 "/planet-hollywood/casino?originalrequest=%2Fplanet-hollywood%2Fcasino%2Fpoker.html (no dedicated "
+                 "poker page exists), while /planet-hollywood/casino still displays stale marketing copy ('23 Live "
+                 "Poker Tables', 'new live action poker room') with no schedule or structure link; (2) on "
+                 "https://www.rwlasvegas.com/gaming/, a 'Poker Room' card links https://www.rwlasvegas.com/poker-room/, "
+                 "which redirects straight back to /gaming/, while /gaming/poker redirects to /eblast/poker-invite/ "
+                 "(an unpopulated 2023 email-blast template). Neither room has any verified tournament row."),
+         source="https://www.caesars.com/planet-hollywood/casino"),
+    dict(id="F104", area="Publishing", severity="Low",
+         title="Static prose on hotels.html, venues.html, venues/others.html, flagged.html and coverage.py carried stale claims and mis-stamped dates (fixed 2026-11-19)",
+         detail=("Found and fixed on 2026-11-19 (session arena/e830d773-poker3) during line-by-line review of the "
+                 "static HTML pages against site/data.json: (1) site/hotels.html and site/venues.html used "
+                 "<span data-asof> inside sentences about historical captures, dynamically stamping 2026-11-19 onto "
+                 "the 2026-11-16/2026-11-17 Google Maps walking estimates and onto the 2026-11-17 $4,010.55 Venetian "
+                 "checkout quote (whereas on 2026-11-19 the Venetian engine returned only a loading shell, F93); "
+                 "(2) the site/hotels.html hero still said 'For the recommended trip dates it returned no suite at all', "
+                 "contradicting the $4,010.55 quote on the same page; (3) site/hotels.html and site/flagged.html still "
+                 "listed MGM Grand and ARIA resort fees as unpublished even though both ($50 and $55 + tax) are "
+                 "published in site/data.json; (4) site/venues.html cited F78/F79/F80 instead of F79/F80/F85, and "
+                 "scripts/coverage.py C9 cited F79 instead of F86; (5) site/venues/others.html named only ARIA and "
+                 "Bellagio in its static heading while rendering all five non-Venetian/Wynn rooms. No tournament, "
+                 "guarantee, buy-in, resort-fee, tax or walking-time figure changed."),
+         source="https://github.com/karagemop466-tech/Poker3/blob/main/site/hotels.html"),
+    dict(id="F105", area="Wynn", severity="Low",
+         title="Wynn Friday $240 NLH Rebuy & Add-on structure sheet prints $200 rebuy components that sum to $205",
+         detail=("Found on 2026-11-19 (session arena/e830d773-poker3) while reading Poker-All_Daily_Structures.pdf "
+                 "line by line (chunk 1, Friday $240 NLH Rebuy & Add-on, rule 3): '$190 of each Entry Fee and rebuy "
+                 "will fund the Tournament prize pool. $10 from each $200 rebuy and $5 from each $100 add-on with "
+                 "[sic] be withheld as a service charge for poker staff. $5 from each $200 rebuy and $5 from each "
+                 "add-on will be withheld as a tournament fee.' For the $240 initial entry ($190 + $35 + $15 = $240) "
+                 "the split reconciles, but for the $200 rebuy the printed components ($190 prize pool + $10 staff "
+                 "service charge + $5 tournament fee) sum to $205, $5 above the printed $200 rebuy. Reported verbatim "
+                 "without adjustment; the event remains isolated in the extra-spend section."),
+         source="https://cdn.wynnresorts.com/image/upload/v1752011191/visitwynn_pdfs_files/Poker/Daily%20Tournaments/Poker-All_Daily_Structures.pdf"),
 
 ]
 
@@ -1601,8 +1658,12 @@ QUESTIONS = [
                  "staying on property and playing a six-hour session therefore may pay nothing for parking, which is why "
                  "the trip calculator keeps parking out of the core formula and shows it separately. Wynn: self-parking is "
                  "free for registered guests and $25 per day for others, valet $40, and complimentary self-parking extends "
-                 "to Wynn poker-room guests. Bellagio, MGM Grand and ARIA publish no parking figure on their reservation "
-                 "terms pages, so those cells stay blank rather than guessed."),
+                 "to Wynn poker-room guests. Bellagio, MGM Grand and ARIA publish $20/day registered-guest self-parking and "
+                 "$40/day valet on the corporate MGM Resorts parking page (read 2026-11-19; free self-parking for Pearl+). "
+                 "Caesars Palace publishes $20/day registered-guest self-parking and $50/day valet on caesars.com/parking, "
+                 "and Horseshoe Las Vegas publishes $20/day Monday-Wednesday and $25/day Thursday-Sunday self-parking "
+                 "($40/day valet; free for Platinum+); Horseshoe's single-rate parkingPerNight field stays blank rather "
+                 "than reduced to a flat nightly constant because its official rate splits by day of week (F102)."),
          why="Needed", blocking="No",
          how=("Parking stays in the trip total at $20 a night. If the room confirms three or more hours of play for a day, that "
               "night's self-parking is complimentary per the page, so set the parking field to 0 for those days rather than "
@@ -1709,13 +1770,13 @@ SUGGESTIONS = [
                  "direction, and counts the rows it hides as either over the limit or unmeasured."),
          impact="Medium", effort="Low", decision="Worth doing for the final shortlist"),
     dict(id="S06", title="Capture the hotel cost components for the remaining properties",
-         detail=("STATUS UPDATED 2026-11-17. The fee half of this is closed: all eight properties now carry a resort fee taken "
-                 "from the property's own page (Venetian, Palazzo, Wynn and Bellagio $55, MGM Grand $50, Caesars Palace $54.95, "
-                 "Horseshoe $49.95, ARIA $55), and Caesars Palace and Horseshoe additionally print the tax on that fee, which "
-                 "divides to 13.376% and 13.373% and corroborates the 13.38% the model applies. What still blocks a like-for-like "
-                 "ranking is the room rate: no property except the Venetian publishes a dated price a static reader can reach, so "
-                 "true cost per night exists only for the Venetian and the Palazzo. Parking is published for Venetian, Palazzo, "
-                 "Wynn, Caesars and Horseshoe and not for MGM Grand, Bellagio or ARIA."),
+         detail=("STATUS UPDATED 2026-11-19. Both the resort-fee and parking halves are now closed from official pages: "
+                 "all eight properties carry a verified resort fee (Venetian, Palazzo, Wynn, Bellagio and ARIA $55, MGM Grand "
+                 "$50, Caesars Palace $54.95, Horseshoe $49.95) and all eight carry published self-parking and valet dollar "
+                 "rates (Venetian/Palazzo $20/day guest with 3-hour poker waiver; Wynn $0 registered guest / poker guest; "
+                 "Bellagio/MGM Grand/ARIA $20/day guest on mgmresorts.com; Caesars Palace $20/day guest and Horseshoe "
+                 "$20 Mon-Wed / $25 Thu-Sun on caesars.com/parking). What still blocks a property-published like-for-like "
+                 "true nightly cost on six properties is a fee-exclusive room rate and a property-printed room-tax percentage."),
          impact="Medium", effort="Low", decision="Straightforward research, no new source needed"),
     dict(id="S07", title="Add a bankroll-versus-prize view that states the assumption",
          detail=("The site deliberately shows guaranteed pool divided by entry fee as a descriptive ratio and never as a forecast. A "
@@ -3145,6 +3206,45 @@ def build():
     for src in SOURCES:
         if src["url"] in MGM_PARKING_URLS:
             src["checked"] = LAST_PASS_2026_11_19
+
+    # Sixth pass (session arena/e830d773-poker3, 2026-11-19):
+    # - Official Caesars Entertainment parking policy (https://www.caesars.com/parking) read in chunks 0-1,
+    #   populating Caesars Palace ($20/day guest self-parking, $50/day valet) and Horseshoe Las Vegas
+    #   ($20 Mon-Wed / $25 Thu-Sun self-parking, $40/day valet).
+    # - Wynn_Signature_Series_Schedule.pdf read line by line (38/38 rows match): moves wynn-sig-* lastChecked
+    #   from 2026-11-16 to 2026-11-19, leaving lastVerified and rule excerpts at 2026-11-17 because the
+    #   structures PDF remains 'COMING SOON' (F56).
+    # - Poker-All_Daily_Structures.pdf (all 3 chunks), WPT_World_Championship_Structures.pdf (all 8 chunks),
+    #   bellagio.mgmresorts.com/en/hotel.html (all 3 chunks) and mandalaybay.mgmresorts.com/en/casino/poker-tables.html
+    #   read in full on 2026-11-19; all published values match (verbatim record:
+    #   research/reread_2026-11-19_arena-e830d773.md).
+    E830D773_SOURCE_URLS = {
+        "https://www.caesars.com/parking",
+        N.WYNN_SIG_SCHED,
+        N.WYNN_DAILY_STRUCT,
+        N.WYNN_WPT_STRUCT,
+        H.BELLAGIO_HOTEL,
+        "https://mandalaybay.mgmresorts.com/en/casino/poker-tables.html",
+    }
+    for src in SOURCES:
+        if src["url"] in E830D773_SOURCE_URLS:
+            src["checked"] = LAST_PASS_2026_11_19
+    for h in hotels:
+        if h.get("id") in ("caesars", "horseshoe") and h.get("parkingSource") == "https://www.caesars.com/parking":
+            h["lastChecked"] = LAST_PASS_2026_11_19
+            h["lastVerified"] = LAST_PASS_2026_11_19
+    for e in events:
+        if e.get("id", "").startswith("wynn-sig-") and e.get("scheduleUrl") == N.WYNN_SIG_SCHED:
+            e["lastChecked"] = LAST_PASS_2026_11_19
+        elif e.get("id", "").startswith("wynn-daily-") and e.get("structureUrl") == N.WYNN_DAILY_STRUCT:
+            e["lastChecked"] = LAST_PASS_2026_11_19
+            e["lastVerified"] = LAST_PASS_2026_11_19
+            for body in e["rules"].values():
+                if body.get("source") == N.WYNN_DAILY_STRUCT:
+                    body["retrieved"] = LAST_PASS_2026_11_19
+    for room in STRIP_ROOMS:
+        if room.get("id") == "mandalay":
+            room["read"] = LAST_PASS_2026_11_19
 
     recurring_events = [e for e in events if not e["date"] and e.get("weekdays")]
     plan, conflicts = build_day_plan(events, TRIP["start"], TRIP.get("playableEnd", TRIP["end"]), recurring_events)

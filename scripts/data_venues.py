@@ -53,7 +53,9 @@ WYNN_DAILY = [
              addOn=dict(status="allowed", excerpt="One (1) $100 add-on for 15,000 tournament chips is available any time until the end of registration."),
              rebuy=dict(status="allowed", excerpt="Unlimited $200 rebuys for 25,000 tournament chips are available any time a player is at 15,000 chips or less."),
              fee=dict(status="confirmed", excerpt="The Tournament entry fee is $240, of which $35 will be withheld for the Tournament fee and $15 as a service charge for poker staff. $190 of each Entry Fee and rebuy will fund the Tournament prize pool.")),
-         note="A rebuy-heavy event: spending more buys a second shot at the same prize pool."),
+         note=("A rebuy-heavy event: spending more buys a second shot at the same prize pool. Rule 3 also states '$10 from "
+               "each $200 rebuy ... with be withheld as a service charge for poker staff' and '$5 from each $200 rebuy ... "
+               "will be withheld as a tournament fee', which sum with $190 to $205 against the printed $200 rebuy (flag F105).")),
     dict(name="$200 No Limit Hold'em", days="Saturday, Sunday", time="12:00 PM", weekdays=[5,6],
          buyIn=200, guarantee=25000, chips=25000, levelMin=30, lateReg="Registration, re-entries, and one (1) add-on per entry until the start of level 11 (approximately 5:30 p.m.)",
          source=WYNN_DAILY_STRUCT, poster=WYNN_DAILY_POSTER, category="extra",
@@ -395,6 +397,9 @@ WPT_SHEET_SECTIONS = {
 }
 
 # ------------------------------------------------------ Wynn Signature Series
+# Re-read line by line against the official PDF on 2026-11-19 (session arena/e830d773-poker3,
+# research/reread_2026-11-19_arena-e830d773.md): all 38 rows match on date, day, start time,
+# event name, guarantee, buy-in, chips and levels; structures PDF remains 'COMING SOON' (F56).
 WYNN_SIGNATURE_ROWS = """
 2027-01-11|12:00 PM|No Limit Hold'em Day 1A|400|150000|40000|30/40
 2027-01-11|5:00 PM|No Limit Hold'em Day 1B|400|150000|40000|30/40

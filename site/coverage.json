@@ -4,8 +4,8 @@
     "events": 341,
     "hotels": 8,
     "routes": 56,
-    "sources": 49,
-    "flags": 97,
+    "sources": 50,
+    "flags": 101,
     "planDays": 7,
     "asOf": "2026-11-19"
   },
@@ -49,7 +49,7 @@
       "status": "shipped",
       "location": "site/data.json (lastChecked / lastVerified) + per-row display",
       "flags": [],
-      "note": "Every tournament, hotel, walking-route and source record carries a retrieval date, and the distribution is derived from site/data.json at build time so it cannot go stale: 38 of 341 event rows last checked 2026-11-16, 49 of 341 event rows last checked 2026-11-17, 254 of 341 event rows last checked 2026-11-19."
+      "note": "Every tournament, hotel, walking-route and source record carries a retrieval date, and the distribution is derived from site/data.json at build time so it cannot go stale: 49 of 341 event rows last checked 2026-11-17, 292 of 341 event rows last checked 2026-11-19."
     },
     {
       "id": "C5",
@@ -93,9 +93,10 @@
         "F36",
         "F39",
         "F57",
-        "F86"
+        "F86",
+        "F102"
       ],
-      "note": "Venetian dated checkout total $4,010.55 (23-30 Nov 2026) with per-night rates, $55 fee, 13.38% tax, $20/$25/$40 parking, 11 a.m. checkout, $100 early checkout, $150 incidental. The Venetian and Palazzo rows now also carry the venue's printed poker-room parking waiver (three or more hours of play = complimentary self-parking for the day, supervisor-confirmed), so all three recommended hotels state a parking rule on the same terms; the waiver is not netted off any total (F79). On 2026-11-19 the Wynn engine printed a dated trip-window quote ($495/$405 avg/night including the resort fee, taxes excluded) with its guarantee, 72-hour cancellation and parking terms (rate log), but still no checkout total and no room-tax % for Wynn/Caesars/Horseshoe; the Venetian engine that day rendered loading text only."
+      "note": "Venetian dated checkout total $4,010.55 (23-30 Nov 2026) with per-night rates, $55 fee, 13.38% tax, $20/$25/$40 parking, 11 a.m. checkout, $100 early checkout, $150 incidental. The Venetian and Palazzo rows carry the venue's printed poker-room parking waiver (three or more hours of play = complimentary self-parking for the day, supervisor-confirmed), not netted off any total (F86). Official parking dollar rates are now published for all eight hotels (including MGM's $20/day guest self-parking on mgmresorts.com and Caesars Palace $20/day guest / Horseshoe $20 Mon-Wed, $25 Thu-Sun on caesars.com/parking, F99/F102). On 2026-11-19 the Wynn engine printed a dated trip-window quote ($495/$405 avg/night including the resort fee, taxes excluded), while room-tax % remains unprinted on the six non-Venetian/Palazzo property pages and the Venetian engine rendered loading text only (F93)."
     },
     {
       "id": "C10",
@@ -227,7 +228,7 @@
       "status": "shipped",
       "location": "site/flagged.html + site/sources.html + scripts/verify_site.py",
       "flags": [],
-      "note": "97 flags, each with its official source link; verify_site.py enforces official-domain source links and intentional blanks for unverified values."
+      "note": "101 flags, each with its official source link; verify_site.py enforces official-domain source links and intentional blanks for unverified values."
     },
     {
       "id": "U9",
