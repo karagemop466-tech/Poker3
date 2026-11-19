@@ -6145,3 +6145,35 @@ tests and records are preserved exactly. No value from either session was discar
 `audit_data.py`, `verify_entry_labels.py`, `verify_live_official.py` and the reproducible rebuilds all pass.
 
 **S3 — in progress.** Opening the integration PR from this branch to `main` next.
+
+---
+
+---
+
+## Session `arena/03d48a10-poker3` — independent 2026-11-19 line-by-line re-verification, calculator unknown-value repair, search discoverability, final integration (2026-11-19 UTC)
+
+**Branch:** `arena/03d48a10-poker3`, branched from `main` at `5c42d7f` (the current tip, PR #206 merged; GitHub Pages `status: built` at
+that same commit when this session claimed). The platform binds each session to one branch, so the brief's `session-<id>/<task>`
+naming cannot be applied here; prior sessions recorded the same constraint. **No new branch is created or switched to.**
+
+**Open PRs at claim time:** `#173` (`arena/a33db3c1-poker3`, last commit **2026-11-19T06:12:27Z**) and `#184`
+(`arena/5cfdd619-poker3`, last commit **2026-11-19T06:47:13Z**). Both are `CONFLICTING` and both were more than three hours idle
+at claim time (claim made 2026-11-19T11:0xZ). Under the standing protocol — "a claim more than 60 minutes old with no commits may be
+taken over, and the handoff noted" — item **B2 below takes over PR #184's calculator fix** by re-implementing it on this branch rather
+than leaving a known false-zero defect live. PR #184 and PR #173 are **left open and untouched**; no commit is pushed to their
+branches. The verification content PR #173 carries is superseded by this session's own independent read (T2), so no merge of #173 is
+assumed and its rows were **not** copied; every value below was re-read from the official page.
+
+**Claim (committed and pushed before any other work).** Scope: `COORDINATION.md`, `site/**`, `scripts/**`, `tests/**`,
+`research/**`, `README.md`, `.github/workflows/**` — the whole repository, as integration owner for this session. No other session has
+committed to `main` since the branch point at claim time.
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| T1 Claim recorded and pushed before any edit | done | `arena/03d48a10` | this section | Branch fixed by the platform; no other branch created or pushed. |
+| T2 Independent line-by-line re-read of the official sources behind every value the dashboard acts on, dated 2026-11-19 | in progress | `arena/03d48a10` | `research/` (new dated record), `scripts/data_source.py` (read-date stamping only) | Reads via the platform fetch tool. Official sources only. A value that cannot be confirmed stays blank. |
+| T3 Repair the calculator's blank-input defect so an unpublished value can never price as zero, and make search reachable from the navigation | pending | `arena/03d48a10` | `site/calculator.html`, `scripts/trip_cost.py`, `site/assets/app.js`, `tests/**` | Takes over open PR #184 (idle >4 h, conflicting) as recorded above. No sourced value changes. |
+| T4 Verification, PR → `main`, merge, GitHub Pages confirmation and record | pending | `arena/03d48a10` | whole repo (integration) | Flagged irregularities and unverified items do not block the merge; they remain published on the Flagged for review page. |
+
+**Scope note.** PR #173's branch is not touched. Where PR #173 made the same trip-window re-read, this session performs its own read
+and does not merge #173; the two records can be compared, and neither is treated as authoritative without the official page.
