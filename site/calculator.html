@@ -212,7 +212,10 @@
       const entries = model.entries || 8;
       const buyIn = model.buyIn || 350;
       const nights = model.nights || 7;
-      const tournament = entries * buyIn;
+      // The tournament total is the exact sum of the chosen buy-ins, published in
+      // tripCostModel.tournamentTotal. Multiplying the rounded average by the entry
+      // count would print a phantom cent (7 x $371.43 = $2,600.01 for a $2,600.00 sum).
+      const tournament = (typeof model.tournamentTotal === 'number') ? model.tournamentTotal : entries * buyIn;
       const rows = [];
       const money = (n) => (typeof n === 'number' && isFinite(n)) ? n.toLocaleString('en-US', { style: 'currency', currency: 'USD' }) : '—';
       rows.push({ hotel: 'The Venetian / The Palazzo — published starting rate (low)', rate: 119, fee: 55, tax: 13.38,
@@ -238,8 +241,8 @@
           '<td>' + money(r.fee) + '</td>' +
           '<td>' + (typeof taxPct === 'number' ? taxPct + '%' : '<span class="muted">Not published</span>') + '</td>' +
           '<td>' + (nightly ? money(nightly) : '<span class="muted">Blank</span>') + '</td>' +
-          '<td>' + (lodging ? money(lodging) : '<span class="muted">Blank</span>') + '</td>' +
-          '<td>' + money(tournament) + '</td>' +
+          '<td>' + nights + ' nights' + (lodging ? ' = ' + money(lodging) : '<span class="muted">; nightly blank, so no subtotal</span>') + '</td>' +
+          '<td>' + entries + ' entries = ' + money(tournament) + '</td>' +
           '<td>' + (total ? money(total) : '<span class="muted">Blank</span>') + '</td>' +
           '<td><a href="' + r.sources + '" target="_blank" rel="noopener">Official</a></td></tr>';
       }).join('');
