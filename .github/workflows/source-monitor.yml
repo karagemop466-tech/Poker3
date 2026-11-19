@@ -37,6 +37,11 @@ jobs:
         with:
           ref: main
           fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install workflow test dependency
+        run: python3 -m pip install --quiet pyyaml
       - name: Use local main branch for the daily log commit
         run: git checkout -B main origin/main
       - name: Verify monitor and site data
