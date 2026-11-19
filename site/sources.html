@@ -65,6 +65,10 @@
 
     <section class="section">
       <div class="section-head"><div><h2>Automated re-check</h2><p>Scheduled fetch, content hash and change flag for every official URL.</p></div></div>
+      <p class="toolbar-note">Monitoring correction · November 19, 2026: HTML compares normalized text; PDFs now compare
+        complete bytes, including compressed streams. A PDF-byte alert may be metadata-only and requires a source re-read.
+        Earlier PDF “unchanged” text-hash results did not check the streams and are not proof of unchanged rules.
+        <a href="flagged.html#pdf-monitor-review">Read the operational review and audit.</a></p>
       <div data-autochecks></div>
     </section>
 

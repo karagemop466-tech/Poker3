@@ -49,6 +49,18 @@
       </ul>
     </section>
 
+    <section class="section" id="pdf-monitor-review">
+      <div class="section-head"><div><h2>Operational review · PDF monitoring correction</h2><p>Detected November 19, 2026. Not a new verification of any tournament.</p></div></div>
+      <p>The earlier automated checker discarded PDF streams instead of extracting their text. Its historical
+        “unchanged” PDF results therefore do not establish that entry rules, fees or guarantees stayed unchanged.
+        Dated manual source reads remain separate evidence.</p>
+      <p>The corrected checker compares complete PDF bytes against the raw hashes already recorded. Any byte change
+        flags affected rows for review, including a possible metadata-only change; it never changes a tournament value
+        or claims the wording changed. Re-read the linked official sheet before relying on its rules.</p>
+      <p><a href="https://github.com/karagemop466-tech/Poker3/blob/main/research/pdf-monitor-2026-11-19.md">Audit, reproducer and limitations</a> ·
+        <a href="sources.html">Official sheets and latest automated results</a></p>
+    </section>
+
     <section class="section">
       <div class="section-head"><div><h2>Flag register</h2><p>Ordered by severity, then by area.</p></div></div>
       <div data-flags></div>

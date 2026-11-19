@@ -99,8 +99,16 @@ file and on the two recorder scripts, so a change to the monitoring setup runs t
 for the cron (a change to one workflow file cannot trigger a different workflow — the earlier attempt routed this
 through `source-monitor.yml`, which only starts the poker3 companion monitor). It runs two recorders in order:
 
-- `scripts/check_sources.py` fetches every official URL behind the dashboard, stores a SHA-256 of the response, and flags
-  any source whose body changed. A URL it cannot reach is recorded as `unavailable`, never as "changed".
+- `scripts/check_sources.py` fetches every official URL behind the dashboard. HTML is compared on normalized text;
+  PDFs are compared on **all response bytes**, including compressed streams, using SHA-256. PDF-byte changes may be
+  metadata-only and require review; they are not proof of changed wording. A URL it cannot reach is recorded as
+  `unavailable`, never as "changed". The `textHash` field is retained for compatibility but contains the complete-byte
+  digest for a PDF; each row's `hashBasis` / `comparisonKind` identifies its method.
+- **2026-11-19 monitoring correction:** the earlier PDF normalizer removed streams rather than extracting their text,
+  so its historical `changed: false` / `wordingChanged: false` results do not establish unchanged PDF rules or values.
+  The fix reuses the already-recorded raw `hash` as the PDF baseline, so the first corrected run can detect a change
+  without a blind reset. It does not retroactively re-verify any event. See
+  [`research/pdf-monitor-2026-11-19.md`](research/pdf-monitor-2026-11-19.md) and the site's Flagged for review page.
 - `scripts/verify_transcription.py` re-checks the 44 transcribed series-PDF rows against the published data and writes the
   result beside the URL record.
 
@@ -109,8 +117,8 @@ published as `site/checks.json` and shown on the sources page, and the URL recor
 so a single unreachable PDF can never abort the run.
 - `scripts/daily_feed.py` pulls the schedule page of each Strip poker room and writes a dated snapshot under
   `site/feed/`, so a morning run can be compared with the previous morning instead of replacing it.
-- The job then rebases onto `origin/main` and pushes, retrying up to five times, so a race with another scheduled
-  run cannot lose the record.
+- The job then rebases onto `origin/main` and pushes, retrying up to eight times. If all attempts fail it emits a
+  warning; the next scheduled run regenerates the observations. A green fetch job alone does not prove publication.
 
 It replaces three overlapping committers (`monitor.yml`, `daily-check.yml` and an earlier version of this one) that
 ran on separate crons under separate concurrency groups and overwrote each other; none of the three had ever produced
