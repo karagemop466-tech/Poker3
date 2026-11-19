@@ -5240,3 +5240,34 @@ passed on app/venue/search/feed JS. Verbatim source record:
 (`arena/a33db3c1-poker3`) is a separate fresh re-read of the trip-window sources and was still open at the time of
 this claim; this session did not duplicate it and did not edit its files. The Venetian, Palazzo, Wynn, Caesars
 Palace and Horseshoe rows keep the read dates their own sessions stamped.
+
+### Publication record (session `arena/ade0718f-poker3`, 2026-11-19 UTC)
+
+- **PR:** [#185](https://github.com/karagemop466-tech/Poker3/pull/185) — `arena/ade0718f-poker3` → `main`, merged with
+  `gh pr merge 185 --merge` at **2026-11-19 06:49:49 UTC**, merge commit
+  **`4359762b75df614bf452e6da1c9d9e2e06ecb981`**.
+- **Checks on the PR head (pre-merge):** `verify` **pass** (14s, run
+  [44474931230](https://github.com/karagemop466-tech/Poker3/actions/runs/44474931230)), `transcription` **pass** (5s, run
+  [44474931153](https://github.com/karagemop466-tech/Poker3/actions/runs/44474931153)).
+- **Checks on the merge commit `4359762`:** "Verify static research site" **success**, "Official table transcription
+  check" **success**, "Publish the canonical Vegas Poker Planner to GitHub Pages" **success**, "pages build and
+  deployment" **success**.
+- **GitHub Pages:** `GET /repos/…/pages/builds/latest` → `status: built`, `commit: 4359762b75df614bf452e6da1c9d9e2e06ecb981`,
+  `error: null`. The live pages were fetched, not assumed: `/site/index.html` serves the updated note
+  (`lastChecked 2026-11-19` … "the whole official schedule page and its 94 rows were read again by hand on 19 November
+  2026") and the updated coverage paragraph ("all 94 of its rows were compared line by line against two independent
+  same-day captures"); `/flagged.html` serves the current register including the PDF-monitoring section. GitHub's CDN
+  was still serving the pre-merge copy of `/index.html` when checked immediately after the deploy, which is a cache
+  TTL, not a build failure — the build API names the merge commit and the same file under `/site/` already serves the
+  new text.
+- **Rebase log.** `main` advanced three times while this branch was open (#183, #186, and the #180/#181/#182 sequence).
+  Every conflict was append-only in this board; each time both sessions' sections were kept and nothing was discarded
+  (including `arena/621aeb99`'s calculator audit, `arena/96ff450a`'s board repair and `arena/09d32ea7`'s PDF-monitor
+  correction). After the final rebase: **273 unit tests OK**, `verify_site.py` 341/8/56/48/**93**/7/16, `audit_951cd431.py`
+  0 failures, `audit_data.py` and `verify_entry_labels.py` passed, `verify_live_official.py` passed,
+  `verify_dse_live_2026_11_19.py` 94/94 on **both** captures, canonical smoke + DOM renders + walk-limit render passed,
+  `tests/smoke.py` passed, and `data_source.py` reproduced `site/data.json` byte-identically.
+- **Cross-session state at merge:** PR **#173** (`arena/a33db3c1-poker3`, trip-window re-read) is still open and was not
+  touched by this session. Its headline claim — that its rows advanced to 2026-11-19 — now holds on `main` because of
+  F97's fix, independently of that PR. Its owner should rebase before merging, or it will re-introduce the conflicting
+  stamping block this session replaced. No other session's branch or PR was modified here.
