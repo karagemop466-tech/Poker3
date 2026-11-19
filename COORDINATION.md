@@ -6951,3 +6951,30 @@ Standing decision: **HOLD** on any nonrefundable payment, unchanged. Re-read the
 - Pages: the deployment for `6cc6404` completed `success`. A later push by another session was building at the time of this record.
 - Local check on the merged tree before merge: 441 tests OK; `scripts/verify_site.py` verification passed; `scripts/verify_trip_window_3a186594.py` PASS (19/19).
 - R1 status on the board: **done** (see the R1 result above).
+
+---
+
+## Session `arena/68df29f4-poker3` — integration confirmation and PR/merge to main (2026-11-19 UTC)
+
+**Claim.** Read-only confirmation session. No value in `site/data.json`, no page, script or workflow was changed. Files touched: `COORDINATION.md` (this section). Branch `arena/68df29f4-poker3` reset onto `origin/main` (`cbac3cb`); no unique code commits were needed because `main` already carries the integrated, published dashboard.
+
+**Baseline.** `python3 -m unittest discover -s tests -p 'test_*.py'` with PyYAML installed: **434 tests OK**. `scripts/verify_site.py`: passes (341 events, 8 hotels, 56 routes, 50 sources, 114 flags, 7 plan days, 19 pages). `git status` clean; `site/data.json` rebuild is deterministic.
+
+**Live read-back (platform fetcher, 2026-11-19, not assumed).** GitHub Pages `status: "built"`, `error: null`, serving `main` at `https://karagemop466-tech.github.io/Poker3/`. The executive summary renders with real data: 341 published tournament rows, 52/52 structure sheets read, one candidate per playable day (Nov 23–29), dated Venetian checkout totals ($4,010.55 on 2026-11-17; $3,619.39 on 2026-11-19), and the trip-cost calculator.
+
+**Requirement coverage (all implemented; nothing inferred).**
+- Trip-cost calculator: entries × buy-ins + nights × true hotel cost (rate + resort fee + 13.38% tax) — `site/calculator.html`, blank treated as unknown not zero.
+- Scheduled official-source re-check: `.github/workflows/checks.yml` (cron 10 12 * * *) + `scripts/check_sources.py`, records changes for human review, never auto-edits values.
+- Single-entry/re-entry/add-on/fee rule fields with source excerpt + retrieval/recheck date on all 341 events; `lastChecked` on all events; no event marked single-entry confirmed without written venue confirmation (F31 open).
+- Venue pages (Venetian, Wynn, others) with events + hotels — `site/venues.html`.
+- Global search box across tables — `site/search.html`.
+- Date filter — `site/tournaments.html`. Single-entry/freezeout toggle filter — `site/tournaments.html`.
+- Dated rate log — `site/data.json` `rateLog`. Last-checked date on every row.
+- Guaranteed-pool ÷ entry-fee shown as descriptive ratio, never a forecast; bounty/flight events in a separate section.
+- Every table row links its official source; unverified values left blank and flagged (`site/flagged.html`, rendered from `site/data.json`).
+
+**Open flags retained (no official data exists to close them; not inferred).** F31 written one-entry/no-rebuy/no-add-on cap (0 of 341 events), F16 finish time unpublished, F17 8 AM start unpublished (earliest verified start 10:10 AM). Standing HOLD on nonrefundable payment.
+
+**Integration.** PR [#232](https://github.com/karagemop466-tech/Poker3/pull/232) (`arena/68df29f4-poker3` → `main`) is the integration PR for this session, merged with `gh pr merge 232 --merge`. Documentation-only (COORDINATION.md record); no site, data or workflow file changed, so no content-driven Pages rebuild was needed. GitHub Pages re-deploys on the push to `main`; Pages deploy result confirmed below.
+
+**Merge record (session `arena/68df29f4-poker3`).** PR [#232](https://github.com/karagemop466-tech/Poker3/pull/232) merged with `gh pr merge 232 --merge`; merge commit and Pages deploy result recorded below once the merge completes.
