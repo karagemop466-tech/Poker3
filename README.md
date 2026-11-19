@@ -14,9 +14,9 @@ dashboard either way. See flag F29 on the Flagged for review page.
 |---|---|
 | `site/index.html` | Executive summary: the fixed trip, the primary event per day, and what is and is not confirmed. |
 | `site/tournaments.html` | Every published tournament row, with date, venue, category, written single-entry confirmation and sheet-candidate filters, plus per-row rules. |
-| `site/search.html` | Global search across tournaments, hotel rows, dated rates, walking routes, sources, questions and review flags. |
+| `site/search.html` | Global search across tournaments, hotel rows, dated rates, walking routes, sources, questions and review flags. Reachable from the top bar and from the navigation list. |
 | `site/venues.html` | One page per Strip poker room, each with its events and its hotels (`browse.html?view=venue&key=…`). |
-| `site/calculator.html` | *Estimated cost of a trip* = entries × buy-ins + nights × true hotel cost, computed from the published components, with a like-for-like comparison of the seven planned entries and seven nights at each published rate. |
+| `site/calculator.html` | *Estimated cost of a trip* = entries × buy-ins + nights × true hotel cost, computed from the published components, with a like-for-like comparison of the seven planned entries and seven nights at each published rate. A blank field is treated as **unknown, not zero**: the total is withheld and the missing field is named, because most reviewed properties publish a resort fee and no room-tax percentage (F39). |
 | `site/browse.html` | Venue and category subpages, so a bounty event is never mixed in with a plain freezeout. |
 | `site/schedule.html` | A provisional sheet-screened candidate per day, conditional fallback, recurring room events and estimated overlap flags; none is strict-entry confirmed. |
 | `site/hotels.html` | Published rate components, the mandatory resort fee, tax, true cost per night, parking, cancellation deadlines, walking times, one official booking deep link per trip night, the dated quote log and the dated rate log. |

@@ -46,7 +46,7 @@
     </div>
 
     <section class="section">
-      <div class="section-head"><div><h2>Your inputs</h2><p>Every field starts at a value the site can source. Leave a field blank to treat it as zero.</p></div></div>
+      <div class="section-head"><div><h2>Your inputs</h2><p>Every field starts at a value the site can source. A blank or invalid field is treated as <strong>unknown</strong>, never as zero: enter 0 explicitly when a cost really is zero (for example parking the room has waived).</p></div></div>
       <form id="tripForm" class="two-col">
         <div class="card">
           <h3>Tournament entries</h3>
@@ -192,50 +192,82 @@
       else if (rate === '') missing.push('no room rate');
       if (fee === '') missing.push('no resort fee');
       if (tax === '') missing.push('no tax percentage');
+      if (parking === '') missing.push('no parking figure');
       return `<button class="btn" type="button" data-hotel="${h.id}"
         data-rate="${rate}" data-fee="${fee}" data-tax="${tax}" data-parking="${parking}">${h.name}</button>
-        ${missing.length ? `<span class="muted">${missing.join(' · ')} published</span>` : ''}`;
+        ${missing.length ? `<span class="muted">${missing.join(' · ')} not published</span>` : ''}`;
     }).join('<br>');
     host.querySelectorAll('[data-hotel]').forEach((b) => b.addEventListener('click', () => {
-      if (b.dataset.rate !== '') form.rate.value = b.dataset.rate;
-      if (b.dataset.fee !== '') form.resortFee.value = b.dataset.fee;
-      if (b.dataset.tax !== '') form.taxRate.value = b.dataset.tax;
-      form.parking.value = b.dataset.parking !== '' ? b.dataset.parking : 0;
+      /* A property that does not publish a value must not inherit the previous
+       * property's figure. Copying only what this property publishes, and clearing
+       * the rest to blank, keeps the total honestly unknown instead of mixing two
+       * properties' numbers or pricing an unpublished fee as zero. */
+      form.rate.value = b.dataset.rate !== '' ? b.dataset.rate : '';
+      form.resortFee.value = b.dataset.fee !== '' ? b.dataset.fee : '';
+      form.taxRate.value = b.dataset.tax !== '' ? b.dataset.tax : '';
+      form.parking.value = b.dataset.parking !== '' ? b.dataset.parking : '';
       calc();
     }));
   }
   const money = (n) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+  /* A blank or invalid field is unknown, not zero. Every reviewed property publishes
+   * a resort fee and most publish no room-tax percentage (F39), so coercing a blank
+   * percentage to 0 would print a nightly cost below the published charge. An explicit
+   * 0 is a real input and is honoured. */
   function read() {
+    const number = (field) => {
+      const input = form[field];
+      if (!input || input.value.trim() === '') return null;
+      /* A browser flags an out-of-range entry through `validity`. Absence of the object
+       * is not an invalidity signal, so only an explicit false blocks the value. */
+      if (input.validity && input.validity.valid === false) return null;
+      const value = Number(input.value);
+      return Number.isFinite(value) && value >= 0 ? value : null;
+    };
     return {
-      entries: Number(form.entries.value) || 0,
-      buyIn: Number(form.buyIn.value) || 0,
-      nights: Number(form.nights.value) || 0,
-      rate: Number(form.rate.value) || 0,
-      resortFee: Number(form.resortFee.value) || 0,
-      taxRate: Number(form.taxRate.value) || 0,
-      parking: Number(form.parking.value) || 0
+      entries: number('entries'),
+      buyIn: number('buyIn'),
+      nights: number('nights'),
+      rate: number('rate'),
+      resortFee: number('resortFee'),
+      taxRate: number('taxRate'),
+      parking: number('parking')
     };
   }
+  const CORE_FIELDS = ['entries', 'buyIn', 'nights', 'rate', 'resortFee', 'taxRate'];
   function calc() {
     const v = read();
+    const unknownCore = CORE_FIELDS.filter((k) => v[k] === null);
+    if (unknownCore.length) {
+      out.innerHTML = 'Core trip estimate: <strong>unavailable</strong>';
+      brk.innerHTML = '<div><strong>Not enough published or entered values.</strong> The field' +
+        (unknownCore.length === 1 ? '' : 's') + ' ' + unknownCore.join(', ') +
+        ' ' + (unknownCore.length === 1 ? 'is' : 'are') + ' blank or invalid, which makes the total unknown rather than zero. ' +
+        'Enter a value, or enter 0 explicitly if the cost really is zero.</div>';
+      return;
+    }
     const taxes = (v.rate + v.resortFee) * (v.taxRate / 100);
     const trueNightly = cents(v.rate + v.resortFee + taxes);
     const usesPlan = model && v.entries === model.entries && v.buyIn === model.buyIn;
     const tournament = usesPlan ? model.tournamentTotal : cents(v.entries * v.buyIn);
     const lodging = v.nights * trueNightly;
-    const parking = v.nights * v.parking;
+    const parking = v.parking === null ? null : v.nights * v.parking;
     const coreEstimate = tournament + lodging;
-    const allIn = coreEstimate + parking;
+    const allIn = parking === null ? null : coreEstimate + parking;
     out.innerHTML = 'Core trip estimate: <strong>' + money(coreEstimate) + '</strong>' +
-      '<span class="muted"> · ' + money(allIn) + ' including parking</span>';
+      (allIn === null
+        ? '<span class="muted"> · parking-inclusive total unavailable (parking not entered)</span>'
+        : '<span class="muted"> · ' + money(allIn) + ' including parking</span>');
     brk.innerHTML =
       '<div><strong>Core formula</strong> entries × average buy-in + nights × true hotel cost</div>' +
       '<div><strong>Entries</strong> ' + (usesPlan ? v.entries + ' planned buy-ins (exact sum)' : v.entries + ' × ' + money(v.buyIn)) + ' = ' + money(tournament) + '</div>' +
       '<div><strong>Hotel</strong> ' + v.nights + ' nights × ' + money(trueNightly) + ' true cost = ' + money(lodging) +
       ' <span class="muted">(rate ' + money(v.rate) + ' + resort fee ' + money(v.resortFee) + ' + tax ' + money(taxes) + ')</span></div>' +
       '<div><strong>Core estimate</strong> ' + money(tournament) + ' + ' + money(lodging) + ' = ' + money(coreEstimate) + '</div>' +
-      '<div><strong>Parking, separate</strong> ' + v.nights + ' nights × ' + money(v.parking) + ' = ' + money(parking) +
-      '; all-in including parking: <strong>' + money(allIn) + '</strong></div>' +
+      (parking === null
+        ? '<div><strong>Parking, separate</strong> unknown; all-in total unavailable. Enter 0 if parking is waived.</div>'
+        : '<div><strong>Parking, separate</strong> ' + v.nights + ' nights × ' + money(v.parking) + ' = ' + money(parking) +
+          '; all-in including parking: <strong>' + money(allIn) + '</strong></div>') +
       '<div class="muted">Tax is charged on the room rate and on the resort fee, because the official terms describe the fee as "plus applicable tax". Parking is not included in true room cost per night or in the core formula.</div>';
   }
   form.addEventListener('input', calc);
@@ -272,29 +304,34 @@
       (db.hotels || []).forEach((h) => {
         if (h.id === 'venetian' || h.id === 'palazzo') return;
         if (typeof h.resortFee !== 'number') return;
-        rows.push({ hotel: h.name + ' — resort fee verified, room rate not published', rate: null, fee: h.resortFee,
-          tax: null, sources: h.feeSource || h.source });
+        rows.push({ hotel: h.name + ' — resort fee published, room rate not published', rate: null, fee: h.resortFee,
+          tax: typeof h.taxRate === 'number' ? h.taxRate : null, sources: h.feeSource || h.source });
       });
       body.innerHTML = rows.map((r) => {
         const rate = r.rate;
         const taxPct = r.tax;
         const closed = typeof rate === 'number' && typeof taxPct === 'number';
         const nightly = closed ? cents((rate + r.fee) * (1 + taxPct / 100)) : null;
+        /* The fee and its tax are published even when the room rate is not, so the
+         * published, unavoidable part of a night is shown rather than a blank: a
+         * reader comparing properties can still see the floor each fee imposes. */
+        const feeOnly = !closed && typeof taxPct === 'number' ? cents(r.fee * (1 + taxPct / 100)) : null;
         const lodging = closed ? nightly * nights : null;
         const total = closed ? tournament + lodging : null;
         return '<tr><td class="event-name">' + r.hotel +
-          '<span class="muted">' + (closed ? 'Rate, fee and tax all published' : 'Cannot be closed: room rate and/or tax not published') + '</span></td>' +
+          '<span class="muted">' + (closed ? 'Rate, fee and tax all published' : 'Cannot be closed: room rate not published') + '</span></td>' +
           '<td>' + (typeof rate === 'number' ? money(rate) : '<span class="muted">Not published</span>') + '</td>' +
           '<td>' + money(r.fee) + '</td>' +
           '<td>' + (typeof taxPct === 'number' ? taxPct + '%' : '<span class="muted">Not published</span>') + '</td>' +
-          '<td>' + (nightly ? money(nightly) : '<span class="muted">Blank</span>') + '</td>' +
-          '<td>' + nights + ' nights' + (lodging ? ' = ' + money(lodging) : '<span class="muted">; nightly blank, so no subtotal</span>') + '</td>' +
+          '<td>' + (nightly ? money(nightly) : (feeOnly ? '<span class="muted">Rate unknown; fee + tax alone ' + money(feeOnly) + '</span>' : '<span class="muted">Blank</span>')) + '</td>' +
+          '<td>' + nights + ' nights' + (lodging ? ' = ' + money(lodging) : '<span class="muted">; room rate unpublished, so no subtotal</span>') + '</td>' +
           '<td>' + entries + ' entries = ' + money(tournament) + '</td>' +
           '<td>' + (total ? money(total) : '<span class="muted">Blank</span>') + '</td>' +
           '<td><a href="' + r.sources + '" target="_blank" rel="noopener">Official</a></td></tr>';
       }).join('');
       note.textContent = 'Entry total is ' + entries + ' planned buy-ins (exact sum) = ' + money(tournament) +
-        '. A row is left blank rather than estimated when the property does not publish both a room rate and a tax rate. ' +
+        '. A row is left blank rather than estimated when the property does not publish both a room rate and a room-tax percentage. ' +
+        'Where the fee and the percentage are published but the room rate is not, the column shows the fee and its tax alone, because that part is published and unavoidable. ' +
         'Both Venetian rows are published starting rates, not quotes. The official booking engine quoted a dated checkout total for 23-30 Nov 2026 on 2026-11-17 ' +
         '(see the hotels page and tripCostModel.liveQuote in data.json).';
     }).catch(() => { body.innerHTML = '<tr><td colspan="9">The published data file could not be loaded.</td></tr>'; });

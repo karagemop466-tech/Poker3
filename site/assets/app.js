@@ -7,6 +7,7 @@
 const NAV = [
   ['index.html', 'Overview', '▦'],
   ['tournaments.html', 'Tournaments', '♠'],
+  ['search.html', 'Search all tables', '⌕'],
   ['venues.html', 'Venues', '◈'],
   ['schedule.html', 'Day plan', '◷'],
   ['hotels.html', 'Hotels', '⌂'],
@@ -178,6 +179,20 @@ function filteredEvents(opts) {
   });
 }
 const WALK_LIMIT_MIN = 30;   // the brief's limit: a hotel must be within a 30-minute walk of the venue
+// The planner's own stated transfer allowance, published in site/data.json planNotes.transfer and
+// quoted in the schedule page's method note. Kept here so the same number labels a same-day event.
+const TRANSFER_MIN = 30;
+// Formats that let a player spend more money for an advantage (rebuy, add-on, multi-buy-in,
+// multi-flight). They are never presented as an equal alternative to a single-entry event.
+const EXTRA_SPEND_TYPES = new Set(['multi-buyin', 'multi-flight']);
+/* "5:10 PM" -> 1030. Returns null for a blank or unparseable time rather than guessing one. */
+function minutesFromMidnight(time) {
+  const m = /^(\d{1,2}):(\d{2})\s*(AM|PM)$/i.exec(String(time || '').trim());
+  if (!m) return null;
+  let hour = parseInt(m[1], 10) % 12;
+  if (m[3].toUpperCase() === 'PM') hour += 12;
+  return hour * 60 + parseInt(m[2], 10);
+}
 
 function hotelName(id) {
   const h = (db.hotels || []).find((x) => x.id === id);
@@ -714,7 +729,23 @@ function renderSchedule() {
     const fallback = byId[p.fallback];
     const rec = (p.recurring || []).map((r) => {
       const out = r.walk !== undefined && r.walk > 30;
-      return `<li><span class="badge ${out ? 'bad' : 'info'}">${out ? r.walk + ' min walk - outside the 30-minute limit' : (r.walk === 0 ? 'on site' : r.walk + ' min walk')}</span>
+      /* Order this same-day room event against the primary using the planner's own stated
+       * assumptions (six-hour session, 30-minute transfer, both published in planNotes), so a
+       * late event is presented as what it is — playable after the primary — instead of sitting
+       * in an unordered list where it reads like an impossible parallel sequence. Nothing here
+       * is a published finish time: the string says "estimated" every time. */
+      const startMin = minutesFromMidnight(r.time);
+      const primaryStart = minutesFromMidnight(primary ? primary.time : '');
+      const base = (startMin === null || primaryStart === null) ? null
+        : startMin < primaryStart
+          ? { badge: 'warn', text: 'does not follow the primary · starts first' }
+          : (p.primaryEnd && startMin >= minutesFromMidnight(p.primaryEnd) + TRANSFER_MIN)
+            ? { badge: 'info', text: 'playable after the primary (estimated, +' + TRANSFER_MIN + ' min transfer)' }
+            : (p.primaryEnd ? { badge: 'warn', text: 'may overlap the primary (estimated session)' } : null);
+      const spend = EXTRA_SPEND_TYPES.has(r.entryType)
+        ? `<span class="badge bad">extra-spend format · ${esc(r.entryType)}</span> ` : '';
+      return `<li><span class="badge ${out ? 'bad' : 'info'}">${out ? r.walk + ' min walk — outside the 30-minute limit' : (r.walk === 0 ? 'on site' : r.walk + ' min walk')}</span>
+        ${base ? `<span class="badge ${base.badge}">${esc(base.text)}</span> ` : ''}${spend}
         <strong>${esc(r.time)}</strong> ${esc(r.name)} <span class="muted">${esc(venueName(r.venue))}</span>
         ${r.buyIn ? `<span class="muted">Buy-in $${r.buyIn}</span>` : ''}</li>`;
     }).join('');
