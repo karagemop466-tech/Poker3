@@ -24359,6 +24359,30 @@
    "title": "Five unlinked 2026-11-16 snapshot JSON files are still published under site/data/ (flagged for review)",
    "detail": "The Pages artifact publishes the whole site/ directory, so site/data/flags.json, questions.json, sources.json, suggestions.json and tournaments.json are reachable at the live host. Each carries meta.asOf 2026-11-16 and builtAt 2026-11-16T19:50:18Z and is not read by any dashboard page or script (the live data is site/data.json; scripts/daily_check.py still names sources.json but is not the scheduled checker, which is scripts/check_sources.py). Their contents therefore give a second, stale answer to anyone who opens them directly. F68 removed three other stale snapshots for the same reason. These five are left in place rather than deleted because another session's script still names one of them; the integration owner should either retire them or add a dated note. No value was taken from any stale snapshot: every published table row is rendered from site/data.json.",
    "source": "https://github.com/karagemop466-tech/Poker3/blob/main/site/data/flags.json"
+  },
+  {
+   "id": "F106",
+   "area": "Repository",
+   "severity": "Low",
+   "title": "The estimated finish time is late-registration cut-off plus two levels plus one 15-minute break, not cut-off plus two levels as the page text states",
+   "detail": "Found on 2026-11-19 (session arena/80a6f5df-poker3) while reproducing every published estimate from the official structure sheets. scripts/data_source.py session_estimate() returns (cut-off - start) + (2 x level) + 15, and the +15 is one break. The method is written down in two places: site/tournaments.html says 'the estimate adds two more levels', and flag F37 says 'the day plan estimates a finish from the late-registration cut-off plus two levels'. With a 30-minute level that prints 75 minutes after the cut-off, and with a 40-minute level 95 minutes, so four of the seven day-plan rows carry a 15-minute offset that the stated method does not describe. The rows affected are #8 on 23 November, #9 on 24 November, #11 on 25 November, #13 on 26 November, #15 on 27 November and #21 on 29 November at 10:55 PM instead of 10:40 PM, and #10 on 25 November, #12 on 26 November, #14 on 27 November, #16 on 28 November at 6:10 PM instead of 5:55 PM. No official source publishes a finish time for any of these rows (F16), so the figure is a stated planning assumption and not a venue fact; the defect is that the assumption is applied with a break the documentation does not mention. The conservative direction is kept (a later estimate can only make the overlap check stricter), so no published value was changed and no overlap flag was cleared by this finding. Fix by naming the break in the method text, or by dropping it from the arithmetic.",
+   "source": "https://github.com/karagemop466-tech/Poker3/blob/main/scripts/data_source.py"
+  },
+  {
+   "id": "F107",
+   "area": "Repository",
+   "severity": "Low",
+   "title": "No reviewed official source prints a street-number address or ZIP for any of the eight properties, so every walking minute is tied to a property-name Maps query rather than to an official address",
+   "detail": "Found on 2026-11-19 (session arena/80a6f5df-poker3) while checking the requirement for official-address walking times. The route records in site/data.json carry mapsOrigin and mapsDestination strings such as 'The+Venetian+Resort,+Las+Vegas,+NV', i.e. a property name, and the source field on each route points at the venue's poker page, not at a page that prints an address. None of the pages this session read on 2026-11-19 (the Venetian poker page, poker-suite rates page, resort fee page and hotel terms; the Wynn WPT schedule PDF; the Bellagio Friday structure PDF; the MGM Grand tournament schedule PDF) prints a street number or ZIP for the property. Combined with F91 (the Venetian poker room is at The Palazzo, level 2, Grand Canal Shoppes, while the captures measure to The Venetian) and F21 (Google Maps first resolved 'Horseshoe Las Vegas' to Bally's), this means a walking minute is a name-level Maps estimate, not a measurement between two officially printed addresses. The 30-minute filter is therefore applied to estimates and is labelled as such on every table; the requirement for official-address walking times stays partially unmet and is listed as an open question rather than closed.",
+   "source": "https://github.com/karagemop466-tech/Poker3/blob/main/scripts/data_hotels.py"
+  },
+  {
+   "id": "F108",
+   "area": "Monitoring",
+   "severity": "Medium",
+   "title": "The 2026-11-19 automated re-check records a content change on both Wynn booking-engine URLs and no human has re-read them",
+   "detail": "site/checks.json, run 2026-11-19T07:34:30+00:00, lists exactly two changed URLs, and both are the Wynn reservation engine: https://reservations.wynnlasvegas.com/ibe/details.aspx?hotelID=13763&langID=1&rmID=68658&checkIn=11/23/2026&checkOut=11/30/2026 and the same URL without the date parameters. Both returned HTTP 200 and their normalized-text hashes moved (2e60074f… to 0babc62a… and 4a2e722f… to 013127c1…). Reading the rest of the record: 108 URLs, 85 fetched, 15 unavailable, 8 blocked for the robot and 23 failed outcomes, so most of the record is unchanged. No Wynn room rate, resort fee, tax or checkout total has ever been published from these two URLs, so no published row is contradicted by the change; the Wynn hotel row keeps a blank rate, a blank tax rate and a flag (F39, F19). What this flag records is that a page behind the hotel-cost column changed and was not re-read by eye on 2026-11-19, which is exactly the case the monitor exists to hand to a human. Reopen the two URLs with the trip dates before any Wynn rate is quoted, and treat a Wynn booking-engine figure as a dated observation, never as a booking price, for the same reason F88/F93 already say about the Venetian engine.",
+   "source": "https://github.com/karagemop466-tech/Poker3/blob/main/site/checks.json"
   }
  ],
  "questions": [
