@@ -33,7 +33,7 @@ class CalculatorPageTests(unittest.TestCase):
     def test_parking_is_itemized_outside_the_core_formula(self):
         self.assertIn("entries × average buy-in + nights × true hotel cost", PAGE)
         self.assertIn("const coreEstimate = tournament + lodging;", PAGE)
-        self.assertIn("const allIn = coreEstimate + parking;", PAGE)
+        self.assertIn("coreEstimate + parking;", PAGE)
         self.assertIn("Parking is not included in true room cost per night or in the core formula.", PAGE)
 
     def test_render_uses_exact_plan_and_keeps_quote_separate(self):
@@ -42,7 +42,7 @@ class CalculatorPageTests(unittest.TestCase):
         harness = r"""
 const assert = require('node:assert/strict');
 const db = require('./site/data.json');
-const form = Object.fromEntries(Object.entries(FIELDS).map(([id, value]) => [id, {value}]));
+const form = Object.fromEntries(Object.entries(FIELDS).map(([id, value]) => [id, {value, validity: {valid: true}}]));
 const result = {}, breakdown = {}, body = {}, note = {}, quote = {append(link) { this.link = link; }};
 form.addEventListener = (_, cb) => { form.update = cb; };
 global.document = {

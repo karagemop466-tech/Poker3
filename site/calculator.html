@@ -46,7 +46,7 @@
     </div>
 
     <section class="section">
-      <div class="section-head"><div><h2>Your inputs</h2><p>Every field starts at a value the site can source. Leave a field blank to treat it as zero.</p></div></div>
+      <div class="section-head"><div><h2>Your inputs</h2><p>Every field starts at a sourced value. A blank or invalid field is unknown, not zero; enter 0 explicitly when appropriate.</p></div></div>
       <form id="tripForm" class="two-col">
         <div class="card">
           <h3>Tournament entries</h3>
@@ -166,36 +166,45 @@
   let model;
   const money = (n) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
   function read() {
+    const number = (field) => {
+      const input = form[field];
+      if (input.value.trim() === '' || !input.validity.valid) return null;
+      const value = Number(input.value);
+      return Number.isFinite(value) && value >= 0 ? value : null;
+    };
     return {
-      entries: Number(form.entries.value) || 0,
-      buyIn: Number(form.buyIn.value) || 0,
-      nights: Number(form.nights.value) || 0,
-      rate: Number(form.rate.value) || 0,
-      resortFee: Number(form.resortFee.value) || 0,
-      taxRate: Number(form.taxRate.value) || 0,
-      parking: Number(form.parking.value) || 0
+      entries: number('entries'), buyIn: number('buyIn'), nights: number('nights'),
+      rate: number('rate'), resortFee: number('resortFee'),
+      taxRate: number('taxRate'), parking: number('parking')
     };
   }
   function calc() {
     const v = read();
+    if ([v.entries, v.buyIn, v.nights, v.rate, v.resortFee, v.taxRate].some((n) => n === null)) {
+      out.textContent = 'Core trip estimate unavailable';
+      brk.textContent = 'Enter a valid non-negative value for each core input. Blank or invalid values are unknown, not zero.';
+      return;
+    }
     const taxes = (v.rate + v.resortFee) * (v.taxRate / 100);
     const trueNightly = cents(v.rate + v.resortFee + taxes);
     const usesPlan = model && v.entries === model.entries && v.buyIn === model.buyIn;
     const tournament = usesPlan ? model.tournamentTotal : cents(v.entries * v.buyIn);
     const lodging = v.nights * trueNightly;
-    const parking = v.nights * v.parking;
+    const parking = v.parking === null ? null : v.nights * v.parking;
     const coreEstimate = tournament + lodging;
-    const allIn = coreEstimate + parking;
+    const allIn = parking === null ? null : coreEstimate + parking;
     out.innerHTML = 'Core trip estimate: <strong>' + money(coreEstimate) + '</strong>' +
-      '<span class="muted"> · ' + money(allIn) + ' including parking</span>';
+      (allIn === null ? '<span class="muted"> · parking-inclusive total unavailable</span>' :
+        '<span class="muted"> · ' + money(allIn) + ' including parking</span>');
     brk.innerHTML =
       '<div><strong>Core formula</strong> entries × average buy-in + nights × true hotel cost</div>' +
       '<div><strong>Entries</strong> ' + (usesPlan ? v.entries + ' planned buy-ins (exact sum)' : v.entries + ' × ' + money(v.buyIn)) + ' = ' + money(tournament) + '</div>' +
       '<div><strong>Hotel</strong> ' + v.nights + ' nights × ' + money(trueNightly) + ' true cost = ' + money(lodging) +
       ' <span class="muted">(rate ' + money(v.rate) + ' + resort fee ' + money(v.resortFee) + ' + tax ' + money(taxes) + ')</span></div>' +
       '<div><strong>Core estimate</strong> ' + money(tournament) + ' + ' + money(lodging) + ' = ' + money(coreEstimate) + '</div>' +
-      '<div><strong>Parking, separate</strong> ' + v.nights + ' nights × ' + money(v.parking) + ' = ' + money(parking) +
-      '; all-in including parking: <strong>' + money(allIn) + '</strong></div>' +
+      (parking === null ? '<div><strong>Parking, separate</strong> unknown; all-in total unavailable.</div>' :
+        '<div><strong>Parking, separate</strong> ' + v.nights + ' nights × ' + money(v.parking) + ' = ' + money(parking) +
+        '; all-in including parking: <strong>' + money(allIn) + '</strong></div>') +
       '<div class="muted">Tax is charged on the room rate and on the resort fee, because the official terms describe the fee as "plus applicable tax". Parking is not included in true room cost per night or in the core formula.</div>';
   }
   form.addEventListener('input', calc);

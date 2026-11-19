@@ -20,11 +20,11 @@ def true_nightly(rate, resort_fee, tax_pct):
     terms page reviewed says the fee is "plus applicable tax" and Bellagio's
     terms add that lodging taxes apply to the resort fee as well.
     """
-    if rate in (None, "") or resort_fee in (None, ""):
+    if any(value in (None, "") for value in (rate, resort_fee, tax_pct)):
         return None
     rate = float(rate)
     resort_fee = float(resort_fee)
-    tax_pct = float(tax_pct or 0)
+    tax_pct = float(tax_pct)
     return round((rate + resort_fee) * (1 + tax_pct / 100), 2)
 
 
@@ -34,13 +34,12 @@ def trip_cost(entries, buy_in, nights, rate, resort_fee, tax_pct,
 
     ``extra_nights_at`` lets a caller price the same stay at a second published
     rate (for example the $209 Palazzo starting rate) without inventing a
-    blended average.  Blank inputs are treated as zero, and the breakdown says
-    so, because a blank means "no official source published this", not "free".
+    blended average. Blank inputs remain unknown; an explicit zero is allowed.
     """
-    entries = int(entries or 0)
-    buy_in = float(buy_in or 0)
-    nights = int(nights or 0)
-    parking = float(parking_per_night or 0)
+    entries = int(entries) if entries not in (None, "") else None
+    buy_in = float(buy_in) if buy_in not in (None, "") else None
+    nights = int(nights) if nights not in (None, "") else None
+    parking = float(parking_per_night) if parking_per_night not in (None, "") else None
 
     # The seven chosen primaries are $200, $200, $400, $300, $600, $600 and $300, which
     # sum to exactly $2,600. Their mean is $371.428571..., so multiplying the rounded
@@ -50,16 +49,12 @@ def trip_cost(entries, buy_in, nights, rate, resort_fee, tax_pct,
     if buy_in_exact not in (None, ""):
         tournament_total = round(float(buy_in_exact), 2)
     else:
-        tournament_total = round(entries * buy_in, 2)
+        tournament_total = round(entries * buy_in, 2) if entries is not None and buy_in is not None else None
     nightly = true_nightly(rate, resort_fee, tax_pct)
-    if nightly is None:
-        lodging_total = None
-        parking_total = None
-        grand = None
-    else:
-        lodging_total = round(nights * nightly, 2)
-        parking_total = round(nights * parking, 2)
-        grand = round(tournament_total + lodging_total + parking_total, 2)
+    lodging_total = round(nights * nightly, 2) if nights is not None and nightly is not None else None
+    parking_total = round(nights * parking, 2) if nights is not None and parking is not None else None
+    grand = (round(tournament_total + lodging_total + parking_total, 2)
+             if all(value is not None for value in (tournament_total, lodging_total, parking_total)) else None)
 
     out = {
         "entries": entries,
@@ -80,7 +75,9 @@ def trip_cost(entries, buy_in, nights, rate, resort_fee, tax_pct,
         alt = true_nightly(extra_nights_at, resort_fee, tax_pct)
         out["alternateRatePerNight"] = extra_nights_at
         out["alternateTrueCostPerNight"] = alt
-        out["alternateTripTotal"] = round(tournament_total + nights * alt + (parking_total or 0), 2)
+        out["alternateTripTotal"] = (round(tournament_total + nights * alt + parking_total, 2)
+                                     if all(value is not None for value in (tournament_total, nights, alt, parking_total))
+                                     else None)
     return out
 
 
