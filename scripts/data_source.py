@@ -1563,6 +1563,20 @@ FLAGS = [
                  "service charge + $5 tournament fee) sum to $205, $5 above the printed $200 rebuy. Reported verbatim "
                  "without adjustment; the event remains isolated in the extra-spend section."),
          source="https://cdn.wynnresorts.com/image/upload/v1752011191/visitwynn_pdfs_files/Poker/Daily%20Tournaments/Poker-All_Daily_Structures.pdf"),
+    dict(id="F106", area="Venetian", severity="Low",
+         title="The Venetian booking page prints two different connecting-suite charges in the same panel",
+         detail=("Found on 2026-11-19 while attempting a dated re-quote of the trip window (2 adults, 23-30 Nov "
+                 "2026) on the official booking engine. The guest/date panel prints 'Connecting Suites: + $20 / "
+                 "Night' and, a few lines below it, 'Connecting suites have a door between suites. There is a $10 "
+                 "per suite, per night.' The two figures describe the same option and differ by $10 a night - $70 "
+                 "across the seven-night stay - and the page does not say which applies, whether one line is "
+                 "stale, or whether the second sentence is simply truncated. Neither figure is adopted and neither "
+                 "is averaged: the site records no connecting-suite charge at all, because a row cannot carry a "
+                 "value the source contradicts with itself. Read the charge in the cart, or ask the hotel, before "
+                 "treating any suite total as complete. Recorded verbatim in the 2026-11-19 Venetian rate-log "
+                 "entry, which also records that the same read printed no nightly rates (every calendar cell read "
+                 "'$XXX') - which is why the 2026-11-17 totals are still the latest dated quotes for the window."),
+         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar"),
 
 ]
 

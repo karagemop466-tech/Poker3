@@ -5,7 +5,7 @@
     "hotels": 8,
     "routes": 56,
     "sources": 50,
-    "flags": 101,
+    "flags": 102,
     "planDays": 7,
     "asOf": "2026-11-19"
   },
@@ -228,7 +228,7 @@
       "status": "shipped",
       "location": "site/flagged.html + site/sources.html + scripts/verify_site.py",
       "flags": [],
-      "note": "101 flags, each with its official source link; verify_site.py enforces official-domain source links and intentional blanks for unverified values."
+      "note": "102 flags, each with its official source link; verify_site.py enforces official-domain source links and intentional blanks for unverified values."
     },
     {
       "id": "U9",

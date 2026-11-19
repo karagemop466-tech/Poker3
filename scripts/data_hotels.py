@@ -1036,15 +1036,44 @@ RATE_LOG = [
                "'Cancel 72 hours prior to arrival to avoid penalty of one night's room rate and tax.' The same page "
                "prints an offer-specific restriction for stays 15-21 Nov 2026 (cancel 21 days prior; non-refundable "
                "if booked on or after 25 Oct 2026) - recorded as printed, it does not cover this window. The Wynn "
-               "Rewards Exclusive Rate and The Wonder of Wynn print no price without sign-in. Occupancy caveat: the "
-               "extracted page text does not expose the adults selector's selected value, so this is the engine's "
-               "default occupancy for 1 room (the URL carries rooms=1); confirm the guest count in the cart before "
-               "payment. Parking, printed on the page: self-parking complimentary to registered guests; valet "
+               "Rewards Exclusive Rate and The Wonder of Wynn print no price without sign-in. Occupancy note, since "
+               "resolved: this read left the guest count to the engine's default, and the entry below re-requests "
+               "the same window with adults=2 in the URL and reproduces both figures, so the quote is a "
+               "two-adult quote. Parking, printed on the page: self-parking complimentary to registered guests; valet "
                "complimentary to Tower Suites registered guests. Extra guests: 'for rooms with more than two guests "
                "a $50 per night per additional person fee is added'. Same day, the same engine with its default "
                "1-night window (18-19 Nov 2026) printed $654 avg/night Flexible and $564 Fall, so the quotes move "
                "with the stay window - which is why they are logged, not stored as one value."),
          source=WYNN_IB_TRIP, feeSource=WYNN_TERMS, taxSource=WYNN_TERMS),
+    # Third read of the same window the same day, requested with the occupancy stated in the URL instead
+    # of left to the engine's default. It reproduces both figures, so the occupancy caveat on the entry
+    # above is resolved rather than left open: the quote is a two-adult quote.
+    dict(hotel="wynn", observedOn="2026-11-19", baseRate="",
+         publishedStartingRates=("Re-read of the same window with the occupancy stated in the URL "
+                                 "(adults=2): Flexible Getaway Rate $495 avg/night and 'Your Fall to Have "
+                                 "It All' $405 avg/night - identical to the figures recorded earlier the same "
+                                 "day, both footed 'Includes Resort Fee, Excludes taxes'"),
+         resortFee="55.00 per night (printed on the same page: 'A daily resort fee of $55 plus tax will be "
+                   "added to your room account for each complimentary (if applicable) and purchased room night')",
+         tax="not printed for this quote ('Excludes taxes'; Wynn publishes no room-tax percentage - F39)",
+         trueNightlyLow="", trueNightlyHigh="",
+         quoteType=("Dated official engine quote, occupancy stated (Wynn Resort King, 7 nights, "
+                    "23-30 Nov 2026, 2 adults) - re-read 2026-11-19"),
+         note=("Requested again on 2026-11-19 with '&adults=2' carried in the URL, so the guest count is an "
+               "input to the read and not an inference from the engine's default. The page still prints "
+               "'7 Night Stay: Nov. 23 - Nov. 30, 2026' and the same two averages, $495 and $405, and the "
+               "same terms: 'Cancel 72 hours prior to arrival to avoid penalty of one night's room rate and "
+               "tax', one night's room rate and tax charged at booking, and 'for rooms with more than two "
+               "guests a $50 per night per additional person fee is added to the room cost'. The occupancy "
+               "caveat on the trip-window entry above is therefore resolved: that entry was a two-adult "
+               "quote as well. The two Wynn Rewards offers still print no price without sign-in, so the "
+               "$405 public average remains the lowest dated figure this read could see, and it is a fee-"
+               "inclusive average, not a fee-exclusive nightly rate - it must not be typed into the "
+               "room-rate box of the calculator, which adds the fee itself (see F69 on the Venetian's "
+               "equivalent trap). No total is derived from it: deriving one needs a tax base, and the page "
+               "does not state whether the unshown tax is charged on the fee-inclusive average or on a "
+               "fee-exclusive rate."),
+         source=WYNN_IB_TRIP + "&adults=2", feeSource=WYNN_TERMS, taxSource=WYNN_TERMS),
     dict(hotel="wynn", observedOn="2026-11-19", baseRate="",
          publishedStartingRates=("Context read the same minutes: engine default 1-night stay 18-19 Nov 2026, "
                                  "Wynn Resort King - Flexible Getaway $654 avg/night, 'Your Fall to Have It All' "
@@ -1154,7 +1183,13 @@ RATE_LOG = [
                "a failed render, not evidence of a sold-out stay or a price change: no figure was printed, so none "
                "is recorded. The printed totals from 2026-11-17 ($4,010.55 Venetian / $3,823.46 Palazzo) remain "
                "the latest dated checkout totals for this window, and a working render should be re-checked before "
-               "nonrefundable payment."),
+               "nonrefundable payment. A third read later the same day, after the Wynn engine had returned dated "
+               "rates on the same reader, failed the same way: the date panel echoed the query back correctly "
+               "('Mon, Nov 23 to Mon, Nov 30'), so the request shape is right, and every November day cell in the "
+               "calendar printed the literal placeholder '$XXX' - the cells are filled by client-side script the "
+               "reader does not execute. The same read printed two connecting-suite charges ten dollars apart with "
+               "no explanation: 'Connecting Suites: + $20 / Night' and 'Connecting suites have a door between "
+               "suites. There is a $10 per suite, per night.', recorded as printed (flag F106)."),
          source=VENETIAN_CALENDAR_TRIP_URL, feeSource=VENETIAN_RESORT_FEE, taxSource=VENETIAN_HOTEL_TERMS),
 ]
 
