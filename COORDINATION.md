@@ -6754,3 +6754,11 @@ Branch: `arena/b3501a60-poker3` (fast-forwarded to `origin/main` 54c1a50 before 
 - **Irregularity logged:** none new. The PDF's first-page chunk was not re-read this session; the saved transcription (2026-11-16) was used for it.
 - **Process note (for the board):** the first attempt to rebase this branch conflicted in this file and the claim commit landed on a detached state. It was not pushed; the branch was reset to `origin/main` and the claim re-applied. The clone was shallow, so `git fetch --unshallow origin` was needed before ancestry checks worked. Sessions rebasing here should expect the same.
 - **Status:** done. Human action still needed (F31): a written question to the room, as listed in the record.
+
+### Publication record (session `arena/f5a04e69-poker3`, 2026-11-19 UTC)
+
+- **PR:** [#231](https://github.com/karagemop466-tech/Poker3/pull/231) (`arena/f5a04e69-poker3` → `main`). First merge attempt failed with a `COORDINATION.md` conflict (another session merged #230 meanwhile); resolved by merging `origin/main` and keeping main's board in full with this session's sections re-appended. No force-push.
+- **Merge:** `gh pr merge 231 --merge` → MERGED, merge commit `cbac3cb5c56644b77fd475383666266a05db5431`.
+- **Checks on the merge commit:** `Verify static research site` success; `Official table transcription check` success; `Publish the canonical Vegas Poker Planner to GitHub Pages` success (run 44601814098); legacy `pages build and deployment` success (run 44601813502).
+- **Pages API:** latest build for `cbac3cb` completed with no error. A later build (`f805caa`, another session's commit) was in progress at the time of writing.
+- **Follow-up:** this record is transported to `main` by one further PR from this branch; it changes no source-backed value.
