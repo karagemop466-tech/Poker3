@@ -4529,3 +4529,20 @@ The documentation follow-up preserved both the #156 and #159 board entries when 
 - GitHub Pages: Pages API reports `status: built`, source `main` `/`, https://karagemop466-tech.github.io/Poker3/ . The "Publish the canonical Vegas Poker Planner to GitHub Pages" workflow completed `success` on the post-merge main tip.
 - PRs #112 and #130 closed as superseded with explanatory comments (both unmergeable — no merge base against `main`; #112's quote + walk matrix already on `main`, its walk-direction fix re-implemented in #153; #130's three fixes re-implemented in #153).
 - Open flags (published on `site/flagged.html`, do not block): F31, F17, F16, F39, F56, F15/F36/F57, F92. F92 (Venetian poker page wording change, 2026-11-18 20:24 UTC) still needs a manual re-read before nonrefundable payment.
+
+---
+
+## Session `arena/9b858e66-poker3` — live re-verification pass (2026-11-19 UTC)
+
+Branch: `arena/9b858e66-poker3`, branched from `main` @ `23ad5d8` (branch head even with `main` at claim time). Platform-bound branch name; the `session-<id>/<task>` naming in the brief cannot be applied. No open PRs at claim time (`gh pr list --state open` returned none).
+
+| Task | Status | Owner | Files in scope | Notes |
+|---|---|---|---|---|
+| A1 Claim recorded before any data edit | done | arena/9b858e66-poker3 | `COORDINATION.md` | This commit. |
+| A2 Live re-read of the Venetian DeepStack Extravaganza IV and NYE schedule pages; compare every row field-by-field with `site/data.json` | in progress | arena/9b858e66-poker3 | `scripts/data_venetian.py`, `raw/**` (new capture) | Only rows actually re-read get a 2026-11-19 check date. |
+| A3 Live re-read of the hotel evidence (suite rates, resort fee, hotel terms, booking engine) and an exact-date checkout attempt for 2026-11-23 → 2026-11-30 | in progress | arena/9b858e66-poker3 | `scripts/data_hotels.py` (rate log append only) | A dated observation is appended, never averaged or substituted for a quote. |
+| A4 Re-read the other Strip rooms' official pages and re-confirm the open blocking flags (F31 written entry cap, F17 8 AM start, F16 finish times) | in progress | arena/9b858e66-poker3 | `scripts/data_venues.py`, `scripts/data_source.py` | A flag is only retired if the official page now prints the value. |
+| A5 Full verification suite, PR → `main`, merge, Pages deploy confirmation, record result | pending | arena/9b858e66-poker3 | whole repo | Flagged items do not block the merge; they ship on `site/flagged.html`. |
+
+**Scope protocol.** This session is the only active editor, so it acts as integration owner for the shared outputs (`site/**`, `scripts/**`, `tests/**`, `.github/workflows/**`, `README.md`, this file). Prior artefacts (`docs/`, `verified/`, `planner/`, `single-entry/`, `handoff/`, `pages/`, root legacy HTML, `site/poker3/**`) stay read-only. No tournament, hotel, rate, route or policy value is inferred: a blank stays blank and is flagged.
+
