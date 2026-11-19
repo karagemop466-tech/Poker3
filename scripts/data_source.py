@@ -1684,6 +1684,12 @@ FLAGS = [
                  "the $200 rebuy. "
                  "(12) F79/F103 reconfirmed: the Planet Hollywood casino page still displays '23 Live Poker Tables' "
                  "and 'new live action poker room' copy with no schedule. "
+                 "(13) The two Caesars booking-calendar pages were requested again for November 2026 (propCode clv "
+                 "and blv) and both still served 'Searching Rates' with a 'Sorry! Our website is currently "
+                 "experiencing technical difficulties' notice and no rate cells, so S22's monitoring continues with "
+                 "no dated rate for Caesars Palace or Horseshoe; the fee blocks both pages print still match the "
+                 "published resort-fee figures ($62.30 = $54.95 + $7.35 tax; $56.63 = $49.95 + $6.68 tax, $75 pet "
+                 "fee, $50-per-day deposit, $30-per-day rollaway). "
                  "The Bellagio Friday and Sunday sheets were also re-read and are unchanged, including their "
                  "re-entry-through-level-8 clauses. No published tournament, fee, guarantee, hotel, parking or "
                  "policy value moved."),

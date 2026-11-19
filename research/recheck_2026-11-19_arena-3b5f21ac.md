@@ -135,3 +135,18 @@ changed; the findings are recorded as flag-text updates and two new flags (F106,
 - **New spot-check record F107** itemizes the twelve reconfirmations above with fresh 2026-11-19 dates.
 - F56, F80, F103, F20, F71, F07, F09, F02, F52, F03, F13, F14, F39, F37, F83, F105, F79 remain open,
   now each re-confirmed live on 2026-11-19 by this session.
+
+## Caesars booking calendars (S22 monitoring, same session)
+
+Both flexible-date booking calendars were requested again for November 2026 on 2026-11-19 UTC:
+
+- Caesars Palace (propCode=clv): "Searching Rates" plus "Sorry! Our website is currently experiencing
+  technical difficulties. Please try your search again or call us at 1-888-342-7724." — no rate cells.
+- Horseshoe Las Vegas (propCode=blv): identical shell — no rate cells.
+
+Both pages still print their fee blocks, and every figure matches the published data: Caesars Palace
+"Resort fees: $62.30 ($54.95 plus $7.35 tax)", "Deposit: $100 per day"; Horseshoe "Resort fees: $56.63
+($49.95 plus $6.68 tax)", "Pet fee: $75", "Deposit: $50 per day", "Rollaway bed fee: $30 per day", and
+"Rates shown reflect the lowest available rate and include applicable resort fees."
+
+Recorded as item (13) of flag F107. No dated rate is logged because the pages printed none.
