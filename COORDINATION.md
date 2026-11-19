@@ -6738,6 +6738,7 @@ Branch: `arena/b3501a60-poker3` (fast-forwarded to `origin/main` 54c1a50 before 
 - The two Wynn booking-engine URLs (`reservations.wynnlasvegas.com/ibe/details.aspx?...`) were marked changed on 2026-11-19 because the page re-renders its visible text on each request (wording change, no published value change). They are already labelled as noise in the test docstring. A person should still re-read the 23–30 Nov quote before booking.
 - The live re-check from the CI runner (`checks.json`, 2026-11-19 07:34 UTC) recorded 23 failed and 15 unavailable of 108 URLs. Those are reachability failures from the runner, not verified page changes. The Sources page lists the last manual result for each.
 - Pages API reports the legacy branch build as `errored` while the `pages.yml` artifact deploy is the one that serves the site. Not changed here.
+**Publication record (session `arena/d2f205b3-poker3`).** PR [#227](https://github.com/karagemop466-tech/Poker3/pull/227) (`arena/d2f205b3-poker3` → `main`) merged with `gh pr merge 227 --merge` on 2026-11-19T19:44:37Z; merge commit `54c1a50f6f297e5af9b917e8b1d820330ce424e6`. Checks on the PR head (`transcription` and `verify`) passed before merge. Checks on the merge commit: `pages build and deployment`, `Official table transcription check`, `Verify static research site`, and `Publish the canonical Vegas Poker Planner to GitHub Pages` all **success**. Board task status: **done** (verification record only; no site value changed). Open items unchanged: F17 (no official 8 AM start), Venetian checkout quote refresh (booking engine not readable from this sandbox), F31 (no written one-entry rule).
 
 ## Session `arena/f5a04e69-poker3` — claim: official rules-page probe for F31 (one-entry rule), 2026-11-19 UTC
 
@@ -6755,8 +6756,32 @@ Branch: `arena/b3501a60-poker3` (fast-forwarded to `origin/main` 54c1a50 before 
 - **Process note (for the board):** the first attempt to rebase this branch conflicted in this file and the claim commit landed on a detached state. It was not pushed; the branch was reset to `origin/main` and the claim re-applied. The clone was shallow, so `git fetch --unshallow origin` was needed before ancestry checks worked. Sessions rebasing here should expect the same.
 - **Status:** done. Human action still needed (F31): a written question to the room, as listed in the record.
 
-### Publication record (session `arena/f5a04e69-poker3`, 2026-11-19 UTC)
+---
 
+## Session arena/98fa400f-poker3 (2026-11-19 live re-check of the trip window)
+
+Branch: `arena/98fa400f-poker3` (the only branch this session works on). Scope claimed: `scripts/data_hotels.py` (one new dated Venetian-engine quote), `scripts/data_source.py` (one new flag, F124), `tests/test_flag_ids_unique_2026_11_19.py` (the highest-flag pin moved from F123 to F124), and the generated `site/data.json`, `site/coverage.json`, `site/sheets.html`. No other file was changed.
+
+Scope honesty: most items in the brief were already built by earlier sessions (calculator, search, venue pages, rate log, single-entry filter, date filter, change monitor, flags page). This session did not rebuild them. It re-read the official trip-window sources and recorded what changed.
+
+| Task | Status | Notes |
+|---|---|---|
+| Live re-read of the Venetian DeepStack Extravaganza IV schedule (4 chunks, 2026-11-19) against the trip-window rows (23-30 Nov) | done, no published row changed | All 20 trip-window rows match on date, start time, event number, name, buy-in, guarantee and structure-sheet number. Source: https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html |
+| Live re-read of the Wynn poker page (2026-11-19) | done, no change to rows | Confirms WPT Nov 27 - Dec 21 and the daily-tournament suspension note. Source: https://www.wynnlasvegas.com/casino/poker |
+| Official Venetian booking engine, 23-30 Nov 2026, 2 adults | done: new dated observation F124 | Printed a Palazzo Luxury King total of $3,755.44 (rates 324.25/204.25/204.25/309.25/1,119.25/561.75/204.25; $55 fee per night; tax $443.19). The earlier same-day read printed $3,619.39. Both are kept; neither replaces the other. Source: https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar |
+| Golden Nugget, Circa, South Point, Orleans, Planet Hollywood and other Strip rooms | not done | The Golden Nugget poker page fetch failed in this session. Those rooms stay as listed in F21. |
+| 8 AM all-day plan | not done | No official source publishes an 8 AM start; the earliest verified main-list start is still 10:10 AM (F17). |
+| Google/Apple walking-time verification | not done | The sandbox has no route to maps providers. Existing walking times remain labelled as estimates. |
+
+Verification performed: `python3 scripts/data_source.py`, `scripts/coverage.py` and `scripts/build_addendum.py` regenerated the artifacts; `python3 -m unittest discover -s tests -p 'test_*.py'` ran all tests OK; `python3 scripts/verify_site.py` printed `events: 341 hotels: 8 routes: 56 sources: 50 flags: 115 plan days: 7 pages: 19 / verification passed`. The three test modules that failed on import in this sandbox (`yaml` missing) pass after `pip install --user pyyaml`, the same version family CI installs.
+
+Irregularities flagged (see `site/flagged.html`):
+- **F124 (new, Medium):** same-day drift on the Venetian booking engine (three reads of one stay on 2026-11-19: $3,619.39, $3,755.44; plus the 2026-11-17 reads of $4,010.55 and $3,823.46). Tax on the $3,755.44 read is one cent above 13.38% of its printed pre-tax subtotal ($443.19 printed vs $443.18 derived). The page's calendar footnote still says "includes daily resort fee, excludes taxes" (F51).
+- The 23 Nov palazzo rate on the new read ($324.25) is $120 above the 19 Nov read ($204.25) for the identical query. No value is adopted or averaged.
+
+Standing decision: **HOLD** on any nonrefundable payment, unchanged. Re-read the booking engine immediately before paying.
+
+### Publication record (session `arena/f5a04e69-poker3`, 2026-11-19 UTC)
 - **PR:** [#231](https://github.com/karagemop466-tech/Poker3/pull/231) (`arena/f5a04e69-poker3` → `main`). First merge attempt failed with a `COORDINATION.md` conflict (another session merged #230 meanwhile); resolved by merging `origin/main` and keeping main's board in full with this session's sections re-appended. No force-push.
 - **Merge:** `gh pr merge 231 --merge` → MERGED, merge commit `cbac3cb5c56644b77fd475383666266a05db5431`.
 - **Checks on the merge commit:** `Verify static research site` success; `Official table transcription check` success; `Publish the canonical Vegas Poker Planner to GitHub Pages` success (run 44601814098); legacy `pages build and deployment` success (run 44601813502).

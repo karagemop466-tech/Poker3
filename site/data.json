@@ -21905,6 +21905,62 @@
      "note": "Printed by the official booking engine on 2026-11-19 for the identical query as the 2026-11-17 read (2 adults, arrival 23 Nov 2026, departure 30 Nov 2026, 7 nights): a palazzo Luxury King suite, 'Estimated cost of stay' $3,619.39, nightly rates 204.25/204.25/204.25/309.25/1,119.25/561.75/204.25, a $55.00 resort fee listed on each of the seven nights, taxes $427.14 and an Average Rate line of $456.04. The 2026-11-17 read of the same query returned a venetian Newly Remodeled Luxury King at $4,010.55 (kept in the log). Both are dated observations; neither replaces the other and neither is a booking price. Arithmetic: the seven printed room rates sum to $2,807.25, the seven $55 fees to $385.00, so the pre-tax subtotal is $3,192.25; 13.38% of that is $427.12, two cents below the printed $427.14, and $3,192.25 + $427.14 = $3,619.39, which is the printed total exactly. The printed Average Rate of $456.04 is the average of (room rate + $55) and therefore includes the resort fee, while the calendar footnote says its figures include the daily resort fee and exclude taxes - the same wording conflict as flag F51. The all-in cost per night for this quote is the printed total divided by seven, $517.06, and the seven per-night derivations above add to $3,619.38, one cent under the printed total. This is not the phone-only poker rate (code EPOKR25, flag F66) and the poker rate requires six hours of play or a $300+ tournament buy-in for each night stayed.",
      "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar",
      "observedOn": "2026-11-19"
+    },
+    {
+     "property": "The Palazzo - palazzo Luxury King suite",
+     "checkIn": "2026-11-23",
+     "checkOut": "2026-11-30",
+     "guests": 2,
+     "nights": 7,
+     "offer": "Book Direct: Up to 25% Off",
+     "suiteDetail": "Approximately 720 square feet, king bed, sunken living room, Roman tub",
+     "nightly": [
+      [
+       "2026-11-23",
+       324.25
+      ],
+      [
+       "2026-11-24",
+       204.25
+      ],
+      [
+       "2026-11-25",
+       204.25
+      ],
+      [
+       "2026-11-26",
+       309.25
+      ],
+      [
+       "2026-11-27",
+       1119.25
+      ],
+      [
+       "2026-11-28",
+       561.75
+      ],
+      [
+       "2026-11-29",
+       204.25
+      ]
+     ],
+     "resortFeePerNight": 55.0,
+     "taxes": 443.19,
+     "total": 3755.44,
+     "averageRate": 473.18,
+     "derivedNightly": [
+      429.99,
+      293.94,
+      293.94,
+      412.99,
+      1331.36,
+      699.27,
+      293.94
+     ],
+     "derivedTotal": 3755.43,
+     "note": "Printed by the official booking engine on 2026-11-19 (read about 19:44 UTC, sandbox clock) for the identical query as the two earlier 2026-11-19 and 2026-11-17 reads (2 adults, arrival 23 Nov 2026, departure 30 Nov 2026, 7 nights): a palazzo Luxury King suite, 'Estimated cost of stay' $3,755.44, nightly rates 324.25/204.25/204.25/309.25/1,119.25/561.75/204.25, a $55.00 resort fee on each of the seven nights, taxes $443.19 and an Average Rate of $473.18. Against the earlier same-day read ($3,619.39) the total is $135.05 higher, and the difference is the 23 Nov room rate (+$120.00) plus its share of tax. The three same-day reads show that the engine's best-available offer for this stay changed within one day with no change to dates, party size or suite type. Each read is kept as a dated observation; none is a booking price. This is not the phone-only poker rate (code EPOKR25, flag F66); the poker rate requires six hours of play or a $300+ tournament buy-in for each night stayed.",
+     "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar",
+     "observedOn": "2026-11-19"
     }
    ],
    "bookingUrl": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar",
@@ -25109,6 +25165,14 @@
    "title": "2026-11-19 non-trip-window spot check: 24 official sources re-read; no published value changed; F56, F80, F20, F83, F39 and F37 remain open",
    "detail": "An independent read of the official pages on 2026-11-19 (session arena/3b5f21ac-poker3) covering the open flags outside the trip-window re-read (PR #173 scope) and outside the calculator scope (PR #184 scope). Verbatim excerpts are in research/recheck_2026-11-19_arena-3b5f21ac.md. (1) F56 reconfirmed: the Wynn Signature Series structures PDF still prints only 'LAS VEGAS / POKER / COMING SOON'. (2) F80/F103 reconfirmed: rwlasvegas.com/gaming still links /poker-room/, which still serves the gaming-page shell; /gaming/casino-events/ lists slot events only. (3) F20/F73/F90 reconfirmed: the 2026 Caesars Palace flyer still prices 10 AM $100, 2 PM $160, 6 PM $100, 9 PM $160 with the $50 add-on and re-entry within the first break, the 17 July 2026 article still says every event is $100, and the Horseshoe section still publishes six start times with no buy-ins, levels or guarantees. (4) F71/F07/F09/F72 reconfirmed: the MGM Grand page still says 11:00am/7:00pm/11:00pm while its weekly PDF still prints 11:10am/7:10pm/11:10pm under the 'August Tournament Schedule' heading, and the $120 structure PDF still carries the 'Max Stacks Tournament Series' title and the five-entries footnote. (5) F02/F52 reconfirmed and F115 recorded: the Bellagio Saturday sheet still prints the $1,100 heading against the $600 rule-07 split and the '200-4300' level, and additionally describes a September 13, 2026 combined Day 2 with four flights. (6) F03 reconfirmed: the undated 'Saturday, July 26' resumption notice is still on the Bellagio poker page. (7) F13 reconfirmed: the ARIA page still publishes no tournament schedule and points to the phone number and @ARIAPoker. (8) F99 reconfirmed: the MGM Resorts parking page still prints registered-guest self-parking $20 flat across weekdays and weekends and valet $40 for the eleven-property table. (9) F14/F39/F37 reconfirmed: the Wynn terms and resort-information pages still print '$55 plus tax' with no percentage, the MGM Grand terms page still prints '$50.00 plus applicable tax' with 'Estimated taxes are based on current tax rates' and no percentage, and caesars.com/help/faq redirects to the homepage; no property-published room-tax percentage was found. (10) F83 reconfirmed with new sheet wording: each Wynn daily structure sheet says the tournament 'may be suspended during Seniors Events, Classic Events, or other Tournament Series' while the poker page names only Signature, Wynn Millions and Classic; no official page states whether the daily slate runs November 27-29, 2026 alongside the WPT World Championship. (11) F105 reconfirmed verbatim: the Friday $240 sheet still prints $190 + $10 + $5 = $205 against the $200 rebuy. (12) F79/F103 reconfirmed: the Planet Hollywood casino page still displays '23 Live Poker Tables' and 'new live action poker room' copy with no schedule. (13) The two Caesars booking-calendar pages were requested again for November 2026 (propCode clv and blv) and both still served 'Searching Rates' with a 'Sorry! Our website is currently experiencing technical difficulties' notice and no rate cells, so S22's monitoring continues with no dated rate for Caesars Palace or Horseshoe; the fee blocks both pages print still match the published resort-fee figures ($62.30 = $54.95 + $7.35 tax; $56.63 = $49.95 + $6.68 tax, $75 pet fee, $50-per-day deposit, $30-per-day rollaway). The Bellagio Friday and Sunday sheets were also re-read and are unchanged, including their re-entry-through-level-8 clauses. No published tournament, fee, guarantee, hotel, parking or policy value moved.",
    "source": "https://cdn.wynnresorts.com/image/upload/v1762299460/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Structures.pdf"
+  },
+  {
+   "id": "F124",
+   "area": "Venetian booking engine",
+   "severity": "Medium",
+   "title": "The official Venetian booking engine printed a third, different total for the same 23-30 Nov 2026 Palazzo stay on 2026-11-19",
+   "detail": "Read on 2026-11-19 at about 19:44 UTC (session arena/98fa400f-poker3) with the identical query used for the two earlier 2026-11-19 and 2026-11-17 reads (2 adults, arrival 23 Nov, departure 30 Nov, 7 nights). The page printed a palazzo Luxury King suite with 'Estimated cost of stay' $3,755.44, nightly room rates 324.25/204.25/204.25/309.25/1,119.25/561.75/204.25, a $55.00 resort fee on each night, taxes $443.19 and an Average Rate of $473.18. The earlier same-day read printed $3,619.39 (rates 204.25 on 23 Nov, taxes $427.14). The two same-day totals differ by $135.05 with no change to dates, party size or suite type. The 23 Nov room rate alone moved by $120.00. Arithmetic: the seven rates sum to $2,927.25 and the fees to $385.00, so the pre-tax subtotal is $3,312.25; 13.38% of that is $443.18, one cent below the printed $443.19, and $3,312.25 + $443.19 = $3,755.44 is the printed total exactly. The page's calendar footnote still says its prices include the resort fee and exclude taxes (flag F51). Each read is recorded as a dated observation in the rate log; none replaces another, and none is a booking price. Action: re-read the engine immediately before any nonrefundable payment, and ask the hotel to confirm the rate in writing. Consistent with F78 and F120 (the engine's intraday drift).",
+   "source": "https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar"
   },
   {
    "id": "F101",

@@ -340,8 +340,40 @@ VENETIAN_QUOTE_TRIP_2026_11_19 = dict(
           "poker rate requires six hours of play or a $300+ tournament buy-in for each night stayed."),
     source=VENETIAN_CALENDAR_TRIP_URL, observedOn="2026-11-19")
 
+# Third dated checkout total for the SAME trip stay, printed by the official booking engine later on 2026-11-19
+# (session arena/98fa400f-poker3, read 2026-11-19 about 19:44 UTC). It is kept beside the two earlier reads and
+# replaces neither. The same query, read the same day, printed a higher Nov 23 room rate ($324.25 against $204.25),
+# a higher total and a one-cent-high tax (flag F124). Arithmetic check on the printed figures:
+#   nightly room rates         324.25 + 204.25 + 204.25 + 309.25 + 1119.25 + 561.75 + 204.25 = 2,927.25
+#   resort fee                 7 x 55.00                                                   =   385.00
+#   pre-tax subtotal           2,927.25 + 385.00                                            = 3,312.25
+#   printed "Taxes"            443.19   (13.38% of 3,312.25 is 443.18; the printed tax is 1 cent higher;
+#                                         3,312.25 + 443.19 = 3,755.44 is the printed total exactly)
+#   printed "Average Rate"     473.18   ((2,927.25 + 385.00) / 7 = 473.18, the average INCLUDING the fee)
+VENETIAN_QUOTE_TRIP_2026_11_19_B = dict(
+    property="The Palazzo - palazzo Luxury King suite",
+    checkIn="2026-11-23", checkOut="2026-11-30", guests=2, nights=7,
+    offer="Book Direct: Up to 25% Off",
+    suiteDetail="Approximately 720 square feet, king bed, sunken living room, Roman tub",
+    nightly=[("2026-11-23", 324.25), ("2026-11-24", 204.25), ("2026-11-25", 204.25), ("2026-11-26", 309.25),
+             ("2026-11-27", 1119.25), ("2026-11-28", 561.75), ("2026-11-29", 204.25)],
+    resortFeePerNight=55.00,
+    taxes=443.19, total=3755.44, averageRate=473.18,
+    derivedNightly=[429.99, 293.94, 293.94, 412.99, 1331.36, 699.27, 293.94], derivedTotal=3755.43,
+    note=("Printed by the official booking engine on 2026-11-19 (read about 19:44 UTC, sandbox clock) for the identical "
+          "query as the two earlier 2026-11-19 and 2026-11-17 reads (2 adults, arrival 23 Nov 2026, departure 30 Nov 2026, "
+          "7 nights): a palazzo Luxury King suite, 'Estimated cost of stay' $3,755.44, nightly rates "
+          "324.25/204.25/204.25/309.25/1,119.25/561.75/204.25, a $55.00 resort fee on each of the seven nights, taxes "
+          "$443.19 and an Average Rate of $473.18. Against the earlier same-day read ($3,619.39) the total is $135.05 "
+          "higher, and the difference is the 23 Nov room rate (+$120.00) plus its share of tax. The three same-day reads "
+          "show that the engine's best-available offer for this stay changed within one day with no change to dates, "
+          "party size or suite type. Each read is kept as a dated observation; none is a booking price. This is not the "
+          "phone-only poker rate (code EPOKR25, flag F66); the poker rate requires six hours of play or a $300+ "
+          "tournament buy-in for each night stayed."),
+    source=VENETIAN_CALENDAR_TRIP_URL, observedOn="2026-11-19")
+
 VENETIAN_QUOTES = [VENETIAN_QUOTE, VENETIAN_QUOTE_2026_11_17, VENETIAN_QUOTE_NOV_20, VENETIAN_QUOTE_TRIP,
-                   VENETIAN_QUOTE_TRIP_2026_11_19]
+                   VENETIAN_QUOTE_TRIP_2026_11_19, VENETIAN_QUOTE_TRIP_2026_11_19_B]
 
 # Stay windows the engine was opened for on 2026-11-17 that returned no suite and no price.
 # Each is a dated observation of the official engine, not an inference.
