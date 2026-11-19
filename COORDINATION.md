@@ -6911,3 +6911,32 @@ Standing decision: **HOLD** on any nonrefundable payment, unchanged. Re-read the
 | V5 PR to `main`, merge (no auto-merge, no approval wait), Pages confirmation, PR link and result recorded here | pending | `arena/02417c60-poker3` | whole repo (integration), this board | Flagged and unverified items do not block the merge; they stay on the Flagged for review page. |
 
 **Non-overlap.** This session edits only `COORDINATION.md` and `research/live_check_2026-11-19_arena-02417c60.md`. No tournament, hotel, rate, flag, route or site file is edited. Open PR #224 (`arena/a400f338-poker3`, record only) also appends to this board. If it merges first, this session rebases and keeps both sections.
+
+### Result (session `arena/02417c60-poker3`, 2026-11-19 UTC)
+
+**Claim status: V1 done · V2 done (F31 still open) · V3 done · V4 done · V5 done. PR and merge recorded below.**
+
+**Files added in this session's scope:** `research/live_check_2026-11-19_arena-02417c60.md` (new, dated record with the reproducible check) and `raw/venetian_dse_nov_2026_schedule_pdf_trip_window_2026-11-19_arena-02417c60.md` (new, the 19 trip-window rows copied verbatim from the official PDF). `COORDINATION.md` (this section only). No tournament, hotel, rate, route, flag, script or site file was edited, and no value changed.
+
+**Official sources read live on 2026-11-19 (fetch tool, dated, verbatim excerpts in the record):**
+
+- [Venetian poker room page](https://www.venetianlasvegas.com/resort/casino/poker.html), both chunks: no tournament entry rule; advertises DSE IV, November 16 – December 23, 2026.
+- [DeepStack series page](https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html), both chunks: links the schedule PDF and the structure sheets; no entry rule.
+- [DSE IV schedule PDF](https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf), both chunks, read to the end: no footnote, no entry-rule wording on any row.
+- [Venetian Terms of Use](https://www.venetianlasvegas.com/legal/terms-of-use.html), chunk 1 of 6 only (last updated July 8, 2026): section 3 lists the additional policies it governs; no poker-room or tournament rules document is listed. The other five chunks were not read.
+- [Venetian suite-rate page](https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html) and [calculator](https://karagemop466-tech.github.io/Poker3/calculator.html) (the deployed canonical path): read back; the defaults match the recompute below.
+- [Flag register on the deployed site](https://karagemop466-tech.github.io/Poker3/site/flagged.html): served, latest automated check and register present.
+
+**Verification performed.**
+
+- **V1:** `python3 -m unittest discover -s tests -p 'test_*.py'` in a virtualenv with `PyYAML==6.0.3` → **434 tests OK**. `scripts/verify_site.py` → 341 events / 8 hotels / 56 routes / 50 sources / 114 flags / 7 plan days / 19 pages, passed. `git diff --check` clean.
+- **V2 (F31):** no official page read this session states a maximum number of entries, a re-entry rule, a rebuy rule or an add-on rule for a DSE IV event. F31 stays **open** and needs the venue's written answer.
+- **V3 (Pages):** the Pages API reports `built` for `e668e08`. The legacy build for `4010f2e` (19:43:00Z) had reported `errored`; the next build (`e668e08`, 19:43:14Z) succeeded and is what is served. This is additional evidence for **F29** (two publishers), not a new fault.
+- **V4 (arithmetic):** recomputed with exact decimal arithmetic. Floor $197.28/night, $1,380.96 for seven nights, core $3,980.96, with parking $4,120.96; 2026-11-17 total $4,010.55 and 2026-11-19 total $3,619.39 both reconcile. The two $0.02 tax differences are already on record (F65, F120).
+- **V5 (trip-window PDF):** all 19 rows for 23–30 November copied verbatim and compared with the 19 published Venetian events. 18 of 19 agree on date, time, buy-in and guarantee. The one residual, the 25 November 11:00 AM Day 2 restart's guarantee, is **F63** (already recorded). The sponsor-art DATE cells on the 28 November rows are **F46** (already recorded).
+
+**Irregularities.** No new flag is raised by this session. F29 gains one observation (the errored legacy build above). F31, F17, F16, F63 and F46 are confirmed as still present on the official sources read today.
+
+**Request for the owner of `scripts/data_source.py` (not edited here, out of this session's scope).** Append the 2026-11-19 PDF cross-check and the errored legacy build for `4010f2e` to the F29 detail text the next time that file is edited for another reason. The reproducible check is in the research record.
+
+**Open items carried forward, unchanged:** F31 (written one-entry rule; the venue's written answer is needed before any nonrefundable payment), F17 (no official 8 AM start), F16 (no published finish times), and the booking total, which must be re-read at the moment of booking (F88, F93, F120). The trip decision remains **HOLD** on any nonrefundable payment.
