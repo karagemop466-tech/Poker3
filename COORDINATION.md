@@ -5671,6 +5671,30 @@ were already taken by parallel sessions, so this branch's two distinct flags wer
 duplicate F98 finding was dropped rather than published twice. The generated artifacts are byte-reproducible from
 the merged sources; no other session's work was overwritten.
 
+### PR, merge and GitHub Pages deployment (recorded 2026-11-19, session `arena/8194609f-poker3`)
+
+- **PR:** [#197](https://github.com/karagemop466-tech/Poker3/pull/197) — `arena/8194609f-poker3` → `main`.
+  Created with a summary, the full official source list and the flagged irregularities.
+- **PR checks:** `verify` **pass** (run [44478205541](https://github.com/karagemop466-tech/Poker3/actions/runs/44478205541)),
+  `transcription` **pass** (run [44478205590](https://github.com/karagemop466-tech/Poker3/actions/runs/44478205590)).
+- **Merge:** `gh pr merge 197 --merge` at **2026-11-19T07:16:04Z**, merge commit
+  [`43a4cda`](https://github.com/karagemop466-tech/Poker3/commit/43a4cda295f59cc328f6dd415376ef411c2591d4).
+  No approval wait; the brief explicitly requires the integration owner to merge without waiting.
+- **GitHub Pages:** the post-merge publish workflow
+  [run 44478300604](https://github.com/karagemop466-tech/Poker3/actions/runs/44478300604) completed successfully,
+  including the validator gate, the regression/render gate, artifact upload and `pages build and deployment`
+  (job 135404359362, deploy completed in 9 s). The live audit page was read back at
+  <https://karagemop466-tech.github.io/Poker3/verification.html> and rendered its 40-row requirement audit,
+  18 verbatim official reads, 19 trip-window rows, 97 flags and 341 published event rows from `site/data.json`.
+  Live site: <https://karagemop466-tech.github.io/Poker3/>.
+- **Integration outcome:** 341 events, 8 hotels, 56 routes, 49 official sources, 97 flags, 7 plan days,
+  18 canonical pages, 310 unit tests OK, `verify_site.py` passed, all four independent audits passed,
+  `verify_transcription.py` 44/44, headless render checks passed, 0 broken local links over 27 HTML pages,
+  and a byte-identical `data_source.py` rebuild. No value was inferred; every blank stays blank and flagged.
+- **Handoff:** flags remain open by design (F31 written one-entry rule, F02/F90/F51 official-source conflicts,
+  F17/F16 no 8 AM start or finish time, F101 stale unlinked snapshot JSONs). The booking decision remains HOLD
+  until those are answered by the venues. Flagged items did not block the merge.
+
 **Verification policy.** Every table row keeps its official source link. A value that cannot be confirmed from an
 official venue or property page/PDF is left blank and flagged. Third-party pages are cited only as conflicts, never as
 values. Any changed official page is flagged for a human re-read; automation never moves a published value.
