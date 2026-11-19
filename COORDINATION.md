@@ -5757,26 +5757,27 @@ progress; the final rebase keeps those stubs verbatim and keeps this session's g
 `tests/test_documentation_consistency.py` prevents the stale-count drift from returning.
 
 **Verification (post-rebase head).** `verify_site.py` passed (341 events / 8 hotels / 56 routes / 49 sources /
-96 flags / 7 plan days / 17 pages). Full unit suite: **311 tests OK**. `audit_951cd431.py` 0 failures / 0 warnings;
+97 flags / 7 plan days / 18 pages). Full unit suite: **320 tests OK**. `audit_951cd431.py` 0 failures / 0 warnings;
 `verify_live_official.py`, `audit_data.py`, `verify_entry_labels.py`, `verify_transcription.py` (44/44), `verify_dse_full.py`,
 `verify_dse_live_2026_11_19.py` (94/94), `verify_live_2026_11_19.py` (29/29), `verify_wpt_full.py` (136/136),
 `verify_sheets.py`, `verify_nye_live.py`, `canonical_smoke.py`, `tests/smoke.py`, `canonical_render.js`,
 `walk_limit_render.js`, all `node --check` commands, JSON parsing, the Pages workflow gate, data-source
 reproducibility and redirect-generator reproducibility all passed. `site/data.json`, `site/sheets.html` and
-`site/coverage.json` were regenerated from the auto-merged scripts after PR #199 landed, so F100 from session
-`arena/cce0b8d3` and this session's F29/source-id changes are both present.
+`site/coverage.json` were regenerated from the auto-merged scripts after PR #199/#201 landed, so F100 from session
+`arena/cce0b8d3`, F101 from the merged PR #197, and this session's F29/source-id changes are all present.
 
 **Irregularities published, not hidden.** F31 (no written one-entry cap), F16 (no finish times), F17 (no 8 AM start;
 earliest official recurring start is 9 AM), F39, F56, F88, F01/F61 (WPT Dec. 18 weekday/date misprint), F02 (Bellagio
-buy-in conflict), F51/F69, F100 and the rest of the 96-flag register remain on the Flagged for Review page with links.
+buy-in conflict), F51/F69, F100, F101 and the rest of the 97-flag register remain on the Flagged for Review page with links.
 F29 remains open because switching the Pages source requires a repository-settings permission the token lacks
 (`PUT /pages` returns 403). None blocks publication under the standing protocol.
 
-**Rebase / conflict log.** `main` advanced through concurrent PRs #181–#199 while this branch was open. Every board
+**Rebase / conflict log.** `main` advanced through concurrent PRs #181–#201 while this branch was open. Every board
 conflict was append-only; both sessions' sections were kept and no session record was discarded. The add/add collision
 on root short links was resolved by keeping session `arena/97eba119`'s already-published stubs and this session's
-generator/test; the `site/data.json` and `site/sheets.html` collision after PR #199 was resolved by rebuilding both
-from the merged builders. Open PRs #173, #184 and #197 were not edited, merged or closed by this session.
+generator/test; the `site/data.json` and `site/sheets.html` collisions after PR #199/#201 were resolved by rebuilding both
+from the merged builders. Open PRs #173 and #184 were not edited; PR #197 was merged by its owner while this branch
+was open and its work was preserved.
 
 **T3.** In progress: create the integration PR from this branch to `main`, merge it without waiting for approval,
 confirm both GitHub Pages deploy paths and live pages, then append the PR link, merge commit and deploy result here in
