@@ -324,9 +324,9 @@ SOURCES = [
     dict(id="blv-calendar", name="Horseshoe Las Vegas official booking page: fee block and dated Nov/Dec 2026 rate cells",
          url="https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates&flexibleMonth=November&propCode=blv",
          type="official hotel page", checked=RECHECKED),
-    dict(id="wynn-sig-struct", name="Wynn Signature Series structures file (read 2026-11-17: 'LAS VEGAS POKER - COMING SOON')",
+    dict(id="wynn-sig-struct", name="Wynn Signature Series structures file (read 2026-11-19: 'LAS VEGAS POKER - COMING SOON')",
          url="https://cdn.wynnresorts.com/image/upload/v1762299460/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Structures.pdf",
-         type="official structures file", checked=RECHECKED),
+         type="official structures file", checked="2026-11-19"),
     dict(id="vl-series", name="Venetian DeepStack Poker Series index (current, next and future series)",
          url="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html",
          type="official index", checked="2026-11-19"),
@@ -363,6 +363,9 @@ SOURCES = [
          type="official room page", checked="2026-11-19"),
     dict(id="wynn-terms", name="Wynn Las Vegas terms (resort fee, cancellation, parking)",
          url="https://www.wynnlasvegas.com/terms-and-conditions/850070", type="official terms", checked="2026-11-19"),
+    dict(id="wynn-ibe-trip", name="Wynn official booking engine, trip-window quote 23-30 Nov 2026 (read 2026-11-19)",
+         url="https://reservations.wynnlasvegas.com/ibe/details.aspx?hotelID=13763&langID=1&rmID=68658&checkIn=11/23/2026&checkOut=11/30/2026",
+         type="official booking engine", checked="2026-11-19"),
     dict(id="bell-poker", name="Bellagio poker room page", url="https://bellagio.mgmresorts.com/en/casino/poker.html",
          type="official room page", checked=RECHECKED),
     dict(id="bell-fri", name="Bellagio Friday $600 No Limit Hold'em structure",
@@ -915,7 +918,10 @@ FLAGS = [
                  "QR code for event structures'. There is therefore no readable official structure sheet for these 38 "
                  "rows today, and their single-entry, re-entry and add-on status correctly stays 'not verified' rather "
                  "than being inferred from the schedule. The schedule does print buy-in, guarantee, chips and level "
-                 "length for most rows, and those columns are shown."),
+                 "length for most rows, and those columns are shown. Re-read on 2026-11-19 by session "
+                 "arena/827185f7-poker3: the same URL still returns only 'LAS VEGAS / POKER / COMING SOON' (document "
+                 "title 'Poker Tournament - Details Coming Soon'), so the flag stands and the 38 rows stay "
+                 "unverified."),
          source="https://cdn.wynnresorts.com/image/upload/v1762299460/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Structures.pdf"),
 
     dict(id="F54", area="Trip plan", severity="High",
