@@ -17,6 +17,7 @@ const NAV = [
   ['flagged.html', 'Flagged for review', '⚑'],
   ['sources.html', 'Sources', '⛓'],
   ['sheets.html', 'Sheet verification', '☰'],
+  ['verification.html', 'Verification', '✓'],
 ];
 
 const PAGE = document.body.dataset.page || 'home';
@@ -1144,6 +1145,77 @@ function renderHome() {
   }
 }
 
+/* ------------------------------------------------------- verification audit */
+/* Rendered from site/data.json so the audit counts can never drift from the
+ * published dataset. Every link is either an internal page (checked by the
+ * site verifier) or an official venue/property URL. */
+function verificationLinks(items, kind) {
+  return (items || []).map((item) => {
+    const label = esc(item.label || item);
+    if (kind === 'pages') {
+      const external = /^https:\/\//.test(item.href);
+      return `<a href="${esc(item.href)}"${external ? ' target="_blank" rel="noopener"' : ''}>${esc(item.label)}</a>`;
+    }
+    const tag = item.kind === 'project file' ? ' <span class="muted">(project file)</span>' : '';
+    return `<a href="${esc(item.url)}" target="_blank" rel="noopener">${label}</a>${tag}`;
+  }).join('<span class="muted"> · </span>');
+}
+
+function renderVerification() {
+  const requirements = db.verification || [];
+  const reads = db.verificationReads || [];
+  const rows = db.verificationRows || [];
+  const summary = document.querySelector('[data-verification-summary]');
+  const done = requirements.filter((r) => r.status === 'done').length;
+  if (summary) {
+    const stat = (label, value, caption) =>
+      `<div class="stat"><div class="stat-label">${esc(label)}</div><div class="stat-value">${esc(value)}</div>` +
+      `<div class="stat-caption">${esc(caption)}</div></div>`;
+    summary.innerHTML =
+      stat('Requirements audited', requirements.length, 'One row per instruction in the brief') +
+      stat('Fully implemented', done, 'The rest are explicitly limited by official evidence') +
+      stat('Official reads', reads.length, 'Verbatim excerpts, re-read 2026-11-19') +
+      stat('Rows compared', rows.length, 'Trip-window rows, zero mismatches') +
+      stat('Published flags', (db.flags || []).length, 'Every one links an official source') +
+      stat('Published rows', (db.events || []).length, 'Every one links an official source');
+  }
+  const reqHost = document.querySelector('[data-verification]');
+  if (reqHost) {
+    const body = requirements.map((r) => {
+      const badge = r.status === 'done' ? '<span class="badge ok">done</span>'
+        : `<span class="badge warn">${esc(r.status)}</span>`;
+      return `<tr><th scope="row">${esc(r.id)}</th><td class="event-name">${esc(r.requirement)}</td>` +
+        `<td>${badge}</td><td>${verificationLinks(r.pages, 'pages')}</td>` +
+        `<td>${esc(r.evidence)}</td><td>${verificationLinks(r.sources, 'sources')}</td>` +
+        `<td>${esc(r.checked)}</td></tr>`;
+    }).join('');
+    reqHost.innerHTML = `<div class="table-wrap"><table><thead><tr><th>#</th><th>Requirement</th><th>Status</th>` +
+      `<th>Where</th><th>Verification performed</th><th>Official source / evidence</th><th>Checked</th>` +
+      `</tr></thead><tbody>${body}</tbody></table></div>`;
+  }
+  const readHost = document.querySelector('[data-verification-reads]');
+  if (readHost) {
+    const body = reads.map((r) => `<tr><th scope="row">${esc(r.id)}</th>` +
+      `<td class="event-name"><a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.title)}</a></td>` +
+      `<td>${esc(r.excerpt)}</td><td>${esc(r.value)}</td><td>${esc(r.checked)}</td>` +
+      `<td><span class="badge ok">${esc(r.result)}</span></td></tr>`).join('');
+    readHost.innerHTML = `<div class="table-wrap"><table><thead><tr><th>#</th><th>Official page</th>` +
+      `<th>Verbatim excerpt</th><th>Value confirmed</th><th>Read</th><th>Result</th></tr></thead>` +
+      `<tbody>${body}</tbody></table></div>`;
+  }
+  const rowHost = document.querySelector('[data-verification-rows]');
+  if (rowHost) {
+    const body = rows.map((r) => `<tr><th scope="row">${esc(r.date)}</th><td>${esc(r.time)}</td>` +
+      `<td>${esc(r.eventNumber)}</td><td class="event-name">${esc(r.name)}</td>` +
+      `<td>${money(r.buyIn)}</td><td>${money(r.guarantee)}</td><td>${esc(r.sheet)}</td>` +
+      `<td><code>${esc(r.rowId)}</code></td><td>${esc(r.result)}</td>` +
+      `<td><a href="${esc(r.source)}" target="_blank" rel="noopener">Official schedule</a></td></tr>`).join('');
+    rowHost.innerHTML = `<div class="table-wrap"><table><thead><tr><th>Date</th><th>Time</th><th>Event #</th>` +
+      `<th>Official name</th><th>Buy-in</th><th>Guarantee</th><th>Sheet</th><th>Published row</th>` +
+      `<th>Comparison</th><th>Source</th></tr></thead><tbody>${body}</tbody></table></div>`;
+  }
+}
+
 /* ------------------------------------------------------------------- boot */
 function boot() {
   renderNav();
@@ -1163,6 +1235,7 @@ function boot() {
     if (PAGE === 'suggestions') renderSuggestions();
     if (PAGE === 'flagged') renderFlags();
     if (PAGE === 'sources') renderSources();
+    if (PAGE === 'verification') renderVerification();
     if (PAGE === 'search') renderSearchResults(new URLSearchParams(location.search).get('q') || '');
   }).catch(() => {
     document.querySelectorAll('[data-load-error]').forEach((e) => { e.hidden = false; });

@@ -136,6 +136,7 @@ const PAGES = [
   ['global-search', '?q=venetian'],
   ['calculator', ''],
   ['ranking', ''],
+  ['verification', ''],
 ];
 
 /* The detailed venue pages use their own script and their own data attributes. */

@@ -5500,7 +5500,7 @@ branch. This session acts as the on-duty verification and integration session.
 | Task | Status | Owner session | Scope | Notes |
 |---|---|---|---|---|
 | Independent line-by-line re-read of the official trip-window sources (Venetian DSE IV schedule, all four chunks; the seven primary structure sheets; the Wynn WPT schedule PDF; the Venetian suite-rate, resort-fee and hotel-terms pages; the Wynn resort-policy page) and comparison with the published rows | done. 0 value differences. | `arena-cce0b8d3` | `research/verification_2026-11-19_arena-cce0b8d3.{md,json}`, `tests/test_verification_2026_11_19_cce0b8d3.py` | Reads via the platform fetch tool, dated 2026-11-19. No value changed. |
-| Correct two factual date/label statements found on the static venue pages | done | `arena-cce0b8d3` | `site/venues/index.html`, `site/venues/venetian.html`, `scripts/data_source.py` (flag F100), `site/data.json`, `site/sheets.html` | The 15 NYE sheets were read 2026-11-17, not 2026-11-16; the NYE rows are not all unverified. |
+| Correct two factual date/label statements found on the static venue pages | done | `arena-cce0b8d3` | `site/venues/index.html`, `site/venues/venetian.html`, `scripts/data_source.py` (the parallel-session flag for the same finding), `site/data.json`, `site/sheets.html` | The 15 NYE sheets were read 2026-11-17, not 2026-11-16; the NYE rows are not all unverified. |
 | Remove the two stray `>>>>>>>` conflict-marker lines this board carried | done | `arena-cce0b8d3` | `COORDINATION.md` | Cosmetic; no session record is lost. |
 | Final verification, PR → `main`, merge, GitHub Pages confirmation, board record | in progress | `arena-cce0b8d3` | whole repo (integration), this board | Flagged items do not block merge per the standing protocol. |
 
@@ -5584,3 +5584,93 @@ resort-fee and hotel-terms pages and the Wynn resort-policy page match every pub
   page per venue), day plan, hotels, trip-cost calculator, global search, questions, suggestions, sources,
   sheet verification and Flagged for review pages all render. Flagged irregularities remain published for
   review and do not block anything.
+- **Follow-up.** This merge record is published to `main` by a documentation-only PR from this same branch
+  (no data or page value changes), so every push in this session goes only to `arena/97eba119-poker3`.
+---
+
+## Session `arena/8194609f-poker3` — full-requirements audit, line-by-line verification, integration (2026-11-19 UTC)
+
+**Branch:** `arena/8194609f-poker3`, branched from `main` at `e79f5a6` (the current tip, PR #179). The platform binds
+each session to one branch, so the brief's `session-<id>/<task>` naming cannot be applied here; prior sessions recorded
+the same constraint. **No new branch is created or switched to.** At claim time the only open PR was **#173**
+(`arena/a33db3c1-poker3`, last updated 06:12 UTC, a read-only re-read PR); this session does not touch that branch,
+does not close that PR, and does not edit its files. No other session had committed since the branch point at claim
+time, so this session acts as **final integration owner** for all shared outputs. Several sessions merged while this
+branch was open (PRs #180-#196); every one of their records was kept during the rebase, see the conflict log below.
+
+**Claim (committed and pushed before any other work).** Scope: `COORDINATION.md`, `site/**`, `scripts/**`, `tests/**`,
+`research/**`, `README.md`, `.github/workflows/**` — i.e. the whole repository, as integration owner. No other session's
+claimed files are being modified. If another session lands a claim while this one is open, this session will rebase,
+keep both records, and log the handoff here.
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| T1 Repo review: line-by-line audit of published values against official sources; log irregularities | in progress | `arena/8194609f` | `research/` (new dated audit record), `site/data.json` flag register, `site/flagged.html` | Reads via the platform fetch tool. No value is inferred; blanks stay blank. |
+| T2 Requirements audit: check every item in the brief against the live site; implement any gap | in progress | `arena/8194609f` | `site/**`, `scripts/**`, `tests/**` | Includes trip-cost calculator, date filter, single-entry filter, global search, per-venue pages, rate log, last-checked dates, change monitoring, walk filter, structured rule fields, overlap flags, primary/fallback day plan, questions and suggestions sections. |
+| T3 Fix board defect: two orphan git conflict-marker lines left by a prior rebase | done | `arena/8194609f` | `COORDINATION.md` | Marker lines removed; every session's text was kept. A parallel session published the same finding on main, so no duplicate flag was added. |
+| T4 Final verification: full unit suite, all verification scripts, link check, reproducible rebuild, then PR → `main` → merge → Pages confirmation → record here | pending | `arena/8194609f` | whole repo (integration) | Flagged irregularities and unverified items do not block the merge; they are published on the Flagged for review page. |
+
+### Result (session `arena/8194609f-poker3`, 2026-11-19 UTC)
+
+**T1 Repo review + line-by-line official verification: done.** Nineteen official URLs were fetched and read live
+on 2026-11-19 (the Venetian DSE IV schedule in all four chunks, suite rates, resort fee, hotel terms (both chunks),
+poker parking, structure sheets 1/6/7, the 2023 one-entry-wording page, Wynn poker/resort policies/parking, Bellagio
+poker page + Saturday PDF + hotel terms, the Caesars article + flyer, and the Clark County tax guide Appendix III).
+Verbatim excerpts, per-value comparisons and manual-review links:
+`research/verification_2026-11-19_arena-8194609f.md`. **No published value changed.** The 19 rows inside the fixed
+trip window (23-30 Nov 2026) were compared with the live official schedule on date, start time, event number, printed
+buy-in, printed guarantee and structure-sheet link: 19/19 match, none missing, none invented. Re-confirmed with
+fresh reads: F02 (Bellagio $1,000 page / $1,100 PDF header / $600 fee allocation), F90 (Caesars "every event $100"
+vs the flyer's $100/$160 + explicit re-entry + $50 add-on), F51 (two official Venetian pages describe the $55 fee
+differently), F31 (no 2026 maximum-entry wording, while the same venue's April 2023 schedule does print "One Entry
+Only with One Hour of Registration"), F17/F16 (no 8 AM start, no finish time), F92/F93/F56 details.
+
+**T2 Requirements audit: done.** All 40 instructions in the brief were audited line by line and published as a
+machine-readable table in `site/data.json` (`verification`, `verificationReads`, `verificationRows`) and rendered at
+`site/verification.html`. Every row states where it is implemented, the verification performed and the official
+source/evidence link. Requirements that official evidence cannot support (R14 overlap with verified finish times,
+R18 written maximum-entry rule, R27 a ranked "best" winner, R29 a ranked "best" hotel, R30 an 8 AM all-day route)
+are marked as such instead of being filled in. The new page is in the shared nav, in `verify_site.py` PAGES,
+`tests/canonical_smoke.py` PAGES/REQUIRED_HOOKS, `tests/canonical_render.js` PAGES, and has a root redirect.
+
+**T3 Board defect: done.** Two orphan conflict-marker lines were removed, keeping every session's text. Main's
+parallel session already published the same finding as flag F98, so no duplicate flag was added here; the renumbering
+below follows the flag ids that landed on main while this branch was open (F97-F99 were taken).
+
+**Irregularities found.** the parallel-session flag (four legacy venue subpages published stale hardcoded claims: "the NYE rows stay
+unverified", "no date-specific room quote exists", "the only dated checkout total found is $1,245.48", and
+2026-11-16 dates) — corrected to match `site/data.json`, dated 2026-11-19, given official source links, and guarded
+by `tests/test_verification_audit.py`. the orphan conflict markers — fixed and already flagged on main as F98. F101 (five unlinked 2026-11-16 snapshot
+JSON files still published under `site/data/`) — flagged for review rather than deleted, because another session's
+`scripts/daily_check.py` still names `sources.json`; no dashboard page reads them. All three are on the Flagged for
+review page with links. Flagged items do not block the merge.
+
+**Verification performed before the PR (all green on this branch, twice: once before the rebase and once after
+integration).** `verify_site.py` (341 events / 8 hotels / 56 routes / 49 sources / 97 flags / 7 plan days / 17 pages
+after integration; 48 sources / 95 flags before the rebase); **291 unit tests OK after integration** (269 before); `canonical_smoke.py`;
+`node tests/canonical_render.js` (14 page renders including `verification`); `node tests/walk_limit_render.js`;
+`node --check` on every JS asset; `audit_951cd431.py`, `audit_data.py`, `verify_live_official.py`,
+`verify_entry_labels.py`, `verify_transcription.py --dry-run` (44/44); a local-link scan over all 26 `site/**/*.html`
+pages (0 broken) and all 11 root redirects; and a byte-identical `data_source.py` rebuild (SHA-256 unchanged).
+PyYAML 6.0.3 had to be installed in the sandbox for `test_workflows.py`/`test_pages_gate.py`; the Actions workflow
+already installs it. `scripts/verify_site.py` was widened by one word so a repository-area flag may cite a GitHub
+URL (the same exemption already allowed Publishing and Monitoring flags); an uncited data flag still fails.
+
+**Scope note.** Only the files listed in this claim were edited. PR #173 (`arena/a33db3c1-poker3`) was left open and
+untouched; no other branch was created, switched to or pushed. No other session landed a commit while this branch
+was open, so there was no merge conflict to resolve and no handoff to log.
+
+**Conflict and handoff log (rebase onto `eaff4d6`).** While this branch was open, PRs #180-#196 landed on `main`
+from seven other sessions. The first rebase hit one append-only conflict in `COORDINATION.md`; it was resolved by
+keeping every other session's section in full and appending this session's claim, with no text discarded. Three
+subsequent `site/data.json` / `site/sheets.html` conflicts were resolved by taking the regenerated artifact from the
+integration build (`python3 scripts/data_source.py` and `python3 scripts/build_addendum.py` using the merged
+`data_source.py`), so neither session's published rows were lost: `main` gained a 49th official source and the
+MGM parking flags F97-F99, while this branch contributed the verification sections and F101. Flag ids F97-F99
+were already taken by parallel sessions, so this branch's two distinct flags were renumbered to F101 and its
+duplicate F98 finding was dropped rather than published twice. The generated artifacts are byte-reproducible from
+the merged sources; no other session's work was overwritten.
+
+**Verification policy.** Every table row keeps its official source link. A value that cannot be confirmed from an
+official venue or property page/PDF is left blank and flagged. Third-party pages are cited only as conflicts, never as
+values. Any changed official page is flagged for a human re-read; automation never moves a published value.

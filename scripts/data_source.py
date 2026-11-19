@@ -14,6 +14,7 @@ sys.path.insert(0, str(ROOT / "scripts"))
 import data_venetian as V  # noqa: E402
 import data_venues as N  # noqa: E402
 import data_hotels as H  # noqa: E402
+import data_verification as AUDIT  # noqa: E402
 
 ASOF = "2026-11-16"
 RECHECKED = "2026-11-17"
@@ -3218,7 +3219,15 @@ def build():
                                  "30-minute transfer between venues, so every conflict it reports is an estimate."),
         categories=CATEGORIES,
         venues=VENUES, events=events, hotels=hotels, rateLog=rate_log, routes=routes,
-        sources=SOURCES, flags=FLAGS, questions=QUESTIONS, suggestions=SUGGESTIONS,
+        # The 2026-11-19 requirements audit is published beside the data so the
+        # verification page can be rendered from the same source of truth. The
+        # two new flags record repository defects found by that audit; no event,
+        # fee, guarantee, hotel, rate, route or policy value is in this module.
+        sources=SOURCES, flags=FLAGS + AUDIT.NEW_FLAGS,
+        questions=QUESTIONS, suggestions=SUGGESTIONS,
+        verification=AUDIT.REQUIREMENTS,
+        verificationReads=AUDIT.OFFICIAL_READS,
+        verificationRows=AUDIT.TRIP_ROWS,
         trip=TRIP,
         dayPlan=plan, planConflicts=conflicts, planNotes=PLAN_NOTES,
         structureSheets=structure_sheets,
