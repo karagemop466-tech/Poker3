@@ -195,7 +195,7 @@
       if (parking === '') missing.push('no parking figure');
       return `<button class="btn" type="button" data-hotel="${h.id}"
         data-rate="${rate}" data-fee="${fee}" data-tax="${tax}" data-parking="${parking}">${h.name}</button>
-        ${missing.length ? `<span class="muted">${missing.join(' · ')} not published</span>` : ''}`;
+        ${missing.length ? `<span class="muted">Not published: ${missing.join(' · ')}</span>` : ''}`;
     }).join('<br>');
     host.querySelectorAll('[data-hotel]').forEach((b) => b.addEventListener('click', () => {
       /* A property that does not publish a value must not inherit the previous
