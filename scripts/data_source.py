@@ -1710,6 +1710,22 @@ FLAGS = [
                  "re-entry-through-level-8 clauses. No published tournament, fee, guarantee, hotel, parking or "
                  "policy value moved."),
          source="https://cdn.wynnresorts.com/image/upload/v1762299460/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Structures.pdf"),
+    dict(id="F124", area="Venetian booking engine", severity="Medium",
+         title="The official Venetian booking engine printed a third, different total for the same 23-30 Nov 2026 Palazzo stay on 2026-11-19",
+         detail=("Read on 2026-11-19 at about 19:44 UTC (session arena/98fa400f-poker3) with the identical query used "
+                 "for the two earlier 2026-11-19 and 2026-11-17 reads (2 adults, arrival 23 Nov, departure 30 Nov, "
+                 "7 nights). The page printed a palazzo Luxury King suite with 'Estimated cost of stay' $3,755.44, nightly "
+                 "room rates 324.25/204.25/204.25/309.25/1,119.25/561.75/204.25, a $55.00 resort fee on each night, taxes "
+                 "$443.19 and an Average Rate of $473.18. The earlier same-day read printed $3,619.39 (rates 204.25 on "
+                 "23 Nov, taxes $427.14). The two same-day totals differ by $135.05 with no change to dates, party size "
+                 "or suite type. The 23 Nov room rate alone moved by $120.00. Arithmetic: the seven rates sum to $2,927.25 "
+                 "and the fees to $385.00, so the pre-tax subtotal is $3,312.25; 13.38% of that is $443.18, one cent below "
+                 "the printed $443.19, and $3,312.25 + $443.19 = $3,755.44 is the printed total exactly. The page's "
+                 "calendar footnote still says its prices include the resort fee and exclude taxes (flag F51). Each read is "
+                 "recorded as a dated observation in the rate log; none replaces another, and none is a booking price. "
+                 "Action: re-read the engine immediately before any nonrefundable payment, and ask the hotel to confirm the "
+                 "rate in writing. Consistent with F78 and F120 (the engine's intraday drift)."),
+         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar"),
 ]
 
 QUESTIONS = [
