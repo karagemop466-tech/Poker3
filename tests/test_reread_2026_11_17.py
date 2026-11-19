@@ -48,10 +48,13 @@ class TripWindowRows(unittest.TestCase):
                 self.assertEqual(e["rules"]["fee"]["excerpt"], sheet["feeLine"])
 
     def test_each_row_was_checked_on_the_reread_date(self):
+        # The record is the 2026-11-17 pass. A row re-read by hand on a later day carries that
+        # later date (the 2026-11-19 full-page re-read did exactly that, flag F97), so the
+        # assertion is "on or after this record's date", never an earlier one.
         for row in RECORD["rows"]:
             with self.subTest(row=row["date"] + " #" + row["event"]):
                 (e,) = event_for(row)
-                self.assertEqual(e["lastChecked"], RECORD["retrievedOn"])
+                self.assertGreaterEqual(e["lastChecked"], RECORD["retrievedOn"])
 
     def test_no_reread_sheet_prints_re_entry_rebuy_or_add_on_wording(self):
         # The record is the reading. A sheet that prints re-entry, rebuy or add-on text must be

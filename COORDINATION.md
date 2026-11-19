@@ -5130,3 +5130,56 @@ this session keeps its work on its assigned branch and only edits files inside t
 **Scope protocol.** No tournament, hotel, rate, route or policy value is inferred. A confirmed re-read may only move a
 read date (`lastChecked` / `lastVerified` / `sources[].checked`); any value that differs from what is published is flagged
 for review, never silently replaced.
+
+### Result (session `arena/ade0718f-poker3`, 2026-11-19 UTC)
+
+**A1 — repo review: done.** Reviewed the tree line by line (site pages, data modules, verifiers, workflows, this board).
+Two defects were found and fixed, both in this session's scope:
+
+1. **Leftover merge-conflict markers in this board.** `COORDINATION.md` carried two stray `>>>>>>>` lines
+   (`e751b6f` added one, `7bab360` the other) left behind when earlier conflicts were resolved by hand. Both were
+   removed after checking that the sections around them are complete sentences/bullets, i.e. no other session's text
+   had been dropped at those two points. A `grep` for `<<<<<<<` / `=======` / `>>>>>>>` across the repository now
+   returns nothing.
+2. **Published read dates dragged backwards (flag F97).** `scripts/data_source.py` stamped 25 DeepStack Extravaganza IV
+   rows with the 2026-11-19 live read, and the later 2026-11-17 pass overwrote `lastChecked` back to 2026-11-17: the
+   "never drag a newer manual read backwards" guard had been added to the source loop and the hotel loop but not to the
+   event loop. The published `site/data.json` therefore said 2026-11-17 for rows read twice on 2026-11-19, and the
+   landing page repeated that date. Guard added to the event loop; the 2026-11-19 pass now covers all 94 DeepStack IV
+   rows; `site/index.html` now states the date the rows actually carry, and a new test
+   (`test_page_states_the_dates_the_rows_actually_carry`) ties that sentence to the data so it cannot drift again.
+   No tournament, fee, guarantee, hotel or policy value changed — only read dates.
+
+**A2 — independent read outside the trip window: done.** The whole official DeepStack Extravaganza IV page was read
+on 2026-11-19 (all four chunks) and transcribed in full as `raw/dse_schedule_live_2026-11-19_ade0718f.md` — 94 rows,
+a second independent capture beside session `arena/3dae36ec`'s `raw/venetian_dse_nov_2026_live_2026-11-19.md`.
+`scripts/verify_dse_live_2026_11_19.py` was extended to accept a capture path and to compare **printed buy-in and
+printed guarantee** as well as date, start time, structure sheet and printed name. Result: **94 of 94 rows agree in both
+captures**, with the 11 Day 2 / final-table rows carrying their event's guarantee (a resumption row does not repeat it).
+`tests/test_dse_live_2026_11_19.py` now asserts the second capture, its agreement with the first, and the 2026-11-19
+row dates (F97 regression).
+
+This session deliberately did **not** duplicate open PR #173 (`arena/a33db3c1-poker3`, trip-window re-read, last commit
+06:12 UTC): it read the same page independently for the rows outside that window and made no claim on `#173`'s files.
+Note for `#173`'s owner: its description says its 32 trip-window rows advanced to 2026-11-19, but on merged `main` they
+read 2026-11-17. F97 is the mechanism; that PR's rebase should keep the guard or its stamp will be undone again.
+
+Sources read live on 2026-11-19 for this session's verification (venue-controlled):
+[DeepStack Extravaganza IV schedule, all four chunks](https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html) ·
+[Bellagio poker room page](https://bellagio.mgmresorts.com/en/casino/poker.html) (the automated runner records this host
+as `unreachable`; read by hand again today — the same three weekly PDF links, the same undated "Tournament play will
+resume on Saturday, July 26 … $300 PLO Double Board Bomb Pot … 2 PM PT" notice behind F03, and the 6 PM nightly PLO
+promo behind the recurring `bell-3` row).
+
+**Verification on this branch (all green, run after the changes):**
+
+| Check | Result |
+|---|---|
+| `python3 scripts/verify_site.py` | 341 events / 8 hotels / 56 routes / 48 sources / **93 flags** / 7 plan days / 16 pages — passed |
+| `python3 -m unittest discover -s tests` | **265 tests OK** |
+| `audit_951cd431.py` / `audit_data.py` / `verify_entry_labels.py` / `verify_live_official.py` | 0 failures, 0 warnings; audits pass |
+| `scripts/verify_dse_live_2026_11_19.py` on **both** captures | 94/94 rows, 6 fields each |
+| `canonical_smoke.py`, `canonical_render.js`, `walk_limit_render.js`, `tests/smoke.py` | all rendered; 335 rows / 329 with the 30-minute limit |
+| `node --check` on app/venue/search/feed JS and both render tests | OK |
+| internal links across all 25 published HTML files | 0 broken |
+| `scripts/data_source.py` twice | byte-identical `site/data.json` (reproducible) |

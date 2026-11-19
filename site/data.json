@@ -13,7 +13,7 @@
    "feeSource": "https://www.venetianlasvegas.com/resort/resort-fee.html"
   }
  ],
- "scope": "Las Vegas Strip poker tournaments and Strip lodging, built only from official venue and property pages. Snapshot date 2026-11-19. The schedule pages behind the trip window were re-read that day (29 rows compared line by line, no value changed) and the Venetian, Wynn and Bellagio hotel terms pages again; every row carries the date it was last read, and a row not re-read keeps an earlier date rather than inheriting today's.",
+ "scope": "Las Vegas Strip poker tournaments and Strip lodging, built only from official venue and property pages. Snapshot date 2026-11-19. The whole DeepStack Extravaganza IV schedule page was re-read that day and all 94 of its rows were compared line by line against two independent same-day captures (no value changed), and the Venetian, Wynn and Bellagio hotel terms pages were read again; every row carries the date it was last read, and a row not re-read keeps an earlier date rather than inheriting today's.",
  "policy": "Every row links the official page it came from. A value that could not be confirmed from an official source is left blank and listed on the Flagged for review page. Walking minutes are Google Maps walking estimates and are labelled as such. The guaranteed-pool-to-fee ratio is descriptive only and is not a forecast.",
  "sessionLengthAssumption": "No venue publishes a finish time. The schedule planner assumes a six-hour session plus a 30-minute transfer between venues, so every conflict it reports is an estimate.",
  "categories": {
@@ -200,14 +200,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_10.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_10.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time and structure link"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "past"
   },
@@ -264,14 +264,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_9.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_9.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time and structure link"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "past"
   },
@@ -328,14 +328,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_10.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_10.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time and structure link"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "past"
   },
@@ -392,14 +392,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_9.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_9.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time and structure link"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "past"
   },
@@ -456,14 +456,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time and structure link"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "past"
   },
@@ -520,14 +520,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_10.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_10.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Resumption row: the structure sheet's late-registration clause (6 levels + break (~3:40 PM)) and the session length derived from it belong to the earlier day, so no late-registration cut-off and no estimated finish are published for this row.",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time and structure link"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "past"
   },
@@ -584,14 +584,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_18.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_18.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Levels run 20 minutes then 15 minutes. Sheet prints no guarantee.",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time and structure link"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "today"
   },
@@ -648,14 +648,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_18.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_18.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Levels run 20 minutes then 15 minutes. Sheet prints no guarantee.",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time and structure link"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -712,14 +712,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_18.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_18.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Levels run 20 minutes then 15 minutes. Sheet prints no guarantee.",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time and structure link"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -776,14 +776,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_29.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_29.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Sheet prints no guarantee.",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time and structure link"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -840,14 +840,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_2.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_2.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -904,14 +904,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_30.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_30.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -968,14 +968,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_2.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_2.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -1032,14 +1032,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -1096,14 +1096,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_2.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_2.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Resumption row: the structure sheet's late-registration clause (9 levels + break (5:55 PM)) and the session length derived from it belong to the earlier day, so no late-registration cut-off and no estimated finish are published for this row.",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -1160,14 +1160,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_6.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_6.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -1224,14 +1224,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -1288,14 +1288,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -1352,14 +1352,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -1416,14 +1416,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -1480,14 +1480,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -1544,14 +1544,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -1608,14 +1608,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_26.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_26.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -1672,14 +1672,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "PokerAtlas PRO players will receive a twenty ($20) rake discount on their initial $200 buy in only, for a total buy in of $180 instead of $200. ... All subsequent buy in's after the initial buy in will be $200.",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -1736,14 +1736,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -1800,14 +1800,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_22.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_22.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Played 8-handed, pays 12.5% of the field",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -1864,14 +1864,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -1928,14 +1928,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -1992,14 +1992,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -2056,14 +2056,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -2120,14 +2120,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -2184,14 +2184,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_17.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_17.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "Must be 50+ years of age to participate",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -2248,14 +2248,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_3.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Resumption row: the structure sheet's late-registration clause (9 levels + break (5:55 PM)) and the session length derived from it belong to the earlier day, so no late-registration cut-off and no estimated finish are published for this row.",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -2312,14 +2312,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -2376,14 +2376,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -2440,14 +2440,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_28.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_28.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Played 8-handed, pays 12.5% of the field",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -2504,14 +2504,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_13.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_13.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -2568,14 +2568,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -2632,14 +2632,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_13.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_13.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -2696,14 +2696,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -2760,14 +2760,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_14.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_14.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -2824,14 +2824,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -2888,14 +2888,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_12.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Resumption row: the structure sheet's late-registration clause (6 levels + break (~3:40 PM)) and the session length derived from it belong to the earlier day, so no late-registration cut-off and no estimated finish are published for this row.",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -2952,14 +2952,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -3016,14 +3016,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -3080,14 +3080,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -3144,14 +3144,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_17.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_17.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "Must be 50+ years of age to participate",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -3208,14 +3208,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_19.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_19.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "Open to female players, 21+",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -3272,14 +3272,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -3336,14 +3336,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_31.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_31.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "$80 of the $600 Buy-In is withheld for house fees plus a $10 flat fee for the Ladies International Poker Series.Teams will rotate their players at the start of every level. Each team member must play every other level until the event concludes.",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -3400,14 +3400,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_16.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_16.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -3464,14 +3464,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_19.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_19.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "Open to female players, 21+",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -3528,14 +3528,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -3592,14 +3592,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_32.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_32.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Day 1 Dec 10 10:10 AM, Day 2 Dec 11 10:00 AM, final table approximately 7:00 PM.",
    "eligibility": "Must be a female 21+ years of age",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -3656,14 +3656,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_27.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_27.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -3720,14 +3720,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_24.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_24.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -3784,14 +3784,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -3848,14 +3848,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_32.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_32.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Day 1 Dec 10 10:10 AM, Day 2 Dec 11 10:00 AM, final table approximately 7:00 PM. Resumption row: the structure sheet's late-registration clause (9 levels + break (~4:55 PM)) and the session length derived from it belong to the earlier day, so no late-registration cut-off and no estimated finish are published for this row.",
    "eligibility": "Must be a female 21+ years of age",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -3912,14 +3912,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_33.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_33.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "$80 of the $600 Buy-In is withheld for house fees plus a $10 flat fee for the Ladies International Poker Series.",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -3976,14 +3976,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_24.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_24.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -4040,14 +4040,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_32.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_32.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Day 1 Dec 10 10:10 AM, Day 2 Dec 11 10:00 AM, final table approximately 7:00 PM. Resumption row: the structure sheet's late-registration clause (9 levels + break (~4:55 PM)) and the session length derived from it belong to the earlier day, so no late-registration cut-off and no estimated finish are published for this row.",
    "eligibility": "Must be a female 21+ years of age",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -4104,14 +4104,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -4168,14 +4168,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
     "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched the live official page on date, start time, event number, printed buy-in and structure-sheet link; no value changed"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -4232,14 +4232,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_21.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_21.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -4296,14 +4296,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_25.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -4360,14 +4360,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_37.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_37.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -4424,14 +4424,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_20.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_20.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "Must be 50+ years of age to participate",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -4488,14 +4488,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_21.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_21.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Resumption row: the structure sheet's late-registration clause (9 levels + break (~4:55 PM)) and the session length derived from it belong to the earlier day, so no late-registration cut-off and no estimated finish are published for this row.",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -4552,14 +4552,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -4616,14 +4616,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_20.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_20.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "Must be 50+ years of age to participate",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -4680,14 +4680,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_21.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_21.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Resumption row: the structure sheet's late-registration clause (9 levels + break (~4:55 PM)) and the session length derived from it belong to the earlier day, so no late-registration cut-off and no estimated finish are published for this row.",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -4744,14 +4744,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -4808,14 +4808,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_20.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_20.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Resumption row: the structure sheet's late-registration clause (9 levels + break (~4:55 PM)) and the session length derived from it belong to the earlier day, so no late-registration cut-off and no estimated finish are published for this row.",
    "eligibility": "Must be 50+ years of age to participate",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -4872,14 +4872,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_34.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_34.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -4936,14 +4936,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -5000,14 +5000,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -5064,14 +5064,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_15.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -5128,14 +5128,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "On Day 1A, players who register before the start of the event (10:10 a.m.) will receive a forty ($40) discount on house fees for a total buy in of $1,060 instead of $1,100.",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -5192,14 +5192,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_23.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_23.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "Played 8-handed, pays 12.5% of the field",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -5256,14 +5256,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_36.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_36.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "On Day 1B, players who register before the start of the event (6:10 PM.) will receive a forty ($40) discount on house fees for a total buy in of $1,060 instead of $1,100.",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -5320,14 +5320,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "On Day 1A, players who register before the start of the event (10:10 a.m.) will receive a forty ($40) discount on house fees for a total buy in of $1,060 instead of $1,100.",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -5384,14 +5384,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_36.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_36.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "On Day 1B, players who register before the start of the event (6:10 PM.) will receive a forty ($40) discount on house fees for a total buy in of $1,060 instead of $1,100.",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -5448,14 +5448,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "On Day 1A, players who register before the start of the event (10:10 a.m.) will receive a forty ($40) discount on house fees for a total buy in of $1,060 instead of $1,100.",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -5512,14 +5512,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_8.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "PokerAtlas PRO players will receive a twenty ($20) rake discount on their initial $200 buy in only, for a total buy in of $180 instead of $200. ... All subsequent buy in's after the initial buy in will be $200.",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -5576,14 +5576,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_35.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "On Day 1A, players who register before the start of the event (10:10 a.m.) will receive a forty ($40) discount on house fees for a total buy in of $1,060 instead of $1,100. Resumption row: the structure sheet's late-registration clause (9 levels + break (~4:55 PM)) and the session length derived from it belong to the earlier day, so no late-registration cut-off and no estimated finish are published for this row.",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -5640,14 +5640,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "On Day 1A only, players who register before the start of the event (11:10 a.m.), will receive a $20 discount on house fees for a total buy in of $580 instead of $600.",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -5704,14 +5704,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -5768,14 +5768,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "On Day 1A only, players who register before the start of the event (11:10 a.m.), will receive a $20 discount on house fees for a total buy in of $580 instead of $600.",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -5832,14 +5832,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -5896,14 +5896,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "On Day 1A only, players who register before the start of the event (11:10 a.m.), will receive a $20 discount on house fees for a total buy in of $580 instead of $600.",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -5960,14 +5960,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -6024,14 +6024,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_4.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "On Day 1A only, players who register before the start of the event (11:10 a.m.), will receive a $20 discount on house fees for a total buy in of $580 instead of $600. Resumption row: the structure sheet's late-registration clause (9 levels + break (5:55 PM)) and the session length derived from it belong to the earlier day, so no late-registration cut-off and no estimated finish are published for this row.",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -6088,14 +6088,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -6152,14 +6152,14 @@
    "sheetUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
    "scheduleUrl": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
    "structureUrl": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf",
-   "lastChecked": "2026-11-17",
-   "lastVerified": "2026-11-17",
+   "lastChecked": "2026-11-19",
+   "lastVerified": "2026-11-19",
    "note": "",
    "eligibility": "",
    "recheck": {
-    "date": "2026-11-17",
+    "date": "2026-11-19",
     "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
-    "result": "matched on date, start time, event name, buy-in and guarantee; structure links not compared"
+    "result": "matched the live official page on date, start time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link; verified against two independent same-day captures; no value changed"
    },
    "status": "upcoming"
   },
@@ -24097,6 +24097,14 @@
    "title": "2026-11-19 spot check: F92 re-read and cleared, F31 and F16 reconfirmed, F56 still open, and the official booking engine still returns no checkout total",
    "detail": "An independent read of the official pages on 2026-11-19 by the integration session (arena/3dae36ec-poker3), after the automated re-check could only hash page text. This is the same engine read recorded as F93 above and adds only what F93 does not cover. (1) F92 cleared: the Venetian poker-room page still places the room at The Palazzo, level 2, Grand Canal Shoppes, open 24 hours, and its DeepStack Extravaganza IV block still reads 'November 16 - December 23, 2026' and 'More than $3.6 Million in guaranteed tournament prize pools'. No published value behind the 2026-11-18 wording change moved. (2) F31 reconfirmed, not resolved: neither that page nor the DSE IV schedule page prints a maximum number of entries per player, a rebuy clause, an add-on clause or freezeout wording. (3) F16 reconfirmed: the DSE IV schedule page still prints no finish time. (4) F56 still open: the official Wynn Signature Series structures link still resolves to a page whose only text is 'LAS VEGAS / POKER / COMING SOON'. (5) The Wynn WPT World Championship schedule PDF was re-read in both chunks and every official row is already published: no row is missing and none was invented. (6) The player-parking page and the Caesars/Horseshoe Strip article were re-read and every figure the site publishes from them still matches verbatim, including the $20 registered-guest fee, the three-hour waiver and the 9 a.m. earliest Horseshoe start behind F17. (7) The DSE IV schedule page's 94 rows were transcribed again and matched the catalog on date, start time and structure sheet; four paraphrased names were corrected to the page's own wording. No value was changed or inferred by this read.",
    "source": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html"
+  },
+  {
+   "id": "F97",
+   "area": "Integration data check",
+   "severity": "Low",
+   "title": "The published rows' 'last checked' dates were silently dragged back a day by pass ordering; all 94 DeepStack IV rows now carry the 2026-11-19 read they actually had",
+   "detail": "Found on 2026-11-19 while reviewing the data build line by line. The builder stamped 25 DeepStack Extravaganza IV rows with the 2026-11-19 live read, and a later 2026-11-17 pass then overwrote `lastChecked` back to 2026-11-17, because the 'do not drag a newer manual read backwards' guard had been added to the source loop and the hotel loop but not to the event loop. The published site/data.json therefore said 2026-11-17 for rows that had been read twice on 2026-11-19, and the landing page repeated that stale date. FIX (same day): the guard is on the event loop as well; the 2026-11-19 pass now covers all 94 rows whose schedule source is the DeepStack IV page and sets both lastChecked and lastVerified; rule excerpts read that day keep the 2026-11-19 retrieval date. EVIDENCE: two independent same-day captures of the official page (raw/venetian_dse_nov_2026_live_2026-11-19.md and raw/dse_schedule_live_2026-11-19_ade0718f.md) are compared with the published rows by scripts/verify_dse_live_2026_11_19.py, which now checks the printed buy-in and printed guarantee as well as date, start time, structure sheet and printed name. 94 of 94 rows agree in both captures; the 11 resumption rows carry their event's guarantee because a Day 2 or final-table row does not repeat it. SCOPE: no tournament, fee, guarantee, hotel or policy value changed; only read dates moved, and they moved forward. The defect understated how recently the page had been read rather than claiming an unverified value as verified, but a date column that disagrees with the data beneath it is exactly what a 'last checked' column exists to prevent. RELATED: open PR #173 states that its 32 trip-window rows advanced to 2026-11-19; on merged main they read 2026-11-17. This flag is the mechanism. A row that is re-read by hand on a later date must keep that date, and a pass that edits only dates must never reach back over a newer one.",
+   "source": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"
   },
   {
    "id": "F74",

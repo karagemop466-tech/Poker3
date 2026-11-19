@@ -6,10 +6,17 @@ Run from the repository root:
     python3 scripts/verify_dse_live_2026_11_19.py
 
 The capture is `raw/venetian_dse_nov_2026_live_2026-11-19.md`, a transcription of the
-visible text of the official schedule page read on 2026-11-19. This script compares it
-with `site/data.json` row by row on the five fields the page itself prints:
+visible text of the official schedule page read on 2026-11-19. Pass a different capture
+path as the first argument to check an independent second read of the same page (for
+example `raw/dse_schedule_live_2026-11-19_ade0718f.md`). This script compares the capture
+with `site/data.json` row by row on the fields the page itself prints:
 
-    date, start time, event number, event name and structure-sheet URL
+    date, start time, event number, event name, printed buy-in, printed guarantee and
+    structure-sheet URL
+
+The buy-in and guarantee are read from the printed name column ("$2,200 ... $1 Mill GTD"),
+which is where the page carries them; a resumption row (Day 2 / Final Table) does not
+repeat its event's guarantee, so that one field is skipped for those rows and counted.
 
 It never edits data. It fails loudly when a published row disagrees with the capture, so
 the catalog and the dated evidence cannot drift apart.
@@ -43,9 +50,25 @@ def norm(s: str) -> str:
     return s.lower()
 
 
-def read_capture() -> list[dict]:
+def printed_amount(text: str, suffix: str = "") -> int | None:
+    """Parse a printed dollar amount: ``$2,200`` / ``$75K`` / ``$1 Mill`` (optionally followed by ``GTD``)."""
+    pattern = r"\$([\d,]+)\s*(K|Mill|Million)?" + (r"\s*GTD" if suffix else "")
+    m = re.search(pattern, text, re.I)
+    if not m:
+        return None
+    value = int(m.group(1).replace(",", ""))
+    unit = (m.group(2) or "").lower()
+    if unit == "k":
+        value *= 1_000
+    elif unit in ("mill", "million"):
+        value *= 1_000_000
+    return value
+
+
+def read_capture(path: pathlib.Path | None = None) -> list[dict]:
     rows = []
-    for line in CAPTURE.read_text(encoding="utf-8").splitlines():
+    capture = path or CAPTURE
+    for line in capture.read_text(encoding="utf-8").splitlines():
         m = ROW.match(line.strip())
         if not m:
             continue
@@ -70,12 +93,12 @@ def published() -> list[dict]:
             continue
         out.append(dict(id=e["id"], date=e["date"], time=e["time"], name=e["name"],
                         sheet=int(m.group(1)), buyIn=e.get("buyIn"),
-                        guarantee=e.get("guarantee")))
+                        guarantee=e.get("guarantee"), continuation=bool(e.get("isContinuation"))))
     return out
 
 
-def main() -> int:
-    cap = read_capture()
+def main(capture: pathlib.Path | None = None) -> int:
+    cap = read_capture(capture)
     pub = published()
     if len(cap) != 94:
         print(f"FAIL: capture has {len(cap)} rows, expected 94")
@@ -84,7 +107,7 @@ def main() -> int:
         print(f"FAIL: catalog has {len(pub)} Venetian structure-sheet rows, capture has {len(cap)}")
         return 1
 
-    problems = []
+    problems, continuations = [], []
     for c, p in zip(cap, pub):
         if c["date"] != p["date"]:
             problems.append(f"row {c['n']}: date {p['date']} != capture {c['date']}")
@@ -94,6 +117,17 @@ def main() -> int:
             problems.append(f"row {c['n']}: sheet {p['sheet']} != capture {c['sheet']}")
         if norm(c["name"]) != norm(p["name"]):
             problems.append(f"row {c['n']}: name\n    catalog: {p['name']}\n    capture: {c['name']}")
+        fee = printed_amount(c["name"])
+        if fee is not None and p["buyIn"] != fee:
+            problems.append(f"row {c['n']}: buy-in {p['buyIn']!r} != printed {fee}")
+        gtd = printed_amount(c["name"], suffix="GTD")
+        if gtd is not None:
+            if p["guarantee"] != gtd:
+                problems.append(f"row {c['n']}: guarantee {p['guarantee']!r} != printed {gtd}")
+        elif isinstance(p["guarantee"], (int, float)) and not p["continuation"]:
+            problems.append(f"row {c['n']}: guarantee {p['guarantee']} published but no GTD is printed")
+        elif p["continuation"]:
+            continuations.append(c["n"])
 
     if problems:
         print(f"FAIL: {len(problems)} mismatch(es) between the catalog and the 2026-11-19 capture")
@@ -102,9 +136,12 @@ def main() -> int:
         return 1
 
     print(f"verified {len(cap)} published Venetian rows against the 2026-11-19 live capture "
-          f"(date, start time, structure sheet, event name)")
+          f"(date, start time, structure sheet, event name, printed buy-in, printed guarantee); "
+          f"{len(continuations)} resumption rows carry their event's guarantee because the restart "
+          f"row does not repeat it")
     return 0
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    arg = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else None
+    sys.exit(main(arg))
