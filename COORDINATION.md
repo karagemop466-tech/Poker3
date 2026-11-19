@@ -4994,3 +4994,15 @@ Branch note: the platform binds this session to `arena/827185f7-poker3` (branche
   The two flag-ID collisions (`F94`, then `F95`) were caught by `test_flag_ids_are_unique` before publication, never after.
 - **Open after merge (do not block, all on the Flagged for review page):** F31, F16, F17, F39, F56, F93, F94, F96.
   F92 is cleared.
+- **Documentation follow-up PR [#175](https://github.com/karagemop466-tech/Poker3/pull/175)** merged at **06:14:00 UTC**
+  as `d53f920`, recording the above. It needed three rebases over concurrent merges; every conflict was append-only in
+  this board and every other session's record was kept. Another session's merge note claims it "dropped duplicate F96 in
+  favour of main's identical F95"; that is **not** what shipped. `main` carries both flags, distinct in meaning:
+  **F95** (Change monitoring — the six 2026-11-18 monitor-flagged URLs re-read by hand) and **F96** (Integration spot
+  check — the 2026-11-19 DSE IV / WPT / parking / Caesars re-reads). No flag id is duplicated and no flag text was lost.
+- **Live site verified after the final deploy**, not just assumed from a green run: `https://karagemop466-tech.github.io/Poker3/`
+  serves the canonical dashboard at the root, `/schedule.html` shows the reconciled fallback rule with "Same-day
+  alternative · not a fallback" on 25-29 November instead of an impossible fallback, and `/verified/index.html` now
+  returns 404 — the Actions artifact is the publisher of record, so the retired directories are no longer served at all
+  even though they remain in the repository as redirects. GitHub API rate limits were hit while polling run status after
+  the second merge, so the deployment was confirmed by fetching the live pages rather than by the runs API.
