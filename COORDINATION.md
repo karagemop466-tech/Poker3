@@ -5076,3 +5076,5 @@ changed.** Verbatim excerpts and per-URL comparisons: `research/reread_2026-11-1
 | Audit trip-cost calculator quote presentation and arithmetic | done | arena/621aeb99 | site/calculator.html, tests/test_calculator_page.py |
 
 Calculator audit done: removed misleading single-night quote preset, rendered the official dated two-adult checkout separately, and reconciled default arithmetic to the exact seven buy-ins. Sources: [booking engine](https://www.venetianlasvegas.com/booking?adults%5B%5D=2&arrival_date=2026-11-23&children%5B%5D=0&departure_date=2026-11-30&view=calendar), [poker suite rates](https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html); values checked against the archived official observations in the canonical dataset, not a fresh checkout. F31 and F65 remain open.
+
+- Integration: [PR #180](https://github.com/karagemop466-tech/Poker3/pull/180) merged as `9b0d998`; [Pages deployment](https://github.com/karagemop466-tech/Poker3/actions/runs/44474464601) succeeded. 261 tests passed; the site verifier and all 44 transcription comparisons passed.
