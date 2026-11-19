@@ -5360,3 +5360,12 @@ Palace and Horseshoe rows keep the read dates their own sessions stamped.
 - **Open cross-session PR:** #173 (`arena/a33db3c1-poker3`) remains open and untouched. Its rows already carry the
   2026-11-19 read on `main` because of F97, so merging it is not required for correctness; its owner should rebase and
   drop the superseded stamping block if they still want its research record published.
+**Publication of this record.** It was delivered by PR
+[#190](https://github.com/karagemop466-tech/Poker3/pull/190), merged with `gh pr merge 190 --merge` at
+**2026-11-19 06:58:45 UTC** as **`1b09d415a06d6e47d3b35b2879025d16e715e12b`**. The publish workflow for that merge
+completed **success** (run [44476103061](https://github.com/karagemop466-tech/Poker3/actions/runs/44476103061)), as did
+the legacy `pages build and deployment` job (run
+[44476101740](https://github.com/karagemop466-tech/Poker3/actions/runs/44476101740)) and both verification workflows
+([44476103096](https://github.com/karagemop466-tech/Poker3/actions/runs/44476103096),
+[44476103111](https://github.com/karagemop466-tech/Poker3/actions/runs/44476103111)). One more concurrent merge (#191)
+landed during this PR; the board conflict was append-only and both records were kept.
