@@ -4623,3 +4623,106 @@ Overlap check: no other open PR at the time of claim (`gh pr list --state open` 
 3. The 17 Nov and 18 Nov poker-page captures differ only in the series banner (F92). Change badges remain until the monitor is re-baselined.
 
 **Not verified this session:** Wynn, Bellagio, MGM Grand, Caesars Palace, Horseshoe, ARIA and the Palazzo rates and structures; finish times (F16); written entry caps (F31); any current booking price (F93); Apple Maps walking times (not reachable from this sandbox).
+---
+
+## Session `arena/ffe8f597-poker3` — line-by-line audit and day-plan consistency fix (2026-11-19 UTC)
+
+Branch is fixed by the platform: `arena/ffe8f597-poker3`, branched from `main` at `23ad5d8`.
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| A1 Independent line-by-line audit of the published dataset against its own stated rules | in progress | arena/ffe8f597-poker3 | `scripts/data_source.py` (day-plan builder), `site/data.json` (rebuilt), `tests/`, `site/schedule.html`, `COORDINATION.md` | Read-only elsewhere. Does not touch calculator, hotels data, calculator page, or another session's files. |
+
+**Claim.** This session edits only the day-plan builder inside `scripts/data_source.py`, the regenerated
+`site/data.json`, a new regression test, the schedule page copy, and this board. No other file is changed.
+
+**Defect found and being fixed (see F93).** On five of the seven trip days the published fallback event is the
+same event the site simultaneously publishes as an "impossible sequence" against that day's primary. The written
+fallback rule ("starts after the primary's estimated finish plus a 30-minute transfer") was not applied when
+choosing the fallback.
+
+### Verification and sources — `arena/ffe8f597-poker3`
+
+**What was checked live (2026-11-19 UTC), via `fetch_page` from this session.** The sandbox blocks direct
+`curl` to venue hosts (TLS handshake fails), but the page fetcher reaches them, so the primary evidence below is
+a fresh read, not a replay of a saved capture.
+
+| Read live this session | Result |
+|---|---|
+| [Sheet 30](https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_30.pdf) — Event 08, Nov 23 primary | 5:10 PM · 25,000 chips · late reg 8 levels + break (9:40 PM) · $8,000 (prize pool + total bounties) · $40 of $200 house fee. **Matches the published row exactly.** |
+| [Sheet 1](https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf) — Event 09, Nov 24 primary | 5:10 PM · 25,000 · 9:40 PM · $8,000 bounty-inclusive · $40 of $200. **Matches.** |
+| [Sheet 6](https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_6.pdf) — Event 10, Nov 25 primary | 11:10 AM · 40,000 · ~4:55 PM · $15,000 · $65 of $400. **Matches.** |
+| [Sheet 5](https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_5.pdf) — Events 02/12, Nov 26 primary | 11:10 AM · 40,000 · ~4:55 PM · $10,000 · $58 of $300. **Matches.** |
+| [Sheet 7](https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf) — Events 14/28/63, Nov 27 primary | 11:10 AM · 40,000 · ~4:55 PM · $30,000 (#14 and #63) · $90 of $600. **Matches.** |
+| [Sheet 11](https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_11.pdf) — Events 16/30/54, Nov 28 primary | 11:10 AM · 40,000 · 4:55 PM · $30,000 bounty-inclusive (#16) · $90 of $600. **Matches.** |
+| [Sheet 22](https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_22.pdf) — Event 20, Nov 29 primary | 12:10 PM · 30,000 · ~4:40 PM · $10,000 · $58 of $300 · 8-handed, pays 12.5%. **Matches.** |
+| [Venetian poker page](https://www.venetianlasvegas.com/resort/casino/poker.html) | Room located at The Palazzo, level 2, Grand Canal Shoppes; open 24 hours; DSE IV runs Nov 16 – Dec 23, 2026. Consistent with F91 and the published room row. |
+
+None of the seven sheets prints a per-player maximum entry count, a rebuy or an add-on clause. That keeps F31 open;
+it does **not** make these rows strict single-entry events.
+
+**Defect fixed.** See F93 above and the commit message. Found by auditing the published data against its own
+written rule rather than by re-reading a source, so no official value was involved.
+
+**Verification run on the integrated base (`ca9cec2` + this session's commits):**
+
+- `python3 scripts/data_source.py` — rebuilds `site/data.json`; two consecutive builds are byte-identical
+  (reproducible), 341 events / 8 hotels / 56 routes / 47 sources / 89 flags / 7 plan days.
+- `python3 -m unittest discover -s tests -p 'test_*.py'` — **242 tests OK**, including the 7 new
+  `tests/test_fallback_sequencing.py` tests.
+- `scripts/verify_site.py`, `audit_951cd431.py` (0 failures, 0 warnings), `audit_data.py`,
+  `verify_entry_labels.py`, `verify_live_official.py`, `verify_transcription.py` (44/44) — all pass.
+- `tests/canonical_smoke.py` (11 main + 5 detail pages), `canonical_render.js`, `walk_limit_render.js`,
+  and `node --check` on every `site/assets/*.js` — all pass.
+- `site/sheets.html` regenerated by `build_addendum.py` so the flag register stays current (89 flags,
+  0 unexplained disagreements).
+
+**Irregularity found and NOT fixed (flagged for review).** `site/index.html` prints `2026-11-19` as the "last
+checked" date on all seven candidate rows, while the row data records `lastChecked`/`lastVerified` as `2026-11-17`.
+The 2026-11-19 date is real evidence of a different kind: `site/checks.json` (generated 2026-11-19T05:33:18Z)
+recorded an automated re-check of the seven structure PDFs with `changed: false`, and the audit in
+`research/decision-audit-2026-11-19.md` re-read the same seven sheets. The page therefore conflates an automated
+hash re-check with a human value verification, and `tests/test_decision_summary.py` pins the 2026-11-19 string, so
+changing it needs that test changed in the same commit. This session did not own `site/index.html` in its claim and
+left it alone. Recommend a follow-up task: make the landing rows show `lastChecked` from `data.json` and label the
+automated re-check separately.
+
+**Cross-session note.** `git pull --rebase origin main` brought in PR #164 (`arena/4c657755-poker3`), which also
+edits `scripts/data_source.py` (flag text for F17/F31/F92). The only conflict was an append in this board. Both
+sides' records were kept, and all 242 tests pass on the combined tree.
+
+**Scope actually touched:** `scripts/data_source.py` (day-plan builder + F93 only), `site/data.json`,
+`site/sheets.html`, `site/assets/app.js` (schedule fallback note), `site/schedule.html` (copy), new
+`tests/test_fallback_sequencing.py`, this board.
+
+### Second fix — landing-page evidence labelling (`arena/ffe8f597-poker3`)
+
+The irregularity recorded above as "found and NOT fixed" was taken on after confirming that
+`gh pr list --state open` was empty and no other session had claimed `site/index.html`.
+
+- **Change:** the candidate table's last column is now headed **"Source / sheet re-checked"** instead of
+  "Source / last checked", and a note under the table states exactly what the 2026-11-19 date is
+  (the `scripts/check_sources.py` run recorded in `site/checks.json` at 2026-11-19T05:33:18Z, which found
+  no change in the seven structure PDFs) and what it is not (a re-verification of a value by eye). It also
+  points to the row-level `lastChecked` / `lastVerified` dates of 2026-11-17 in the tournament table.
+- **Not changed:** the seven rows' values, the 2026-11-19 date itself, `site/data.json`, and the existing
+  `tests/test_decision_summary.py` assertion that pins the date string. The date is truthful; only its
+  label was wrong.
+- **New regression test:** `tests/test_index_evidence_labels.py` (4 tests) asserts the relabelled column, the
+  explanatory note, that `site/checks.json` really does carry a 2026-11-19 `changed: false` record for each
+  of the seven sheets, and that each planned primary still carries `lastChecked`/`lastVerified` 2026-11-17.
+- **Verification:** 246 unit tests OK; `verify_site.py`, `canonical_smoke.py` and `canonical_render.js` pass.
+
+### Integration record — `arena/ffe8f597-poker3`
+
+- **Rendered check (not just a DOM stub):** `site/assets/app.js` was executed against the real
+  `site/data.json` in a `vm` sandbox built like `tests/canonical_render.js`. The schedule page rendered
+  57,756 characters, seven day articles, five "replaces the primary" badges and zero "playable after the
+  primary" badges, with the explanatory sentence and the impossible-sequence block both present. This is the
+  visible proof that the fix reaches the page, not only the JSON.
+- **Published-site pre-check:** a local server over `site/` returned HTTP 200 for `index.html`,
+  `schedule.html`, `tournaments.html`, `flagged.html`, `hotels.html` and `calculator.html`; an independent
+  link crawler over 25 local pages found 0 broken local links; every `site/assets/*.js` and
+  `site/poker3/assets/*.js` passes `node --check`; `site/data.json` parses.
+- **Merge-history hygiene:** the rebase conflict was append-only in this board and was resolved by keeping
+  both records complete (PR #164's session and this one). No other session's work was discarded.
