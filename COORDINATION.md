@@ -5058,6 +5058,8 @@ changed.** Verbatim excerpts and per-URL comparisons: `research/reread_2026-11-1
    app.js/search.js OK; `data.json` rebuild byte-identical. One test (`tests/test_caesars_flyer_2026_11_18.py`)
    was widened to accept either flyer retrieval date (2026-11-18 or 2026-11-19) because the same flyer was read
    on both days.
+  was widened to accept either flyer retrieval date (2026-11-18 or 2026-11-19) because the same flyer was read
+  on both days.
 
 ### Merge record (session `arena/23505d42-poker3`, 2026-11-19 UTC)
 
@@ -5490,3 +5492,17 @@ No venue has published a written maximum-entries-per-player / no-rebuy / no-add-
 rows are confirmed single-entry** (F31). No 8 AM start exists in the reviewed data, so no all-day plan is built (F16/F17).
 No date-specific checkout total exists for the trip window on 2026-11-19, so the trip budget still rests on the
 2026-11-17 quote and on the published floor.
+## Session `arena/cce0b8d3-poker3` — independent re-verification and final integration (2026-11-19 UTC)
+
+Branch: `arena/cce0b8d3-poker3`, branched from `main` at `e79f5a6` (the tip at claim time). No open PR from this
+branch. This session acts as the on-duty verification and integration session.
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| Independent line-by-line re-read of the official trip-window sources (Venetian DSE IV schedule, all four chunks; the seven primary structure sheets; the Wynn WPT schedule PDF; the Venetian suite-rate, resort-fee and hotel-terms pages; the Wynn resort-policy page) and comparison with the published rows | in progress | `arena-cce0b8d3` | `research/` (new dated record), `tests/` (new pin test), this board | Reads via the platform fetch tool, dated 2026-11-19. No value is changed unless the read contradicts the published row. |
+| Correct two factual date/label statements found on the static venue pages | pending | `arena-cce0b8d3` | `site/venues/index.html`, `site/venues/venetian.html` | The 15 NYE sheets were read 2026-11-17, not 2026-11-16; the NYE rows are not all unverified. |
+| Remove the two stray `>>>>>>>` conflict-marker lines this board carried | pending | `arena-cce0b8d3` | `COORDINATION.md` | Cosmetic; no session record is lost. |
+| Final verification, PR → `main`, merge, GitHub Pages confirmation, board record | pending | `arena-cce0b8d3` | whole repo (integration), this board | Flagged items do not block merge per the standing protocol. |
+
+**Scope protocol.** No tournament, hotel, rate, route or policy value is inferred. A page re-read that confirms
+existing values is recorded with its source and date; anything else is flagged for review.
