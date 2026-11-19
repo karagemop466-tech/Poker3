@@ -4623,7 +4623,6 @@ Overlap check: no other open PR at the time of claim (`gh pr list --state open` 
 3. The 17 Nov and 18 Nov poker-page captures differ only in the series banner (F92). Change badges remain until the monitor is re-baselined.
 
 **Not verified this session:** Wynn, Bellagio, MGM Grand, Caesars Palace, Horseshoe, ARIA and the Palazzo rates and structures; finish times (F16); written entry caps (F31); any current booking price (F93); Apple Maps walking times (not reachable from this sandbox).
-<<<<<<< HEAD
 
 ---
 
@@ -4685,7 +4684,6 @@ Full record: `research/live_recheck_2026-11-19_9b858e66.md`. Capture: `raw/dse_s
   F39 property room-tax percentages · F56 Signature structures · F57 no online price for 30 Nov / 1 Dec · F66
   phone-only poker rate · F88 one successful engine read · F32/F84 walking minutes are map readings · F83 whether the
   Wynn daily slate runs 27–29 Nov.
-=======
 ---
 
 ## Session `arena/ffe8f597-poker3` — line-by-line audit and day-plan consistency fix (2026-11-19 UTC)
@@ -4789,4 +4787,3 @@ The irregularity recorded above as "found and NOT fixed" was taken on after conf
   `site/poker3/assets/*.js` passes `node --check`; `site/data.json` parses.
 - **Merge-history hygiene:** the rebase conflict was append-only in this board and was resolved by keeping
   both records complete (PR #164's session and this one). No other session's work was discarded.
->>>>>>> origin/main
