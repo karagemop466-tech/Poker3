@@ -58,8 +58,11 @@
       .map((url) => monitored.find((row) => row.url === url)).filter(Boolean);
     const out = [];
     const changed = rows.filter((row) => row.changed);
-    const unavailable = rows.filter((row) => row.unavailable || row.status === 'unreachable' || /^HTTP [45]/.test(row.status || ''));
+    const blocked = rows.filter((row) => !row.changed && (row.botBlocked || row.outcome === 'blocked' || row.outcome === 'redirected'));
+    const unavailable = rows.filter((row) => !row.changed && !blocked.includes(row) &&
+      (row.unavailable || row.status === 'unreachable' || /^HTTP [45]/.test(row.status || '')));
     if (changed.length) out.push('<span class="badge bad" title="' + cell(changed.map((r) => (r.label || r.url) + ': ' + (r.checked || '')).join('; ')) + '">Source changed · review</span>');
+    if (blocked.length) out.push('<span class="badge info" title="' + cell(blocked.map((r) => (r.label || r.url) + ': ' + (r.status || 'blocked') + ' · ' + (r.checked || '')).join('; ')) + '">Blocked for the robot, not missing · read by hand</span>');
     if (unavailable.length) out.push('<span class="badge warn" title="' + cell(unavailable.map((r) => (r.label || r.url) + ': ' + (r.status || 'unavailable') + ' · ' + (r.checked || '')).join('; ')) + '">Source unavailable · recheck</span>');
     return out.join(' ');
   }
@@ -105,7 +108,8 @@
         '<td>' + (e.lastVerified ? cell(e.lastVerified) : '<span class="muted">Not recorded</span>') +
         (e.lastChecked ? '<div class="muted" style="font-size:11px">values read ' + cell(e.lastChecked) + '</div>' : '') + '</td>' +
         '<td>' + link(e.structureUrl, 'Structure sheet') + ' ' + link(e.scheduleUrl, 'Schedule') +
-        ' ' + sourceBadges([e.structureUrl, e.scheduleUrl]) + '</td>' +
+        ' ' + sourceBadges([e.structureUrl, e.scheduleUrl,
+          ...Object.values(e.rules || {}).map((rule) => rule && rule.source)]) + '</td>' +
         '</tr>';
     }).join('');
     return '<div class="table-wrap"><table><thead><tr><th>Date</th><th>Start</th><th>Tournament</th>' +
@@ -121,6 +125,12 @@
         ? '<div class="muted" style="font-size:11px">Dated official total ' + h.quote.checkIn + ' → ' + h.quote.checkOut +
           ': $' + h.quote.total.toFixed(2) + ' including ' + h.quote.taxes.toFixed(2) + ' tax</div>'
         : '<div class="muted" style="font-size:11px">No dated checkout total in the reviewed material</div>';
+      const quoteSources = [h.quote && h.quote.source, ...(h.quotes || []).map((item) => item.source)].filter(Boolean);
+      const bookingLinks = h.bookingLinks || [];
+      const rowSources = [h.source, h.feeSource, h.taxSource, ...quoteSources,
+        ...bookingLinks.map((item) => item.url)].filter(Boolean);
+      const quoteLink = h.quote && h.quote.source ? link(h.quote.source, 'Dated quote source') : '';
+      const bookingLink = bookingLinks.length ? link(bookingLinks[0].url, 'Official booking link') : '';
       return '<tr>' +
         '<td>' + cell(h.name) + '</td>' +
         '<td>' + cell(h.venue || '') + '</td>' +
@@ -132,8 +142,8 @@
         '<td>' + cell(h.cancellation || 'Not published') + '</td>' +
         '<td>' + cell(h.qualityNote || '') + '</td>' +
         '<td>' + (h.lastChecked ? cell(h.lastChecked) : 'Not recorded') + '</td>' +
-        '<td>' + link(h.source, 'Room source') + ' ' + link(h.feeSource, 'Fee terms') +
-        ' ' + sourceBadges([h.source, h.feeSource, h.taxSource]) + '</td>' +
+        '<td>' + link(h.source, 'Room source') + ' ' + link(h.feeSource, 'Fee terms') + ' ' +
+        quoteLink + ' ' + bookingLink + ' ' + sourceBadges(rowSources) + '</td>' +
         '</tr>';
     }).join('');
     return '<div class="table-wrap"><table><thead><tr><th>Hotel</th><th>Poker room</th><th>Published base rate</th>' +

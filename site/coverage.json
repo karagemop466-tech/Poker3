@@ -31,7 +31,7 @@
       "flags": [
         "F30"
       ],
-      "note": "Single scheduled job (12:10 UTC + push trigger) fetches each official URL, stores a content hash of the visible text, flags genuine changes; unavailable URLs are never reported as changed. Latest recorded run monitored 108 official URLs (85 fetched, 2 visible-text changes)."
+      "note": "Single scheduled job (12:10 UTC + push trigger) fetches each official URL, stores a content hash of the visible text, flags genuine changes; unavailable URLs are never reported as changed. Latest recorded run monitored 110 official URLs (86 fetched, 2 visible-text changes)."
     },
     {
       "id": "C3",

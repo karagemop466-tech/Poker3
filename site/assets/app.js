@@ -557,7 +557,8 @@ function renderHotels() {
     const rows = (db.bookingLinks || []).map((b) => `<tr>
       <td class="event-name">${esc(b.property)}<span class="muted">${esc(b.stay)}</span></td>
       <td><a href="${esc(b.url)}" target="_blank" rel="noopener">Official booking page for these dates</a>
-          <span class="muted">Page read ${esc(b.checkedOn)}</span></td>
+          <span class="muted">Page read ${esc(b.checkedOn || 'not recorded')}</span>
+          ${sourceStatusBadges([b.url, b.source, b.feeSource])}</td>
       <td>${esc(b.priceInStaticPage)}</td>
       <td><a href="${esc(b.feeSource)}" target="_blank" rel="noopener">Resort-fee terms</a></td></tr>`).join('');
     bookingHost.innerHTML = rows ? `<div class="table-wrap"><table><thead><tr><th>Property and stay</th>
@@ -593,7 +594,8 @@ function renderHotels() {
           ? `observed nights: $${r.trueNightlyLow} and $${r.trueNightlyHigh}<span class="muted">one dated quote, two nights; not a price range and not a floor</span>`
           : (r.trueNightlyLow ? '$' + r.trueNightlyLow : blank))}</td>
       <td>${esc(r.quoteType)}<span class="muted">${esc(r.note || '')}</span></td>
-      <td><a href="${esc(r.source)}" target="_blank" rel="noopener">Official source</a></td></tr>`).join('');
+      <td><a href="${esc(r.source)}" target="_blank" rel="noopener">Official source</a>
+          ${sourceStatusBadges([r.source, r.feeSource, r.taxSource])}</td></tr>`).join('');
     log.innerHTML = `<div class="table-wrap"><table><thead><tr><th>Property</th><th>Observed</th><th>Published rate</th>
       <th>Resort fee</th><th>Tax</th><th>True nightly floor</th><th>Quote type</th><th>Source</th></tr></thead><tbody>${body}</tbody></table></div>`;
   }
@@ -605,7 +607,8 @@ function renderHotels() {
       <td>${r.miles ? r.miles + ' mile' : ''}</td>
       <td>${esc(r.via || '')}</td><td>${esc(r.note || '')}</td><td>${esc(r.lastChecked || 'Not recorded')}</td>
       <td><a href="${esc(r.mapsUrl)}" target="_blank" rel="noopener">Live Maps route</a>
-          <span class="muted"><a href="${esc(r.source)}" target="_blank" rel="noopener">Venue source</a></span></td></tr>`).join('');
+          <span class="muted"><a href="${esc(r.source)}" target="_blank" rel="noopener">Venue source</a></span>
+          ${sourceStatusBadges([r.source])}</td></tr>`).join('');
     routes.innerHTML = `<div class="table-wrap"><table><thead><tr><th>From</th><th>To</th><th>Walk</th><th>Distance</th>
       <th>Via</th><th>Note</th><th>Last checked</th><th>Sources</th></tr></thead><tbody>${body}</tbody></table></div>`;
   }
@@ -627,6 +630,7 @@ function renderHotels() {
       quotesHost.innerHTML = `<div class="cards">${all.map((q) => `
         <article class="card">
           <span class="pill ${q.observedOn === db.asOf ? 'ok' : ''}">Observed ${esc(q.observedOn)}</span>
+          ${sourceStatusBadges([q.source])}
           <h3>$${q.total.toFixed(2)} for ${esc(q.nights)} nights</h3>
           <div class="detail-grid">
             <div><span class="label">Property and room</span><span class="value">${esc(q.property)}</span></div>
@@ -649,7 +653,8 @@ function renderHotels() {
     (db.hotels || []).forEach((h) => {
       if (!(h.bookingLinks || []).length) return;
       rows.push(`<p><strong>${esc(h.name)}</strong></p><ul class="list">${
-        h.bookingLinks.map((l) => `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a></li>`).join('')
+        h.bookingLinks.map((l) => `<li><a href="${esc(l.url)}" target="_blank" rel="noopener">${esc(l.label)}</a>
+          ${sourceStatusBadges([l.url])}</li>`).join('')
       }</ul><p class="muted">${esc(h.bookingLinksNote || '')}</p>`);
     });
     linksHost.innerHTML = rows.length
@@ -665,7 +670,8 @@ function renderHotels() {
          <th>What the official engine returned</th><th>Link</th></tr></thead><tbody>${
         rows.map(([h, w]) => `<tr><td>${esc(h.name)}</td><td>${esc(w.checkIn)} → ${esc(w.checkOut)}</td>
           <td>${esc(w.nights)}</td><td>${esc(w.result)}</td>
-          <td><a href="${esc(w.url)}" target="_blank" rel="noopener">Open it yourself</a></td></tr>`).join('')
+          <td><a href="${esc(w.url)}" target="_blank" rel="noopener">Open it yourself</a>
+              ${sourceStatusBadges([w.url])}</td></tr>`).join('')
       }</tbody></table></div>`
       : '<div class="empty"><strong>Nothing recorded.</strong> Every stay window opened returned a price.</div>';
   }
@@ -695,8 +701,10 @@ function renderHotels() {
         <p class="detail-note">Read on ${esc(c.observedOn)}. Where the two readings differ, the calendar is quoting a
         different suite for a different query, not a different nightly price for the same room. Nothing on this site uses
         a calendar cell as a rate; only the itemised quote panel above does. See flag F47.</p>
-        <p class="detail-note"><a href="${esc(c.windowA.url)}" target="_blank" rel="noopener">First reading</a> ·
-        <a href="${esc(c.windowB.url)}" target="_blank" rel="noopener">Second reading</a></p>`;
+        <p class="detail-note"><a href="${esc(c.windowA.url)}" target="_blank" rel="noopener">First reading</a>
+        ${sourceStatusBadges([c.windowA.url])} ·
+        <a href="${esc(c.windowB.url)}" target="_blank" rel="noopener">Second reading</a>
+        ${sourceStatusBadges([c.windowB.url])}</p>`;
     }
   }
   const pr = document.querySelector('[data-poker-rate]');
@@ -1113,7 +1121,7 @@ function renderSearchResults(query) {
   (db.routes || []).forEach((r) => {
     add('Walking route', `${r.hotel} → ${r.venue}`, '', `${r.minutes === 0 ? 'On site' : r.minutes + ' minutes'} · ${r.miles || ''} ${r.note || ''}`,
       r.lastChecked || db.asOf, `${r.via || ''} ${r.mapsOrigin || ''} ${r.mapsDestination || ''}`,
-      `<a href="${esc(r.mapsUrl)}" target="_blank" rel="noopener">Walking map</a> · <a href="${esc(r.source)}" target="_blank" rel="noopener">Official venue source</a>`);
+      `<a href="${esc(r.mapsUrl)}" target="_blank" rel="noopener">Walking map</a> · <a href="${esc(r.source)}" target="_blank" rel="noopener">Official venue source</a> ${sourceStatusBadges([r.source])}`);
   });
   (db.sources || []).forEach((s) => {
     add('Official source', s.name, '', s.type || '', s.checked || db.asOf, s.url,
