@@ -834,8 +834,10 @@ FLAGS = [
                  "re-read at the moment of booking before any non-refundable payment. Nothing on the site was revalued on the "
                  "strength of the failed read. A fourth read on 2026-11-19 repeated the failure in the same way: the 23-30 "
                  "November booking URL returned the reservation shell and the rewards panel with no suite price and no "
-                 "checkout total, so this pass adds no rate observation and the $4,010.55 record of 2026-11-17 stands as "
-                 "the only dated total."),
+                 "checkout total. A fifth read later the same day did render the itemised panel, and it is published as "
+                 "its own dated total ($3,619.39 for a Palazzo suite, F107), so the engine is intermittent rather than "
+                 "unavailable. Two dated totals for the same stay now exist - $4,010.55 read 2026-11-17 and $3,619.39 read "
+                 "2026-11-19 - and neither is a booking price."),
          source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar"),
     dict(id="F89", area="Verification", severity="Low",
          title="Sources re-read on 2026-11-17 (22:3x UTC) that match the published rows, recorded so the re-check date is not lost",
