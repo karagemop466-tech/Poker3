@@ -64,8 +64,12 @@ class LandingEvidenceLabels(unittest.TestCase):
                 continue
             event = events[day["primary"]]
             with self.subTest(event=event["id"]):
-                self.assertEqual(event["lastChecked"], "2026-11-17")
-                self.assertEqual(event["lastVerified"], "2026-11-17")
+                # The row must carry its own read/verify dates from the 2026-11-17 pass or a
+                # later one. The 2026-11-19 trip-window re-read (session arena/a33db3c1-poker3)
+                # legitimately advanced these primary rows past 2026-11-17, so the dates must not
+                # fall back before the pass that read them, not stay pinned to it.
+                self.assertGreaterEqual(event["lastChecked"], "2026-11-17")
+                self.assertGreaterEqual(event["lastVerified"], "2026-11-17")
 
 
 if __name__ == "__main__":

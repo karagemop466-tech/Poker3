@@ -114,7 +114,12 @@ class HotelAndPages(unittest.TestCase):
     def test_poker_room_page_flag_is_resolved(self):
         flags = {f["id"]: f for f in DATA["flags"]}
         self.assertIn("F92", flags)
-        self.assertIn("RESOLVED 2026-11-19", flags["F92"]["title"])
+        title = flags["F92"]["title"]
+        # The concurrent session's resolution is the authoritative F92 text: the page was
+        # re-read on 2026-11-19 and the wording change moved no tournament, rate or policy value.
+        self.assertIn("2026-11-19", title)
+        self.assertIn("no tournament, rate or policy value", title)
+        self.assertNotIn("still required", title)
 
 
 if __name__ == "__main__":
