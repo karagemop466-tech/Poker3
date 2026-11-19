@@ -93,6 +93,23 @@ chunks of the official schedule (Nov 16 – Dec 23 2026), the eight structure sh
 poker-suite rate, resort-fee and hotel-terms pages, and the Wynn resort policy page. `tests/test_recheck_ed1d2489.py` fails
 if a published value, fee line, guarantee or sheet link drifts from that record.
 
+## The 2026-11-19 trip-window re-read
+
+On **2026-11-19** (session `arena/a33db3c1-poker3`) every official source behind the fixed trip window
+**2026-11-23 → 2026-11-30** was fetched again and read line by line: the Venetian DeepStack Extravaganza IV
+schedule page, the eleven structure sheets the window's rows link to (1, 2, 3, 5, 6, 7, 8, 11, 22, 26, 30),
+the Wynn WPT World Championship schedule and structures PDFs, the Venetian poker-suite rate and resort-fee
+pages, the poker-room page and the booking engine. All **32** trip-window rows (19 Venetian + 13 Wynn)
+matched the published data exactly, so their `lastChecked`/`lastVerified` advanced to **2026-11-19**, along
+with the Venetian/Palazzo hotel rows and the re-read sources. No value was changed.
+
+The verbatim capture is `raw/trip_window_reread_2026-11-19.md`; the machine-checkable record is
+`research/reread_2026-11-19.json`; `tests/test_reread_2026_11_19.py` fails if the published rows drift from
+it. Two flags were touched: **F92** is resolved (the Venetian poker-room page was re-read and the 2026-11-18
+wording change moved no published value), and **F88** was re-attempted (the booking engine again returned only
+the reservation shell, so the dated $4,010.55 total still stands on its 2026-11-17 read and must be re-read at
+the moment of booking).
+
 ## Scheduled checks
 
 `.github/workflows/checks.yml` is the single scheduled job that reviews official sources at 12:10 UTC

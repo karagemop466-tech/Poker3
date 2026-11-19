@@ -6441,3 +6441,73 @@ After the claim, concurrent PR #180 merged changes to the calculator and PR #181
 **Checks on the reconciled branch:** 266 tests passed with the Pages workflow's PyYAML dependency installed; site verification, recorded-source audits, 44/44 transcription checks, entry-label integrity, canonical rendered smoke and legacy smoke passed. These validate recorded evidence and links; they are not a fresh live re-read of every official page. PR #173 remains open and conflicting at this writing and belongs to another session; its integration must not be presumed complete.
 
 **PR:** [#184](https://github.com/karagemop466-tech/Poker3/pull/184) contains this independent repair. It is not the final integration PR; #173 still belongs to another session and has unresolved conflicts. The existing dashboard was already live before this repair; #184 has not been merged or deployed at this point.
+
+## Session `arena/a33db3c1-poker3` — trip-window fresh re-read and integration (2026-11-19 UTC)
+
+Branch: `arena/a33db3c1-poker3`, branched from `main` at `23ad5d8`. This session acts as the final
+integration owner for the shared outputs (`site/**`, `scripts/**`, `tests/**`, `raw/**`, `research/**`,
+`COORDINATION.md`, `README.md`). No other session had an open claim or an open PR at claim time.
+
+| Task | Status | Owner session | Scope |
+|---|---|---|---|
+| Fresh line-by-line re-read of every official source behind the fixed trip window; advance lastChecked/lastVerified; resolve F92; re-attempt F88 | done | `arena/a33db3c1-poker3` | `scripts/data_source.py`, `scripts/coverage.py`, `site/data.json`, `site/sheets.html`, `site/checks.json`, `site/coverage.json`, `research/reread_2026-11-19.json`, `raw/trip_window_reread_2026-11-19.md`, `tests/test_reread_2026_11_19.py`, `tests/test_reread_2026_11_17.py`, `README.md`, this board |
+
+**Pre-work audit.** The canonical dashboard on `main` already implements the full brief (calculator,
+scheduled URL re-check, per-row last-checked dates, dated rate log, one page per venue, global search,
+structured rule fields, overlap flags with primary/fallback, guarantee÷fee descriptive ratio, date filter,
+single-entry toggle, walking-limit filter, morning feed, executive summary, questions, suggestions, flagged
+page). `verify_site.py` passed (341 events / 8 hotels / 56 routes / 47 sources / 88 flags / 7 plan days /
+16 pages) and 228 tests passed before this session. The remaining open items were genuine evidence gaps
+(no written one-entry cap F31, no 8 AM start F17, no published finish times F16, no dated quote for
+non-Venetian properties), not missing code. This session therefore performed the highest-value remaining
+work: a genuine fresh re-read of the official sources behind the booking decision.
+
+**Fresh re-read (2026-11-19).** Every official source behind the fixed trip window 2026-11-23 → 2026-11-30
+was fetched and read line by line this session (the sandbox page reader reaches the venue hosts, unlike the
+bash network, which is restricted to the allow-list). All 32 trip-window rows matched the published data
+exactly: the 19 Venetian DeepStack Extravaganza IV rows against the live schedule page, and the 13 Wynn WPT
+rows against the live WPT World Championship schedule PDF. The eleven structure sheets the window links to
+(1, 2, 3, 5, 6, 7, 8, 11, 22, 26, 30) were re-read and their chips, level length, late-registration clock,
+fee and guarantee all agree with the published rows. The Venetian poker-suite rate page ($119/$209 start,
+$55 resort fee, EPOKR25, six-hours-or-$300 qualification), the resort-fee page ($55 plus tax) and the
+poker-room page were re-read and match. Consequently the 32 rows' `lastChecked`/`lastVerified` advanced to
+**2026-11-19**, along with the Venetian/Palazzo hotel rows and the re-read sources. **No tournament, hotel,
+rate, guarantee or rule value was changed.**
+
+**Sources (official, linked for manual review).**
+- Venetian DeepStack IV schedule: https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html
+- Venetian structure sheets: https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_<1,2,3,5,6,7,8,11,22,26,30>.pdf
+- Wynn WPT schedule PDF: https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf
+- Wynn WPT structures PDF: https://cdn.wynnresorts.com/image/upload/v1750864036/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Structures.pdf
+- Venetian suite rates: https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html
+- Venetian resort fee: https://www.venetianlasvegas.com/resort/resort-fee.html
+- Venetian poker room: https://www.venetianlasvegas.com/resort/casino/poker.html
+- Venetian booking engine (trip window): https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar
+
+**Flags touched.**
+- **F92 — resolved 2026-11-19.** The Venetian poker-room page was re-read line by line: it prints "The
+  Palazzo, level 2, Grand Canal Shoppes", open 24 hours, and complimentary self-parking for registered
+  guests — exactly the location, hours and parking the published rows carry. The 2026-11-18 20:24 wording
+  change moved no published value. The flag is kept (resolved) so the change history is not lost.
+- **F88 — re-attempted 2026-11-19, caution stands.** The booking engine for 23–30 Nov returned the
+  reservation shell only ("Your Venice meets Vegas getaway is loading") and no checkout total, confirming
+  the engine still does not serve a stable static price to a static reader. The dated $4,010.55 total
+  therefore still stands on its 2026-11-17 read and must be re-read at the moment of booking.
+
+**Irregularities / notes for review.**
+- The live Wynn schedule PDF prints "BadugI" (capital I) on the 28 Nov Mixed Triple Draw row while the
+  published row spells "Badugi". Same event, rendering difference, not a data error (mirrors F45). Recorded
+  in `raw/trip_window_reread_2026-11-19.md`.
+- The booking engine remains an unstable source for a static reader (F88); no total was inferred from the
+  failed 2026-11-19 read.
+
+**Verification.** `verify_site.py` passed (341 events / 8 hotels / 56 routes / 47 sources / 88 flags / 7 plan
+days / 16 pages); `python3 -m unittest discover` **237 tests OK** (PyYAML installed in the sandbox only);
+`audit_951cd431.py` 0 failures / 0 warnings; `verify_live_official.py`, `audit_data.py`,
+`verify_entry_labels.py` and `verify_transcription.py` (44/44) passed; `canonical_smoke.py` +
+`canonical_render.js` passed (339 rows default, 333 with walk limit); `node --check` on app.js/venue.js/
+search.js/feed.js passed; `data.json` rebuild is byte-identical across two runs (deterministic).
+
+**Rebase conflict log.** Rebasing onto `main` (which had advanced through concurrent merges #164/#165/#166/#167/#170/#171 and a scheduled re-check record) conflicted in `COORDINATION.md`, `scripts/data_source.py`, `site/checks.json`, `site/coverage.json`, `site/data.json` and `site/sheets.html`. Resolved without discarding the other sessions' work: `COORDINATION.md` kept both append-only sections; `scripts/data_source.py` kept the concurrent session's `LAST_PASS_2026_11_19` block and its resolved F92/F88/F93 text and re-applied only this session's `REREAD_19` block (the 32-row date advancement, which the concurrent pass did not do); the derived `site/data.json`, `site/sheets.html` and `site/coverage.json` were regenerated from the resolved builder; `site/checks.json` took `main`'s record. To avoid an add/add collision with the concurrent session's same-named artefacts, this session's record and test were renamed to `research/reread_2026-11-19_tripwindow.json` and `tests/test_reread_2026_11_19_tripwindow.py`; the concurrent session's `research/reread_2026-11-19.md` and `tests/test_reread_2026_11_19.py` are kept alongside them.
+
+**Integration record.** PR and merge recorded below after the pull request is opened and merged.
