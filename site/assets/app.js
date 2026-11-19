@@ -485,7 +485,10 @@ function hotelCards(hotels) {
     <p class="muted">${esc(h.rooms || 'Room inventory not published in this pass')}</p>
     <p><strong>Published base rate:</strong> ${h.publishedStartingRates ? '$' + h.publishedStartingRates : 'not published'}</p>
     <p><strong>Mandatory resort fee:</strong> ${h.resortFee ? '$' + h.resortFee + ' plus tax' : 'not verified'}</p>
-    <p><strong>True cost per night:</strong> ${h.trueNightlyLow ? '$' + h.trueNightlyLow.toFixed(2) + ' – $' + h.trueNightlyHigh.toFixed(2) : 'cannot be computed without a published rate'}</p>
+    <p><strong>True cost per night:</strong> ${h.trueNightlyLow ? '$' + h.trueNightlyLow.toFixed(2) + ' – $' + h.trueNightlyHigh.toFixed(2)
+      : (h.derivedNightlyLow ? '$' + h.derivedNightlyLow.toFixed(2) + ' – $' + h.derivedNightlyHigh.toFixed(2) + ' (derived)'
+      : 'cannot be computed without a published rate')}</p>
+    ${h.derivedNightlyNote ? `<p class="muted">${esc(h.derivedNightlyNote)}</p>` : ''}
     <p><strong>Cancellation deadline:</strong> ${esc(h.cancellation || 'not published')}</p>
     <p><strong>Last checked:</strong> ${esc(h.lastChecked || 'Not recorded')}</p>
     <p class="muted">${esc(h.status || '')}</p>
@@ -512,7 +515,10 @@ function renderHotels() {
                 ${h.printedFeeAndTax.agreesWithModelTaxPct ? 'agrees with' : 'disagrees with'} the 13.38% the cost model applies ·
                 <a href="${esc(h.printedFeeAndTax.source)}" target="_blank" rel="noopener">printed ${esc(h.printedFeeAndTax.excerpt)}</a></span>`
             : ''}</td>
-        <td>${h.trueNightlyLow ? '$' + h.trueNightlyLow.toFixed(2) + ' – $' + h.trueNightlyHigh.toFixed(2) + '<span class="muted">floor computed from published components</span>' : blank}</td>
+        <td>${h.trueNightlyLow ? '$' + h.trueNightlyLow.toFixed(2) + ' – $' + h.trueNightlyHigh.toFixed(2) + '<span class="muted">floor computed from published components</span>'
+          : (h.derivedNightlyLow ? '$' + h.derivedNightlyLow.toFixed(2) + ' – $' + h.derivedNightlyHigh.toFixed(2) +
+            '<span class="muted">derived from the property\'s own dated average, fee included, plus 13.38% tax</span>'
+            : blank)}</td>
         <td>${esc(h.parking || 'Not published')}</td>
         <td>${esc(h.cancellation || 'Not published')}${h.cancellationDetail ? `<span class="muted">${esc(h.cancellationDetail)}</span>` : ''}${h.checkInOut ? `<span class="muted">${esc(h.checkInOut)}</span>` : ''}</td>
         <td>${esc(h.qualityNote || '')}</td>
