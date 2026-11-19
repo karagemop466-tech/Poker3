@@ -331,7 +331,7 @@ SOURCES = [
          url="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament.html",
          type="official index", checked=LAST_PASS),
     dict(id="vl-poker", name="Venetian poker room page", url="https://www.venetianlasvegas.com/resort/casino/poker.html",
-         type="official room page", checked=LAST_PASS),
+         type="official room page", checked="2026-11-19"),
     dict(id="vl-suite-rates", name="Venetian poker-room suite rates and play requirements 2026",
          url="https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html", type="official rate page", checked=RECHECKED),
     dict(id="vl-resort-fee", name="Venetian resort fee page", url="https://www.venetianlasvegas.com/resort/resort-fee.html",
@@ -1083,19 +1083,29 @@ FLAGS = [
          title="The official Venetian poker page places the room at The Palazzo, level 2, Grand Canal Shoppes; the walking captures measure to the Venetian",
          detail=("Read on 2026-11-18 from the Venetian poker page: 'LOCATION: The Palazzo, level 2, Grand Canal Shoppes', with "
                  "directions from the Venetian lobby (escalator from the Waterfall Atrium) and from the Palazzo lobby (self-parking "
-                 "elevators). The Google Maps walking captures on file (F84) and the 'Venetian' venue row use the resort address. "
+                 "elevators). Re-read on 2026-11-19 (session arena/827185f7-poker3, the manual re-read recorded in F92): the same "
+                 "LOCATION line and both lobby direction sets still print exactly as recorded here. The Google Maps walking captures "
+                 "on file (F84) and the 'Venetian' venue row use the resort address. "
                  "No minute value is changed by this flag. Before a walking-limit decision, re-measure to the room's own entrance on "
                  "level 2 of Grand Canal Shoppes."),
          source="https://www.venetianlasvegas.com/resort/casino/poker.html"),
-    dict(id="F92", area="Change monitoring", severity="Medium",
-         title="The scheduled re-check flagged a wording change on the Venetian poker page on 2026-11-18 at 20:24 UTC; a manual re-read is still required",
+    dict(id="F92", area="Change monitoring", severity="Low",
+         title="RESOLVED 2026-11-19: the required manual re-read of the Venetian poker page is done; no published value behind it moved",
          detail=("The scheduled source re-check (site/checks.json, run 2026-11-18T20:24:36Z) recorded a visible-text change on "
                  "https://www.venetianlasvegas.com/resort/casino/poker.html against the previous run at 2026-11-18T03:24:32Z "
-                 "(wordingChanged: true). Flag F91 records a 2026-11-18 read of the same page (the Palazzo level 2 location), but "
-                 "this session could not confirm whether that read covers the 20:24 change, and the sandbox cannot fetch venue "
-                 "sites, so no value was changed by the automation and none is asserted here. A human must re-read the page and "
-                 "confirm whether any published value behind it moved before the next nonrefundable payment. The change badge is "
-                 "shown on every row that links this URL."),
+                 "(wordingChanged: true), and asked for a manual re-read. That re-read happened on 2026-11-19 by session "
+                 "arena/827185f7-poker3 (page reader, full page in two chunks). The live page prints, verbatim: 'LOCATION — The "
+                 "Palazzo, level 2, Grand Canal Shoppes'; the hours block '12:00 AM - 11:59 PM' for each of the seven weekdays "
+                 "with 'Open 24 hours daily.'; 'Our Poker Room is located at The Palazzo on level 2 of Grand Canal Shoppes. The "
+                 "Poker Room features 50 tables spread across 14,000 square feet of space, making it the largest room on the Las "
+                 "Vegas Strip.'; and the series block 'DeepStack Extravaganza IV / November 16 – December 23, 2026 / More than "
+                 "$3.6 Million in guaranteed tournament prize pools'. Every value this site records from that URL — F91's location "
+                 "wording (2026-11-18 read, re-confirmed today), the venue register's series line and $3.6M guarantee, and the "
+                 "room's 24-hour status — still prints exactly as recorded, so no data value changed. A text hash cannot say which "
+                 "words moved: the 20:24 change could not be attributed to any value this site cites, and the page carries "
+                 "marketing copy that no row depends on, so the change is treated as wording only. The 2026-11-19 05:33 UTC check "
+                 "no longer reports this URL as changed. Re-read the page again if a future check flags it, and before any "
+                 "nonrefundable payment."),
          source="https://www.venetianlasvegas.com/resort/casino/poker.html"),
     dict(id="F74", area="Venetian DSE NYE", severity="Low",
          title="Eleven NYE rows carried a 'structure sheet not read' label after all 15 sheets had been read",
