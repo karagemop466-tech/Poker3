@@ -5804,5 +5804,6 @@ merge commit **`31b2c5863fd4877727b341f737dddac76bca878d`**. It was not held for
   their real pages rather than 404; `/Poker3/flagged.html` serves the "Operational review · canonical page paths
   returned 404" section, the fix note for all 18 canonical pages and the live flag register. No broken root path was
   observed in this read-back. The underlying settings change that would remove the two-publisher race remains F29.
-- **Documentation-only delivery:** this final record is transported to `main` by a follow-up PR from the same branch;
+- **Documentation-only delivery:** this final record is transported to `main` by
+  [PR #204](https://github.com/karagemop466-tech/Poker3/pull/204) from the same branch;
   it changes no source-backed value, page, script or workflow. Open PRs #173 and #184 remain untouched.
