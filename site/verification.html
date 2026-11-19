@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Line-by-line verification of every requirement and every official source behind the Las Vegas poker planner, dated 2026-11-19.">
+<title>Vegas Poker Planner · Verification &amp; requirements audit</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="verification">
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark">♠</span><span>Vegas Poker Planner</span></a>
+  <form class="top-search" data-search-form><input type="search" placeholder="Search every table…" aria-label="Search all tables"><button class="btn" type="submit">Search</button></form>
+  <span class="top-tag">Verified by hand · <span data-asof></span></span>
+</header>
+<nav class="mobile-nav" data-mobile-nav></nav>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="side-label">Plan your trip</div>
+    <nav class="nav" data-nav></nav>
+    <div class="side-note">
+      <strong>Evidence policy</strong>
+      Only official venue and property pages and official PDFs substantiate a value. A blank cell means no official
+      source published that value, and it is listed on the <a href="flagged.html">Flagged for review</a> page.
+      Nothing on this page is a forecast.
+    </div>
+  </aside>
+  <main class="main">
+    <section class="hero">
+      <div class="eyebrow">Verification &amp; requirements audit · session arena/8194609f · 2026-11-19 UTC</div>
+      <h1>Every requirement, line by line, with the official source beside it.</h1>
+      <p>
+        This page records the audit performed on the integrated site on 19 November 2026. Each row names one
+        instruction from the brief, where it is implemented, what was checked, and the official page or repository
+        file that holds the evidence. A requirement that official sources cannot support is marked as such rather
+        than quietly filled in. The full verbatim read log is in
+        <a href="https://github.com/karagemop466-tech/Poker3/blob/main/research/verification_2026-11-19_arena-8194609f.md">research/verification_2026-11-19_arena-8194609f.md</a>.
+      </p>
+    </section>
+
+    <div class="notice" data-load-error hidden>
+      <strong>The data file did not load.</strong> Open this page from the published site (not a local
+      <code>file://</code> URL) so <code>data.json</code> can be fetched.
+    </div>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Audit summary</h2><p>Counts read straight from <code>site/data.json</code>.</p></div></div>
+      <div data-verification-summary class="cards"></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Requirement audit</h2><p>One row per instruction in the brief. "Limited by official evidence" means the site implements what can honestly be built and flags the gap.</p></div></div>
+      <div data-verification></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Official sources read on 2026-11-19</h2><p>Verbatim excerpts. A changed page is flagged for a human re-read; automation never moves a value.</p></div></div>
+      <div data-verification-reads></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Trip-window rows, line by line</h2><p>23–30 November 2026, re-read from the live official schedule and compared with the published rows.</p></div></div>
+      <div data-verification-rows></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Irregularities and manual-review links</h2></div></div>
+      <div class="cards">
+        <article class="card">
+          <span class="pill warn">Published, non-blocking</span>
+          <h3>Flagged for review</h3>
+          <p>Every conflict, blank value and estimate is on the <a href="flagged.html">Flagged for review page</a> with its
+            official source link. The 2026-11-19 audit added F97 (stale venue subpages), F98 (orphan conflict
+            markers in the coordination board) and F99 (unlinked stale snapshot JSON files published under
+            <code>site/data/</code>). F97 and F98 were fixed and remain visible for review; F99 is published for a
+            decision rather than changed unilaterally, because another session's script still names one of those files.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Automated</span>
+          <h3>Scheduled source re-check</h3>
+          <p><a href="sources.html">The source log</a> publishes the last automated re-check: 107 official URLs,
+            85 fetched, 0 changed, 8 blocked, 14 unavailable and 22 failed at 2026-11-19T06:15:40Z. Unreachable
+            pages were read by hand; none is reported as verified by a failed fetch.</p>
+        </article>
+        <article class="card">
+          <span class="pill">Build gates</span>
+          <h3>How publication is protected</h3>
+          <p>The Pages workflow runs the site verifier, four independent audits, the full unit suite and headless
+            render checks before it uploads the artifact. A local link scan over every page reports zero broken
+            internal links. Nothing is merged while a gate is red.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>
