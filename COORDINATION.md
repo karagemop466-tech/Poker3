@@ -5369,3 +5369,23 @@ the legacy `pages build and deployment` job (run
 ([44476103096](https://github.com/karagemop466-tech/Poker3/actions/runs/44476103096),
 [44476103111](https://github.com/karagemop466-tech/Poker3/actions/runs/44476103111)). One more concurrent merge (#191)
 landed during this PR; the board conflict was append-only and both records were kept.
+---
+
+## Session `arena/97eba119-poker3` — independent line-by-line audit + final integration (2026-11-19 UTC)
+
+**Branch note.** The platform binds this session to `arena/97eba119-poker3` (branched from `main` at `e79f5a6`); the brief's `session-<id>/<task>` naming cannot be applied here, as every earlier session recorded. This session is the on-duty verification + integration session and works only on this branch. The claim below was committed and pushed **before** any other edit, per protocol.
+
+**Claim (2026-11-19 UTC).** At claim time `origin/main` was `0ebc955` (PR #183 merged); open PRs were **#173** (`arena/a33db3c1-poker3` — trip-window re-read, `scripts/data_source.py`, `scripts/coverage.py`, `site/data.json`, `site/sheets.html`, `README.md`, `raw/`, `research/reread_2026-11-19_tripwindow.json`, tests) and **#182** (`arena/621aeb99-poker3` — `COORDINATION.md` only). Those scopes are **not** edited by this session. Shared output under those PRs is left alone; the only shared file this session touches is this board, append-only, so a concurrent merge is resolved by keeping both sections.
+
+| Task | Status | Owner session | Scope (files) | Notes |
+|---|---|---|---|---|
+| C1 Claim recorded and pushed before work | in progress → done | `arena/97eba119-poker3` | `COORDINATION.md` (this section) | Committed and pushed immediately. |
+| C2 Independent line-by-line verification: every published table row has an official source link; fresh official reads of the trip-window rows; official-URL liveness; full internal-link / no-broken-link scan of the canonical dashboard | pending | `arena/97eba119-poker3` | `research/audit_2026-11-19_97eba119.md` (new), `tests/test_official_row_sources_97eba119.py` (new) | No value is inferred; a value that cannot be confirmed from an official source stays blank and is flagged. |
+| C3 Repo irregularity review, line by line, with links for manual review | pending | `arena/97eba119-poker3` | `research/audit_2026-11-19_97eba119.md`, this board | Findings published on the Flagged for review page or recorded here with source links. |
+| C4 Final verification (full suite, verifiers, reproducibility, rendered-link check), PR → `main`, merge without approval, confirm GitHub Pages deploy, record PR link + merge result here | pending | `arena/97eba119-poker3` | whole repo (integration), this board | Flagged items and unverified values do not block the merge; site must build with no broken links first. |
+
+**Non-overlap.** `scripts/data_source.py`, `scripts/coverage.py`, `site/data.json`, `site/sheets.html`, `site/coverage.json`, `README.md`, `raw/trip_window_reread_2026-11-19.md`, `research/reread_2026-11-19_tripwindow.json` and the tests named in PR #173 are the other session's scope and are not edited here. If that PR merges first, this session rebases and keeps both records.
+
+### Result
+
+_Appended when the work is finished._
