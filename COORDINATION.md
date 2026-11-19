@@ -5584,3 +5584,32 @@ resort-fee and hotel-terms pages and the Wynn resort-policy page match every pub
   page per venue), day plan, hotels, trip-cost calculator, global search, questions, suggestions, sources,
   sheet verification and Flagged for review pages all render. Flagged irregularities remain published for
   review and do not block anything.
+- **Follow-up.** This merge record is published to `main` by a documentation-only PR from this same branch
+  (no data or page value changes), so every push in this session goes only to `arena/97eba119-poker3`.
+---
+
+## Session `arena/8194609f-poker3` — full-requirements audit, line-by-line verification, integration (2026-11-19 UTC)
+
+**Branch:** `arena/8194609f-poker3`, branched from `main` at `e79f5a6` (the current tip, PR #179). The platform binds
+each session to one branch, so the brief's `session-<id>/<task>` naming cannot be applied here; prior sessions recorded
+the same constraint. **No new branch is created or switched to.** At claim time the only open PR was **#173**
+(`arena/a33db3c1-poker3`, last updated 06:12 UTC, a read-only re-read PR); this session does not touch that branch,
+does not close that PR, and does not edit its files. No other session had committed since the branch point at claim
+time, so this session acts as **final integration owner** for all shared outputs. Several sessions merged while this
+branch was open (PRs #180-#196); every one of their records was kept during the rebase, see the conflict log below.
+
+**Claim (committed and pushed before any other work).** Scope: `COORDINATION.md`, `site/**`, `scripts/**`, `tests/**`,
+`research/**`, `README.md`, `.github/workflows/**` — i.e. the whole repository, as integration owner. No other session's
+claimed files are being modified. If another session lands a claim while this one is open, this session will rebase,
+keep both records, and log the handoff here.
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| T1 Repo review: line-by-line audit of published values against official sources; log irregularities | in progress | `arena/8194609f` | `research/` (new dated audit record), `site/data.json` flag register, `site/flagged.html` | Reads via the platform fetch tool. No value is inferred; blanks stay blank. |
+| T2 Requirements audit: check every item in the brief against the live site; implement any gap | in progress | `arena/8194609f` | `site/**`, `scripts/**`, `tests/**` | Includes trip-cost calculator, date filter, single-entry filter, global search, per-venue pages, rate log, last-checked dates, change monitoring, walk filter, structured rule fields, overlap flags, primary/fallback day plan, questions and suggestions sections. |
+| T3 Fix board defect: two orphan git conflict-marker lines left by a prior rebase | done | `arena/8194609f` | `COORDINATION.md` | Marker lines removed; every session's text was kept. A parallel session published the same finding on main, so no duplicate flag was added. |
+| T4 Final verification: full unit suite, all verification scripts, link check, reproducible rebuild, then PR → `main` → merge → Pages confirmation → record here | pending | `arena/8194609f` | whole repo (integration) | Flagged irregularities and unverified items do not block the merge; they are published on the Flagged for review page. |
+
+**Verification policy.** Every table row keeps its official source link. A value that cannot be confirmed from an
+official venue or property page/PDF is left blank and flagged. Third-party pages are cited only as conflicts, never as
+values. Any changed official page is flagged for a human re-read; automation never moves a published value.
