@@ -5091,3 +5091,11 @@ Calculator audit done: removed misleading single-night quote preset, rendered th
 **Integration:** [PR #181](https://github.com/karagemop466-tech/Poker3/pull/181). Rebase over #180 conflicted only in this board; both sessions’ entries were retained. No calculator or research changes were overwritten.
 
 **Merge result:** #181 merged as `06a240525ec76087b2c9d15e9069927722f6ee48`; the gated [GitHub Pages deployment](https://github.com/karagemop466-tech/Poker3/actions/runs/44474549797) passed build and deploy. On the integrated calculator head, 261 unit tests passed; the board edit did not change site data. The published calculator implementation came from #180.
+## Session `arena/09d32ea7-poker3` — PDF monitoring reliability (2026-11-19 UTC)
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| Repair scheduled PDF change detection; test compressed-stream changes and safe baseline transition | in progress | arena-09d32ea7 | `scripts/check_sources.py`, `tests/test_check_sources.py`, new `tests/test_pdf_monitor.py`, `research/pdf-monitor-2026-11-19.md`, `README.md` monitoring subsection, append-only this board | Existing PDF normalizer discards all streams; official PDF content commonly lives inside those streams. No tournament/hotel data or verification stamps will change. |
+| Validate integrated static site; PR, merge and confirm Pages deployment | in progress | arena-09d32ea7 | integration checks, append-only this board | PR #173 owns the new trip-window source re-read; that work is not duplicated here. |
+
+Claim made on the platform-assigned branch before implementation. The platform prohibits creating/switching branches or pushing main, so this board claim is published on this branch and the integration PR, not directly on main. Existing historical claims/results are retained. Outbound sandbox access allows GitHub/package hosts only; no new official-site value checks are claimed. The current dashboard/data already contain the requested planner features and extensive dated official-source evidence; strict-entry confirmation, exact-date comparable checkout quotes, and verified event finish times remain evidence-dependent, not safe to infer.
