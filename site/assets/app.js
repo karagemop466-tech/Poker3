@@ -13,6 +13,7 @@ const NAV = [
   ['calculator.html', 'Trip cost', '∑'],
   ['ranking.html', 'Ranking', '≡'],
   ['questions.html', 'Questions', '?'],
+  ['q-and-a.html', 'Q&amp;A worksheet', '⌸'],
   ['suggestions.html', 'Suggestions', '✦'],
   ['flagged.html', 'Flagged for review', '⚑'],
   ['sources.html', 'Sources', '⛓'],

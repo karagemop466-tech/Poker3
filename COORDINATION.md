@@ -5835,3 +5835,86 @@ Branch: `arena/e830d773-poker3` (platform-bound single branch; `session-<id>/<ta
   - **GitHub Pages deployment:** `Publish the canonical Vegas Poker Planner to GitHub Pages` **success** ([run 44482186565](https://github.com/karagemop466-tech/Poker3/actions/runs/44482186565), build 18s + deploy 10s) and `pages build and deployment` **success** ([run 44482186298](https://github.com/karagemop466-tech/Poker3/actions/runs/44482186298)); `GET /repos/karagemop466-tech/Poker3/pages/builds/latest` returned `status: "built"`, `commit: "5f001742c69c7d9e6e5f891f3e45eaf735297bff"`, `error: null`.
   - **Live read-back:** Fetched <https://karagemop466-tech.github.io/Poker3/site/hotels.html> and <https://karagemop466-tech.github.io/Poker3/site/venues/others.html> after deployment; both serve the updated hero/dates, the five-room heading (`Bellagio, MGM Grand, Caesars Palace, Horseshoe & ARIA`), and the newly verified Caesars Palace and Horseshoe parking terms.
   - **Rebase log:** Three append-only `COORDINATION.md` rebases over PRs #200, #201–#203, and #204; all concurrent sessions' records and code were preserved in full. Open PRs `#173` and `#184` remain untouched.
+
+---
+
+## Session `arena/80a6f5df-poker3` — independent line-by-line re-verification, 2026-11-19 (UTC)
+
+Branch: `arena/80a6f5df-poker3`, branched from `main` at `5c42d7fb5e9931f4582af03e6aa6cc741efc9d9e` (PR #206 merge).
+The platform binds a session to one branch, so the `session-<id>/<task>` branch naming cannot be applied; this is this
+session's only working branch. Claim written and pushed **before** any edit, per the protocol.
+
+| Task | Status | Owner session | Scope (files) | Notes |
+|---|---|---|---|---|
+| S1 Independent line-by-line re-verification of the published trip-window rows, hotel components, walking routes and rank ratios against the official sources, read live on 2026-11-19 | in progress | `arena/80a6f5df` | `research/verify_2026-11-19_arena-80a6f5df.md` (new) | Read-only on `site/data.json`; any discrepancy is recorded, not silently changed. |
+| S2 Publish this session's verification result, any new irregularity flag and the board record | unclaimed → will be this session | `arena/80a6f5df` | `research/verify_2026-11-19_arena-80a6f5df.md`, **only if a real defect is found** the owning module (`scripts/data_*.py`) plus its regenerated artifact, `COORDINATION.md` | Small frequent commits; `git pull --rebase` before every push. |
+| S3 Integration: run the full gate set, PR from this branch to `main`, merge without waiting, confirm the Pages deploy, record the result | in progress | `arena/80a6f5df` | whole repo (integration), `COORDINATION.md` | Flagged/unverified items do not block the merge; they are published on Flagged for review. |
+
+**Scope protocol.** No tournament, hotel, rate, walking, duration or policy value is inferred. A published value is only
+"confirmed" here if this session read it on an official venue or property page/PDF on 2026-11-19. Anything that disagrees
+stays published as-is until it is reconciled against a verbatim official excerpt, and the disagreement is flagged.
+Other sessions' board sections, code and data are preserved; conflicts are resolved without discarding their work.
+
+### Result (session `arena/80a6f5df-poker3`, 2026-11-19 UTC)
+
+**S1 — done. Independent line-by-line re-verification, read live on 2026-11-19.** The dated verbatim record is
+[`research/verify_2026-11-19_arena-80a6f5df.md`](research/verify_2026-11-19_arena-80a6f5df.md). It is a **read-only**
+pass against `site/data.json`: no tournament, fee, guarantee, hotel, rate, route or policy value was changed, and every
+comparison is quoted from the official page read that day.
+
+- **Venetian DSE IV schedule** (all four chunks,
+  [dse-nov-2026.html](https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html)):
+  the 19 trip-window rows (23–30 November 2026) matched on date, start time, printed buy-in, printed guarantee and
+  structure-sheet URL — **19/19**.
+- **Structure sheets read in full:** 30 (#8, $200 PKO: event 08, 5:10 PM, 25,000 chips, 30-minute levels, "8 levels +
+  Break (9:40 PM)", "$8,000 (prize pool + total bounties)", "$40 of the $200 Buy-In is withheld"), 1 (#9/11/13/15/21/22/
+  23/25/60–64, same terms), 22 (#20, 12:10 PM, 30,000 chips, "8 levels + break (~ 4:40 PM)", $10,000, "$58 of the $300
+  Buy-In is withheld"). None prints a finish time or a maximum entries per player — **F16 and F31 reconfirmed, not
+  resolved**.
+- **Hotel components:** `$119 / $209` starting rate, `$55` resort fee, `13.38%` Clark County tax, `$20/day`
+  registered-guest self-parking, `$40/day` valet, the three-hour poker parking waiver, check-in 3:00 p.m.–11:59 p.m. /
+  check-out 11:00 a.m., non-cancellable prepaid offers and the `$100 + tax` early check-out — all verbatim from
+  [suite-rates](https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html),
+  [resort-fee](https://www.venetianlasvegas.com/resort/resort-fee.html),
+  [hotel terms](https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html) and
+  [player-parking](https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html). The published floor
+  `($119+$55)×1.1338 = $197.28` and ceiling `($209+$55)×1.1338 = $299.32` both reproduce exactly.
+- **Wynn WPT schedule PDF** (both chunks): every trip-window row (27–29 November) matches, including the 6 p.m. Day 1F
+  turbo at 20/40 levels. The schedule's own "Nov. 30 Monday 1 p.m. Day 2" beside its own Day 1A, and "Dec. 5 11 a.m.
+  Day 2" beside the Prime Day 1A, are reproduced accurately — venue irregularities already on the register (F34, F61).
+- **Bellagio Friday $600** reads "Players may buy-in and re-enter through the end of level 8" plus the voluntary `$40`
+  gratuity that buys 15,000 extra chips, so it correctly stays outside the single-entry path. The **MGM Grand** sheet is
+  still titled "August Tournament Schedule" with no year and prints the "5 entries or more" bonus.
+- **Data/arithmetic audit:** 0 of 341 rows missing a read date; 0 rows without an official source link; every published
+  ratio consistent (34 blanks are seat prizes, not cash); 34 dated rate-log records across three observation dates;
+  0 duplicate or undefined flag ids; 0 of 101 flags without a URL; 0 broken local links across 27 pages; byte-identical
+  `data_source.py` rebuild.
+
+**S2 — done. Three new flags, one new page, one new test module.** Flag ids F102–F105 were already taken on `main`, so
+this session's findings are **F106, F107, F108** in `scripts/data_verification.py`, and no published value changed:
+
+- **F106 (Schedule, Low, opened):** the finish estimate is cut-off **plus two levels plus one 15-minute break**, while the
+  page text and flag F37 both say "cut-off plus two levels". With 30-minute levels the offset is 75 minutes and with
+  40-minute levels 95 minutes, so four of the seven day-plan rows carry a 15-minute offset the text does not describe
+  (`#8` 10:55 PM instead of 10:40 PM; `#10` 6:10 PM instead of 5:55 PM; same for `#9`, `#11`–`#16`, `#21`). The direction
+  is conservative, so no overlap flag was cleared. Fix by naming the break in the method text or dropping it.
+- **F107 (Repository, Low, opened):** no reviewed official source prints a street number or ZIP for any of the eight
+  properties; every route is a property-name Maps query, so the "official-address walking times" requirement stays
+  **partially met**, alongside F91 (room is at The Palazzo level 2) and F21 (Horseshoe resolved to Bally's).
+- **F108 (Monitoring, Low, opened):** the 2026-11-19 07:34Z run lists exactly two changed URLs, both the Wynn
+  reservation engine, because a live engine re-renders its prices on every request. No published Wynn figure is affected
+  (the Wynn column stays blank), but the alert is noise of the same class as the Venetian calendar (F28/F69).
+- **New page `site/q-and-a.html`** — the decision worksheet the brief asks for: 22 rows, each marked *answered*, *partly*
+  or *open*, with the official quote behind each answer or the exact sentence to ask the venue, plus the five answers that
+  unblock everything else. Linked from the nav and from `site/questions.html`, with a root-level redirect generated by
+  `scripts/build_legacy_redirects.py` and a README row.
+- **New test module `tests/test_verification_2026_11_19_80a6f5df.py`** (8 tests): pins the estimate arithmetic
+  (`2 × level + 15`) on every row that carries both a cut-off and an estimate, pins each day-plan field to the row it
+  names, pins F106/F107 as the recorded explanations, and fails if any URL the monitor marks changed is left unexplained.
+
+**S3 — integration.** Full local reproduction of the Pages gate: `verify_site.py` (341 events / 8 hotels / 56 routes /
+50 sources / 104 flags / 7 plan days / 18 pages) passed; **342 unit tests OK**; `audit_951cd431.py` 0 failures /
+0 warnings; `audit_data.py`, `verify_live_official.py`, `verify_entry_labels.py`, `verify_transcription.py --dry-run`
+44/44; `canonical_smoke.py` (13 main + 5 detail pages); `canonical_render.js` (18 page renders including `q-and-a`);
+`walk_limit_render.js` (335 rows default, 329 with the ≤30-minute limit from The Venetian); `node --check` on every JS
+asset; 0 broken local links; and byte-identical rebuilds of `data.json`, `sheets.html` and `coverage.json`.
