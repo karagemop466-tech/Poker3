@@ -16,7 +16,7 @@ dashboard either way. See flag F29 on the Flagged for review page.
 | `site/tournaments.html` | Every published tournament row, with date, venue, category, written single-entry confirmation and sheet-candidate filters, plus per-row rules. |
 | `site/search.html` | Global search across tournaments, hotel rows, dated rates, walking routes, sources, questions and review flags. |
 | `site/venues.html` | One page per Strip poker room, each with its events and its hotels (`browse.html?view=venue&key=…`). |
-| `site/calculator.html` | *Estimated cost of a trip* = entries × buy-ins + nights × true hotel cost, computed from the published components, with a like-for-like comparison of the eight entries and seven nights at each published rate. |
+| `site/calculator.html` | *Estimated cost of a trip* = entries × buy-ins + nights × true hotel cost, computed from the published components, with a like-for-like comparison of the seven planned entries and seven nights at each published rate. |
 | `site/browse.html` | Venue and category subpages, so a bounty event is never mixed in with a plain freezeout. |
 | `site/schedule.html` | A provisional sheet-screened candidate per day, conditional fallback, recurring room events and estimated overlap flags; none is strict-entry confirmed. |
 | `site/hotels.html` | Published rate components, the mandatory resort fee, tax, true cost per night, parking, cancellation deadlines, walking times, one official booking deep link per trip night, the dated quote log and the dated rate log. |
@@ -143,7 +143,7 @@ all 94 official DeepStack Extravaganza IV rows and matches them on date and star
 
 `scripts/coverage.py` builds `site/coverage.json`, a traceability matrix that maps every numbered requirement in the
 user's brief to a shipped page, a published flag, or a genuine not-resolvable gap. Current result: 25 items —
-21 shipped, 3 partial (limited by an open evidence gap), 1 not-resolvable (no official source publishes the value).
+22 shipped, 2 partial (limited by an open evidence gap), 1 not-resolvable (no official source publishes the value).
 
 | Requirement | Status | Where |
 |---|---|---|
@@ -154,20 +154,23 @@ user's brief to a shipped page, a published flag, or a genuine not-resolvable ga
 | Hotel rates as a dated log | shipped | site/data.json rateLog, site/hotels.html |
 | One page per venue with events and hotels | shipped | site/venues.html, site/venues/*.html |
 | Search box across all tables | shipped | site/search.html |
-| Checkout total, nightly average, fee, tax, parking, cancellation, timestamp | partial | site/hotels.html (Venetian dated quote; other hotels blank + flagged) |
+| Shared COORDINATION.md task board | shipped | COORDINATION.md |
+| Find live upcoming Strip tournaments; rank by cost and prize pool | shipped | site/tournaments.html (fee, guarantee, descriptive ratio, filters) |
+| Checkout total, nightly average, fee, tax, parking, cancellation, timestamp | partial | site/hotels.html (Venetian dated checkout; Wynn dated average/night with fee, taxes excluded; other hotel totals blank + flagged) |
 | Overlap flags; primary + fallback per day | shipped | site/schedule.html |
 | Guarantee/entry fee ratio, descriptive; bounty/flight separate | shipped | site/tournaments.html |
 | Date filter | shipped | site/tournaments.html |
 | Structured rule fields with excerpt + retrieval date | shipped | site/data.json events[].rules |
-| Walking-route check, 30-minute limit | partial | site/hotels.html, routes (estimates only; not all pairs) |
+| Scheduled change monitoring; changed-source flags never rewrite values | shipped | .github/workflows/checks.yml, scripts/check_sources.py, site/checks.json |
+| Walking-route check, 30-minute limit | shipped | site/hotels.html, site/tournaments.html; all 56 hotel–venue pairs carry a dated Google Maps walking estimate and the opt-in 30-minute filter |
 | Single entry only; multi-entry separate section | shipped | site/tournaments.html (single-entry toggle, category labels) |
-| Best hotels within walking distance, true cost/night | partial | site/hotels.html (Venetian dated quote; others blank + flagged) |
+| Best hotels within walking distance, true cost/night | partial | site/hotels.html (Venetian dated checkout, Wynn dated average/night; other true totals blank + flagged) |
 | All-day schedule from 8 AM | not-resolvable | site/schedule.html (no official 8 AM start; flagged F17) |
 | Executive summary | shipped | site/index.html |
 | Suggestions section | shipped | site/suggestions.html |
 | Questions/information/answers before decisions | shipped | site/questions.html |
 | Line-by-line repo review; flag irregularities with links | shipped | site/flagged.html, site/sources.html |
-| GitHub Pages live site, landing + category pages | shipped | site/ (Pages status: built) |
+| GitHub Pages live site, landing + category pages | shipped | site/ (Pages status: built); root-level compatibility redirects cover both GitHub Pages publishers |
 | Every row official source link; unverified blank + flagged | shipped | site/tournaments.html, site/hotels.html, verify_site.py |
 
 Full matrix with flag references: `site/coverage.json`.

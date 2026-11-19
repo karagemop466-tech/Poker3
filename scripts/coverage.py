@@ -13,9 +13,11 @@ a broken link into the verified site).
 from __future__ import annotations
 
 import json
+from collections import Counter
 from pathlib import Path
 
 DATA = Path("site/data.json")
+CHECKS = Path("site/checks.json")
 OUT = Path("site/coverage.json")
 
 # Each entry: (id, requirement, status, location, flags, note)
@@ -27,10 +29,10 @@ ITEMS = [
     ("C2", "Scheduled automatic re-check of every official URL; mark rows whose source changed",
      "shipped", ".github/workflows/checks.yml + site/checks.json + site/sources.html",
      ["F30"],
-     "Single scheduled job (12:10 UTC + push trigger) fetches each official URL, stores a content hash of the visible text, flags genuine changes; unavailable URLs are never reported as changed."),
+     "Single scheduled job (12:10 UTC + push trigger) fetches each official URL, stores a content hash of the visible text, flags genuine changes; unavailable URLs are never reported as changed. Latest recorded run monitored {checked_urls} official URLs ({fetched_urls} fetched, {changed_urls} visible-text changes)."),
     ("C3", "Read every structure sheet; remove 'unverified' only where confirmed",
      "shipped", "site/sheets.html + site/tournaments.html (per-row rule panel)", ["F31"],
-     "All 52 official sheets read (37 DSE IV + 15 NYE). No sheet prints a one-entry-per-player cap, so no row is labelled 'single entry confirmed'; sheet-screened candidates show the printed excerpt, source and retrieval date."),
+     "All {sheets_read} official sheets read ({dse_sheets} DSE IV + {nye_sheets} NYE). No sheet prints a one-entry-per-player cap, so no row is labelled 'single entry confirmed'; sheet-screened candidates show the printed excerpt, source and retrieval date."),
     ("C4", "'Last checked' date on every row",
      "shipped", "site/data.json (lastChecked / lastVerified) + per-row display", [],
      "Every tournament, hotel, walking-route and source record carries a retrieval date, and the distribution is derived from site/data.json at build time so it cannot go stale: {last_checked}."),
@@ -67,9 +69,8 @@ ITEMS = [
      "singleEntry / reEntry / addOn / fee blocks each carry status, excerpt, source link and retrieved date; blanks explained by note or flag."),
     ("C14", "Walking-route check: official-address walking times per hotel-venue pair, 30-minute limit applied",
      "shipped", "site/data.json (routes) + site/hotels.html + site/tournaments.html", ["F32", "F67"],
-     "56 of 56 hotel-venue pairs recorded as Google Maps walking estimates: 42 added by the 2026-11-17 matrix pass and 14 "
-     "from the 2026-11-16 base pass, of which 7 still carry that date and 7 were re-read in walking mode on 2026-11-17, so "
-     "49 rows are dated 2026-11-17 and 7 rows are dated 2026-11-16; every row carries its own measurement date. No venue publishes a walking time, "
+     "{routes} of {route_pairs} hotel-venue pairs recorded as Google Maps walking estimates; {route_date_split}; "
+     "every row carries its own measurement date. No venue publishes a walking time, "
      "so F32 and F67 keep the point-in-time and endpoint caveats. The "
      "tournaments table's 30-minute limit is opt-in and measured from a hotel the reader selects; rows over the limit and "
      "rows with no measured route are counted separately, so a missing estimate is never shown as an eliminated option."),
@@ -80,7 +81,7 @@ ITEMS = [
     # ---- User's direct asks ----
     ("U1", "Find live upcoming Strip poker tournaments; rank by cost to enter and prize pool",
      "shipped", "site/tournaments.html", [],
-     "341 rows with buy-in, guarantee and guarantee/entry-fee ratio; single-entry filters surface the cheapest credible entries."),
+     "{events} rows with buy-in, guarantee and guarantee/entry-fee ratio; single-entry filters surface the cheapest credible entries."),
     ("U2", "Single-entry tournaments only; multi-entry / rebuy / add-on kept in a separate section",
      "shipped", "site/tournaments.html (single-entry toggle + category labels)", ["F31"],
      "Sheet-screened candidate list vs separate extra-spend bucket (re-entry/rebuys/add-ons/paid chip boosts/multi-flight) with the exact clause quoted per row. Strict confirmed-entry filter returns 0 because no sheet prints a per-player maximum."),
@@ -89,7 +90,9 @@ ITEMS = [
      "True cost/night = (rate + resort fee) x 1.1338 where published; walking estimates with 30-min filter; quality column blank because no official quality score exists (F19). Dated quotes: Venetian 23-30 Nov 2026 (checkout total) and Wynn 23-30 Nov 2026 (avg/night incl. fee, taxes excluded, read 2026-11-19); other properties' engines returned no attributable grid on 2026-11-19."),
     ("U4", "Tournament schedule playable all day from 8 AM; enter as many live tournaments as possible",
      "not-resolvable", "site/schedule.html + site/flagged.html", ["F17"],
-     "No official Strip room publishes an 8:00 AM start; earliest verified dated start 9:10 AM (Venetian satellite, seats not cash) and 10:00-10:10 AM main-list. All-day plan built from earliest verified starts instead; 8 AM gap flagged."),
+     "No official Strip room publishes an 8:00 AM start. The earliest recurring official start is 9:00 AM at Horseshoe; "
+     "the Venetian's earliest dated row is a 9:10 AM satellite (seats not cash), and main-list starts begin at 10:00-10:10 AM. "
+     "The all-day plan is built from the earliest verified starts instead; the 8 AM gap remains flagged."),
     ("U5", "Executive summary of important details",
      "shipped", "site/index.html", [],
      "Landing page: fixed trip, primary event per day, confirmed vs not confirmed, stats, day plan."),
@@ -104,10 +107,10 @@ ITEMS = [
      "{flags} flags, each with its official source link; verify_site.py enforces official-domain source links and intentional blanks for unverified values."),
     ("U9", "GitHub Pages live site: clean landing page + category subpages, dashboard tables, analysis and findings",
      "shipped", "site/ (published at https://karagemop466-tech.github.io/Poker3/)", ["F29"],
-     "Canonical dashboard in site/; root index.html redirects into it; Pages reports status: built from main /."),
+     "Canonical dashboard in site/. The repository's legacy main / publisher and the Actions artifact publisher both serve the host, so root index.html redirects to site/ and every canonical site/**/*.html path now has a root-level compatibility redirect; Pages reports status: built from main /."),
     ("U10", "Every table row carries an official source link; unverified left blank and flagged; never infer",
      "shipped", "site/tournaments.html + site/hotels.html + scripts/verify_site.py", [],
-     "341/341 event rows carry an official schedule/structure source link; blanks are intentional and flagged; verification fails the build on a fabricated value."),
+     "{event_links}/{events} event rows carry an official schedule/structure source link; blanks are intentional and flagged; verification fails the build on a fabricated value."),
 ]
 
 
@@ -124,19 +127,52 @@ def load_counts():
     }
 
 
-def last_checked_counts():
+def last_checked_counts(d):
     """Distribution of event-row read dates, as printed in the coverage note for C4."""
-    d = json.loads(DATA.read_text())
-    buckets = {}
-    for e in d.get("events", []):
-        buckets[e.get("lastChecked") or "blank"] = buckets.get(e.get("lastChecked") or "blank", 0) + 1
+    buckets = Counter(e.get("lastChecked") or "blank" for e in d.get("events", []))
     total = len(d.get("events", []))
     parts = [f"{n} of {total} event rows last checked {date}" for date, n in sorted(buckets.items())]
     return ", ".join(parts)
 
 
+def format_context(counts):
+    """Values derived from published data, so coverage prose cannot silently go stale."""
+    d = json.loads(DATA.read_text())
+    events = d.get("events", [])
+    routes = d.get("routes", [])
+    sheets = d.get("structureSheets", [])
+    route_dates = Counter(r.get("lastChecked") or "blank" for r in routes)
+    route_date_split = " and ".join(
+        f"{n} rows are dated {date}" for date, n in sorted(route_dates.items())
+    )
+    check_summary = {}
+    if CHECKS.exists():
+        try:
+            check_summary = json.loads(CHECKS.read_text()).get("summary", {})
+        except (ValueError, OSError):
+            check_summary = {}
+    dse_sheets = sum(1 for s in sheets if "DeepStack Extravaganza IV" in s.get("series", ""))
+    nye_sheets = sum(1 for s in sheets if "NYE" in s.get("series", ""))
+    return {
+        "events": counts["events"],
+        "event_links": sum(1 for e in events if e.get("scheduleUrl") or e.get("structureUrl")),
+        "flags": counts["flags"],
+        "last_checked": last_checked_counts(d),
+        "sheets_read": sum(1 for s in sheets if s.get("read")),
+        "dse_sheets": dse_sheets,
+        "nye_sheets": nye_sheets,
+        "routes": counts["routes"],
+        "route_pairs": len(d.get("hotels", [])) * len(d.get("venues", [])),
+        "route_date_split": route_date_split,
+        "checked_urls": check_summary.get("urls", 0),
+        "fetched_urls": check_summary.get("fetched", 0),
+        "changed_urls": check_summary.get("changed", 0),
+    }
+
+
 def main():
     counts = load_counts()
+    context = format_context(counts)
     by_status = {}
     for _id, _req, status, _loc, _flags, _note in ITEMS:
         by_status[status] = by_status.get(status, 0) + 1
@@ -151,7 +187,7 @@ def main():
                 "status": s,
                 "location": loc,
                 "flags": fl,
-                "note": n.format(flags=counts["flags"], last_checked=last_checked_counts()),
+                "note": n.format(**context),
             }
             for i, r, s, loc, fl, n in ITEMS
         ],

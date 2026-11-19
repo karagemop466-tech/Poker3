@@ -236,11 +236,19 @@ def main() -> int:
         if not f.get("detail"):
             fail(f"flag {f.get('id')}: no detail", errors)
 
-    for s in data["sources"]:
+    source_ids = set()
+    for index, s in enumerate(data["sources"], start=1):
+        sid = s.get("id")
+        if not sid:
+            fail(f"source row {index}: no stable id", errors)
+        elif sid in source_ids:
+            fail(f"duplicate source id: {sid}", errors)
+        else:
+            source_ids.add(sid)
         if not official(s.get("url", "")):
-            fail(f"source {s.get('id')}: not an official URL", errors)
+            fail(f"source {sid or f'row {index}'}: not an official URL", errors)
         if not s.get("checked"):
-            fail(f"source {s.get('id')}: no check date", errors)
+            fail(f"source {sid or f'row {index}'}: no check date", errors)
 
     by_id = {e["id"]: e for e in events}
     for day in data["dayPlan"]:
