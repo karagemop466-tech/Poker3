@@ -41,7 +41,11 @@ class CaesarsFlyerRows(unittest.TestCase):
             self.assertEqual(rules["reEntry"]["status"], "allowed", r["id"])
             self.assertEqual(rules["addOn"]["status"], "allowed", r["id"])
             self.assertEqual(rules["singleEntry"]["status"], "multiple-entries", r["id"])
-            self.assertEqual(rules["reEntry"]["retrieved"], "2026-11-18", r["id"])
+        # The flyer was read on 2026-11-18 (F90 correction) and re-read, unchanged, on
+        # 2026-11-19 (session arena-23505d42; research/reread_2026-11-19_arena-23505d42.md
+        # and flag F93). A retrieval date of either read is correct; a later manual read
+        # moves the published retrieval date forward.
+        self.assertIn(rules["reEntry"]["retrieved"], ("2026-11-18", "2026-11-19"), self.rows[0]["id"])
 
     def test_fee_excerpt_matches_buy_in(self):
         for r in self.rows:
