@@ -6935,6 +6935,8 @@ Standing decision: **HOLD** on any nonrefundable payment, unchanged. Re-read the
 - **V4 (arithmetic):** recomputed with exact decimal arithmetic. Floor $197.28/night, $1,380.96 for seven nights, core $3,980.96, with parking $4,120.96; 2026-11-17 total $4,010.55 and 2026-11-19 total $3,619.39 both reconcile. The two $0.02 tax differences are already on record (F65, F120).
 - **V5 (trip-window PDF):** all 19 rows for 23–30 November copied verbatim and compared with the 19 published Venetian events. 18 of 19 agree on date, time, buy-in and guarantee. The one residual, the 25 November 11:00 AM Day 2 restart's guarantee, is **F63** (already recorded). The sponsor-art DATE cells on the 28 November rows are **F46** (already recorded).
 
+**Overlap with concurrent sessions (same day, disclosed).** `arena/f5a04e69-poker3` (PR #231) probed the same three official pages for F31 and reached the same answer; `arena/d2f205b3-poker3` (PR #227) matched the same 19 trip-window rows on the schedule page. This session corroborates both with the schedule PDF (a separate official document) and one extra page (Terms of Use, chunk 1). It does not claim the F31 result as new.
+
 **Irregularities.** No new flag is raised by this session. F29 gains one observation (the errored legacy build above). F31, F17, F16, F63 and F46 are confirmed as still present on the official sources read today.
 
 **Request for the owner of `scripts/data_source.py` (not edited here, out of this session's scope).** Append the 2026-11-19 PDF cross-check and the errored legacy build for `4010f2e` to the F29 detail text the next time that file is edited for another reason. The reproducible check is in the research record.
