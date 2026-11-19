@@ -6875,3 +6875,24 @@ Standing decision: **HOLD** on any nonrefundable payment, unchanged. Re-read the
 - **Checks on the merge commit:** `Verify static research site` success; `Official table transcription check` success; `Publish the canonical Vegas Poker Planner to GitHub Pages` success (run 44601814098); legacy `pages build and deployment` success (run 44601813502).
 - **Pages API:** latest build for `cbac3cb` completed with no error. A later build (`f805caa`, another session's commit) was in progress at the time of writing.
 - **Follow-up:** this record is transported to `main` by one further PR from this branch; it changes no source-backed value.
+
+## Session `arena/3a186594-poker3` — claim and result: R1 trip-window live re-read (2026-11-19 UTC)
+
+**Claim (R1).** Live re-read of the official Venetian DeepStack Extravaganza IV schedule for the trip-window rows, compared with `site/data.json`. Scope: `raw/dse_nov_2026_trip_window_live_2026-11-19_arena-3a186594.md`, `research/reread_2026-11-19_arena-3a186594.md`, `scripts/verify_trip_window_3a186594.py`, `tests/test_trip_window_3a186594.py`, this section. An earlier claim commit on this branch (`b8eb56b`) was superseded by this one and is kept in history by a merge with `-s ours`; its tree is not used.
+
+**Window correction.** The first pass used Nov 25 – Dec 2 (from `research/reread_2026-11-17.json`). That is not the published trip: `site/data.json` `trip` is **2026-11-23 to 2026-11-30**, seven nights, playable 23–29 Nov. The first pass was discarded and the check redone for Nov 23–30. The stale label in the 2026-11-17 records is logged as a new irregularity (below); those records were not edited.
+
+**Overlap.** `arena/d2f205b3-poker3` (PR #227, merged before this publication) re-read the same page and checked 19 trip-window rows on date, time and buy-in. This session is an independent second read that also compares event name, guarantee and structure-sheet file, by script, with a regression test.
+
+**Results.**
+- Official source: [DeepStack Extravaganza IV schedule, Nov 16 – Dec 23, 2026](https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html), read 2026-11-19, chunks 0–1 of 4.
+- `scripts/verify_trip_window_3a186594.py`: **19 of 19** live rows match published rows on date, start time, name, printed buy-in, printed guarantee and sheet file. Weekday labels 19 of 19.
+- Monitor cross-check: `site/checks.json` (07:34 UTC today) records the schedule page and all 37 DSE IV sheets unchanged.
+- Data changes: **none**. Every trip-window row already carried `lastChecked 2026-11-19`.
+- Tests: `tests/test_trip_window_3a186594.py` (4 tests, incl. a negative check). Full suite **441 tests OK**. `scripts/verify_site.py` passes.
+
+**Irregularities (flagged for review, not corrected).**
+1. Stale trip-window label: `research/reread_2026-11-17.json` and `raw/official_excerpts_2026-11-17.md` call Nov 25 – Dec 2 "the trip-window rows", but the published trip is Nov 23–30. The records and their tests are left unchanged for a human to reconcile.
+2. Cosmetic printed typos on the official page: "No LImit Hold'em" (Nov 25 event 10, Nov 26 event 12); "NLH" abbreviations (Nov 28 event 18).
+
+**Still open (not verified in this session).** Rates and checkout totals (the same-day booking reads by `d2f205b3` and `7d96049f` returned only a loading shell); structure-sheet text beyond the monitor's hash; the written single-entry / no-rebuy / no-add-on cap (F31); finish times and an 8 AM start (F16, F17). The standing **HOLD** on nonrefundable payment is unchanged.
