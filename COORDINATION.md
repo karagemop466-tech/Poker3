@@ -6161,3 +6161,55 @@ Branch: `arena/e94482ee-poker3`, branched from `main` at `5c42d7fb5e9931f4582af0
 | E3 Integration, PR to `main`, merge, confirm the Pages deploy | in progress | `arena/e94482ee-poker3` | whole repo (shared outputs) | Blocked until E1/E2 are complete and every check is green. |
 
 Open PRs from earlier sessions (`#173` `arena/a33db3c1-poker3`, `#184` `arena/5cfdd619-poker3`) are **CONFLICTING** and were **not** modified, rebased or merged by this session; no branch other than this one is touched.
+
+### Session `arena/e94482ee-poker3` — work log and result (2026-11-19 UTC)
+
+**Tasks completed.** E1 (fresh live re-read of the trip-window sources), E2 (repo review), E3 (integration) —
+evidence and per-item findings in [`research/repo_review_2026-11-19_arena-e94482ee.md`](research/repo_review_2026-11-19_arena-e94482ee.md).
+
+**Official sources re-read live on 2026-11-19** (verbatim excerpts and the 19-row comparison table in the research file):
+
+- Venetian DeepStack Extravaganza IV schedule, all four chunks — 19/19 trip-window rows match on date, start time,
+  event number, printed name, buy-in, guarantee and structure-sheet link.
+- The eleven structure sheets the trip window links (1, 2, 3, 5, 6, 7, 8, 11, 22, 26, 30), read in full — every
+  printed fee split, chip count, level length and late-registration clock matches the published row. The re-read date
+  is now recorded per rule panel as `rechecked: 2026-11-19` while `retrieved` keeps the original read date.
+- Wynn WPT World Championship schedule PDF — 13/13 trip-window rows match.
+- Venetian hotel terms, resort fee, poker-suite rates and poker parking pages — $55 fee, 13.38% tax, 11 a.m. checkout,
+  $100 early-checkout, $119/$209 starting rates, 6-hour/$300 qualification, $20/day parking and the player waiver, all
+  unchanged.
+- Venetian booking engine, 2 adults 23–30 Nov 2026 — a **new dated checkout total**: $3,619.39 (Palazzo Luxury King,
+  room rates $2,807.25 + fees $385.00 = $3,192.25 pre-tax + printed tax $427.14; printed Average Rate $456.04
+  includes the fee; all-in per night $517.06). Published beside, not instead of, the $4,010.55 read of 2026-11-17.
+- Wynn resort-information and parking pages — $55 fee unchanged; registered-guest self-parking is a published **$0**,
+  now carried as `parkingPerNight: 0.0` with the unregistered-guest rates beside it.
+- caesars.com/parking — Caesars Palace $20/day registered guest (valet $50); Horseshoe $20 Mon–Wed / $25 Thu–Sun
+  (valet $40), both matching the published rows.
+
+**Flags.**
+
+- **F93** corrected: its claim that the engine "still prints no checkout total for 23-30 November" was disproved by a
+  later read the same day. It is now "partially resolved" and names both reads.
+- **F88** updated: the engine is intermittent, not unavailable. Two dated totals for the same stay now exist.
+- **F101 resolved**: the five 2026-11-16 snapshot JSON files moved from `site/data/` (where the Pages artifact served
+  them) to `archive/` with a provenance README; the dead `scripts/build_data.py` that wrote one of them was removed;
+  `scripts/daily_check.py` is kept but marked retired.
+- **F106** added: the corrected PDF monitor has not yet run on a schedule (the 07:34Z record predates the fix). A
+  monitoring gap only; it changes no published value.
+- **F107** added: the second dated trip-window total, with both arithmetic irregularities disclosed (printed tax 2
+  cents above 13.38% of the printed pre-tax subtotal; the seven per-night derivations one cent under the printed total).
+- **No tournament, fee, guarantee, hotel, rate or route value was changed by this pass.** The only data additions are
+  the new dated observation and the Wynn $0 parking figure, both printed by an official page.
+
+**Verification before the PR.** `data_source.py` / `build_addendum.py` / `coverage.py` rebuilds; `verify_site.py`
+(341 events / 8 hotels / 56 routes / 50 sources / 103 flags / 18 pages); `audit_951cd431.py` 0 failures 0 warnings;
+`audit_data.py`; `verify_live_official.py`; `verify_entry_labels.py`; **347 unit tests OK**; `canonical_smoke.py`;
+`canonical_render.js`; `walk_limit_render.js`; `node --check` on every asset; a local-link scan over all 27 pages
+(0 broken).
+
+**Rebase log.** `COORDINATION.md` is append-only from this session; every other session's section was preserved.
+
+**Open PRs from other sessions.** #173 (`arena/a33db3c1-poker3`) and #184 (`arena/5cfdd619-poker3`) are both
+CONFLICTING. Neither was modified, rebased or merged here. Both carry work that this branch already supersedes on the
+trip-window re-read (this branch re-read the same sources live and published the result), and #184's
+unknown-cost-vs-zero fix addresses a calculator defect this branch did not reproduce on the current `main`.
