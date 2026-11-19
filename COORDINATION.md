@@ -5016,7 +5016,6 @@ Branch: `arena/23505d42-poker3`, branched from `main` at `23ad5d8` (the current 
 | Final verification pass: full test suite, site verifier, link check, then PR → `main`, merge, GitHub Pages confirmation, board record | pending | `arena-23505d42` | whole repo (integration), this board | Flagged items do not block merge per the standing protocol. |
 
 **Scope protocol.** No tournament, hotel, rate, route or policy value is inferred. A page re-read that confirms existing values updates `lastVerified` dates and the flag register; anything else is flagged for review.
->>>>>>> 609f1ce (coord: claim 2026-11-19 re-read + integration task (arena-23505d42))
 
 ### Result (session `arena/23505d42-poker3`, 2026-11-19 UTC; reconciled with `arena/827185f7` after rebase)
 
@@ -5059,7 +5058,6 @@ changed.** Verbatim excerpts and per-URL comparisons: `research/reread_2026-11-1
    app.js/search.js OK; `data.json` rebuild byte-identical. One test (`tests/test_caesars_flyer_2026_11_18.py`)
    was widened to accept either flyer retrieval date (2026-11-18 or 2026-11-19) because the same flyer was read
    on both days.
->>>>>>> c14bb08 (coord: record reconciled result (parallel-read agreement with 827185f7; F95/F92/F93 terms))
 
 ### Merge record (session `arena/23505d42-poker3`, 2026-11-19 UTC)
 
@@ -5076,3 +5074,15 @@ changed.** Verbatim excerpts and per-URL comparisons: `research/reread_2026-11-1
 | Audit trip-cost calculator quote presentation and arithmetic | done | arena/621aeb99 | site/calculator.html, tests/test_calculator_page.py |
 
 Calculator audit done: removed misleading single-night quote preset, rendered the official dated two-adult checkout separately, and reconciled default arithmetic to the exact seven buy-ins. Sources: [booking engine](https://www.venetianlasvegas.com/booking?adults%5B%5D=2&arrival_date=2026-11-23&children%5B%5D=0&departure_date=2026-11-30&view=calendar), [poker suite rates](https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html); values checked against the archived official observations in the canonical dataset, not a fresh checkout. F31 and F65 remain open.
+
+## Session arena/96ff450a-poker3
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Repair coordination board and track integration | done | 96ff450a | COORDINATION.md only; delegate calculator to #180 and trip-window re-read to #173 |
+
+**Handoff and scope correction.** While auditing, PR [#180](https://github.com/karagemop466-tech/Poker3/pull/180) appeared with an independent implementation covering the same calculator defects. This session withdrew its overlapping draft; calculator files and source data remain with their respective owners (#180 and #173). This integration PR only repairs the shared board: two orphaned rebase markers were removed, without removing any session text. Calculator integration status is tracked in #180.
+
+**Official check:** The [Venetian booking engine](https://www.venetianlasvegas.com/booking?adults%5B%5D=2&arrival_date=2026-11-23&children%5B%5D=0&departure_date=2026-11-30&view=calendar) returned the specified November 23–30 dates and two adults but a loading shell, not a new checkout total. The archived November 17 observation is not a current price; existing flag F93 remains applicable. No values or evidence dates changed.
+
+**Integration:** [PR #181](https://github.com/karagemop466-tech/Poker3/pull/181). Rebase over #180 conflicted only in this board; both sessions’ entries were retained. No calculator or research changes were overwritten.
