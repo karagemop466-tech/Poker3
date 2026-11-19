@@ -91,6 +91,28 @@ HORSESHOE_CALENDAR_NOV = ("https://www.caesars.com/book/hotel-calendar?dateSearc
 HORSESHOE_CALENDAR_DEC = ("https://www.caesars.com/book/hotel-calendar?dateSearchFormat=flexible-dates"
                           "&flexibleMonth=December&propCode=blv")
 CAESARS_BOOKING_HOMEPAGE = "https://www.caesars.com/caesars-palace/hotel"
+# Official Caesars Entertainment parking policy page (read 2026-11-19, chunks 0-1, session arena/e830d773-poker3).
+# Prints property-by-property Las Vegas self-parking and valet dollar amounts that the flexible-dates booking
+# calendar omits ("surcharge applies").
+CAESARS_PARKING = "https://www.caesars.com/parking"
+CAESARS_PARKING_READ = "2026-11-19"
+CAESARS_PALACE_PARKING_NOTE = (
+    "Confirmed on the official Caesars Entertainment Parking Policy page (read 2026-11-19): "
+    "Self-Parking 'Registered Hotel Guests: $20/day', 'Gold: $25/day', 'Non-member: $25/day', "
+    "'Platinum: Free', 'Diamond, Diamond Plus, Diamond Elite: Free', 'Seven Stars: Free', and "
+    "'Las Vegas Locals: Complimentary Self-Parking through December 26 - No blackout dates. Valid Nevada "
+    "driver's license required.' Valet: 'Gold: $50/day', 'Non-member/Registered Hotel Guests: $50/day', "
+    "and 'Free' for Platinum, Diamond and Seven Stars. Registered hotel guests get in-and-out self-parking "
+    "access across Caesars Entertainment Las Vegas self-parking facilities using their room key.")
+HORSESHOE_PARKING_NOTE = (
+    "Confirmed on the official Caesars Entertainment Parking Policy page (read 2026-11-19): "
+    "Self-Parking 'Non-member/Registered Hotel Guests: Monday - Wednesday $20/day | Thursday - Sunday $25/day' "
+    "(same for Gold; 'Free' for Platinum, Diamond, Diamond Plus, Diamond Elite and Seven Stars; "
+    "'Las Vegas Locals: Complimentary Self-Parking through December 26 - No blackout dates. Valid Nevada "
+    "driver's license required.'). Valet: 'Non-member/Registered Hotel Guests: $40/day (Rates may change for "
+    "Special Events)' (same for Gold; 'Free' for Platinum, Diamond and Seven Stars). Because registered-guest "
+    "self-parking splits by weekday ($20 Mon-Wed, $25 Thu-Sun; $160 across the 7-night 23-30 Nov 2026 stay), "
+    "no single flat nightly constant is stored in parkingPerNight (flag F102).")
 # The county/city room-tax schedule, used only as a labelled reference where a property prints
 # "plus tax" without a percentage.  It is published by the City of Las Vegas for establishments
 # it licences; the Strip resorts sit in unincorporated Clark County, so this repository does NOT
@@ -623,8 +645,12 @@ HOTELS = [
         printedFeeAndTax=dict(fee=54.95, tax=7.35, allIn=62.30, observedOn="2026-11-17",
                               excerpt="Resort fees: $62.30 ($54.95 plus $7.35 tax)",
                               source=CAESARS_CALENDAR),
-        parking="Self parking: surcharge applies. Valet parking: surcharge applies. Both are complimentary for Caesars Rewards members at Platinum tier or higher; Nevada locals get the first 3 hours of self parking at no charge. No dollar amount is published on the page.",
-        parkingSource=CAESARS_CALENDAR,
+        parking=CAESARS_PALACE_PARKING_NOTE,
+        parkingSource=CAESARS_PARKING,
+        parkingPerNight=20.0,
+        parkingNote=("Registered hotel guests pay $20/day for self-parking ($25/day for non-members and Gold) and "
+                     "$50/day for valet; complimentary for Caesars Rewards Platinum, Diamond and Seven Stars. Read "
+                     "from https://www.caesars.com/parking on 2026-11-19."),
         cancellation=("The official property page advertises 'FREE 48-Hour Cancellation*' under 'Why Book With Us'; the "
                       "terms behind the asterisk are not printed on that page. The booking page adds that rates shown "
                       "include applicable resort fees and that pricing and availability may vary with length of stay."),
@@ -636,9 +662,10 @@ HOTELS = [
         taxReference=CAESARS_COUNTY_REF, taxReferenceSource=ROOM_TAX_REFERENCE,
         qualityNote=("Not scored. No official quality metric is published. Facts published by the property for 2026 "
                      "stays: 3,976 rooms, 11 restaurants, full-service spa, pool complex; 21+ check-in."),
-        status=("Resort fee, deposit, parking policy and check-in/check-out are confirmed from the property's own "
-                "booking page on 2026-11-17. The room rate and the room-tax percentage are still not published, so no "
-                "true nightly cost can be computed from property-published components."),
+        status=("Resort fee, deposit and check-in/check-out confirmed from the property's own booking page (2026-11-17), "
+                "and self-parking ($20/day registered hotel guests) and valet ($50/day) confirmed from the official "
+                "Caesars Entertainment parking policy page (2026-11-19). The room rate and the room-tax percentage are "
+                "still not published, so no true nightly cost can be computed from property-published components."),
         walkNote="Poker room is inside the property; Google Maps walking route to The Venetian measures 12 minutes.",
     ),
     dict(
@@ -659,8 +686,11 @@ HOTELS = [
         printedFeeAndTax=dict(fee=49.95, tax=6.68, allIn=56.63, observedOn="2026-11-17",
                               excerpt="Resort fees: $56.63 ($49.95 plus $6.68 tax)",
                               source=HORSESHOE_CALENDAR_NOV),
-        parking="Self parking: surcharge applies. Valet parking: surcharge applies. Both are complimentary for Caesars Rewards members at Platinum tier or higher; Nevada locals get the first 3 hours of self parking at no charge. No dollar amount is published on the page.",
-        parkingSource=HORSESHOE_CALENDAR_NOV,
+        parking=HORSESHOE_PARKING_NOTE,
+        parkingSource=CAESARS_PARKING,
+        parkingNote=("Registered hotel guests pay $20/day Monday-Wednesday and $25/day Thursday-Sunday for self-parking "
+                     "($160 across the 7-night 23-30 Nov 2026 stay) and $40/day for valet; complimentary for Caesars "
+                     "Rewards Platinum, Diamond and Seven Stars. Read from https://www.caesars.com/parking on 2026-11-19."),
         cancellation=("The official property page advertises 'FREE 48-Hour Cancellation*' under 'Why Book With Us'; the "
                       "terms behind the asterisk are not printed on that page. The booking page adds: 'Rates shown "
                       "reflect the lowest available rate and include applicable resort fees.'"),
