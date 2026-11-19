@@ -4529,3 +4529,40 @@ The documentation follow-up preserved both the #156 and #159 board entries when 
 - GitHub Pages: Pages API reports `status: built`, source `main` `/`, https://karagemop466-tech.github.io/Poker3/ . The "Publish the canonical Vegas Poker Planner to GitHub Pages" workflow completed `success` on the post-merge main tip.
 - PRs #112 and #130 closed as superseded with explanatory comments (both unmergeable — no merge base against `main`; #112's quote + walk matrix already on `main`, its walk-direction fix re-implemented in #153; #130's three fixes re-implemented in #153).
 - Open flags (published on `site/flagged.html`, do not block): F31, F17, F16, F39, F56, F15/F36/F57, F92. F92 (Venetian poker page wording change, 2026-11-18 20:24 UTC) still needs a manual re-read before nonrefundable payment.
+
+## Session `arena/1b4b21cc-poker3` — canonical dashboard audit (2026-11-19 UTC)
+
+The platform-assigned branch is `arena/1b4b21cc-poker3`; the requested per-task branch name cannot be used here. The current task is limited to auditing the existing canonical dashboard against its saved official-source evidence and documenting verification; no tournament, hotel, rate, route, or policy values will be edited or newly asserted.
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Audit the current site and regression suite against the requested decision-support features; record evidence gaps and deployment status | in progress | `arena/1b4b21cc-poker3` | `COORDINATION.md` only |
+
+The latest source evidence and known irregularities are linked from [`site/sources.html`](site/sources.html) and [`site/flagged.html`](site/flagged.html). The actual official-source links, excerpts, retrieval dates, and historical read status remain in the site data and research captures; this documentation audit does not constitute a new live reread of those sources.
+
+### Audit result (2026-11-19 UTC)
+
+**Existing implementation confirmed from the checked-in site and code (not a new live-source verification):**
+- Estimated trip cost uses exact primary-event buy-in sum plus nights × true nightly hotel cost; the calculator exposes separate entries, buy-in, nights, rate, mandatory fee, tax, and parking inputs. Parking is itemized separately where its waiver is conditional.
+- Canonical site pages cover the executive summary, tournament table/date and single-entry filters, venue-specific event/hotel pages, cross-table search, structured rule excerpts and retrieval dates, schedule/day-plan, hotels/rate log, source log, questions, suggestions, and Flagged for Review.
+- Automated official-URL checks are scheduled daily in `.github/workflows/checks.yml`; visible-text changes are separated from blocked/unavailable retrievals, and the morning schedule feed stores dated snapshots. The automation records differences; it does not silently rewrite factual values.
+- Data integrity checks reconcile 37 Venetian DSE structure sheets against 94 schedule rows and verify 44 transcribed schedule-PDF rows. Per-row checked/verified dates and dated hotel rate records are present.
+- The primary/fallback schedule, date filter, descriptive guarantee-to-entry ratio, bounty/flight categories, and walking-limit control are implemented. The site explicitly distinguishes sheet-screened candidates from written single-entry confirmation.
+
+**Unresolved, not promoted to verified:**
+- F31: no official written maximum-entry/no-rebuy/no-add-on statement for the candidate set; the strict single-entry-confirmed filter therefore has no qualifying entries. Do not remove “unverified” or treat sheet-screened events as confirmed.
+- F16/F17: official finish times and a verified 8:00 AM start are absent; day sequencing and overlap checks remain estimates/flags, not a guarantee that every event can be played.
+- F15/F36/F57/F39: date-matched itemized quotes and/or property-specific tax evidence are incomplete. The 2026-11-17 Venetian booking total in the record is historical, not a live quote as of this audit. The current check does not provide a booking-engine rate lookup.
+- F56: Wynn Signature structure terms remain unpublished in the recorded official document.
+- F92: Venetian poker-page visible-text change still requires a human reread; it is not evidence by itself of a changed event value.
+- Walking minutes are recorded as map estimates, not independently published venue facts. Do not describe them as official walking-time guarantees.
+
+**Verification run in this session:** `python3 -m unittest discover -s tests -p 'test_*.py' -q` — 228 tests passed after installing the workflow's declared PyYAML check dependency into a disposable local virtual environment; `scripts/verify_site.py` passed (341 events / 8 hotels / 56 routes / 47 sources / 88 flags / 7 plan days / 16 pages); `scripts/audit_data.py` passed (37 sheets / 94 DSE rows); `scripts/verify_entry_labels.py` passed (341 events, 52 sheet-screened candidates, zero written-cap confirmations); `scripts/verify_transcription.py --dry-run` passed (44/44); `tests/canonical_smoke.py`, `tests/canonical_render.js`, all `node --check site/assets/*.js`, and `git diff --check` passed. This is validation of checked-in evidence and site behavior, not proof the sources are currently reachable or unchanged.
+
+**Deployment check:** GitHub Actions run [44466974688](https://github.com/karagemop466-tech/Poker3/actions/runs/44466974688) for the current main SHA completed successfully, including the canonical Pages publisher. Existing public dashboard: https://karagemop466-tech.github.io/Poker3/site/ . Manual-review entry points: [official-source register](https://karagemop466-tech.github.io/Poker3/site/sources.html), [Flagged for Review](https://karagemop466-tech.github.io/Poker3/site/flagged.html), [questions](https://karagemop466-tech.github.io/Poker3/site/questions.html), and [suggestions](https://karagemop466-tech.github.io/Poker3/site/suggestions.html). The linked official source documents are listed per row there; this audit did not claim a fresh fetch from venue or hotel hosts.
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Audit existing dashboard implementation, tests, published blockers, and Pages deployment; preserve all unresolved factual gaps for review | done | `arena/1b4b21cc-poker3` | `COORDINATION.md` only |
+
+**Integration record:** documentation-only audit. No tournament, hotel, rate, route, or policy data changed. The open flags do not block publication; no new factual assertion is introduced.
