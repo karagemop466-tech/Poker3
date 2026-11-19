@@ -5713,3 +5713,72 @@ the merged sources; no other session's work was overwritten.
 **Verification policy.** Every table row keeps its official source link. A value that cannot be confirmed from an
 official venue or property page/PDF is left blank and flagged. Third-party pages are cited only as conflicts, never as
 values. Any changed official page is flagged for a human re-read; automation never moves a published value.
+## Session `arena/770f7725-poker3` — line-by-line audit, gap closure, final integration (2026-11-19 UTC)
+
+Branch: `arena/770f7725-poker3`, branched from `main` at `e79f5a62c41ef164882f1c9d299659964a62e69a`. The platform binds a session to one branch, so the `session-<id>/<task>` branch naming cannot be applied here; this branch is this session's only working branch and this session is the integration/owner session for its shared outputs. Claim time: 2026-11-19 UTC.
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| T1 Audit the existing canonical dashboard, data pipeline, tests, workflows and board against the full requirement list; identify stale/unverified/contradictory rows and any committed merge artefacts | done | `arena/770f7725` | whole repo (read first), `research/` (new dated audit record), `COORDINATION.md` | Official-source re-reads via the platform fetch tools; no value inferred or filled in. |
+| T2 Close verifiable gaps (site, calculator, filters, dated logs, change monitoring, flags, per-row sources) and re-verify line by line | done | `arena/770f7725` | `site/**`, `scripts/**`, `data/**`, `tests/**`, `docs/**` (only if required), `COORDINATION.md` | Small frequent commits; `git pull --rebase` before each push. |
+| T3 Final verification, PR from this branch to `main`, merge, GitHub Pages deploy confirmation, board record | in progress | `arena/770f7725` | whole repo (integration), `COORDINATION.md` | Flagged/unverified items do not block merge; they are published on Flagged for review. |
+
+**Scope protocol.** No tournament, hotel, rate, walking, duration or policy value is inferred. Every edited data value must point to an official source read in this session, with its retrieval date; anything else stays blank and is flagged. Other sessions' board sections and code are preserved; conflicts are resolved without discarding their work and logged here.
+
+### Result (session `arena/770f7725-poker3`, 2026-11-19 UTC)
+
+**T1 / T2 — done.** The full canonical dashboard, data builder, scheduled source monitor, tests, workflows, Pages
+workflow and this board were audited line by line. The dated verbatim source record is
+[`research/audit_2026-11-19_arena-770f7725.md`](research/audit_2026-11-19_arena-770f7725.md). Official pages re-read
+through the platform reader included the four chunks of the
+[Venetian DSE IV schedule](https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html),
+the seven trip-window structure sheets (30, 1, 6, 5, 7, 11, 22),
+[Venetian suite rates](https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html),
+[player parking](https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html),
+[hotel terms](https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html),
+[resort fee](https://www.venetianlasvegas.com/resort/resort-fee.html),
+[poker room](https://www.venetianlasvegas.com/resort/casino/poker.html),
+[exact-stay booking engine](https://www.venetianlasvegas.com/booking?adults%5B%5D=2&arrival_date=2026-11-23&children%5B%5D=0&departure_date=2026-11-30&view=calendar),
+[Wynn poker room](https://www.wynnlasvegas.com/casino/poker),
+[WPT schedule PDF](https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf),
+[Wynn Signature structures](https://cdn.wynnresorts.com/image/upload/v1762299460/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Structures.pdf),
+[Wynn exact-stay booking engine](https://reservations.wynnlasvegas.com/ibe/details.aspx?hotelID=13763&langID=1&rmID=68658&checkIn=11/23/2026&checkOut=11/30/2026),
+[Caesars Palace / Horseshoe poker article](https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip)
+and the [Bellagio Saturday NLH structure](https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf).
+No tournament, hotel, rate, route, guarantee, duration or entry-rule value was inferred or changed.
+
+**Gaps closed.** README coverage prose and the 25-row traceability table now match `site/coverage.json` (22 shipped,
+2 partial, 1 not-resolvable); the calculator description uses the seven planned entries; `scripts/coverage.py` derives
+event, sheet, route, source-link and scheduled-check counts from published data; all 49 source rows have unique stable
+ids enforced by `scripts/verify_site.py`; F29 records both halves of the dual-Pages-publisher race; and
+`tests/test_root_canonical_shortlinks.py` pins that every canonical `site/**/*.html` path resolves under the legacy
+root publisher. Session `arena/97eba119-poker3` independently shipped equivalent root stubs while this branch was in
+progress; the final rebase keeps those stubs verbatim and keeps this session's generator, regression test and evidence.
+`tests/test_documentation_consistency.py` prevents the stale-count drift from returning.
+
+**Verification (post-rebase head).** `verify_site.py` passed (341 events / 8 hotels / 56 routes / 49 sources /
+97 flags / 7 plan days / 18 pages). Full unit suite: **320 tests OK**. `audit_951cd431.py` 0 failures / 0 warnings;
+`verify_live_official.py`, `audit_data.py`, `verify_entry_labels.py`, `verify_transcription.py` (44/44), `verify_dse_full.py`,
+`verify_dse_live_2026_11_19.py` (94/94), `verify_live_2026_11_19.py` (29/29), `verify_wpt_full.py` (136/136),
+`verify_sheets.py`, `verify_nye_live.py`, `canonical_smoke.py`, `tests/smoke.py`, `canonical_render.js`,
+`walk_limit_render.js`, all `node --check` commands, JSON parsing, the Pages workflow gate, data-source
+reproducibility and redirect-generator reproducibility all passed. `site/data.json`, `site/sheets.html` and
+`site/coverage.json` were regenerated from the auto-merged scripts after PR #199/#202 landed, so F100 from session
+`arena/cce0b8d3`, F101 from the merged PR #197, and this session's F29/source-id changes are all present.
+
+**Irregularities published, not hidden.** F31 (no written one-entry cap), F16 (no finish times), F17 (no 8 AM start;
+earliest official recurring start is 9 AM), F39, F56, F88, F01/F61 (WPT Dec. 18 weekday/date misprint), F02 (Bellagio
+buy-in conflict), F51/F69, F100, F101 and the rest of the 97-flag register remain on the Flagged for Review page with links.
+F29 remains open because switching the Pages source requires a repository-settings permission the token lacks
+(`PUT /pages` returns 403). None blocks publication under the standing protocol.
+
+**Rebase / conflict log.** `main` advanced through concurrent PRs #181–#202 while this branch was open. Every board
+conflict was append-only; both sessions' sections were kept and no session record was discarded. The add/add collision
+on root short links was resolved by keeping session `arena/97eba119`'s already-published stubs and this session's
+generator/test; the `site/data.json` and `site/sheets.html` collisions after PR #199/#202 were resolved by rebuilding both
+from the merged builders. Open PRs #173 and #184 were not edited; PR #197 was merged by its owner while this branch
+was open and its work was preserved.
+
+**T3.** In progress: create the integration PR from this branch to `main`, merge it without waiting for approval,
+confirm both GitHub Pages deploy paths and live pages, then append the PR link, merge commit and deploy result here in
+a documentation-only follow-up PR.

@@ -5,7 +5,7 @@
     "hotels": 8,
     "routes": 56,
     "sources": 49,
-    "flags": 95,
+    "flags": 97,
     "planDays": 7,
     "asOf": "2026-11-19"
   },
@@ -31,7 +31,7 @@
       "flags": [
         "F30"
       ],
-      "note": "Single scheduled job (12:10 UTC + push trigger) fetches each official URL, stores a content hash of the visible text, flags genuine changes; unavailable URLs are never reported as changed."
+      "note": "Single scheduled job (12:10 UTC + push trigger) fetches each official URL, stores a content hash of the visible text, flags genuine changes; unavailable URLs are never reported as changed. Latest recorded run monitored 108 official URLs (85 fetched, 2 visible-text changes)."
     },
     {
       "id": "C3",
@@ -49,7 +49,7 @@
       "status": "shipped",
       "location": "site/data.json (lastChecked / lastVerified) + per-row display",
       "flags": [],
-      "note": "Every tournament, hotel, walking-route and source record carries a retrieval date, and the distribution is derived from site/data.json at build time so it cannot go stale: 38 of 341 event rows last checked 2026-11-16, 189 of 341 event rows last checked 2026-11-17, 114 of 341 event rows last checked 2026-11-19."
+      "note": "Every tournament, hotel, walking-route and source record carries a retrieval date, and the distribution is derived from site/data.json at build time so it cannot go stale: 38 of 341 event rows last checked 2026-11-16, 49 of 341 event rows last checked 2026-11-17, 254 of 341 event rows last checked 2026-11-19."
     },
     {
       "id": "C5",
@@ -144,7 +144,7 @@
         "F32",
         "F67"
       ],
-      "note": "56 of 56 hotel-venue pairs recorded as Google Maps walking estimates: 42 added by the 2026-11-17 matrix pass and 14 from the 2026-11-16 base pass, of which 7 still carry that date and 7 were re-read in walking mode on 2026-11-17, so 49 rows are dated 2026-11-17 and 7 rows are dated 2026-11-16; every row carries its own measurement date. No venue publishes a walking time, so F32 and F67 keep the point-in-time and endpoint caveats. The tournaments table's 30-minute limit is opt-in and measured from a hotel the reader selects; rows over the limit and rows with no measured route are counted separately, so a missing estimate is never shown as an eliminated option."
+      "note": "56 of 56 hotel-venue pairs recorded as Google Maps walking estimates; 7 rows are dated 2026-11-16 and 49 rows are dated 2026-11-17; every row carries its own measurement date. No venue publishes a walking time, so F32 and F67 keep the point-in-time and endpoint caveats. The tournaments table's 30-minute limit is opt-in and measured from a hotel the reader selects; rows over the limit and rows with no measured route are counted separately, so a missing estimate is never shown as an eliminated option."
     },
     {
       "id": "C15",
@@ -195,7 +195,7 @@
       "flags": [
         "F17"
       ],
-      "note": "No official Strip room publishes an 8:00 AM start; earliest verified dated start 9:10 AM (Venetian satellite, seats not cash) and 10:00-10:10 AM main-list. All-day plan built from earliest verified starts instead; 8 AM gap flagged."
+      "note": "No official Strip room publishes an 8:00 AM start. The earliest recurring official start is 9:00 AM at Horseshoe; the Venetian's earliest dated row is a 9:10 AM satellite (seats not cash), and main-list starts begin at 10:00-10:10 AM. The all-day plan is built from the earliest verified starts instead; the 8 AM gap remains flagged."
     },
     {
       "id": "U5",
@@ -227,7 +227,7 @@
       "status": "shipped",
       "location": "site/flagged.html + site/sources.html + scripts/verify_site.py",
       "flags": [],
-      "note": "95 flags, each with its official source link; verify_site.py enforces official-domain source links and intentional blanks for unverified values."
+      "note": "97 flags, each with its official source link; verify_site.py enforces official-domain source links and intentional blanks for unverified values."
     },
     {
       "id": "U9",
@@ -237,7 +237,7 @@
       "flags": [
         "F29"
       ],
-      "note": "Canonical dashboard in site/; root index.html redirects into it; Pages reports status: built from main /."
+      "note": "Canonical dashboard in site/. The repository's legacy main / publisher and the Actions artifact publisher both serve the host, so root index.html redirects to site/ and every canonical site/**/*.html path now has a root-level compatibility redirect; Pages reports status: built from main /."
     },
     {
       "id": "U10",

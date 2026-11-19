@@ -690,15 +690,21 @@ FLAGS = [
                  "a blank guarantee and are not ranked by the guaranteed-pool-to-fee ratio."),
          source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_18.pdf"),
     dict(id="F29", area="Publishing", severity="High",
-         title="The site root served a stale page that contradicted the dashboard, because two publishers wrote to the same URL",
+         title="Two GitHub Pages publishers write to the same host, so the root alternates between the dashboard, a redirect and missing canonical paths",
          detail=("GitHub Pages was configured to deploy from the main branch root while pages.yml also deployed the site/ "
-                 "artifact, so the URL /Poker3/ served whichever deployment finished last. At the time this was found the "
-                 "root served an earlier-round page (46 Venetian rows, no verified hotel cost, 'no hotel ranking is shown'), "
-                 "while /Poker3/site/ served the canonical 341-row dashboard. A visitor landing on the site root therefore saw "
-                 "conclusions the live data contradicts. The root page is now a redirect and pages.yml redeploys after the "
-                 "branch build; the underlying setting (Pages source = 'deploy from a branch') could not be changed by this "
-                 "session's token, which is why the redirect exists as a second guarantee."),
-         source="https://github.com/karagemop466-tech/Poker3/blob/main/site/poker3/index.html"),
+                 "artifact, so /Poker3/ served whichever deployment finished last. At first detection the root served an "
+                 "earlier-round page (46 Venetian rows, no verified hotel cost), while /Poker3/site/ served the canonical "
+                 "341-row dashboard. The repository token could not change the Pages source (PUT /pages returned HTTP 403), "
+                 "so root index.html became a redirect and pages.yml redeploys after the branch build. An independent live "
+                 "read on 2026-11-19 found the other half of the race: /Poker3/calculator.html and /Poker3/venues/wynn.html "
+                 "returned GitHub's 404 while /Poker3/site/calculator.html and /Poker3/site/venues/wynn.html served the "
+                 "pages, because only the Actions artifact puts those canonical files at the host root. "
+                 "scripts/build_legacy_redirects.py now generates a root-level redirect for every canonical "
+                 "site/**/*.html path with no root counterpart, so either publisher resolves every internal link; "
+                 "tests/test_root_canonical_shortlinks.py pins that invariant. The dual-publisher setting remains: switching "
+                 "Pages to the Actions artifact would remove the race entirely, but that API change is outside this "
+                 "repository token's permissions."),
+         source="https://github.com/karagemop466-tech/Poker3/blob/main/.github/workflows/pages.yml"),
     dict(id="F30", area="Monitoring", severity="High",
          title="No scheduled source re-check had produced a run yet, and the three monitors were not serialised against each other",
          detail=("At inspection time no run of checks.yml, monitor.yml or daily-check.yml existed, and site/checks.json, which "
@@ -2406,6 +2412,12 @@ BOOKING_LINKS = [dict(
 
 
 def build():
+    # Every published source row needs a stable, unique id. The 13 auxiliary rows
+    # appended by later verification passes were written without one; assign a
+    # deterministic id from the row's position instead of inventing a new source.
+    for index, src in enumerate(SOURCES, start=1):
+        src.setdefault("id", f"source-aux-{index:02d}")
+
     events = []
 
     # --- Venetian DSE IV -------------------------------------------------

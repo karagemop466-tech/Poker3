@@ -23453,79 +23453,92 @@
    "name": "DeepStack Extravaganza IV official series schedule PDF (Nov 16 - Dec 23, 2026)",
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
    "type": "official schedule PDF",
-   "checked": "2026-11-17"
+   "checked": "2026-11-17",
+   "id": "source-aux-37"
   },
   {
    "name": "Venetian poker-room suite rates and 2026 play requirements",
    "url": "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
    "type": "official rate page",
-   "checked": "2026-11-19"
+   "checked": "2026-11-19",
+   "id": "source-aux-38"
   },
   {
    "name": "Venetian resort fee page",
    "url": "https://www.venetianlasvegas.com/resort/resort-fee.html",
    "type": "official fee page",
-   "checked": "2026-11-19"
+   "checked": "2026-11-19",
+   "id": "source-aux-39"
   },
   {
    "name": "Venetian hotel terms: 13.38% Clark County room tax, parking, check-in and incidentals",
    "url": "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
    "type": "official terms",
-   "checked": "2026-11-19"
+   "checked": "2026-11-19",
+   "id": "source-aux-40"
   },
   {
    "name": "Bellagio hotel terms: $55 resort fee, 72-hour cancellation, taxes on the fee",
    "url": "https://bellagio.mgmresorts.com/en/terms-and-conditions.html",
    "type": "official terms",
-   "checked": "2026-11-19"
+   "checked": "2026-11-19",
+   "id": "source-aux-41"
   },
   {
    "name": "Wynn general hotel terms: $55 resort fee, 48-hour cancellation, parking",
    "url": "https://www.wynnlasvegas.com/terms-and-conditions/850070",
    "type": "official terms",
-   "checked": "2026-11-19"
+   "checked": "2026-11-19",
+   "id": "source-aux-42"
   },
   {
    "name": "Wynn WPT World Championship schedule PDF (Nov 27 - Dec 21, 2026)",
    "url": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
    "type": "official schedule PDF",
-   "checked": "2026-11-19"
+   "checked": "2026-11-19",
+   "id": "source-aux-43"
   },
   {
    "name": "Bellagio Saturday NLH structure PDF",
    "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf",
    "type": "official structure PDF",
-   "checked": "2026-11-17"
+   "checked": "2026-11-17",
+   "id": "source-aux-44"
   },
   {
    "name": "Venetian DSE IV transcribed schedule rows (44 rows, line by line)",
    "url": "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/dse-nov-2026-schedule.pdf",
    "type": "verified transcription",
-   "checked": "2026-11-17"
+   "checked": "2026-11-17",
+   "id": "source-aux-45"
   },
   {
    "name": "MGM Grand hotel reservation terms ($50 resort fee, 72-hour cancellation)",
    "url": "https://mgmgrand.mgmresorts.com/en/terms-and-conditions.html",
    "type": "official terms",
-   "checked": "2026-11-19"
+   "checked": "2026-11-19",
+   "id": "source-aux-46"
   },
   {
    "name": "ARIA hotel reservation terms ($55 resort fee, 72-hour cancellation)",
    "url": "https://aria.mgmresorts.com/en/terms-and-conditions.html",
    "type": "official terms",
-   "checked": "2026-11-19"
+   "checked": "2026-11-19",
+   "id": "source-aux-47"
   },
   {
    "name": "Wynn resort policies (live, non-offer page: $55 resort fee, check-in/out)",
    "url": "https://www.wynnlasvegas.com/about-us/resort-information",
    "type": "official terms",
-   "checked": "2026-11-19"
+   "checked": "2026-11-19",
+   "id": "source-aux-48"
   },
   {
    "name": "MGM Resorts parking page (self-parking and valet rates for Bellagio, ARIA, MGM Grand; read 2026-11-19)",
    "url": "https://www.mgmresorts.com/en/things-to-do/parking.html",
    "type": "official parking page",
-   "checked": "2026-11-19"
+   "checked": "2026-11-19",
+   "id": "source-aux-49"
   }
  ],
  "flags": [
@@ -23781,9 +23794,9 @@
    "id": "F29",
    "area": "Publishing",
    "severity": "High",
-   "title": "The site root served a stale page that contradicted the dashboard, because two publishers wrote to the same URL",
-   "detail": "GitHub Pages was configured to deploy from the main branch root while pages.yml also deployed the site/ artifact, so the URL /Poker3/ served whichever deployment finished last. At the time this was found the root served an earlier-round page (46 Venetian rows, no verified hotel cost, 'no hotel ranking is shown'), while /Poker3/site/ served the canonical 341-row dashboard. A visitor landing on the site root therefore saw conclusions the live data contradicts. The root page is now a redirect and pages.yml redeploys after the branch build; the underlying setting (Pages source = 'deploy from a branch') could not be changed by this session's token, which is why the redirect exists as a second guarantee.",
-   "source": "https://github.com/karagemop466-tech/Poker3/blob/main/site/poker3/index.html"
+   "title": "Two GitHub Pages publishers write to the same host, so the root alternates between the dashboard, a redirect and missing canonical paths",
+   "detail": "GitHub Pages was configured to deploy from the main branch root while pages.yml also deployed the site/ artifact, so /Poker3/ served whichever deployment finished last. At first detection the root served an earlier-round page (46 Venetian rows, no verified hotel cost), while /Poker3/site/ served the canonical 341-row dashboard. The repository token could not change the Pages source (PUT /pages returned HTTP 403), so root index.html became a redirect and pages.yml redeploys after the branch build. An independent live read on 2026-11-19 found the other half of the race: /Poker3/calculator.html and /Poker3/venues/wynn.html returned GitHub's 404 while /Poker3/site/calculator.html and /Poker3/site/venues/wynn.html served the pages, because only the Actions artifact puts those canonical files at the host root. scripts/build_legacy_redirects.py now generates a root-level redirect for every canonical site/**/*.html path with no root counterpart, so either publisher resolves every internal link; tests/test_root_canonical_shortlinks.py pins that invariant. The dual-publisher setting remains: switching Pages to the Actions artifact would remove the race entirely, but that API change is outside this repository token's permissions.",
+   "source": "https://github.com/karagemop466-tech/Poker3/blob/main/.github/workflows/pages.yml"
   },
   {
    "id": "F30",
