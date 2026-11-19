@@ -1166,7 +1166,7 @@ FLAGS = [
                  "an event it overlaps. This does not resolve the underlying limit: no venue publishes finish times (F16), "
                  "so the replaced-or-after judgement still rests on an estimate."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html"),
-    dict(id="F95", area="Integration spot check", severity="Info",
+    dict(id="F96", area="Integration spot check", severity="Info",
          title=("2026-11-19 spot check: F92 re-read and cleared, F31 and F16 reconfirmed, F56 still open, and the "
                 "official booking engine still returns no checkout total"),
          detail=("An independent read of the official pages on 2026-11-19 by the integration session "

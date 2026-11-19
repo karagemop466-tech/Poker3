@@ -4870,9 +4870,9 @@ was created, modified or pushed. Claimed when no other session held the files be
 | Live re-read of every official source behind the trip, with a dated capture and a verifier | done | `arena/3dae36ec-poker3` | `raw/venetian_dse_nov_2026_live_2026-11-19.md` (new), `scripts/verify_dse_live_2026_11_19.py` (new), `tests/test_dse_live_2026_11_19.py` (new), `scripts/data_venetian.py`, `site/data.json` | 94 of 94 DSE IV rows matched the live page on date, start time and structure sheet. Four published names had been paraphrased; corrected to the page's own wording. |
 | Make every published fallback playable | done (reconciled with two concurrent sessions — see below) | `arena/3dae36ec-poker3` | `scripts/data_source.py`, `site/assets/app.js`, `site/schedule.html`, `tests/test_fallback_rule_2026_11_19.py` (new), `site/data.json` | Kept alongside `arena/ffe8f597-poker3`'s `_fallback_sequence()`; see the reconciliation note. |
 | Retire the three duplicate dashboards | done | `arena/3dae36ec-poker3` | `docs/**`, `planner/**`, `verified/**`, `scripts/build_legacy_redirects.py` (new), `tests/test_legacy_redirects_2026_11_19.py` (new), `README.md` | 30 legacy pages redirect into `site/`. |
-| Observe-only re-check record | done | `arena/3dae36ec-poker3` | `scripts/data_source.py` (flag F95), `site/sheets.html` (regenerated), `site/data.json` | Records exactly what today's spot check could and could not confirm. |
+| Observe-only re-check record | done | `arena/3dae36ec-poker3` | `scripts/data_source.py` (flag F96), `site/sheets.html` (regenerated), `site/data.json` | Records exactly what today's spot check could and could not confirm. |
 
-**Sources read live (2026-11-19).** Also listed in `README.md` → *Live re-read, 2026-11-19* and behind flag F95. Nothing
+**Sources read live (2026-11-19).** Also listed in `README.md` → *Live re-read, 2026-11-19* and behind flag F96. Nothing
 here is sourced to a third party, and nothing was inferred from a page that did not print it.
 
 - Venetian DeepStack Extravaganza IV schedule page, all four chunks, 94 rows.
@@ -4907,9 +4907,11 @@ theirs was discarded. How the overlap was reconciled:
   start times rather than asserted.
 - **Flag IDs de-duplicated.** My two flags collided with flags that had just merged, and my provisional "F94" would have
   duplicated an ID already on `main`. Both of my flag commits were dropped on rebase; the spot check is re-published as
-  **F95**, which adds the DSE IV row-by-row re-read, the WPT check and the parking/Caesars re-reads that F93 does not
-  cover, and the fallback defect stays as their **F94**, which this branch's code change now satisfies. No ID is used
-  twice and no flag text was lost.
+  **F96**, which adds the DSE IV row-by-row re-read, the WPT check and the parking/Caesars re-reads that F93 does not
+  cover, and the fallback defect stays as their **F94**, which this branch's code change now satisfies. F95 was taken
+  too by a third merge (PR #172, the six monitor-flagged 2026-11-18 URLs re-read by hand) between this branch's first
+  and second rebase, so the spot check moved to **F96**. The `test_flag_ids_are_unique` check caught both collisions
+  before publication: no ID is used twice and no flag text was lost.
 - **`site/schedule.html` copy:** `main`'s version was already more complete (it also says 30 November is an 11:00 a.m.
   check-out day), so `main`'s text was kept and only the same-day-alternative sentence was added.
 - **Board:** both sessions' sections kept; this record and the reconciliation note added.
@@ -4924,7 +4926,7 @@ repository settings only.
 **Irregularities published on the Flagged for review page (do not block):** F31 (no written one-entry cap, so the
 strict-entry filter returns 0 rows), F17 (no official 8 a.m. start; earliest verified is 9 a.m.), F16 (no published
 finish times, so overlap flags are estimates), F39 (room-tax percentage unpublished for six of eight properties), F56
-(Wynn Signature structures still unpublished), F93 (no current checkout total), F94 (the fallback defect), F95 (today's
+(Wynn Signature structures still unpublished), F93 (no current checkout total), F94 (the fallback defect), F96 (today's
 spot check). F92 is cleared.
 
 **Merge record.** Appended after the pull request merges.
