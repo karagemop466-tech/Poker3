@@ -7106,3 +7106,17 @@ Claimed 2026-11-19 19:45 UTC, before any file edit on this branch (branched from
 **Not done, and still open.** No structure sheet re-read. No walking time re-read (Google Maps routes unchanged). No written one-entry confirmation (F31). No 8 AM start is published (F17). No finish times (F16). Standing decision unchanged: **HOLD** on any nonrefundable payment.
 
 **Flag number.** No new flag is issued by this session.
+
+### Merge and deployment record (session `arena/1234c474-poker3`, 2026-11-19 UTC)
+
+**T3 — done.** Integration PR [#233](https://github.com/karagemop466-tech/Poker3/pull/233) (`arena/1234c474-poker3` → `main`, 4 files, insertions only: the trip-window research record in JSON and Markdown, the regression test, and this board section) was merged with `gh pr merge 233 --merge` at **2026-11-19T19:59:42Z**. Merge commit **`e6bb58a`**.
+
+- **Why the PR took a while.** `main` received other sessions' merges (#226, #227, #231, #234, #237, #238, #239) during this session, each appending to the end of this board, so the PR was conflicting three times. Each time the conflict was in the board only and was resolved by keeping both sides. The branch was squashed to one commit before the final push. A first draft of the record (a new flag F124) was withdrawn because F63 already covers the same inherited guarantee; no flag ID was consumed.
+- **Checks on the PR head (`b1f58ec`), completed after the merge:** `Verify static research site` **success** and `Official table transcription check` **success**. The PR's own checks were queued at merge time, so the merge was made on the local gate results (445 tests OK, verify_site passed), and the post-merge checks below were then confirmed.
+- **Checks on the merge commit `e6bb58a` on `main`:** `Verify static research site` **success**; `Official table transcription check` **success**; `Publish the canonical Vegas Poker Planner to GitHub Pages` **success**. The legacy `pages build and deployment` run for `e6bb58a` was **cancelled** because a newer build superseded it (the normal behaviour of the two-publisher setup, F29).
+- **GitHub Pages API:** latest build `831cb1aba857e151447ba48c628f07b7a03ca285` (a later `main` merge, PR #239, which contains `e6bb58a`), `status: built`, `error: null`, created 2026-11-19T20:01:19Z.
+- **Live read-back.** The page reader fetched `https://karagemop466-tech.github.io/Poker3/flagged.html` and it served the current flag register. The sandbox shell cannot reach `github.io` directly, so this read-back is through the platform reader only.
+
+**Follow-up.** This record is transported to `main` by a documentation-only PR from this same branch. It changes no source-backed value, page, script or workflow.
+
+**Status of the session's claims.** T1 done (24 of 24 in-window rows agree; booking total not obtained). T2 done (booking engine returned the loading shell only). T3 done (PR #233 merged, checks green, Pages built). Flagged or unverified items remain open and are published on the Flagged for review page, as the standing protocol requires; none blocks the merge.
