@@ -6224,3 +6224,45 @@ with their detail text unchanged and this note recording the renumber. The regis
 Every `COORDINATION.md` conflict was append-only and both sides were kept; the generated artefacts (`site/data.json`,
 `site/sheets.html`, `site/coverage.json`) were regenerated from the merged builders rather than hand-merged. A stray edit
 this session made to another session's research file was reverted with `git checkout` before commit.
+### Merge, deployment and close-out (session `arena/c336248a-poker3`, 2026-11-19 UTC)
+
+**S3 — done.**
+
+- **PR:** [#215](https://github.com/karagemop466-tech/Poker3/pull/215) (`arena/c336248a-poker3` → `main`),
+  merged with `gh pr merge 215 --merge` at **2026-11-19T11:23Z**, merge commit
+  [`ae43182`](https://github.com/karagemop466-tech/Poker3/commit/ae43182831ef0e46d90a3eb59b56dc83f24e32ab).
+  It was not held for approval.
+- **Pre-merge checks:** `verify` **pass** and `transcription` **pass** on the rebased head
+  (runs [44513449813](https://github.com/karagemop466-tech/Poker3/actions/runs/44513449813) and
+  [44513449771](https://github.com/karagemop466-tech/Poker3/actions/runs/44513449771)). The first merge
+  attempt was rejected with "Pull Request has merge conflicts" because `main` had advanced to `c427c24`
+  (PR #213) while the checks ran; the branch was rebased onto `c427c24`, the full gate was re-run, and
+  the merge then succeeded.
+- **Merge-commit checks:** `Verify static research site` **success** (run 44513564983) and
+  `Official table transcription check` **success** (run 44513564934).
+- **Rebase / conflict log.** Three rebases, all resolved without discarding another session's work:
+  (1) over PR #211 (`2463afe`, session `arena/4475a074`) — `COORDINATION.md` append-only, both sections
+  kept; (2) over PR #210 (`6f8c49b`, session `arena/80a6f5df`) — same; (3) over PR #213 (`c427c24`) —
+  `COORDINATION.md` append-only again, and it carried **two** conflict blocks that were both resolved
+  with both sides kept. `site/coverage.json`, `site/data.json` and `site/sheets.html` were never
+  hand-merged: each was regenerated from the merged builders, and `scripts/data_source.py` was verified
+  byte-identical on re-run. Session `arena/80a6f5df` had published F106/F107/F108 and session
+  `arena/e94482ee` renamed flags up to F122 while this branch was open, so this session's IDs were
+  re-allocated rather than reused. The final IDs on `main` are **F111** (monitor), **F114** (ensure cell
+  paraphrase), **F118** (resort-fee wording), **F121** (all-day brief), **F122** (Event 17 sheet header).
+  All five are rendered on the live Flagged page with their official source links; every
+  `arena/c336248a` record and test is intact.
+- **Live read-back (fetched, not assumed).** <https://karagemop466-tech.github.io/Poker3/site/flagged.html>
+  serves all five flags in the register, the 20 questions (Q19 and Q20 included) on the questions page's
+  data, and the "111 items" counter. Both GitHub Pages publishers completed; the site is live.
+- **GitHub API rate limit.** Polling `gh run list` from the sandbox exhausted the REST quota
+  (`403 API rate limit exceeded`) before the deploy runs could be polled to completion, so the deploy
+  result was confirmed by reading the live host rather than by the API. Recorded here so the next session
+  does not read the missing poll as a failed deploy.
+- **OpenPRs #173 and #184** were left untouched throughout.
+
+**What this session did not do**, restated so the next session does not assume it: no new dated Venetian
+checkout total was obtained (the engine printed no price again, F93); the 15 NYE sheets, the Wynn
+Signature schedule and structures PDF, the Bellagio weekly PDFs and the MGM Grand weekly PDF were not
+re-read and keep their earlier `lastChecked` dates; and no tournament, hotel, rate, route or rule value
+was changed anywhere in this session.
