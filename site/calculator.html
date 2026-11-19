@@ -46,7 +46,7 @@
     </div>
 
     <section class="section">
-      <div class="section-head"><div><h2>Your inputs</h2><p>Every field starts at a value the site can source. Leave a field blank to treat it as zero.</p></div></div>
+      <div class="section-head"><div><h2>Your inputs</h2><p>Every field starts at a value the site can source. A blank field is unknown, not zero: the line it feeds is then reported as unknown instead of priced as free. Enter 0 explicitly when a component really is nothing.</p></div></div>
       <form id="tripForm" class="two-col">
         <div class="card">
           <h3>Tournament entries</h3>
@@ -197,46 +197,73 @@
         ${missing.length ? `<span class="muted">${missing.join(' · ')} published</span>` : ''}`;
     }).join('<br>');
     host.querySelectorAll('[data-hotel]').forEach((b) => b.addEventListener('click', () => {
-      if (b.dataset.rate !== '') form.rate.value = b.dataset.rate;
-      if (b.dataset.fee !== '') form.resortFee.value = b.dataset.fee;
-      if (b.dataset.tax !== '') form.taxRate.value = b.dataset.tax;
-      form.parking.value = b.dataset.parking !== '' ? b.dataset.parking : 0;
+      // Assign every box, including with a blank. The previous version skipped a box the property does
+      // not publish, so the figure left in it from the previously loaded property was silently applied
+      // to this property's row — a Venetian rate priced against a Bellagio fee. A blank now clears the
+      // box, and the calculator reports that line as unknown.
+      form.rate.value = b.dataset.rate;
+      form.resortFee.value = b.dataset.fee;
+      form.taxRate.value = b.dataset.tax;
+      form.parking.value = b.dataset.parking;
       calc();
     }));
   }
   const money = (n) => n.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
+  // A field with no figure in it is unknown, not free. The site's whole evidence rule is that a value
+  // no official source publishes stays blank; the calculator has to follow it, or a property that
+  // publishes a resort fee but no room-tax percentage (F39) comes out $0.00 a night cheaper than the
+  // Venetian, which does publish 13.38%. An explicit 0 remains a real answer and is used as one.
+  const UNKNOWN = '<span class="muted">unknown</span>';
+  const known = (x) => typeof x === 'number' && isFinite(x);
+  const show = (n) => (known(n) ? money(n) : UNKNOWN);
   function read() {
+    const number = (field) => {
+      const input = form[field];
+      if (!input) return null;
+      const raw = input.value.trim();
+      if (raw === '' || (input.validity && !input.validity.valid)) return null;
+      const value = Number(raw);
+      return known(value) && value >= 0 ? value : null;
+    };
     return {
-      entries: Number(form.entries.value) || 0,
-      buyIn: Number(form.buyIn.value) || 0,
-      nights: Number(form.nights.value) || 0,
-      rate: Number(form.rate.value) || 0,
-      resortFee: Number(form.resortFee.value) || 0,
-      taxRate: Number(form.taxRate.value) || 0,
-      parking: Number(form.parking.value) || 0
+      entries: number('entries'),
+      buyIn: number('buyIn'),
+      nights: number('nights'),
+      rate: number('rate'),
+      resortFee: number('resortFee'),
+      taxRate: number('taxRate'),
+      parking: number('parking'),
     };
   }
+  const LABELS = { entries: 'number of entries', buyIn: 'average buy-in', nights: 'number of nights',
+    rate: 'room rate', resortFee: 'resort fee', taxRate: 'room tax rate', parking: 'parking per night' };
   function calc() {
     const v = read();
-    const taxes = (v.rate + v.resortFee) * (v.taxRate / 100);
-    const trueNightly = cents(v.rate + v.resortFee + taxes);
+    const missing = Object.keys(LABELS).filter((k) => !known(v[k]));
+    const hotelKnown = known(v.rate) && known(v.resortFee) && known(v.taxRate);
+    const taxes = hotelKnown ? (v.rate + v.resortFee) * (v.taxRate / 100) : null;
+    const trueNightly = hotelKnown ? cents(v.rate + v.resortFee + taxes) : null;
     const usesPlan = model && v.entries === model.entries && v.buyIn === model.buyIn;
-    const tournament = usesPlan ? model.tournamentTotal : cents(v.entries * v.buyIn);
-    const lodging = v.nights * trueNightly;
-    const parking = v.nights * v.parking;
-    const coreEstimate = tournament + lodging;
-    const allIn = coreEstimate + parking;
-    out.innerHTML = 'Core trip estimate: <strong>' + money(coreEstimate) + '</strong>' +
-      '<span class="muted"> · ' + money(allIn) + ' including parking</span>';
+    const tournament = usesPlan ? model.tournamentTotal
+      : (known(v.entries) && known(v.buyIn) ? cents(v.entries * v.buyIn) : null);
+    const lodging = (trueNightly !== null && known(v.nights)) ? cents(v.nights * trueNightly) : null;
+    const parking = (known(v.nights) && known(v.parking)) ? cents(v.nights * v.parking) : null;
+    const coreEstimate = (tournament !== null && lodging !== null) ? cents(tournament + lodging) : null;
+    const allIn = (coreEstimate !== null && parking !== null) ? cents(coreEstimate + parking) : null;
+    const gap = missing.length
+      ? '<span class="muted"> · not a total: ' + missing.map((k) => LABELS[k]).join(', ') + ' left blank</span>'
+      : '';
+    out.innerHTML = 'Core trip estimate: <strong>' + show(coreEstimate) + '</strong>' +
+      '<span class="muted"> · ' + (allIn !== null ? money(allIn) + ' including parking' : 'including parking ' + UNKNOWN) + '</span>' + gap;
     brk.innerHTML =
       '<div><strong>Core formula</strong> entries × average buy-in + nights × true hotel cost</div>' +
-      '<div><strong>Entries</strong> ' + (usesPlan ? v.entries + ' planned buy-ins (exact sum)' : v.entries + ' × ' + money(v.buyIn)) + ' = ' + money(tournament) + '</div>' +
-      '<div><strong>Hotel</strong> ' + v.nights + ' nights × ' + money(trueNightly) + ' true cost = ' + money(lodging) +
-      ' <span class="muted">(rate ' + money(v.rate) + ' + resort fee ' + money(v.resortFee) + ' + tax ' + money(taxes) + ')</span></div>' +
-      '<div><strong>Core estimate</strong> ' + money(tournament) + ' + ' + money(lodging) + ' = ' + money(coreEstimate) + '</div>' +
-      '<div><strong>Parking, separate</strong> ' + v.nights + ' nights × ' + money(v.parking) + ' = ' + money(parking) +
-      '; all-in including parking: <strong>' + money(allIn) + '</strong></div>' +
-      '<div class="muted">Tax is charged on the room rate and on the resort fee, because the official terms describe the fee as "plus applicable tax". Parking is not included in true room cost per night or in the core formula.</div>';
+      '<div><strong>Entries</strong> ' + (usesPlan ? v.entries + ' planned buy-ins (exact sum)' : (known(v.entries) ? v.entries : '—') + ' × ' + show(v.buyIn)) + ' = ' + show(tournament) + '</div>' +
+      '<div><strong>Hotel</strong> ' + (known(v.nights) ? v.nights : '—') + ' nights × ' + show(trueNightly) + ' true cost = ' + show(lodging) +
+      ' <span class="muted">(rate ' + show(v.rate) + ' + resort fee ' + show(v.resortFee) + ' + tax ' + show(taxes) + ')</span></div>' +
+      '<div><strong>Core estimate</strong> ' + show(tournament) + ' + ' + show(lodging) + ' = ' + show(coreEstimate) + '</div>' +
+      '<div><strong>Parking, separate</strong> ' + (known(v.nights) ? v.nights : '—') + ' nights × ' + show(v.parking) + ' = ' + show(parking) +
+      '; all-in including parking: <strong>' + show(allIn) + '</strong></div>' +
+      '<div class="muted">Tax is charged on the room rate and on the resort fee, because the official terms describe the fee as "plus applicable tax". Parking is not included in true room cost per night or in the core formula. A blank box is an unpublished figure, so its line is left unknown rather than priced at zero — enter 0 when the component really is nothing (a waived fee, a day without a buy-in).</div>';
   }
   form.addEventListener('input', calc);
 

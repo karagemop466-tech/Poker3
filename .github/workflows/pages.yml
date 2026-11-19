@@ -70,6 +70,7 @@ jobs:
           python3 tests/canonical_smoke.py
           node tests/canonical_render.js
           node tests/sheet_recheck_render.js
+          node tests/test_calculator_missing_inputs_render.js
           node --check site/assets/app.js
           node --check site/assets/venue.js
           node --check site/assets/search.js
