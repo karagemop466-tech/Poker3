@@ -4973,3 +4973,24 @@ Branch note: the platform binds this session to `arena/827185f7-poker3` (branche
 - **GitHub Pages:** the canonical publish workflow completed for `fc2ba54`; `GET /repos/…/pages/builds/latest` → `status: built`, commit `fc2ba54…`, `error: null`, updated 2026-11-19 06:10:47 UTC; Pages API → `status: built`, source `main` `/`, https://karagemop466-tech.github.io/Poker3/ .
 - **Post-merge state of this session's work:** M1 (F92 corroboration + F91 re-confirmation), M2 (six-URL re-read, consolidated into main's F95; seven register dates → 2026-11-19; F56 re-read kept), M3 (seven dated rate-log entries incl. the first Wynn trip-window quote, `wynn-ibe-trip` monitored source, Wynn booking links) are on `main` and live. 92 unique flags, 48 sources, 260 unit tests green at merge.
 - **M4 done.** Open flags (published, non-blocking) unchanged as listed above: F16, F17, F31, F39, F56, F57, F93, F32/F84, F83.
+**Merge record — published.**
+
+- **PR [#168](https://github.com/karagemop466-tech/Poker3/pull/168)** from `arena/3dae36ec-poker3` → `main`, merged with
+  `gh pr merge 168 --merge` at **06:07:03 UTC on 2026-11-19**, merge commit `4562cfc`.
+- **Checks on the merged commit `4562cfc`:** "Verify static research site" `success`, "Official table transcription check"
+  `success`, "Publish the canonical Vegas Poker Planner to GitHub Pages" `success`, "pages build and deployment"
+  `success`. The gated Pages workflow runs all six verification scripts, the full unit suite, `canonical_smoke.py`,
+  `canonical_render.js`, `walk_limit_render.js`, `tests/smoke.py` and the reproducibility diff before it publishes, so a
+  green deploy also confirms the data build is byte-identical.
+- **Pages:** API reports `status: built`, source `main` `/`. Live checks made after the deploy:
+  `/Poker3/site/schedule.html` renders the reconciled fallback rule (playable-after / replaces / same-day alternative) and
+  the seven-day plan; `/Poker3/docs/index.html` and the other retired paths now serve the canonical dashboard instead of
+  the old tables.
+- **Local before merge on the final rebased base:** 260 unit tests, all six verification scripts, `canonical_smoke`,
+  `canonical_render`, `walk_limit_render` and `tests/smoke.py` all passed, and `data_source.py` reproduced `site/data.json`
+  exactly. A scheduled source re-check was queued by the merge and does not change any published value by design.
+- **Five rebases over concurrent merges** (#164, #166, #167, #169, #172 all landed while this branch was open). Each
+  conflict was append-only in this board or in the day-plan builder; every other session's text, code and flag was kept.
+  The two flag-ID collisions (`F94`, then `F95`) were caught by `test_flag_ids_are_unique` before publication, never after.
+- **Open after merge (do not block, all on the Flagged for review page):** F31, F16, F17, F39, F56, F93, F94, F96.
+  F92 is cleared.
