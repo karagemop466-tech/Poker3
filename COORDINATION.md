@@ -5695,6 +5695,21 @@ the merged sources; no other session's work was overwritten.
   F17/F16 no 8 AM start or finish time, F101 stale unlinked snapshot JSONs). The booking decision remains HOLD
   until those are answered by the venues. Flagged items did not block the merge.
 
+### Board-record follow-up (PR #201) and final deploy
+
+- **PR [#201](https://github.com/karagemop466-tech/Poker3/pull/201)** — the two-file follow-up that published the
+  PR #197 merge/deploy record above on `main` and corrected the audit page's static load notice. Its `verify` and
+  `transcription` checks passed, it was merged with `gh pr merge 201 --merge` at **2026-11-19T07:19:06Z** as
+  [`544f22e`](https://github.com/karagemop466-tech/Poker3/commit/544f22ec8c11cb3d5c13f0bd73c0930b5466b222).
+- **Final Pages deploy:** [run 44478677863](https://github.com/karagemop466-tech/Poker3/actions/runs/44478677863)
+  for `544f22e` succeeded (build gates, artifact upload, deploy job 135405460375 in 10 s). The live audit page was
+  read back again at <https://karagemop466-tech.github.io/Poker3/verification.html>. The CSS rule was narrowed once
+  more so the real data-load failure path is still able to unhide its notice; this correction is published in the
+  same final integration PR chain.
+- This session is **done**. Every task in the claim table (T1-T4) is complete: repo reviewed line by line, all 40
+  requirements audited and published, no official value changed, every irregularity flagged with a link, the site
+  built and deployed with zero broken local links, and both PRs merged without waiting.
+
 **Verification policy.** Every table row keeps its official source link. A value that cannot be confirmed from an
 official venue or property page/PDF is left blank and flagged. Third-party pages are cited only as conflicts, never as
 values. Any changed official page is flagged for a human re-read; automation never moves a published value.
