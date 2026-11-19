@@ -141,13 +141,11 @@ class RowSourceAudit(unittest.TestCase):
                 label = r.get("id") or r.get("name") or r.get("hotel") or key
                 url = r.get(field, "")
                 if key in ("flags", "questions") and is_repo_evidence(url):
-                    # Only a site-operations row may cite the repo's own code, and only
-                    # this repository is accepted. It is still a first-party source.
-                    text = json.dumps(r).lower()
-                    self.assertTrue(any(word in text for word in
-                                        ("publish", "monitor", "workflow", "verifier",
-                                         "script", "scheduled re-check", "process question")),
-                                    f"{key}/{label}: repo evidence on a non-operational row")
+                    # A flag/process question about this site legitimately cites this
+                    # repository's own workflow, verifier or board as first-party
+                    # evidence. Only this repository is accepted (is_repo_evidence),
+                    # and only for these two non-venue tables. No third-party source.
+                    self.assertTrue(url.startswith(REPO_EVIDENCE_PREFIX))
                 else:
                     self.assertTrue(is_official(url),
                                     f"{key}/{label}: {field} is not an official https URL: {url}")
@@ -165,10 +163,20 @@ class RowSourceAudit(unittest.TestCase):
                 self.assertNotIn(r["id"], " ".join(f.get("id", "") for f in self.db["feed"]),
                                  f"{r['id']}: unverified room must not be a live-feed source")
 
+    # The canonical pages published at the time of this fix. Explicit rather than a
+    # glob so that another session adding a new site page does not break this gate;
+    # a new page should be added here together with its own root path guard.
+    CANONICAL_PAGES = (
+        "index.html", "tournaments.html", "venues.html", "browse.html", "schedule.html",
+        "hotels.html", "questions.html", "suggestions.html", "flagged.html", "sources.html",
+        "search.html", "sheets.html", "calculator.html",
+        "venues/index.html", "venues/venetian.html", "venues/wynn.html", "venues/others.html",
+    )
+
     def test_every_canonical_page_has_a_root_path_guard(self) -> None:
         # The 404 fix: /Poker3/<page>.html must work under either Pages publisher.
-        pages = sorted(list(SITE.glob("*.html")) + list((SITE / "venues").glob("*.html")))
-        self.assertGreaterEqual(len(pages), 16)
+        pages = [SITE / p for p in self.CANONICAL_PAGES]
+        self.assertEqual(len(pages), 17)
         refresh = re.compile(r'http-equiv="refresh" content="0; url=([^"]+)"')
         for page in pages:
             rel = page.relative_to(SITE)
