@@ -30,6 +30,31 @@ const transcriptionPath = path.join(ROOT, 'site', 'checks.json');
 const liveChecks = fs.existsSync(transcriptionPath) ? JSON.parse(fs.readFileSync(transcriptionPath, 'utf8')) : null;
 const feedPath = path.join(ROOT, 'site', 'feed', 'index.json');
 const feed = JSON.parse(fs.readFileSync(feedPath, 'utf8'));
+const monitoredHotelSources = (data.hotels || []).flatMap((hotel) => [
+  hotel.quote && hotel.quote.source,
+  ...(hotel.quotes || []).map((quote) => quote.source),
+  ...(hotel.bookingLinks || []).map((booking) => booking.url),
+  ...(hotel.noQuoteWindows || []).map((window) => window.url),
+  hotel.calendarObservation && hotel.calendarObservation.windowA && hotel.calendarObservation.windowA.url,
+  hotel.calendarObservation && hotel.calendarObservation.windowB && hotel.calendarObservation.windowB.url,
+]);
+const monitoredTournamentSources = (data.events || []).flatMap((event) => [
+  event.scheduleUrl, event.structureUrl,
+  ...Object.values(event.rules || {}).map((rule) => rule && rule.source),
+]);
+const monitoredRateAndRouteSources = [
+  ...(data.rateLog || []).map((row) => row.source),
+  ...(data.routes || []).map((route) => route.source),
+];
+const syntheticRowChecks = [...new Set([
+  ...monitoredHotelSources, ...monitoredRateAndRouteSources, ...monitoredTournamentSources,
+].filter(Boolean))]
+  .filter((url) => url !== fixtureEvent.scheduleUrl && url !== fixtureEvent.structureUrl)
+  .map((url, index) => ({
+    url, label: 'Synthetic row-level source ' + (index + 1), checked: '2026-11-19T07:34:30+00:00',
+    status: 'HTTP 200', outcome: 'fetched', hash: 'new-' + index, previousHash: 'old-' + index,
+    changed: true, unavailable: false,
+  }));
 const checksFixture = {
   transcription: liveChecks && liveChecks.transcription,
   lastRun: '2026-11-17T13:00:00+00:00',
@@ -50,7 +75,7 @@ const checksFixture = {
     status: 'HTTP 403',
     changed: false,
     unavailable: true,
-  }],
+  }, ...syntheticRowChecks],
 };
 function makeElement(selector) {
   const el = {
@@ -173,6 +198,9 @@ function runVenuePage(venueAttr) {
       if (String(url).endsWith('data.json')) {
         return Promise.resolve({ ok: true, json: () => Promise.resolve(data) });
       }
+      if (String(url).endsWith('checks.json')) {
+        return Promise.resolve({ ok: true, json: () => Promise.resolve(checksFixture) });
+      }
       return Promise.resolve({ ok: false, json: () => Promise.resolve(null) });
     },
   };
@@ -196,6 +224,14 @@ function runVenuePage(venueAttr) {
       failures++;
     } else {
       console.log(`ok    venue page ${venue}: ${evRows} event rows, ${hoRows} hotel rows`);
+    }
+    if (!ev || !ev.html.includes('Source changed · review')) {
+      console.log(`FAIL  venue page ${venue}: changed schedule/structure/rule sources are not marked on event rows`);
+      failures++;
+    }
+    if (!ho || !ho.html.includes('Source changed · review')) {
+      console.log(`FAIL  venue page ${venue}: changed quote/booking sources are not marked on hotel rows`);
+      failures++;
     }
   }
   for (const [page, search] of PAGES) {
@@ -263,6 +299,24 @@ function runVenuePage(venueAttr) {
       }
       if (!log || !log.html.includes('calendar cells for Nov. 16-30') || log.html.includes('$calendar')) {
         console.log(`FAIL  ${label}: dated rate-log observations did not render correctly`);
+        failures++;
+      }
+      const bookingLinks = reg.get('[data-booking-links]');
+      const expectedDateLinks = (data.hotels || []).reduce((count, hotel) => count +
+        (hotel.bookingLinks || []).filter((booking) => /\(1 night\)/.test(booking.label || '')).length, 0);
+      const renderedDateLinks = bookingLinks ? (bookingLinks.html.match(/\(1 night\)/g) || []).length : 0;
+      if (renderedDateLinks < expectedDateLinks || expectedDateLinks === 0) {
+        console.log(`FAIL  ${label}: expected ${expectedDateLinks} per-date official booking links, rendered ${renderedDateLinks}`);
+        failures++;
+      }
+      const rowSelectors = ['[data-quotes]', '[data-booking]', '[data-rate-log]', '[data-routes]',
+        '[data-booking-links]', '[data-no-quote]', '[data-calendar]'];
+      const unmarkedRows = rowSelectors.filter((selector) => {
+        const element = reg.get(selector);
+        return !element || !element.html.includes('Source changed · review');
+      });
+      if (unmarkedRows.length) {
+        console.log(`FAIL  ${label}: source-change badges missing from hotel evidence rows: ${unmarkedRows.join(', ')}`);
         failures++;
       }
     }
