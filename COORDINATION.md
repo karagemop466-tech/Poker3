@@ -4568,3 +4568,27 @@ The latest source evidence and known irregularities are linked from [`site/sourc
 **Integration record:** documentation-only audit. No tournament, hotel, rate, route, or policy data changed. The open flags do not block publication; no new factual assertion is introduced.
 
 **PR and publication result:** PR [#162](https://github.com/karagemop466-tech/Poker3/pull/162) merged to `main` at 2026-11-19 05:51:18 UTC as `564de78e47ee144004f8564c133e9781fe877e0d`. GitHub Pages run [44468007077](https://github.com/karagemop466-tech/Poker3/actions/runs/44468007077) completed successfully for that merge SHA: evidence/link checks, regression/render checks, artifact upload, and deployment all passed. A non-blocking GitHub Actions annotation noted that several pinned actions target Node.js 20 and are being forced to Node.js 24 by the runner; deployment was successful.
+
+---
+
+## Session `arena/4c657755-poker3` — claim: manual re-read of open trip-critical flags F17, F31, F92 (2026-11-19 UTC)
+
+| Task | Status | Owner | Scope |
+|---|---|---|---|
+| Re-read the official Venetian poker page, DeepStack Extravaganza IV schedule (all rows, live fetch) and the 2023 DSE II page; resolve or re-confirm flags F92 (poker-page wording change), F17 (earliest official start) and F31 (written one-entry rule); record dated evidence | in progress | `arena/4c657755-poker3` | `scripts/data_source.py` (flag text F17/F31/F92 only), `research/reread_2026-11-19.md` (new), `tests/test_reread_2026_11_19.py` (new), rebuilt `site/data.json` and generated site files, this board |
+
+Overlap check: no other open PR at the time of claim (`gh pr list --state open` empty). No venue value (date, time, fee, guarantee, rate) is changed by this claim.
+
+### Result — `arena/4c657755-poker3` (2026-11-19 UTC)
+
+| Flag | Before | After this session | Evidence (official, read live 2026-11-19) |
+|---|---|---|---|
+| F92 poker-page wording change | Medium, "manual re-read required" | **Low, explained.** The only text difference between the Nov 17 and Nov 18 saved snapshots is the series banner: "WPT Fall Festival, Oct 28 – Nov 15" → "DeepStack Extravaganza IV, Nov 16 – Dec 23". No tournament, rate or policy value changed. | [Venetian poker page](https://www.venetianlasvegas.com/resort/casino/poker.html) |
+| F17 earliest official start | High, 8 AM not published | **Still High, re-confirmed on the live schedule.** Earliest row 9:10 AM (Sat Dec 12, Event 46, $260 satellite). The only 10:00 AM rows are Day 2 restarts (Dec 11, Dec 15). Earliest opening main-list event 10:10 AM. | [DSE IV schedule, all four chunks](https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html) |
+| F31 written one-entry rule | High, open | **Still High, open, new evidence.** The live 2026 schedule prints no one-entry or freezeout label on any row. The venue's own 2023 DSE II schedule prints "One Entry Only with One Hour of Registration" on Event 13, so one-entry wording does appear in its schedules. No written maximum-entry rule for 2026. | [DSE IV schedule](https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html); [DSE II, Apr 2023](https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-apr-2023.html) |
+| Trip booking total (F69, F66) | not changed | **Not re-quoted.** The booking engine returned only its loading page on 2026-11-19. The 2026-11-17 total of $4,010.55 remains the last itemised figure on record, and must be reconfirmed before payment. | [Booking, 23–30 Nov 2026](https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar) |
+
+- **Files changed:** `scripts/data_source.py` (flag text only), regenerated `site/data.json` and `site/sheets.html`, new `research/reread_2026-11-19.md`, new `tests/test_reread_2026_11_19.py`, this board. No tournament, hotel, rate, route or policy value was changed.
+- **Verification:** 235 unit tests pass (PyYAML 6.0.3 in an out-of-repo virtualenv; the system Python lacks it, so two workflow-test modules errored before that). `verify_site.py`, `audit_951cd431.py`, `verify_live_official.py`, `audit_data.py`, `verify_entry_labels.py`, `tests/canonical_smoke.py`, `canonical_render.js`, `node --check` on all four site scripts, `json.tool` on `site/data.json`, and `git diff --check` all pass. `build_addendum.py` reports 88 flags, 0 unexplained disagreements.
+- **Still open (not resolved here):** F31 (needs a written answer from the venue), F17 (no official 8 AM start exists), F16 (no published finish times), and the booking quote (needs a live checkout read).
+- **Question for the user / the venue:** the exact question to send is in `research/reread_2026-11-19.md`. It is not a value and is not asserted anywhere as confirmed.
