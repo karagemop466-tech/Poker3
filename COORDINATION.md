@@ -6177,3 +6177,36 @@ committed to `main` since the branch point at claim time.
 
 **Scope note.** PR #173's branch is not touched. Where PR #173 made the same trip-window re-read, this session performs its own read
 and does not merge #173; the two records can be compared, and neither is treated as authoritative without the official page.
+
+### T2 result — independent 2026-11-19 re-read (session `arena/03d48a10-poker3`)
+
+**Done. 64 official facts compared line by line against site/data.json; 64 matched; 0 values changed.**
+Full record with verbatim excerpts and the manual-review links: [`research/reverification_2026-11-19_arena-03d48a10.md`](research/reverification_2026-11-19_arena-03d48a10.md).
+
+| Official source read today | Compared | Matched |
+|---|---|---|
+| [Venetian DSE IV schedule](https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html) (all 4 chunks) | 24 trip-window rows on date, start time, buy-in, description | 24 |
+| [Venetian suite rates](https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html), [resort fee](https://www.venetianlasvegas.com/resort/resort-fee.html), [hotel terms](https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html), [player parking](https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html) | 10 hotel facts + 4 arithmetic identities ($197.28, $299.32, $1,380.96, $4,120.96) | 10 + 4 |
+| [Wynn daily poster PDF](https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf), [Wynn resort policies](https://www.wynnlasvegas.com/about-us/resort-information), [Wynn poker](https://www.wynnlasvegas.com/casino/poker) | 4 daily rows + 5 policy facts | 9 |
+| [Wynn Signature structures PDF](https://cdn.wynnresorts.com/image/upload/v1762299460/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Structures.pdf) | placeholder text only — confirms F56 | 1 |
+| [Bellagio poker](https://bellagio.mgmresorts.com/en/casino/poker.html) + [Friday $600 structure PDF](https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf) | 7 structure facts | 7 |
+| [Caesars/Horseshoe Strip article](https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip) (chunks 0–1) | 4 daily-schedule facts | 4 |
+| [MGM Grand schedule PDF](https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf) | 6 facts incl. the only printed entry-policy sentence | 6 |
+
+**Irregularities re-confirmed against live pages (none resolved, none can be resolved by re-reading):** F02 Bellagio
+Saturday prints $1,000 / $1,100 / $600 on three surfaces; F03 the Bellagio resumption notice still says "July 26" with
+no year while the page says the bomb pot is nightly at 6 PM; F07 the MGM PDF heading still says "August" with no year;
+F17 the earliest start anywhere in the reviewed set is 10:10 AM, so no 8 AM plan is buildable; F31 no reviewed sheet
+states a maximum number of entries per player; F51 the resort-fee page and the booking calendar still describe the $55
+fee differently; F56 the Signature structures file is still "COMING SOON", re-checked today; F72 the MGM entry-policy
+sentence still assumes five or more entries; F90 Caesars still prints "every event carries a $100 buy-in" against a
+flyer's $100/$160; F93 the booking engine still returned no dated price today.
+
+**Also confirmed correct (no action taken):** the 38 Signature Series rows and their count; the Wynn Friday $240 rebuy
+and the Caesars $50 add-on and the Bellagio re-entry plus optional paid gratuity are all kept outside the single-entry
+path; the Bellagio Friday $600 row's published fee split ($510/$50/$40) matches its PDF.
+
+**One new observation, flagged for review rather than fixed:** the Caesars/Horseshoe rows rest on a **Caesars-published
+editorial article dated 17 July 2026**, not a machine-generated schedule page. That has been true since those rows were
+first published; this pass states it explicitly because the article's own text ("every event carries a $100 buy-in")
+already conflicts with the flyer. No value was changed on the strength of a marketing article.
