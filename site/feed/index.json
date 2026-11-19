@@ -1,17 +1,18 @@
 {
- "generated": "2026-11-19T05:40:02+00:00",
+ "generated": "2026-11-19T06:01:14+00:00",
  "date": "2026-11-19",
  "rooms": [
   {
    "id": "venetian",
    "name": "The Venetian poker room",
-   "fetched": "2026-11-19T05:40:02+00:00",
+   "fetched": "2026-11-19T06:01:14+00:00",
    "pages": [
     {
      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
      "status": "HTTP 200",
-     "hash": "dff2886023f296b0d5b478397147c2be13888728064a87675fa79ca7ce25c510",
-     "bytes": 269920,
+     "outcome": "text",
+     "hash": "9f2da285ed7d9823943bbe570eab261a47967f68ab98d9e94cc2d90e8fc881b4",
+     "bytes": 269917,
      "contentType": "text/html;charset=utf-8",
      "textLength": 12440,
      "times": [
@@ -61,8 +62,9 @@
     {
      "url": "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html",
      "status": "HTTP 200",
-     "hash": "56a0012b4554754197a3a49330416fd4adf8d6dae2265f798bd013e6f24ad0f5",
-     "bytes": 248168,
+     "outcome": "text",
+     "hash": "cff96982b0bca949fbac3cc9896b56dc4dc23b511a3c5cc8db122ec55761d214",
+     "bytes": 248166,
      "contentType": "text/html;charset=utf-8",
      "textLength": 8441,
      "times": [
@@ -100,8 +102,9 @@
     {
      "url": "https://www.venetianlasvegas.com/resort/casino/poker.html",
      "status": "HTTP 200",
-     "hash": "cf21c8886b617bdf823d757b3bd865d92bceb9ef503013037c5962613a4cea6e",
-     "bytes": 255858,
+     "outcome": "text",
+     "hash": "eecf95e748e6906ab1dbfbef9a53df6144b7fd120a6edb475f65433b3bcdb4a4",
+     "bytes": 255855,
      "contentType": "text/html;charset=utf-8",
      "textLength": 6249,
      "times": [
@@ -118,13 +121,14 @@
   {
    "id": "wynn",
    "name": "Wynn poker room",
-   "fetched": "2026-11-19T05:40:02+00:00",
+   "fetched": "2026-11-19T06:01:14+00:00",
    "pages": [
     {
      "url": "https://www.wynnlasvegas.com/casino/poker",
      "status": "HTTP 200",
-     "hash": "1cf7c09502433d9accaa79fff8007a61f79d1b21e88d349c41f79ea1c706fda2",
-     "bytes": 460839,
+     "outcome": "text",
+     "hash": "db99b200dabe36bd890ef8b3f964dc3ff22d66f55c905c405fbeff1c1eb82ac7",
+     "bytes": 460911,
      "contentType": "text/html; charset=utf-8",
      "textLength": 3748,
      "times": [],
@@ -142,6 +146,7 @@
     {
      "url": "https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf",
      "status": "HTTP 200",
+     "outcome": "pdf-fingerprint",
      "hash": "f7dc8281b1b508b55cfcea08485665ad2e627d19c4d274359c6c3f89cf71ccec",
      "bytes": 2861483,
      "contentType": "application/pdf"
@@ -149,8 +154,17 @@
     {
      "url": "https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf",
      "status": "HTTP 200",
+     "outcome": "pdf-fingerprint",
      "hash": "9291f60e5263033d9bd884849a56e36cb8180d91e6bee24aa319267d8634b3e0",
      "bytes": 23785821,
+     "contentType": "application/pdf"
+    },
+    {
+     "url": "https://cdn.wynnresorts.com/image/upload/v1753296112/visitwynn_pdfs_files/Poker/Wynn%20Signature%20Series/Wynn_Signature_Series_Schedule.pdf",
+     "status": "HTTP 200",
+     "outcome": "pdf-fingerprint",
+     "hash": "51a19da4b135d9287471da1d814b8f76d370b69bae736ab5854dc370ae2754eb",
+     "bytes": 1180224,
      "contentType": "application/pdf"
     }
    ]
@@ -158,18 +172,36 @@
   {
    "id": "bellagio",
    "name": "Bellagio poker room",
-   "fetched": "2026-11-19T05:40:02+00:00",
+   "fetched": "2026-11-19T06:01:14+00:00",
    "pages": [
     {
      "url": "https://bellagio.mgmresorts.com/en/casino/poker.html",
      "status": "unreachable",
+     "outcome": "unavailable",
      "error": "TimeoutError: The read operation timed out"
     },
     {
      "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt9cf95b0e60ec253e/6af491a3a9851d75c40be840/mgm-bellagio-poker-fridays-$600-nlh.pdf",
      "status": "HTTP 200",
+     "outcome": "pdf-fingerprint",
      "hash": "5789e88e243d2655d3bef9731d80324e9d56cd1bdc4dbde3ffeb23ab3876b91d",
      "bytes": 1676621,
+     "contentType": "application/pdf"
+    },
+    {
+     "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt6d47974bf5a7d9b6/6af491a391a6e8e4230c9e07/mgm-bellagio-poker-saturdays-$1000-nlh.pdf",
+     "status": "HTTP 200",
+     "outcome": "pdf-fingerprint",
+     "hash": "e1fdbc3fef7fa03891f2c7082e1fb0a925d40752f9b53906b74a38c3ea3cc176",
+     "bytes": 1677400,
+     "contentType": "application/pdf"
+    },
+    {
+     "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt07fcf1244a6da661/6af491a339e2b4f6b76a86ad/mgm-bellagio-poker-sundays-$400-horse.pdf",
+     "status": "HTTP 200",
+     "outcome": "pdf-fingerprint",
+     "hash": "70a3ceb4b3d2128da8f043a799b3bf3d59c1547cd9aa8ec9cd7bc8f7ba501442",
+     "bytes": 1675883,
      "contentType": "application/pdf"
     }
    ]
@@ -177,30 +209,60 @@
   {
    "id": "mgm",
    "name": "MGM Grand poker room",
-   "fetched": "2026-11-19T05:40:02+00:00",
+   "fetched": "2026-11-19T06:01:14+00:00",
    "pages": [
     {
      "url": "https://mgmgrand.mgmresorts.com/en/casino/poker-tables.html",
      "status": "unreachable",
+     "outcome": "unavailable",
      "error": "TimeoutError: The read operation timed out"
     },
     {
      "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/bltb2a45da7e8ee5621/mgm-grand-casino-poker-120_nlh.pdf",
      "status": "HTTP 200",
+     "outcome": "pdf-fingerprint",
      "hash": "68f132dae3bc823c0ca443c9dbebf44db81c6184eaa6dfe0ec440cd160bec9bd",
      "bytes": 295633,
+     "contentType": "application/pdf"
+    },
+    {
+     "url": "https://assets.contentstack.io/v3/assets/bltc6ce635bc4868eb2/blt5f25277b8918da08/mgm-grand-casino-poker-tournament_schedule.pdf",
+     "status": "HTTP 200",
+     "outcome": "pdf-fingerprint",
+     "hash": "9be93826e4f15292b8bb78fca72a383a09f35db17a1f62862ebd73139b777b80",
+     "bytes": 184559,
      "contentType": "application/pdf"
     }
    ]
   },
   {
-   "id": "caesars",
-   "name": "Caesars Palace and Horseshoe poker rooms",
-   "fetched": "2026-11-19T05:40:02+00:00",
+   "id": "horseshoe",
+   "name": "Horseshoe Las Vegas",
+   "fetched": "2026-11-19T06:01:14+00:00",
    "pages": [
     {
      "url": "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
      "status": "HTTP 302",
+     "outcome": "unavailable",
+     "error": "HTTP Error 302: The HTTP server returned a redirect error that would lead to an infinite loop.\nThe last 30x error message was:\nFound"
+    }
+   ]
+  },
+  {
+   "id": "caesars",
+   "name": "Caesars Palace",
+   "fetched": "2026-11-19T06:01:14+00:00",
+   "pages": [
+    {
+     "url": "https://www.caesars.com/caesars-palace/casino",
+     "status": "HTTP 302",
+     "outcome": "unavailable",
+     "error": "HTTP Error 302: The HTTP server returned a redirect error that would lead to an infinite loop.\nThe last 30x error message was:\nFound"
+    },
+    {
+     "url": "https://www.caesars.com/content/dam/empire/clv/casino/poker/tournament-schedule/clv-poker-daily-nlh-tournament-flyer-2026.pdf",
+     "status": "HTTP 302",
+     "outcome": "unavailable",
      "error": "HTTP Error 302: The HTTP server returned a redirect error that would lead to an infinite loop.\nThe last 30x error message was:\nFound"
     }
    ]
@@ -208,11 +270,12 @@
   {
    "id": "aria",
    "name": "ARIA poker room",
-   "fetched": "2026-11-19T05:40:02+00:00",
+   "fetched": "2026-11-19T06:01:14+00:00",
    "pages": [
     {
      "url": "https://aria.mgmresorts.com/en/casino/poker.html",
      "status": "unreachable",
+     "outcome": "unavailable",
      "error": "TimeoutError: The read operation timed out"
     }
    ]
@@ -220,11 +283,12 @@
   {
    "id": "mandalay",
    "name": "Mandalay Bay poker room",
-   "fetched": "2026-11-19T05:40:02+00:00",
+   "fetched": "2026-11-19T06:01:14+00:00",
    "pages": [
     {
      "url": "https://mandalaybay.mgmresorts.com/en/casino/poker-tables.html",
      "status": "unreachable",
+     "outcome": "unavailable",
      "error": "TimeoutError: The read operation timed out"
     }
    ]
