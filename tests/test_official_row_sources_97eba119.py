@@ -169,14 +169,14 @@ class RowSourceAudit(unittest.TestCase):
     CANONICAL_PAGES = (
         "index.html", "tournaments.html", "venues.html", "browse.html", "schedule.html",
         "hotels.html", "questions.html", "suggestions.html", "flagged.html", "sources.html",
-        "search.html", "sheets.html", "calculator.html", "ranking.html",
+        "search.html", "sheets.html", "calculator.html", "ranking.html", "q-and-a.html",
         "venues/index.html", "venues/venetian.html", "venues/wynn.html", "venues/others.html",
     )
 
     def test_every_canonical_page_has_a_root_path_guard(self) -> None:
         # The 404 fix: /Poker3/<page>.html must work under either Pages publisher.
         pages = [SITE / p for p in self.CANONICAL_PAGES]
-        self.assertEqual(len(pages), 18)
+        self.assertEqual(len(pages), 19)
         refresh = re.compile(r'http-equiv="refresh" content="0; url=([^"]+)"')
         for page in pages:
             rel = page.relative_to(SITE)

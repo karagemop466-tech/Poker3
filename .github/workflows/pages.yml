@@ -71,6 +71,7 @@ jobs:
           node tests/canonical_render.js
           node tests/test_calculator_unknown_inputs.js
           node tests/test_day_plan_ordering.js
+          node tests/sheet_recheck_render.js
           node --check site/assets/app.js
           node --check site/assets/venue.js
           node --check site/assets/search.js

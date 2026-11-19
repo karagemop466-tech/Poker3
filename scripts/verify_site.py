@@ -51,9 +51,23 @@ OFFICIAL_HOSTS = (
 
 PAGES = (
     "index.html", "tournaments.html", "venues.html", "browse.html", "schedule.html",
-    "hotels.html", "questions.html", "suggestions.html", "flagged.html", "sources.html", "search.html",
+    "hotels.html", "questions.html", "q-and-a.html", "suggestions.html", "flagged.html",
+    "sources.html", "search.html",
     "ranking.html",
     "verification.html",
+)
+
+# Unrendered Markdown in a published page hides content from the reader instead of
+# failing a build.  <https://…> is parsed by HTML as an unknown element, so the URL
+# inside it never reaches the page at all; **text** and [label](url) stay literal;
+# a "|---|" row is a Markdown table separator left behind by a bad conversion.
+# site/q-and-a.html shipped exactly that way (all 19 of its official source links
+# were invisible) because it was not in PAGES, so nothing read it.
+MARKDOWN_ARTIFACTS = (
+    ("raw autolink <https://…>", re.compile(r"<https://")),
+    ("raw bold **…**", re.compile(r"\*\*[A-Za-z][^*\n]*\*\*")),
+    ("raw Markdown link [label](url)", re.compile(r"\[[^\]\n]+\]\([^)\s]+\)")),
+    ("Markdown table separator |---|", re.compile(r"\|---\|")),
 )
 
 # Detailed pages that carry their own data attributes instead of data-page.
@@ -290,6 +304,16 @@ def main() -> int:
             target = (path.parent / link.split("#")[0].split("?")[0]).resolve()
             if not target.exists():
                 fail(f"{page}: broken local link {link}", errors)
+
+    # Every published page, not just PAGES: a rendering defect must not depend on
+    # whether somebody remembered to list the file above.
+    for path in sorted(SITE.rglob("*.html")):
+        rel = path.relative_to(SITE).as_posix()
+        text = path.read_text(encoding="utf-8")
+        for label, pattern in MARKDOWN_ARTIFACTS:
+            hit = pattern.search(text)
+            if hit:
+                fail(f"{rel}: {label} would render literally: …{hit.group(0)[:70]}…", errors)
 
     for page in DETAIL_PAGES:
         path = SITE / page

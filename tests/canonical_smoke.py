@@ -27,6 +27,7 @@ PAGES = {
     "schedule.html": "schedule",
     "hotels.html": "hotels",
     "questions.html": "questions",
+    "q-and-a.html": "q-and-a",
     "suggestions.html": "suggestions",
     "flagged.html": "flagged",
     "sources.html": "sources",
@@ -184,7 +185,8 @@ def main() -> int:
         errors.append("app.js: the 30-minute walking limit must be off by default, so no row is hidden before the reader asks")
 
     if shutil.which("node"):
-        for script, label in ((("canonical_render.js"), "headless render"), ("walk_limit_render.js", "walking-limit render")):
+        for script, label in ((("canonical_render.js"), "headless render"), ("walk_limit_render.js", "walking-limit render"),
+                           ("sheet_recheck_render.js", "sheet re-check cell")):
             result = subprocess.run(["node", str(ROOT / "tests" / script)],
                                     capture_output=True, text=True, cwd=ROOT)
             if result.returncode != 0:

@@ -461,7 +461,8 @@ FLAGS = [
          title="Venetian NYE schedule prints 'Saturday, December 26, 2025' for three events",
          detail=("Events 5, 6 and 7 of the DeepStack Extravaganza NYE page are dated 'Saturday, December 26, 2025' even though "
                  "the series runs December 24, 2026 to January 10, 2027. The page also misspells 'Tuesaday'. The rows are kept "
-                 "at 2026-12-26 and the printed label is flagged here."),
+                 "at 2026-12-26 and the printed label is flagged here. Re-read on 2026-11-19: both printed defects are still "
+                 "on the live page, unchanged, and all 49 rows on it matched the published catalog line by line."),
          source="https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-dec-2026.html"),
     dict(id="F05", area="Venetian DSE IV", severity="Low",
          title="Structure sheet 13 cross-references the wrong companion sheet",
@@ -1631,7 +1632,20 @@ FLAGS = [
                  "comparing the cell with the sheet is not left wondering whether a cash-only pool of $8,000 is meant. "
                  "No value was changed."),
          source="https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_1.pdf"),
-
+    dict(id="F123", area="Venetian", severity="Low",
+         title="The Venetian booking page prints two different connecting-suite charges in the same panel",
+         detail=("Found on 2026-11-19 while attempting a dated re-quote of the trip window (2 adults, 23-30 Nov "
+                 "2026) on the official booking engine. The guest/date panel prints 'Connecting Suites: + $20 / "
+                 "Night' and, a few lines below it, 'Connecting suites have a door between suites. There is a $10 "
+                 "per suite, per night.' The two figures describe the same option and differ by $10 a night - $70 "
+                 "across the seven-night stay - and the page does not say which applies, whether one line is "
+                 "stale, or whether the second sentence is simply truncated. Neither figure is adopted and neither "
+                 "is averaged: the site records no connecting-suite charge at all, because a row cannot carry a "
+                 "value the source contradicts with itself. Read the charge in the cart, or ask the hotel, before "
+                 "treating any suite total as complete. Recorded verbatim in the 2026-11-19 Venetian rate-log "
+                 "entry, which also records that the same read printed no nightly rates (every calendar cell read "
+                 "'$XXX') - which is why the 2026-11-17 totals are still the latest dated quotes for the window."),
+         source="https://www.venetianlasvegas.com/booking?adults[]=2&arrival_date=2026-11-23&children[]=0&departure_date=2026-11-30&view=calendar"),
 
     dict(id="F115", area="Bellagio", severity="Medium",
          title=("The Bellagio Saturday structure sheet on the live poker page describes a past September "
@@ -3146,6 +3160,31 @@ def build():
                                         "verified against two independent same-day captures; no value changed"))
             n_third += 1
     assert n_third == 94, f"2026-11-19 live pass: expected 94 DeepStack Extravaganza IV rows, got {n_third}"
+
+    # ------------------------------------------------------------ fourth live pass, 2026-11-19 (session arena/7d96049f)
+    # The DeepStack Extravaganza NYE page was read in full on 2026-11-19 (both chunks of the page
+    # reader's markdown) and transcribed in raw/venetian_dse_nye_live_2026-11-19_7d96049f.md; the
+    # verbatim reader output is in raw/venetian_dse_nye_schedule_live_2026-11-19_7d96049f.md.
+    # scripts/verify_nye_live_2026_11_19.py compares all 49 published rows with it on date, start
+    # time, event number, printed name, printed buy-in, printed guarantee and structure-sheet link.
+    # All 49 agree and no value changed, so only the read date moves.
+    #
+    # lastVerified deliberately stays 2026-11-17 on these rows: the 15 NYE structure SHEETS were not
+    # re-read today, and a row may not claim a re-verification on a day its own sheet was not read.
+    # That is the same rule tests/test_index_evidence_labels.py enforces for the DeepStack IV rows.
+    NYE_URL = ("https://www.venetianlasvegas.com/resort/casino/poker/"
+               "deepstack-extravaganza-poker-tournament/dse-dec-2026.html")
+    n_fourth = 0
+    for e in events:
+        if e["venue"] == "venetian" and (e.get("scheduleUrl") or "") == NYE_URL:
+            e["lastChecked"] = LIVE_2026_11_19
+            e["recheck"] = dict(
+                date=LIVE_2026_11_19, source=NYE_URL,
+                result=("matched the live official page on date, start time, event number, printed name, "
+                       "printed buy-in, printed guarantee and structure-sheet link; the sheet behind this "
+                       "row was last read 2026-11-17 and was not re-read today, so lastVerified stays there"))
+            n_fourth += 1
+    assert n_fourth == 49, f"2026-11-19 NYE live pass: expected 49 rows, got {n_fourth}"
 
     SOURCES_2026_11_19 = {
         DSE_NOV_URL,
