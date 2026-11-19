@@ -1,0 +1,5 @@
+[data-decision-summary] .card h2 { margin: .3em 0; font-size: 1.45rem; }
+[data-decision-summary] .cost-note { padding: .8em 1em; background: var(--mint); border-radius: .6em; }
+[data-reviewed-candidates] small { display: block; white-space: nowrap; color: var(--muted); }
+[data-reviewed-candidates] th[scope=row] { white-space: nowrap; }
+body[data-page=home] details summary { cursor: pointer; font-weight: 700; }

@@ -4405,9 +4405,18 @@ No live official-source claim is made by this infrastructure task. Source verifi
 
 | Task | Status | Owner | File scope |
 |---|---|---|---|
-| Audit the canonical landing page against the current trip and official evidence; remove impossible or stale recommendations; publish source-linked decision gates, verification results and outstanding gaps | in progress | arena/6a0b16d7-poker3 (integration for this scope) | `site/index.html`, `site/assets/decision-summary.js`, `site/assets/decision-summary.css`, `site/flagged.html`, `tests/test_decision_summary.py`, `research/decision-audit-2026-11-19.md`, this board |
+| Audit the canonical landing page against the current trip and official evidence; remove impossible or stale recommendations; publish source-linked decision gates, verification results and outstanding gaps | done; evidence gaps published for review | arena/6a0b16d7-poker3 (integration for this scope) | `site/index.html`, `site/assets/decision-summary.js`, `site/assets/decision-summary.css`, `site/flagged.html`, `tests/test_decision_summary.py`, `research/decision-audit-2026-11-19.md`, this board |
 
 PRs #112 and #130 remain open and own the shared model, calculator, and several generator files; this claim does not edit their scopes (other than appending to the shared board). The canonical site and morning jobs already exist. Branch name is platform-assigned. No other sessions started here.
+
+6a0b16d7 scope clarification: replace the retired homepage trip-card / top-picks hook checks in `tests/canonical_smoke.py` with checks for the source-audited summary and evidence table. No open PR lists this file. The dated audit can be rendered as static HTML without a second JavaScript data loader.
+
+6a0b16d7 conflict log: simultaneous board appends; preserved both complete sections. The separate Nov 19 publication-verification note on the flags page is also preserved.
+
+**6a0b16d7 verification:** [Dated audit and official links](research/decision-audit-2026-11-19.md). Read all seven primary sheets against the current Venetian schedule, verified the poker-rate terms, attempted exact-stay checkout. No written cap or updated price. 209 unit tests, canonical smoke/render and link checks passed locally. No new verification date assigned to the rest of the catalog.
+
+Integration: [PR #157](https://github.com/karagemop466-tech/Poker3/pull/157). Concurrent board appends caused merge/rebase conflicts; aborted replay, integrated main, and retained all other session notes.
+
 
 - Integration conflict log: concurrent PR #150 appended to the same board. Aborted the initial rebase and merged current main; retained both complete append sections without discarding other work. Local `.venv/` is excluded through `.git/info/exclude` only.
 ## Session `arena/25d4bbd4-poker3` — publication verification (2026-11-19 UTC)

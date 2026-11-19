@@ -43,7 +43,7 @@ DETAIL_PAGES = {
 }
 
 REQUIRED_HOOKS = {
-    "index.html": ["data-stats", "data-trip-card", "data-top-picks", "data-policy"],
+    "index.html": ["data-stats", "data-decision-summary", "data-reviewed-candidates", "data-policy"],
     "tournaments.html": ["data-filters", "data-tournament-table", "data-detail"],
     "venues.html": ["data-venue-list"],
     "browse.html": ["data-browse-head", "data-browse-body"],
