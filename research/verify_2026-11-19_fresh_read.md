@@ -145,3 +145,56 @@ county schedule recorded on 2026-11-16. Flagged, not asserted as a county-verifi
 *confirmed as still blocked*: the booking engine printed no quote (F93) and Wynn's terms page is still a placeholder.
 The site's read dates are updated to 2026-11-19 for the sources read above, and the remainder keep their earlier dates
 rather than inheriting a blanket "today".
+
+
+## 11. Wynn WPT World Championship schedule PDF (both chunks read today)
+
+URL: https://cdn.wynnresorts.com/image/upload/v1757097329/visitwynn_pdfs_files/Poker/WPT/WPT_World_Championship_Schedule.pdf
+
+Every trip-window row is unchanged against the published data, and the four daily rooms are unchanged too:
+
+| Nov 27–29 printed rows | Published row |
+|---|---|
+| "Nov. 27 Friday 11 a.m. No Limit Hold'em Day 1A $600 $400,000 40,000 30/40" | agrees |
+| "Nov. 27 Friday 12 p.m. TORSE $600 — 35,000 30" | agrees (guarantee blank, as printed) |
+| "Nov. 27 Friday 1 p.m. PLO $400 — 30,000 30" | agrees |
+| "Nov. 27 Friday 5 p.m. No Limit Hold'em Day 1B $600 $400,000" | agrees |
+| "Nov. 28 Saturday 11 a.m. … Day 1C / 12 p.m. Mixed Triple Draw (A-5, 2-7, BadugI) $600 / 5 p.m. Day 1D" | agrees |
+| "Nov. 29 Sunday 11 a.m. Day 1E / 6 p.m. No Limit Hold'em Day 1F $600 $400,000 … 20/40" | agrees |
+
+Two printed irregularities reconfirmed, both already flagged and neither corrected here:
+
+- **F01 / F61.** The PDF still prints "Dec. 18 Wednesday" and "Dec. 18 Friday" as two different blocks and still
+  prints no December 16 block. The day-number misprint stands.
+- **F34.** The Dec. 5 line still prints "No Limit Hold'em Day 2" and "WPT Prime Championship Day 1A" both at 11 a.m.
+  with the same $1,100 buy-in and the same $5,000,000 guarantee, and the Nov. 30 / Dec. 3 1 p.m. Day 2 rows still
+  carry the following event's buy-in columns.
+- **$6,000,000 discrepancy, now precise.** The Super Gold Million Mystery Bounty is printed with a **$3,000,000**
+  guarantee on all four starting flights (Dec 10 1A/1B, Dec 11 1C/1D). The published rows carry $3,000,000 each, so
+  the data is right; what is wrong is any reading that treats each flight's $3,000,000 as a separate pool. It is one
+  $3,000,000 pool across four flights. The ranking page therefore keeps these rows in the multi-flight table, where
+  the ratio is labelled as a flight's share of one pool, not as four separate tournaments.
+
+## 12. Wynn daily tournament poster
+
+URL: https://cdn.wynnresorts.com/image/upload/v1752011166/visitwynn_pdfs_files/Poker/Daily%20Tournaments/poker-daily-tournament-poster.pdf
+
+Unchanged: "$10,000 GUARANTEE — Monday–Thursday • $200 NLH • 12 p.m."; "$40,000 GUARANTEE — Friday • $240 NLH Rebuy •
+12 p.m."; "$25,000 GUARANTEE — Saturday • $200 NLH • 12 p.m."; "$25,000 GUARANTEE — Sunday • $200 NLH • 12 p.m.";
+"NIGHTLY $10,000 Guarantee • $160 NLH • 6 p.m.". All four published Wynn daily rows agree, including the Friday
+$240 **Rebuy & Add-on** label, which is why that row has never been in the single-entry filter.
+
+## 13. Read dates after this pass
+
+| Source | Read / re-verified |
+|---|---|
+| Venetian DSE IV schedule + sheets 7 and 22 | **2026-11-19** |
+| Venetian suite rate, resort fee, hotel terms, poker-room parking | **2026-11-19** |
+| Caesars Palace / Horseshoe tournament article | **2026-11-19** |
+| Wynn resort policies | **2026-11-19** |
+| Wynn WPT World Championship schedule PDF | **2026-11-19** |
+| Wynn daily tournament poster | **2026-11-19** |
+| Venetian sheets 1, 5, 6, 11, 30 (the other five day-plan sheets) | 2026-11-17 — not opened today |
+| Venetian booking engine | attempted 2026-11-19, printed no quote (F93) |
+| Clark County tax PDF | attempted 2026-11-19, fails to fetch |
+| Wynn terms page | attempted 2026-11-19, still a placeholder |

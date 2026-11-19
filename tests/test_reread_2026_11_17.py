@@ -54,7 +54,13 @@ class TripWindowRows(unittest.TestCase):
         for row in RECORD["rows"]:
             with self.subTest(row=row["date"] + " #" + row["event"]):
                 (e,) = event_for(row)
+
+                # This record pins that the row's values were read on 2026-11-17 and agreed with
+                # the sheet, so the record date is a floor: a later documented read may sit on
+                # top of it, and the transcript must still quote that row's own sheet.
                 self.assertGreaterEqual(e["lastChecked"], RECORD["retrievedOn"])
+                self.assertTrue(e["rules"]["fee"]["source"].endswith(
+                    "dse_nov_2026-structure_%s.pdf" % row["sheet"]), e["rules"]["fee"]["source"])
 
     def test_no_reread_sheet_prints_re_entry_rebuy_or_add_on_wording(self):
         # The record is the reading. A sheet that prints re-entry, rebuy or add-on text must be

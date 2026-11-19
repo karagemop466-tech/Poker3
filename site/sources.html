@@ -43,6 +43,32 @@
     </section>
 
     <section class="section">
+      <div class="section-head"><div><h2>Which read date sits on which field</h2>
+        <p>Two dates are stored per row, and they answer different questions. They are published separately so neither
+        can inflate the other.</p></div></div>
+      <div class="cards">
+        <article class="card"><span class="pill">lastChecked</span><h3>"When were these figures read?"</h3>
+          <p>The date the document that prints the row's money was read. For a DeepStack row that document is the
+          structure sheet, which carries the buy-in split and the guarantee; re-reading the series schedule page does
+          not move it. For a Wynn WPT row it is the schedule PDF, which prints buy-in, guarantee, chips and level
+          length on one line.</p></article>
+        <article class="card"><span class="pill">lastVerified</span><h3>"When was it last confirmed still true?"</h3>
+          <p>Set only when a person opened that same document again and compared it line by line with what the site
+          publishes. An automated hash match is recorded separately, under the automated re-check section, and never
+          promotes a row to "verified": a hash proves a document is unchanged, not that a number was read correctly.</p></article>
+        <article class="card"><span class="pill warn">What you will see today</span><h3>Rows read on different days</h3>
+          <p>The 2026-11-19 pass re-read the DSE IV schedule page, structure sheets 7 and 22, the Venetian rate, fee,
+          terms and parking pages, the Caesars Palace/Horseshoe article, Wynn resort policies, the WPT schedule PDF and
+          the Wynn daily poster. The other five day-plan sheets and the WPT structures PDF were last opened on
+          2026-11-17, so those rows keep that date rather than inheriting today's.</p></article>
+        <article class="card"><span class="pill bad">Dates that did not move</span><h3>Blocked sources stay blocked</h3>
+          <p>The Venetian booking engine printed no checkout total today (F93), the Wynn terms page still returns a
+          placeholder, the county tax PDF still fails to fetch, and the Wynn Signature Series structures file still
+          reads "COMING SOON" (F56). None of those is recorded as read.</p></article>
+      </div>
+    </section>
+
+    <section class="section">
       <div class="section-head"><div><h2>Structure sheets</h2><p>Every official tournament PDF behind the table rows.</p></div></div>
       <div data-sheets></div>
     </section>
