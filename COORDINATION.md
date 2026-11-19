@@ -6713,3 +6713,28 @@ approval) at **2026-11-19T11:54:19Z**; merge commit
 **Verification performed.** Live fetch of all four schedule chunks; line-by-line compare of the 19 trip-window rows against `site/data.json`; booking-engine fetch; unit tests (new test file run alone and in the full suite); `verify_site.py`.
 
 **Decision.** Standing HOLD on any nonrefundable payment is unchanged: the hotel total is dated 2026-11-17, the 8 AM start is unpublished, and no walking route or entry cap was verified in this pass.
+
+---
+
+## Session b3501a60 (scheduled re-check gate repair)
+
+Branch: `arena/b3501a60-poker3` (fast-forwarded to `origin/main` 54c1a50 before any commit; no other branch touched).
+
+| Task | Status | Owner | Scope | Notes |
+|---|---|---|---|---|
+| Repair the red scheduled source re-check (`checks.yml`) | done (pending CI confirmation on `main`) | b3501a60 | `.github/workflows/checks.yml`, `tests/test_index_evidence_labels.py` | See the diagnosis below. |
+
+**Diagnosis.** The re-check job's last main-branch runs (44525667124 and others, 2026-11-19) failed in the step "Verify the dashboard still passes its own checks". Replaying the exact workflow sequence on a clean checkout of `main` with the official hosts unreachable reproduced it: `check_sources.py` correctly recorded every sheet as `unreachable`, but 8 tests then failed:
+- `test_recheck_record_actually_supports_the_date` (7 sheets) required every structure-sheet row to be `HTTP 2xx`. An unreachable row is a legitimate observation, not a monitor failure.
+- `test_coverage_c9_cites_f86_not_f79_and_is_fresh` required `site/coverage.json` to match a `checks.json` that the job had just rewritten, but nothing regenerated `coverage.json` in the job.
+
+**Fix.**
+1. The sheet test now accepts an unreachable row only when it says so (`unavailable: true`, `changed: false`, a recorded error). Every other row must still be a real HTTP 2xx fetch.
+2. `checks.yml` runs `scripts/coverage.py` after the recorders and commits `site/coverage.json` with the other records.
+
+**Verification.** Replay on a copy of this branch with no network to the official hosts: `check_sources.py`, `verify_transcription.py`, `daily_feed.py`, `coverage.py`, `python3 -m unittest discover -s tests -p 'test_*.py'` (437 tests, OK), `scripts/verify_site.py` (passed), `node --check`, JSON parse. Sources for the affected records: the Venetian structure sheets listed in `site/checks.json` (venetianlasvegas.com `dse_nov_2026-structure_*.pdf`), recorded by the job itself; no value was changed.
+
+**Irregularities for review.**
+- The two Wynn booking-engine URLs (`reservations.wynnlasvegas.com/ibe/details.aspx?...`) were marked changed on 2026-11-19 because the page re-renders its visible text on each request (wording change, no published value change). They are already labelled as noise in the test docstring. A person should still re-read the 23–30 Nov quote before booking.
+- The live re-check from the CI runner (`checks.json`, 2026-11-19 07:34 UTC) recorded 23 failed and 15 unavailable of 108 URLs. Those are reachability failures from the runner, not verified page changes. The Sources page lists the last manual result for each.
+- Pages API reports the legacy branch build as `errored` while the `pages.yml` artifact deploy is the one that serves the site. Not changed here.
