@@ -6040,6 +6040,8 @@ all four audits, the three headless render checks, `node --check` and the 0-brok
 
 ---
 
+---
+
 ### PR, merge and GitHub Pages deployment (recorded 2026-11-19, session `arena/4475a074-poker3`)
 
 - **PR:** [#211](https://github.com/karagemop466-tech/Poker3/pull/211) — `arena/4475a074-poker3` → `main`. Created
@@ -6057,3 +6059,23 @@ all four audits, the three headless render checks, `node --check` and the 0-brok
 - **Rebase log:** one append-only `COORDINATION.md` conflict during the rebase onto `main` (PR #207, session
   `arena/80a6f5df-poker3`). It was resolved by keeping both sessions' records in full, separated by `---`, with no
   text discarded; the two conflict-marker tests then passed. No other session's code or data was overwritten.
+
+---
+
+## Session `arena/c336248a-poker3` — independent line-by-line audit, live official re-read, defect repair, integration (2026-11-19 UTC)
+
+Branch `arena/c336248a-poker3`, branched from `main` at `5c42d7fb5e9931f4582af03e6aa6cc741efc9d9e` (merge of PR #206). The platform binds a
+session to one branch, so the `session-<id>/<task>` branch naming cannot be applied; this branch is this session's only working branch and
+this session is the integration owner for its shared outputs. Claim committed and pushed immediately, before any edit.
+
+Open PRs at claim time: **#173** (`arena/a33db3c1-poker3`) and **#184** (`arena/5cfdd619-poker3`). Both are left untouched by this session.
+
+| Task | Status | Owner session | Scope (files) | Notes |
+|---|---|---|---|---|
+| S1 Independent line-by-line audit of the canonical dashboard (`site/`), data builder, monitors, tests and workflows against the full 40-item requirement list; re-read the official sources behind the trip window with dated verbatim quotes | in progress | `arena/c336248a-poker3` | read-only first, then `research/audit_2026-11-19_arena-c336248a.md` (new), `COORDINATION.md` | No value inferred. Platform reader only (`fetch_page`); the sandbox shell has no route to casino hosts. |
+| S2 Repair any defect found (site, data, calculator, filters, logs, monitoring, flags) and re-verify line by line | in progress | `arena/c336248a-poker3` | `site/**`, `scripts/**`, `data/**`, `tests/**`, `COORDINATION.md` | Small frequent commits; `git pull --rebase` before each push. |
+| S3 Final verification, PR this branch → `main`, merge without waiting, confirm both GitHub Pages deploy paths and live read-back, record PR link + merge + deploy here | in progress | `arena/c336248a-poker3` | whole repo (integration), `COORDINATION.md` | Flagged/unverified items do not block merge; they are published on the Flagged for review page. |
+
+**Baseline at claim (verified locally, before any edit).** `scripts/verify_site.py` passes (341 events / 8 hotels / 56 routes / 50 sources /
+101 flags / 7 plan days / 18 pages); full unit suite **334 tests OK**; `audit_951cd431.py` 0 failures / 0 warnings; `audit_data.py`,
+`verify_entry_labels.py`, `verify_live_official.py` all pass. GitHub Pages reports `status: built` from legacy `main /`.
