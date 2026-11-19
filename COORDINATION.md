@@ -5763,7 +5763,7 @@ progress; the final rebase keeps those stubs verbatim and keeps this session's g
 `verify_sheets.py`, `verify_nye_live.py`, `canonical_smoke.py`, `tests/smoke.py`, `canonical_render.js`,
 `walk_limit_render.js`, all `node --check` commands, JSON parsing, the Pages workflow gate, data-source
 reproducibility and redirect-generator reproducibility all passed. `site/data.json`, `site/sheets.html` and
-`site/coverage.json` were regenerated from the auto-merged scripts after PR #199/#201 landed, so F100 from session
+`site/coverage.json` were regenerated from the auto-merged scripts after PR #199/#202 landed, so F100 from session
 `arena/cce0b8d3`, F101 from the merged PR #197, and this session's F29/source-id changes are all present.
 
 **Irregularities published, not hidden.** F31 (no written one-entry cap), F16 (no finish times), F17 (no 8 AM start;
@@ -5772,10 +5772,10 @@ buy-in conflict), F51/F69, F100, F101 and the rest of the 97-flag register remai
 F29 remains open because switching the Pages source requires a repository-settings permission the token lacks
 (`PUT /pages` returns 403). None blocks publication under the standing protocol.
 
-**Rebase / conflict log.** `main` advanced through concurrent PRs #181–#201 while this branch was open. Every board
+**Rebase / conflict log.** `main` advanced through concurrent PRs #181–#202 while this branch was open. Every board
 conflict was append-only; both sessions' sections were kept and no session record was discarded. The add/add collision
 on root short links was resolved by keeping session `arena/97eba119`'s already-published stubs and this session's
-generator/test; the `site/data.json` and `site/sheets.html` collisions after PR #199/#201 were resolved by rebuilding both
+generator/test; the `site/data.json` and `site/sheets.html` collisions after PR #199/#202 were resolved by rebuilding both
 from the merged builders. Open PRs #173 and #184 were not edited; PR #197 was merged by its owner while this branch
 was open and its work was preserved.
 
