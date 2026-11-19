@@ -4829,3 +4829,31 @@ The irregularity recorded above as "found and NOT fixed" was taken on after conf
 - **Open flags left for review (do not block, all published on `site/flagged.html`):** F31 (no written
   one-entry rule), F16 (no published finish times), F17 (no verified 8:00 AM start), F93 (booking engine returned
   no total on 2026-11-19), F94 (the day-plan defect fixed here).
+
+### PR, merge and deployment record (session `arena/9b858e66-poker3`)
+
+- **PR:** [#165](https://github.com/karagemop466-tech/Poker3/pull/165) — merged into `main` with
+  `gh pr merge 165 --merge` at **2026-11-19 06:02:12 UTC**, merge commit
+  **`13a5e6a5e176b7db12c10b14148d84d79d5ad74c`**. Checks on the final head: `verify` **pass** (25s) and
+  `transcription` **pass** (3s).
+- **Merges resolved before it landed, none of another session's work discarded:** PR #164 (F17/F31/F92 re-read),
+  PR #167 (published its own F93 for the unpriced booking engine), PR #166. Derived files (`site/data.json`,
+  `site/sheets.html`, `site/coverage.json`) were taken from `main` and regenerated from the modules each time; this
+  session's duplicate F93/F94 were dropped once that work was on `main`, and its own flag shipped as **F95**.
+- **Post-merge checks on `13a5e6a`:** `Verify static research site` **success** (run
+  [44469256452](https://github.com/karagemop466-tech/Poker3/actions/runs/44469256452)); `Official table
+  transcription check` **success** (run [44469256418](https://github.com/karagemop466-tech/Poker3/actions/runs/44469256418));
+  `Publish the canonical Vegas Poker Planner to GitHub Pages` **success** (run
+  [44469256489](https://github.com/karagemop466-tech/Poker3/actions/runs/44469256489)). The `pages build and
+  deployment` and one concurrent Pages run show `cancelled`, which is the two-publisher race F29 already records —
+  the canonical artifact run succeeded and is the one served.
+- **GitHub Pages:** `GET /repos/karagemop466-tech/Poker3/pages` → `status: built`, source `main` `/`,
+  https://karagemop466-tech.github.io/Poker3/ . The published dashboard was fetched back after the deploy:
+  `site/sources.html` shows **"Retrieved 2026-11-19"** and per-source last-checked dates of **2026-11-19** for the
+  Venetian series index, poker room, resort policies, parking, rooms and suites and the Signature structures file —
+  i.e. the live site is serving this pass's record, not the previous one.
+- **Still open after this session (published on the Flagged for review page, none blocks the merge):** F31 written
+  one-entry rule · F17 no 8:00 AM start · F16 no published finish times · F39 property room-tax percentages · F56
+  Signature structures unpublished · F57 no online price for 30 Nov / 1 Dec · F66 phone-only poker rate · F88 one
+  successful engine read only · F32/F84 walking minutes are map readings · F83 whether the Wynn daily slate runs
+  27-29 Nov.
