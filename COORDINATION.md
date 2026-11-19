@@ -4694,3 +4694,21 @@ sides' records were kept, and all 242 tests pass on the combined tree.
 **Scope actually touched:** `scripts/data_source.py` (day-plan builder + F93 only), `site/data.json`,
 `site/sheets.html`, `site/assets/app.js` (schedule fallback note), `site/schedule.html` (copy), new
 `tests/test_fallback_sequencing.py`, this board.
+
+### Second fix — landing-page evidence labelling (`arena/ffe8f597-poker3`)
+
+The irregularity recorded above as "found and NOT fixed" was taken on after confirming that
+`gh pr list --state open` was empty and no other session had claimed `site/index.html`.
+
+- **Change:** the candidate table's last column is now headed **"Source / sheet re-checked"** instead of
+  "Source / last checked", and a note under the table states exactly what the 2026-11-19 date is
+  (the `scripts/check_sources.py` run recorded in `site/checks.json` at 2026-11-19T05:33:18Z, which found
+  no change in the seven structure PDFs) and what it is not (a re-verification of a value by eye). It also
+  points to the row-level `lastChecked` / `lastVerified` dates of 2026-11-17 in the tournament table.
+- **Not changed:** the seven rows' values, the 2026-11-19 date itself, `site/data.json`, and the existing
+  `tests/test_decision_summary.py` assertion that pins the date string. The date is truthful; only its
+  label was wrong.
+- **New regression test:** `tests/test_index_evidence_labels.py` (4 tests) asserts the relabelled column, the
+  explanatory note, that `site/checks.json` really does carry a 2026-11-19 `changed: false` record for each
+  of the seven sheets, and that each planned primary still carries `lastChecked`/`lastVerified` 2026-11-17.
+- **Verification:** 246 unit tests OK; `verify_site.py`, `canonical_smoke.py` and `canonical_render.js` pass.
