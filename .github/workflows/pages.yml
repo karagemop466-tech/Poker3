@@ -1,26 +1,18 @@
 name: Publish the canonical Vegas Poker Planner to GitHub Pages
 
-# End state this workflow guarantees: the published site is the canonical
-# dashboard in site/, served at the repository's Pages root (…/Poker3/), with the
-# site/poker3/ archive beside it at /poker3/.
-#
-# Why the workflow_run trigger: the repository's Pages source is the legacy
-# "deploy from a branch: main / (root)" setting, and the API token available to
-# this session cannot change it (PUT /pages returns 403). Under that setting
-# GitHub's own "pages build and deployment" job republishes the whole repository
-# after every push, which would otherwise put the stale root-level index.html
-# back at the root URL. Re-running this deployment after that job finishes keeps
-# the verified artifact as the site that is actually served.
-#
-# The root-level index.html in the repository is also a redirect to site/, so the
-# root URL reaches the canonical dashboard even if the legacy build wins a race.
-# It is therefore never possible for a visitor to land on the stale page.
-
+# Legacy branch deployments may still serve the repository root. Keep the
+# canonical site available at both /Poker3/ and /Poker3/site/ when this artifact
+# wins, so existing bookmarks keep working whichever publisher finishes last.
+# Scheduled jobs commit with GITHUB_TOKEN, which does not reliably fan out to
+# push-triggered workflows. Watch their completion explicitly and check out
+# main at build time, not the commit before the scheduled job wrote its record.
 on:
   push:
     branches: [main]
   workflow_run:
-    workflows: ["pages build and deployment"]
+    workflows:
+      - Scheduled source re-check and daily room feed
+      - Daily official-source monitor and site refresh
     types: [completed]
     branches: [main]
   workflow_dispatch:
@@ -38,10 +30,17 @@ concurrency:
 
 jobs:
   build:
+    if: >-
+      github.event_name != 'workflow_run' ||
+      (github.event.workflow_run.conclusion == 'success' &&
+       github.event.workflow_run.head_repository.full_name == github.repository)
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name == 'workflow_run' && 'main' || github.sha }}
+          persist-credentials: false
 
       - uses: actions/setup-python@v5
         with:
@@ -73,6 +72,12 @@ jobs:
           node --check site/assets/app.js
           node --check site/assets/venue.js
           node --check site/assets/search.js
+          node --check site/assets/feed.js
+
+      - name: Stage both public dashboard paths
+        run: |
+          cp -a site _pages
+          cp -a site _pages/site
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
@@ -80,7 +85,7 @@ jobs:
       - name: Upload the canonical dashboard
         uses: actions/upload-pages-artifact@v3
         with:
-          path: site
+          path: _pages
 
   deploy:
     needs: build
