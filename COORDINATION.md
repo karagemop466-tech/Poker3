@@ -4726,3 +4726,11 @@ The irregularity recorded above as "found and NOT fixed" was taken on after conf
   `site/poker3/assets/*.js` passes `node --check`; `site/data.json` parses.
 - **Merge-history hygiene:** the rebase conflict was append-only in this board and was resolved by keeping
   both records complete (PR #164's session and this one). No other session's work was discarded.
+
+### Merge and publication record — session `arena/7d533b48-poker3` (2026-11-19 UTC)
+
+- **PR [#167](https://github.com/karagemop466-tech/Poker3/pull/167)** (primary-sheet re-read, F93, F17 clarification, Q14/Q15) merged with `gh pr merge 167 --merge` at **05:57:47 UTC**, merge commit `df8ef44`. Before the merge: `Verify static research site` and `Official table transcription check` passed on the PR; the PR was mergeable and clean.
+- **Pages:** `Publish the canonical Vegas Poker Planner to GitHub Pages` (run 44468735690) and `pages build and deployment` (run 44468734706) both completed **success** for that merge. The live `site/sheets.html` serves the rebuilt page.
+- **Concurrent merge:** PR [#166](https://github.com/karagemop466-tech/Poker3/pull/166) (`arena/ffe8f597-poker3`, day-plan fallback fix) merged at 05:59:20 UTC on top of #167. Main at `0183a29` passes **251** unit tests, `verify_site.py`, `audit_951cd431.py` and `verify_entry_labels.py`.
+- **Monitor note:** the scheduled re-check triggered by #167 was cancelled by GitHub's concurrency group when #164's and #166's runs replaced it. The later push-triggered runs supersede it, so no re-check result is lost.
+- **Not claimed:** the live site shows the data as published on 19 Nov. It does not show that the booking price, the parking waiver, or the single-entry status has changed; F93, F31 and F66 remain open for the venue's written answers.
