@@ -5283,3 +5283,38 @@ Palace and Horseshoe rows keep the read dates their own sessions stamped.
 - **Task statuses:** monitor repair **done**, operational disclosure **published / needs review**, static-site verification + PR merge + Pages deployment **done**. This follow-up only records results, on the same assigned branch; it does not alter site values or another session's scope.
 
 **Documentation-follow-up rebase (09d32ea7).** Main advanced again to `a9c9f3d` while the result was being recorded. Only this board conflicted; retained the complete #185/#188 publication record above and this session’s result. No site/data code conflict occurred.
+### Merge record (session `arena/f5ac4318-poker3`, 2026-11-19 UTC)
+
+- **PR:** [#187](https://github.com/karagemop466-tech/Poker3/pull/187) — `arena/f5ac4318-poker3` → `main`, merged with
+  `gh pr merge 187 --merge` at **2026-11-19 06:52:09 UTC**, merge commit
+  **`2dd4a8745bd5870e0f894d28daddd799fdc786f9`**.
+- **Checks on the PR head (pre-merge):** `transcription` **pass** (run
+  [44475221167](https://github.com/karagemop466-tech/Poker3/actions/runs/44475221167)), `verify` **pass** (run
+  [44475221172](https://github.com/karagemop466-tech/Poker3/actions/runs/44475221172)).
+- **Rebase log — four concurrent merges landed while this branch was open:** #180 (calculator), #181 (board repair,
+  which removed the two markers), #183 and #186 (PDF monitoring), #185 (read-date guard). Each rebase kept both board
+  sections and both sessions' code; nothing was discarded. Two collisions were caught before publication:
+  1. **Flag-id collision.** PR #185 had already used **F97** for its read-date finding on `main`, so this session's two
+     new flags were renumbered **F98** (Publishing — the conflict markers) and **F99** (Hotels — MGM parking). The
+     duplicate would have been caught by `test_flag_ids_are_unique`; it was caught at rebase instead, before merge.
+  2. **`site/sheets.html` conflict.** That page is generated and embeds the flag register, so it was rebuilt from
+     `scripts/build_addendum.py` rather than merged by hand.
+- **Verification on the final rebased head:** `verify_site.py` (341 events / 8 hotels / 56 routes / **49 sources** /
+  **95 flags** / 7 plan days / 16 pages), **273 unit tests OK**, `audit_951cd431.py` 0 failures,
+  `verify_live_official.py` OK, `audit_data.py` passed, `verify_entry_labels.py` passed, transcription 44/44,
+  `canonical_smoke.py` + `canonical_render.js` + `walk_limit_render.js` passed, `node --check` on
+  app/venue/search/feed JS.
+- **GitHub Pages:** the publish workflow for the merge completed **success** (run
+  [44475321507](https://github.com/karagemop466-tech/Poker3/actions/runs/44475321507)); the legacy `pages build and
+  deployment` job also succeeded (run
+  [44475320933](https://github.com/karagemop466-tech/Poker3/actions/runs/44475320933)), and both verification workflows
+  on the merged commit passed ([44475321531](https://github.com/karagemop466-tech/Poker3/actions/runs/44475321531),
+  [44475321648](https://github.com/karagemop466-tech/Poker3/actions/runs/44475321648)).
+- **Live read-back.** Attempted from the sandbox: direct HTTPS to `karagemop466-tech.github.io` is blocked here (the
+  same egress limit as flag F40), and the platform page reader was answered by GitHub's own error page at that moment;
+  the deploy runs above are the evidence this session can stand behind, and the read-back was retried and recorded in
+  the follow-up commit rather than inferred.
+- **What this PR added to `main`:** the $20-a-day registered-guest self-parking figure for Bellagio, ARIA and MGM Grand
+  with its excerpt and corrected source, `parkingPerNight` for those three rows, a 2026-11-19 source entry for the MGM
+  parking page, flags **F98** and **F99**, the 2026-11-19 read dates on those rows, the regenerated `site/data.json` and
+  `site/sheets.html`, and the verbatim record `research/repo_review_2026-11-19_arena-f5ac4318.md`.
