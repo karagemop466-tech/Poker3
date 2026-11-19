@@ -5006,3 +5006,14 @@ Branch note: the platform binds this session to `arena/827185f7-poker3` (branche
   returns 404 — the Actions artifact is the publisher of record, so the retired directories are no longer served at all
   even though they remain in the repository as redirects. GitHub API rate limits were hit while polling run status after
   the second merge, so the deployment was confirmed by fetching the live pages rather than by the runs API.
+## Session `arena/23505d42-poker3` — manual re-read of changed sources + final verification and integration (2026-11-19 UTC)
+
+Branch: `arena/23505d42-poker3`, branched from `main` at `23ad5d8` (the current tip). No open PRs at claim time. This session acts as the on-duty verification and integration session.
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| Manual re-read of the pages the 2026-11-19 05:33 UTC scheduled re-check flagged `wordingChanged` (Venetian DSE series index; Wynn poker, resort policies, parking, rooms-and-suites, terms) plus the pending F92 Venetian poker-page re-read; confirm whether any published value changed | in progress | `arena-23505d42` | `research/` (new dated re-read record), `scripts/data_source.py` (flag register only), `site/data.json` + regenerated pages, this board | Reads via the platform fetch tool, dated 2026-11-19. No value is changed by automation; only manual reads can move a value. |
+| Final verification pass: full test suite, site verifier, link check, then PR → `main`, merge, GitHub Pages confirmation, board record | pending | `arena-23505d42` | whole repo (integration), this board | Flagged items do not block merge per the standing protocol. |
+
+**Scope protocol.** No tournament, hotel, rate, route or policy value is inferred. A page re-read that confirms existing values updates `lastVerified` dates and the flag register; anything else is flagged for review.
+>>>>>>> 609f1ce (coord: claim 2026-11-19 re-read + integration task (arena-23505d42))
