@@ -6687,3 +6687,5 @@ approval) at **2026-11-19T11:54:19Z**; merge commit
 - **F31 (written one-entry rule):** still open. A search for official 2026 one-entry wording found none. Results from other repositories were not used.
 - **Test baseline:** `python3 -m unittest discover -s tests` run in a virtualenv with `pyyaml` gives **434 tests, OK**. The system Python lacks `pyyaml`, so `test_workflows`, `test_pages_gate` and `test_monitor_record_robustness` fail to import there. This is an environment gap in the sandbox, not a repository defect.
 - **Still needs a human action:** a written question to the Venetian poker room (lv_cas_poker@venetianlasvegas.com, 702.414.7657, as printed on the suite-rate page) about the maximum entries per player, re-entry, rebuys and add-ons for the DSE IV events. No public source answers it.
+
+- **Merge record (session `arena/d66d77dc-poker3`).** PR [#225](https://github.com/karagemop466-tech/Poker3/pull/225) merged with `gh pr merge 225 --merge` at 2026-11-19T19:42:58Z, merge commit `4010f2ef26cc92cc643f793fbc48d0593a22a92a`. Documentation-only; no site, data or workflow file changed, so no Pages rebuild was needed.
