@@ -5310,10 +5310,22 @@ Palace and Horseshoe rows keep the read dates their own sessions stamped.
   [44475320933](https://github.com/karagemop466-tech/Poker3/actions/runs/44475320933)), and both verification workflows
   on the merged commit passed ([44475321531](https://github.com/karagemop466-tech/Poker3/actions/runs/44475321531),
   [44475321648](https://github.com/karagemop466-tech/Poker3/actions/runs/44475321648)).
-- **Live read-back.** Attempted from the sandbox: direct HTTPS to `karagemop466-tech.github.io` is blocked here (the
-  same egress limit as flag F40), and the platform page reader was answered by GitHub's own error page at that moment;
-  the deploy runs above are the evidence this session can stand behind, and the read-back was retried and recorded in
-  the follow-up commit rather than inferred.
+- **Live read-back: done.** Direct HTTPS from the sandbox to `karagemop466-tech.github.io` is blocked (the same egress
+  limit as flag F40), so the published copy was read with the platform's page reader. `https://karagemop466-tech.github.io/Poker3/`
+  serves the dashboard, and the reader resolves it to the authenticated path `/Poker3/site/` - i.e. the legacy `main /`
+  branch publisher is the one currently live, and its redirect brings the reader to the canonical copy (flag F29).
+  The live **hotels** page renders the new figure in the Parking column for both Bellagio and MGM Grand, quoting the
+  MGM Resorts parking page and printing `2026-11-19 values read 2026-11-19` in the read-date column, so the merged data
+  is what is being served. The merged `site/data.json` was also read back through the GitHub contents API at merge commit
+  `2dd4a87`: Bellagio, MGM Grand and ARIA each carry `parkingPerNight 20.0` with the corporate page as source, 49
+  sources and flags ending `F98`, `F99`.
+- **One publishing observation, logged not fixed.** Requesting the un-prefixed `/Poker3/data.json` returned GitHub's own
+  "Unicorn" error page rather than a file-not-found page, while `/Poker3/site/data.json` served the merge normally; a
+  deliberately wrong path on the same host returned a clean 404, so the error is specific to that path. This matches the
+  documented dual-publisher race: the legacy branch build serves the repository root, which has no `data.json`, and the
+  redirect from `/Poker3/` to `/Poker3/site/` is what makes every dashboard page fetch its data successfully. Nothing in
+  the site references the un-prefixed path, and no page was changed for it. It is recorded here so the next integration
+  session checks it again rather than rediscovering it.
 - **What this PR added to `main`:** the $20-a-day registered-guest self-parking figure for Bellagio, ARIA and MGM Grand
   with its excerpt and corrected source, `parkingPerNight` for those three rows, a 2026-11-19 source entry for the MGM
   parking page, flags **F98** and **F99**, the 2026-11-19 read dates on those rows, the regenerated `site/data.json` and
