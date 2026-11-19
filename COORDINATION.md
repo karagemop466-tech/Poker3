@@ -5918,3 +5918,72 @@ this session's findings are **F106, F107, F108** in `scripts/data_verification.p
 44/44; `canonical_smoke.py` (13 main + 5 detail pages); `canonical_render.js` (18 page renders including `q-and-a`);
 `walk_limit_render.js` (335 rows default, 329 with the ≤30-minute limit from The Venetian); `node --check` on every JS
 asset; 0 broken local links; and byte-identical rebuilds of `data.json`, `sheets.html` and `coverage.json`.
+
+---
+
+## Session `arena/4475a074-poker3` — independent fresh line-by-line verification + final integration (2026-11-19 UTC)
+
+**Branch:** `arena/4475a074-poker3`, branched from `main` at `5c42d7fb5e9931f4582af03e6aa6cc741efc9d9e` (the current tip,
+PR #206). The platform binds each session to one branch, so the brief's `session-<id>/<task>` naming cannot be applied here;
+prior sessions recorded the same constraint. **No new branch is created or switched to.** At claim time the only open PRs were
+**#173** (`arena/a33db3c1-poker3`, read-only trip-window re-read) and **#184** (`arena/5cfdd619-poker3`, trip-cost guard); this
+session does not touch either branch, does not close either PR, and does not edit their files. No other session was mid-commit at
+claim time, so this session acts as **final integration owner** for all shared outputs.
+
+**Claim (committed and pushed before any other work).** Scope: `COORDINATION.md`, `site/**`, `scripts/**`, `tests/**`,
+`research/**`, `README.md`, `.github/workflows/**` — i.e. the whole repository, as integration owner. No other session's claimed
+files are being modified.
+
+| Task | Status | Owner session | Scope | Notes |
+|---|---|---|---|---|
+| V1 Fresh independent line-by-line verification of the published trip-window rows and core hotel/fee values against live official sources (2026-11-19 reads) | done | `arena/4475a074` | `research/` (new dated audit record), `site/data.json` flag register, `site/flagged.html` | Reads via the platform fetch tool. No value is inferred; blanks stay blank. Every value compared against the official page behind it. |
+| V2 Requirements audit: confirm all 40 published requirement rows still hold on the live site; implement any genuine gap | done (no gap found) | `arena/4475a074` | `site/**`, `scripts/**`, `tests/**` | The 40-row audit already lives in `site/data.json`; this session re-confirmed it. No genuine gap found. |
+| V3 Fix any drift/irregularity found in V1 (values, dates, flags, page text) | done (no drift found) | `arena/4475a074` | `site/**`, `scripts/**`, `tests/**` | The fresh official reads agreed with every published value, so no value, date, flag or page text needed changing. |
+| V4 Final verification: full unit suite, all verification scripts, link check, reproducible rebuild, then PR → `main` → merge → Pages confirmation → record here | in progress | `arena/4475a074` | whole repo (integration) | Flagged irregularities and unverified items do not block the merge; they are published on the Flagged for review page. |
+
+### Result (session `arena/4475a074-poker3`, 2026-11-19 UTC)
+
+**V1 Fresh independent line-by-line verification: done.** Nine official URLs were fetched and read live on
+2026-11-19 with the platform fetch tool: the Venetian DSE IV schedule in all four chunks (all 94 rows), the
+suite-rates page, the resort-fee page, the hotel-terms page (both chunks), the poker player-parking page, two
+structure PDFs (structure_1 = $200 Bounty, structure_6 = $400 $15K GTD), and the Wynn resort-information page.
+Verbatim excerpts, the 19-row trip-window comparison table and the recomputed trip-cost arithmetic are in
+[`research/verification_2026-11-19_arena-4475a074.md`](research/verification_2026-11-19_arena-4475a074.md).
+
+- **All 19 trip-window rows (2026-11-23 → 2026-11-30) match** the live official schedule on date, start time,
+  event number, name, printed buy-in, printed guarantee and structure-sheet link. None missing, none invented.
+- **All core money values match verbatim:** poker-suite starting rate $119/$209 and the 150-day horizon, EPOKR25,
+  the six-hour/$300 qualification; resort fee $55/night plus tax; Clark County room tax 13.38%; guest self-parking
+  $20/day, non-guest $20-$25, valet $40, and the conditional three-hour poker waiver; Wynn resort fee $55/night
+  plus tax with complimentary self-parking.
+- **Both structure PDFs match the published rows:** structure_1 (5:10 PM, 25,000 chips, 30-min levels, late reg
+  9:40 PM, $8K GTD, $40 of $200 to fees) and structure_6 (11:10 AM, 40,000 chips, late reg ~4:55 PM, $15K GTD,
+  $65 of $400 to fees). The sheets print one buy-in, one start flight and no re-entry/rebuy/add-on clause, i.e.
+  they remain **sheet-screened**, not a written per-player cap (F31 stands).
+- **Trip-cost arithmetic recomputed by hand:** $197.28/night, $1,380.96 lodging, $140 parking, $4,120.96 total;
+  alternate $299.32/night, $4,835.24; live quote $4,010.55 (3152.25 + 385.00 + 473.30) and per-night true costs
+  (248.59, 1932.28) all reconcile.
+- **New regression guard:** this session's own 94-row capture
+  (`raw/dse_schedule_live_2026-11-19_4475a074.md`, canonicalised by `scripts/verify_fresh_4475a074.py`) verifies
+  the published catalog field for field with **0 mismatches**, and `tests/test_fresh_4475a074.py` asserts both
+  that the catalog matches it and that it agrees with the primary 2026-11-19 capture. **336 unit tests OK**.
+
+**V2 Requirements audit: done, no gap.** The 40-row requirement audit in `site/data.json` (rendered at
+`site/verification.html`) was re-confirmed against the live site. Every requirement is implemented; the items
+official evidence cannot support (written maximum-entry rule, verified finish times, an 8 a.m. all-day route, a
+ranked "best" winner/hotel) stay marked as such rather than being filled in. No genuine gap required new work.
+
+**V3 Drift/irregularity fix: done, no drift.** The fresh official reads agreed with every published value, so no
+value, date, flag or page text was changed. No new irregularity was found; no new flag was added.
+
+**Verification before the PR (all green):** `verify_site.py` (341 events / 8 hotels / 56 routes / 50 sources /
+101 flags / 7 plan days / 18 pages); **336 unit tests OK**; `audit_951cd431.py` (0 failures, 0 warnings);
+`verify_live_official.py`; `audit_data.py`; `verify_entry_labels.py`; `verify_transcription.py --dry-run` (44/44);
+`canonical_smoke.py`; `node tests/canonical_render.js` (all pages render); `node tests/walk_limit_render.js`;
+`tests/smoke.py`; `node --check` on every JS asset; a local-link scan over all 27 `site/**/*.html` pages (95
+internal links, **0 broken**); and byte-identical `data_source.py` / `build_addendum.py` / `coverage.py` rebuilds.
+
+**Scope note.** Only the files in this claim were edited: the new research record, the fresh capture + canonical
+capture, the converter script, the new regression test, and this COORDINATION.md section. Open PRs #173 and #184
+were left untouched; no other branch was created, switched to or pushed.
+
