@@ -52,6 +52,7 @@ OFFICIAL_HOSTS = (
 PAGES = (
     "index.html", "tournaments.html", "venues.html", "browse.html", "schedule.html",
     "hotels.html", "questions.html", "suggestions.html", "flagged.html", "sources.html", "search.html",
+    "ranking.html",
 )
 
 # Detailed pages that carry their own data attributes instead of data-page.

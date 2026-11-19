@@ -31,6 +31,7 @@ PAGES = {
     "flagged.html": "flagged",
     "sources.html": "sources",
     "search.html": "global-search",
+    "ranking.html": "ranking",
 }
 
 # Detailed pages that use their own data attributes instead of data-page.
@@ -54,6 +55,7 @@ REQUIRED_HOOKS = {
     "flagged.html": ["data-flags"],
     "sources.html": ["data-sources", "data-sheets", "data-feed", "data-autochecks"],
     "search.html": ["data-search-summary", "data-search-results"],
+    "ranking.html": ["data-ranking-single", "data-ranking-bounty", "data-ranking-flight", "data-ranking-gate"],
 }
 
 

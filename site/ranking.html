@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Events ranked only after their total entry fee and guaranteed pool are confirmed, with the descriptive guaranteed-pool-to-fee ratio and bounty events labelled separately.">
+<title>Vegas Poker Planner · Ranking</title>
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body data-page="ranking">
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="brand-mark">♠</span><span>Vegas Poker Planner</span></a>
+  <form class="top-search" data-search-form><input type="search" placeholder="Search every table…" aria-label="Search tournaments"><button class="btn" type="submit">Search</button></form>
+  <span class="top-tag">Official sources only · verified <span data-asof></span></span>
+</header>
+<nav class="mobile-nav" data-mobile-nav></nav>
+<div class="layout">
+  <aside class="sidebar">
+    <div class="side-label">Plan your trip</div>
+    <nav class="nav" data-nav></nav>
+    <div class="side-note">
+      <strong>What this page is not</strong>
+      The pool ÷ fee column is published guaranteed pool divided by published entry fee. It is a description of two
+      printed numbers, not an expected value, not a return and not a forecast. A guarantee is a floor the room pays only
+      if the field reaches it.
+    </div>
+  </aside>
+  <main class="main">
+    <section class="hero">
+      <div class="eyebrow">Ranking · <span data-ranking-count>—</span> rows ranked</div>
+      <h1>Ranked only after the fee and the guarantee are both confirmed.</h1>
+      <p>
+        A row appears here only when an official source prints both its <strong>entry fee</strong> and its
+        <strong>guaranteed prize pool</strong>, and only when the fee line is confirmed on a structure sheet rather than
+        inferred from the event name. Everything else stays on the
+        <a href="tournaments.html">tournament table</a> with the blank cell and the flag that explains it.
+      </p>
+    </section>
+
+    <div class="notice">
+      <strong>Two lists, never one.</strong> Bounty and multi-flight events are ranked in their own tables below, because
+      their guarantee includes money paid out as bounties or spans several starting flights, so it is not the same
+      quantity as a single-day freezeout's prize pool. Comparing the two side by side would compare different things.
+    </div>
+
+    <div class="notice" data-ranking-gate></div>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Single-buy-in, single-flight events</h2>
+        <p>One printed buy-in, one printed start flight, no re-entry, rebuy, add-on or second-flight clause on the sheet.
+        Sorted by the published pool ÷ fee ratio, highest first. The sheet-screening test does not establish a maximum
+        number of entries per player — that remains open on <a href="flagged.html">F31</a>.</p></div></div>
+      <div data-ranking-single></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Bounty events, ranked separately</h2>
+        <p>The guarantee printed on a bounty event includes the money paid out as bounties, so its ratio is not comparable
+        with a cash prize pool. Each row names the bounty structure exactly as the source prints it.</p></div></div>
+      <div data-ranking-bounty></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>Multi-flight and series events, ranked separately</h2>
+        <p>These events publish several starting flights, so one player can buy more than one entry and the guarantee is
+        shared across every flight. They are listed for comparison only and are never offered as a single-entry option.</p></div></div>
+      <div data-ranking-flight></div>
+    </section>
+
+    <section class="section">
+      <div class="section-head"><div><h2>How to read the ranking</h2></div></div>
+      <div class="cards">
+        <article class="card"><span class="pill ok">Step 1</span><h3>Total entry fee confirmed</h3>
+          <p>A row is ranked only when the fee is printed by the source, either as the buy-in or as an itemised split
+          ("$90 of the $600 Buy-In is withheld for house fees"). A buy-in that appears only in an event name is not
+          treated as confirmed.</p></article>
+        <article class="card"><span class="pill ok">Step 2</span><h3>Guarantee confirmed</h3>
+          <p>A guarantee printed for a different event number, or a guarantee that appears only in a summary sentence, is
+          not used. Where a sheet prints several guarantees for several event numbers, the row takes the one that names
+          its own event.</p></article>
+        <article class="card"><span class="pill">Step 3</span><h3>Ratio, labelled as a ratio</h3>
+          <p>Guaranteed pool ÷ entry fee. A 250× figure on a $300 event with a $75,000 guarantee means exactly that:
+          $75,000 divided by $300. It is not a return, an expectation or a probability, and it does not account for the
+          share of the field that is paid.</p></article>
+        <article class="card"><span class="pill warn">Step 4</span><h3>Still conditional</h3>
+          <p>No reviewed structure sheet prints a maximum number of entries per player. A ranked row is therefore a
+          research shortlist item, not an eligible single-entry event, until the room confirms that rule in writing.</p></article>
+      </div>
+    </section>
+
+    <div class="footer">
+      Every row links the official page or PDF it came from, with the retrieval date.
+      <a href="flagged.html">Flagged for review</a> · <a href="schedule.html">Day plan</a> ·
+      <a href="sources.html">Source log</a>
+    </div>
+  </main>
+</div>
+<script src="assets/app.js"></script>
+</body>
+</html>

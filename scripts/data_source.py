@@ -2926,6 +2926,54 @@ def build():
             h["lastChecked"] = LIVE_2026_11_19
             h["lastVerified"] = LIVE_2026_11_19
 
+    # ---------------------------------------------------------------------
+    # 2026-11-19 hand re-read by session arena/8a0dc31b-poker3.
+    #
+    # The pages below were opened and read by hand today and compared line by line with
+    # what the dashboard publishes; the record, including the verbatim excerpts, is
+    # research/verify_2026-11-19_fresh_read.md. This pass only moves the read date for
+    # the sources actually read today. It never moves a value, and it deliberately does
+    # NOT touch the structure sheets it did not open: structure_7.pdf and
+    # structure_22.pdf were re-read, the other five trip-window sheets were not, so
+    # their rows keep the earlier date and tests/test_index_evidence_labels.py keeps
+    # asserting that per-row discipline.
+    # ---------------------------------------------------------------------
+    READ_2026_11_19_FRESH = {
+        # Venetian schedule + the two sheets read in full
+        "https://www.venetianlasvegas.com/resort/casino/poker/deepstack-extravaganza-poker-tournament/dse-nov-2026.html",
+        "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_7.pdf",
+        "https://www.venetianlasvegas.com/content/dam/vlvweb/casino/poker/deepstack/2026/structures/dse_nov_2026-structure_22.pdf",
+        # suite rate, resort fee, hotel terms, poker-room parking
+        "https://www.venetianlasvegas.com/resort/casino/poker/suite-rates.html",
+        "https://www.venetianlasvegas.com/resort/resort-fee.html",
+        "https://www.venetianlasvegas.com/legal/hotel-terms-and-conditions.html",
+        "https://www.venetianlasvegas.com/resort/casino/poker/player-parking.html",
+        # the other Strip room page whose daily slate this session re-read
+        "https://www.caesars.com/las-vegas/explore/casino/poker-tournaments-las-vegas-strip",
+        "https://www.wynnlasvegas.com/about-us/resort-information",
+    }
+    for src in SOURCES:
+        if src["url"] in READ_2026_11_19_FRESH:
+            src["checked"] = LIVE_2026_11_19
+    for e in events:
+        # A row's date moves only when the DOCUMENT CARRYING ITS MONEY was re-read.
+        # The schedule page prints the date and start time, but the fee split and the
+        # guarantee live on the structure sheet, so re-reading the schedule alone does
+        # not re-verify a row (the established convention in this repository, asserted
+        # by tests/test_index_evidence_labels.py).
+        touched = e.get("sheetUrl") in READ_2026_11_19_FRESH
+        for body in e["rules"].values():
+            if body.get("source") in READ_2026_11_19_FRESH:
+                body["retrieved"] = LIVE_2026_11_19
+                touched = True
+            elif body.get("retrieved") == LIVE_2026_11_19 and body.get("source") not in READ_2026_11_19_FRESH:
+                # A sheet that was not opened today must not inherit today's date.
+                body["retrieved"] = ASOF if e.get("venue") == "venetian" else body.get("retrieved")
+        if touched:
+            # Values first read on ASOF; the sheet was read again today and agreed, so the
+            # re-verification date is today while the original read date is preserved.
+            e["lastVerified"] = LIVE_2026_11_19
+
     # Second 2026-11-17 re-read pass (session arena-196dc009): schedule pages and
     # hotel terms fetched again that day and compared with the published rows.
     # Advance a date only where the URL behind it was re-read; everything else
