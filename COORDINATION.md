@@ -5835,3 +5835,28 @@ Branch: `arena/e830d773-poker3` (platform-bound single branch; `session-<id>/<ta
   - **GitHub Pages deployment:** `Publish the canonical Vegas Poker Planner to GitHub Pages` **success** ([run 44482186565](https://github.com/karagemop466-tech/Poker3/actions/runs/44482186565), build 18s + deploy 10s) and `pages build and deployment` **success** ([run 44482186298](https://github.com/karagemop466-tech/Poker3/actions/runs/44482186298)); `GET /repos/karagemop466-tech/Poker3/pages/builds/latest` returned `status: "built"`, `commit: "5f001742c69c7d9e6e5f891f3e45eaf735297bff"`, `error: null`.
   - **Live read-back:** Fetched <https://karagemop466-tech.github.io/Poker3/site/hotels.html> and <https://karagemop466-tech.github.io/Poker3/site/venues/others.html> after deployment; both serve the updated hero/dates, the five-room heading (`Bellagio, MGM Grand, Caesars Palace, Horseshoe & ARIA`), and the newly verified Caesars Palace and Horseshoe parking terms.
   - **Rebase log:** Three append-only `COORDINATION.md` rebases over PRs #200, #201–#203, and #204; all concurrent sessions' records and code were preserved in full. Open PRs `#173` and `#184` remain untouched.
+
+---
+
+## Session `arena/7d96049f-poker3` — claim: scheduled-monitor reliability, trip-cost unknown handling, 2026-11-19 live re-reads (2026-11-19 UTC)
+
+Branch: `arena/7d96049f-poker3`, branched from `main` at `5c42d7f` (= `origin/main`, 0 ahead / 0 behind at claim
+time). The platform binds a session to one branch, so `session-<id>/<task>` naming cannot be applied. Claim
+written and pushed before any edit.
+
+| Task | Status | Owner session | Scope (files) | Notes |
+|---|---|---|---|---|
+| M1 Fix the scheduled source-monitor record publication: `tests/test_index_evidence_labels.py` hardcodes `2026-11-19` and asserts no structure PDF changed, so the nightly job fails exactly when a source *does* change and never commits `site/checks.json` | in progress | `arena/7d96049f-poker3` | `tests/test_index_evidence_labels.py`, (new) `tests/test_monitor_record_robustness.py` | CI evidence: run [44482186623](https://github.com/karagemop466-tech/Poker3/actions/runs/44482186623) failed at "Verify the dashboard still passes its own checks"; the following "Record the check results on the main branch" step was skipped. All 334 tests + `verify_site.py` pass on this commit locally, so the failure came from the CI-regenerated record, not from committed data. |
+| M2 Trip-cost arithmetic: blank or unverified inputs (tax %, resort fee, counts) must stay unknown, not be silently priced as $0 / tax-free | in progress | `arena/7d96049f-poker3` | `scripts/trip_cost.py`, `site/calculator.html`, `tests/test_calculator_page.py`, `tests/test_trip_cost_reproducible.py`, (new) `tests/test_calculator_missing_inputs.py` | **Takeover of a stalled claim.** PR [#184](https://github.com/karagemop466-tech/Poker3/pull/184) (`arena/5cfdd619-poker3`, session `5cfdd619`) claimed this exact defect at 06:47 UTC and has made no commit since; per the board's 60-minute rule this session takes it over. That PR is left open and untouched; its approach is credited in the code comment. `main`'s `true_nightly()` still does `float(tax_pct or 0)`, i.e. an unpublished tax percent is priced as zero tax. |
+| M3 Live 2026-11-19 re-read of the official pages behind the 49 event rows still dated 2026-11-17 (Venetian NYE series) plus a dated re-quote of the trip window at the Venetian and Wynn booking engines | in progress | `arena/7d96049f-poker3` | `research/reread_2026-11-19_arena-7d96049f.md` (new), `scripts/data_venetian.py`, `scripts/data_hotels.py`, `site/data.json`, `site/sheets.html`, `site/coverage.json` | Read through the platform page reader (the sandbox's own egress to venue hosts still fails, F40). A row's date advances only if its official page was re-read in this session and matched line by line; a disagreement is flagged, never auto-corrected. |
+| M4 Integration: rebase over any landing PR, full offline check suite, PR to `main`, merge, confirm Pages deploy, record here | in progress | `arena/7d96049f-poker3` | `COORDINATION.md`, generated artefacts via `scripts/data_source.py` / `scripts/build_addendum.py` / `scripts/coverage.py` | Flagged items do not block the merge. |
+
+**Stale-PR notes (no action taken against them).** PR [#173](https://github.com/karagemop466-tech/Poker3/pull/173)
+(`arena/a33db3c1-poker3`, last touched 06:12 UTC) re-read the trip window on 2026-11-19 and edited
+`tests/test_index_evidence_labels.py`, `scripts/coverage.py`, `site/data.json`; the same trip-window dates are
+already published on `main` (292 of 341 rows carry `lastChecked 2026-11-19`), so its data contribution appears
+superseded. It is left open and untouched; M3 does not duplicate its trip-window rows.
+
+**Not in this session's scope** (other sessions may still take them): `site/assets/**`, `site/index.html` prose,
+`.github/workflows/**`, `docs/**`, `verified/**`, `single-entry/**`, `poker3/**`, `planner/**`, `handoff/**`.
+Board file is append-only for this session.
