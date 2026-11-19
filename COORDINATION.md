@@ -5610,6 +5610,53 @@ keep both records, and log the handoff here.
 | T3 Fix board defect: two orphan git conflict-marker lines left by a prior rebase | done | `arena/8194609f` | `COORDINATION.md` | Marker lines removed; every session's text was kept. A parallel session published the same finding on main, so no duplicate flag was added. |
 | T4 Final verification: full unit suite, all verification scripts, link check, reproducible rebuild, then PR → `main` → merge → Pages confirmation → record here | pending | `arena/8194609f` | whole repo (integration) | Flagged irregularities and unverified items do not block the merge; they are published on the Flagged for review page. |
 
+### Result (session `arena/8194609f-poker3`, 2026-11-19 UTC)
+
+**T1 Repo review + line-by-line official verification: done.** Nineteen official URLs were fetched and read live
+on 2026-11-19 (the Venetian DSE IV schedule in all four chunks, suite rates, resort fee, hotel terms (both chunks),
+poker parking, structure sheets 1/6/7, the 2023 one-entry-wording page, Wynn poker/resort policies/parking, Bellagio
+poker page + Saturday PDF + hotel terms, the Caesars article + flyer, and the Clark County tax guide Appendix III).
+Verbatim excerpts, per-value comparisons and manual-review links:
+`research/verification_2026-11-19_arena-8194609f.md`. **No published value changed.** The 19 rows inside the fixed
+trip window (23-30 Nov 2026) were compared with the live official schedule on date, start time, event number, printed
+buy-in, printed guarantee and structure-sheet link: 19/19 match, none missing, none invented. Re-confirmed with
+fresh reads: F02 (Bellagio $1,000 page / $1,100 PDF header / $600 fee allocation), F90 (Caesars "every event $100"
+vs the flyer's $100/$160 + explicit re-entry + $50 add-on), F51 (two official Venetian pages describe the $55 fee
+differently), F31 (no 2026 maximum-entry wording, while the same venue's April 2023 schedule does print "One Entry
+Only with One Hour of Registration"), F17/F16 (no 8 AM start, no finish time), F92/F93/F56 details.
+
+**T2 Requirements audit: done.** All 40 instructions in the brief were audited line by line and published as a
+machine-readable table in `site/data.json` (`verification`, `verificationReads`, `verificationRows`) and rendered at
+`site/verification.html`. Every row states where it is implemented, the verification performed and the official
+source/evidence link. Requirements that official evidence cannot support (R14 overlap with verified finish times,
+R18 written maximum-entry rule, R27 a ranked "best" winner, R29 a ranked "best" hotel, R30 an 8 AM all-day route)
+are marked as such instead of being filled in. The new page is in the shared nav, in `verify_site.py` PAGES,
+`tests/canonical_smoke.py` PAGES/REQUIRED_HOOKS, `tests/canonical_render.js` PAGES, and has a root redirect.
+
+**T3 Board defect: done.** Two orphan conflict-marker lines were removed (F98), keeping every session's text.
+
+**Irregularities found.** F97 (four legacy venue subpages published stale hardcoded claims: "the NYE rows stay
+unverified", "no date-specific room quote exists", "the only dated checkout total found is $1,245.48", and
+2026-11-16 dates) — corrected to match `site/data.json`, dated 2026-11-19, given official source links, and guarded
+by `tests/test_verification_audit.py`. F98 (orphan conflict markers) — fixed. F99 (five unlinked 2026-11-16 snapshot
+JSON files still published under `site/data/`) — flagged for review rather than deleted, because another session's
+`scripts/daily_check.py` still names `sources.json`; no dashboard page reads them. All three are on the Flagged for
+review page with links. Flagged items do not block the merge.
+
+**Verification performed before the PR (all green on this branch).** `verify_site.py` (341 events / 8 hotels /
+56 routes / 48 sources / 95 flags / 7 plan days / 17 pages); **269 unit tests OK**; `canonical_smoke.py`;
+`node tests/canonical_render.js` (14 page renders including `verification`); `node tests/walk_limit_render.js`;
+`node --check` on every JS asset; `audit_951cd431.py`, `audit_data.py`, `verify_live_official.py`,
+`verify_entry_labels.py`, `verify_transcription.py --dry-run` (44/44); a local-link scan over all 26 `site/**/*.html`
+pages (0 broken) and all 11 root redirects; and a byte-identical `data_source.py` rebuild (SHA-256 unchanged).
+PyYAML 6.0.3 had to be installed in the sandbox for `test_workflows.py`/`test_pages_gate.py`; the Actions workflow
+already installs it. `scripts/verify_site.py` was widened by one word so a repository-area flag may cite a GitHub
+URL (the same exemption already allowed Publishing and Monitoring flags); an uncited data flag still fails.
+
+**Scope note.** Only the files listed in this claim were edited. PR #173 (`arena/a33db3c1-poker3`) was left open and
+untouched; no other branch was created, switched to or pushed. No other session landed a commit while this branch
+was open, so there was no merge conflict to resolve and no handoff to log.
+
 **Verification policy.** Every table row keeps its official source link. A value that cannot be confirmed from an
 official venue or property page/PDF is left blank and flagged. Third-party pages are cited only as conflicts, never as
 values. Any changed official page is flagged for a human re-read; automation never moves a published value.
