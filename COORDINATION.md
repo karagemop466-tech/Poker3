@@ -4504,3 +4504,5 @@ All five fixes implemented on `arena/16cd67ca-poker3` (re-implemented on current
 | Task | Status | Owner | Scope | Notes |
 |---|---|---|---|---|
 | Surface evidence freshness and booking blockers on the canonical landing page; verify saved data, existing deployment and monitoring | in progress | arena/62967e7b-poker3 | `site/index.html`, new `site/assets/readiness.js`, new readiness tests, `COORDINATION.md` | Fixed Arena branch; shared board already on main. No edits to overlapping files in open PRs #112/#130. Audit latest committed official-source checks and independently attempt official-page spot checks; no unverified values will be promoted. |
+
+**Scope clarification:** The canonical Flagged for Review page will carry the independent spot-check observations; update only `site/flagged.html` and the landing hook in `tests/canonical_smoke.py` in addition to the above claim. Existing shared data, calculator, and application script remain untouched.
