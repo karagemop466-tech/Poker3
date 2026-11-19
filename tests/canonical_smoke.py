@@ -27,6 +27,7 @@ PAGES = {
     "schedule.html": "schedule",
     "hotels.html": "hotels",
     "questions.html": "questions",
+    "q-and-a.html": "q-and-a",
     "suggestions.html": "suggestions",
     "flagged.html": "flagged",
     "sources.html": "sources",
