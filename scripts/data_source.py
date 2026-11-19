@@ -2017,7 +2017,12 @@ WPT_MARK_NOTES = {
 def _rules_for_sheet(sheet_no):
     s = V.SHEETS[sheet_no]
     url = f"{V.BASE}/dse_nov_2026-structure_{sheet_no}.pdf"
-    base = dict(source=url, retrieved=V.RETRIEVED)
+    # "retrieved" is when the value was first read (V.RETRIEVED, 2026-11-16). A later pass that re-read the
+    # same PDF and found it unchanged records WHEN on a separate field, so a published row can be re-checked
+    # without back-dating or overwriting the original read. Sheets 1-30 were re-read in full on 2026-11-19
+    # (session arena/e94482ee-poker3) and every printed fee, chip count, level length and clause matched.
+    reread = {"rechecked": "2026-11-19"}
+    base = dict(source=url, retrieved=V.RETRIEVED, **reread)
     fee_excerpt = (f"${s['rake']} of the ${s['buyIn']} Buy-In is withheld for house fees (Rake + Staff). "
                    f"The prize pool consists of ${s['pool']} of every ${s['buyIn']} Buy In.")
     if sheet_no in (31, 32, 33):
